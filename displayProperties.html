@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Flex</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="#">Display Properties</a></li>
+                <li><a href="./Objects.html">Objects</a></li>
+                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./git.html">Git</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Display Properties</h1>
+        </header>
+        <div class="styleGuide">
+            <h3>Flex</h3>
+            <p><strong>display</strong>: flex changes an element to a block-level container with flex items inside of it.</p>
+            <p><strong>display</strong>: inline-flex allows multiple flex containers to appear inline with each other.</p>
+            <p><strong>justify-content</strong> is used to space items along the main axis.</p>
+            <p><strong>align-items</strong> is used to space items along the cross axis.</p>
+            <p><strong>flex-grow</strong> is used to specify how much space (and in what proportions) flex items absorb along the main axis.</p>
+            <p><strong>flex-shrink</strong> is used to specify how much flex items shrink and in what proportions along the main axis.</p>
+            <p><strong>flex-basi</strong>s is used to specify the initial size of an element styled with flex-grow and/or flex-shrink.</p>
+            <p><strong>flex</strong> is used to specify flex-grow, flex-shrink, and flex-basis in one declaration.</p>
+            <p><strong>flex-wrap</strong> specifies that elements should shift along the cross axis if the flex container is not large enough.</p>
+            <p><strong>align-content</strong> is used to space rows along the cross axis.</p>
+            <p><strong>flex-direction</strong> is used to specify the main and cross axes.</p>
+            <p><strong>flex-flow</strong> is used to specify flex-wrap and flex-direction in one declaration.</p>
+            <p><strong>Flex containers</strong> can be nested inside of each other by declaring display: flex or display: inline-flex for children of flex containers.</p>
+            <h2>When to use Flex?</h2>
+            <ul>
+                <li>Can the scaling, spacing, alignment, or ordering issue be solved using more basic CSS? If so we should not use flexbox.</li>
+                <li>Do we want to use flexbox to create an entire page layout? If yes, consider using other CSS tools, like CSS Grid, in conjunction with flexbox - as flexbox is not designed to create entire page layouts.</li>
+                <li>Do we need an easy way to align, control spacing, scale, and/or order items in a vertical or horizontal direction within a container? Use flexbox!</li>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h3>Grid</h3>
+            <p><strong>grid-template-columns</strong> defines the number and sizes of the columns of the grid</p>
+            <p><strong>grid-template-rows</strong> defines the number and sizes of the rows of the grid</p>
+            <p><strong>grid-template</strong> is a shorthand for defining both grid-template-columns and grid-template-rows in one line</p>
+            <p><strong>row-gap</strong> puts blank space between the rows of the grid</p>
+            <p><strong>column-gap</strong> puts blank space between the columns of the grid</p>
+            <p><strong>gap</strong> is a shorthand for defining both row-gap and column-gap in one line</p>
+            <p><strong>grid-row-start</strong> and <strong>grid-row-end</strong> makes elements span certain rows of the grid</p>
+            <p><strong>grid-column-start</strong> and <strong>grid-column-end</strong> makes elements span certain columns of the grid</p>
+            <p><strong>grid-area</strong> is a shorthand for grid-row-start, grid-column-start, grid-row-end, and grid-column-end, all in one line</p>
+            <p><strong>grid-template-areas</strong> specifies grid named grid areas</p>
+            <p><strong>grid layouts</strong> are two-dimensional: they have a row, or inline, axis and a column, or block, axis.</p>
+            <p><strong>justify-items</strong> specifies how individual elements should spread across the row axis</p>
+            <p><strong>justify-content</strong> specifies how groups of elements should spread across the row axis</p>
+            <p><strong>justify-self</strong> specifies how a single element should position itself with respect to the row axis</p>
+            <p><strong>align-items</strong> specifies how individual elements should spread across the column axis</p>
+            <p><strong>align-content</strong> specifies how groups of elements should spread across the column axis</p>
+            <p><strong>align-self</strong> specifies how a single element should position itself with respect to the column axis</p>
+            <p><strong>grid-auto-rows</strong> specifies the height of rows added implicitly to the grid</p>
+            <p><strong>grid-auto-columns</strong> specifies the width of columns added implicitly to the grid</p>
+            <p><strong>grid-auto-flow</strong> specifies in which direction implicit elements should be created</p>
+            <button id="showCode" onclick="showCode()">Website Grid</button>
+            <div id="displayCode">
+                <button onclick="closeCode()">Close</button>
+                <pre>
+                    <code>
+                    .container {
+                        display: grid;
+                        max-width: 900px;
+                        position: relative;
+                        margin: auto;
+                        gap: 10px;
+                        grid-template: repeat(12, 1fr) / repeat(6, 1fr);
+                    }
+                    
+                    h1, h2, h3 {
+                        font-family: monospace;
+                        text-align: center;
+                    }
+                    
+                    header {
+                        background-color: dodgerblue;
+                        grid-area: 1 / 1 / 3 / 7;
+                    }
+                    
+                    nav {
+                        background-color: beige;
+                        grid-area: 3 / 1 / 4 / 7;
+                    }
+                    
+                    .left {
+                        background-color: dodgerblue;
+                        grid-area: 4 / 1 / 9 / 5;
+                    }
+                    
+                    .right {
+                        background-color: beige;
+                        grid-area: 4 / 5 / 9 / 7;
+                    }
+                    
+                    .overlap {
+                        background-color: lightcoral;
+                        grid-area: 6 / 4 / 8 / 6;
+                        z-index: 5;
+                    }
+                    
+                    footer {
+                        background-color: dodgerblue;
+                        grid-area: 9 / 1 / 13 / 7;
+                    }
+                    </code>
+                </pre>
+            </div>
+        </div>
+            <div class="styleGuide">
+                <h3>Relative Measurements</h3>
+                <ul>
+                    <li>Content on a website can be sized relative to other elements on the page using relative measurements.</li>
+                    <li>The unit of em sizes font relative to the font size of a parent element.</li>
+                    <li>The unit of rem sizes font relative to the font size of a root element. That root element is the <html> element.</li>
+                    <li>Percentages are commonly used to size box-model features, like the width, height, padding, or margin of an element.</li>
+                    <li>When percentages are used to size width and height, child elements will be sized relative to the dimensions of their parent (remember that parent dimensions must first be set).</li>
+                    <li>Percentages can be used to set padding and margin. Horizontal and vertical padding and margin are set relative to the width of a parent element.</li>
+                    <li>The minimum and maximum width of elements can be set using min-width and max-width.</li>
+                    <li>The minimum and maximum height of elements can be set using min-height and max-height.</li>
+                    <li>When the height of an image or video is set, then its width can be set to auto so that the media scales proportionally. Reversing these two properties and values will also achieve the same result.</li>
+                    <li>A background image of an HTML element will scale proportionally when its background-size property is set to cover.</li>
+                <ul>
+            </div>
+            <div class="styleGuide">
+                <h3>Media Query</h3>
+                <ul>
+                    <li>When a website responds to the size of the screen it’s viewed on, it’s called a responsive website.</li>
+                    <li>You can write media queries to help with different screen sizes.</li>
+                    <li>Adding the viewport <meta> tag to our code allows us to control the width and scaling of the viewport so that it’s sized and scaled correctly on all devices.</li>
+                    <li>Media queries require media features. Media features are the conditions that must be met to render the CSS within a media query.</li>
+                    <li>Media features can detect many aspects of a user’s browser, including the screen’s width, height, resolution, orientation, and more.</li>
+                    <li>The and operator requires multiple media features to be true at once.</li>
+                    <li>A comma separated list of media features only requires one media feature to be true for the code within to be applied.</li>
+                    <li>The best practice for identifying where media queries should be set is by resizing the browser to determine where the content naturally breaks. Natural breakpoints are found by resizing the browser.</li>
+                </ul>
+            </div>
+        <script>
+            function showCode(){
+                document.getElementById("displayCode").style.display = "block";
+                document.getElementById("showCode").style.display = "none";
+            }
+            function closeCode(){
+                document.getElementById("displayCode").style.display = "none";
+                document.getElementById("showCode").style.display = "block";
+            }
+        </script>
+    </body>
+</html>

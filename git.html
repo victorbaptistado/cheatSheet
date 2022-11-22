@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Git</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./Objects.html">Objects</a></li>
+                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="#">Git</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>GIT</h1>
+        </header>
+        <div class="styleGuide">
+            <h3>Git Workflow</h3>
+            <ul>
+                <li><strong>git init:</strong> creates a new Git repository</li>
+                <li><strong>git status:</strong> inspects the contents of the working directory and staging area</li>
+                <li><strong>git add:</strong> adds files from the working directory to the staging area</li>
+                <li><strong>git diff:</strong> shows the difference between the working directory and the staging area</li>
+                <li><strong>git commit:</strong> permanently stores file changes from the staging area in the repository</li>
+                <li><strong>git log:</strong> shows a list of all previous commits</li>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h3>Git Backtrack</h3>
+            <ul>
+                <li><strong>git checkout HEAD filename:</strong> Discards changes in the working directory.</li>
+                <li><strong>git reset HEAD filename:</strong> Unstages file changes in the staging area.</li>
+                <li><strong>git reset commit_SHA:</strong> Resets to a previous commit in your commit history</li>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h3>Git Stash</h3>
+            <li><strong>git stash:</strong> allows you to get back to a clean commit point with a synchronized working tree, and avoid losing your local changes in the process of switching branches or tasks.</li>
+            <li><strong>git stash pop:</strong> retrieves data from your stash.</li>
+            <li><strong>git commit --amend:</strong> updates a commit to avoid creating a new one.</li>
+            <li><strong>Git aliases: </strong> for sets of commands used regularly, to save time from typing - you can set an alias for each command using Git config.</li>
+        </div>
+    </body>
+</html>
