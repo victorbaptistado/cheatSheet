@@ -2,6 +2,7 @@
 <html>
     <header>
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
         <title>Flex</title>
     </header>
     <body>
@@ -63,9 +64,9 @@
             <p><strong>grid-auto-rows</strong> specifies the height of rows added implicitly to the grid</p>
             <p><strong>grid-auto-columns</strong> specifies the width of columns added implicitly to the grid</p>
             <p><strong>grid-auto-flow</strong> specifies in which direction implicit elements should be created</p>
-            <button id="showCode" onclick="showCode()">Website Grid</button>
-            <div id="displayCode">
-                <button onclick="closeCode()">Close</button>
+            <button id="showCode3" onclick="showCode('displayCode3', 'showCode3')">Website Grid</button>
+            <div id="displayCode3">
+                <button onclick="closeCode('displayCode3', 'showCode3')">Close</button>
                 <pre>
                     <code>
                     .container {
@@ -116,43 +117,33 @@
                 </pre>
             </div>
         </div>
-            <div class="styleGuide">
-                <h2>Relative Measurements</h2>
-                <ul>
-                    <li>Content on a website can be sized relative to other elements on the page using relative measurements.</li>
-                    <li>The unit of em sizes font relative to the font size of a parent element.</li>
-                    <li>The unit of rem sizes font relative to the font size of a root element. That root element is the <html> element.</li>
-                    <li>Percentages are commonly used to size box-model features, like the width, height, padding, or margin of an element.</li>
-                    <li>When percentages are used to size width and height, child elements will be sized relative to the dimensions of their parent (remember that parent dimensions must first be set).</li>
-                    <li>Percentages can be used to set padding and margin. Horizontal and vertical padding and margin are set relative to the width of a parent element.</li>
-                    <li>The minimum and maximum width of elements can be set using min-width and max-width.</li>
-                    <li>The minimum and maximum height of elements can be set using min-height and max-height.</li>
-                    <li>When the height of an image or video is set, then its width can be set to auto so that the media scales proportionally. Reversing these two properties and values will also achieve the same result.</li>
-                    <li>A background image of an HTML element will scale proportionally when its background-size property is set to cover.</li>
-                <ul>
-            </div>
-            <div class="styleGuide">
-                <h2>Media Query</h2>
-                <ul>
-                    <li>When a website responds to the size of the screen it’s viewed on, it’s called a responsive website.</li>
-                    <li>You can write media queries to help with different screen sizes.</li>
-                    <li>Adding the viewport <meta> tag to our code allows us to control the width and scaling of the viewport so that it’s sized and scaled correctly on all devices.</li>
-                    <li>Media queries require media features. Media features are the conditions that must be met to render the CSS within a media query.</li>
-                    <li>Media features can detect many aspects of a user’s browser, including the screen’s width, height, resolution, orientation, and more.</li>
-                    <li>The and operator requires multiple media features to be true at once.</li>
-                    <li>A comma separated list of media features only requires one media feature to be true for the code within to be applied.</li>
-                    <li>The best practice for identifying where media queries should be set is by resizing the browser to determine where the content naturally breaks. Natural breakpoints are found by resizing the browser.</li>
-                </ul>
-            </div>
-        <script>
-            function showCode(){
-                document.getElementById("displayCode").style.display = "block";
-                document.getElementById("showCode").style.display = "none";
-            }
-            function closeCode(){
-                document.getElementById("displayCode").style.display = "none";
-                document.getElementById("showCode").style.display = "block";
-            }
-        </script>
+        <div class="styleGuide">
+            <h2>Relative Measurements</h2>
+            <ul>
+                <li>Content on a website can be sized relative to other elements on the page using relative measurements.</li>
+                <li>The unit of em sizes font relative to the font size of a parent element.</li>
+                <li>The unit of rem sizes font relative to the font size of a root element. That root element is the <html> element.</li>
+                <li>Percentages are commonly used to size box-model features, like the width, height, padding, or margin of an element.</li>
+                <li>When percentages are used to size width and height, child elements will be sized relative to the dimensions of their parent (remember that parent dimensions must first be set).</li>
+                <li>Percentages can be used to set padding and margin. Horizontal and vertical padding and margin are set relative to the width of a parent element.</li>
+                <li>The minimum and maximum width of elements can be set using min-width and max-width.</li>
+                <li>The minimum and maximum height of elements can be set using min-height and max-height.</li>
+                <li>When the height of an image or video is set, then its width can be set to auto so that the media scales proportionally. Reversing these two properties and values will also achieve the same result.</li>
+                <li>A background image of an HTML element will scale proportionally when its background-size property is set to cover.</li>
+            <ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Media Query</h2>
+            <ul>
+                <li>When a website responds to the size of the screen it’s viewed on, it’s called a responsive website.</li>
+                <li>You can write media queries to help with different screen sizes.</li>
+                <li>Adding the viewport <meta> tag to our code allows us to control the width and scaling of the viewport so that it’s sized and scaled correctly on all devices.</li>
+                <li>Media queries require media features. Media features are the conditions that must be met to render the CSS within a media query.</li>
+                <li>Media features can detect many aspects of a user’s browser, including the screen’s width, height, resolution, orientation, and more.</li>
+                <li>The and operator requires multiple media features to be true at once.</li>
+                <li>A comma separated list of media features only requires one media feature to be true for the code within to be applied.</li>
+                <li>The best practice for identifying where media queries should be set is by resizing the browser to determine where the content naturally breaks. Natural breakpoints are found by resizing the browser.</li>
+            </ul>
+        </div>
     </body>
 </html>

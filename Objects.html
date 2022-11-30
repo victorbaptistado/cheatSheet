@@ -2,6 +2,7 @@
 <html>
     <header>
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
         <title>Objects</title>
     </header>
     <body>
@@ -73,32 +74,39 @@
                 <li>You can visit the Mozilla Developer Network to learn more about iterator methods (and all other parts of JavaScript!).</li>
                 <h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">Documentation</a></h3>
             </ul>
-            <p>How to turn <strong>strings</strong> into an <strong>array?</strong></p>
-            <button id="showCode" onclick="showCode()">Display</button>
-            <div id="displayCode">
-                <button onclick="closeCode()">Close</button>
+                <p>How to turn <strong>strings</strong> into an <strong>array?</strong></p>
+                <button id="showCode1" onclick="showCode('displayCode1', 'showCode1')">Display</button>
+                <div id="displayCode1">
+                    <button onclick="closeCode('displayCode1', 'showCode1')">Close</button>
+                    <pre>
+                        <code>
+                            function reverseArray(array){
+                                let reversed = [];
+                            for(let i = array.length - 1; i >= 0; i--){
+                                reversed.push(array[i]);
+                            }
+                                return reversed;
+                            }
+                        </code>
+                    </pre>
+            </div>
+            <p>How to make an mathematical operation over every number from an array?</strong></p>
+            <button id="showCode2" onclick="showCode('displayCode2', 'showCode2')">Display</button>
+            <div id="displayCode2">
+                <button onclick="closeCode('displayCode2', 'showCode2')">Close</button>
                 <pre>
                     <code>
-                    function reverseArray(array){
-                        let reversed = [];
-                      for(let i = array.length - 1; i >= 0; i--){
-                        reversed.push(array[i]);
-                      }
-                      return reversed;
-                    }
+                        const initialValue = 0;
+                        const sumWithInitial = array1.reduce(
+                            (accumulator, currentValue) => accumulator + currentValue,
+                            initialValue
+                        );
                     </code>
                 </pre>
             </div>
         </div>
     </body>
-    <script>
-        function showCode(){
-            document.getElementById("displayCode").style.display = "block";
-            document.getElementById("showCode").style.display = "none";
-        }
-        function closeCode(){
-            document.getElementById("displayCode").style.display = "none";
-            document.getElementById("showCode").style.display = "block";
-        }
-    </script>
 </html>
+
+
+
