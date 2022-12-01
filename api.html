@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
+        <title>API</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./Objects.html">Objects</a></li>
+                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>       
+                <li><a href="#">API</a></li>         
+            </ul>
+        </nav>
+        <header>
+            <h1>API</h1>
+        </header>
+        <div class="styleGuide">
+            <h2>Synchronous & Asynchronous</h2>
+            <ul>
+                <li><strong>Synchronous</strong> code executes in sequential order — it starts with the code at the 
+                top of the file and executes line by line until it gets to the end of the file. 
+                This type of behavior is known as blocking (or blocking code) since each line of code 
+                cannot execute until the previous line finishes.</li>
+                <li><strong>Asynchronous</strong> code can be executed in parallel to other code that is already running. 
+                Without the need to wait for other code to finish before executing, our apps can save time 
+                and be more efficient. This type of behavior is considered non-blocking.</li>
+                <li><strong>Thread</strong> is a resource that a computer provides an app
+                to do a task.The ability to execute asynchronous code depends on the number of threads 
+                that an app has access to. The more threads we have, the more tasks we can run concurrently.</li>
+                <pre>
+                    <code>
+                        Thread 1: preheat oven
+                        Thread 2: prepare ingredients -> bake-cake
+                    </code>
+                </pre>
+                <li>JavaScript is a single-threaded language. but we can emulate concurrency 
+                with the event loop. Code will always execute synchronously, but asynchronous 
+                code can be pushed to web APIs and directed back into the stack via the event
+                queue and event loop.</li>
+            </ul>
+            <hr/>
+            <h2>Promises</h2>
+            <p>Promises are objects that represent the eventual outcome of an asynchronous operation. 
+            A Promise object can be in one of three states:</p>
+            <li><strong>Pending:</strong> The initial state— the operation has not completed yet.</li>
+            <li><strong>Fulfilled:</strong> The operation has completed successfully and the promise now has a resolved value. For example, a request’s promise might resolve with a JSON object as its value.</li>
+            <li><strong>Rejected:</strong> The operation has failed and the promise has a reason for the failure. This reason is usually an Error of some kind.</li>
+            <li><strong>Settled:</strong> The outcome of a promisse, either fulfilled or rejected.</li>
+            <p>How to make a <strong>promise?</strong></p>
+            <button id="showCode4" onclick="showCode('displayCode4', 'showCode4')">Display</button>
+            <div id="displayCode4">
+                <button onclick="closeCode('displayCode4', 'showCode4')">Close</button>
+                <pre>
+                    <code>
+                        const executorFunction = (resolve, reject) => {
+                            if (someCondition) {
+                                resolve('I resolved!');
+                            } else {
+                                reject('I rejected!'); 
+                            }
+                        }
+                        const myFirstPromise = new Promise(executorFunction);
+                    </code>
+                </pre>
+            </div>
+            <ul>
+                <li><strong>.then()</strong> is invoked on a “successful” promise, or a promise that resolved, passing in a success handler callback function. .then() method allows us to say, “I have a promise, when it settles, then here’s what I want to happen…”. then() always returns a promise. </li>
+                </ul>
+                <p>How to use <strong>.then?</strong></p>
+                <button id="showCode5" onclick="showCode('displayCode5', 'showCode5')">Display</button>
+                <div id="displayCode5">
+                    <button onclick="closeCode('displayCode5', 'showCode5')">Close</button>
+                    <pre>
+                        <code>
+                            let prom = new Promise((resolve, reject) => {
+                                let num = Math.random();
+                                if (num < .5 ){
+                                resolve('Yay!');
+                                } else {
+                                reject('Ohhh noooo!');
+                                }
+                            });
+                            
+                            const handleSuccess = (resolvedValue) => {
+                                console.log(resolvedValue);
+                            };
+                            
+                            const handleFailure = (rejectionReason) => {
+                                console.log(rejectionReason);
+                            };
+                            
+                            prom.then(handleSuccess, handleFailure);
+                        </code>
+                    </pre>
+                </div>      
+            </ul>
+        </div>
+    </div>
+</html>

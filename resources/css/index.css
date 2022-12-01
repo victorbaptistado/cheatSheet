@@ -1,14 +1,20 @@
 /* --- GENERAL --- */
 
-body {
-    background-color: rgba(158, 122, 182, 0.568);
-    padding: 3% 10%;
-    font-size: 1.2rem;
+*{    
+    padding: 0px;
 }
 
 html{
     font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+    background-color: rgba(158, 122, 182, 0.568);
+    padding: 3%;
+    font-size: 1.2rem;
+}
+
 
 /* --- TABLE --- */
 
@@ -29,7 +35,7 @@ html{
     border: solid 1px;
     background-color: white;
     padding: 20px 50px;
-    width: 100%;
+    width: fit-content;
     margin-bottom: 4%;
 }
 
@@ -71,7 +77,7 @@ html{
 .styleGuide button:hover{
     background-color: #d6a6d6;
 }
-#displayCode1, #displayCode2, #displayCode3{
+#displayCode1, #displayCode2, #displayCode3, #displayCode4, #displayCode5{
     display: none;
     justify-content: right;
 }
