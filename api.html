@@ -53,7 +53,7 @@
             <li><strong>Fulfilled:</strong> The operation has completed successfully and the promise now has a resolved value. For example, a request’s promise might resolve with a JSON object as its value.</li>
             <li><strong>Rejected:</strong> The operation has failed and the promise has a reason for the failure. This reason is usually an Error of some kind.</li>
             <li><strong>Settled:</strong> The outcome of a promisse, either fulfilled or rejected.</li>
-            <p>How to make a <strong>promise?</strong></p>
+            <p class="center">How to make a <strong>promise?</strong></p>
             <button id="showCode4" onclick="showCode('displayCode4', 'showCode4')">Display</button>
             <div id="displayCode4">
                 <button onclick="closeCode('displayCode4', 'showCode4')">Close</button>
@@ -72,35 +72,104 @@
             </div>
             <ul>
                 <li><strong>.then()</strong> is invoked on a “successful” promise, or a promise that resolved, passing in a success handler callback function. .then() method allows us to say, “I have a promise, when it settles, then here’s what I want to happen…”. then() always returns a promise. </li>
-                </ul>
-                <p>How to use <strong>.then?</strong></p>
-                <button id="showCode5" onclick="showCode('displayCode5', 'showCode5')">Display</button>
-                <div id="displayCode5">
-                    <button onclick="closeCode('displayCode5', 'showCode5')">Close</button>
-                    <pre>
-                        <code>
-                            let prom = new Promise((resolve, reject) => {
-                                let num = Math.random();
-                                if (num < .5 ){
-                                resolve('Yay!');
-                                } else {
-                                reject('Ohhh noooo!');
-                                }
-                            });
-                            
-                            const handleSuccess = (resolvedValue) => {
-                                console.log(resolvedValue);
-                            };
-                            
-                            const handleFailure = (rejectionReason) => {
-                                console.log(rejectionReason);
-                            };
-                            
-                            prom.then(handleSuccess, handleFailure);
-                        </code>
-                    </pre>
-                </div>      
+                <li><strong>.catch()</strong> accomplishes the same thing as .then() with only a failure handler. It's used as output for failure promises, making the code cleaner (instead of using .then).</li>
             </ul>
+            <p class="center">How to use <strong>.then?</strong></p>
+            <button id="showCode5" onclick="showCode('displayCode5', 'showCode5')">Display</button>
+            <div id="displayCode5">
+                <button onclick="closeCode('displayCode5', 'showCode5')">Close</button>
+                <p>With only .then:</p>
+                <pre>
+                    <code>
+                        let prom = new Promise((resolve, reject) => {
+                            let num = Math.random();
+                            if (num < .5 ){
+                            resolve('Yay!');
+                            } else {
+                            reject('Ohhh noooo!');
+                            }
+                        });
+                        
+                        const handleSuccess = (resolvedValue) => {
+                            console.log(resolvedValue);
+                        };
+                        
+                        const handleFailure = (rejectionReason) => {
+                            console.log(rejectionReason);
+                        };
+                        
+                        prom.then(handleSuccess, handleFailure);
+                    </code>
+                </pre>
+                <p>With .catch chained to .then for cleaner code:</p>
+                <pre>
+                    <code>
+                        prom.then((resolvedValue) => {
+                            console.log(resolvedValue);
+                        })
+                        .catch((rejectionReason) => {
+                            console.log(rejectionReason);
+                        });
+                    </code>
+                </pre>
+            </div>      
+            <ul>
+                <li><strong>Composition</strong> is the process of chaining promises together. Multiple operations which depend on each other to execute or that must be executed in a certain order. We might make one request to a database and use the data returned to us to make another request and so on...</li>
+                <li><strong>Promise.all()</strong> agroups many promisses in any order into a single promise. Promise.all() accepts an array of promises as its argument and returns a single promise. The Promise.all() method returns a Promise, if Promise resolves, it is fulfilled as an array.</li>
+            </ul>
+            <p class="center">Example of Composition & Promise.all():</p>
+            <button id="showCode6" onclick="showCode('displayCode6', 'showCode6')">Display</button>
+            <div id="displayCode6">
+                <button onclick="closeCode('displayCode6', 'showCode6')">Close</button>
+                <p>Composing checkInventory -> processPayment -> shipOrder</p>
+                <pre>
+                    <code>
+                        checkInventory(order).then((resolvedValueArray) => {
+                            return processPayment(resolvedValueArray);
+                        })
+                        .then((resolvedValueArray) => {
+                            return shipOrder(resolvedValueArray);
+                        })
+                        .then((successMessage) => {
+                            console.log(successMessage);
+                        })
+                        .catch((errorMessage) => {
+                            console.log(errorMessage);
+                        });
+                    </code>
+                </pre>
+                <p>Example of Promise.all():</p>
+                <pre>
+                    <code>
+                        let myPromises = Promise.all([returnsPromOne(), returnsPromTwo(), returnsPromThree()]); 
+                        myPromises
+                        .then((arrayOfValues) => {
+                            console.log(arrayOfValues);
+                        })
+                        .catch((rejectionReason) => {
+                            console.log(rejectionReason);
+                        });
+                    </code>
+                </pre>          
+            </div>
+            <hr/>
+            <h2>Async Await</h2>
+            <ul>
+                <li>The async keyword is used to write functions that handle asynchronous actions. 
+                Has the same use as Promise, but with a clearer code.
+                Async functions always return a promise. This means we can use traditional promise syntax, 
+                like .then() and .catch with our async functions.</li>
+            </ul>
+            <button id="showCode8" onclick="showCode('displayCode8', 'showCode8')">Display</button>
+            <div id="displayCode8">
+                <button onclick="closeCode('displayCode8', 'showCode8')">Close</button>
+                <p>Await & Async example:</p>
+            <pre>
+                <code>
+                    waiting for a code
+                </code>
+            </pre>
+            </div>
         </div>
     </div>
 </html>
