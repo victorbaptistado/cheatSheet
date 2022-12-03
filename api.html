@@ -153,22 +153,94 @@
                 </pre>          
             </div>
             <hr/>
-            <h2>Async Await</h2>
+            <h2>Async... Await syntax</h2>
             <ul>
-                <li>The async keyword is used to write functions that handle asynchronous actions. 
-                Has the same use as Promise, but with a clearer code.
+                <li>Async function has the same use as Promise, but with a clearer code.
+                The async...await version more closely resembles synchronous code, which helps developers 
+                maintain and debug their code. 
                 Async functions always return a promise. This means we can use traditional promise syntax, 
                 like .then() and .catch with our async functions.</li>
+                <li><strong>async</strong> keyword is used to write functions that handle asynchronous actions.</li>
+                <li><strong>await</strong> is an operator: it waits and returns the resolved value of a promise.</li>
             </ul>
+            <p class="center">Promise VS <strong>Async... await</strong></p>
             <button id="showCode8" onclick="showCode('displayCode8', 'showCode8')">Display</button>
             <div id="displayCode8">
                 <button onclick="closeCode('displayCode8', 'showCode8')">Close</button>
-                <p>Await & Async example:</p>
-            <pre>
-                <code>
-                    waiting for a code
-                </code>
-            </pre>
+                <p>Promise:</p>
+                <pre>
+                    <code>
+                        function nativePromiseVersion() {
+                            returnsFirstPromise()
+                            .then((firstValue) => {
+                                console.log(firstValue);
+                                return returnsSecondPromise(firstValue);
+                            })
+                            .then((secondValue) => {
+                                console.log(secondValue);
+                            });
+                        }
+                    </code>
+                </pre>
+                <p>Async... await:</p>
+                <pre>
+                    <code>
+                        async function asyncAwaitVersion() {
+                            let firstValue = await returnsFirstPromise();
+                            console.log(firstValue);
+                            let secondValue = await returnsSecondPromise(firstValue);
+                            console.log(secondValue);
+                        }
+                    </code>
+                </pre>
+                <p>The true beauty of async...await is when we have a series of asynchronous actions 
+                which depend on one another. For example, we may make a network request based on a query 
+                to a database. In that case, we would need to wait to make the network request until 
+                we had the results from the database.</p>
+            </div>
+            <ul>
+                <li><strong>try...catch</strong> statements are used for error handling. By using this syntax, 
+                not only are we able to handle errors in the same way we do with synchronous code, 
+                but we can also catch both synchronous and asynchronous errors 
+                (therefore without breaking the code).</li>
+            </ul>
+            <p class="center">How to use <strong>try... catch?</strong></p>
+            <button id="showCode9" onclick="showCode('displayCode9', 'showCode9')">Display</button>
+            <div id="displayCode9">
+                <button onclick="closeCode('displayCode9', 'showCode9')">Close</button>
+                <pre>
+                    <code>
+                        async function usingTryCatch() {
+                            try {
+                            let resolveValue = await asyncFunction('thing that will fail');
+                            let secondValue = await secondAsyncFunction(resolveValue);
+                            } catch (err) {
+                            // Catches any errors in the try block
+                            console.log(err);
+                            }
+                        }
+                            
+                        usingTryCatch();
+                    </code>
+                </pre>
+            </div>
+            <ul>
+                <li><strong>Await Promise.all()</strong> can be used in await syntax.</li>
+            </ul>
+            <p class="center">How to make a await <strong>Promise.All?</strong></p>
+            <button id="showCode10" onclick="showCode('displayCode10', 'showCode10')">Display</button>
+            <div id="displayCode10">
+                <button onclick="closeCode('displayCode10', 'showCode10')">Close</button>
+                <pre>
+                    <code>
+                        async function asyncPromAll() {
+                            const resultArray = await Promise.all([asyncTask1(), asyncTask2(), asyncTask3(), asyncTask4()]);
+                            for (let i = 0; i < resultArray.length; i++){
+                            console.log(resultArray[i]); 
+                            }
+                        }
+                    </code>
+                </pre>
             </div>
         </div>
     </div>
