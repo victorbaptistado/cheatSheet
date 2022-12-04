@@ -22,223 +22,446 @@
             <h1>API</h1>
         </header>
         <div class="styleGuide">
-            <h2>Synchronous & Asynchronous</h2>
-            <ul>
-                <li><strong>Synchronous</strong> code executes in sequential order — it starts with the code at the 
-                top of the file and executes line by line until it gets to the end of the file. 
-                This type of behavior is known as blocking (or blocking code) since each line of code 
-                cannot execute until the previous line finishes.</li>
-                <li><strong>Asynchronous</strong> code can be executed in parallel to other code that is already running. 
-                Without the need to wait for other code to finish before executing, our apps can save time 
-                and be more efficient. This type of behavior is considered non-blocking.</li>
-                <li><strong>Thread</strong> is a resource that a computer provides an app
-                to do a task.The ability to execute asynchronous code depends on the number of threads 
-                that an app has access to. The more threads we have, the more tasks we can run concurrently.</li>
-                <pre>
-                    <code>
-                        Thread 1: preheat oven
-                        Thread 2: prepare ingredients -> bake-cake
-                    </code>
-                </pre>
-                <li>JavaScript is a single-threaded language. but we can emulate concurrency 
-                with the event loop. Code will always execute synchronously, but asynchronous 
-                code can be pushed to web APIs and directed back into the stack via the event
-                queue and event loop.</li>
-            </ul>
+            <section>
+                <h2>API</h2>
+                <ul>
+                    <li><strong>API (Application Programming Interface)</strong> is a software tool that makes it easier for developers 
+                    to interact with another application to use some of that application’s functionality.
+                    With web APIs, we have a tool that we can use to access the functionality and data of another application.</li>
+                    <li>There are two main types of APIs: browser and third-party. <strong>Browser APIs</strong> require specific 
+                    syntax and permissions. <strong>Third-party APIs</strong> have their own rules and requirements set by the 
+                    organizations that maintain them.</li>
+                    <li>When making a request to API, we might have to supply more details about what information we want.</li>
+                    <li>If we get a successful response, we still have to decide how to consume the response data.</li>
+                </ul>
+            </section>
             <hr/>
-            <h2>Promises</h2>
-            <p>Promises are objects that represent the eventual outcome of an asynchronous operation. 
-            A Promise object can be in one of three states:</p>
-            <li><strong>Pending:</strong> The initial state— the operation has not completed yet.</li>
-            <li><strong>Fulfilled:</strong> The operation has completed successfully and the promise now has a resolved value. For example, a request’s promise might resolve with a JSON object as its value.</li>
-            <li><strong>Rejected:</strong> The operation has failed and the promise has a reason for the failure. This reason is usually an Error of some kind.</li>
-            <li><strong>Settled:</strong> The outcome of a promisse, either fulfilled or rejected.</li>
-            <p class="center">How to make a <strong>promise?</strong></p>
-            <button id="showCode4" onclick="showCode('displayCode4', 'showCode4')">Display</button>
-            <div id="displayCode4">
-                <button onclick="closeCode('displayCode4', 'showCode4')">Close</button>
-                <pre>
-                    <code>
-                        const executorFunction = (resolve, reject) => {
-                            if (someCondition) {
-                                resolve('I resolved!');
-                            } else {
-                                reject('I rejected!'); 
-                            }
-                        }
-                        const myFirstPromise = new Promise(executorFunction);
-                    </code>
-                </pre>
-            </div>
-            <ul>
-                <li><strong>.then()</strong> is invoked on a “successful” promise, or a promise that resolved, passing in a success handler callback function. .then() method allows us to say, “I have a promise, when it settles, then here’s what I want to happen…”. then() always returns a promise. </li>
-                <li><strong>.catch()</strong> accomplishes the same thing as .then() with only a failure handler. It's used as output for failure promises, making the code cleaner (instead of using .then).</li>
-            </ul>
-            <p class="center">How to use <strong>.then?</strong></p>
-            <button id="showCode5" onclick="showCode('displayCode5', 'showCode5')">Display</button>
-            <div id="displayCode5">
-                <button onclick="closeCode('displayCode5', 'showCode5')">Close</button>
-                <p>With only .then:</p>
-                <pre>
-                    <code>
-                        let prom = new Promise((resolve, reject) => {
-                            let num = Math.random();
-                            if (num < .5 ){
-                            resolve('Yay!');
-                            } else {
-                            reject('Ohhh noooo!');
-                            }
-                        });
-                        
-                        const handleSuccess = (resolvedValue) => {
-                            console.log(resolvedValue);
-                        };
-                        
-                        const handleFailure = (rejectionReason) => {
-                            console.log(rejectionReason);
-                        };
-                        
-                        prom.then(handleSuccess, handleFailure);
-                    </code>
-                </pre>
-                <p>With .catch chained to .then for cleaner code:</p>
-                <pre>
-                    <code>
-                        prom.then((resolvedValue) => {
-                            console.log(resolvedValue);
-                        })
-                        .catch((rejectionReason) => {
-                            console.log(rejectionReason);
-                        });
-                    </code>
-                </pre>
-            </div>      
-            <ul>
-                <li><strong>Composition</strong> is the process of chaining promises together. Multiple operations which depend on each other to execute or that must be executed in a certain order. We might make one request to a database and use the data returned to us to make another request and so on...</li>
-                <li><strong>Promise.all()</strong> agroups many promisses in any order into a single promise. Promise.all() accepts an array of promises as its argument and returns a single promise. The Promise.all() method returns a Promise, if Promise resolves, it is fulfilled as an array.</li>
-            </ul>
-            <p class="center">Example of Composition & Promise.all():</p>
-            <button id="showCode6" onclick="showCode('displayCode6', 'showCode6')">Display</button>
-            <div id="displayCode6">
-                <button onclick="closeCode('displayCode6', 'showCode6')">Close</button>
-                <p>Composing checkInventory -> processPayment -> shipOrder</p>
-                <pre>
-                    <code>
-                        checkInventory(order).then((resolvedValueArray) => {
-                            return processPayment(resolvedValueArray);
-                        })
-                        .then((resolvedValueArray) => {
-                            return shipOrder(resolvedValueArray);
-                        })
-                        .then((successMessage) => {
-                            console.log(successMessage);
-                        })
-                        .catch((errorMessage) => {
-                            console.log(errorMessage);
-                        });
-                    </code>
-                </pre>
-                <p>Example of Promise.all():</p>
-                <pre>
-                    <code>
-                        let myPromises = Promise.all([returnsPromOne(), returnsPromTwo(), returnsPromThree()]); 
-                        myPromises
-                        .then((arrayOfValues) => {
-                            console.log(arrayOfValues);
-                        })
-                        .catch((rejectionReason) => {
-                            console.log(rejectionReason);
-                        });
-                    </code>
-                </pre>          
-            </div>
+            <section>
+                <h2>Synchronous & Asynchronous</h2>
+                <ul>
+                    <li><strong>Synchronous</strong> code executes in sequential order — it starts with the code at the 
+                    top of the file and executes line by line until it gets to the end of the file. 
+                    This type of behavior is known as blocking (or blocking code) since each line of code 
+                    cannot execute until the previous line finishes.</li>
+                    <li><strong>Asynchronous</strong> code can be executed in parallel to other code that is already running. 
+                    Without the need to wait for other code to finish before executing, our apps can save time 
+                    and be more efficient. This type of behavior is considered non-blocking.</li>
+                    <li><strong>Thread</strong> is a resource that a computer provides an app
+                    to do a task.The ability to execute asynchronous code depends on the number of threads 
+                    that an app has access to. The more threads we have, the more tasks we can run concurrently.
+                    JavaScript is a single-threaded language. but we can emulate concurrency 
+                    with the event loop. Code will always execute synchronously, but asynchronous 
+                    code can be pushed to web APIs and directed back into the stack via the event
+                    queue and event loop.</li>
+                    <pre>
+                        <code>
+                            Thread 1: preheat oven
+                            Thread 2: prepare ingredients -> bake-cake
+                        </code>
+                    </pre>
+                </ul>
+            </section>
             <hr/>
-            <h2>Async... Await syntax</h2>
-            <ul>
-                <li>Async function has the same use as Promise, but with a clearer code.
-                The async...await version more closely resembles synchronous code, which helps developers 
-                maintain and debug their code. 
-                Async functions always return a promise. This means we can use traditional promise syntax, 
-                like .then() and .catch with our async functions.</li>
-                <li><strong>async</strong> keyword is used to write functions that handle asynchronous actions.</li>
-                <li><strong>await</strong> is an operator: it waits and returns the resolved value of a promise.</li>
-            </ul>
-            <p class="center">Promise VS <strong>Async... await</strong></p>
-            <button id="showCode8" onclick="showCode('displayCode8', 'showCode8')">Display</button>
-            <div id="displayCode8">
-                <button onclick="closeCode('displayCode8', 'showCode8')">Close</button>
-                <p>Promise:</p>
-                <pre>
-                    <code>
-                        function nativePromiseVersion() {
-                            returnsFirstPromise()
-                            .then((firstValue) => {
-                                console.log(firstValue);
-                                return returnsSecondPromise(firstValue);
-                            })
-                            .then((secondValue) => {
-                                console.log(secondValue);
+            <section>
+                <h2>Promises</h2>
+                <p>Promises are objects that represent the eventual outcome of an asynchronous operation. 
+                A Promise object can be in one of three states:</p>
+                <li><strong>Pending:</strong> The initial state— the operation has not completed yet.</li>
+                <li><strong>Fulfilled:</strong> The operation has completed successfully and the promise now has a resolved value. For example, a request’s promise might resolve with a JSON object as its value.</li>
+                <li><strong>Rejected:</strong> The operation has failed and the promise has a reason for the failure. This reason is usually an Error of some kind.</li>
+                <li><strong>Settled:</strong> The outcome of a promisse, either fulfilled or rejected.</li>
+                <p class="center">How to make a <strong>promise?</strong></p>
+                <button id="showCode4" onclick="showCode('displayCode4', 'showCode4')">Display</button>
+                <div id="displayCode4">
+                    <button onclick="closeCode('displayCode4', 'showCode4')">Close</button>
+                    <pre>
+                        <code>
+                            const executorFunction = (resolve, reject) => {
+                                if (someCondition) {
+                                    resolve('I resolved!');
+                                } else {
+                                    reject('I rejected!'); 
+                                }
+                            }
+                            const myFirstPromise = new Promise(executorFunction);
+                        </code>
+                    </pre>
+                </div>
+                <ul>
+                    <li><strong>.then()</strong> is invoked on a “successful” promise, or a promise that resolved, passing in a success handler callback function. .then() method allows us to say, “I have a promise, when it settles, then here’s what I want to happen…”. then() always returns a promise. </li>
+                    <li><strong>.catch()</strong> accomplishes the same thing as .then() with only a failure handler. It's used as output for failure promises, making the code cleaner (instead of using .then).</li>
+                </ul>
+                <p class="center">How to use <strong>.then?</strong></p>
+                <button id="showCode5" onclick="showCode('displayCode5', 'showCode5')">Display</button>
+                <div id="displayCode5">
+                    <button onclick="closeCode('displayCode5', 'showCode5')">Close</button>
+                    <p>With only .then:</p>
+                    <pre>
+                        <code>
+                            let prom = new Promise((resolve, reject) => {
+                                let num = Math.random();
+                                if (num < .5 ){
+                                resolve('Yay!');
+                                } else {
+                                reject('Ohhh noooo!');
+                                }
                             });
-                        }
-                    </code>
-                </pre>
-                <p>Async... await:</p>
-                <pre>
-                    <code>
-                        async function asyncAwaitVersion() {
-                            let firstValue = await returnsFirstPromise();
-                            console.log(firstValue);
-                            let secondValue = await returnsSecondPromise(firstValue);
-                            console.log(secondValue);
-                        }
-                    </code>
-                </pre>
-                <p>The true beauty of async...await is when we have a series of asynchronous actions 
-                which depend on one another. For example, we may make a network request based on a query 
-                to a database. In that case, we would need to wait to make the network request until 
-                we had the results from the database.</p>
-            </div>
-            <ul>
-                <li><strong>try...catch</strong> statements are used for error handling. By using this syntax, 
-                not only are we able to handle errors in the same way we do with synchronous code, 
-                but we can also catch both synchronous and asynchronous errors 
-                (therefore without breaking the code).</li>
-            </ul>
-            <p class="center">How to use <strong>try... catch?</strong></p>
-            <button id="showCode9" onclick="showCode('displayCode9', 'showCode9')">Display</button>
-            <div id="displayCode9">
-                <button onclick="closeCode('displayCode9', 'showCode9')">Close</button>
-                <pre>
-                    <code>
-                        async function usingTryCatch() {
-                            try {
-                            let resolveValue = await asyncFunction('thing that will fail');
-                            let secondValue = await secondAsyncFunction(resolveValue);
-                            } catch (err) {
-                            // Catches any errors in the try block
-                            console.log(err);
-                            }
-                        }
                             
-                        usingTryCatch();
+                            const handleSuccess = (resolvedValue) => {
+                                console.log(resolvedValue);
+                            };
+                            
+                            const handleFailure = (rejectionReason) => {
+                                console.log(rejectionReason);
+                            };
+                            
+                            prom.then(handleSuccess, handleFailure);
+                        </code>
+                    </pre>
+                    <p>With .catch chained to .then for cleaner code:</p>
+                    <pre>
+                        <code>
+                            prom.then((resolvedValue) => {
+                                console.log(resolvedValue);
+                            })
+                            .catch((rejectionReason) => {
+                                console.log(rejectionReason);
+                            });
+                        </code>
+                    </pre>
+                </div>      
+                <ul>
+                    <li><strong>Composition</strong> is the process of chaining promises together. Multiple operations which depend on each other to execute or that must be executed in a certain order. We might make one request to a database and use the data returned to us to make another request and so on...</li>
+                    <li><strong>Promise.all()</strong> agroups many promisses in any order into a single promise. Promise.all() accepts an array of promises as its argument and returns a single promise. The Promise.all() method returns a Promise, if Promise resolves, it is fulfilled as an array.</li>
+                </ul>
+                <p class="center">Example of <strong>Composition</strong> & <strong>Promise.all():</strong></p>
+                <button id="showCode6" onclick="showCode('displayCode6', 'showCode6')">Display</button>
+                <div id="displayCode6">
+                    <button onclick="closeCode('displayCode6', 'showCode6')">Close</button>
+                    <p>Composing checkInventory -> processPayment -> shipOrder</p>
+                    <pre>
+                        <code>
+                            checkInventory(order).then((resolvedValueArray) => {
+                                return processPayment(resolvedValueArray);
+                            })
+                            .then((resolvedValueArray) => {
+                                return shipOrder(resolvedValueArray);
+                            })
+                            .then((successMessage) => {
+                                console.log(successMessage);
+                            })
+                            .catch((errorMessage) => {
+                                console.log(errorMessage);
+                            });
+                        </code>
+                    </pre>
+                    <p>Example of Promise.all():</p>
+                    <pre>
+                        <code>
+                            let myPromises = Promise.all([returnsPromOne(), returnsPromTwo(), returnsPromThree()]); 
+                            myPromises
+                            .then((arrayOfValues) => {
+                                console.log(arrayOfValues);
+                            })
+                            .catch((rejectionReason) => {
+                                console.log(rejectionReason);
+                            });
+                        </code>
+                    </pre>          
+                </div>
+            </section>
+            <hr/>
+            <section>
+                <h2>Async... Await syntax</h2>
+                <ul>
+                    <li>Async function has the same use as Promise, but with a clearer code.
+                    The async...await version more closely resembles synchronous code, which helps developers 
+                    maintain and debug their code. 
+                    Async functions always return a promise. This means we can use traditional promise syntax, 
+                    like .then() and .catch with our async functions.</li>
+                    <li><strong>async</strong> keyword is used to write functions that handle asynchronous actions.</li>
+                    <li><strong>await</strong> is an operator: it waits and returns the resolved value of a promise.</li>
+                </ul>
+                <p class="center">Promise VS <strong>Async... await</strong></p>
+                <button id="showCode8" onclick="showCode('displayCode8', 'showCode8')">Display</button>
+                <div id="displayCode8">
+                    <button onclick="closeCode('displayCode8', 'showCode8')">Close</button>
+                    <p>Promise:</p>
+                    <pre>
+                        <code>
+                            function nativePromiseVersion() {
+                                returnsFirstPromise()
+                                .then((firstValue) => {
+                                    console.log(firstValue);
+                                    return returnsSecondPromise(firstValue);
+                                })
+                                .then((secondValue) => {
+                                    console.log(secondValue);
+                                });
+                            }
+                        </code>
+                    </pre>
+                    <p>Async... await:</p>
+                    <pre>
+                        <code>
+                            async function asyncAwaitVersion() {
+                                let firstValue = await returnsFirstPromise();
+                                console.log(firstValue);
+                                let secondValue = await returnsSecondPromise(firstValue);
+                                console.log(secondValue);
+                            }
+                        </code>
+                    </pre>
+                    <p>The true beauty of async...await is when we have a series of asynchronous actions 
+                    which depend on one another. For example, we may make a network request based on a query 
+                    to a database. In that case, we would need to wait to make the network request until 
+                    we had the results from the database.</p>
+                </div>
+                <ul>
+                    <li><strong>try...catch</strong> statements are used for error handling. By using this syntax, 
+                    not only are we able to handle errors in the same way we do with synchronous code, 
+                    but we can also catch both synchronous and asynchronous errors 
+                    (therefore without breaking the code).</li>
+                </ul>
+                <p class="center">How to use <strong>try... catch?</strong></p>
+                <button id="showCode9" onclick="showCode('displayCode9', 'showCode9')">Display</button>
+                <div id="displayCode9">
+                    <button onclick="closeCode('displayCode9', 'showCode9')">Close</button>
+                    <pre>
+                        <code>
+                            async function usingTryCatch() {
+                                try {
+                                let resolveValue = await asyncFunction('thing that will fail');
+                                let secondValue = await secondAsyncFunction(resolveValue);
+                                } catch (err) {
+                                // Catches any errors in the try block
+                                console.log(err);
+                                }
+                            }
+                                
+                            usingTryCatch();
+                        </code>
+                    </pre>
+                </div>
+                <ul>
+                    <li><strong>Await Promise.all()</strong> can be used in await syntax.</li>
+                </ul>
+                <p class="center">How to make a await <strong>Promise.All?</strong></p>
+                <button type="button" id="showCode10" onclick="showCode('displayCode10', 'showCode10')">Display</button>
+                <div id="displayCode10">
+                    <button onclick="closeCode('displayCode10', 'showCode10')">Close</button>
+                    <pre>
+                        <code>
+                            async function asyncPromAll() {
+                                const resultArray = await Promise.all([asyncTask1(), asyncTask2(), 
+                                asyncTask3(), asyncTask4()]);
+                                for (let i = 0; i < resultArray.length; i++){
+                                console.log(resultArray[i]); 
+                                }
+                            }
+                        </code>
+                    </pre>
+                </div>
+            </section>
+            <hr/>
+            <section>
+                <h2>HTTP Request</h2>
+                <ul>
+                    <li><strong>HTTP</strong> stands for <strong>Hypertext Transfer Protocol</strong> and is used to structure requests and 
+                    responses over the internet. HTTP requires data to be transferred from one point to another 
+                    over the network.
+                    The transfer of resources happens using TCP (Transmission Control Protocol). 
+                    In viewing this webpage, TCP manages the channels between your browser and the server 
+                    (in this case, codecademy.com). TCP is used to manage many types of internet connections 
+                    in which one computer or device wants to send something to another. HTTP is the command language 
+                    that the devices on both sides of the connection must follow in order to communicate.</li>
+                </ul>
+                <div class="flex">
+                    <p>HTTP request analogy</p>
+                    <button id="showCode11" class="p-icon--plus" onclick="showCode('displayCode11', 'showCode11')">Display</button>
+                </div>
+                <div id="displayCode11">
+                    <button onclick="closeCode('displayCode11', 'showCode11')">Close</button>
+                    <p>It can be tricky to understand how HTTP functions because it’s difficult to examine what your 
+                    browser is actually doing. (And perhaps also because we explained it using acronyms that may 
+                    be new to you.) Let’s review what we learned by using an analogy that could be more familiar to you.
+                    Imagine the internet is a town. You are a client and your address determines where you can be reached. 
+                    Businesses in town, such as Codecademy.com, serve requests that are sent to them. The other houses are
+                    filled with other clients like you that are making requests and expecting responses from these 
+                    businesses in town. This town also has a crazy fast mail service, an army of mail delivery staff that 
+                    can travel on trains that move at the speed of light.</p>
+
+                    <p>Suppose you want to read the morning newspaper. In order to retrieve it, you write down what you need in a language called HTTP and ask your local mail delivery staff agent to retrieve it from a specific business. The mail delivery person agrees and builds a railroad track (connection) between your house and the business nearly instantly, and rides the train car labeled “TCP” to the address of the business you provided.
+                    Upon arriving at the business, she asks the first of several free employees ready to fulfill the request. The employee searches for the page of the newspaper that you requested but cannot find it and communicates that back to the mail delivery person.
+                    The mail delivery person returns on the light speed train, ripping up the tracks on the way back, and tells you that there was a problem “404 Not Found.” After you check the spelling of what you had written, you realize that you misspelled the newspaper title. You correct it and provide the corrected title to the mail delivery person.
+                    This time the mail delivery person is able to retrieve it from the business. You can now read your newspaper in peace until you decide you want to read the next page, at which point, you would make another request and give it to the mail delivery person.</p>
+                </div>
+            </section>
+            <hr/>
+            <h2>REST (REpresentational State Transfer)</h2>
+            <p><strong>REST, or REpresentational State Transfer</strong>, is an architectural style for providing standards between 
+            computer systems on the web, making it easier for systems to communicate with each other. REST-compliant systems, often called 
+            RESTful systems, are characterized by how they are stateless and separate the concerns of client and server.</p>
+            <p class="center"><strong>Separation of Client and Server</strong> & <strong>Statelessness</strong></p>
+            <button type="button" id="showCode12" onclick="showCode('displayCode12', 'showCode12')">Display</button>
+            <div id="displayCode12">
+                <button onclick="closeCode('displayCode12', 'showCode12')">Close</button>
+                <ul>
+                    <li><h3>Separation of Client and Server:</h3> 
+                    <p>In the REST architectural style, the implementation of the client and the implementation of the server can be done 
+                    independently without each knowing about the other. This means that the code on the client side can be changed at any time without 
+                    affecting the operation of the server, and the code on the server side can be changed without affecting the operation of the client.
+                    As long as each side knows what format of messages to send to the other, they can be kept modular and separate.
+                    Separating the user interface concerns from the data storage concerns, we improve the flexibility of the interface across platforms and improve scalability 
+                    by simplifying the server components. Additionally, the separation allows each component the ability to evolve independently.
+                    By using a REST interface, different clients hit the same REST endpoints, perform the same actions, and receive the same responses.</p></li>
+                    <li><h3>Statelessness</h3>
+                    <p>Systems that follow the REST paradigm are stateless, meaning that the server does not need to know anything about what state 
+                    the client is in and vice versa. In this way, both the server and the client can understand any message received, even without 
+                    seeing previous messages. This constraint of statelessness is enforced through the use of resources, rather than commands. 
+                    Resources are the nouns of the Web - they describe any object, document, or thing that you may need to store or send to other services.
+                    Because REST systems interact through standard operations on resources, they do not rely on the implementation of interfaces.
+                    These constraints help RESTful applications achieve reliability, quick performance, and scalability, as components that can be managed, 
+                    updated, and reused without affecting the system as a whole, even during operation of the system.</p></li>
+                </ul>
+                </div>
+                <h3><u>Making Requests</u></h3> 
+            <p>REST requires that a client make a request to the server in order to retrieve or modify data 
+            on the server. A request generally consists of:</p>
+            <ul>
+                <li><strong>HTTP verb</strong>, which defines what kind of operation to perform</li>
+                <li><strong>Header</strong>, which allows the client to pass along information about the request (such as type of content).</li>
+                <li><strong>Path</strong> to a resource that the operation should be performed on. Conventionally, the first part of the path should be the plural form of the resource.</li>
+                <li><strong>Message</strong>(optional) body containing data</li>
+            </ul>
+            <p class="center"><strong>Request & Response</strong> examples</p>
+            <button type="button" id="showCode13" onclick="showCode('displayCode13', 'showCode13')">Display</button>
+            <div id="displayCode13">
+                <button onclick="closeCode('displayCode13', 'showCode13')">Close</button>
+                <li><strong>Id</strong> is used for GET (specific request), PUT & Delete. 
+                It's not necessary for POST, since it creates its own id.</li>
+                <br/>
+                <p><strong>GET Request</strong> (all data in customers):</p>
+                <pre>
+                    <code>
+                        GET http://fashionboutique.com/customers
+                        Accept: application/json
+                    </code>
+                </pre>
+                <pre>
+                    <code>
+                        // Response
+                        Status Code: 200 (OK)
+                        Content-type: application/json
+                    </code>
+                </pre>
+
+                <p><strong>GET Request</strong> (specific customer):</p>
+                <pre>
+                    <code>
+                        GET http://fashionboutique.com/customers/123
+                        Accept: application/json
+                    </code>
+                </pre>  
+                <pre>
+                    <code>
+                        // Response
+                        Status Code: 200 (OK)
+                        Content-type: application/json
+                    </code>
+                </pre>   
+                <p><strong>POST</strong> Request:</p>
+                <pre>
+                    <code>
+                        POST http://fashionboutique.com/customers
+                        Body:
+                        {
+                        “customer”: {
+                            “name” = “Scylla Buss”,
+                            “email” = “scylla.buss@codecademy.org”
+                        }
+                        }
+                    </code>
+                </pre>
+                <pre>
+                    <code>
+                        // Response
+                        201 (CREATED)
+                        Content-type: application/json
+                    </code>
+                </pre>
+                <p><strong>PUT</strong> Request:</p>
+                <pre>
+                    <code>
+                        PUT http://fashionboutique.com/customers/123
+                        Body:
+                        {
+                        “customer”: {
+                            “name” = “Scylla Buss”,
+                            “email” = “scyllabuss1@codecademy.com”
+                        }
+                        }
+                    </code>
+                </pre>
+                <pre>
+                    <code>
+                        // Response
+                        A possible response header would have Status Code: 200 (OK), 
+                        to notify the client that the item with id 123 has been modified.</p>                
+                    </code>
+                </pre>
+                <p><strong>Delete</strong> Request:</p>
+                <pre>
+                    <code>
+                        DELETE http://fashionboutique.com/customers/123
+                    </code>
+                </pre>
+                <pre>
+                    <code>
+                        The response would have a header 
+                        containing Status Code: 204 (NO CONTENT), 
+                        notifying the client that the item 
+                        with id 123 has been deleted, and nothing in the body.
                     </code>
                 </pre>
             </div>
+            <hr/>
+            <h2>JSON</h2>
             <ul>
-                <li><strong>Await Promise.all()</strong> can be used in await syntax.</li>
+                <li><stron>JSON</strong> (JavaScript Object Notation) is a popular, <strong>language-independent</strong>, standard format for storing and exchanging data.</li>
+                <li>JSON is heavily used to <strong>facilitate data transfer</strong> in web applications between a client, such as a web browser, and a server.</li>
+                <li><strong>.parse()</strong> is a built-in JSON class method that takes a JSON string as a parameter and returns a JavaScript object.</li>
+                <li><strong>.stringify()</strong> is a built-in JSON class method that transform a JavaScript object to a JSON string.</li>
             </ul>
-            <p class="center">How to make a await <strong>Promise.All?</strong></p>
-            <button id="showCode10" onclick="showCode('displayCode10', 'showCode10')">Display</button>
-            <div id="displayCode10">
-                <button onclick="closeCode('displayCode10', 'showCode10')">Close</button>
+                <p class="center"><strong>JSON</strong> to <strong>JavaScript</strong> & <strong>JavaScript</strong> to <strong>JSON</strong> conversion examples</p>
+                <button type="button" id="showCode14" onclick="showCode('displayCode14', 'showCode14')">Display</button>
+                <div id="displayCode14">
+                    <button onclick="closeCode('displayCode14', 'showCode14')">Close</button>
                 <pre>
                     <code>
-                        async function asyncPromAll() {
-                            const resultArray = await Promise.all([asyncTask1(), asyncTask2(), asyncTask3(), asyncTask4()]);
-                            for (let i = 0; i < resultArray.length; i++){
-                            console.log(resultArray[i]); 
+                        const jsonData =
+                        {
+                            "student": {
+                            "name": "Rumaisa Mahoney",
+                            "age": 30,
+                            "fullTime": true,
+                            "languages": [ "JavaScript", "HTML", "CSS" ],
+                            "GPA": 3.9,
+                            "favoriteSubject": null
                             }
                         }
+
+                        // Converting JSON to JavaScript object
+
+                        const jsObject = JSON.parse(jsonData);
+                        console.log(jsObject);
+
+                        
+                        // Converting JavaScript object to JSON
+
+                        const jsObject = { book: 'JSON Primer', price: 29.99, inStock: true, rating: null };
+                        const jsonData = JSON.stringify(jsObject);
+                        console.log(jsonData);
                     </code>
                 </pre>
             </div>
