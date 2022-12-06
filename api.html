@@ -433,10 +433,10 @@
                 <li><strong>.parse()</strong> is a built-in JSON class method that takes a JSON string as a parameter and returns a JavaScript object.</li>
                 <li><strong>.stringify()</strong> is a built-in JSON class method that transform a JavaScript object to a JSON string.</li>
             </ul>
-                <p class="center"><strong>JSON</strong> to <strong>JavaScript</strong> & <strong>JavaScript</strong> to <strong>JSON</strong> conversion examples</p>
-                <button type="button" id="showCode14" onclick="showCode('displayCode14', 'showCode14')">Display</button>
-                <div id="displayCode14">
-                    <button onclick="closeCode('displayCode14', 'showCode14')">Close</button>
+            <p class="center"><strong>JSON</strong> to <strong>JavaScript</strong> & <strong>JavaScript</strong> to <strong>JSON</strong> conversion examples</p>
+            <button type="button" id="showCode14" onclick="showCode('displayCode14', 'showCode14')">Display</button>
+            <div id="displayCode14">
+                <button onclick="closeCode('displayCode14', 'showCode14')">Close</button>
                 <pre>
                     <code>
                         const jsonData =
@@ -464,6 +464,124 @@
                         console.log(jsonData);
                     </code>
                 </pre>
+            </div>
+            <hr/>
+            <h2>Request with FETCH api</h2>
+            <ul>
+                <li><strong>fetch()</strong> function: creates a request object that contains relevant 
+                information that an API needs.</li>
+                <li>Sends that request object to the API endpoint provided.</li>
+                <li>Returns a promise that ultimately resolves to a response object, which contains the status 
+                of the promise with information the API sent back.</li>
+            </ul>
+            <p class="center"><strong>Fetch</strong> examples</p>
+            <button type="button" id="showCode15" onclick="showCode('displayCode15', 'showCode15')">Display</button>
+            <div id="displayCode15">
+                <button onclick="closeCode('displayCode15', 'showCode15')">Close</button>
+                <p class="center"><strong>GET</strong> with <strong>FETCH</strong> using <strong>async</strong> (easier way).</p>
+                <pre>
+                    <code>
+                        const getData = async () => {
+                            try {
+                                const response = await fetch('https://api-to-call.com/endpoint');
+                                
+                                // handles success
+                                if (response.ok) {
+                                    const jsonReponse = await response.json();
+                                    // Code to execute with jsonResponse
+                                }
+
+                                // handles error
+                                throw new Error("Request failed!");
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+                    </code>
+                </pre>
+                <p class="center"><strong>POST</strong> with <strong>FETCH</strong> using <strong>async</strong> (easier way).</p>
+                <pre>
+                    <code>
+                        const getData = async () => {
+                            try {
+                                const response = await fetch('https://api-to-call.com/endpoint', {
+                                    method: 'POST',
+                                    body: JSON.stringify({id: 200})
+                                });
+                                
+                                // handles success
+                                if (response.ok) {
+                                    const jsonReponse = await response.json();
+                                    // Code to execute with jsonResponse
+                                }
+
+                                // handles error
+                                throw new Error("Request failed!");
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+                    </code>
+                </pre>  
+                <hr/>
+                <p class="center"><strong>GET</strong> with <strong>FETCH</strong></p>
+                <pre>
+                    <code>
+                    // Asynchronous function
+                    const asyncFunction = () => {
+
+                        //sends request
+                        fetch("http://api-to-call.com/endpoint").then(response => {
+
+                            //converts response object to JSON 
+                            if(response.ok) {
+                                return response.json();
+                            }
+
+                            //handling error
+                            throw new Error('Request failed!');
+                            }, networkError => {
+                                console.log(networkError.message)
+
+                            //handling success
+                            }).then((jsonResponse) => {
+                                renderResponse(jsonResponse);  //code to execute
+                        });
+                    }
+                    </code>
+                </pre>
+                <p class="center"><strong>POST</strong> with <strong>FETCH</strong></p>
+                <pre>
+                    <code>
+                    // Asynchronous function
+                    const asyncFunction = () => {
+
+                        //sends request (fetch takes two arguments: 
+                                         endpoint and an object with information 
+                                         for the POST request.)
+
+                        fetch("http://api-to-call.com/endpoint", {
+                            method: 'POST';
+                            body: JSON.stringify({id: '200'})
+
+                        //converts response object to JSON 
+                        }).then(response =>
+                            if(response.ok) {
+                                return response.json();
+                            }
+
+                            //handling error
+                            throw new Error('Request failed!');
+                        }, networkError => {
+                            console.log(networkError.message)
+
+                        //handling success
+                        }).then((jsonResponse) => {
+                            //code to execute with jsonReponse
+                        });
+                    }
+                    </code>
+                </pre>    
             </div>
         </div>
     </div>

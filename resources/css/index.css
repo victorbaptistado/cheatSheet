@@ -92,7 +92,7 @@ hr{
 #displayCode1, #displayCode2, #displayCode3, #displayCode4, 
 #displayCode5, #displayCode6, #displayCode7, #displayCode8, 
 #displayCode9, #displayCode10, #displayCode11, #displayCode12,
-#displayCode13, #displayCode14{
+#displayCode13, #displayCode14, #displayCode15{
     display: none;
     justify-content: right;
 }
