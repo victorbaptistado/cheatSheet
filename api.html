@@ -33,6 +33,7 @@
                     organizations that maintain them.</li>
                     <li>When making a request to API, we might have to supply more details about what information we want.</li>
                     <li>If we get a successful response, we still have to decide how to consume the response data.</li>
+                    <li>                    <a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank" style="cursor: pointer;">List of API's</a></li></li>
                 </ul>
             </section>
             <hr/>
@@ -268,13 +269,15 @@
                 <h2>HTTP Request</h2>
                 <ul>
                     <li><strong>HTTP</strong> stands for <strong>Hypertext Transfer Protocol</strong> and is used to structure requests and 
-                    responses over the internet. HTTP requires data to be transferred from one point to another 
-                    over the network.
+                    responses over the internet. HTTP requires data to be transferred from one point to another over the network.
                     The transfer of resources happens using TCP (Transmission Control Protocol). 
                     In viewing this webpage, TCP manages the channels between your browser and the server 
                     (in this case, codecademy.com). TCP is used to manage many types of internet connections 
                     in which one computer or device wants to send something to another. HTTP is the command language 
-                    that the devices on both sides of the connection must follow in order to communicate.</li>
+                    that the devices on both sides of the connection must follow in order to communicate.
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" target="_blank" style="cursor: pointer;">More Info</a></li>
+                    <li><strong>Protocol</strong> is a system of rules that define how data is exchanged within or between computers. 
+                    Communications between devices require that the devices agree on the format of the data that is being exchanged. </li>
                 </ul>
                 <div class="flex">
                     <p>HTTP request analogy</p>
@@ -472,7 +475,18 @@
                 information that an API needs.</li>
                 <li>Sends that request object to the API endpoint provided.</li>
                 <li>Returns a promise that ultimately resolves to a response object, which contains the status 
-                of the promise with information the API sent back.</li>
+                of the promise with information the API sent back. <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data" target="_blank" style="cursor: pointer;">More Info</a>
+            </li>
+                <li>To fetch from API, it's common the need of an <strong>API key</strong> & a 
+                <strong>query params</strong>.</li>
+               <pre>
+                    <code>
+                    // there are two paramaters on this request, separated by "&".
+                    const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
+                    const urlToFetch = `${baseUrl}${endpoint}${requestParams}`;
+                    </code>
+                </pre>
+                </li>
             </ul>
             <p class="center"><strong>Fetch</strong> examples</p>
             <button type="button" id="showCode15" onclick="showCode('displayCode15', 'showCode15')">Display</button>
@@ -487,7 +501,7 @@
                                 
                                 // handles success
                                 if (response.ok) {
-                                    const jsonReponse = await response.json();
+                                    const jsonResponse = await response.json();
                                     // Code to execute with jsonResponse
                                 }
 
@@ -511,8 +525,10 @@
                                 
                                 // handles success
                                 if (response.ok) {
-                                    const jsonReponse = await response.json();
-                                    // Code to execute with jsonResponse
+                                    const jsonResponse = await response.json();
+                                    // Code to execute with jsonResponse. Return to end function getData and return a value.
+                                        e.g. const genres = jsonResponse.genres;
+                                              return genres;
                                 }
 
                                 // handles error
@@ -577,7 +593,7 @@
 
                         //handling success
                         }).then((jsonResponse) => {
-                            //code to execute with jsonReponse
+                            //code to execute with jsonResponse
                         });
                     }
                     </code>
