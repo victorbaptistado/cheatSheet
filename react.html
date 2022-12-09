@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
+        <title>React</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="#">Objects</a></li>
+                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>
+                <li><a href="./api.html">API</a></li>
+                <li><a href="#">REACT</a></li>                 
+            </ul>
+        </nav>
+        <header>
+            <h1>React</h1>
+        </header>
+        <div class="styleGuide">
+            <h2>Virtual DOM</h2>
+            <ul>
+                <li><strong>Virtual DOM (VDOM)</strong> is React’s local and simplified copy of the HTML DOM. 
+                A programming concept where an ideal, or “virtual”, 
+                representation of a UI is kept in memory and synced with the “real” DOM by a library 
+                such as ReactDOM.</li>
+                <li>When you render a JSX element, every single virtual DOM object gets updated.
+                This sounds incredibly inefficient, but the cost is insignificant because the virtual DOM 
+                can update so quickly.</li>
+                <li>Once the virtual DOM has updated, then React compares 
+                the virtual DOM with a virtual DOM snapshot that was taken right before the update.
+                By comparing the new virtual DOM with a pre-update version, React figures out exactly 
+                which virtual DOM objects have changed. This process is called “diffing.”</li>
+                <li>Once React knows which virtual DOM objects have changed, then React updates 
+                those objects, and only those objects, on the real DOM. In our example from</li>
+            </ul>
+            <hr/>
+            <h3>JSX</h3>
+            <ul>
+                <li>JSX (JavaScript XML) allows us to write HTML elements in JavaScript 
+                and place them in the DOM without any createElement() and/or appendChild() methods.
+                JSX converts HTML tags into react elements.</li>
+                <li>To render <strong>logic</strong>, if we want any expression to be treated as 
+                JavaScript inside of a JSX element we need to wrap it in curly braces.</li>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Often used in React</h2>
+            <h3>Destructuring</h3>
+            <ul>
+                <li>React relies on many destructuring techniques.</li>
+                <li>Destructuring, or destructuring assignment, is a JavaScript feature that makes it 
+                easier to extract data from arrays and objects and assign them to variables or parameters. 
+                Is a syntactic sugar introduced in the ES6 version of JavaScript.</li>
+                <p class="center"><strong>Array destructuring</strong>, <strong>Object destructuring</strong>,
+                <strong>Function Parameters destructuring</strong></strong></p>
+                <button id="showCode16" onclick="showCode('displayCode16', 'showCode16')">Display</button>
+                <div id="displayCode16">
+                    <button onclick="closeCode('displayCode16', 'showCode16')">Close</button>
+                    <pre>
+                        <code>
+                        //Array Destructuring
+                        let cars = ['ferrari', 'tesla', 'cadillac'];
+                        let [car1, car2, car3] = cars;
+                        console.log(car1, car2, car3); // Prints: ferrari tesla cadillac
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+                        //Object Destructuring
+                        let destinations = { x: 'LA', y: 'NYC', z: 'MIA' };
+                        let { x, y, z } = destinations;
+                        console.log(x, y, z); // Prints LA NYC MIA
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+                        //Destructuring Function Parameters (Function arguments are another place 
+                        where destructuring is useful. Instead of accepting a complete object as 
+                        an argument, a function can use destructuring to capture specific properties 
+                        as named parameters.
+
+                        let truck = {
+                        model: '1977 Mustang convertible',
+                        city: 'Detroit',
+                        convertible: true
+                        };
+                        
+                        const printCarInfo = ({model, city}) => {
+                        console.log(`The ${model} is in the city ${city}.`);
+                        };
+                        </code>
+                    </pre>
+                </div>
+            </ul>
+            <hr/>
+            <h3>Ternary and && conditionals</h3>
+            <pre>
+                <code>
+                // Ternary, to output a condition if valued true, otherwise another will be set. 
+
+                {!judgmental ? 
+                    < li > Nacho Cheez Straight Out The Jar < /li > : < li > Second option < /li >
+                }
+                </code>
+            </pre>
+            <pre>
+                <code>
+                // && conditional, to use if a single condition is set to appear or not.
+
+                {!judgmental && 
+                    < li >Nacho Cheez Straight Out The Jar < /li >
+                }
+                </code>
+            </pre>
+            <hr/>
+            <h3>.map</h3>
+            <ul>
+                <li>To create a list of JSX elements .map() is often your best bet.</li>
+                <li><strong>Keys</strong>: Not all lists need to have keys. 
+                A list needs keys if:
+                <ul>
+                    <li>The list-items have memory from one render to the next. 
+                    For instance, when a to-do list renders, each item must “remember” 
+                    whether it was checked off.
+                    </li> 
+                    <li>The items shouldn’t get amnesia when they render.
+                    A list’s order might be shuffled. For instance, a list of search results 
+                    might be shuffled from one render to the next.
+                    </li>
+                </ul>
+                </li>
+            </ul>
+            <pre>
+                <code>
+                const strings = ['Home', 'Shop', 'About Me'];
+                const listItems = strings.map(string => < li >{string} < /li >);
+
+                < ul > {listItems} < /ul >
+
+                //using Key
+
+                const peopleLis = people.map((person, i) =>
+                < li key={'person_' + i} > {person} < /li >
+                );
+                </code>
+            </pre>
+        </div>
+    </body>
+</html>
+
+
+
