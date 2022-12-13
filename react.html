@@ -134,25 +134,264 @@
                     might be shuffled from one render to the next.
                     </li>
                 </ul>
-                </li>
+            </ul>
+            <p class="center"></p>
+            <button id="showCode17" onclick="showCode('displayCode17', 'showCode17')">Display</button>
+            <div id="displayCode17">
+                <button onclick="closeCode('displayCode17', 'showCode17')">Close</button>
+                <pre>
+                    <code>
+                    const strings = ['Home', 'Shop', 'About Me'];
+                    const listItems = strings.map(string => < li >{string} < /li >);
+
+                    < ul > {listItems} < /ul >
+
+                    //using Key
+
+                    const peopleLis = people.map((person, i) =>
+                    < li key={'person_' + i} > {person} < /li >
+                    );
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Variable Attribute in a Component</h3>
+            <li>We can use variables, including object properties, to set a component’s attributes 
+            to keep component easy to read and organized, but more importantly, 
+            so that our attributes can be dynamic and/or can be changed easily!</li>
+            <button id="showCode18" onclick="showCode('displayCode18', 'showCode18')">Display</button>
+            <div id="displayCode18">
+                <button onclick="closeCode('displayCode18', 'showCode18')">Close</button>
+                <pre>
+                    <code>
+                        const redPanda = {
+                            src: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Endangered_Red_Panda.jpg',
+                            alt: 'Red Panda',
+                            width:  '200px'
+                        };
+                        
+                        class RedPanda extends React.Component {
+                            render() {
+                            return (
+                                < div >
+                                < h1 >Cute Red Panda< /h1 >
+                                < img 
+                                    src={redPanda.src}
+                                    alt={redPanda.alt}
+                                    width={redPanda.width} />
+                                < /div >
+                            );
+                            }
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Event handler</h3>
+            <ul>
+                <li><strong>Multiple event handler</strong>: By passing an anonymous function, 
+                or a named function, 
+                with multiple event handler calls as the function body, to our event listener 
+                (like onClick, onKeyUp, onChange, etc) 
+                we can call multiple event handlers in response to a single event.</li>
             </ul>
             <pre>
                 <code>
-                const strings = ['Home', 'Shop', 'About Me'];
-                const listItems = strings.map(string => < li >{string} < /li >);
+                return (
+                //Underneath, an anonymous function with multiple event handlers.
+                    < button onClick={() => {         
+                        this.eventHandler1();
+                        this.eventHandler2();
+                    }}>Here's a button!</ button> 
+                )
+                </code>
+            </pre>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Aditional Algorithms</h2>
+            <ul><li>
+                <div class="flex">
+                        <p>Auth & password Conditional</p>
+                        <button id="showCode19" onclick="showCode('displayCode19', 'showCode19')">Display</button>
+                </div>
+            </li></ul>
+            <div id="displayCode19">
+                <button onclick="closeCode('displayCode19', 'showCode19')">Close</button>
+            <pre>
+                <code>
+                    class Contact extends React.Component {
+                        constructor(props) {
+                          super(props);
+                          this.state = {
+                            password: 'swordfish',
+                            authorized: false
+                          };
+                          this.authorize = this.authorize.bind(this);
+                        }
+                      
+                        authorize(e) {
+                          const password = e.target.querySelector(
+                            'input[type="password"]').value;
+                          const auth = password == this.state.password;
+                          this.setState({
+                            authorized: auth
+                          });
+                        }
+                      
+                        render() {
+                          let login = (
+                            < form action="#" >
+                              < input type='password' placeholder='Password' />
+                              < input type='submit' onSubmit={this.authorize} />
+                            < /form >
+                            );
+                          let contactInfo = (
+                              < ul >
+                                < li >
+                                  client@example.com
+                                < /li >
+                                < li >
+                                  555.555.5555
+                                < /li >
+                              < /ul >
+                          );
+                      
+                          return (
+                            < div id="authorization" >
+                              < h1 >{this.state.authorized ? "Contact" : "Enter the Password"}< /h1 >
+                              {this.state.authorized ? contactInfo : login}
+                            < /div >
+                          );
+                        }
+                      }                      
+                </code>
+            </pre>
+            </div>
+        </div>
+        <div class="styleGuide">
+            <h2>State</h2>
+            <ul>
+            <li>A React app is basically just a lot of <strong>components</strong>, setting <strong>state</strong> and passing <strong>props</strong> to one another.</li>
+            <li>There are two ways for a component to get dynamic 
+            information: <strong>props</strong> and <strong>state</strong>. Besides props and state, 
+            every value used in a component should always stay exactly 
+            the same.</li>
+            <li>A <strong>programming pattern</strong> uses two React components: a <strong>stateful 
+            component</strong>, and a <strong>stateless component</strong>. “Stateful” describes any 
+            component that has a state property; “stateless” describes any component that does not.</li>
+            <li>Components should only have <strong>one job</strong>.
+            You should divide child in two: one will have one stateless component <strong>display information</strong>, 
+            and a different stateless component offer the ability to <strong>change that information</strong>. e.g: A Video Player & a Menu to change its settings.</li>
+            <li><strong>How does a component change its props?</strong> The answer: it doesn’t!
+            A component should never update this.props.
+            A React component should use props to store information that 
+            can be changed, but can only be changed by a different component.
+            A React component should use state to store information that 
+            the component itself can change.</li>
+            </ul>
+            <p class="center">Forms of <strong>Components Update Parents'</strong> state</p>
+            <button id="showCode20" onclick="showCode('displayCode20', 'showCode20')">Display</button>
+            <div id="displayCode20">
+                <button onclick="closeCode('displayCode20', 'showCode20')">Close</button>
+                <ul>
+                    <li><p>The parent component class defines a method that calls this.setState().</p>
+                    </li>
+                    <li><p>The parent component binds the newly-defined method to the current 
+                        instance of the component in its constructor. This ensures that when 
+                        we pass the method to the child component, it will still update the 
+                        parent component. </p>
+                    </li>
+                    <li><p>The child receives the passed-down function, and uses it as an event handler.
+                        When a user clicks on the < button > < /button >, a click event 
+                        will fire. This will make the passed-down function get called, which will update 
+                        the parent’s state.</p>
+                    </li>
+                        <pre>
+                            <code>                              
+                            class ParentClass extends React.Component {
+                                constructor(props) {
+                                    super(props);
+                                    this.state = { totalClicks: 0 };
+                                    this.handleClick = this.handleClick.bind(this);
+                                }
+                            
+                                handleClick() {
+                                    const total = this.state.totalClicks;
+                                
+                                    // calling handleClick will 
+                                    // result in a state change:
+                                    this.setState(
+                                        { totalClicks: total + 1 }
+                                    );
+                                }
+                            
+                                // The stateful component class passes down
+                                // handleClick to a stateless component class:
+                                render() {
+                                    return (
+                                        < ChildClass onClick={this.handleClick} />
+                                    );
+                                }
+                            } 
+                            </code>
+                        </pre>
+                    </li>
+                    <li><p>The child receives the passed-down function, and uses it as an event handler.
+                        When a user clicks on the < button></button >, a click event will fire. This will make the passed-down function get called, which will update the parent’s state.</p>
+                        <pre>
+                            <code>
+                            export class ChildClass extends React.Component {
+                                render() {
+                                    return (
+                                    // The stateless component class uses
+                                    // the passed-down handleClick function,
+                                    // accessed here as this.props.onClick,
+                                    // as an event handler:
+                                    < button onClick={this.props.onClick}>
+                                        Click Me!
+                                    < /button >
+                                    );
+                                }
+                            }
+                            </code>
+                        </pre>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="styleGuide">
+            <h2>React's Lifecycle</h2>
+            <pre>
+                <code>
+                The first phase of a component’s 
+                lifecycle is the Mounting phase. 
+                This is when a component is created 
+                and inserted into the DOM. The methods that run 
+                during this phase, in order, are:
 
-                < ul > {listItems} < /ul >
+                componentWillMount()
+                render()
+                componentDidMount()
 
-                //using Key
+                The next phase of a component’s 
+                lifecycle is the Updating phase. 
+                This is when a component undergoes any changes to 
+                props or state. This phase is the main part of a 
+                component’s life, and the following methods will be 
+                invoked repeatedly at each change,
 
-                const peopleLis = people.map((person, i) =>
-                < li key={'person_' + i} > {person} < /li >
-                );
+                componentWillReceiveProps()
+                shouldComponentUpdate()
+                render()
+                componentDidUpdate()
+
+                The last phase of a component’s 
+                lifecycle is Unmounting. This is when 
+                component is removed from the DOM, and the only method run during this phase is
+
+                componentWillUnmount().
                 </code>
             </pre>
         </div>
     </body>
 </html>
-
-
-
