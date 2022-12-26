@@ -10,7 +10,7 @@
             <ul class="mainNav">
                 <li><a href="./index.html">Cheat Sheet</a></li>
                 <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="#">Objects</a></li>
+                <li><a href="./objects.html">Objects</a></li>
                 <li><a href="./developmentCycle.html">Development Cycle</a></li>
                 <li><a href="./debug.html">Debug</a></li>
                 <li><a href="./git.html">Git</a></li>
@@ -205,7 +205,7 @@
                 )
                 </code>
             </pre>
-            </ul>
+            <hr/>
         </div>
         <div class="styleGuide">
             <h2>Aditional Algorithms</h2>
@@ -361,37 +361,211 @@
         </div>
         <div class="styleGuide">
             <h2>React's Lifecycle</h2>
-            <pre>
-                <code>
-                The first phase of a component’s 
-                lifecycle is the Mounting phase. 
-                This is when a component is created 
-                and inserted into the DOM. The methods that run 
-                during this phase, in order, are:
+            <ul>
+                <li>The first phase of a component’s lifecycle is the <strong>Mounting phase</strong>. 
+                    This is when a component is created and inserted into the DOM. The methods that run 
+                    during this phase, in order, are:</li>
+                <pre>
+                    <code>
+                    componentWillMount()
+                    constructor()
+                    render()
+                    componentDidMount()
+                    </code>
+                </pre>
+                <li>
+                    The next phase of a component’s lifecycle is the <strong>Updating phase</strong>. 
+                    This is when a component undergoes any changes to props or state. This phase is the main part of a 
+                    component’s life, and the following methods will be 
+                    invoked repeatedly at each change,
+                </li>
+                <pre>
+                    <code>
+                    componentWillReceiveProps()
+                    shouldComponentUpdate()
+                    render()
+                    componentDidUpdate()
+                    </code>
+                </pre>
+                <li>
+                    The last phase of a component’s lifecycle is <strong>Unmounting</strong>. This is when 
+                    component is removed from the DOM, and the only method run during this phase is
+                </li>
+                <pre>
+                    <code>
+                    componentWillUnmount().
+                    </code>
+                </pre>
+                <li><strong>Side effects</strong> should be separated from the rendering process. 
+                If we need to perform a side effect, it should strictly be done after our component renders.
+                This is what useEffect gives us.
+                In short, useEffect is a tool that lets us interact with the outside 
+                world but not affect the rendering or performance of the component that it's in.</li>
+                <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank">Lifecycle's interactive diagram.</a>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Hooks</h2>
+            <ul>
+                <li><strong>React Hooks</strong> are functions that let us manage the internal state of 
+                components and handle post-rendering side effects directly from our function components. 
+                Hooks don’t work inside classes — they let us use fancy React features without classes.</li> 
+                <li>Keep in mind that <u>function components and React Hooks do not replace class components.</u> 
+                They are completely optional; just a new tool that we can take advantage of.</li>
+                <li>Hooks let us “hook into” state and lifecycle features directly from our function components.</li>
+            </ul>
+            <hr/>
+            <h3>Function component</h3>
+            <ul>
+                <li><strong>Function components</strong> are React components defined as JavaScript functions that must return JSX.
+                They may accept a props parameter (expect it to be a JavaScript object).</li>
+                <li>Although <strong>function components</strong> and <strong>class components</strong> can do the same things, 
+                some developers prefer function components over class components for their simplicity and straightforward features, 
+                like Hooks.</li>
+            </ul>
+            <p class="center">Function component example:</p>
+            <button id="showCode21" onclick="showCode('displayCode21', 'showCode21')">Display</button>
+            <div id="displayCode21">
+                <button onclick="closeCode('displayCode21', 'showCode21')">Close</button>
+                <pre>
+                    <code>
+                        export class MyComponentClass extends React.Component {
+                            render() {
+                            return < h1 >Hello world< /h1 >;
+                            }
+                        }
+                        
+                        // The same component class, written as a stateless functional component:
+                        export const MyComponentClass = () => {
+                            return < h1 >Hello world< /h1 >;
+                        }
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>HOOKs list</h3>
+            <ul>
+                <li><strong>useState(): </strong>Updates state.</li>
+                    <ul>
+                        <li>Can be used with callbacks to update previous states 
+                        (and setCount for example).</li>
+                        <li>Use arrays and objects to organize and manage related data 
+                        that tends to change together</li>
+                    </ul>
+                <p class="center"><strong>useState</strong>, <strong>Previous State</strong>, 
+                <strong>Array in State</strong> & <strong>Object in State</strong> example:</p>
+                <button id="showCode22" onclick="showCode('displayCode22', 'showCode22')">Display</button>
+                <div id="displayCode22">
+                <button onclick="closeCode('displayCode22', 'showCode22')">Close</button>
+                <ul>
+                    <li><strong>useState</strong></li>
+                    <pre>
+                        <code>                       
+                        function Toggle() {
+                            const [toggle, setToggle] = useState();
+                            
+                            return (
+                                < div >
+                                    < p > The toggle is {toggle} < / p >
+                                    < button onClick={() => setToggle("On")}> On < / button>
+                                    < button onClick={() => setToggle("Off")}> Off < / button>
+                                < /div >
+                            );
+                        }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Previous State callback</strong></li>
+                    <pre>
+                        <code>                       
+                        export default function Counter() {
+                            const [count, setCount] = useState(0);
+                        
+                            const increment = () => setCount(prevCount => prevCount + 1);
+                        
+                            return (
+                                < div >
+                                    < p >Wow, you've clicked that button: {count} times < /p >
+                                    < button onClick={increment}>Click here! < /button >
+                                < /div >
+                            );
+                        }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Arrays in State:</strong>The best data model for managing and rendering JSX lists.</li>
+                    <pre>
+                        <code>
+                        const options = ["Bell Pepper", "Sausage", "Pepperoni", "Pineapple"];
 
-                componentWillMount()
-                render()
-                componentDidMount()
+                        export default function PersonalPizza() {
+                        const [selected, setSelected] = useState([]);
+                        
+                        const toggleTopping = ({target}) => {
+                            const clickedTopping = target.value;
+                            setSelected((prev) => {
+                                // check if clicked topping is already selected
+                                if (prev.includes(clickedTopping)) {
+                                    // filter the clicked topping out of state
+                                    return prev.filter(t => t !== clickedTopping);
+                                } else {
+                                    // add the clicked topping to our state
+                                    return [clickedTopping, ...prev];
+                                }
+                            });
+                        };
+                        
+                        return (
+                            < div >
+                                {options.map(option => (
+                                    < button value={option} onClick={toggleTopping} key={option} >
+                                    {selected.includes(option) ? "Remove " : "Add "}
+                                    {option}
+                                    < /button >
+                            ))}
+                            < p > Order a {selected.join(", ")} pizza < /p >
+                            </ div >
+                        );
+                        }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Objects in State:</strong> When we work with a set of related variables, 
+                    it can be very helpful to group them in an object. Let’s look at an example!</li>
+                    <pre>
+                        <code>
+                        export default function Login() {
+                        const [formState, setFormState] = useState({});
+                        
+                        const handleChange = ({ target }) => {
+                            const { name, value } = target;
+                            setFormState((prev) => ({
+                            ...prev,
+                            [name]: value
+                            }));
+                        };
 
-                The next phase of a component’s 
-                lifecycle is the Updating phase. 
-                This is when a component undergoes any changes to 
-                props or state. This phase is the main part of a 
-                component’s life, and the following methods will be 
-                invoked repeatedly at each change,
-
-                componentWillReceiveProps()
-                shouldComponentUpdate()
-                render()
-                componentDidUpdate()
-
-                The last phase of a component’s 
-                lifecycle is Unmounting. This is when 
-                component is removed from the DOM, and the only method run during this phase is
-
-                componentWillUnmount().
-                </code>
-            </pre>
+                        return (
+                            < form >
+                            < input
+                                value={formState.firstName}
+                                onChange={handleChange}
+                                name="firstName"
+                                type="text"
+                            />
+                            < input
+                                value={formState.password}
+                                onChange={handleChange}
+                                type="password"
+                                name="password"
+                            />
+                            < /form >
+                        );
+                        }
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
         </div>
     </body>
 </html>

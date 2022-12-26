@@ -107,7 +107,8 @@ hr{
 #displayCode5, #displayCode6, #displayCode7, #displayCode8, 
 #displayCode9, #displayCode10, #displayCode11, #displayCode12,
 #displayCode13, #displayCode14, #displayCode15, #displayCode16, 
-#displayCode17, #displayCode18, #displayCode19, #displayCode20{
+#displayCode17, #displayCode18, #displayCode19, #displayCode20,
+#displayCode21, #displayCode22{
     display: none;
     justify-content: right;
 }
