@@ -409,10 +409,15 @@
             <ul>
                 <li><strong>React Hooks</strong> are functions that let us manage the internal state of 
                 components and handle post-rendering side effects directly from our function components. 
-                Hooks don’t work inside classes — they let us use fancy React features without classes.</li> 
-                <li>Keep in mind that <u>function components and React Hooks do not replace class components.</u> 
+                Hooks don’t work inside classes — they let us use fancy React features without classes.
+                <u>Function components and React Hooks do not replace class components.</u> 
                 They are completely optional; just a new tool that we can take advantage of.</li>
-                <li>Hooks let us “hook into” state and lifecycle features directly from our function components.</li>
+                <li>Hooks let us <strong>“hook into”</strong> state and lifecycle features directly from our function components.</li>
+                <li><strong>Rules of Hooks:</strong> only call Hooks at the top level. Only call Hooks from React functions.</li>
+                <li> React keeps track of the data and functions that we are managing 
+                with Hooks based on their order in the function component’s definition. 
+                For this reason, we always call our Hooks at the top level; we never call hooks 
+                inside of loops, conditions, or nested functions.</li>
             </ul>
             <hr/>
             <h3>Function component</h3>
@@ -456,115 +461,289 @@
                 <strong>Array in State</strong> & <strong>Object in State</strong> example:</p>
                 <button id="showCode22" onclick="showCode('displayCode22', 'showCode22')">Display</button>
                 <div id="displayCode22">
-                <button onclick="closeCode('displayCode22', 'showCode22')">Close</button>
-                <ul>
-                    <li><strong>useState</strong></li>
-                    <pre>
-                        <code>                       
-                        function Toggle() {
-                            const [toggle, setToggle] = useState();
+                    <button onclick="closeCode('displayCode22', 'showCode22')">Close</button>
+                    <ul>
+                        <li><strong>useState</strong></li>
+                        <pre>
+                            <code>                       
+                            function Toggle() {
+                                const [toggle, setToggle] = useState();
+                                
+                                return (
+                                    < div >
+                                        < p > The toggle is {toggle} < / p >
+                                        < button onClick={() => setToggle("On")}> On < / button>
+                                        < button onClick={() => setToggle("Off")}> Off < / button>
+                                    < /div >
+                                );
+                            }
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Previous State callback</strong></li>
+                        <pre>
+                            <code>                       
+                            export default function Counter() {
+                                const [count, setCount] = useState(0);
+                            
+                                const increment = () => setCount(prevCount => prevCount + 1);
+                            
+                                return (
+                                    < div >
+                                        < p >Wow, you've clicked that button: {count} times < /p >
+                                        < button onClick={increment}>Click here! < /button >
+                                    < /div >
+                                );
+                            }
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Arrays in State:</strong>The best data model for managing and rendering JSX lists.</li>
+                        <pre>
+                            <code>
+                            const options = ["Bell Pepper", "Sausage", "Pepperoni", "Pineapple"];
+
+                            export default function PersonalPizza() {
+                            const [selected, setSelected] = useState([]);
+                            
+                            const toggleTopping = ({target}) => {
+                                const clickedTopping = target.value;
+                                setSelected((prev) => {
+                                    // check if clicked topping is already selected
+                                    if (prev.includes(clickedTopping)) {
+                                        // filter the clicked topping out of state
+                                        return prev.filter(t => t !== clickedTopping);
+                                    } else {
+                                        // add the clicked topping to our state
+                                        return [clickedTopping, ...prev];
+                                    }
+                                });
+                            };
                             
                             return (
                                 < div >
-                                    < p > The toggle is {toggle} < / p >
-                                    < button onClick={() => setToggle("On")}> On < / button>
-                                    < button onClick={() => setToggle("Off")}> Off < / button>
-                                < /div >
+                                    {options.map(option => (
+                                        < button value={option} onClick={toggleTopping} key={option} >
+                                        {selected.includes(option) ? "Remove " : "Add "}
+                                        {option}
+                                        < /button >
+                                ))}
+                                < p > Order a {selected.join(", ")} pizza < /p >
+                                </ div >
                             );
-                        }
-                        </code>
-                    </pre>
-                    <hr/>
-                    <li><strong>Previous State callback</strong></li>
-                    <pre>
-                        <code>                       
-                        export default function Counter() {
-                            const [count, setCount] = useState(0);
-                        
-                            const increment = () => setCount(prevCount => prevCount + 1);
-                        
+                            }
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Objects in State:</strong> When we work with a set of related variables, 
+                        it can be very helpful to group them in an object. Let’s look at an example!</li>
+                        <pre>
+                            <code>
+                            export default function Login() {
+                            const [formState, setFormState] = useState({});
+                            
+                            const handleChange = ({ target }) => {
+                                const { name, value } = target;
+                                setFormState((prev) => ({
+                                ...prev,
+                                [name]: value
+                                }));
+                            };
+
                             return (
-                                < div >
-                                    < p >Wow, you've clicked that button: {count} times < /p >
-                                    < button onClick={increment}>Click here! < /button >
+                                < form >
+                                < input
+                                    value={formState.firstName}
+                                    onChange={handleChange}
+                                    name="firstName"
+                                    type="text"
+                                />
+                                < input
+                                    value={formState.password}
+                                    onChange={handleChange}
+                                    type="password"
+                                    name="password"
+                                />
+                                < /form >
+                            );
+                            }
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+                <li><strong>useEffect(): </strong>by using this Hook, you tell React that your 
+                component needs to do something <strong>after render</strong>. 
+                React will remember the function 
+                you passed (we'll refer to it as our “effect”), and call it later after performing 
+                the DOM updates.</li>
+                <ul>
+                    <li>We can use the Effect Hook to run some JavaScript code after each render, such as:
+                    Fetching data from a backend service.
+                    Subscribing to a stream of data.
+                    Managing timers and intervals.
+                    Reading from and making changes to the DOM.</li>
+                    <li>There are three <strong>key moments</strong> when the Effect Hook can be utilized:
+                    When the component is first added, or mounted, to the DOM and renders.
+                    When the state or props change, causing the component to re-render.
+                    When the component is removed, or unmounted, from the DOM.</li>
+                </ul>
+                <p class="center"><strong>useEffect</strong> & <strong>API</strong> example:</p>
+                <button id="showCode23" onclick="showCode('displayCode23', 'showCode23')">Display</button>
+                <div id="displayCode23">
+                    <button onclick="closeCode('displayCode23', 'showCode23')">Close</button>
+                    <ul>
+                        <li><strong>Dependency Array: </strong>Second argument of useEffect(), represented by: [].</li>
+                        <pre>
+                            <code>
+                            useEffect(() => {
+                                document.title = `Hi, ${name}`;
+                                }, [name]);
+                            </code>
+                        </pre>
+                        <li><strong>Undefined array: </strong>useEffect will be triggered every re-render (cleanup can be needed).</li>
+                        <li><strong>Empty array: </strong>We pass an empty array (dependency array) 
+                        to useEffect() as the second argument if we want to call our effect only after 
+                        the first render (no cleanup is needed).</li>
+                        <li><strong>Non-empty array: </strong>A dependency array that is not empty signals to the Effect Hook that 
+                        it can skip calling our effect after re-renders unless the value of one 
+                        of the variables in our dependency array has changed.
+                        (no cleanup is needed).</li>
+                        <hr/>
+                        <li>Some effects require cleanup. For example, we might want to add 
+                        event listeners to some element in the DOM, beyond the JSX in our component. 
+                        When we add event listeners to the DOM, it is important to remove those 
+                        event listeners when we are done with them to avoid memory leaks!</li>
+                        <pre>
+                            <code>
+                            useEffect(() => {
+                                document.addEventListener('mousedown', increment);
+                                    return () => {
+                                        document.removeEventListener('mousedown', increment);
+                                    }
+                                });
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>API interaction</strong> example:</li>
+                        <pre>
+                            <code>
+                        //Example 1 (Separation of concerns for EndPoints / State Variables)
+
+                        export default function SocialNetwork() {
+
+                            const [menu, setMenu] = useState(null);
+                            
+                            useEffect(() => {
+                                get('/menu').then((response) => {setMenu(response.data)});
+                            }, []);
+                            
+                            const [newsFeed, setNewsFeed] = useState(null);
+                            
+                            useEffect(() => {
+                                get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
+                            }, []);
+                            
+                            const [friends, setFriends] = useState(null);
+                            useEffect(() => {
+                                get('/friends').then((response) => {setFriends(response.data)});
+                            }, []);
+                            
+                            return (
+                                < div className='App' >
+                                < h1 > My Network < /h1 >
+                                {!menu ? < p >Loading..< /p > : (
+                                    < nav >
+                                    {menu.map((menuItem) => (
+                                        < button key={menuItem} > {menuItem} < /button >
+                                    ))}
+                                    < /nav >
+                                )}
+                                < div className='content' >
+                                    {!newsFeed ? < p >Loading..< /p > : (
+                                    < section >
+                                        {newsFeed.map(({ id, title, message, imgSrc }) => (
+                                        < article key={id} >
+                                            < h3 >{title}< /h3 >
+                                            < p >{message}< /p >
+                                            < img src={imgSrc} alt='' />
+                                        < /article >
+                                        ))}
+                                    < /section >
+                                    )}
+                                    {!friends ? < p >Loading..< /p > : (
+                                    < aside >
+                                        < ul >
+                                        {friends
+                                            .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
+                                            .map(({ id, name, isOnline }) => (
+                                            < li key={id} className={isOnline ? 'online' : 'offline'}>
+                                                {name}
+                                            < /li >
+                                            ))}
+                                        < /ul >
+                                    < /aside >
+                                    )}
+                                < /div >
+                                < /div >
+                            );
+                            }
+                            </code>
+                        </pre>
+                        <pre>
+                            <code>
+                        //Example 2
+                        
+                        export default function Shop() {
+                            const [categories, setCategories] = useState(null);
+                            const [selectedCategory, setSelectedCategory] = useState(null);
+                            const [items, setItems] = useState({});
+                        
+                        
+                            useEffect(() => {
+                            get('/categories').then((response) => {
+                                setCategories(response.data);
+                            });
+                            }, []);
+                        
+                        
+                            useEffect(() => {
+                            if (selectedCategory && !items[selectedCategory]) {
+                                get(`/items?category=${selectedCategory}`).then((response) => {
+                                setItems((prev) => 
+                                ({ ...prev, [selectedCategory]: response.data }));
+                                });
+                            }}, [selectedCategory, items]);
+                            
+                            
+                            if (!categories) {
+                                return < p >Loading..< /p >;
+                            }
+                            
+                            return (
+                                < div className='App' >
+                                < h1 >Clothes 'n Things< /h1 >
+                                < nav >
+                                    {categories.map((category) => (
+                                    < button key={category} 
+                                    onClick={() => setSelectedCategory(category)}>
+                                        {category}
+                                    < /button >
+                                    ))}
+                                < /nav >
+                                < h2 >{selectedCategory}</ h2 >
+                                < ul >
+                                    {!items[selectedCategory]
+                                    ? null
+                                    : items[selectedCategory].map((item) => 
+                                    < li key={item}>{item}< /li >)}
+                                < /ul >
                                 < /div >
                             );
                         }
-                        </code>
-                    </pre>
-                    <hr/>
-                    <li><strong>Arrays in State:</strong>The best data model for managing and rendering JSX lists.</li>
-                    <pre>
-                        <code>
-                        const options = ["Bell Pepper", "Sausage", "Pepperoni", "Pineapple"];
-
-                        export default function PersonalPizza() {
-                        const [selected, setSelected] = useState([]);
-                        
-                        const toggleTopping = ({target}) => {
-                            const clickedTopping = target.value;
-                            setSelected((prev) => {
-                                // check if clicked topping is already selected
-                                if (prev.includes(clickedTopping)) {
-                                    // filter the clicked topping out of state
-                                    return prev.filter(t => t !== clickedTopping);
-                                } else {
-                                    // add the clicked topping to our state
-                                    return [clickedTopping, ...prev];
-                                }
-                            });
-                        };
-                        
-                        return (
-                            < div >
-                                {options.map(option => (
-                                    < button value={option} onClick={toggleTopping} key={option} >
-                                    {selected.includes(option) ? "Remove " : "Add "}
-                                    {option}
-                                    < /button >
-                            ))}
-                            < p > Order a {selected.join(", ")} pizza < /p >
-                            </ div >
-                        );
-                        }
-                        </code>
-                    </pre>
-                    <hr/>
-                    <li><strong>Objects in State:</strong> When we work with a set of related variables, 
-                    it can be very helpful to group them in an object. Let’s look at an example!</li>
-                    <pre>
-                        <code>
-                        export default function Login() {
-                        const [formState, setFormState] = useState({});
-                        
-                        const handleChange = ({ target }) => {
-                            const { name, value } = target;
-                            setFormState((prev) => ({
-                            ...prev,
-                            [name]: value
-                            }));
-                        };
-
-                        return (
-                            < form >
-                            < input
-                                value={formState.firstName}
-                                onChange={handleChange}
-                                name="firstName"
-                                type="text"
-                            />
-                            < input
-                                value={formState.password}
-                                onChange={handleChange}
-                                type="password"
-                                name="password"
-                            />
-                            < /form >
-                        );
-                        }
-                        </code>
-                    </pre>
-                </ul>
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
             </ul>
         </div>
     </body>
