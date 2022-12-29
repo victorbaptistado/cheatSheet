@@ -48,6 +48,15 @@
                 <li>To render <strong>logic</strong>, if we want any expression to be treated as 
                 JavaScript inside of a JSX element we need to wrap it in curly braces.</li>
             </ul>
+            <hr/>
+            <h2>State</h2>
+            <ul>
+                <li>A React app is basically just a lot of <strong>components</strong>, setting <strong>state</strong> and passing <strong>props</strong> to one another.</li>
+                <li>There are two ways for a component to get dynamic 
+                information: <strong>props</strong> and <strong>state</strong>. Besides props and state, 
+                every value used in a component should always stay exactly 
+                the same.</li>
+            </ul>
         </div>
         <div class="styleGuide">
             <h2>Often used in React</h2>
@@ -206,88 +215,209 @@
                 </code>
             </pre>
             <hr/>
-        </div>
-        <div class="styleGuide">
-            <h2>Aditional Algorithms</h2>
-            <ul><li>
-                <div class="flex">
-                        <p>Auth & password Conditional</p>
-                        <button id="showCode19" onclick="showCode('displayCode19', 'showCode19')">Display</button>
-                </div>
-            </li></ul>
-            <div id="displayCode19">
-                <button onclick="closeCode('displayCode19', 'showCode19')">Close</button>
-            <pre>
-                <code>
-                    class Contact extends React.Component {
-                        constructor(props) {
-                          super(props);
-                          this.state = {
-                            password: 'swordfish',
-                            authorized: false
-                          };
-                          this.authorize = this.authorize.bind(this);
-                        }
-                      
-                        authorize(e) {
-                          const password = e.target.querySelector(
-                            'input[type="password"]').value;
-                          const auth = password == this.state.password;
-                          this.setState({
-                            authorized: auth
-                          });
-                        }
-                      
+            <h3>Style Object</h3>
+            <ul>
+                <li>For longer styles, it's a good idea to create an <strong>style object.</strong></li>
+                <li>One way to make <strong>styles reusable</strong> is to keep them in a 
+                <strong>separate JavaScript file.</strong> 
+                This file should export the styles that you want to reuse, via export. 
+                You can then import your styles into any component that wants them.</li>
+            </ul>
+            <button id="showCode25" onclick="showCode('displayCode25', 'showCode25')">Display</button>
+            <div id="displayCode25">
+                <button onclick="closeCode('displayCode25', 'showCode25')">Close</button>
+                <ul>
+                    <li>Style object</li>
+                    <pre>
+                        <code>
+                    const styles = {
+                        color: 'darkcyan',
+                        background: 'mintcream'
+                    };
+                    
+                    export class StyledClass extends React.Component {
                         render() {
-                          let login = (
-                            < form action="#" >
-                              < input type='password' placeholder='Password' />
-                              < input type='submit' onSubmit={this.authorize} />
-                            < /form >
-                            );
-                          let contactInfo = (
-                              < ul >
-                                < li >
-                                  client@example.com
-                                < /li >
-                                < li >
-                                  555.555.5555
-                                < /li >
-                              < /ul >
-                          );
-                      
-                          return (
-                            < div id="authorization" >
-                              < h1 >{this.state.authorized ? "Contact" : "Enter the Password"}< /h1 >
-                              {this.state.authorized ? contactInfo : login}
-                            < /div >
-                          );
+                        return (
+                            < h1 style={styles} >
+                            Hello world
+                            < /h1 >
+                        );
                         }
-                      }                      
-                </code>
-            </pre>
+                    }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li>Style module</li>
+                    <pre>
+                        <code>
+                    const fontFamily = 'Comic Sans MS, Lucida Handwriting, cursive';
+                    const background = 'pink url
+                    ("https://content.codecademy.com/programs/react/images/welcome-to-my-homepage.gif") fixed';
+                    const fontSize = '4em';
+                    const padding = '45px 0';
+                    const color = 'green';
+
+                    export const styles = {
+                        fontFamily: fontFamily,
+                        background: background,
+                        fontSize:   fontSize,
+                        padding:    padding,
+                        color:      color
+                    };
+                        </code>
+                    </pre>
+                </ul>
             </div>
         </div>
         <div class="styleGuide">
-            <h2>State</h2>
+            <h2>Aditional Algorithms</h2>
             <ul>
-            <li>A React app is basically just a lot of <strong>components</strong>, setting <strong>state</strong> and passing <strong>props</strong> to one another.</li>
-            <li>There are two ways for a component to get dynamic 
-            information: <strong>props</strong> and <strong>state</strong>. Besides props and state, 
-            every value used in a component should always stay exactly 
-            the same.</li>
-            <li>A <strong>programming pattern</strong> uses two React components: a <strong>stateful 
-            component</strong>, and a <strong>stateless component</strong>. “Stateful” describes any 
-            component that has a state property; “stateless” describes any component that does not.</li>
-            <li>Components should only have <strong>one job</strong>.
-            You should divide child in two: one will have one stateless component <strong>display information</strong>, 
-            and a different stateless component offer the ability to <strong>change that information</strong>. e.g: A Video Player & a Menu to change its settings.</li>
-            <li><strong>How does a component change its props?</strong> The answer: it doesn’t!
-            A component should never update this.props.
-            A React component should use props to store information that 
-            can be changed, but can only be changed by a different component.
-            A React component should use state to store information that 
-            the component itself can change.</li>
+                <li>
+                    <div class="flex">
+                            <p>Auth & password Conditional</p>
+                            <button id="showCode19" onclick="showCode('displayCode19', 'showCode19')">Display</button>
+                    </div>
+                </li>
+                <div id="displayCode19">
+                    <button onclick="closeCode('displayCode19', 'showCode19')">Close</button>
+                    <pre>
+                        <code>
+                class Contact extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            password: 'swordfish',
+                            authorized: false
+                        };
+                        this.authorize = this.authorize.bind(this);
+                    }
+                    
+                    authorize(e) {
+                        const password = e.target.querySelector(
+                        'input[type="password"]').value;
+                        const auth = password == this.state.password;
+                        this.setState({
+                        authorized: auth
+                        });
+                    }
+                    
+                    render() {
+                        let login = (
+                        < form action="#" >
+                            < input type='password' placeholder='Password' />
+                            < input type='submit' onSubmit={this.authorize} />
+                        < /form >
+                        );
+                        let contactInfo = (
+                            < ul >
+                            < li >
+                                client@example.com
+                            < /li >
+                            < li >
+                                555.555.5555
+                            < /li >
+                            < /ul >
+                        );
+                    
+                        return (
+                        < div id="authorization" >
+                            < h1 >{this.state.authorized ? "Contact" : "Enter the Password"}< /h1 >
+                            {this.state.authorized ? contactInfo : login}
+                        < /div >
+                        );
+                    }
+                    }   
+                        </code>
+                    </pre>
+                </div>
+                <li>
+                    <div class="flex">
+                            <p>Api Interaction</p>
+                            <button id="showCode24" onclick="showCode('displayCode24', 'showCode24')">Display</button>
+                    </div>
+                </li>
+                <div id="displayCode24">
+                    <button onclick="closeCode('displayCode24', 'showCode24')">Close</button>
+                    <pre>
+                        <code>
+            export default function SocialNetwork() {
+
+                const [menu, setMenu] = useState(null);
+                
+                useEffect(() => {
+                    get('/menu').then((response) => {setMenu(response.data)});
+                }, []);
+                
+                const [newsFeed, setNewsFeed] = useState(null);
+                
+                useEffect(() => {
+                    get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
+                }, []);
+                
+                const [friends, setFriends] = useState(null);
+                useEffect(() => {
+                    get('/friends').then((response) => {setFriends(response.data)});
+                }, []);
+                
+                return (
+                    < div className='App' >
+                    < h1 > My Network < /h1 >
+                    {!menu ? < p >Loading..< /p > : (
+                        < nav >
+                        {menu.map((menuItem) => (
+                            < button key={menuItem} > {menuItem} < /button >
+                        ))}
+                        < /nav >
+                    )}
+                    < div className='content' >
+                        {!newsFeed ? < p >Loading..< /p > : (
+                        < section >
+                            {newsFeed.map(({ id, title, message, imgSrc }) => (
+                            < article key={id} >
+                                < h3 >{title}< /h3 >
+                                < p >{message}< /p >
+                                < img src={imgSrc} alt='' />
+                            < /article >
+                            ))}
+                        < /section >
+                        )}
+                        {!friends ? < p >Loading..< /p > : (
+                        < aside >
+                            < ul >
+                            {friends
+                                .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
+                                .map(({ id, name, isOnline }) => (
+                                < li key={id} className={isOnline ? 'online' : 'offline'}>
+                                    {name}
+                                < /li >
+                                ))}
+                            < /ul >
+                        < /aside >
+                        )}
+                    < /div >
+                    < /div >
+                );
+                }
+                        </code>
+                    </pre>
+                </div>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Programming Patterns</h2>
+            <ul>
+                <li><strong>Stateful & Stateless</strong> pattern: a <strong>programming pattern</strong> uses two React components: a <strong>stateful 
+                component</strong>, and a <strong>stateless component</strong>. “Stateful” describes any 
+                component that has a state property; “stateless” describes any component that does not.</li>
+                <li>Components should only have <strong>one job</strong>.
+                You should divide child in two: one will have one stateless component <strong>display information</strong>, 
+                and a different stateless component offer the ability to <strong>change that information</strong>. e.g: A Video Player & a Menu to change its settings.</li>
+                <li><strong>How does a component change its props?</strong> The answer: it doesn’t!
+                A component should never update this.props.
+                A React component should use props to store information that 
+                can be changed, but can only be changed by a different component.
+                A React component should use state to store information that 
+                the component itself can change.</li>
             </ul>
             <p class="center">Forms of <strong>Components Update Parents'</strong> state</p>
             <button id="showCode20" onclick="showCode('displayCode20', 'showCode20')">Display</button>
@@ -358,6 +488,107 @@
                     </li>
                 </ul>
             </div>
+            <hr/>
+            <h3>#1 Presentational components and Container components.</h3>
+            <ul>
+                <li>Separating <strong>container components</strong> from <strong>presentational components</strong> 
+                is a popular React programming pattern. </li>
+                <li>The <strong>functional part</strong> of a component (state, calculations, etc.) 
+                can be separated into a <strong>container component</strong>. 
+                If a component has to have state, make calculations based on props, 
+                or manage any other complex logic, then that component shouldn’t also 
+                have to render HTML-like JSX. <strong>Presentational component's</strong>
+                only job is to contain JSX - it should be an exported component and will not render 
+                itself because a presentational component will always 
+                get rendered by a container component.</li>
+                <li>You want to separate the logic of this component class into a container component.
+                Create a <strong>container folder</strong> and a <strong>component folder.</strong>
+                To start, just make a copy. After that, you can delete the appropriate parts.
+                E.g: Highlight the entire contents of components/GuineaPigs.js, and copy it to the clipboard.
+                Now, open containers/GuineaPigsContainer.js.
+                Click inside the empty file, and paste. containers/GuineaPigsContainer.js 
+                and components/GuineaPigs.js should be identical.</li>
+                <p class="center"><strong>Example</strong></p>
+                <button id="showCode26" onclick="showCode('displayCode26', 'showCode26')">Display</button>
+                <div id="displayCode26">
+                    <button onclick="closeCode('displayCode26', 'showCode26')">Close</button>
+                    <ul>
+                        <li>Container component</li>
+                        <pre>
+                            <code>
+                    import React from 'react';
+                    import ReactDOM from 'react-dom';
+                    import { GuineaPigs } from '../components/GuineaPigs';
+                    
+                    const GUINEAPATHS = [
+                    'https://content.codecademy.com/courses/React/react_photo-guineapig-1.jpg',
+                    'https://content.codecademy.com/courses/React/react_photo-guineapig-2.jpg',
+                    'https://content.codecademy.com/courses/React/react_photo-guineapig-3.jpg',
+                    'https://content.codecademy.com/courses/React/react_photo-guineapig-4.jpg'
+                    ];
+                    
+                    class GuineaPigsContainer extends React.Component {
+                    constructor(props) {
+                        super(props);        
+                        this.state = { currentGP: 0 };
+                        this.interval = null;
+                        this.nextGP = this.nextGP.bind(this);
+                    }
+                    
+                    nextGP() {
+                        let current = this.state.currentGP;
+                        let next = ++current % GUINEAPATHS.length;
+                        this.setState({ currentGP: next });
+                    }
+                    
+                    componentDidMount() {
+                        this.interval = setInterval(this.nextGP, 5000);
+                    }
+                    
+                    componentWillUnmount() {
+                        clearInterval(this.interval);
+                    }
+                    
+                    render() { 
+                        const src = GUINEAPATHS[this.state.currentGP]; 
+                        return < GuineaPigs src={src} />;
+                    }
+                    }
+                    
+                    ReactDOM.render(
+                        < GuineaPigsContainer / >, 
+                        document.getElementById('app')
+                    );
+                            </code>
+                        </pre>
+                    </ul>
+                    <ul>
+                        <li>Presentational component</li>
+                        <pre>
+                            <code>
+                                import React from 'react';
+                                export class GuineaPigs extends React.Component {
+                                
+                                  render() {
+                                    let src = this.props.src;
+                                    return (
+                                      < div >
+                                        < h1 >Cute Guinea Pigs< /h1 >
+                                        < img src={src} />
+                                      < /div >
+                                    );
+                                  }
+                                }
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+                <li>More material:</li>
+                <ul>
+                    <li><a href="https://medium.com/@learnreact/container-components-c0e67432e005" target="_blank">Container components</a></li>
+                    <li><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank">Presentational and Container components</a></li>
+                </ul>
+            </ul>
         </div>
         <div class="styleGuide">
             <h2>React's Lifecycle</h2>
