@@ -508,7 +508,7 @@
                 Now, open containers/GuineaPigsContainer.js.
                 Click inside the empty file, and paste. containers/GuineaPigsContainer.js 
                 and components/GuineaPigs.js should be identical.</li>
-                <p class="center"><strong>Example</strong></p>
+                <p class="center"><strong>Example:</strong></p>
                 <button id="showCode26" onclick="showCode('displayCode26', 'showCode26')">Display</button>
                 <div id="displayCode26">
                     <button onclick="closeCode('displayCode26', 'showCode26')">Close</button>
@@ -858,66 +858,66 @@
                         <li><strong>API interaction</strong> example:</li>
                         <pre>
                             <code>
-                        //Example 1 (Separation of concerns for EndPoints / State Variables)
+                //Example 1 (Separation of concerns for EndPoints / State Variables)
 
-                        export default function SocialNetwork() {
+                export default function SocialNetwork() {
 
-                            const [menu, setMenu] = useState(null);
-                            
-                            useEffect(() => {
-                                get('/menu').then((response) => {setMenu(response.data)});
-                            }, []);
-                            
-                            const [newsFeed, setNewsFeed] = useState(null);
-                            
-                            useEffect(() => {
-                                get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
-                            }, []);
-                            
-                            const [friends, setFriends] = useState(null);
-                            useEffect(() => {
-                                get('/friends').then((response) => {setFriends(response.data)});
-                            }, []);
-                            
-                            return (
-                                < div className='App' >
-                                < h1 > My Network < /h1 >
-                                {!menu ? < p >Loading..< /p > : (
-                                    < nav >
-                                    {menu.map((menuItem) => (
-                                        < button key={menuItem} > {menuItem} < /button >
+                    const [menu, setMenu] = useState(null);
+                    
+                    useEffect(() => {
+                        get('/menu').then((response) => {setMenu(response.data)});
+                    }, []);
+                    
+                    const [newsFeed, setNewsFeed] = useState(null);
+                    
+                    useEffect(() => {
+                        get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
+                    }, []);
+                    
+                    const [friends, setFriends] = useState(null);
+                    useEffect(() => {
+                        get('/friends').then((response) => {setFriends(response.data)});
+                    }, []);
+                    
+                    return (
+                        < div className='App' >
+                        < h1 > My Network < /h1 >
+                        {!menu ? < p >Loading..< /p > : (
+                            < nav >
+                            {menu.map((menuItem) => (
+                                < button key={menuItem} > {menuItem} < /button >
+                            ))}
+                            < /nav >
+                        )}
+                        < div className='content' >
+                            {!newsFeed ? < p >Loading..< /p > : (
+                            < section >
+                                {newsFeed.map(({ id, title, message, imgSrc }) => (
+                                < article key={id} >
+                                    < h3 >{title}< /h3 >
+                                    < p >{message}< /p >
+                                    < img src={imgSrc} alt='' />
+                                < /article >
+                                ))}
+                            < /section >
+                            )}
+                            {!friends ? < p >Loading..< /p > : (
+                            < aside >
+                                < ul >
+                                {friends
+                                    .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
+                                    .map(({ id, name, isOnline }) => (
+                                    < li key={id} className={isOnline ? 'online' : 'offline'}>
+                                        {name}
+                                    < /li >
                                     ))}
-                                    < /nav >
-                                )}
-                                < div className='content' >
-                                    {!newsFeed ? < p >Loading..< /p > : (
-                                    < section >
-                                        {newsFeed.map(({ id, title, message, imgSrc }) => (
-                                        < article key={id} >
-                                            < h3 >{title}< /h3 >
-                                            < p >{message}< /p >
-                                            < img src={imgSrc} alt='' />
-                                        < /article >
-                                        ))}
-                                    < /section >
-                                    )}
-                                    {!friends ? < p >Loading..< /p > : (
-                                    < aside >
-                                        < ul >
-                                        {friends
-                                            .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
-                                            .map(({ id, name, isOnline }) => (
-                                            < li key={id} className={isOnline ? 'online' : 'offline'}>
-                                                {name}
-                                            < /li >
-                                            ))}
-                                        < /ul >
-                                    < /aside >
-                                    )}
-                                < /div >
-                                < /div >
-                            );
-                            }
+                                < /ul >
+                            < /aside >
+                            )}
+                        < /div >
+                        < /div >
+                    );
+                    }
                             </code>
                         </pre>
                         <pre>
@@ -976,6 +976,101 @@
                     </ul>
                 </div>
             </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>PropTypes</h2>
+            <ul>
+                <li><strong>PropTypes</strong> are useful for two reasons:
+                <ul>
+                    <li><strong>Prop validation.</strong>
+                    Validation can ensure that your props are doing what they’re supposed to be doing. 
+                    If props are missing, or if they’re present but they aren’t what you’re expecting, 
+                    then a warning will print in the console.</li>
+                    <li><strong>Documentation.</strong>
+                    Documenting props makes it easier to glance at a file and quickly understand the 
+                    component class inside. When you have a lot of files, and you will, this can be 
+                    a huge benefit.</li>
+                </ul>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode27" onclick="showCode('displayCode27', 'showCode27')">Display</button>
+            <div id="displayCode27">
+                <button onclick="closeCode('displayCode27', 'showCode27')">Close</button>
+                <pre>
+                    <code>
+            import React from 'react';
+            import PropTypes from 'prop-types';
+
+            export class MessageDisplayer extends React.Component {
+            render() {
+                return < h1 >{this.props.message}< /h1 >;
+            }
+            }
+
+            // This propTypes object should have
+            // one property for each expected prop:
+            MessageDisplayer.propTypes = {
+                message: PropTypes.string
+            };
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="styleGuide">
+            <h2>React Form</h2>
+            <ul>
+                <li>In a React form, <u>you want the server to know about every new character or deletion,</u> 
+                as soon as it happens (using <u>onChange</u>). That way, your screen will always be in sync 
+                with the rest of your application (some third parties need to know what the user
+                is typing, therefore we need to always use).</li>
+            </ul>
+            <hr/>
+            <h3>Controlled vs Uncontrolled</h3>
+            <ul>
+                <li><strong>Uncontrolled component: </strong>A component that maintains 
+                its own internal state. When < input / > keeps track of information makes it an 
+                uncontrolled component. It maintains its own internal state, by remembering data about 
+                itself.</li>
+                <li><strong>Controlled component: </strong>A component that does not maintain 
+                any internal state, it has no memory. Has its state controlled from outside, 
+                through props. 
+                In React, when you give an < input / > 
+                a <u>value attribute</u>, then something strange happens: the < input / > BECOMES controlled. 
+                It stops using its internal storage. E.g: value={this.props.userInput}. <u>This is a more ‘React’ way of doing things.</u></li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode28" onclick="showCode('displayCode28', 'showCode28')">Display</button>
+            <div id="displayCode28">
+                <button onclick="closeCode('displayCode28', 'showCode28')">Close</button>
+                <pre>
+                    <code>
+                    export class Input extends React.Component {
+                    constructor(props){
+                        super(props);
+                        this.state = {userInput: ''};
+                        this.handleUserInput = this.handleUserInput.bind(this)
+                    }
+
+                    handleUserInput(e){
+                        this.setState({userInput: e.target.value});
+                    }
+
+                    render() {
+                        return (
+                            < div >
+                                // Notice "value" has its state stored on 
+                                an outside prop, therefore making it
+                                a controlled component
+                                < input type="text" value={this.state.userInput} 
+                                onChange={this.handleUserInput} />
+                                < h1 >{this.state.userInput}< /h1 >
+                            < /div >
+                        );
+                    }
+                    }
+                    </code>
+                </pre>
+            </div>
         </div>
     </body>
 </html>
