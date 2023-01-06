@@ -1003,14 +1003,20 @@
 
             export class MessageDisplayer extends React.Component {
             render() {
-                return < h1 >{this.props.message}< /h1 >;
+                return (
+                    <>
+                    < input value={value} onChange={handleChange}/>
+                    < h1 >{this.props.message}< /h1 >);
+                    </>
             }
             }
 
             // This propTypes object should have
             // one property for each expected prop:
             MessageDisplayer.propTypes = {
-                message: PropTypes.string
+                message: PropTypes.string,
+                value: PropTypes.string.isRequired,
+                handleChange: PropTypes.func.handleChange
             };
                     </code>
                 </pre>
@@ -1071,6 +1077,208 @@
                     </code>
                 </pre>
             </div>
+        </div>
+        <div class="styleGuide">
+            <h2>React Router</h2>
+            <ul>
+                <li><strong>React Router:</strong> Is a standard library 
+                for routing in React. It enables the navigation among views 
+                of various components in a React Application, allows changing 
+                the browser URL, and keeps the UI in sync with the URL.
+                <u>React Router treats everything as a component</u>. To get 
+                fully comfortable using React Router in your code, you have 
+                to embrace this idea and the declarative coding style that 
+                follows from it.</li>
+                <li><strong>Link & NavLink: </strong>Works just as < a > tag, 
+                but avoids the reload rendering. NavLink's difference is that it 
+                gives the navigation style.
+                </li>
+                <li><strong>Dynamic Routes: </strong>
+                Specifying a unique route for every article would not only be 
+                verbose and time-consuming, it would require an impractical 
+                amount of maintenance should the path structure ever change.
+                Instead, we would rather express the pattern at a high level 
+                with a single route that 
+                can match any path of the form '/articles/' + someTitle 
+                and still know which article to render. React Router 
+                allows us to do this by using URL parameters to create 
+                dynamic routes.
+                </li>
+                <li><strong>useParams:</strong> It is common to use the 
+                value of URL parameters to determine what is displayed 
+                in the component that a dynamic route renders. 
+                For example, the Article component might need to display 
+                the title of the current article.
+                React Router provides a hook, useParams(), for accessing 
+                the value of URL parameters. When called, useParams() 
+                returns an object that maps the names of URL Parameters to 
+                their values in the current URL.</li>
+                <li><strong>Switch:</strong> < Switch > renders the first child < Route > 
+                or < Redirect > that matches the location. That's used
+                when we want to render an exclusive path.</li>
+                <li><strong>Nested Routes:</strong> As an 
+                application grows in scope, it can be useful to split up 
+                the router and write Routes nearer to where the related UI 
+                logic is written.</li>
+                <li><strong>useRouteMatch: </strong>
+                Instead of writing out the full URL path for Nested routes, 
+                it's more flexible to create relative paths based on 
+                the /categories URL. React Router provides a hook, 
+                useRouteMatch(), that makes it incredibly easy to do this.</li>
+                <li><strong>Redirect:</strong> Is a routing component in React 
+                Router Dom v5 that enables us to override the history 
+                object and dynamically redirect a user from a route to a 
+                new route.
+                <u>The <strong>< Redirect /></strong> component has been 
+                deprecated and replaced with React 
+                <strong>< Navigate/ ></strong> in React Router v6.</u></li>
+            </ul>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode29" onclick="showCode('displayCode29', 'showCode29')">Display</button>
+            <div id="displayCode29">
+                <button onclick="closeCode('displayCode29', 'showCode29')">Close</button>
+                <ul>
+                    <li><strong>useParams</strong></li>
+                    <pre>
+                        <code>
+            export default function Article() {
+
+                let { title } = useParams();
+                // title will be equal to the string 'objects'
+                
+                // The title will be rendered in the < h1 >
+                
+                return (
+                    < article >
+                        < h1 >{title}< /h1 >
+                    < /article >
+                );
+                }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Dynamic Routes</strong></li>
+                    <pre>
+                        <code>
+                < Route path='/articles/<strong>:title</strong>' >
+                    < Article />
+                < /Route >
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Switch</strong></li>
+                    <pre>
+                        <code>
+            < Switch >
+                < div >
+                    < Route path='/articles/:title' >
+                        < Article />
+                    < /Route >
+                    < Route path='/articles/new' >
+                        < NewArticle />
+                    < /Route >
+                    < Route path='/articles' >
+                        < Articles />
+                    < /Route >
+                < /div >
+            < /Switch >
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Nested Routes</strong> with <strong>useRouteMatch</strong></li>
+                    <pre>
+                        <code>
+            function BandPage ({ songs }) {
+            let { path, url } = useRouteMatch();
+            
+            // path = '/band/:band'
+            // url = '/band/queen' 
+            
+            // Render a list of relative Links and a Route 
+            to render a SongPage
+
+            return (
+                < div >
+                    < ul >
+                        {
+                        songs.map(songName =>
+                            < li >
+                            < Link to={`<strong>${url}</strong>/song/${songName}`}> 
+                                {category}
+                            < /Link>
+                            < /li>
+                        )
+                        }
+                    < /ul >
+            
+                    < Route path={`<strong>${path}</strong>/song/:songName`}>
+                        < SongPage />
+                    < /Route>
+                < /div>
+            )
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Redirect</strong></li>
+                    <pre>
+                        <code>
+            const UserProfile = ({ loggedIn }) => {
+                if (!loggedIn) {
+                    return (
+                        < Redirect to='/' />
+                    )
+                }
+                
+            return (
+                    // ... user profile contents here
+                )  
+            }
+                        </code>
+                    </pre>
+                    <li><strong>Navigate</strong>(Loggin example)</li>
+                    <pre>
+                        <code>                         
+            function App() {
+                const navigate = useNavigate();
+                const [isLoggedIn, setisLoggedIn] = useState(false);
+            
+                useEffect(() => {
+                // Checking if user is not loggedIn
+                if (!isLoggedIn) {
+                    navigate("/");
+                } else {
+                    navigate("/login");
+                }
+                }, [navigate, isLoggedIn]);
+            
+                return (
+                <>
+                    < Routes >
+                        < Route path='/' 
+                            element={< h1 >Home Page Component< /h1 >} 
+                        />
+                        < Route path='/login' 
+                            element={< h1 >Login Page Component< /h1 >} 
+                        />
+                        < Route path='*' 
+                            element={< Navigate to='/' />} 
+                        />
+                    < /Routes>
+            
+                    {/* New line */}
+                    {isLoggedIn || (
+                    < button onClick={() => setisLoggedIn(true)}>
+                        Log me in
+                    < /button>
+                    )}
+                </>
+                );
+            }
+                        </code>
+                    </pre>
+                </ul>
+                </div>
+            </ul>
         </div>
     </body>
 </html>
