@@ -1131,12 +1131,12 @@
                     route parameters filled in.
                     Useful for building nested < Link >s.</li>
                     <li><strong>Path: </strong>Leaves the names of the current URL’s URL 
-                    parameters as-is. useful for building nested < Route >s.</li>
+                    parameters as-is. Useful for building nested < Route >s.</li>
                 </ul>
                 <li><strong>Redirect:</strong> Is a routing component in React 
                 Router Dom v5 that enables us to override the history 
                 object and dynamically redirect a user from a route to a 
-                new route.
+                new route. Updates the browser location as declaratively.
                 <u>The <strong>< Redirect /></strong> component has been 
                 deprecated and replaced with React 
                 <strong>< Navigate/ ></strong> in React Router v6.</u></li>
@@ -1158,19 +1158,52 @@
                 to search, sort and/or filter resources.
                 React Router provides a mechanism for grabbing the values 
                 of query parameters: the <strong>useLocation()</strong> hook.</li>
-                <li>Download full <strong>React Route</strong> code example <a href="https://static-assets.codecademy.com/Courses/react-router/react-router-lesson-solution-1.zip?_gl=1*sz135p*_ga*MzUxOTc3MDY5My4xNjY2MDU2MTg3*_ga_3LRZM6TM9L*MTY3MzA5MzQ0Ni4xNzguMS4xNjczMDk1MDQ4LjYwLjAuMA..">here</a>
+                <li><strong>Exact:</strong>Is a property used in a < Route > 
+                that means that your path should match exactly with 
+                your route path and should not be just the prefix of it.</li>
+                <li>Download full React Router <strong>code example</strong> <a href="https://static-assets.codecademy.com/Courses/react-router/react-router-lesson-solution-1.zip?_gl=1*sz135p*_ga*MzUxOTc3MDY5My4xNjY2MDU2MTg3*_ga_3LRZM6TM9L*MTY3MzA5MzQ0Ni4xNzguMS4xNjczMDk1MDQ4LjYwLjAuMA..">here</a>
                     .
                 </li>
+                <li>React Router <strong>documentation</strong> <a href="https://reactrouter.com/en/main">here</a>.</li>
             </ul>
             <p class="center"><strong>Examples:</strong></p>
             <button id="showCode29" onclick="showCode('displayCode29', 'showCode29')">Display</button>
             <div id="displayCode29">
                 <button onclick="closeCode('displayCode29', 'showCode29')">Close</button>
                 <ul>
-                    <li><strong>useParams</strong></li>
+                    <li><strong>Dynamic Routes</strong></li>
                     <pre>
                         <code>
-            export default function Article() {
+                < Route path='/articles/<strong>:title</strong>' >
+                    < Article />
+                < /Route >
+                        </code>
+                    </pre>
+                To indicate an optional parameter, you’ll need to append a ? to it, like so:
+                    <pre>
+                        <code>
+                < Route path="/:param?">
+                      < MyComponent />
+                < /Route>
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>useParams</strong></li>
+                    The useParams hook returns an object of key/value 
+                    pairs of the dynamic params from the current URL that 
+                    were matched by the < Route path >. Child routes inherit 
+                    all params from their parent routes.
+                    <br>
+                    <u>Remember to use destructuring for the useParam
+                    variable assigned.</u>
+                    <br><br>
+                    <strong>Some of its use:</strong>
+                    <br>
+                    <br>
+                    E.g: Can be used to <u>render title</u> based on the current URL.
+                    <pre>
+                        <code>
+                export default function Article() {
 
                 let { title } = useParams();
                 // title will be equal to the string 'objects'
@@ -1178,20 +1211,50 @@
                 // The title will be rendered in the < h1 >
                 
                 return (
-                    < article >
-                        < h1 >{title}< /h1 >
-                    < /article >
-                );
+                        < article >
+                            < h1 >{title}< /h1 >
+                        < /article >
+                    );
                 }
                         </code>
                     </pre>
-                    <hr/>
-                    <li><strong>Dynamic Routes</strong></li>
+                E.g: Can be used to <u>render page</u> userId based on the URL:
                     <pre>
                         <code>
-                < Route path='/articles/<strong>:title</strong>' >
-                    < Article />
-                < /Route >
+                function ProfilePage() {
+                    // Get the userId param from the URL.
+                    let { userId } = useParams();
+                    // ...
+                    }
+                    
+                    function App() {
+                    return (
+                        < Routes >
+                        < Route path="users" >
+                            < Route path=":userId" 
+                                element={< ProfilePage />} />
+                            < Route path="me" element={...} />
+                        < /Route >
+                        < /Routes >
+                    );
+                }           
+                        </code>
+                    </pre>
+                E.g: Can be used to <u>render data</u> based on URL:
+                    <pre>
+                        <code>
+                const HomePage = () => {
+                    const [data, setData] = useState(null);
+                    const {type} = useParams(); // Fix me!
+                    
+                    useEffect(() => {
+                        async function getPetsData() {
+                        const petsData = await getPets(type);
+                        setData(petsData);
+                        }
+                    
+                        getPetsData();
+                    }, [type]);
                         </code>
                     </pre>
                     <hr/>
