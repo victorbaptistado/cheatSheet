@@ -1115,7 +1115,8 @@
                 their values in the current URL.</li>
                 <li><strong>Switch:</strong> < Switch > renders the first child < Route > 
                 or < Redirect > that matches the location. That's used
-                when we want to render an exclusive path.</li>
+                when we want to render an exclusive path. It's organized from
+                the most specific path to the most generic.</li>
                 <li><strong>Nested Routes:</strong> As an 
                 application grows in scope, it can be useful to split up 
                 the router and write Routes nearer to where the related UI 
@@ -1124,7 +1125,14 @@
                 Instead of writing out the full URL path for Nested routes, 
                 it's more flexible to create relative paths based on 
                 the /categories URL. React Router provides a hook, 
-                useRouteMatch(), that makes it incredibly easy to do this.</li>
+                useRouteMatch(), that makes it incredibly easy to do this.
+                <ul>
+                    <li><strong>Url: </strong>Has the actual value of 
+                    route parameters filled in.
+                    Useful for building nested < Link >s.</li>
+                    <li><strong>Path: </strong>Leaves the names of the current URL’s URL 
+                    parameters as-is. useful for building nested < Route >s.</li>
+                </ul>
                 <li><strong>Redirect:</strong> Is a routing component in React 
                 Router Dom v5 that enables us to override the history 
                 object and dynamically redirect a user from a route to a 
@@ -1132,6 +1140,27 @@
                 <u>The <strong>< Redirect /></strong> component has been 
                 deprecated and replaced with React 
                 <strong>< Navigate/ ></strong> in React Router v6.</u></li>
+                <li><strong>useHistory: </strong> 
+                Provides a mechanism for updating the browser’s location 
+                imperatively.
+                By enabling imperative updates to the browser location, 
+                the history object allows you to respond immediately to user 
+                input without having to wait.
+                Browser history is a stack that stores the URLs visited 
+                by the user and maintains a pointer to the user’s current 
+                location. This history API allows you to navigate through 
+                a user’s session history and alter the history stack if 
+                necessary.</li>
+                <li><strong>Query parameters: </strong>Appear in URLs 
+                beginning with a question mark (?) and are followed 
+                by a parameter name assigned 
+                to a value. They are optional and are most often used 
+                to search, sort and/or filter resources.
+                React Router provides a mechanism for grabbing the values 
+                of query parameters: the <strong>useLocation()</strong> hook.</li>
+                <li>Download full <strong>React Route</strong> code example <a href="https://static-assets.codecademy.com/Courses/react-router/react-router-lesson-solution-1.zip?_gl=1*sz135p*_ga*MzUxOTc3MDY5My4xNjY2MDU2MTg3*_ga_3LRZM6TM9L*MTY3MzA5MzQ0Ni4xNzguMS4xNjczMDk1MDQ4LjYwLjAuMA..">here</a>
+                    .
+                </li>
             </ul>
             <p class="center"><strong>Examples:</strong></p>
             <button id="showCode29" onclick="showCode('displayCode29', 'showCode29')">Display</button>
@@ -1274,6 +1303,59 @@
                 </>
                 );
             }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>history.push(location)</strong> which 
+                    redirects the user to the provided location.</li>
+                    <li><strong>history.goBack()</strong> which navigates 
+                    to the previous URL in the history stack</li>
+                    <li><strong>history.goForward()</strong> which navigates 
+                    to the next URL in the history stack.
+                    </li>
+                    <li><strong>history.go(n)</strong> which navigates n 
+                    entries (where positive n values are forward and negative 
+                    n values are backward) through the history stack.
+                    </li>
+                    <pre>
+                        <code>
+                            //history.push:
+
+                            export const ExampleForm = () => {
+ 
+                                const history = useHistory()
+                               
+                                const handleSubmit = e => {
+                                  e.preventDefault();
+                                  history.push('/')
+                                }
+                               
+                                return (
+                                  < form onSubmit={handleSubmit} >
+                                        {/* form elements */ }
+                                  < /form >
+                                )
+                              }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Query Parameter</strong> (useLocation)</li>
+                    <pre>
+                        <code>
+                // Rendered when a user visits "/list?order=DESC"
+                export const SortedList = (numberList) => {
+                    const { search } = useLocation();
+                    const queryParams = new URLSearchParams(search);
+                    const sortOrder = queryParams.get('order');
+                    
+                    if (sortOrder === 'ASC') {
+                    // render the numberList in ascending order
+                    } else if (sortOrder === 'DESC') {
+                    // render the numberList in descending order
+                    } else {
+                    // render the numberList as is
+                    }
+                }
                         </code>
                     </pre>
                 </ul>
