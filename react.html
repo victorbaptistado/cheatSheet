@@ -1108,13 +1108,14 @@
                 value of URL parameters to determine what is displayed 
                 in the component that a dynamic route renders. 
                 For example, the Article component might need to display 
-                the title of the current article.
+                the title of the current article, or the content shown
+                is based on the URL (showing all 'cats' from 'cat category').
                 React Router provides a hook, useParams(), for accessing 
                 the value of URL parameters. When called, useParams() 
                 returns an object that maps the names of URL Parameters to 
                 their values in the current URL.</li>
-                <li><strong>Switch:</strong> < Switch > renders the first child < Route > 
-                or < Redirect > that matches the location. That's used
+                <li><strong>Switch:</strong> < Switch > renders a single component (the first child < Route > 
+                or < Redirect >) that matches the location. That's used
                 when we want to render an exclusive path. It's organized from
                 the most specific path to the most generic.</li>
                 <li><strong>Nested Routes:</strong> As an 
@@ -1136,7 +1137,7 @@
                 <li><strong>Redirect:</strong> Is a routing component in React 
                 Router Dom v5 that enables us to override the history 
                 object and dynamically redirect a user from a route to a 
-                new route. Updates the browser location as declaratively.
+                new route. Often used for errors. Updates the browser location as declaratively.
                 <u>The <strong>< Redirect /></strong> component has been 
                 deprecated and replaced with React 
                 <strong>< Navigate/ ></strong> in React Router v6.</u></li>
@@ -1156,13 +1157,18 @@
                 by a parameter name assigned 
                 to a value. They are optional and are most often used 
                 to search, sort and/or filter resources.
+                Query parameters do not need to be specified in the path prop 
+                since they are part of the URL’s query string, not its path! 
                 React Router provides a mechanism for grabbing the values 
                 of query parameters: the <strong>useLocation()</strong> hook.</li>
-                <li><strong>Exact:</strong>Is a property used in a < Route > 
+                <li><strong>Exact: </strong>Is a property used in a < Route > 
                 that means that your path should match exactly with 
                 your route path and should not be just the prefix of it.</li>
-                <li>Download full React Router <strong>code example</strong> <a href="https://static-assets.codecademy.com/Courses/react-router/react-router-lesson-solution-1.zip?_gl=1*sz135p*_ga*MzUxOTc3MDY5My4xNjY2MDU2MTg3*_ga_3LRZM6TM9L*MTY3MzA5MzQ0Ni4xNzguMS4xNjczMDk1MDQ4LjYwLjAuMA..">here</a>
-                    .
+                <li>Download full React Router code
+                <a href="https://static-assets.codecademy.com/Courses/react-router/react-router-lesson-solution-1.zip?_gl=1*sz135p*_ga*MzUxOTc3MDY5My4xNjY2MDU2MTg3*_ga_3LRZM6TM9L*MTY3MzA5MzQ0Ni4xNzguMS4xNjczMDk1MDQ4LjYwLjAuMA..">example 1</a>
+                and
+                <a href="https://static-assets.codecademy.com/Courses/react-router/adopt-a-pet-solution.zip">example 2</a>
+                (adopt-a-pet-solution).
                 </li>
                 <li>React Router <strong>documentation</strong> <a href="https://reactrouter.com/en/main">here</a>.</li>
             </ul>
@@ -1403,6 +1409,7 @@
                     </pre>
                     <hr/>
                     <li><strong>Query Parameter</strong> (useLocation)</li>
+                    Remember to use destructuring for the useLocation variable assigned.
                     <pre>
                         <code>
                 // Rendered when a user visits "/list?order=DESC"
