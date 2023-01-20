@@ -1451,35 +1451,25 @@
         <div class="styleGuide">
             <h2>Redux</h2>
             <ul>
-                <li> Depending on the size and complexity of your 
-                    state, state management can be a 
-                    complicated process in plain React.
-                    That’s where Redux comes in.</li>
-                <li><strong>Redux: </strong>Is a state 
+                <li>Depending on the size and complexity of your 
+                state, state management can be a complicated process in plain React.
+                That’s where Redux comes in. <strong>Redux: </strong>Is a state 
                 management library that follows a pattern known as the 
                 <a href="https://facebook.github.io/flux/docs/in-depth-overview/" target="_blank">Flux architecture</a>. 
-                In the Flux pattern,
-                and in Redux, shared information is not stored 
+                In the Flux pattern, and in Redux, shared information is not stored 
                 in components but in a single object - that helps separate the state, the view, and actions. 
-                Components are just given data to render and 
-                can request changes using events called actions. 
-                The state is available throughout the application 
-                and updates are made in a predictable manner: components 
-                are “notified” whenever a change is made to the state. Any components of the view that would be 
-                affected by these changes are informed by this single source.
-                </li>
-                <li><u>State:</u> the current data used in the app;
-                    <br>
-                    <u>View:</u> the user interface displayed to users;
-                    <br>
-                    <u>Actions:</u> events that a user can take to change the state.
-                    <br>
-                    <ul>
-                        <li>State -> Actions -> View -> returns to State, and so on...</li>
-                    </ul>
-                </li>
-                <li>
-                <strong>Actions </strong>are represented as plain JS objects.
+                Components are just given data to render and can request changes using events called actions. 
+                The state is available throughout the application and updates are made in a predictable manner: 
+                components are “notified” whenever a change is made to the state. Any components of the view 
+                that would be affected by these changes are informed by this single source.</li>
+                <li>State -> Actions -> View -> returns to State, and so on...</li>
+                <ul>
+                    <li>State: the current data used in the app;</li>
+                    <li>View: the user interface displayed to users;</li>
+                    <li>Actions: events that a user can take to change the state.</li>
+                </ul>
+                <hr/>
+                <li><strong>Actions: </strong>are represented as plain JS objects.
                 Here's what that action might look like:
                 <pre>
                     <code>
@@ -1520,20 +1510,27 @@
                 In nearly every Redux application, there will only be one store.</li>
                 <li><strong>Slice: </strong>
                 In a Redux application, the top-level state properties are known as slices. 
-                Each slice typically represents 
-                a different feature of the entire application. A slice can be any 
-                data value, like an array of objects, or just a string.
+                Each slice typically represents a different feature of the entire application. A slice can be any 
+                data value (key/value), like an array of objects, or just a string.
                 As a best practice, most Redux applications begin with an initialState that allows 
                 the programmer to plan out the general structure of the state and
                 provide an initial state value to the reducer function.<br>
                 When an application state has multiple slices, individual actions 
                 typically only change one slice at a time - therefore, it is recommended 
                 that each action's type follows the pattern <i>'sliceName/actionDescriptor'</i>, 
-                to clarify which slice of state should be updated.
-                </li>
-                <li><strong>Reducer Composition: </strong>In this pattern, individual slice 
+                to clarify which slice of state should be updated.<br>
+                We typically define one reducer for each slice of the state. Those are called “slice reducers”.</li>
+                <li><strong>Redux library: </strong>Provides some very useful tools for handling 
+                the most common aspects of building a Redux application and helps ensure that the core
+                Redux principles are enforced (implentation in "Examples" below). 
+                Check <a href="https://redux.js.org/" target="_blank">here</a>.</li>
+                <li><strong>Material</strong> on Redux  <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-redux/modules/wdcp-22-core-redux-api/cheatsheet" target="_blank">here</a>.</li>
+                <li><strong>Redux DevTools </strong>video <a href="https://www.youtube.com/watch?v=BYpuigD01Ew" target="_blank">here</a>.</li>
+                <hr/>
+                <h3>Reducer Composition: </h3>
+                <li>In this pattern, individual slice 
                 reducers are responsible for updating only one slice of the application's state, 
-                and their results are recombined by a rootReducer to form a single state object.
+                and their results are recombined by a rootReducer to form a single state object (inside the Store).
                 The <strong>root reducer </strong>delegates actions to slice reducers that are responsible for 
                 updating only their assigned slice of the store's state. 
                 The root reducer then reassembles the slices into a new state object.
@@ -1549,19 +1546,118 @@
                     <li>The dispatched action and the current state are combined in the store’s reducer to determine the next state.</li>
                     <li>The view is updated to display the new state.</li>
                 </ul>
-                <li><strong>Redux with React:</strong>
+                <hr/>
+                <h3>Redux with React</h3>
+                Install React Redux by "npm install react-redux". With it will solve this issues:
                 <ul>
-                    <li>A render() function will be subscribed to the store to re-render 
-                    the top-level React Component.</li>
-                    <li>The top-level React component will receive the current value of store.getState() as a prop 
-                    and use that data to render the UI.</li>
-                    <li>Event listeners attached to React components will dispatch actions to the store.</li>
+                    <li><strong>With < Provider >, </strong>React-Redux gives the entire application access 
+                    to the Redux store without using props and props drilling.
+                    (Pop-drill, from top-level to downwards component, isn't ideal, because many times top-level
+                    doesn’t make use of those props.)
+                    It's used to wrap App.js in the index.js.</li>
+                    <li>Subscribes individual components to specific pieces of the application state 
+                    for optimized rendering. This is done with useSelector() hook.</li>
+                    <li>Easily dispatches actions within components.</li>
                 </ul>
-                <li><strong>Redux library: </strong>Provides some very useful tools for handling 
-                the most common aspects of building a Redux application and helps ensure that the core
-                Redux principles are enforced (implentation in "Examples" below). 
-                Check <a href="https://redux.js.org/" target="_blank">here</a>.</li>
-                <li>All <strong>information</strong> on Redux  <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-redux/modules/wdcp-22-core-redux-api/cheatsheet" target="_blank">here</a>.</li>
+                <li><strong>< Provider > :</strong> Component used to provide the Redux store to the nested application.</li>
+                <li><strong>Selectors: </strong> Are created to give instructions on retrieving data from the store.
+                This is exported from the componentSlicer, and its data is taken by the 
+                rendering component through useSelector() hook.</li>
+                <li><strong>useSelector(): </strong>This hook gives application the instructions to access data 
+                from the Redux store. Is called within a child component of < Provider > for executing 
+                selector instructions to retrieve data and subscribe to re-rendering. It accomplishes two things:</li>
+                    <ul>
+                        <li>Returns data from the Redux store using selectors.</li>
+                        <li>Subscribes a child component of < Provider /> to changes in the store. 
+                        React, not Redux, will re-render the component if the data from the selector changes.</li>
+                    </ul>
+                <li><strong>useDispatch(): </strong>This hook allows to dispatch actions from any component 
+                that is a descendent of the < Provider > component, therefore avoiding passing a reference 
+                to store.dispatch through props.</li>
+                <li> Material on React Redux <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-redux/modules/wdcp-22-connect-to-react-with-react-redux/cheatsheet" target="_blank">here</a>.</li>
+                <li>Video with Project using React Redux <a href="https://www.youtube.com/watch?v=O8usZmDJh84" target="_blank">here</a>.</li>
+                <hr/>
+                <h3>Redux Toolkit (RTK)</h3>
+                <li><a href="https://redux-toolkit.js.org/" target="_blank">Redux Toolkit</a> 
+                contains packages and functions that are essential for building a Redux app. 
+                It builds in the best practices, simplifies most Redux tasks, prevents common mistakes, 
+                and makes it easier to write Redux applications. Redux Toolkit has become the preferred 
+                way to write Redux application logic. </li>
+                <li><strong>Install</strong> with: 'npm install @reduxjs/toolkit'</li>
+                <li><strong>createSlice():</strong>
+                Easier way to define a slice reducer and the associated action creators.
+                createSlice() has one parameter, options, which is an object with the 
+                properties 'name', 'initialState' and 'reducers'. 
+                (Action creators that correspond to each case reducer function 
+                we provide will be automatically generated, so we don’t need to worry 
+                about defining those ourselves.)
+                It returns an object with the following properties: name, reducer, actions, and caseReducers.
+                We typically use the “ducks” pattern when exporting the action creators 
+                and the reducer.
+                <br>
+                createSlice() function uses a library called Immer inside of it which 
+                helps avoid this mistake.</li>
+                <ul>
+                    <li>We can write the case reducers as functions inside of an object, instead of 
+                    having to write a switch/case statement.</li>
+                    <li>Action creators that correspond to each case reducer function we provide will be automatically generated, so we don’t need to worry about defining those ourselves.</li>
+                    <li>No default handler needs to be written. The reducer generated by createSlice() will automatically handle all other action types by returning the current state, so we don’t have to list that ourselves.</li>
+                </ul>
+                <li><strong>configureStore(): </strong>Simplifies the store setup 
+                process. configureStore() wraps around the Redux library’s 
+                createStore() method and the combineReducers() method, and handles 
+                most of the store setup for us automatically.</li>
+                <hr/>
+                <h3>Redux Middleware (dealing with async).</h3>
+                <li><strong>Middleware: </strong>Is the code that runs in the 
+                middle, usually between a framework receiving a request and producing 
+                a response. Middleware is a powerful tool for extending, modifying, 
+                or customizing a framework or library’s default behavior to meet 
+                an application’s specific needs.</li>
+                <li><strong>In Redux</strong>, middleware intercepts actions 
+                between the moment when an action is 
+                dispatched and the moment when that action is passed along to the 
+                reducer. Some common tasks that 
+                middleware perform include logging, caching, adding auth tokens to 
+                request headers, crash reporting, routing, and making asynchronous 
+                requests for data.
+                You can add any of these functionalities to your apps by using 
+                popular open-source middleware (a common one is redux-thunk, 
+                that comes with React Toolkit).</li>
+                <li><strong>applyMiddleware: </strong></li>
+                <ul>
+                    <li>Once middleware has been added to a Redux project, calls to dispatch are 
+                    actually calls to the middleware pipeline (the chain of all added middlewares). 
+                    This means that any actions we dispatch will be passed from middleware to 
+                    middleware before they hit an app’s reducers.</li>
+                    <li>Each middleware has access to the storeAPI (which consists of the dispatch
+                    and getState functions), as well as the next middleware in the pipeline, 
+                    and the action that is to be dispatched. The body of the middleware function 
+                    performs the middleware’s specific task before calling the next middleware in 
+                    the pipeline with the current action (note that if the middleware is the last in 
+                    the pipeline, then next is storeAPI.dispatch so calling next(action) is the same as 
+                    dispatching the action to the store).</li>
+                </ul>
+                <li><strong>Thunks: </strong>One of the most flexible and popular ways to add 
+                asynchronous functionality to Redux. They allow us to bundle up bits of 
+                computation we want to delay into packages that can be passed around in code.
+                It's a function returned by another function.
+                “can be used to delay dispatching an action” 
+                (for example, until after an API response is received), or “to dispatch an action
+                only if certain conditions are met”.
+                configureStore automatically enables redux-thunk.</li>
+                <li><strong>createAsyncThunk: </strong>is a function with two parameters, an action type string and 
+                an asynchronous callback that generates a thunk action creator that will run the provided callback 
+                and automatically dispatch promise lifecycle actions as appropriate so that you don't have to dispatch 
+                pending/fulfilled/rejected actions by hand.</li> 
+                <li><strong>extraReducers: </strong>
+                A optional property you can pass to createSlice that allows 
+                createSlice to respond to action types it did not generate
+                (when you are dealing with an action that you have already defined 
+                somewhere else). The most common examples are responding to a 
+                createAsyncThunk action and responding to an action from another slice.</li>
+                <li><strong>Github project </strong><a href="https://github.com/reduxjs/redux-thunk" target="_blank">here</a>.</li>
+                <li><strong>Download</strong> Flashcard project <a href="https://static-assets.codecademy.com/skillpaths/react-redux/flashcards-solution.zip" target="_blank">here</a>.</li>  
             </ul>
             <p class="center"><strong>Examples:</strong></p>
             <button id="showCode30" onclick="showCode('displayCode30', 'showCode30')">Display</button>
@@ -1686,7 +1782,7 @@
             decrementer.addEventListener('click', decrementerClicked);
                         </code>
                     </pre>
-                    <li><strong>React</strong> with Redux </li>
+                    <li><strong>React</strong> with Redux (without React Redux library).</li>
                     <pre>
                         <code>
             // REDUX CODE
@@ -1843,7 +1939,352 @@
 
             const rootReducer = combineReducers(reducers); 
 
-            const store = createStore(rootReducer);
+            //With the Redux composition, store must be exported,
+            to be used within other components
+            export const store = createStore(rootReducer);
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>React Redux</strong></li>
+                    <ul>
+                    <li><strong>Selectors</strong></li>
+                    <pre>
+                        <code>
+            import allRecipesData from '../../../data.js'
+            import { selectSearchTerm } from '../searchTerm/searchTermSlice.js';
+            
+            export const loadData = () => {
+                return {
+                    type: 'allRecipes/loadData',
+                    payload: allRecipesData
+                }
+            }
+            
+            const initialState = [];
+            export const allRecipesReducer = (allRecipes = initialState, action) => {
+                switch (action.type) {
+                    case 'allRecipes/loadData':
+                        return action.payload;
+                    case 'favoriteRecipes/addRecipe':
+                        return allRecipes.filter(recipe => recipe.id !== action.payload.id);
+                    case 'favoriteRecipes/removeRecipe':
+                        return [...allRecipes, action.payload]
+                    default:
+                        return allRecipes;
+                }
+            }
+            
+            // Implement the selectors below.
+            export const selectAllRecipes = state => state.allRecipes;
+            
+            export const selectFilteredAllRecipes = state => {
+                const allRecipes = selectAllRecipes(state);
+                const searchTerm = selectSearchTerm(state);
+                return allRecipes.filter(recipe => 
+                    recipe.name.toLowerCase().includes(searchTerm.toLowerCase()))
+            };      
+                        </code>
+                    </pre>
+                    <li><strong>useSelector() </strong>& <strong>useDispatch()</strong>.</li>
+                    <ul>
+                        <li>Calls useDispatch() to obtain a reference to the Redux store dispatch() function and assigns it to dispatch.</li>
+                        <li>Dispatches an action using dispatch() with an action object as the argument.</li>
+                    </ul>
+                    <pre>
+                        <code>
+            import { useSelector, useDispatch } from 'react-redux';
+            import { selectTodo } from './todoSlice.js';
+            import { removeTodo } from './todoSlice.js';
+            
+            const Todo = () => {
+                const todo = useSelector(selectTodo);
+                const dispatch = useDispatch();
+            
+                return (
+                    < button onClick={() => dispatch(removeTodo(todo))} >
+                        {todo}
+                    < /button >
+                )
+            }
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>           
+            const favoriteIconURL = 'https://static-assets
+                                    .codecademy.com/Courses/Learn-Redux/
+                                    Recipes-App/icons/favorite.svg';
+            
+            export const AllRecipes = () => {
+                const allRecipes = useSelector(selectFilteredAllRecipes);
+                const dispatch = useDispatch();
+            
+                const onFirstRender = () => {
+                    dispatch(loadData());
+                }
+                useEffect(onFirstRender, []);
+                
+                const onAddRecipeHandler = (recipe) => {
+                    dispatch(addRecipe(recipe));
+                };
+            
+                return (
+                    < div className="recipes-container" >
+                        {allRecipes.map((recipe) => (
+                        < Recipe recipe={recipe} key={recipe.id}>
+                            < FavoriteButton
+                                onClickHandler={() => onAddRecipeHandler(recipe)}
+                                icon={favoriteIconURL}
+                                >
+                                Add to Favorites
+                            < /FavoriteButton >
+                        < /Recipe >
+                        ))}
+                    < /div >
+                );
+            };            
+                        </code>
+                    </pre>
+                </ul>
+                <hr/>
+                <li>Redux Tolkit</li>
+                <ul>
+                    <li><strong>createSlice()</strong></li>
+                    <ul>
+                        <pre>
+                            <code>
+                /* todosSlice.js */
+
+                const options = {
+                    name: 'todos',
+                    initialState: [],
+                    reducers: {
+                        addTodo: (state, action) => {
+                            return [
+                            ...state,
+                            {
+                            id: action.payload.id,
+                            text: action.payload.text,
+                            completed: false
+                            }
+                        ]
+                    },
+                    toggleTodo: (state, action) => {
+                        return state.map(todo =>
+                        (todo.id === action.payload.id) ? { 
+                        ...todo, completed: !todo.completed } : todo
+                        )
+                    }
+                }
+                }
+                    
+                    const todosSlice = createSlice(options);
+                            </code>
+                        </pre>
+                        <li>someSlice.reducer needs to be exported so that it can be passed to the store and be used as the todos slice of state. While the todosSlice.actions are exported as named exports, the todosSlice.reducer value is used as the default export.</li>
+                        <pre>
+                            <code>
+                        export const { addTodo, toggleTodo } = todosSlice.actions;
+                        export default todosSlice.reducer
+                            </code>
+                        </pre>
+                        <li>With <strong>Immer</strong>, it's possible to safely mutate, 
+                        and use array.push(). 
+                        Example:</li>
+                        <pre>
+                            <code>
+            const options = {
+                name: "favoriteRecipes",
+                initialState: [],
+                reducers: {
+                    addRecipe: (state, action) => {
+                        //With Immer within createSlice, it's possible to mutate
+                            with array.push.  
+                        return state.push(action.payload);
+                    },
+                    removeRecipe: (state, action) => {
+                        return state.filter(recipe =>
+                            recipe.id !== action.payload.id)
+                        },
+                },
+            }
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>configureStore()</strong></li>
+                    <ul>
+                        <li>It combines todosReducer and filtersReducer into the root reducer function, which will handle a root state that looks like {todos, filters}, removing the need to call combineReducers()</li>
+                        <li>It creates a Redux store using that root reducer, removing the need to call createStore()</li>
+                        <li>It automatically adds the thunk middleware</li>
+                        <li>It automatically adds more middleware to check for common mistakes like accidentally mutating the state</li>
+                        <li>It automatically sets up the Redux DevTools Extension connection</li>
+                    </ul>
+                    Because of how much boilerplate code we’re able to bypass with configureStore(), we can just import the individual slice reducers straight into this file instead of creating a separate file for the root reducer and having to export/import it.
+                    <pre>
+                        <code>
+                import { configureStore } from '@reduxjs/toolkit'
+                import todosReducer from './features/todos/todosSlice'
+                import filtersReducer from './features/filters/filtersSlice'
+                
+                const store = configureStore({
+                    reducer: {
+                        // Define a top-level state field named `todos`, 
+                            handled by `todosReducer`
+                        todos: todosReducer,
+                        filters: filtersReducer
+                    }
+                })
+                
+                export default store
+                        </code>
+                    </pre>
+                </ul>
+                    <hr/>
+                    <li><strong>applyMiddleware</strong></li>
+                    <pre>
+                        <code>
+            import { createStore, applyMiddleware } from 'redux';
+
+            const messageReducer = (state = '', action) => {
+                if (action.type === 'NEW_MESSAGE') {
+                    return action.payload;
+                } else {
+                    return state;
+                }
+            }
+
+            const logger = storeAPI => next => action => {
+                const nextState = next(action) 
+                return nextState;
+            };
+
+            const store = createStore(messageReducer, '', applyMiddleware(logger));
+
+            store.dispatch({
+                type: "NEW_MESSAGE",
+                payload: "I WROTE A MIDDLEWARE"
+            })
+
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Redux Thunks</strong> (for async)</li>
+                    <pre>
+                        <code>
+            const remindMeTo = task => {
+                return `Remember to ${task}!!!`;
+            }
+            
+            const remindMeLater = (task) => {
+                return () => {
+                    return remindMeTo(task);
+                }
+            }
+            
+            const reminder = remindMeLater();
+
+                        </code>
+                    </pre>
+                    <li>If dispatch receives a function, the middleware invokes it; if it receives a plain object, 
+                    then it passes that action along to reducers to trigger state updates.</li>
+                    <pre>
+                        <code>
+
+            import { fetchUser } from './api'
+
+            const getUser = (id) => {
+            return async (dispatch, getState) => {
+                    const payload = await fetchUser(id);
+                    dispatch({type: 'users/addUser', payload: payload});
+                }
+            }
+                        </code>
+                    </pre>
+                    <li>try & catch</li>
+                    <pre>
+                        <code>
+            import { fetchUser } from './api';
+
+            const fetchUserById = (id) => {
+                return async (dispatch, getState) => {
+                    dispatch({type: 'users/requestPending'})
+                    try {
+                        const payload = await fetchUser(id)
+                        dispatch({type: 'users/addUser', payload: payload})
+                    } catch(err) {
+                        dispatch({type: 'users/error', payload: err})
+                    }
+                }
+            }
+                        </code>
+                    </pre>
+                    <li>Promisse handled with <strong>createAsyncThunk()</strong>.</li>
+                    <ul>
+                        <li>If you need to access the individual 
+                        pending/fulfilled/rejected action creators, you can 
+                        reference them like this:</li>
+                        <pre>
+                            <code>
+                    fetchUserById.pending
+                    fetchUserById.fulfilled
+                    fetchUserById.rejected
+                            </code>
+                        </pre>
+                    </ul>
+                    <pre>
+                        <code>
+                import { createAsyncThunk } from '@reduxjs/toolkit'
+                import { fetchUser } from './api'
+
+                const fetchUserById = createAsyncThunk(
+                    'users/fetchUserById', // action type
+                    async (arg, thunkAPI) => { 
+                        // payload creator
+                        const response = await fetchUser(arg);
+                        return response.json();
+                    }
+                )
+                        </code>
+                    </pre>
+                    <li><strong>createAsyncThunk </strong>& <strong>extraReducers</strong></li>
+                    <pre>
+                        <code>
+            const fetchUserById = createAsyncThunk(
+                'users/fetchUserById',
+                async (userId) => {
+                    const users = await fetch(`api/users${userId}`)
+                    const data = await users.json()
+                    return data
+                }
+            )
+
+            const usersSlice = createSlice({
+                name: 'users',
+                initialState: { 
+                        users:  [], 
+                        isLoading: false, 
+                        hasError: false 
+                },
+                reducers: {
+                        addUser: (state, action) => { 
+                        state.users.push(action.payload) 
+                    }        
+                },
+                extraReducers: {
+                    [fetchUserById.pending]: (state, action) => {
+                        state.isLoading = true;
+                        state.hasError = false;
+                    },
+                    [fetchUserById.fulfilled]: (state, action) => {
+                        state.users.push(action.payload);
+                        state.isLoading = false;
+                        state.hasError = false;
+                    },
+                    [fetchUserById.rejected]: (state, action) => {
+                        state.isLoading = false;
+                        state.hasError = true;
+                    }
+                }
+            })
                         </code>
                     </pre>
                     <hr/>

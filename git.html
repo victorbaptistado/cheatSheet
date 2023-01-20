@@ -1,51 +1,161 @@
 <!DOCTYPE html>
 <html>
+<header>
+    <link href="/resources/css/index.css" type="text/css" rel="stylesheet">
+    <title>Git</title>
+</header>
+
+<body>
+    <nav>
+        <ul class="mainNav">
+            <li><a href="./index.html">Cheat Sheet</a></li>
+            <li><a href="./displayProperties.html">Display Properties</a></li>
+            <li><a href="./objects.html">Objects</a></li>
+            <li><a href="./developmentCycle.html">Development Cycle</a></li>
+            <li><a href="./debug.html">Debug</a></li>
+            <li><a href="#">Git</a></li>
+            <li><a href="./form.html">Form</a></li>
+            <li><a href="./api.html">API</a></li>
+            <li><a href="./react.html">REACT</a></li>
+        </ul>
+    </nav>
     <header>
-        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
-        <title>Git</title>
+        <h1>GIT</h1>
     </header>
-    <body>
-        <nav>
-            <ul class="mainNav">
-                <li><a href="./index.html">Cheat Sheet</a></li>
-                <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./developmentCycle.html">Development Cycle</a></li>
-                <li><a href="./debug.html">Debug</a></li>
-                <li><a href="#">Git</a></li>
-                <li><a href="./form.html">Form</a></li>
-                <li><a href="./api.html">API</a></li>  
-                <li><a href="./react.html">REACT</a></li> 
-            </ul>
-        </nav>
-        <header>
-            <h1>GIT</h1>
-        </header>
-        <div class="styleGuide">
-            <h2>Git Workflow</h2>
-            <ul>
-                <li><strong>git init:</strong> creates a new Git repository</li>
-                <li><strong>git status:</strong> inspects the contents of the working directory and staging area</li>
-                <li><strong>git add:</strong> adds files from the working directory to the staging area</li>
-                <li><strong>git diff:</strong> shows the difference between the working directory and the staging area</li>
-                <li><strong>git commit:</strong> permanently stores file changes from the staging area in the repository</li>
-                <li><strong>git log:</strong> shows a list of all previous commits</li>
-            </ul>
-        </div>
-        <div class="styleGuide">
-            <h2>Git Backtrack</h2>
-            <ul>
-                <li><strong>git checkout HEAD filename:</strong> Discards changes in the working directory.</li>
-                <li><strong>git reset HEAD filename:</strong> Unstages file changes in the staging area.</li>
-                <li><strong>git reset commit_SHA:</strong> Resets to a previous commit in your commit history</li>
-            </ul>
-        </div>
-        <div class="styleGuide">
-            <h2>Git Stash</h2>
-            <li><strong>git stash:</strong> allows you to get back to a clean commit point with a synchronized working tree, and avoid losing your local changes in the process of switching branches or tasks.</li>
+    <div class="styleGuide">
+        <h2>Git commands</h2>
+        <hr />
+        <h3>Git Workflow</h3>
+        <ul>
+            <li><strong>git init:</strong> creates a new Git repository</li>
+            <li><strong>git status:</strong> inspects the contents of the working directory and staging area</li>
+            <li><strong>git add:</strong> adds files from the working directory to the staging area</li>
+            <li><strong>git diff:</strong> shows the difference between the working directory and the staging area</li>
+            <li><strong>git commit:</strong> permanently stores file changes from the staging area in the repository
+            </li>
+            <li><strong>git log:</strong> shows a list of all previous commits</li>
+        </ul>
+        <hr />
+        <h3>Git Backtrack</h3>
+        <ul>
+            <li><strong>git checkout HEAD filename:</strong> Discards changes in the working directory.</li>
+            <li><strong>git reset HEAD filename:</strong> Unstages file changes in the staging area.</li>
+            <li><strong>git reset commit_SHA:</strong> Resets to a previous commit in your commit history</li>
+        </ul>
+        <hr />
+        <h3>Git Stash</h3>
+        <ul>
+            <li><strong>git stash:</strong> allows you to get back to a clean commit point with a synchronized working
+                tree, and avoid losing your local changes in the process of switching branches or tasks.</li>
             <li><strong>git stash pop:</strong> retrieves data from your stash.</li>
             <li><strong>git commit --amend:</strong> updates a commit to avoid creating a new one.</li>
-            <li><strong>Git aliases: </strong> for sets of commands used regularly, to save time from typing - you can set an alias for each command using Git config.</li>
-        </div>
-    </body>
+            <li><strong>Git aliases: </strong> for sets of commands used regularly, to save time from typing - you can
+                set an alias for each command using Git config.</li>
+        </ul>
+    </div>
+    <div class="styleGuide">
+        <h2>Git Branching</h2>
+        <p>Allows users to experiment with different versions of a project by checking out separate branches to work on.
+        </p>
+        <hr />
+        <h3>Commands</h3>
+        <ul>
+            <li><strong>git branch: </strong> Check current branch.</li>
+            <li><strong>git branch new_branch: </strong> Adds new branch.</li>
+            <li><strong>git checkout branch_name: </strong> Switches to the new branch.</li>
+            <li><strong>git merge branch_name:</strong> When used inside main branch, it
+                Merges changes from branch to main.</li>
+            <li><strong>git branch -d branch_name: </strong> Deletes branch.</li>
+        </ul>
+    </div>
+    <div class="styleGuide">
+        <h2>Git Teamwork</h2>
+        <ul>
+            <li>Workflow:</li>
+            <ul>
+                <li>Fetch and merge changes from the remote;</li>
+                <li>Create a branch to work on a new project feature;</li>
+                <li>Develop the feature on your branch and commit your work;</li>
+                <li>Fetch and merge from the remote again (in case new commits were made while you were working);</li>
+                <li>Push your branch up to the remote for review.</li>
+            </ul>
+            <li>In order to collaborate, <strong>it's needed</strong>:</li>
+            <ul>
+                <li>A <strong>complete replica</strong> of the project on your own computers;</li>
+                <li>A way to <strong>keep track</strong> of and <strong>review</strong> each other’s work;</li>
+                <li>Access to a <strong>definitive project version</strong>.</li>
+            </ul>
+            <li>You can accomplish all of this by using <strong>remotes</strong>. A remote is a shared Git repository
+                that
+                allows multiple collaborators to work on the same Git project from different locations.
+                Collaborators work on the project independently, and merge changes together when they are
+                ready to do so.</li>
+        </ul>
+        <hr />
+        <h3>Commands</h3>
+        <ul>
+            <li><strong>git clone remote_location clone_name: </strong>Creates a local copy of a remote.</li>
+            <ul>
+                <li>remote_location tells Git where to go to find the remote (a web address or a filepath).</li>
+                <li>clone_name is the name you give to the directory in which Git will clone the repository.</li>
+            </ul>
+            <li><strong>git remote -v: </strong>Shows a list of Git project's remotes.
+                When you clone a project, git gives behind the scene
+                the name "origin" to the remote address, so to refer more conveniently.</li>
+            <li><strong>git fetch: </strong>See if changes have been made to the remote
+            and bring the changes down to your local copy is with.
+            This command will not merge changes from the remote into your local repository.
+            It brings those changes onto what’s called a remote branch.</li>
+            <li><strong>git merge origin/master: </strong>
+            Integrate remote origin/master into your local master branch.</li>
+            <li><strong>git pull:</strong> accesses the changes (commits) from a remote repository 
+            to the local repository. It updates the local branches with the remote-tracking branches.</li>
+            <li><strong>git push origin < your_branch_name>: </strong>Push your branch up to the remote, origin.
+            From there, the origin owner can review branch and merge your work into the master branch,
+            making it part of the definitive project version.</li>
+        </ul>
+        <hr/>
+        <h3>Pull Request</h3>
+        <ul>
+            <li>A <strong>pull request</strong> is a feature of GitHub and other source code management tools 
+            to review code before merging it from one branch to another, usually the main branch.
+            E.g: Once Sonia's changes are accepted by the project's collaborators, her branch can be merged into 
+            the repository’s main branch. GitHub will keep this pull request in history as a record of the code change, 
+            Sonia’s contribution, and the discussion that took place.</li>
+            <li><strong>Writting a Pull Request</strong>:</li>
+            <ul>
+                <li>A Pull Request Structure: <strong>What, Why, and How?</strong>
+                Concisely explain the purpose of the pull request in the title. If the pull request
+                Adds a new feature, go for something like “Add frontend component for settings page”. If it’s to fix a 
+                typo, be specific and say “Fix name typos on the Contact Us page”.
+                The description is where all the juicy details are. You want the reviewers to know the thought process 
+                behind code changes and the options you have considered. It also helps to embed screenshots, GIFs, or even 
+                videos of your application so reviewers can anticipate what the code change in the pull request looks like.</li>
+                <li>One feature of GitHub pull requests on the web interface is the ability to <u>add discussion comments 
+                to any single line of code or chunk of code</u>. This allows separation of concerns over multiple discussions.</li>
+                <li><strong>Keep Pull Requests Small and Fast</strong>. Reduce the size of pull requests and respond to reviews quickly.
+                <strong>Splitting big features into smaller parts</strong> is the best way to speed up review time.
+                Not only does it result in less wasted work if the pull request gets rejected, but it will be easier 
+                to merge and review more thoroughly.</li>
+            </ul>
+            <li><strong>Merge vs Rebase</strong></li>
+            <ul>
+                <li><strong>Git merge</strong>: Joins two or more development histories together 
+                (creating a new merge commit). It's useful to use merge whenever we want to add changes of a 
+                branch back into the base branch.</li>
+                <li><strong>Git rebase</strong>: Reapplies commits on top of another base branch.
+                Is useful whenever we want to add changes of a base branch back to a branched out branch.
+                Generally, if one is dealing with numerous people and branches, and the commit graph becomes really difficult
+                to read, it can be very useful to use rebase instead of merge. Since Git rebase creates a linear
+                history, it can be a lot easier to visualize the changes made and get a cleaner graph.</li>
+                <li>Rebase is a destructive operation 
+                and creates new commits, which can make it complicated to track the context of any changes made. 
+                One common rule when using rebase is to only use it on a local branch that we’re working on individually.
+                That is to say, once something has been pushed
+                then do not rebase it after that. Otherwise, things can get convoluted when rewriting history on a remote.</li>
+            </ul>
+        </ul>
+    </div>
+</body>
+
 </html>
