@@ -16,7 +16,8 @@
                 <li><a href="./git.html">Git</a></li>
                 <li><a href="./form.html">Form</a></li>
                 <li><a href="./api.html">API</a></li>
-                <li><a href="#">REACT</a></li>                 
+                <li><a href="#">REACT</a></li> 
+                <li><a href="./helpfulContent.html">Helpful Content</a></li>                
             </ul>
         </nav>
         <header>
@@ -2137,6 +2138,17 @@
                 export default store
                         </code>
                     </pre>
+                    <li>Using combineReducers</li>
+                    <pre>
+                        </code>
+                        export default configureStore({
+                            reducer: combineReducers({
+                                reddit: redditReducer,
+                                subreddits: subRedditReducer,
+                            }),
+                        });  
+                        </code>
+                    </pre>
                 </ul>
                     <hr/>
                     <li><strong>applyMiddleware</strong></li>
@@ -2342,6 +2354,13 @@
                         <li>Register a <strong>change listener</strong> function to respond to changes to the store using store.subscribe(listener).</li>
                         <li>Recognize the pattern for connecting Redux to any user interface.</li>
                         <li>Implement a Redux application using either the <strong>HTML DOM API<strong> or <strong>React</strong>.</li>
+                    </ul>
+                    <li><strong>Implementation</strong> of React Redux Toolkit:</li>
+                    <ul>
+                        <li>Download react Reducer using npm install react-redux.</li>
+                        <li>Download react Toolkit using npm install @reduxjs/toolkit.</li>
+                        <li>Create Store using configureStore.</li>
+                        <li>Create Slices.</li>
                     </ul>
                 </ul>
             </div>
