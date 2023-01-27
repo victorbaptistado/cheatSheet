@@ -497,7 +497,7 @@
                 <p class="center"><strong>GET</strong> with <strong>FETCH</strong> using <strong>async</strong> (easier way).</p>
                 <pre>
                     <code>
-                        const getData = async () => {
+                        export const getData = async () => {
                             try {
                                 const response = await fetch('https://api-to-call.com/endpoint');
                                 
@@ -518,7 +518,7 @@
                 <p class="center"><strong>POST</strong> with <strong>FETCH</strong> using <strong>async</strong> (easier way).</p>
                 <pre>
                     <code>
-                        const getData = async () => {
+                        export const getData = async () => {
                             try {
                                 const response = await fetch('https://api-to-call.com/endpoint', {
                                     method: 'POST',
@@ -546,7 +546,7 @@
                 <pre>
                     <code>
                     // Asynchronous function
-                    const asyncFunction = () => {
+                    export const asyncFunction = () => {
 
                         //sends request
                         fetch("http://api-to-call.com/endpoint").then(response => {
@@ -572,7 +572,7 @@
                 <pre>
                     <code>
                     // Asynchronous function
-                    const asyncFunction = () => {
+                    export const asyncFunction = () => {
 
                         //sends request (fetch takes two arguments: 
                                          endpoint and an object with information 

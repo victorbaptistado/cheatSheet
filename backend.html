@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
+        <title>Backend</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./objects.html">Objects</a></li>
+                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>
+                <li><a href="./api.html">API</a></li>
+                <li><a href="./react.html">REACT</a></li>
+                <li><a href="./helpfulContent.html">Helpful Content</a></li>
+                <li><a href="#">Backend</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Backend</h1>
+        </header>
+        <div class="styleGuide">
+            <h2>Node.js</h2>
+            <ul>
+            <li><strong>Node</strong> provides the ability to run JavaScript programs on our own computers instead of just in the browser's 
+                console or embedded in HTML.</li>
+                <ul>
+                    <li>To <strong>run a program</strong> with node <i>$ node myProgram.js</i></li>
+                </ul>
+            <li>Codecademy Material <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
+            </ul>
+            <hr/>
+            <h3>REPL</h3>
+            <ul>
+               <li><strong>REPL</strong> is an abbreviation for <u>read-eval-print loop</u>. It's a program that loops, or 
+                repeatedly cycles, through three different states: a read state where the program reads
+                input from a user, the eval state where the program evaluates the user's input, and the
+                print state where the program prints out its evaluation to a console.</li>
+                <li>A REPL can be extremely useful for performing calculations, learning a language, and developing
+                code. It’s a place where you can explore language features and try things out while receiving 
+                immediate feedback.</li>
+                <li>To access REPL, type <i>node</i> in the terminal.</li>
+            </ul>
+            <hr/>
+            <h3>Modules</h3>
+            <ul>
+                <li><strong>Core Modules: </strong>are built into the Node.js environment to efficiently 
+                perform common tasks. To access core modules, inside REPL type: <i>require('module').builtinModules</i></li>
+                <li><strong>Process Module: </strong>Node has a global process object with useful methods and 
+                information about the <strong>current process.</strong>Type in the code:</li>
+                <ul>
+                    <li>The <strong>process.env</strong> property is an object which stores and controls information 
+                    about the environment in which the process is currently running.</li>
+                    <li>The <strong>process.memoryUsage()</strong> returns information on the CPU
+                    demands of the current process.</li>
+                    <li>The <strong>process.argv</strong> property holds an array of command line values provided 
+                    when the current process was initiated.</li>
+                </ul>
+                <li><strong>OS Module: </strong>When developing or debugging an app, it can be helpful to have information about the 
+                computer, operating system, and network on which the program is running.
+                the os module is not global and needs to be included into the file in order to gain access to it’s methods. 
+                You can include the os module into your file by typing: <i>const os = require('os');</i></li>
+                <ul>
+                    <li><strong>os.type()</strong> — to return the computer’s operating system.</li>
+                    <li><strong>os.arch()</strong> — to return the operating system CPU architecture.</li>
+                    <li><strong>os.networkInterfaces()</strong> — to return information about the network interfaces of the 
+                    computer, such as IP and MAC address.</li>
+                    <li><strong>os.homedir()</strong> — to return the current user’s home directory.</li>
+                    <li><strong>os.hostname()</strong> — to return the hostname of the operating system.</li>
+                    <li><strong>os.uptime()</strong> — to return the system uptime, in seconds.</li>
+                </ul>
+                <li><strong>Util Module:</strong> Utility functions don’t necessarily create new functionality 
+                in a program, but you can think of them as internal tools used to maintain and debug your code.
+                The Node.js util core module contains methods specifically designed for these purposes. 
+                The util module can be required into the file using:<i> const util = require('util');</i></li>
+                <ul>
+                    <li><strong>types: </strong>which provides methods for runtime type checking in Node.</li>
+                    <li><strong>promisify: </strong>turns callback functions into promises.</li>
+                </ul>
+                <li><strong>Event Module: </strong>
+                Node.js has an EventEmitter class which can be accessed by importing the events core 
+                module by using the require() statement. Each event emitter instance has an .on() method
+                which assigns a listener callback function to a named event. EventEmitter also has an .emit() 
+                method which announces a named event that has occurred.</li>
+                <li><strong>Error Module: </strong>Within our own code, we can generate errors and throw them, and, with synchronous
+                code in Node, we can use error handling techniques such as try...catch statements.
+                However we cannot use try...catch when the error is thrown asynchronously. Many asynchronous Node APIs use
+                error-first callback functions—callback functions which have an error as the first expected argument and the data as
+                the second argument. If the asynchronous task results in an error, it will be passed in as the first argument to the
+                callback function. If no error was thrown, the first argument will be undefined.</li>
+                <li><strong>Input/Output: </strong>Input is data that is given to the computer, while output is 
+                any data or feedback that a computer provides. In Node, we can get input from a user using the 
+                stdin.on() method on the process object. We are able to use this because .on() is an instance 
+                of EventEmitter. To give an output, we can use the .stdout.write() method on the process object
+                as well. This is because console.log() is a thin wrapper on .stdout.write().</li>
+                <li><strong>Buffer Module: </strong>Is used to handle binary data. 
+                It provides a variety of methods to handle the binary data such as .alloc(), .toString(), .from(), and .concat()</li>
+                <ul>
+                    <li>The <strong>.alloc()</strong> Method: Allows a new Buffer object to be created with the 
+                    size specified as the first argument. Optionally, a second argument can be provided to specify 
+                    the fill and a third argument to specify the encoding.</li>
+                    <li>The <strong>.toString()</strong> Method: A Buffer object can be translated into a human-readable 
+                    string by chaining the .toString() method to a Buffer object. Optionally, encoding can be specified
+                    as the first argument, byte offset to begin translating can be provided as the second argument, and
+                    the byte offset to end translating as the third argument.</li>
+                    <li>The <strong>.from()</strong> Method: A new Buffer object can be created from a specified string, 
+                    array, or another Buffer object using the .from() method. Encoding can be specified optionally as the
+                    second argument.</li>
+                    <li>The <strong>.concat()</strong> Method: Joins all Buffer objects in the specified array into
+                    one Buffer object. The length of the concatenated Buffer can be optionally provided as the second
+                    argument. This method is useful because a Buffer object can't be resized.</li>
+                </ul>
+                <li><strong>FS Module: </strong></li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode31" onclick="showCode('displayCode31', 'showCode31')">Display</button>
+            <div id="displayCode31">
+                <button onclick="closeCode('displayCode31', 'showCode31')">Close</button>
+                <ul>
+                    <li>Event Module</li>
+                    <pre>
+                        <code>
+                let newUserListener = (data) => {
+                    console.log(`We have a new user: ${data}.`);
+                };
+                    
+                // Assign the newUserListener function as the listener callback for 'new user' events
+                myEmitter.on('new user', newUserListener)
+                
+                // Emit a 'new user' event
+                myEmitter.emit('new user', 'Lily Pad') //newUserListener will be invoked with 'Lily Pad'
+                        </code>
+                    </pre>
+                    <li>Error Module</li>
+                    <pre>
+                        <code>
+                const errorFirstCallback = (err, data)  => {
+                    if (err) {
+                    console.log(`There WAS an error: ${err}`);
+                    } else {
+                    // err was falsy
+                    console.log(`There was NO error. Event data: ${data}`);
+                    }
+                }
+                        </code>
+                    </pre>
+                    <li>Input/Output</li>
+                    <ul>
+                        <li>In the Node environment, the console is the terminal, and the console.log() 
+                        method is a “thin wrapper” on the .stdout.write() method of the process object. 
+                        stdout stands for standard output.</li>
+                    </ul>
+                    <pre>
+                        <code>
+                process.stdout.write(
+                "I'm thinking of a number from 1 through 10. What do you think it is?
+                \n(Write \"quit\" to give up.)\n\nIs the number ... ");
+
+                process.stdin.on('data', (userInput) => {
+                    let input = userInput.toString()
+                    console.log(input)
+                });
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

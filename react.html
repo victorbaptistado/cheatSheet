@@ -271,140 +271,6 @@
             </div>
         </div>
         <div class="styleGuide">
-            <h2>Aditional Algorithms</h2>
-            <ul>
-                <li>
-                    <div class="flex">
-                            <p>Auth & password Conditional</p>
-                            <button id="showCode19" onclick="showCode('displayCode19', 'showCode19')">Display</button>
-                    </div>
-                </li>
-                <div id="displayCode19">
-                    <button onclick="closeCode('displayCode19', 'showCode19')">Close</button>
-                    <pre>
-                        <code>
-                class Contact extends React.Component {
-                    constructor(props) {
-                        super(props);
-                        this.state = {
-                            password: 'swordfish',
-                            authorized: false
-                        };
-                        this.authorize = this.authorize.bind(this);
-                    }
-                    
-                    authorize(e) {
-                        const password = e.target.querySelector(
-                        'input[type="password"]').value;
-                        const auth = password == this.state.password;
-                        this.setState({
-                        authorized: auth
-                        });
-                    }
-                    
-                    render() {
-                        let login = (
-                        < form action="#" >
-                            < input type='password' placeholder='Password' />
-                            < input type='submit' onSubmit={this.authorize} />
-                        < /form >
-                        );
-                        let contactInfo = (
-                            < ul >
-                            < li >
-                                client@example.com
-                            < /li >
-                            < li >
-                                555.555.5555
-                            < /li >
-                            < /ul >
-                        );
-                    
-                        return (
-                        < div id="authorization" >
-                            < h1 >{this.state.authorized ? "Contact" : "Enter the Password"}< /h1 >
-                            {this.state.authorized ? contactInfo : login}
-                        < /div >
-                        );
-                    }
-                    }   
-                        </code>
-                    </pre>
-                </div>
-                <li>
-                    <div class="flex">
-                            <p>Api Interaction</p>
-                            <button id="showCode24" onclick="showCode('displayCode24', 'showCode24')">Display</button>
-                    </div>
-                </li>
-                <div id="displayCode24">
-                    <button onclick="closeCode('displayCode24', 'showCode24')">Close</button>
-                    <pre>
-                        <code>
-            export default function SocialNetwork() {
-
-                const [menu, setMenu] = useState(null);
-                
-                useEffect(() => {
-                    get('/menu').then((response) => {setMenu(response.data)});
-                }, []);
-                
-                const [newsFeed, setNewsFeed] = useState(null);
-                
-                useEffect(() => {
-                    get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
-                }, []);
-                
-                const [friends, setFriends] = useState(null);
-                useEffect(() => {
-                    get('/friends').then((response) => {setFriends(response.data)});
-                }, []);
-                
-                return (
-                    < div className='App' >
-                    < h1 > My Network < /h1 >
-                    {!menu ? < p >Loading..< /p > : (
-                        < nav >
-                        {menu.map((menuItem) => (
-                            < button key={menuItem} > {menuItem} < /button >
-                        ))}
-                        < /nav >
-                    )}
-                    < div className='content' >
-                        {!newsFeed ? < p >Loading..< /p > : (
-                        < section >
-                            {newsFeed.map(({ id, title, message, imgSrc }) => (
-                            < article key={id} >
-                                < h3 >{title}< /h3 >
-                                < p >{message}< /p >
-                                < img src={imgSrc} alt='' />
-                            < /article >
-                            ))}
-                        < /section >
-                        )}
-                        {!friends ? < p >Loading..< /p > : (
-                        < aside >
-                            < ul >
-                            {friends
-                                .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
-                                .map(({ id, name, isOnline }) => (
-                                < li key={id} className={isOnline ? 'online' : 'offline'}>
-                                    {name}
-                                < /li >
-                                ))}
-                            < /ul >
-                        < /aside >
-                        )}
-                    < /div >
-                    < /div >
-                );
-                }
-                        </code>
-                    </pre>
-                </div>
-            </ul>
-        </div>
-        <div class="styleGuide">
             <h2>Programming Patterns</h2>
             <ul>
                 <li><strong>Stateful & Stateless</strong> pattern: a <strong>programming pattern</strong> uses two React components: a <strong>stateful 
@@ -1074,6 +940,66 @@
                     }
                     </code>
                 </pre>
+            </div>
+        </div>
+        <div class="styleGuide">
+            <h2>React API</h2>
+            <ul>
+                <li>To use the <strong>value of a Promise</strong> in React, you can use a <strong>useEffect()</strong> 
+                hook with an empty dependency array to wait for the promise to resolve, and store the result in the
+                value of a useState hook.</li>
+            </ul>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode32" onclick="showCode('displayCode32', 'showCode32')">Display</button>
+            <div id="displayCode32">
+                <button onclick="closeCode('displayCode32', 'showCode32')">Close</button>
+                <ul>
+                    <li><strong>useState</strong> & <strong>useEffect</strong>.</li>
+                    <pre>
+                        <code>
+                function PromisesPage() {
+                    const [catUrl, setCatUrl] = useState('');
+                    const [error, setError] = useState(false);
+                    const [state, setState] = useState('');
+                    
+                    useEffect(() => {
+                        setState('loading');
+                        axios
+                            .get('https://cataas.com/cat?json=true')
+                            .then((res) => {
+                                console.log(res);
+                                setState('success');
+                                setCatUrl('https://cataas.com' + res.data.url);
+                            })
+                            .catch((err) => {
+                                console.error('Error:', err);
+                                setState('error');
+                                setError(err);
+                            });
+                    }, []);
+
+                    if (state === 'error')
+                        return (
+                            < h1 >
+                                {error.toString()}
+                            < /h1 >
+                        );
+                        
+                    return (
+                        < div >
+                            < div >
+                                {state === 'loading' ? (
+                                    < h1 >Loading...< /h1 >
+                                ) : (
+                                    < img src="{catUrl}" />
+                                )}
+                            < /div >
+                        < /div >
+                    );
+                }
+                        </code>
+                    </pre>
+                </ul>
             </div>
         </div>
         <div class="styleGuide">
@@ -2357,6 +2283,7 @@
                     </ul>
                     <li><strong>Implementation</strong> of React Redux Toolkit:</li>
                     <ul>
+                        <li>configureStore, createSlices (name, initialState, reducers), thunk, useSelector, useDispatch.</li>
                         <li>Download react Reducer using npm install react-redux.</li>
                         <li>Download react Toolkit using npm install @reduxjs/toolkit.</li>
                         <li>Create Store using configureStore.</li>
@@ -2364,6 +2291,140 @@
                     </ul>
                 </ul>
             </div>
+        </div>
+        <div class="styleGuide">
+            <h2>Aditional Algorithms</h2>
+            <ul>
+                <li>
+                    <div class="flex">
+                            <p>Auth & password Conditional</p>
+                            <button id="showCode19" onclick="showCode('displayCode19', 'showCode19')">Display</button>
+                    </div>
+                </li>
+                <div id="displayCode19">
+                    <button onclick="closeCode('displayCode19', 'showCode19')">Close</button>
+                    <pre>
+                        <code>
+                class Contact extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.state = {
+                            password: 'swordfish',
+                            authorized: false
+                        };
+                        this.authorize = this.authorize.bind(this);
+                    }
+                    
+                    authorize(e) {
+                        const password = e.target.querySelector(
+                        'input[type="password"]').value;
+                        const auth = password == this.state.password;
+                        this.setState({
+                        authorized: auth
+                        });
+                    }
+                    
+                    render() {
+                        let login = (
+                        < form action="#" >
+                            < input type='password' placeholder='Password' />
+                            < input type='submit' onSubmit={this.authorize} />
+                        < /form >
+                        );
+                        let contactInfo = (
+                            < ul >
+                            < li >
+                                client@example.com
+                            < /li >
+                            < li >
+                                555.555.5555
+                            < /li >
+                            < /ul >
+                        );
+                    
+                        return (
+                        < div id="authorization" >
+                            < h1 >{this.state.authorized ? "Contact" : "Enter the Password"}< /h1 >
+                            {this.state.authorized ? contactInfo : login}
+                        < /div >
+                        );
+                    }
+                    }   
+                        </code>
+                    </pre>
+                </div>
+                <li>
+                    <div class="flex">
+                            <p>Api Interaction</p>
+                            <button id="showCode24" onclick="showCode('displayCode24', 'showCode24')">Display</button>
+                    </div>
+                </li>
+                <div id="displayCode24">
+                    <button onclick="closeCode('displayCode24', 'showCode24')">Close</button>
+                    <pre>
+                        <code>
+            export default function SocialNetwork() {
+
+                const [menu, setMenu] = useState(null);
+                
+                useEffect(() => {
+                    get('/menu').then((response) => {setMenu(response.data)});
+                }, []);
+                
+                const [newsFeed, setNewsFeed] = useState(null);
+                
+                useEffect(() => {
+                    get('/news-feed').then((response) => {setNewsFeed(response.data)}); 
+                }, []);
+                
+                const [friends, setFriends] = useState(null);
+                useEffect(() => {
+                    get('/friends').then((response) => {setFriends(response.data)});
+                }, []);
+                
+                return (
+                    < div className='App' >
+                        < h1 > My Network < /h1 >
+                        {!menu ? < p >Loading..< /p > : (
+                            < nav >
+                            {menu.map((menuItem) => (
+                                < button key={menuItem} > {menuItem} < /button >
+                            ))}
+                            < /nav >
+                        )}
+                        < div className='content' >
+                            {!newsFeed ? < p >Loading..< /p > : (
+                            < section >
+                                {newsFeed.map(({ id, title, message, imgSrc }) => (
+                                < article key={id} >
+                                    < h3 >{title}< /h3 >
+                                    < p >{message}< /p >
+                                    < img src={imgSrc} alt='' />
+                                < /article >
+                                ))}
+                            < /section >
+                            )}
+                            {!friends ? < p >Loading..< /p > : (
+                            < aside >
+                                < ul >
+                                {friends
+                                    .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
+                                    .map(({ id, name, isOnline }) => (
+                                    < li key={id} className={isOnline ? 'online' : 'offline'}>
+                                        {name}
+                                    < /li >
+                                    ))}
+                                < /ul >
+                            < /aside >
+                            )}
+                        < /div >
+                    < /div >
+                );
+            }
+                        </code>
+                    </pre>
+                </div>
+            </ul>
         </div>
     </body>
 </html>
