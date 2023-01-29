@@ -33,6 +33,7 @@
                     <li>To <strong>run a program</strong> with node <i>$ node myProgram.js</i></li>
                 </ul>
             <li>Codecademy Material <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
+            <li>Node.js Documentation <a href="https://nodejs.org/en/docs/" target="_blank">here</a>.</li>
             </ul>
             <hr/>
             <h3>REPL</h3>
@@ -48,6 +49,88 @@
             </ul>
             <hr/>
             <h3>Modules</h3>
+            <ul>
+                <li><strong>Modules</strong> are reusable pieces of code in a file that can be exported and then
+                imported for use in another file. A modular program is one whose components can be separated, 
+                used individually, and recombined to create a complex system.
+                <strong>Module</strong> tends to refer to larger bundles, whilst <strong>Components</strong>
+                on the other hand tend to be smaller bundles of code, often smaller than a full class - 
+                they tend to be a component of something larger.</li>
+                <li>There are two runtime environments and each has a preferred module implementation:</li>
+                <ul>
+                    <li>The <strong>Node</strong> runtime environment: <i>module.exports</i> and <i>require()</i> syntax.</li>
+                    <li>The <strong>browser’s</strong> runtime environment and the ES6 <i>import/export</i> syntax.</li>
+                </ul>
+                <li>Within Node.js applications, developers have access to a number of <strong>core modules</strong> that come 
+                preshipped when you install Node.js onto your machine.</li>
+                <li>There are also modules created by other developers - these third-party modules often solve common
+                problems and simplify the development process. When we use these modules in our code, they are 
+                referred to as <strong>dependencies</strong>.</li>
+                <ul>
+                    <li>Most of the time, these dependencies are installed in packages handled by a <strong>package manager</strong>.
+                    A package is a third-party module wrapped up with the list of that module's own dependencies.
+                    The most popular package manager is <strong>Node Package Manager(npm)</strong> which is the 
+                    default package manager for Node.js. You can install it using:</li> 
+                    <ul>
+                        <li><i>npm i < package name ></i> or <i>npm install < package name ></i></li>
+                        <li><i>npm i</i></li>
+                        <li><i>npm i --production</i> If you wish to leave out development dependencies.</li>
+                    </ul>
+                    <li>Open source developers and developers at companies use the <strong>npm registry</strong> 
+                    to contribute packages to the entire community or members of their organizations, and download
+                    packages to use in their own projects.</li>
+                </ul>
+                </li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode33" onclick="showCode('displayCode33', 'showCode33')">Display</button>
+            <div id="displayCode33">
+                <button onclick="closeCode('displayCode33', 'showCode33')">Close</button>
+                <ul>
+                    <li><strong>module.exports</strong>:</li>
+                    <pre>
+                        <code>
+                function celsiusToFahrenheit(celsius) {
+                    return celsius * (9/5) + 32;
+                }
+                    
+                module.exports.celsiusToFahrenheit = celsiusToFahrenheit;
+                module.exports.fahrenheitToCelsius = function(fahrenheit) {
+                    return (fahrenheit - 32) * (5/9);
+                };
+                        </code>
+                    </pre>
+                    <li><strong>require()</strong>:</li>
+                    <pre>
+                        <code>
+            const converters = require('./converters.js');
+ 
+            const freezingPointC = 0;
+            const boilingPointC = 100;
+            
+            const freezingPointF = converters.celsiusToFahrenheit(freezingPointC);
+            const boilingPointF = converters.celsiusToFahrenheit(boilingPointC);
+            
+            console.log(`The freezing point of water in Fahrenheit is ${freezingPointF}`);
+            console.log(`The boiling point of water in Fahrenheit is ${boilingPointF}`);
+                        </code>
+                    </pre>
+                    <li><strong>require()</strong> with <strong>destructuring</strong>:</li>
+                    <pre>
+                        <code>
+            /* celsius-to-fahrenheit.js */
+            const { celsiusToFahrenheit } = require('./converters.js');
+            
+            const celsiusInput = process.argv[2]; 
+            const fahrenheitValue = celsiusToFahrenheit(celsiusInput);
+            
+            console.log(`${celsiusInput} degrees Celsius = ${fahrenheitValue} degrees Fahrenheit`);
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>Node Modules</h3>
             <ul>
                 <li><strong>Core Modules: </strong>are built into the Node.js environment to efficiently 
                 perform common tasks. To access core modules, inside REPL type: <i>require('module').builtinModules</i></li>
@@ -84,20 +167,20 @@
                 </ul>
                 <li><strong>Event Module: </strong>
                 Node.js has an EventEmitter class which can be accessed by importing the events core 
-                module by using the require() statement. Each event emitter instance has an .on() method
-                which assigns a listener callback function to a named event. EventEmitter also has an .emit() 
+                module by using the <i>require()</i> statement. Each event emitter instance has an <i>.on()</i> method
+                which assigns a listener callback function to a named event. EventEmitter also has an <i>.emit()</i> 
                 method which announces a named event that has occurred.</li>
                 <li><strong>Error Module: </strong>Within our own code, we can generate errors and throw them, and, with synchronous
-                code in Node, we can use error handling techniques such as try...catch statements.
+                code in Node, we can use error handling techniques such as <i>try...catch</i> statements.
                 However we cannot use try...catch when the error is thrown asynchronously. Many asynchronous Node APIs use
                 error-first callback functions—callback functions which have an error as the first expected argument and the data as
                 the second argument. If the asynchronous task results in an error, it will be passed in as the first argument to the
                 callback function. If no error was thrown, the first argument will be undefined.</li>
                 <li><strong>Input/Output: </strong>Input is data that is given to the computer, while output is 
                 any data or feedback that a computer provides. In Node, we can get input from a user using the 
-                stdin.on() method on the process object. We are able to use this because .on() is an instance 
-                of EventEmitter. To give an output, we can use the .stdout.write() method on the process object
-                as well. This is because console.log() is a thin wrapper on .stdout.write().</li>
+                <i>stdin.on()</i> method on the process object. We are able to use this because <i>.on()</i> is an instance 
+                of EventEmitter. To give an output, we can use the <i>.stdout.write()</i> method on the process object
+                as well. This is because <i>console.log()</i> is a thin wrapper on .stdout.write().</li>
                 <li><strong>Buffer Module: </strong>Is used to handle binary data. 
                 It provides a variety of methods to handle the binary data such as .alloc(), .toString(), .from(), and .concat()</li>
                 <ul>
@@ -115,14 +198,32 @@
                     one Buffer object. The length of the concatenated Buffer can be optionally provided as the second
                     argument. This method is useful because a Buffer object can't be resized.</li>
                 </ul>
-                <li><strong>FS Module: </strong></li>
+                <li><strong>FS Module (file system): </strong>All of the data on a computer is organized and accessed
+                through a filesystem. When running JavaScript code on a browser, it’s important for a script to have
+                only limited access to a user’s filesystem. This technique of isolating some applications from others
+                is known as sandboxing. In the back-end, however, less restricted interaction with the filesystem is essential.
+                The Node <strong>fs core module</strong> is an API for interacting with the file system.
+                Import module via <i>require('fs');</i>
+                The <strong>.readFile()</strong> Method: Reads data from a provided file.</li>
+                <li><strong>Readable/Writable Streams: </strong>In most cases, data isn’t processed all at once but
+                rather piece by piece. This is what we call streams. Streaming data is preferred as it doesn’t require
+                tons of RAM and doesn’t need to have all the data on hand to begin processing it. To read files
+                line-by-line, we can use the <i>.createInterface()</i> Method from the readline core module. We can write to
+                streams by using the <i>.createWriteStream()</i> Method.</li>
+                <li><strong>Timers Module:</strong> There are times when we want some of our code to be executed at a
+                specified point in time. This is what the timers module is used for.
+                Timer functions in Node.js behave similarly to how they work in front-end JavaScript programs,
+                but the difference is that they are added to the Node.js event loop. This means that the timer
+                functions are scheduled and put into a queue. This queue is processed at every iteration of the
+                event loop. If a timer function is executed outside of a module, the behavior will be random (non-deterministic).</li>
+                The <strong>setImmediate()</strong> function is often compared with the setTimeout() function.</li>
             </ul>
             <p class="center"><strong>Example:</strong></p>
             <button id="showCode31" onclick="showCode('displayCode31', 'showCode31')">Display</button>
             <div id="displayCode31">
                 <button onclick="closeCode('displayCode31', 'showCode31')">Close</button>
                 <ul>
-                    <li>Event Module</li>
+                    <li><strong>Event Module</strong></li>
                     <pre>
                         <code>
                 let newUserListener = (data) => {
@@ -136,7 +237,8 @@
                 myEmitter.emit('new user', 'Lily Pad') //newUserListener will be invoked with 'Lily Pad'
                         </code>
                     </pre>
-                    <li>Error Module</li>
+                    <hr/>
+                    <li><strong>Error Module</strong></li>
                     <pre>
                         <code>
                 const errorFirstCallback = (err, data)  => {
@@ -149,7 +251,8 @@
                 }
                         </code>
                     </pre>
-                    <li>Input/Output</li>
+                    <hr/>
+                    <li><strong>Input/Output</strong></li>
                     <ul>
                         <li>In the Node environment, the console is the terminal, and the console.log() 
                         method is a “thin wrapper” on the .stdout.write() method of the process object. 
@@ -167,8 +270,361 @@
                 });
                         </code>
                     </pre>
+                    <hr/>
+                    <li><strong>FS Module</strong></li>
+                    <ul>
+                        <li>readFile()</li>
+                        <pre>
+                            <code>
+                const fs = require('fs');
+
+                let readDataCallback = (err, data) => {
+                    if (err) {
+                        console.log(`Something went wrong: ${err}`);
+                    } else {
+                        console.log(`Provided file contained: ${data}`);
+                    }
+                };
+                
+                fs.readFile('./file.txt', 'utf-8', readDataCallback);
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Read/Write Streams</strong></li>
+                    <ul>
+                        <li><strong>createInterface() </strong>& <strong>createReadStream()</strong></li>
+                        <pre>
+                            <code>
+                const readline = require('readline');
+                const fs = require('fs');
+                
+                const myInterface = readline.createInterface({
+                    input: fs.createReadStream('text.txt')
+                });
+                
+                myInterface.on('line', (fileLine) => {
+                    console.log(`The line read: ${fileLine}`);
+                });
+                            </code>
+                        </pre>
+                        <li><strong>.createWriteStream()</strong></li>
+                        <pre>
+                            <code>
+                const fs = require('fs')
+                const fileStream = fs.createWriteStream('output.txt');
+                
+                fileStream.write('This is the first line!'); 
+                fileStream.write('This is the second line!');
+                fileStream.end();
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Timers Module</strong></li>
+                    <ul>
+                        <li><strong>setImmediate()</strong></li>
+                        <pre>
+                            <code>
+                    setImmediate(() => {
+                        console.log('Hello! My name is Codey.')
+                    });
+                            </code>
+                        </pre>
+                    </ul>
                 </ul>
             </div>
+        </div>
+        <div class="styleGuide">
+            <h2>Express.js</h2>
+            <ul>
+                <li><strong>Express.js: </strong>Is a server-side framework built upon Node.js. A server-side framework can handle 
+                a lot of the back-end responsibilities without needing to come up with a custom solution, which
+                saves a lot of time. This workflow might include things like accessing databases, generating HTML,
+                handling URL routing, access to libraries built to work with the framework, existing resources and
+                documentation for solving common problems, improved security.</li>
+                <li>Express Documentation <a href="https://expressjs.com/en/4x/api.html" target="_blank">here</a>.</li>
+                <hr/>
+                <h3>Initiating</h3>
+                <li>Express is a Node module, so in order to use it, we will need to import it into our program file
+                with <i>require('express')</i>.</li>
+                <li><strong>app.listen():</strong> The purpose of a server is to listen for requests, perform whatever action is required to satisfy 
+                the request, and then return a response. In order for our server to start responding, as first argument
+                we have to tell the server where to listen for new requests by providing a port number argument to a method called 
+                <i>app.listen()</i>. The server will then listen on the specified port and respond to any requests that come 
+                into it. The second argument is a callback function that will be called once the server is running and ready to receive responses.</li>
+                <hr/>
+                <h3>Routes</h3>
+                <li><strong>Routes: </strong>registering a series of routes we tell our server how to deal with any given request. 
+                It defines the control flow for requests based on the request's path and HTTP verb.
+                For example, if your server receives a GET request at <i>/monsters</i>, we will use a route to
+                define the appropriate functionality for that HTTP verb (GET) and path (/monsters).</li>
+                <ul>
+                    <li><i>localhost:4001/monsters</i>, the path is <i>/monsters</i>, hostname is <i>localhost</i>, the port
+                    number is <i>4001</i>).</li>
+                    <li>Express tries to match requests by route, meaning that if we send a request to 
+                    < server address >:< port number ><i>/api-endpoint</i>, the Express server will search through any
+                    registered routes in order that they are registered in your code and try to match <i>/api-endpoint</i>.
+                    The first one that is matched will be used, and its callback will be called.</li>
+                </ul>
+                <li><strong>Route Parameters: </strong>Makes Routes dynamic. Parameters are route path segments 
+                    that begin with <i>:</i> in their Express route definitions. They act as wildcards, matching any
+                    text at that path segment. For example <i>/monsters/:id</i> will match <i>both/monsters/1</i>
+                    and <i>/monsters/45</i>.</li>
+                    <ul>
+                        <li>Express parses any parameters, extracts their actual values, and attaches them as an object
+                        to the request object: <strong>req.params</strong>. This object’s keys are any parameter names
+                        in the route, and each key’s value is the actual value of that field per request.</li>
+                        <li>Not all APIs implement route parameters but when they do, it most commonly does not access
+                        sensitive data, unless it also requires to have an API key to access the response from such route.</li>
+                    </ul>
+                <hr/>
+                <h3>CRUD</h3>
+                <li>app.get, app.put, app.post, app.delete.</li>
+                <li><strong>app.get():</strong> Registers routes to match GET requests. Express routes (including
+                app.get()) usually take two arguments, a path (usually a string), and a callback function to handle
+                the request and send a response.</li>
+                <ul>
+                    <li><strong>res: </strong>Facilitates how we can submit responses by providing a response 
+                    object, commonly seen as: res, and it represents the HTTP response that we will emit when 
+                    we receive an HTTP request to any of our endpoints. Inside of it, we just need to pass
+                    the data of the response using:</li>
+                    <ul>
+                        <li><strong>.send()</strong>: Express servers send responses using the <i>.send()</i> method on the
+                        response object. <i>.send()</i> will take any input and include it in the response body.</li>
+                        <li><strong>.json()</strong>: can also be used to explicitly send JSON-formatted responses. 
+                        <i>.json()</i> sends any JavaScript object passed into it.</li>
+                    </ul>
+                </ul>
+                <li><strong>app.put(): </strong>PUT requests are used for updating existing resources. 
+                For this reason, it's needed to include a unique identifier 
+                as a route parameter to determine which specific resource to update.</li> 
+                <ul>
+                    <li>A <strong>query string</strong> is a part of a uniform resource locator (URL) that assigns values
+                    to specified parameters. Query strings appear at the end of the path in URLs, and they are indicated 
+                    with a <i>?</i> character. For instance, in <i>/monsters/1?name=chimera&age=1</i>, the query string is 
+                    <i>name=chimera&age=1</i> and the path is <i>/monsters/1/</i> Query strings do not count as part of the route path. I</li>
+                </ul>
+                <li><strong>app.post(): </strong>POST request are use to create a new resource.
+                The client does not know the id of the monster until it is created and sent back by the server, therefore
+                POST /monsters/:id doesn’t make sense because a client couldn’t know the unique id of a monster before it
+                exists.</li>
+                <li><strong> app.delete(): </strong>Deletes currently existing data. Their paths should usually 
+                end with a route parameter to indicate which resource to delete.</li>
+                <li><strong>app.use(express.static('public')):</strong> This is used to make sure that once the 
+                server is started, you can reload the browser and render on it.
+                The static method of express allows us to serve all the static files of our application, that is to say,
+                all HTML, CSS, and JS files that will comprise the front end visuals on the browser. In our case:
+                express.static('public');
+                Public is the name of the directory where we find those files, for example, in our execise 37:</li>
+                <li><strong>Status Codes: </strong> Response codes provide information to clients about how their 
+                requests were handled. Any res.send() has by default sent a 200 OK status code.
+                The res object has a <i>.status()</i> method to allow us to set the status code,
+                and other methods like .send() can be chained from it.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode34" onclick="showCode('displayCode34', 'showCode34')">Display</button>
+                <div id="displayCode34">
+                    <button onclick="closeCode('displayCode34', 'showCode34')">Close</button>
+                    <li><strong>Importing</strong> Express.js, <strong>app.listen()</strong>,
+                    <strong>app.get()</strong>, <strong>send()</strong>,
+                    <strong>app.put()</strong>, <strong>app.post()</strong>, <strong>app.delete()</strong> 
+                    & <strong>app.use()</strong>.</li>
+                    <pre>
+                        <code>
+            //Importing express.js
+            const express = require('express');
+            const app = express();
+
+            // Use static server to serve the Express Yourself Website
+                so to reload and render on the browser
+            app.use(express.static('public'));
+
+            const { getElementById, getIndexById, updateElement,
+            seedElements, createElement } = require('./utils');
+
+            const PORT = process.env.PORT || 4001;
+
+            // Variables that stores data, that'll be 
+                requested, created, updated and deleted
+            const expressions = [];
+            seedElements(expressions, 'expressions');
+            const animals = [];
+            seedElements(animals, 'animals');
+
+            // Get all expressions
+            app.get('/expressions', (req, res, next) => {
+                res.send(expressions);
+            });
+
+            // Get a single expression (based on ID)
+            app.get('/expressions/:id', (req, res, next) => {
+                const foundExpression = getElementById(req.params.id, expressions);
+                if (foundExpression) {
+                    res.send(foundExpression);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Update an expression (based on ID)
+            app.put('/expressions/:id', (req, res, next) => {
+                const expressionIndex = getIndexById(req.params.id, expressions);
+                //getIndexById will return -1 if the expressions array 
+                    doesn’t contain an element with that id.
+                //updateElement will throw an error if you pass in
+                    an id that doesn’t exist in the array
+                if (expressionIndex !== -1) {
+                    updateElement(req.params.id, req.query, expressions);
+                    res.send(expressions[expressionIndex]);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Create an expression
+            app.post('/expressions', (req, res, next) => {
+                const receivedExpression = createElement('expressions', req.query);
+                if (receivedExpression) {
+                    expressions.push(receivedExpression);
+                    res.status(201).send(receivedExpression);
+                } else {
+                    res.status(400).send();
+                }
+            });
+
+            // Delete an expression (based on ID)
+            app.delete('/expressions/:id', (req, res, next) => {
+                const expressionIndex = getIndexById(req.params.id, expressions);
+                //getIndexById will return -1 for a non-existent ID,
+                and the proper index if it exists. 
+                Then you can use the splice method to remove the element.
+                if (expressionIndex !== -1) {
+                    expressions.splice(expressionIndex, 1);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Get all animals
+            app.get('/animals', (req, res, next) => {
+                res.send(animals);
+            });
+
+            // Get a single animal
+            app.get('/animals/:id', (req, res, next) => {
+                const animal = getElementById(req.params.id, animals);
+                if (animal) {
+                    res.send(animal);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Create an animal
+            app.post('/animals', (req, res, next) => {
+                const receivedAnimal = createElement('animals', req.query);
+                if (receivedAnimal) {
+                    animals.push(receivedAnimal);
+                    res.status(201).send(receivedAnimal);
+                } else {
+                    res.status(400).send();
+                }
+            });
+
+            // Update an animal
+            app.put('/animals/:id', (req, res, next) => {
+                const animalIndex = getIndexById(req.params.id, animals);
+                if (animalIndex !== -1) {
+                    updateElement(req.params.id, req.query, animals);
+                    res.send(animals[animalIndex]);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Delete a single animal
+            app.delete('/animals/:id', (req, res, next) => {
+                const animalIndex = getIndexById(req.params.id, animals);
+                if (animalIndex !== -1) {
+                    animals.splice(animalIndex, 1);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on ${PORT}`);
+            });
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Route Parameters</strong>:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                const monsters = { 
+                    hydra: { height: 3, age: 4 }, 
+                    dragon: { height: 200, age: 350 } 
+                };
+
+                // GET /monsters/hydra
+                app.get('/monsters/:name', (req, res, next) => {
+                    console.log(req.params); // { name: 'hydra' }
+                    res.send(monsters[req.params.name]);
+                });
+                            </code>
+                        </pre>
+                        <li>Another example:</li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const app = express();
+
+            app.use(express.static('public'));
+
+            const { getElementById, seedElements } = require('./utils');
+
+            const expressions = [];
+            seedElements(expressions, 'expressions');
+
+            const PORT = process.env.PORT || 4001;
+
+            app.get('/expressions', (req, res, next) => {
+                res.send(expressions);
+            });
+
+            app.get('/expressions/:id', (req, res, next) => {
+                const foundExpression = getElementById(req.params.id, expressions);
+                res.send(foundExpression);
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Listening on port ${PORT}`);
+            });
+                            </code>
+                        </pre>
+                    </ul>    
+                    <hr/>
+                    <li><strong>Status Code:</strong></li>
+                    <pre>
+                        <code>
+            const monsterStoreInventory = { fenrirs: 4, 
+                                            banshees: 1, 
+                                            jerseyDevils: 4, 
+                                            krakens: 3 };
+            
+            app.get('/monsters-inventory/:name', (req, res, next) => {
+                const monsterInventory = monsterStoreInventory[req.params.name];
+                if (monsterInventory) {
+                    res.send(monsterInventory);
+                } else {
+                    res.status(404).send('Monster not found');
+                }
+            });
+                        </code>
+                    </pre>
+                </div>
+            </ul>
         </div>
     </body>
 </html>
