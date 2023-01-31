@@ -27,13 +27,13 @@
         <div class="styleGuide">
             <h2>Node.js</h2>
             <ul>
-            <li><strong>Node</strong> provides the ability to run JavaScript programs on our own computers instead of just in the browser's 
-                console or embedded in HTML.</li>
-                <ul>
-                    <li>To <strong>run a program</strong> with node <i>$ node myProgram.js</i></li>
-                </ul>
-            <li>Codecademy Material <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
-            <li>Node.js Documentation <a href="https://nodejs.org/en/docs/" target="_blank">here</a>.</li>
+                <li><strong>Node</strong> provides the ability to run JavaScript programs on our own computers instead of just in the browser's 
+                    console or embedded in HTML.</li>
+                    <ul>
+                        <li>To <strong>run a program</strong> with node <i>$ node myProgram.js</i></li>
+                    </ul>
+                <li>Codecademy Material <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
+                <li>Node.js Documentation <a href="https://nodejs.org/en/docs/" target="_blank">here</a>.</li>
             </ul>
             <hr/>
             <h3>REPL</h3>
@@ -80,7 +80,6 @@
                     to contribute packages to the entire community or members of their organizations, and download
                     packages to use in their own projects.</li>
                 </ul>
-                </li>
             </ul>
             <p class="center"><strong>Example:</strong></p>
             <button id="showCode33" onclick="showCode('displayCode33', 'showCode33')">Display</button>
@@ -351,8 +350,10 @@
                 we have to tell the server where to listen for new requests by providing a port number argument to a method called 
                 <i>app.listen()</i>. The server will then listen on the specified port and respond to any requests that come 
                 into it. The second argument is a callback function that will be called once the server is running and ready to receive responses.</li>
-                <hr/>
-                <h3>Routes</h3>
+            </ul>
+            <hr/>
+            <h3>Routes</h3>
+            <ul>
                 <li><strong>Routes: </strong>registering a series of routes we tell our server how to deal with any given request. 
                 It defines the control flow for requests based on the request's path and HTTP verb.
                 For example, if your server receives a GET request at <i>/monsters</i>, we will use a route to
@@ -377,8 +378,17 @@
                         sensitive data, unless it also requires to have an API key to access the response from such route.</li>
                     </ul>
                 <hr/>
-                <h3>CRUD</h3>
-                <li>app.get, app.put, app.post, app.delete.</li>
+            </ul>
+            <h3>CRUD</h3>
+            <ul>
+                <li>app.get, app.put, app.post, app.delete are used to connect with api requests.
+                This is the cleanest order to use:</li>
+                    <ul>
+                        <li>GET <i>/expressions/</i></li>
+                        <li>GET <i>/expressions/:id</i></li>
+                        <li>PUT <i>/expressions/:id</i></li>
+                        <li>DELETE <i>/expressions/:id</i></li>
+                    </ul>
                 <li><strong>app.get():</strong> Registers routes to match GET requests. Express routes (including
                 app.get()) usually take two arguments, a path (usually a string), and a callback function to handle
                 the request and send a response.</li>
@@ -402,6 +412,19 @@
                     to specified parameters. Query strings appear at the end of the path in URLs, and they are indicated 
                     with a <i>?</i> character. For instance, in <i>/monsters/1?name=chimera&age=1</i>, the query string is 
                     <i>name=chimera&age=1</i> and the path is <i>/monsters/1/</i> Query strings do not count as part of the route path. I</li>
+                    <li><strong>req.query: </strong>This property is an object containing a property for each query string parameter 
+                    in the route. When query parser is set to disabled, it is an empty object {}, otherwise it is the result of the 
+                    configured query parser.</li>
+                    <li><strong>req.param</strong> vs <strong>req.query</strong>: Both are closely related but they are not the same at all, params are parameters set for the route, query are 
+                    values resembling variable assignment that provide extra information on what is being required for the route and
+                    it will always start with a ? on the URL, inherently they are both string values that express extrapolates into
+                    objects and key/value pairs from the req object.</li>
+                    <ul>
+                        <li><strong>req.param:</strong> <i>/lor/creatures/:name</i> if we were to make a request <i>/lor/creatures/gollum</i> gollum is the 
+                        name parameter and so we could find it in the object as: req.params.name which equals to gollum or</li>
+                        <li><strong>req.query:</strong> <i>/lor/creatures/hobbit?familyname=Baggins&home=Shire</i> we get two query parameters, familyname 
+                        and home, this way we can get each as <i>req.query.familyname</i> which is Baggins and <i>req.query.home</i> which is Shire.:</li>
+                    </ul>
                 </ul>
                 <li><strong>app.post(): </strong>POST request are use to create a new resource.
                 The client does not know the id of the monster until it is created and sent back by the server, therefore
@@ -423,6 +446,16 @@
                 <button id="showCode34" onclick="showCode('displayCode34', 'showCode34')">Display</button>
                 <div id="displayCode34">
                     <button onclick="closeCode('displayCode34', 'showCode34')">Close</button>
+                    <li>In a real setting API server, <u>the data doesn't exist in arrays and objects within the file</u> as 
+                    the examples underneath.
+                    The reason is that it will not be <strong>persisting data</strong>, since if we keep it as an object, or an array of values 
+                    or even an array of objects in the file, every time we were to stop the server, all changes will disappear since 
+                    the file will only have whatever we wrote in it but not any further changes introduced.
+                    That is why in real APIs we also implement storage technologies like <strong>SQL</strong> or <strong>NoSQL</strong> databases, 
+                    <strong>yaml files</strong>, and <strong>cloud storage</strong> 
+                    services for which we need to learn and implement other libraries or their documentation on how we communicate with them 
+                    within our express server.</li>
+                    <hr/>
                     <li><strong>Importing</strong> Express.js, <strong>app.listen()</strong>,
                     <strong>app.get()</strong>, <strong>send()</strong>,
                     <strong>app.put()</strong>, <strong>app.post()</strong>, <strong>app.delete()</strong> 
@@ -558,6 +591,51 @@
                         </code>
                     </pre>
                     <hr/>
+                    <li><strong>app.put</strong> & <strong>req.params</strong>, <strong>req.query</strong>.</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const currencies = {
+                diram: {
+                    countries: ['UAE', 'Morocco'],
+                },
+                real: {
+                    countries: ['Brazil'],
+                },
+                dinar: {
+                    countries: ['Algeria', 'Bahrain', 'Jordan', 'Kuwait'],
+                },
+                vatu: {
+                    countries: ['Vanuatu'],
+                },
+                shilling: {
+                    countries: ['Tanzania', 'Uganda', 'Somalia', 'Kenya'],
+                },
+            };
+
+            app.put('/currencies/:name/countries', (req, res, next) => {
+                const currencyName = req.params.name; //param ":name" from PUT request
+                const countries = req.query; //value property from the key: value
+                currencies[currencyName] = countries;  //query: value assign to parameter
+
+                if(currencies[currencyName]){
+                    res.send(currencies[currencyName]);
+                } else {
+                res.status(404).send();
+                }
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+
+                        </code>
+                    </pre>
+                    <hr/>
                     <li><strong>Route Parameters</strong>:</li>
                     <ul>
                         <pre>
@@ -624,6 +702,111 @@
                         </code>
                     </pre>
                 </div>
+            </ul>
+                <hr/>
+            <h3>Express.Router</h3>
+                <ul>
+                    <li>Routers are mini versions of Express applications — they provide functionality for handling 
+                    route matching, requests, and sending responses.
+                    Generally, we will keep each router in its own file, and require them in the main application. 
+                    (because of reusability, scalability and cleaness). 
+                    For example, having a router file that specifies all routes and depending on the main route, 
+                    it will use the respective file that handles the request to that route.
+                    We can use it with <strong>express.Router()</strong>.</li>
+                    <li>Is very common having a <i>router.js</i> file that handles all the route connections.</li>
+                    <li>Routers nested within nested routers <a href='https://discuss.codecademy.com/t/why-would-we-nest-routers-in-nested-routers/394943' target="_blank">here</a>.</li>
+                    <li>To use a router, we mount it at a certain path using <strong>app.use()</strong> and pass in the router as the
+                    second argument. This router will now be used for all paths that begin with that path segment.</li>
+                    <li><strong>Documentation</strong> on Routing <a href="https://expressjs.com/en/guide/routing.html" target="_blank">here</a>.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode35" onclick="showCode('displayCode35', 'showCode35')">Display</button>
+                <div id="displayCode35">
+                    <button onclick="closeCode('displayCode35', 'showCode35')">Close</button>
+                    <ul>
+                        <li><strong>Express.Router</strong></li>
+                        <ul>
+                            <li>The code below contains all the monsters specific code. In a more full-fledged API, this file
+                            would contain multiple routes. To use this router in another file, we use <strong>module.exports</strong>
+                            so that other files can access monstersRouter. The only other new line of code required is
+                            that Express must be required in each file, since we’ll need to create a router with 
+                            <i>express.Router()</i>.</li>
+                        </ul>
+                        <pre>
+                            <code>
+                // monsters.js
+                const express = require('express');
+                const monstersRouter = express.Router();
+                    
+                const monsters = {
+                    '1': {
+                        name: 'godzilla',
+                        age: 250000000
+                    },
+                    '2': {
+                        Name: 'manticore',
+                        age: 21
+                    }
+                }
+                    
+                monstersRouter.get('/:id', (req, res, next) => {
+                    const monster = monsters[req.params.id];
+                    if (monster) {
+                        res.send(monster);
+                    } else {
+                        res.status(404).send();
+                    }
+                });
+                    
+                module.exports = monstersRouter;
+                            </code>
+                        </pre>
+                        <li>Our <i>main.js</i> file could then be refactored to import the monstersRouter:</li>
+                        <pre>
+                            <code>
+                            // main.js
+                            const express = require('express');
+                            const app = express();
+                            const monstersRouter = require('./monsters.js');
+                             
+                            app.use('/monsters', monstersRouter);
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Postman</h2>
+            <ul>
+                <li>Postman is a GUI that aids in the development of APIs by 
+                making it easy to test requests and their responses in an organized way.</li>
+                <li>API requests with <strong>Postman</strong>(GUI) & <strong>cURL</strong>(Command Line)
+                <a href="https://www.taniarascia.com/making-api-requests-postman-curl/" target="_blank">here</a></li>
+                <hr/>
+                <h3>API Requests</h3>
+                <li><strong>Initializing: </strong>
+                Set the URL connected to the server & the HTTP method.</li>
+                <li><strong>GET: </strong>
+                Write proper URL to GET request.</li>
+                <li><strong>POST: </strong> It is <u>non-idempotent</u>, meaning that two identical 
+                POST requests will create two new resources.<br>
+                Select <strong>POST</strong> method, Body => Raw (set to JSON), 
+                write the Post request. As the output, an id will be created as a property
+                inside "user". Example: </li>
+                <pre><code>{"user": {"username": "Victor", "password": "Rego"}}</code></pre>
+                <li><strong>PUT: </strong>It is <u>idempotent</u>, meaning that two identical PUT requests will modify the same
+                resource.<br>
+                A <strong>PUT</strong> request requires the entire body to be sent through; if any data 
+                is missing, that data will be wiped (except automatic values like auto-incrementing 
+                IDs and timestamps).</li>
+                <li><strong>PATCH: </strong>Updates an existing resource, and does not require
+                sending the entire body with the request.</li>
+                <li><strong>DELETE: </strong>Removes a resource. No values to send.</li>
+                <li><strong>Authentication: </strong>
+                In Postman, you'll go to Headers and add Authorization as the key and Bearer < JWT_TOKEN > as
+                the value to send authentication values. You can also go to Headers, click Presets, Manage
+                Presets, and put your own reusable variables in for any headers or values you'll be reusing a lot.</li>
             </ul>
         </div>
     </body>
