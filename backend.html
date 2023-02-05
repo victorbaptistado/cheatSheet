@@ -341,6 +341,9 @@
                 handling URL routing, access to libraries built to work with the framework, existing resources and
                 documentation for solving common problems, improved security.</li>
                 <li>Express Documentation <a href="https://expressjs.com/en/4x/api.html" target="_blank">here</a>.</li>
+                <li>Express simple explanation <a href="https://www.freecodecamp.org/news/going-out-to-eat-and-understanding-the-basics-of-express-js-f034a029fb66/" target="_blank">here</a>.</li>
+                <li>Express API Project <a href="https://codecademy-content.s3.amazonaws.com/PRO/independent-practice-projects/quote-api/quote-api-solution.zip" target="_blank">here</a>.</li>
+                <li>Boss machine full project<a href="https://content.codecademy.com/PRO/skill-paths/backend-javascript/projects/boss-machine/project-4-boss-machine-solution.zip" target="_blank">here</a></li>
                 <hr/>
                 <h3>Initiating</h3>
                 <li>Express is a Node module, so in order to use it, we will need to import it into our program file
@@ -370,13 +373,161 @@
                     that begin with <i>:</i> in their Express route definitions. They act as wildcards, matching any
                     text at that path segment. For example <i>/monsters/:id</i> will match <i>both/monsters/1</i>
                     and <i>/monsters/45</i>.</li>
+                <ul>
+                    <li>Express parses any parameters, extracts their actual values, and attaches them as an object
+                    to the request object: <strong>req.params</strong>. This object’s keys are any parameter names
+                    in the route, and each key’s value is the actual value of that field per request.</li>
+                    <li>Not all APIs implement route parameters but when they do, it most commonly does not access
+                    sensitive data, unless it also requires to have an API key to access the response from such route.</li>
+                    <li><strong>router.param()</strong>: When working with routes that require parameters, we might find
+                    ourselves in a position where multiple different routes require the same parameter and use it to 
+                    identify the same piece of data.router.param.</li>
+                </ul>
+                <li><strong>Merge Parameters: </strong>When we’re building web endpoints, we might want to access 
+                some property of a complex object. In order to do this in Express, we can design a nested router. 
+                This would be a router that is invoked within another router. In order to pass parameters the parent 
+                router has access to, we pass a special configuration object when defining the router.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode38" onclick="showCode('displayCode38', 'showCode38')">Display</button>
+                <div id="displayCode38">
+                    <button onclick="closeCode('displayCode38', 'showCode38')">Close</button>
                     <ul>
-                        <li>Express parses any parameters, extracts their actual values, and attaches them as an object
-                        to the request object: <strong>req.params</strong>. This object’s keys are any parameter names
-                        in the route, and each key’s value is the actual value of that field per request.</li>
-                        <li>Not all APIs implement route parameters but when they do, it most commonly does not access
-                        sensitive data, unless it also requires to have an API key to access the response from such route.</li>
+                        <li><strong>router.param()</strong></li>
+                        <pre>
+                            <code>
+                    app.param('spellId', (req, res, next, id) => {
+                        let spellId = Number(id);
+                        try {
+                        const found = SpellBook.find((spell) => {
+                            return spellId === spell.id;
+                        })
+                        if (found) {
+                            req.spell = found;
+                            next();
+                        } else {
+                            next(new Error('Your magic spell was not found in any of our tomes'));
+                        };
+                        } catch (err) {
+                            next(err)
+                        }
+                    });
+                            </code>
+                        </pre>
+                        <li><strong>Full example:</strong></li>
+                        <pre>
+                            <code>
+                const express = require('express');
+                const app = express();
+                const bodyParser = require('body-parser');
+
+                app.use(express.static('public'));
+
+                const PORT = process.env.PORT || 4001;
+
+                const spiceRack = [
+                {
+                    id: 1,
+                    name: 'cardamom',
+                    grams: 45,
+                },
+                {
+                    id: 2,
+                    name: 'pimento',
+                    grams: 20,
+                },
+                {
+                    id: 3,
+                    name: 'cumin',
+                    grams: 450,
+                },
+                {
+                    id: 4,
+                    name: 'sichuan peppercorns',
+                    grams: 107,
+                }
+                ];
+
+                let nextSpiceId = 5;
+
+                app.use(bodyParser.json());
+
+                // Add your code here:
+                app.param('spiceId', (req, res, next, id) => {
+                const spiceId = Number(id);
+                const spiceIndex = spiceRack.findIndex(spice => spice.id === spiceId);
+                
+                if (spiceIndex !== -1){
+                    req.spiceIndex = spiceIndex;
+                    next();
+                } else {
+                    res.sendStatus(404);
+                }
+                })
+
+
+                app.get('/spices/', (req, res, next) => {
+                res.send(spiceRack);
+                });
+
+                app.post('/spices/', (req, res, next) => {
+                const newSpice = req.body.spice;
+                if (newSpice.name  && newSpice.grams) {
+                    newSpice.id = nextSpiceId++;
+                    spiceRack.push(newSpice);
+                    res.send(newSpice);
+                } else {
+                    res.status(400).send();
+                }
+                });
+
+                app.get('/spices/:spiceId', (req, res, next) => {
+                res.send(spiceRack[req.spiceIndex]);
+                });
+
+                app.put('/spices/:spiceId', (req, res, next) => {
+                spiceRack[req.spiceIndex] = req.body.spice;
+                res.send(spiceRack[req.spiceIndex]);
+                });
+
+                app.delete('/spices/:spiceId', (req, res, next) => {
+                spiceRack.splice(req.spiceIndex, 1);
+                res.status(204).send();
+                });
+
+                app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+                });
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Merge Parameters:</strong></li>
+                        <pre>
+                            <code>
+            const sorcererRouter = express.Router();
+            const familiarRouter = express.Router({mergeParams: true});
+                
+            sorcererRouter.use('/:sorcererId/familiars', familiarRouter);
+                
+            sorcererRouter.get('/', (req, res, next) => {
+                res.status(200).send(Sorcerers);
+                next();
+            });
+                
+            sorcererRouter.param('sorcererId', (req, res, next, id) => {
+                const sorcerer = getSorcererById(id);   
+                req.sorcerer = sorcerer;
+                next();
+            });
+                
+            familiarRouter.get('/', (req, res, next) => {
+                res.status(200).send(`Sorcerer ${req.sorcerer} has familiars ${getFamiliars(sorcerer)}`);
+            });
+                
+            app.use('/sorcerer', sorcererRouter);
+                            </code>
+                        </pre>
                     </ul>
+                </div>
                 <hr/>
             </ul>
             <h3>CRUD</h3>
@@ -404,14 +555,20 @@
                         <i>.json()</i> sends any JavaScript object passed into it.</li>
                     </ul>
                 </ul>
+                <li><strong>app.post(): </strong>POST request are use to create a new resource.
+                The client does not know the id of the monster until it is created and sent back by the server, therefore
+                POST /monsters/:id doesn’t make sense because a client couldn’t know the unique id of a monster before it
+                exists.</li>
                 <li><strong>app.put(): </strong>PUT requests are used for updating existing resources. 
                 For this reason, it's needed to include a unique identifier 
                 as a route parameter to determine which specific resource to update.</li> 
+                <li><strong> app.delete(): </strong>Deletes currently existing data. Their paths should usually 
+                end with a route parameter to indicate which resource to delete.</li>
+                <li><strong>Query string: </strong>Is a part of a uniform resource locator (URL) that assigns values
+                to specified parameters. Query strings appear at the end of the path in URLs, and they are indicated 
+                with a <i>?</i> character. For instance, in <i>/monsters/1?name=chimera&age=1</i>, the query string is 
+                <i>name=chimera&age=1</i> and the path is <i>/monsters/1/</i> Query strings do not count as part of the route path. I</li>    
                 <ul>
-                    <li>A <strong>query string</strong> is a part of a uniform resource locator (URL) that assigns values
-                    to specified parameters. Query strings appear at the end of the path in URLs, and they are indicated 
-                    with a <i>?</i> character. For instance, in <i>/monsters/1?name=chimera&age=1</i>, the query string is 
-                    <i>name=chimera&age=1</i> and the path is <i>/monsters/1/</i> Query strings do not count as part of the route path. I</li>
                     <li><strong>req.query: </strong>This property is an object containing a property for each query string parameter 
                     in the route. When query parser is set to disabled, it is an empty object {}, otherwise it is the result of the 
                     configured query parser.</li>
@@ -421,17 +578,11 @@
                     objects and key/value pairs from the req object.</li>
                     <ul>
                         <li><strong>req.param:</strong> <i>/lor/creatures/:name</i> if we were to make a request <i>/lor/creatures/gollum</i> gollum is the 
-                        name parameter and so we could find it in the object as: req.params.name which equals to gollum or</li>
+                        name parameter and so we could find it in the object as: req.params.name which equals to gollum.</li>
                         <li><strong>req.query:</strong> <i>/lor/creatures/hobbit?familyname=Baggins&home=Shire</i> we get two query parameters, familyname 
-                        and home, this way we can get each as <i>req.query.familyname</i> which is Baggins and <i>req.query.home</i> which is Shire.:</li>
+                        and home, this way we can get each as <i>req.query.familyname</i> which is Baggins and <i>req.query.home</i> which is Shire.</li>
                     </ul>
                 </ul>
-                <li><strong>app.post(): </strong>POST request are use to create a new resource.
-                The client does not know the id of the monster until it is created and sent back by the server, therefore
-                POST /monsters/:id doesn’t make sense because a client couldn’t know the unique id of a monster before it
-                exists.</li>
-                <li><strong> app.delete(): </strong>Deletes currently existing data. Their paths should usually 
-                end with a route parameter to indicate which resource to delete.</li>
                 <li><strong>app.use(express.static('public')):</strong> This is used to make sure that once the 
                 server is started, you can reload the browser and render on it.
                 The static method of express allows us to serve all the static files of our application, that is to say,
@@ -635,6 +786,58 @@
 
                         </code>
                     </pre>
+                    <li><strong>app.post</strong> & <strong>req.query</strong>.</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const soups = ['gazpacho', 'borscht', 'primordial', 'avgolemono', 'laksa'];
+
+            app.post('/soups', (req, res, next) => {
+                const soup = req.query.name;
+                soups.push(soup);
+                res.status(201).send(soup);
+            })
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+
+                        </code>
+                    </pre>
+                    <li><strong>app.delete</strong> & <strong>req.params</strong></li>
+                    <hr/>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const puddingFlavors = ['chocolate', 'banana', 'butterscotch', 'pistachio'];
+
+            const findPuddingIndex = (name) => {
+                return puddingFlavors.indexOf(name);
+            }
+
+            const deletePuddingAtIndex = (index) => {
+                puddingFlavors.splice(index, 1);
+            }
+
+            app.delete('/puddings/:flavor', (req, res, next) => {
+                const index = findPuddingIndex(req.params.flavor);
+                if(index !== -1){
+                    deletePuddingAtIndex(index);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            })
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
                     <hr/>
                     <li><strong>Route Parameters</strong>:</li>
                     <ul>
@@ -774,6 +977,412 @@
                         </pre>
                     </ul>
                 </div>
+                <hr/>
+                <h3>Middleware</h3>
+                <ul>
+                    <li><strong>DRY</strong>ing Routes With app.use().
+                    A path can be written as optional, to write middleware that will run for every request at a specific 
+                    path. It can also be even an array of routes to reference more than one path.</li>
+                    <li><strong>Middleware</strong> is code that executes between a server receiving a request and
+                    sending a response. It operates on the boundary, so to speak, between those two HTTP actions.
+                    Middleware is a function that can perform logic on the request and response objects, such
+                    as: inspecting a request, performing some logic based on the request, attaching information to the 
+                    response, attaching a status to the response, sending the response back to the user, or simply passing
+                    the request and response to another middleware. Middleware can do any combination of those things or
+                    anything else a Javascript function can do.</li>
+                    <li><strong>Middleware stack: </strong> Is a chain of middleware. Most of Express's functionality is 
+                    chaining middleware. <u>Express routes are middleware</u>. Every route created in Express is also a 
+                    middleware function handling the request and response objects at that part of the stack.</li>
+                    <ul>
+                        <li>The routes are called in the order that they appear in the file, provided the previous route
+                        called <strong>next()</strong> and thus passed control to the next middleware.</li>
+                        <li>An Express middleware is a function with three parameters: <i>(req, res, next)</i>.
+                        The third argument to a middleware function, <i>next</i>, should get explicitly called as the last 
+                        part of the middleware’s body. This will hand off the processing of the request and the construction
+                        of the response to the next middleware in the stack.</li>
+                        <li><u>We don’t always want to pass control to the <i>next</i> middleware in the stack.</u>
+                        For example, when designing a system with confidential information, we want to be able to selectively 
+                        show that information to authorized users. In order to do that, we would create middleware that tests 
+                        a user’s permissions. If the user has the permission necessary, we would continue through the middleware 
+                        stack by calling <i>next()</i>. If it fails, we would want to let the user know that they’re not allowed to see 
+                        the information they’re trying to access.</li>
+                    </ul>
+                    <li>Since middleware is just a function with a specific signature, namely <i>(req, res, next)</i>, 
+                    we can define functions and using them as middleware.
+                    We can remove the <i>app.use()</i> line and replace it with a specific route method, or sprinkle it throughout
+                    the application without it being universal.
+                    With modular pieces like this, it is useful to know that methods such as <i>app.use()</i>, <i>app.get()</i>, 
+                    <i>app.post()</i>, and so on all can take multiple callbacks as additional parameters.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode36" onclick="showCode('displayCode36', 'showCode36')">Display</button>
+                <div id="displayCode36">
+                    <button onclick="closeCode('displayCode36', 'showCode36')">Close</button>
+                    <ul>
+                        <li><strong>app.use()</strong> & <strong>next()</strong></li>
+                        <pre>
+                            <code>
+            //A path can be written as optional 
+                so to write middleware that will run
+                for every request at a specific path.
+                It can be even an array of routes
+                to reference more than one path.
+            app.use([path, anotherPath](req, res, next) => {
+                console.log("A sorcerer approaches!");
+                next();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log("The sorcerer is casting a spell!");
+                next();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log(`The sorcerer has cast ${req.params.spellname}`);
+                res.status(200).send();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log("The sorcerer is leaving!");
+            });
+                
+            // Accessing http://localhost:4001/magic/fireball 
+            // Console Output:
+            // "A sorcerer approaches!"
+            // "The sorcerer is casting a spell!"
+            // "The sorcerer has cast fireball"
+                                </code>
+                            </pre>
+                            <hr/>
+                            <li>Other example:</li>
+                            <pre>
+                                <code>
+            const express = require('express');
+            const app = express();
+
+            app.use(express.static('public'));
+
+            const PORT = process.env.PORT || 4001;
+
+            const jellybeanBag = {
+                mystery: {
+                    number: 4
+                },
+                lemon: {
+                    number: 5
+                },
+                rootBeer: {
+                    number: 25
+                },
+                cherry: {
+                    number: 3
+                },
+                licorice: {
+                    number: 1
+                }
+            };
+
+            // Logging Middleware 
+                (this below could be changed for Morgan)
+            app.use((req, res, next) => {
+                console.log(`${req.method} Request Received`);
+                next('Bag with that name does not exist');
+            });
+
+            app.use('/beans/:beanName', (req, res, next) => {
+                const beanName = req.params.beanName;
+                if (!jellybeanBag[beanName]) {
+                    res.status(404).send('Bag with that name does not exist');
+                    return console.log('Response Sent');
+                }
+                req.bean = jellybeanBag[beanName];
+                req.beanName = beanName;
+                next();
+            });
+
+            app.get('/beans/', (req, res, next) => {
+                res.send(jellybeanBag);
+                console.log('Response Sent');
+            });
+
+            app.post('/beans/', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            // This below could be changed for bodyParser.
+            req.on('end', () => {
+                const body = JSON.parse(bodyData);
+                const beanName = body.name;
+                if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+                    return res.status(404).send('Bag with that name already exists!');
+                }
+                const numberOfBeans = Number(body.number) || 0;
+                jellybeanBag[beanName] = {
+                    number: numberOfBeans
+                };
+                res.send(jellybeanBag[beanName]);
+                console.log('Response Sent');
+                });
+            });
+
+            app.get('/beans/:beanName', (req, res, next) => {
+                res.send(req.bean);
+                console.log('Response Sent');
+            });
+
+            app.post('/beans/:beanName/add', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            req.on('end', () => {
+                const numberOfBeans = Number(JSON.parse(bodyData).number) || 0;
+                req.bean.number += numberOfBeans;
+                res.send(req.bean);
+                console.log('Response Sent');
+                });
+            });
+
+            app.post('/beans/:beanName/remove', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            req.on('end', () => {
+                const numberOfBeans = Number(JSON.parse(bodyData).number) || 0;
+                if (req.bean.number < numberOfBeans) {
+                    return res.status(400).send('Not enough beans in the jar to remove!');
+                }
+                req.bean.number -= numberOfBeans;
+                res.send(req.bean);
+                console.log('Response Sent');
+                });
+            });
+
+            app.delete('/beans/:beanName', (req, res, next) => {
+                jellybeanBag[req.beanName] = null;
+                res.status(204).send();
+                console.log('Response Sent');
+            });
+
+            app.put('/beans/:beanName/name', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+                });
+
+                req.on('end', () => {
+                    const newName = JSON.parse(bodyData).name;
+                    jellybeanBag[newName] = req.bean;
+                    jellybeanBag[req.beanName] = null;
+                    res.send(jellybeanBag[newName]);
+                    console.log('Response Sent');
+                });
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+                                </code>
+                            </pre>
+                            <li>In the below code sample, we created reusable middleware for authentication and data validation. 
+                            We use the authenticate() middleware to verify a user is logged in before proceeding with the request
+                            and we use the validateData() middleware before performing the appropriate create or update function.
+                            Additional middleware can be placed at any point in this chain.</li>
+                            <pre>
+                                <code>
+            const authenticate = (req, res, next) => {
+            ...
+            };
+            
+            const validateData = (req, res, next) => {
+            ...
+            };
+            
+            const getSpell = (req, res, next) => {
+                res.status(200).send(getSpellById(req.params.id));
+            };
+            
+            const createSpell = (req, res, next) => {
+                createSpellFromRequest(req);
+                res.status(201).send();
+            };
+            
+            const updateSpell = (req, res, next) => {
+                updateSpellFromRequest(req);
+                res.status(204).send();
+            }
+            
+            app.get('/spells/:id', authenticate, getSpell);
+            
+            app.post('/spells', authenticate, validateData, createSpell);
+            
+            app.put('/spells/:id', authenticate, validateData, updateSpell);
+                                </code>
+                            </pre>
+                        </ul>
+                    </div>
+                <h3>Open-Source Middleware</h3>
+                <ul>
+                    <li>If we needed to write a web server from scratch every time we wanted to build a web application, 
+                    we’d waste a lot of time solving problems that have been solved countless times before and ignoring
+                    perfectly good pre-existing solutions. Luckily for us web developers, Express already exists as an
+                    <strong>open-source package</strong> that we can install and use to build upon. There is a huge ecosystem of Javascript
+                    packages that will solve so many of the problems that developers frequently run into.</li>
+                    <li><strong>Morgan: </strong>Is an open-source library for logging (console.log) information about the HTTP request-response
+                    cycle in a server application. <i>morgan()</i> is a function that will return a middleware function 
+                    that will have the function signature <i>(req, res, next)</i> that can be inserted into an <i>app.use()</i>,
+                    and that function will be called before all following middleware functions. Morgan takes an argument 
+                    to describe the formatting of the logging output. For example, <i>morgan('tiny')</i> will return a middleware 
+                    function that does a “tiny” amount of logging. With morgan in place, we’ll be able to remove the existing logging code.</li>
+                    <ul>
+                        <li>Morgan's <strong>documentation</strong> <a href="https://github.com/expressjs/morgan" target="_blank">here</a>.</li>
+                    </ul>
+                    <li><strong>Body-parser: </strong>Simplifies a perform request body parsing. That substituted a lot
+                    of the req.on code from the previous examples.</li>
+                    <ul>
+                        <li>Body-parser <strong>documentation</strong> <a href="https://github.com/expressjs/body-parser#body-parser" target="_blank">here</a>.</li>
+                    </ul>
+                    <li><strong>List of middlewares</strong> <a href="https://expressjs.com/en/resources/middleware.html" target="_blank">here</a>.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode37" onclick="showCode('displayCode37', 'showCode37')">Display</button>
+                <div id="displayCode37">
+                    <button onclick="closeCode('displayCode37', 'showCode37')">Close</button>
+                    <ul>
+                        <li><strong>Morgan</strong></li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const morgan = require('morgan');
+            const app = express();
+
+            //This will console.log 
+                (`${req.method} Request Received`) 
+                to every router.
+            app.use(morgan('tiny'));
+
+            //This will console .log 
+                :method :url :status :response-time ms - :res[content-length]
+                to every router.
+            app.use(morgan('dev')); 
+                            </code>
+                        </pre>
+                        <li><strong>Body-Parser</strong></li>
+                        <pre>
+                            <code>
+            const bodyParser = require('body-parser');
+
+            app.use(bodyParser.json());
+                            </code>
+                        </pre>
+                        <li>Full code example: <strong>Morgan</strong> & <strong>body-parser</strong></li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const app = express();
+            const morgan = require('morgan');
+            const bodyParser = require('body-parser');
+
+            app.use(express.static('public'));
+
+            const PORT = process.env.PORT || 4001;
+
+            const cards = [
+                {
+                    id: 1,
+                    suit: 'Clubs',
+                    rank: '2'
+                },
+                {
+                    id: 2,
+                    suit: 'Diamonds',
+                    rank: 'Jack'
+                },
+                {
+                    id: 3,
+                    suit: 'Hearts',
+                    rank: '10'
+                }
+            ];
+            let nextId = 4;
+
+            // Logging
+            if (!process.env.IS_TEST_ENV) {
+                app.use(morgan('short'));
+            }
+
+            // Parsing
+            app.use(bodyParser.json());
+
+            // Find card
+            app.use('/cards/:cardId', (req, res, next) => {
+                const cardId = Number(req.params.cardId);
+                const cardIndex = cards.findIndex(card => card.id === cardId);
+                if (cardIndex === -1) {
+                    return res.status(404).send('Card not found');
+                }
+                req.cardIndex = cardIndex;
+                next();
+            });
+
+            const validateCard = (req, res, next) => {
+            const newCard = req.body;
+            const validSuits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+            const validRanks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+            if (validSuits.indexOf(newCard.suit) === -1 || validRanks.indexOf(newCard.rank) === -1) {
+                return res.status(400).send('Invalid card!');
+            }
+                next();
+            };
+
+            // Get all Cards
+            app.get('/cards/', (req, res, next) => {
+                res.send(cards);
+            });
+
+            // Create a new Card
+            app.post('/cards/', validateCard, (req, res, next) => {
+                const newCard = req.body;
+                newCard.id = nextId++;
+                cards.push(newCard);
+                res.status(201).send(newCard);
+            });
+
+            // Get a single Card
+            app.get('/cards/:cardId', (req, res, next) => {
+                res.send(cards[req.cardIndex]);
+            });
+
+            // Update a Card
+            app.put('/cards/:cardId', validateCard, (req, res, next) => {
+                const newCard = req.body;
+                const cardId = Number(req.params.cardId);
+                if (!newCard.id || newCard.id !== cardId) {
+                    newCard.id = cardId;
+                }
+                cards[req.cardIndex] = newCard;
+                res.send(newCard);
+            });
+
+            // Delete a Card
+            app.delete('/cards/:cardId', (req, res, next) => {
+                cards.splice(req.cardIndex, 1);
+                res.status(204).send();
+            });
+
+            // Start the server
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
             </ul>
         </div>
         <div class="styleGuide">
@@ -808,6 +1417,105 @@
                 the value to send authentication values. You can also go to Headers, click Presets, Manage
                 Presets, and put your own reusable variables in for any headers or values you'll be reusing a lot.</li>
             </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>CORS</h2>
+            <ul>
+                <li><strong>Cross-origin resource sharing (CORS)</strong> is a standard mechanism that allows JavaScript XMLHttpRequest 
+                (XHR) calls executed in a web page to interact with resources from non-origin domains (different domains that are outside
+                current). 
+                The CORS standard is needed because it allows servers to specify not only who can access the assets, but also
+                how they can be accessed.</li>
+                <li>Servers will allow GET requests, meaning they will allow resources from external origins (say, a web page) 
+                to read their assets. HTTP requests methods like PATCH, PUT, or DELETE, however, may be denied to prevent
+                malicious behavior. For many servers, this is intentional. For example, it is likely that server A does not
+                want servers B, C, or D to edit or delete its assets.
+                <u>With CORS, a server can specify who can access its assets and which HTTP request methods are allowed from external resources.</u></li>
+                <li>An <strong>HTTP header</strong> is a piece of information associated with a request or a response.
+                Headers are passed back and forth between your web browser (also referred to as a client) and a server when
+                the web page you are on wants to use resources hosted on a different server. Headers are used to describe requests
+                and responses. The CORS standard manages cross-origin requests by adding new HTTP headers to the standard list of headers. </li>
+                <ul>
+                    <li><strong>Access-Control-Allow-Origin:</strong> This header allows servers to specify how their resources are shared with external domains. 
+                    When a GET request is made to access a resource on Server A, Server A will respond with a value for the Access-Control-Allow-Origin
+                    header. Many times, this value will be *, meaning that Server A will share the requested resources with any domain on the 
+                    Internet. Other times, the value of this header may be set to a particular domain (or list of domains), meaning that 
+                    Server A will share its resources with that specific domain (or list of domains). The Access-Control-Allow-Origin 
+                    header is critical to resource security.</li>
+                    <li>List of <strong>Headers</strong><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#cors" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Pre-flight request: </strong>
+                Most servers will allow GET requests but may block requests to modify resources on the server. 
+                Servers don’t just blindly block such requests; they have a process in place that first checks and then communicates 
+                to the client (your web browser) which requests are allowed. When a request is made using any of the following HTTP request 
+                methods, a standard preflight request will be made before the original request PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH.    
+                Preflight requests use the OPTIONS header. The preflight request is sent before the original request, 
+                hence the term “preflight.” The purpose of the preflight request is to determine whether or not the original request is safe (for example, a 
+                DELETE request). The server will respond to the preflight request and indicate whether or not the original request is safe. If the server specifies 
+                that the original request is safe, it will allow the original request. Otherwise, it will block the original request.</li>
+                <hr/>
+                <h3>How to implement CORS?</h3>
+                <li>Implementing the request headers to set up CORS correctly depends on the language and framework of the backend.
+                <ul>
+                    <li>If you are using Node, you can use setHeader(), <i>response.setHeader('Content-Type', 'text/html');</i>.</li>
+                    <li>If you are using Express, you can use CORS middleware: <i>$ npm install cors</i></li>
+                </ul>
+                <pre>
+                    <code>                   
+                    var express = require('express');
+                    var cors = require('cors');
+                    var app = express();
+                     
+                    app.use(cors());
+                     
+                    app.get('/hello/:id', function (req, res, next) {
+                      res.json({msg: 'Hello world, we are CORS-enabled!'});
+                    });
+                     
+                    app.listen(80, function () {
+                      console.log('CORS-enabled web server is listening on port 80');
+                    });
+                    </code>
+                </pre>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>User Authentication and Authorization</h2>
+            <ul>
+                <li><strong>Authentication</strong> determines identity, <strong>authorization</strong> determines the privileges associated with an 
+                identity, and <strong>encryption</strong> ensures that data can only be accessed by authorized parties.</li>
+            </ul>
+            <hr/>
+            <h3>Authentication</h3>
+            <ul>
+                <li><strong>Authentication</strong> is the verification of who you are. For example, let’s say you’ve gone to a concert. At the front door, the 
+                security guard asks to see your
+                ticket and ID in order to verify that the name on your ID matches the name on your ticket. 
+                Authentication relies on one or more factors to verify identity, and these factors come in three main types:</li>
+                <ul>
+                    <li><strong>Knowledge</strong> is something you know, like a username and password.</li> 
+                    <li><strong>Possession</strong> is something you have, like a security card or mobile device.</li> 
+                    <li><strong>Inherence</strong> is something you are, which generally refers to biometric data such as fingerprints.</li>
+                </ul>
+                <li><strong>Single-Factor Authentication: </strong>Relies on a single factor, such as a simple username/password combo,
+                and is becoming increasingly insecure.</li>
+                <li><strong>Multi-Factor Authentication: </strong>requires multiple factors, such as a username/password combo and a code 
+                sent to a mobile device. This is distinct from Multi-Step authentication, which requires multiple types of authentication 
+                within a single factor, such as a password and a PIN.</li>
+            </ul>
+            <hr/>
+            <h3>Authorization</h3>
+            <ul>
+                <li><strong>Authorization</strong> is the verification of what you are allowed to do. 
+                It is responsible for everything from preventing users from modifying each other’s accounts, to protecting back-end assets 
+                from attackers, to granting limited access to external services.
+                Good authorization will allow you to limit users and services to the privileges they require; just because a user is authorized to manage one group doesn’t mean they should be able to manage all groups, for example.
+                </li>
+            </ul>
+            <hr/>
+            <h3>Encryption</h3>
+            <strong>Encryption</strong> enforces authentication and authorization is encryption. 
+            Encryption is the process of transforming data into a format that is unreadable unless you have the correct key to decrypt it.
         </div>
     </body>
 </html>
