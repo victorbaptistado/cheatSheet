@@ -1489,8 +1489,7 @@
             <h3>Authentication</h3>
             <ul>
                 <li><strong>Authentication</strong> is the verification of who you are. For example, let’s say you’ve gone to a concert. At the front door, the 
-                security guard asks to see your
-                ticket and ID in order to verify that the name on your ID matches the name on your ticket. 
+                security guard asks to see your ticket and ID in order to verify that the name on your ID matches the name on your ticket. 
                 Authentication relies on one or more factors to verify identity, and these factors come in three main types:</li>
                 <ul>
                     <li><strong>Knowledge</strong> is something you know, like a username and password.</li> 
@@ -1509,13 +1508,485 @@
                 <li><strong>Authorization</strong> is the verification of what you are allowed to do. 
                 It is responsible for everything from preventing users from modifying each other’s accounts, to protecting back-end assets 
                 from attackers, to granting limited access to external services.
-                Good authorization will allow you to limit users and services to the privileges they require; just because a user is authorized to manage one group doesn’t mean they should be able to manage all groups, for example.
-                </li>
+                Good authorization will allow you to limit users and services to the privileges they require; just because a user is authorized 
+                to manage one group doesn’t mean they should be able to manage all groups, for example.</li>
             </ul>
             <hr/>
             <h3>Encryption</h3>
             <strong>Encryption</strong> enforces authentication and authorization is encryption. 
             Encryption is the process of transforming data into a format that is unreadable unless you have the correct key to decrypt it.
+        </div>
+        <div class="styleGuide">
+            <h2>Web Sessions & Security</h2>
+            <h3>Sessions & Cookies & Localstorage</h3>
+            <ul>
+                <li><strong>Sessions & Cookies & Localstorage </strong>
+                <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-session-authentication-in-express/cheatsheet" target="_blank">here.</a></li>
+                <li><strong>Web sessions: </strong>HTTP(S) protocol on its own is stateless, meaning requests and 
+                responses are just relaying information back and forth with no knowledge of a specific user.
+                But web developers want to create engaging, personalized experiences for users. This means there needs to 
+                be a system that associates the requests with a specific user and does so in a secure.
+                Without it, every time you reloaded the window you would be logged out or lose your cart!
+                A <strong>web session</strong> refers to a series of user interactions over a time frame. 
+                <u>Session data is stored server-side and associated with a session ID.</u>
+                Think of a session as short-term memory for a web application.</li>
+                <li><strong>Sessions Cookies:</strong> A cookie is a text file that stores stateful client data in a 
+                key-pair format. It is stored by the web browser, aka client-side.</li>
+                <li><strong>Sessions localStorage and sessionStorage: </strong>
+                Client-side browser storage introduced with HTML5 that stores data in a key-pair format. 
+                It does not interact with the server and is only changeable through JavaScript, with simple syntax.</li>
+                <li>Ideally, all sessions-based web applications should enforce <strong>HTTPS</strong> for all communication. This 
+                prevents common web attacks that could give the attacker access to the session.
+                Security headers allow you to customize your web application’s security policy! They are an important 
+                line of defense against web attacks. You should research each header, different options for each, 
+                and find out how they can improve security while maintaining usability.</li>
+                <ul>
+                    <li>List of Security Headers
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#security" target="_blank">here</a>.</li> 
+                    <li>You can use <a href="https://securityheaders.com/" target="_blank">https://securityheaders.com/</a> 
+                    to check which headers are active on your web address.</li>
+                </ul>
+                <hr/>
+                <h3>Express Session</h3>
+                <li>In order to implement sessions within an Express application, we can use the NPM module, express-session, 
+                as a middleware. Once the session middleware is implemented, each user that navigates to our app will have a 
+                unique session generated for them. This allows us to store their session data server-side under a session 
+                identifier and easily retrieve it.</li>
+                <li><strong>Express Configure:</strong></li>
+                <ul>
+                    <li><strong>secret:</strong> The secret property is a key used for signing and/or encrypting 
+                    cookies in order to protect our session ID.
+                    <li><strong>resave:</strong> Setting this option to true will force a session to be saved 
+                    back to the session data store, even when no data was modified. Typically, this option should 
+                    be false, but also depends on your session storage strategy.</li>
+                    <li><strong>saveUninitialized</strong>: This property is a boolean value. If it’s set to true,
+                    the server will store every new session, even if there are no changes to the session object. 
+                    This might be useful if we want to keep track of recurring visits from the same browser, but 
+                    overall, setting this property to false allows us to save memory space.</li>
+                    <li>The resave & saveUninitialized determine how often the session object will be saved.</li>
+                </ul>
+                <li><strong>Storing Session Data:</strong>
+                Sessions are typically stored in three different ways:</li>
+                <ul>
+                    <li>In <strong>memory</strong> (this is the default storage)</li>
+                    <li>In a <strong>database</strong> like MongoDB or MySQL</li>
+                    <li>A <strong>memory cache</strong> like Redis or Memcached.</li>
+                    <li>Whenever a user makes a request from the same client with a valid session identifier, the server 
+                    retrieves the valid session information. express-session provides an in-memory store called, <strong>MemoryStore()</strong>. If no other store 
+                    is specified, then this is set as the default storage.</li>        
+                </ul>
+                <li><strong>Sessions and Authentication (Cookies):</strong>
+                We should make use of client-side storage so that the user’s browser can automatically send over the 
+                session identifier with each incoming HTTP request.
+                We’ll tell the client browser to create a cookie that stores the session ID. We can also modify cookie attributes to add a bit of security.
+                Cookies will have a few default properties set, but we can specify them using key-value pairs. </li>
+                <ul>
+                    <li><strong>maxAge</strong> property sets the number of milliseconds until the cookie expires.</li> 
+                    <li><strong>secure attribute</strong> makes it only send to the server via HTTPS.</li> 
+                    <li><strong>sameSite</strong> property setted to 
+                    "none" allows a cross-site cookie through different browsers.</li>
+                    <li><strong>Other cookie</strong> properties include: cookie.expires, cookie.httpOnly, cookie.sameSite</li>
+                </ul>
+                <li><strong>Sessions and Authentication (Logging In):</strong>
+                With a session middleware configured, we can now make use of the session and combine it with an authentication process.
+                <ul>
+                    <li>We can do this by first looking up the user in our database and then verifying that the password is correct.</li>
+                    <li>Once credentials are confirmed, we’ll add data to our session.</li>
+                    <li>Once the user is logged in we’ll add a property, authenticated within our session object and assign it to 
+                    true. We’ll also set user in the session data and assign it the username and password we received.</li>
+                    <li>Once the user is logged in, their session is created and stored in memory. The properties authenticated and user will 
+                    be accessible and changeable as session data.</li>
+                </ul>
+                <li><strong>Accessing Session Data: </strong>
+                Data in a session is serialized as JSON when stored, so we’re able to store and access data in nested objects. Let’s say we had 
+                saved the number of items in a user’s cart in the session data: <i>req.session.user.cartCount = 2;</i>
+                We can then access it by referring to <i>req.session.user.cartCount</i> when we need to display the correct number of items. We can also update its value.
+                One common use case of session data is to protect specific routes. In the example below, we check that the authorized 
+                property exists within the session, and if it’s set to true before we move on to the next route handler.
+                </li>
+                <li><strong>Download project</strong> with <strong>Sessions Authentication</strong> & <strong>Sessions Access</strong> <a href="https://static-assets.codecademy.com/content/paths/web-security/sessions-in-express/sessions-auth-data.zip" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode39" onclick="showCode('displayCode39', 'showCode39')">Display</button>
+            <div id="displayCode39">
+                <button onclick="closeCode('displayCode39', 'showCode39')">Close</button>
+                <ul>
+                    <li>We can <strong>install</strong> the package by running the following command:</li>        
+                    <pre>
+                        <code>
+            npm install express-session
+                        </code>
+                    </pre>    
+                    <li>From here, we import the session module and <strong>store it in a variable</strong>:</li>
+                    <pre>
+                        <code>
+            const session = require("express-session")
+                        </code>
+                    </pre>
+                    <li><strong>Configure express-session</strong> & <strong>Storing Session Data</strong></li>
+                    <pre>
+                        <code>
+            //instantiate a new store
+            const store = new session.MemoryStore();
+            
+            app.use(
+                session({
+                  secret: "f4z4gs$Gcg",
+                  cookie: { maxAge: 1000 * 60 *60 * 24, secure: true, sameSite: "none" },
+                  saveUninitialized: false,
+                  resave: false,
+                })
+            );
+                        </code>
+                    </pre>  
+                    <li><strong>Sessions Authentication</strong> & <strong>Sessions Access</strong></li>
+                    <pre>
+                        <code>
+                const express = require("express");
+                const app = express();
+                const session = require("express-session");
+                const store = new session.MemoryStore();
+                const db = require("./db");
+                const PORT = process.env.PORT || 4001;
+                
+                app.set("trust proxy", 1);
+                app.use(express.json());
+                app.use(express.urlencoded({ extended: false }));
+                app.set("view engine", "ejs");
+                app.use(express.static(__dirname + "/public"));
+                
+                app.use(
+                    session({
+                        secret: "f4z4gs$Gcg",
+                        cookie: { maxAge: 300000000, secure: true, sameSite: "none" },
+                        saveUninitialized: false,
+                        resave: false,
+                        store,
+                    })
+                );
+                
+                function ensureAuthentication(req, res, next) {
+                    // Check for the authorized property within the session
+                    if (req.session.authenticated) {
+                        return next();
+                    } else {
+                        res.status(403).json({ msg: "You're not authorized to view this page" });
+                    }
+                }
+                
+                // Add your ensureAuthentication middleware below:
+                app.get("/shop", ensureAuthentication, (req, res) => {
+                    // Send the user object to the view page:
+                    // res.render() takes in a view page as the 
+                        first argument and an object whose properties 
+                        define local variables for the view as the second argument.
+                    res.render("shop", { user: req.session.user });
+                });
+                
+                app.get("/login", (req, res) => {
+                    res.render("login");
+                });
+                
+                // POST request for logging in
+                // Sessions and Authentication (Logging In)
+                app.post("/login", (req, res) => {
+                    const { username, password } = req.body;
+                    db.users.findByUsername(username, (err, user) => {
+                        if (!user) return res.status(403).json({ msg: "No user found!" });
+                        if (user.password === password) {
+                                req.session.authenticated = true;
+                                req.session.user = {
+                                username,
+                                password,
+                            };
+                            res.redirect("/shop");
+                        } else {
+                            res.status(403).json({ msg: "Bad Credentials" });
+                        }
+                    });
+                });
+                
+                app.listen(PORT, () => {
+                    console.log(`Server is listening on port ${PORT}`);
+                });
+                            
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>JSON Web Tokens (JWTs)</h3>
+            <ul>
+                <li><strong>JSON Web Tokens</strong> are self-contained JSON objects that compactly and securely transmit information between 
+                two parties. They are secure because they are digitally signed using a secret or a public/private key pair.</li>
+                <li>JWTs are used for authorization: They’re often used for SSO.
+                Information Exchange: If a server received a valid JWT, it knows the sender is who they say they are and the information hasn’t been tampered with.
+                <ul>
+                    <li>Why <strong>use JWTs?</strong> Parsing JSON is easier than some alternatives like XML or SAML.
+                    JWTs are small, scale well, and are easier for mobile devices to process.</li>
+                    <li>Why <strong>not use JWT</strong>?
+                    A mix of a public and private key-pair adds security, but can also add complexity.
+                    Sensitive information, like passwords or Social Security Numbers, should not be stored client-side, even if it is encoded.</li>
+                </ul>
+                <li>A JWT is made up of three components:</li>
+                <ul>
+                    <li><strong>JWT Header: </strong>A JWT header contains the type of the token we’re creating and the signing algorithm 
+                    that will be used. <strong>Type:</strong> The type of this token will always be “JWT”. The Internet Assigned Numbers Authority, or IANA, coordinates internet 
+                    protocol resources across the globe. The “JWT” type aligns with the media type “application/jwt“.
+                    <strong>Algorithm:</strong> The signing, or hashing, algorithm used might vary. Some commonly used algorithms are HMAC-SHA256, 
+                    represented by "HS256", RSA with SHA-256, represented by "RW256", and ECDSA with SHA-256, represented by "ES256".</li>
+                    <li><strong>JWT Payload: </strong>A JWT payload contains claims about an entity. A claim is a statement or piece of 
+                    information and the entity is often a user. There are three types of claims a JWT payload can contain:
+                    <strong>Registered Claims:</strong> These are predefined claim types that anyone can use in a JWT.
+                    <strong>Public Claims:</strong> These are custom claim types that are created by a developer and can be used 
+                    publicly. They should be registered to avoid collisions, also known as repeated claims.
+                    <strong>Private Claims:</strong> These are custom claim types that are not registered or public. They are only 
+                    used between parties that have agreed to use them. List of registered claims and public claims 
+                    <a href="https://www.iana.org/assignments/jwt/jwt.xhtml#claims" target="_blank">here</a>.</li>
+                    <li><strong>JWTSignature: </strong>Is used to verify that the JWT wasn’t tampered with or changed. 
+                    It can be created taking the encoded header, the encoded payload, a secret, and using the hashing algorithm 
+                    to create a hash from those elements.</li>
+                </ul>
+                <li><strong>Do not store your JWT in localStorage</strong> as an attacker could use Cross-Site Scripting 
+                attacks to steal local data.
+                <strong>Storing your JWT in a cookie could expose your data to a Cross-Site 
+                Resource Forgery attack</strong>. Additionally, if a user has disabled cookies in their browser, 
+                the application is now unable to store the JWT.</li>
+                <li>JWT documentation <a href="https://jwt.io/" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode40" onclick="showCode('displayCode40', 'showCode40')">Display</button>
+            <div id="displayCode40">
+                <button onclick="closeCode('displayCode40', 'showCode40')">Close</button>
+                <ul>
+                    <li>JWS <strong>Header</strong> specifying the <strong>HMAC-SHA256</strong> algorithm:</li>
+                    <pre>
+                        <code>
+                {
+                    'alg': 'HS256',  
+                    'typ': 'JWT'
+                }
+                        </code>
+                    </pre>
+                    <li>JWS <strong>Payload</strong> using some common registered claims:</li>
+                    <pre>
+                        <code>
+                
+            {
+                'sub': '1234567890',
+                'name': 'Harine Cooper',
+                'admin': false,
+                'iat': 1620924478,
+                'exp': 1620939187
+            }
+                        </code>
+                    </pre>
+                    <li>In this example, we will use <strong>jwt.io’s JWT debugger</strong> to create our <strong>final JWT</strong>.</li>
+                    <ul>
+                        <li>The secret is a symmetric key known by the sender and receiver of this token. </li>
+                        <li>The <strong>Base64Url encoding of our header</strong> is: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</li>
+                        <li>The <strong>Base64Url encoding of our payload</strong> is:<br/>
+                        <i>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkhhcmluZSBDb29wZXIiLCJhZG1pbiI6ZmFsc2UsI<br/>mlhdCI6MTYyMDkyNDQ3OCwiZXhwIjoxNjIwOTM5MTg3fQ</i></li>
+                        <li>Finally, we use the HMAC-SHA256 algorithm we defined in our header to create our signature:</li>
+                        <pre>
+                            <code>
+                        HMACSHA256(
+                            base64UrlEncode(header) + "." +
+                            base64UrlEncode(payload),
+                            secret)
+                            </code>
+                        </pre>
+                        <li>Which gives us: <i>3B-FLgPETrExxlDKW30AoU7KGE6xuZodw79TQR8_mwM</i></li>
+                        <li>Concatenating our encoded header, our encoded payload, and our signature, and separating each with a “.”, gives us our final token:
+                        <i>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikhh<br/>cmluZSBDb29wZXIiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTYyMDkyNDQ3OCwiZXhwIjoxNjIwOTM5MTg3fQ.3B-FLgPETrExxlDKW30AoU7KGE6xuZodw79TQR8_mwM</i></li>
+                    </ul>
+                </ul>
+            </div>
+            <hr/>
+            <h3>Protecting information (Encryption, Hashing, Encoding, Obfuscation)</h3>
+            <ul>
+                <li><strong>Encryption: </strong>
+                    Encryption Cryptography is the science of hiding data and making it available again. In 
+                    cryptography, hiding data is called encryption and unhiding it is called decryption. When data is
+                    securely exchanged, it is first encrypted by the sender, and then decrypted by the receiver using 
+                    a special key. There are two main types of encryption: symmetric and asymmetric.
+                    Asymmetric encryption is the most secure way to transmit data; however, it is slower and more complex than
+                    symmetric encryption. Therefore, it is primarily used to exchange smaller pieces of data.</li>
+                    <ul>
+                        <li><strong>Symmetric</strong> encryption uses the same key to both encrypt and decrypt data.</li>
+                        <li><strong>Asymmetric</strong> encryption uses two different keys to encrypt and decrypt data.</li>
+                    </ul>
+                <li><strong>Hashing: </strong>
+                Hashing does not encrypt data. Instead, hashing is a one-way process that takes a piece of data of any size 
+                and uses a mathematical function to represent that data with a unique hash value of a fixed size. You cannot 
+                compute the original data from its hash.
+                Because each hash should be unique, hashing allows us to see if changes have been made to documents.
+                <ul>
+                    <li>Hashes are widely used in order to <strong>store passwords in online databases</strong>. If passwords are stored in plaintext 
+                    and a database is breached, so are all of the passwords! However, if they are stored as hash values, even if 
+                    someone hacks into a website’s database, only the password hashes are exposed.</li>
+                    <li><strong>For example</strong>, let’s suppose a user’s password is: <i>CodecademyIsGr8t</i>
+                    Now, if the website storing the password is using a SHA-256 hash, even if someone hacked into that website, 
+                    all the hacker would see is the hash value:
+                    <i>d04f855e71ad9d495d91e666175d593b669f45970f885a258f6dbbaab262ac8b</i>
+                    Remember, an attacker has no way of decrypting a hash value to get the original value. Hashing is a one-way process.</li>
+                </ul>
+                <li><strong>Encoding: </strong>While it may sound similar to encryption, encoding is not actually used to hide 
+                data. Encoding transforms data into a form that can be used by a different type of system. Some different types 
+                of encoding are: <strong>ASCII, Unicode, Base64</strong>. Encoded information is easily reversed and only requires 
+                knowledge of the algorithm used to decode information.</li>
+                <li><strong>Obfuscation: </strong>Obfuscation is less about data security and more about securing code. Developers might 
+                obfuscate their code in order to hide what their code is actually doing. Obfuscate means to hide the meaning of something 
+                by making it difficult to understand.
+                Developers might want to hide trade secrets or intellectual property from others who can access their code. 
+                Obfuscating their code makes it difficult for others to steal code and use it for their own purposes. Obfuscation can also make 
+                it harder for users to hack software or get around licensing requirements needed to use programs.
+                Malicious actors might also use obfuscation to make it hard for users or antivirus software to detect a virus they are 
+                planting on a system. If you don’t know what an application is for, be very careful before downloading or opening it.</li>
+            </ul>
+            <hr/>
+            <h3>Passport.js</h3>
+            <li>Passport.js is a flexible authentication middleware for Node.js that can be added to any Express-based 
+            application. With Passport.js we can implement authentication using the concept of strategies.
+            Passport strategies are separate modules created to work with different means of authentication. Passport is a very extensible 
+            middleware, and it allows you to plug in over 300 different authentication providers like Facebook, Twitter, Google, and more.</li>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode41" onclick="showCode('displayCode41', 'showCode41')">Display</button>
+            <div id="displayCode41">
+                <button onclick="closeCode('displayCode41', 'showCode41')">Close</button>
+                <ul>
+                    <li><strong>Configuring Passport.js: </strong>
+                    One of the great things about using Passport.js is that a lot of the heavy lifting is taken care of 
+                    by the module. In order to use it, we need to configure it and implement cookies and sessions for 
+                    persistent logins.</li>
+                    <ul>
+                        <li>To start using the traditional authentication module, we <strong>install the passport</strong> and the <strong>passport-local</strong> 
+                        packages via the terminal: <i>npm install passport passport-local</i>
+                        <li>Once imported, <strong>we require the passport and passport-local</strong> packages in our JavaScript file as below.
+                        We’re importing the passport-local package with its Strategy instance to authenticate users with 
+                        a username and password.</li>
+                        <pre>
+                            <code>
+                const passport = require("passport");
+                const LocalStrategy = require("passport-local").Strategy;
+                            </code>
+                        </pre>    
+                        <li>Now that we have the package installed, we can <strong>initialize</strong> it by calling the initialize() method:
+                        <i>app.use(passport.initialize());</i>
+                        passport is a middleware and must be implemented using <i>app.use()</i>. The <i>initialize()</i> method initializes 
+                        the authentication module across our app.</li>
+                        <li>Next, we want to <strong>allow for persistent logins</strong>, and we can do this by calling <i>session()</i> on our passport 
+                        module: <i>app.use(passport.session());</i>
+                        The <i>session()</i> middleware alters the request object and is able to attach a ‘user’ value that can be 
+                        retrieved from the session id.</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Passport's Local Strategy</strong></li>
+                    <ul>
+                        <li>With Passport configured, we can now set up the passport-local strategy for authenticating with a username and password.
+                        First, we can configure the local strategy by creating a new instance of it and passing it as middleware into passport:</li>
+                        <pre>
+                            <code>
+                    passport.use(new LocalStrategy(
+                        function(username, password, done) {
+                        // …
+                        }
+                    ));
+                            </code>
+                        </pre>
+                        <li>The new LocalStrategy object will take in an anonymous function with the following parameters:</li>
+                        <ul>
+                            <li>username</li>
+                            <li>password</li>
+                            <li>A callback function called done.</li>
+                        </ul>
+                        <li>The purpose of the done callback is to supply an authenticated user to Passport if a user is authenticated. 
+                        The logic within the anonymous function follows this order:</li>
+                        <ol>
+                            <li>Verify login details in the callback function.</li>
+                            <li>If login details are valid, the done callback function is invoked and the user is authenticated.</li>
+                            <li>If the user is not authenticated, pass false into the callback function.</li>
+                        </ol>
+                        <li>The done callback function takes in two arguments:</li>
+                        <ul>
+                            <li>An error or null if no error is found.</li>
+                            <li>A user or false if no user is found.</li>
+                        </ul>
+                        <li>With those steps implemented our updated strategy should look like:</li>
+                        <pre>
+                            <code>
+                    passport.use(new LocalStrategy(
+                    function (username, password, done) {
+                        // Look up user in the db
+                        db.users.findByUsername(username, (err, user) => {
+                        // If there's an error in db lookup, 
+                        // return err callback function
+                        if(err) return done(err);
+                    
+                        // If user not found, 
+                        // return null and false in callback
+                        if(!user) return done(null, false);
+                    
+                        // If user found, but password not valid, 
+                        // return err and false in callback
+                        if(user.password != password) return done(null, false);
+                    
+                        // If user found and password valid, 
+                        // return the user object in callback
+                        return done(null, user)
+                        });
+                    })
+                    );
+                            </code>
+                        </pre>
+                        <li>We’re looking for potential errors during the authentication process and addressing them before the next request handler is reached.</li>
+                        <li>Once the local strategy is configured, the Express application will have user authentication implemented!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Passport Implementation: </strong></li>
+                    <pre>
+                        <code>
+                const express = require("express");
+                const app = express();
+                const passport = require("passport");
+                const LocalStrategy = require("passport-local").Strategy;
+                const session = require("express-session");
+                const PORT = process.env.PORT || 5000;
+                
+                app.use(
+                    session({
+                    secret: "secret-key",
+                    resave: false,
+                    saveUninitialized: false,
+                    })
+                );
+                
+                app.use(passport.initialize());
+                app.use(passport.session());
+                
+                // Add your passport local strategy below:
+                passport.use(new LocalStrategy(
+                    function (username, password, done) {
+                        db.users.findByUsername(username, (err, user) => {
+                            if(err) return done(err);
+                            if(!user) return done(null, false);
+                            if(user.password != password) return done(null, false);
+                            return done(null, user)
+                        });
+                    })
+                );
+                
+                app.get("/", (req, res) => {
+                    res.send("Hello from the homepage!");
+                });
+                
+                app.listen(PORT, () => {
+                    console.log(`Server is listening on port: ${PORT}`);
+                });
+                        </code>
+                    </pre>
+                </ul>
+            </div>
         </div>
     </body>
 </html>
