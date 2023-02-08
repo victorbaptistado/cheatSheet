@@ -1530,8 +1530,10 @@
                 A <strong>web session</strong> refers to a series of user interactions over a time frame. 
                 <u>Session data is stored server-side and associated with a session ID.</u>
                 Think of a session as short-term memory for a web application.</li>
-                <li><strong>Sessions Cookies:</strong> A cookie is a text file that stores stateful client data in a 
-                key-pair format. It is stored by the web browser, aka client-side.</li>
+                <li><strong>Sessions Cookies:</strong> A cookie is a text file that stores stateful client data 
+                in a key-pair format. It is stored by the web browser, aka client-side.
+                Cookies store credentials for authentication, so the user doesn't need to send them every time 
+                a button is clicked.</li>
                 <li><strong>Sessions localStorage and sessionStorage: </strong>
                 Client-side browser storage introduced with HTML5 that stores data in a key-pair format. 
                 It does not interact with the server and is only changeable through JavaScript, with simple syntax.</li>
@@ -1846,28 +1848,30 @@
             </ul>
             <hr/>
             <h3>Passport.js</h3>
-            <li>Passport.js is a flexible authentication middleware for Node.js that can be added to any Express-based 
-            application. With Passport.js we can implement authentication using the concept of strategies.
-            Passport strategies are separate modules created to work with different means of authentication. Passport is a very extensible 
-            middleware, and it allows you to plug in over 300 different authentication providers like Facebook, Twitter, Google, and more.</li>
             <ul>
-                <li>Passport.js <strong>documentation</strong> <a href="http://www.passportjs.org/docs/" target="_blank">here</a>.</li>
+                <li>Passport.js is a flexible authentication middleware for Node.js that can be added to any Express-based 
+                application. With Passport.js we can implement authentication using the concept of strategies.
+                Passport strategies are separate modules created to work with different means of authentication. Passport is a very extensible 
+                middleware, and it allows you to plug in over 300 different authentication providers like Facebook, Twitter, Google, and more.</li>
+                <ul>
+                    <li>Passport.js <strong>documentation</strong> <a href="http://www.passportjs.org/docs/" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Serializing and Deserializing Users: </strong>
+                If authentication succeeds, a session will be established and maintained via a cookie set in the user’s browser. 
+                However, if a user logs in and refreshes the page, the user data won’t persist across HTTP requests. We can fix 
+                this by <strong>serializing</strong> and <strong>deserializing</strong> users.
+                Serializing a user determines which data of the user object should be stored in the session, usually the user id. 
+                The <i>serializeUser()</i> function sets an id as the cookie in the user’s browser, and the <i>deserializeUser()</i> function 
+                uses the id to look up the user in the database and retrieve the user object with data.</li>
+                <li><strong>Logging In:</strong> In order to log in a user we need a POST request (with a logging end-point)
+                that takes in user credentials & a get request, to retrieve data. Steps on how to Implement within "Example".</li>
+                <li><strong>Register:</strong> In order to register a user we need a POST request (with a register end-point).
+                Steps on how to Implement within "Example".</li>
+                <li><strong>Logging out: </strong>Passport.js exposes a logout function within the request object: <i>req.logout</i>.
+                The function can be called from any route handler in order to terminate a login session. It essentially removes 
+                the <i>req.user</i> property and clears the login session (if any). 
+                By terminating the session, the user will have to re-authenticate in order to create a new session.</li>
             </ul>
-            <li><strong>Serializing and Deserializing Users: </strong>
-            If authentication succeeds, a session will be established and maintained via a cookie set in the user’s browser. 
-            However, if a user logs in and refreshes the page, the user data won’t persist across HTTP requests. We can fix 
-            this by <strong>serializing</strong> and <strong>deserializing</strong> users.
-            Serializing a user determines which data of the user object should be stored in the session, usually the user id. 
-            The <i>serializeUser()</i> function sets an id as the cookie in the user’s browser, and the <i>deserializeUser()</i> function 
-            uses the id to look up the user in the database and retrieve the user object with data.</li>
-            <li><strong>Logging In:</strong> In order to log in a user we need a POST request (with a logging end-point)
-            that takes in user credentials & a get request, to retrieve data. Steps on how to Implement within "Example".</li>
-            <li><strong>Register:</strong> In order to register a user we need a POST request (with a register end-point).
-            Steps on how to Implement within "Example".</li>
-            <li><strong>Logging out: </strong>Passport.js exposes a logout function within the request object: <i>req.logout</i>.
-            The function can be called from any route handler in order to terminate a login session. It essentially removes 
-            the <i>req.user</i> property and clears the login session (if any). 
-            By terminating the session, the user will have to re-authenticate in order to create a new session.</li>
             <p class="center"><strong>Example:</strong></p>
             <button id="showCode41" onclick="showCode('displayCode41', 'showCode41')">Display</button>
             <div id="displayCode41">
@@ -2187,16 +2191,20 @@
                 passport.use(
                   new LocalStrategy(function (username, password, cb) {
                     db.users.findByUsername(username, function (err, user) {
-                      if (err) {
-                        return cb(err);
-                      }
-                      if (!user) {
-                        return cb(null, false);
-                      }
-                      if (user.password != password) {
-                        return cb(null, false);
-                      }
-                      return cb(null, user);
+                        // There was an error in the database lookup
+                        if (err) {
+                            return cb(err);
+                        }
+                        // A user was NOT found and there was NO error
+                        if (!user) {
+                            return cb(null, false);
+                        }
+                        // A user was found, but the password was NOT valid
+                        if (user.password != password) {
+                            return cb(null, false);
+                        }
+                        // There was no error, the user and password are valid
+                        return cb(null, user);
                     });
                   })
                 );
@@ -2308,6 +2316,287 @@
                 };
                         </code>
                     </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>BCRYPT</h3>
+            <ul>
+                <li>When practicing new concepts, we might store plaintext passwords in a local database, but this is 
+                incredibly insecure. <u>One should never do this in a production environment</u>. 
+                You should <strong>hash passwords</strong> before storing them in a database in order to protect 
+                your users from being hacked. There are plenty of cryptographic hashing functions to choose from, 
+                such as the SHA-3 or MD-5 algorithms, but they are quite fast (the faster the function, the faster 
+                a hacker can retrieve a hashed password). 
+                Using a function that is slower at hashing passwords can actually protect your users.
+                We can accomplish this by using the <strong>bcrypt</strong> algorithm and library. 
+                Using bcrypt, we can protect our users by <strong>hashing and salting passwords</strong>.
+                Using multiple rounds of hashing ensures that an attacker must deploy massive funds and 
+                hardware to be able to crack your passwords.</li>
+                <li><strong>bcrypt is hashing algorithm</strong>. This means you cannot easily retrieve 
+                the plaintext password without already knowing the salt, rounds, and key (password).
+                A hash function only works one-way, which means that once a value is hashed it can’t be unhashed
+                (this helps to avoid exposing password if a server attack happens). 
+                This is different from encryption, because, if you know which algorithm was used to encrypt a value, 
+                you can use that same algorithm to decrypt it.</li>
+                <li>On a typical website, when a user first signs up, we retrieve their password and run it through a 
+                hashing algorithm. The hashed password is then stored in the database. Whenever the same user 
+                logs in, we hash the password they tried to log in with and compare it to the already stored hash 
+                value. If the values match, the user is authenticated.</li>
+                <li>A <strong>salt</strong> is a random value that is added to the input of a hashing function in order to make each 
+                password hash unique even in the instance of two users choosing the same passwords. Salts help 
+                us mitigate hash table (like Rainbow Table) attacks by forcing attackers to re-compute them using the salts for each 
+                user.</li>
+                <li>The <strong>process of comparing</strong> passwords should look as follows:</li>
+                <ol>
+                    <li><strong>Retrieve</strong> plain text password.</li>
+                    <li><strong>Hash</strong> the password.</li>
+                    <li><strong>Compare</strong> the hashed password with the one stored in our DB. 
+                    (Since we’re using the same hash, it should return the same value if the password is correct.)</li>
+                </ol>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode42" onclick="showCode('displayCode42', 'showCode42')">Display</button>
+            <div id="displayCode42">
+                <button onclick="closeCode('displayCode42', 'showCode42')">Close</button>
+                <ul>
+                    <li>Bcrypt to<strong> Hash Passwords:</strong></li>
+                    <ul>
+                        <li>A <strong>salt</strong> is a value that is concatenated to a password before hashing in order to make it less 
+                        vulnerable to rainbow table and brute-force attacks.</li>
+                        <li>A <strong>salt round</strong> can be described as the amount of time needed to calculate a single bcrypt hash. 
+                        The higher the salt rounds, the more time is necessary to crack a password.</li>
+                        <li>The built-in <strong><i>genSalt()</i></strong> function automatically generates a salt for us. Since we’re using an 
+                        asynchronous function we can await this function call.</li>
+                    </ul>
+                    <pre>
+                        <code>
+                const bcrypt = require("bcrypt");
+
+                const passwordHash = async (password, saltRounds) => {
+                    try {
+                        const salt = await bcrypt.genSalt(saltRounds);
+                        return await bcrypt.hash(password, salt);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                    return null;
+                };
+                        </code>
+                    </pre>
+                    <li><strong>Verifying password:</strong></li>
+                    <ul>
+                        <li>The built-in function <strong><i>compare()</i></strong> 
+                        takes in a plaintext password, password and a hashed password, hash.
+                        <i>bcrypt.compare()</i> deduces the salt from the provided hash and is able to then 
+                        hash the provided password correctly for comparison.</li>
+                        <pre>
+                            <code>
+                const bcrypt = require("bcrypt");
+
+                const comparePasswords = async (password, hash) => {
+                    try {
+                        const matchFound = await bcrypt.compare(password, hash);
+                        return matchFound;
+                    } catch(err) {
+                        console.log(err);
+                    }
+                    return false;
+                };
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Implementation bcrypt:</strong></li>
+                    <pre>
+                        <code>
+            const express = require("express");
+            const router = express.Router();
+            const helper = require("../helpers/helpers");
+            let users = require("../data/users.json");
+            const filename = "./data/users.json";
+            const bcrypt = require("bcrypt");
+
+            /* Register a user */
+            router.post("/register", async (req, res) => {
+                const { email, password } = req.body;
+                const id = { id: helper.getNewId(users) };
+                
+                try {
+                    const user = await helper.findUser(users, email);
+                    if (user) {
+                        console.log("User already exists!");
+                        return res.redirect("login");
+                    }
+                    
+                    // Generate salt
+                    const salt = await bcrypt.genSalt(10);
+                    
+                    // Hash password
+                    const hashedPassword = await bcrypt.hash(password, salt);
+                    
+                    const newUser = {
+                    ...id,
+                    email,
+                    password: hashedPassword,
+                    };
+
+                    await users.push(newUser);
+                    await helper.writeJSONFile(filename, users);
+
+                    res.redirect("login");
+                } catch (err) {
+                    res.status(500).json({ message: err.message });
+                }
+            });
+
+            /* Log in user */
+            router.post("/login", async (req, res) => {
+                const { password, email } = req.body;
+
+                try {
+                    const user = await helper.findUser(users, email);
+
+                    if (!user) {
+                    console.log("User does not exist!");
+                    return res.redirect("login");
+                    }
+
+                    // Compare passwords
+                    const matchedPassword = await bcrypt.compare(password, user.password);
+
+                    if (!matchedPassword) {
+                        console.log("Passwords did not match!");
+                        return res.redirect("login");
+                    }
+                    // return res.status(401).json({
+                    //   token: null,
+                    //   message: "Invalid password",
+                    // });
+                    res.render("profile", { user });
+                } catch (err) {
+                    res.status(500).json({ message: err.message });
+                }
+            });
+
+            router.get("/login", (req, res) => {
+                res.render("login");
+            });
+
+            router.get("/register", (req, res) => {
+                res.render("register");
+            });
+
+            router.get("/profile", (req, res) => {
+                res.render("profile");
+            });
+
+            module.exports = router;
+                        </code>
+                    </pre>
+                    <li>Previous example <i>user.json</i></li>
+                    <pre>
+                        <code>
+            [
+                {
+                    "id":1,
+                    "email":"lucinda90@codecademy.com",
+                    "password":"$2b$10$3euPcmQFCiblsZeEu5s7p.9OVHgeHWFDk9nhMqZ0m/3pd/lhwZgES"
+                },
+                {
+                    "id":2,"email":"enrique10@email.com",
+                    "password":"$2b$10$69SrwAoAUNC5F.gtLEvrNON6VQ5EX89vNqLEqU655Oy9PeT/HRM/a"},
+                {
+                    "id":3,
+                    "email":"lola@codecademy.com",
+                    "password":"$2b$10$9PU0sCJU201C3lO41bsOIu.HRrik7Alv2ZlxwM9A8lGr/clLK6D0m"},
+                {
+                    "id":4,"email":"joan@gmail.com",
+                    "password":"$2b$10$EQSDN0hNs.7TFzQPetYKVerxMpzOLYrP3dp2W82AGXSgUuWU9YuPC"
+                }
+            ]
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>OAuth 2.0</h3>
+            <ul>
+                <li>There are three main types of <strong>API authentication:</strong> HTTP Basic Auth, API Keys, OAuth.</li>
+                <li>Sometimes we don’t have to create a username and password for a new account. Instead, we can
+                sign in with Google, LinkedIn, Twitter, and more. This is possible because of OAuth. 
+                <strong>OAuth</strong> is an authorization framework that provides specific authorization flows 
+                which allow unrelated servers to access authenticated resources without sharing any passwords. 
+                It works by allowing applications to authenticate with third-party services in exchange for an 
+                access token which can be passed with an HTTP request to access protected content.
+                All methods of authorization have advantages and vulnerabilities and OAuth is no exception; however, it remains 
+                a generally secure and convenient way to authenticate yourself on trusted applications.</li>
+                Here're the steps on how it works:</li>
+                <ul>
+                    <li>Redirect user to provider for authorization -> User grants authorization -> Redirect user to application 
+                    -> Exchange for access grant -> Grant access token -> Create connection.</li>
+                </ul>
+                <li><strong>Access Tokens: </strong>Authentication in OAuth is facilitated by the use of access tokens. 
+                Access tokens are used to make API requests on behalf of the user and represent the authorization of a specific
+                application to access specific parts of a user’s data. These API requests are made over HTTPS connections.
+                Access tokens are very short-lived, and they only last anywhere from a few minutes to just hours. Their
+                ephemeral nature limits the amount of time an attacker can use a stolen token.</li>
+                <li><strong>Refresh tokens: </strong>Are longer lived than access tokens and are used by applications to get new access tokens 
+                without prompting the user. Refresh tokens can expire, like access tokens, but they can also be revoked by
+                the authorization server.</li>
+                <li><strong>Grant Types: </strong>OAuth 2.0 grant types, also known as flows, describe multiple ways to 
+                obtain access tokens. Flows involve two main parts: Redirecting the user to the OAuth provider and obtaining 
+                an access token & using the access token to gain restricted access.</li>
+                <ul>
+                    <li><strong>Some OAuth grant types: </strong>Client Credentials Grant; Authorization Code;
+                    Proof Key for Code Exchange (PKCE); Implicit Grant - Deprecated; Device Code Grant;
+                    Resource Owner Password Credential Grant - Deprecated.</li>
+
+                    <li><strong>The Authorization Code Grant</strong> is the most widely used grant for publicly available applications. 
+                    This was the grant type we showed earlier in this article. To use this grant type, the webserver must have the 
+                    capability to store client credentials securely.
+                    This approach uses browser redirection to communicate between the resource server and the authorization server. 
+                    The client will obtain an authorization code and then exchange it for an access token.</li>
+                </ul>
+                <li>The <strong>four OAuth Roles</strong>:</li>
+                <ul>
+                    <li><strong>Resource Owner</strong>: the user who authorizes an application to an account</li>
+                    <li><strong>Resource Server</strong>: the API server that accepts access tokens and verifies their validity</li>
+                    <li><strong>Authorization Server:</strong> the server that issues access tokens</li>
+                    <li><strong>Client:</strong> the application that requests the access tokens</li>
+                </ul>
+                <li><strong>Material on OAuth </strong><a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-oauth-2/cheatsheet" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode43" onclick="showCode('displayCode43', 'showCode43')">Display</button>
+            <div id="displayCode43">
+                <button onclick="closeCode('displayCode43', 'showCode43')">Close</button>
+                <ul>
+                    <li><strong>Implementing OAuth</strong></li>
+                    <ul>
+                        <li><strong>Install:</strong> We will use the oauth2-server module to implement 
+                        an OAuth 2.0 provider in Node.js utilizing 
+                        the client credentials grant type to demonstrate obtaining an access token and using it in request.
+                        The package can be installed in the terminal using npm with the command: <strong><i>npm install oauth2-server</i></strong></li>
+                        <li>From here, we instantiate the oauth2-server module and store it in a variable like below: <strong><i>const OAuth2Server = require('oauth2-server')</i></strong>;</li>
+                        <li>We’ll create an <strong>instance of the OAuth2Server</strong> object and store it in a variable named oauth.
+                        The OAuth2Server object requires a model object which contains functions to access, store, and validate our access tokens. 
+                        We’ll be writing them separately in a file named model.js.</li>
+                        <ul>
+                            <li>OAuth2Server can be supplied with additional options in the constructor. To pass tokens inside the URL, we’ll set the 
+                            <strong>allowBearerTokensInQueryString</strong> attribute to true.</li>
+                            <li>The access token lifetime can also be configured as an option using the <strong>accessTokenLifetime</strong> attribute. 
+                            The lifetime is set in seconds.</li>
+                        </ul>
+                        <pre>
+                            <code>
+                const oauth = new OAuth2Server({
+                    model: require('./model.js'),
+                    allowBearerTokensInQueryString: true,
+                    accessTokenLifetime: 60 * 60
+                })
+                            </code>
+                        </pre>
+                    </ul>
                 </ul>
             </div>
         </div>
