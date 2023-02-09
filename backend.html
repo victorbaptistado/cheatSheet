@@ -2564,6 +2564,16 @@
                     <li><strong>Authorization Server:</strong> the server that issues access tokens</li>
                     <li><strong>Client:</strong> the application that requests the access tokens</li>
                 </ul>
+                <li>OAuth defines <strong>two types of clients:</strong></li>
+                <ul>
+                    <li><strong>Public clients</strong> are NOT able to store credentials securely and 
+                    can only use grant types that do not use their client secret.</li>
+                    <li><strong>Confidential clients</strong> are applications that can be registered to 
+                    an authorization server using credentials. Those credentials, a client ID and a client secret, 
+                    can be secured without exposing them to a third party. They require a backend server to store the credentials. 
+                    A client’s ability to securely store credentials determines which type of OAuth authorization flows should be 
+                    used. More information <a href="https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/" target="_blank">here</a>.</li>
+                </ul>              
                 <li><strong>Material on OAuth </strong><a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-oauth-2/cheatsheet" target="_blank">here</a>.</li>
             </ul>
             <p class="center"><strong>Example:</strong></p>
@@ -2589,6 +2599,8 @@
                         </ul>
                         <pre>
                             <code>
+                //app.js
+
                 const oauth = new OAuth2Server({
                     model: require('./model.js'),
                     allowBearerTokensInQueryString: true,
@@ -2597,6 +2609,357 @@
                             </code>
                         </pre>
                     </ul>
+                    <hr/>
+                    <li><strong>Registering Client to Application</strong></li>
+                    <ul>
+                        <li>We'll implement the <strong>Client Credentials</strong> flow to obtain an access token
+                        for authentication. When a developer registers a client in an OAuth application, they’ll need:</li>
+                        <ul>
+                            <li><strong>A Client ID:</strong> a public identifier for apps that is unique across all clients and the authorization server.</li>
+                            <li><strong>A Client Secret:</strong> a secret key known only to the application and the authorization server.</li>
+                            <li>More about <a href="https://www.oauth.com/oauth2-servers/client-registration/client-id-secret/" target="_blank">here</a>.</li>
+                        </ul>
+                        <li>For our example application, we use an in-memory database defined in db.js. Inside db.js, 
+                        we use modules.exports to create a module to hold our <strong>confidential client 
+                        credentials</strong> and <strong>access tokens</strong>.
+                        We can register an application to the list of confidentialClients in db.js. Inside the module.exports 
+                        object, we create an attribute named <strong>confidentialClients</strong> and set it equal to an array. Within the array,
+                        we create an object with the <i>clientId</i> and <i>clientSecret</i>, and specify 'client_credentials' 
+                        in our array of grant types.</li>
+                        <li>In our database, we’ll create a location to store access tokens. Within the module.exports object, we create another 
+                        property named tokens and set it equal to an empty array.</li>
+                        <pre>
+                            <code>
+                //db.js
+
+                module.exports = {
+                    // Add confidential clients[]
+                    confidentialClients: [{
+                        clientId: 'codecademy',
+                        clientSecret:'codec@demy',
+                        grants: [
+                            'client_credentials'
+                        ]
+                    }],
+                    // Add tokens[]
+                    tokens: []
+                }
+                            </code>
+                        </pre>
+                        <li>OAuth2Server requires certain functions implemented in the model regardless 
+                        of the authorization flow used. The <strong><i>getClient()</i></strong> function is an example of a required model function for all flows. 
+                        The function is used to retrieve a client using a Client ID and/or a Client Secret combination.
+                        The <i>getClient()</i> function takes two arguments: <i>clientId</i> and <i>clientSecret</i>. 
+                        We must write a database query to match 
+                        the provided arguments and its implementation will vary depending on the type of database used. Since we are 
+                        using JavaScript as our in-memory database, we can use the <i>.filter()</i> method to evaluate if the clientId and 
+                        clientSecret match any confidential clients in db.js and return the matching client.</li>
+                        <li>We <strong>iterate over each element</strong> in the confidentialClients array inside db.js. Each element’s clientId
+                        and clientSecret is tested to match against the clientId and clientSecret of the client that is passed 
+                        and will return the client that matches both values in an array. Finally, the <i>getClient()</i> function returns 
+                        the first element in confidentialClients.
+                        Finally, we export the function from model.js so that it can be used from other files. We can do 
+                        this using module.exports object.</li>
+                        <li>The <strong><i>saveToken()</i></strong> function must be implemented for all grant types 
+                        in the model used by OAuth2Server. This function stores the access token as an object to a 
+                        database when an access token is obtained.
+                        The <i>saveToken()</i> function is implemented with three arguments: token, client, and user.
+                        We’ll also export the saveToken() function from models.js using module.exports.</li>
+                        <ul>
+                            <li>The <strong>token.user</strong> is set equal to an object with the username attribute. We set the 
+                            username attribute equal to the username of the passed user object.</li>
+                            <li>The <strong>token.client</strong> equal an object in which the id attribute is equal 
+                            to the passed client’s clientId.</li>
+                            <li>With the token formatted, we can save the token to our database by pushing the token 
+                            to our db.tokens array and returning the token.</li>        
+                        </ul>
+                        <li>Certain grant types have specific functions that must be implemented for them to work. The Client Credentials 
+                        grant type must have the <strong>getUserFromClient()</strong> function implemented to be used.
+                        The <i>getUserFromClient()</i> function is invoked to retrieve the user associated with the specified 
+                        client. We are not using a user in our application so we can return an empty object. However, 
+                        leaving out this function declaration will throw an error when using the Client Credentials 
+                        grant type. Finally, we export the function from model.js so that it can be used from other files. 
+                        We can do this using <i>module.exports</i> object.</li>
+                        <pre>
+                            <code>
+                //model.js
+
+                let db = require('./db.js');
+
+                // getClient() function
+                const getClient = (clientId, clientSecret) => {
+                        let confidentialClients = db.confidentialClients.filter((client) => {
+                        return client.clientId === clientId && client.clientSecret === clientSecret
+                    });
+                    return confidentialClients[0];
+                }
+                
+                // saveToken() function
+                const saveToken = (token, client, user) => {
+                        token.client = {
+                        id: client.clientId
+                    }
+                    token.user = {
+                        username: user.username
+                    }
+                    db.tokens.push(token);
+                    return token;
+                }
+
+                const getUserFromClient = (client) => {
+                    return {}
+                  }
+                
+                // Export saveToken() here
+                module.exports = {
+                    getClient: getClient,
+                    saveToken: saveToken,
+                    getUserFromClient: getUserFromClient
+                }
+                            </code>
+                        </pre>
+                        <li>Now that our model functions for generating and saving access tokens are implemented 
+                        in model.js, we need to create a callback function to handle obtaining the access token whenever 
+                        a URL is requested in our application. Within app.js, we create a function named <strong>obtainToken()</strong> 
+                        that takes the HTTP request and HTTP response as arguments—req and res.
+                        <li>Inside <i>obtainToken()</i>, we create a new variable named request and set it to a new instance 
+                        of <i>OAuth2Server.Request()</i>, passing the HTTP request, req, as the argument.
+                        We’ll also create a new variable named response and set it to a new instance of OAuth2Server.Response(), 
+                        taking in res as the argument.</li>
+                        
+                        <li>The <i>.token()</i> method of the oauth object returns the access token. The method passes the OAuth2Server‘s 
+                        request and response stored in response and request variables. We use the <i>.then()</i> method to return a promise. 
+                        If the token method is successful, we will send the access token back to the client using the <i>.json()</i> Express method.                        
+                        We’ll chain the <i>.catch()</i> method to handle any errors if the <i>.token()</i> method fails. If the <i>.token()</i> method returns 
+                        an error code or an HTTP 500 status, the error can be sent back to the client using the <i>.json()</i> method.</li>
+                        
+                        <li>Note, must declare our function expressions before they can be used. To make use of our 
+                        <i>obtainToken()</i> function, we can define a new route and pass <i>obtainToken()</i> as a callback 
+                        function. We use the <i>.all()</i> method to handle all types of HTTP requests since we will 
+                        eventually use a POST request on the route. The route name can be anything we’d like—we’ll 
+                        use /auth for our example.
+                        Now the client can make an HTTP request with the Client Secret to /auth and receive an access token.</li>
+                        <pre>
+                            <code>
+                //app.js
+
+                // btainToken()
+                const obtainToken = (req, res) => {
+                    let request = new OAuth2Server.Request(req);
+                    let response = new OAuth2Server.Response(res);
+                    return oauth.token(request, response)
+                    .then((token) => {
+                        res.json(token);
+                    }).catch((err) => {res.json(err)})
+                }
+                
+                // '/auth' route
+                app.all('/auth', obtainToken);                
+                            </code>
+                        </pre>
+                        <li><strong>getAccessToken(): </strong>
+                        Now that we’ve written the code to obtain an access token, <u>we can use it to restrict access 
+                        to content unless a user is authenticated with a valid access token</u>. Inside <i>model.js</i>, we implement 
+                        the <i>getAccessToken()</i> function to retrieve existing tokens that were previously saved when the 
+                        <i>saveToken()</i> function is invoked.
+                        
+                        The <i>getAccessToken()</i> function is required when the <i>.authenticate()</i> method is used on an 
+                        OAuth2Server instance. <i>getAccessToken()</i> is declared with one parameter—accessToken.
+                        
+                        When the function is invoked the accessToken is checked against the tokens stored inside the db.js to 
+                        see if there is a match. We can use JavaScript’s <i>.filter()</i> method to each token in the database against 
+                        the access token that is passed. If there is a match, the access token can be returned.</li>
+                        <li>The <i>getAccessToken()</i> function expression is called with an access token as an argument. 
+                        The <i>.filter()</i> method is used to check each token saved in the tokens array in the database 
+                        to match the access token passed to the function. Finally, we return the matching access token from the array.
+                        We export the function from <i>model.js</i> so that it can be used from other files. We can do this using module.exports object.</li>
+                        <pre>
+                            <code>
+                //model.js
+
+                const getAccessToken = (accessToken) => {
+                let tokens = db.tokens.filter((savedToken)=>{
+                    return savedToken.accessToken === accessToken;
+                })
+                return tokens[0];
+                }
+                            </code>
+                        </pre>
+                        <li><strong>module.export</strong> will look like this</li>
+                        <pre>
+                            <code>
+                module.exports = {
+                    getClient: getClient,
+                    saveTokens: saveTokens,
+                    getUserFromClient: getUserFromClient,
+                    getAccessToken: getAccessToken
+                }
+                            </code>
+                        </pre>
+                        <li><strong>Authentication Middleware: </strong>
+                        With the model function for checking access tokens implemented, let’s create a middleware function 
+                        to handle authenticating access tokens inside our application. Inside <i>app.js</i>, we will create a function 
+                        named <i>authenticateRequest()</i> that takes three arguments: <i>req</i>, <i>res</i>, <i>next</i>.
+
+                        Inside the function, we create a new variable named request and set it to a new instance of 
+                        <i>OAuth2Server.Request()</i>, taking in the HTTP request, req, as the argument.
+                        We’ll create a new variable named response and set it to a new instance of <i>OAuth2Server.Response()</i>, 
+                        passing in the HTTP response, res.
+
+                        We then return <i>.authenticate()</i> method, that is provided by the OAuth2Server object, on oauth, 
+                        passing in response and request. The method returns a Promise that resolves to the access token object 
+                        returned from the <i>.getAccessToken()</i> method we defined in model.js. We’ll use a promise chain to handle the flow.
+                        We use the <i>.then()</i> method, and if the access token is valid, we can call the <i>next()</i> function to call the 
+                        next function. We’ll chain the .catch() method to handle an error or if the access token is invalid. 
+                        Inside <i>.catch()</i> method, we can send a response back to the client using the </i>.send()</i> method.
+                        Finally, we can add <i>authenticateRequest</i> as a middleware function to a route to restrict access. 
+                        Now the client must include the bearer token in the header when making a request to the route to 
+                        gain authenticated access.</li>
+                        <pre>
+                            <code>
+            //app.js
+                                
+            const authenticateRequest = (req, res, next) => {
+            
+            let request = new OAuth2Server.Request(req);
+            let response = new OAuth2Server.Response(res);
+            
+            return oauth.authenticate(request, response)
+                .then(()=>{
+                    next();
+                })
+                .catch((err) => {
+                    res.send('You are not allowed')
+                })
+            }
+                            </code>
+                        </pre>
+                        <li><strong>authenticateRequest as middleware</strong> to '/secret'</li>
+                        <pre>
+                            <code>
+            // app.js                    
+                        
+            app.get('/secret', authenticateRequest, (req, res)=>{
+                res.send('Welcome to the secret area.');
+            })
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Full</strong> <i>app.js</i> implementation:</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const path = require('path');
+            const OAuth2Server = require('oauth2-server');
+
+            const app = express();
+
+            app.use(express.json());
+            app.use(express.urlencoded({extended: true}));
+
+            const PORT = 4001;
+
+            const oauth = new OAuth2Server({
+                model: require("./model"),
+                allowBearerTokensInQueryString: true
+            })
+
+            const authenticateRequest = (req, res, next) => {
+            
+            let request = new OAuth2Server.Request(req);
+            let response = new OAuth2Server.Response(res);
+            
+            return oauth.authenticate(request, response)
+                .then(()=>{
+                    next();
+                })
+                .catch((err) => {
+                    res.send('You are not allowed')
+                })
+            }
+
+            const obtainToken = (req, res) => {
+                let request = new OAuth2Server.Request(req);
+                let response = new OAuth2Server.Response(res);
+
+                return oauth.token(request, response)
+                .then((token) => {
+                    res.json(token);
+                })
+                .catch((err) => {
+                    res.json(err);
+                })
+            }
+
+            app.all('/auth', obtainToken);
+
+            app.get('/', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/home.html'));
+            })
+            app.get('/login', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/login.html'));
+            })
+
+            app.get('/public', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/allowed.html'));
+            })
+
+            app.get('/secret', authenticateRequest, (req, res)=>{
+                res.send('Welcome to the secret area.');
+            })
+
+            app.listen(PORT, ()=>console.log(`Listening on port ${PORT}`));
+
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Testing Endpoints with HTTP</strong></li>
+                    We’ve implemented the Client Credentials OAuth 2.0 flow in our application! The handling 
+                    of access tokens is done with HTTP requests. We can make an HTTP POST request to the /auth 
+                    route to obtain an access token.
+                    <pre>
+                        <code>
+                    POST http://localhost:4001/auth
+                    Content-Type: application/x-www-form-urlencoded
+                    Authorization: Basic Y29kZWNhZGVteTpjb2RlY0BkZW15
+                    
+                    grant_type=client_credentials
+                        </code>
+                    </pre>
+                    <li>In the HTTP header, we set Authorization to Basic and the base64 encoded Client ID and Client 
+                    Secret. In the POST request data, we provide grant_type=client_credentials. The server will 
+                    respond with an access token that looks like this:</li>
+                    <pre>
+                        <code>
+                    {
+                        "accessToken":" "<access token>",
+                        "accessTokenExpiresAt":"2021-06-17T01:02:37.272Z",
+                        "client": {
+                            "id": "codecademy"},
+                            "user":{}
+                        }
+                    }
+                        </code>
+                    </pre>
+                    <li>To use the access token while requesting authenticated content, we pass the bearer token in 
+                    the Authentication request header, replacing < Access Token > with the token returned from the 
+                    request to /auth like so: < /Access >
+                    <pre>
+                        <code>
+                    GET http://localhost:4001/secret
+                    Authorization: Bearer < Access Token >
+                        </code>
+                    </pre>
+                    <li><strong>In resume: </strong>
+                    On the /login page, the login button sends a POST request to /auth with the Authorization header 
+                    already populated with the Client ID. When the server receives the request, the Client ID is passed 
+                    to the <i>obtainToken()</i> callback function where the <i>.token()</i> method is called and returns the access 
+                    token to the client.
+                    Now, when we click the link to /secret the client passes the access token as a URL parameter, and the server 
+                    calls the <i>authorizeHandler()</i> callback function where the <i>.authorize()</i> method is called to verify whether 
+                    the access token is valid. If the access token is valid, then secret.html is sent to the client, otherwise 
+                    <i>error.html</i> is sent.</li>
                 </ul>
             </div>
         </div>
