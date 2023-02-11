@@ -1644,6 +1644,8 @@
                     <li><strong>Sessions Authentication</strong> & <strong>Sessions Access</strong></li>
                     <pre>
                         <code>
+                //app.js
+
                 const express = require("express");
                 const app = express();
                 const session = require("express-session");
@@ -2189,24 +2191,25 @@
                 
                 // Passport local strategy below:
                 passport.use(
-                  new LocalStrategy(function (username, password, cb) {
-                    db.users.findByUsername(username, function (err, user) {
-                        // There was an error in the database lookup
-                        if (err) {
-                            return cb(err);
-                        }
-                        // A user was NOT found and there was NO error
-                        if (!user) {
-                            return cb(null, false);
-                        }
-                        // A user was found, but the password was NOT valid
-                        if (user.password != password) {
-                            return cb(null, false);
-                        }
-                        // There was no error, the user and password are valid
-                        return cb(null, user);
-                    });
-                  })
+                    //cb is callback
+                    new LocalStrategy(function (username, password, cb) {
+                        db.users.findByUsername(username, function (err, user) {
+                            // There was an error in the database lookup
+                            if (err) {
+                                return cb(err);
+                            }
+                            // A user was NOT found and there was NO error
+                            if (!user) {
+                                return cb(null, false);
+                            }
+                            // A user was found, but the password was NOT valid
+                            if (user.password != password) {
+                                return cb(null, false);
+                            }
+                            // There was no error, the user and password are valid
+                            return cb(null, user);
+                        });
+                    })
                 );
                 
                 // Logout handler below:
@@ -2543,14 +2546,16 @@
                 <li><strong>Refresh tokens: </strong>Are longer lived than access tokens and are used by applications to get new access tokens 
                 without prompting the user. Refresh tokens can expire, like access tokens, but they can also be revoked by
                 the authorization server.</li>
-                <li><strong>Grant Types: </strong>OAuth 2.0 grant types, also known as flows, describe multiple ways to 
+                <li><strong>Grant Types: </strong>OAuth 2.0 grant types, <u>also known as flows</u>, describe multiple ways to 
                 obtain access tokens. Flows involve two main parts: Redirecting the user to the OAuth provider and obtaining 
                 an access token & using the access token to gain restricted access.</li>
                 <ul>
-                    <li><strong>Some OAuth grant types: </strong>Client Credentials Grant; Authorization Code;
+                    <li>Some <strong>OAuth grant types: </strong>Client Credentials Grant; Authorization Code;
                     Proof Key for Code Exchange (PKCE); Implicit Grant - Deprecated; Device Code Grant;
                     Resource Owner Password Credential Grant - Deprecated.</li>
-
+                    <li><strong>In the Client Credentials flow</strong>, permissions are granted directly to the application itself by 
+                    an administrator. When the app presents a token to a resource, the resource enforces that the app 
+                    itself has authorization to perform an action since there is no user involved in the authentication</li>
                     <li><strong>The Authorization Code Grant</strong> is the most widely used grant for publicly available applications. 
                     This was the grant type we showed earlier in this article. To use this grant type, the webserver must have the 
                     capability to store client credentials securely.
@@ -2559,10 +2564,10 @@
                 </ul>
                 <li>The <strong>four OAuth Roles</strong>:</li>
                 <ul>
-                    <li><strong>Resource Owner</strong>: the user who authorizes an application to an account</li>
-                    <li><strong>Resource Server</strong>: the API server that accepts access tokens and verifies their validity</li>
-                    <li><strong>Authorization Server:</strong> the server that issues access tokens</li>
-                    <li><strong>Client:</strong> the application that requests the access tokens</li>
+                    <li><strong>Resource Owner</strong>: the user who authorizes an application to an account (user);</li>
+                    <li><strong>Resource Server</strong>: the API server that accepts access tokens and verifies their validity (server side, where resource relies);</li>
+                    <li><strong>Authorization Server:</strong> the server that issues access tokens (auth server, like google, github, facebook...);</li>
+                    <li><strong>Client:</strong> the application that requests the access tokens (client side).</li>
                 </ul>
                 <li>OAuth defines <strong>two types of clients:</strong></li>
                 <ul>
@@ -2575,6 +2580,7 @@
                     used. More information <a href="https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/" target="_blank">here</a>.</li>
                 </ul>              
                 <li><strong>Material on OAuth </strong><a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-oauth-2/cheatsheet" target="_blank">here</a>.</li>
+                <li><strong>Download</strong> github-oauth-app project <a href="https://static-assets.codecademy.com/content/paths/web-security/oauth2/github-oauth-app.zip" target="_blank">here</a>.</li>
             </ul>
             <p class="center"><strong>Example:</strong></p>
             <button id="showCode43" onclick="showCode('displayCode43', 'showCode43')">Display</button>
@@ -2962,6 +2968,325 @@
                     <i>error.html</i> is sent.</li>
                 </ul>
             </div>
+        </div>
+        <div class="styleGuide">
+            <h2>Test-driven development (TDD)</h2>
+            <ul>
+                <li><strong>TDD: </strong> 
+                When software engineers and development teams build new features, they’re faced with challenging 
+                questions along the way. Where do we start development? (Do I start writing HTML, or adding server implementation?).
+                What is the most efficient implementation? (Is X implementation faster than Y implementation?).
+                How will the new feature impact our existing code? (Will new code introduce a bug?).
+                <strong>TDD</strong> is the process of writing tests before implementation code. You use the 
+                feedback from your tests to inform the implementation of a feature or outcome.</li>
+                <li><strong>Red, Green, Refactor approach:</strong> A common approach to TDD is the <strong>red, green, refactor cycle</strong>. When you write a test before the implementation 
+                exists you start “in the <strong>red</strong>” phase, because your test fails and outputs a red error message. 
+                Next, you write the minimum implementation code to get your test to pass. This puts you “in the <strong>green</strong>” phase, 
+                because your test passes and outputs a green message.
+                Once you are in the green, you should consider whether your implementation is the best or most efficient 
+                approach. If you think your code could be written more efficiently or cleaner, then you enter the 
+                <strong>refactor</strong> phase. You can refactor your code with confidence, because you have tests that cover the 
+                expected behavior.</li>
+                <li><strong>Outside-in TDD:</strong> Is an approach that developers use to build full-stack 
+                web applications. It leverages the same red, green, refactor steps that we covered above, but with one caveat — a 
+                failing test does not always inform you to write new implementation code. Instead, it may require that you implement 
+                new functionality at a different level. </li>
+                <ul>
+                    <li>You start at the top of the stack, the view, and write 
+                    tests as you work your way towards the database layer. If a test pushes you to a lower level, 
+                    you restart your red, green, refactor cycle by writing a new test. This test informs the 
+                    implementation at your new layer. You continue the TDD cycle at this lower level until: 
+                    You need to drop another layer to implement the desired behavior /
+                    You have addressed the reason for dropping to the current layer.</li>
+                    <li>Once you address the reason for dropping a layer, you can start working your way back up the <strong>testing pyramid</strong>. 
+                    If you’re in the model/database layer, you step up to the server, and run your server tests to see if you get 
+                    a different response. The response should be one of the following:</li>
+                    <ul>
+                        <li><strong>The test passes</strong> — you can start another red, green, refactor cycle at the server level or step up to the view layer.</li>
+                        <li><strong>The test fails</strong> — the server test that pushed you to the model layer fails, but for a different reason.
+                        This is common, and indicates that you’re making progress. This failure may indicate that you need to write 
+                        additional implementation at the server level, or drop back to the model.</li>
+                    </ul>
+                </ul>
+                <p class="center"><strong>Outside-in TDD example:</strong></p>
+                <button id="showCode44" onclick="showCode('displayCode44', 'showCode44')">Display</button>
+                <div id="displayCode44">
+                    <button onclick="closeCode('displayCode44', 'showCode44')">Close</button>
+                    <li><strong>Outside-in Example</strong></li>
+                    <ul>
+                        <li>We’re going to use the following as an example of how to develop a new feature with 
+                        outside-in TDD: You have a movie blog and want to develop a feature that renders user comments 
+                        under your blog posts. The application should render no more than ten comments when a user lands
+                        on the web page. The application should present the comments in reverse chronological order 
+                        (i.e. the most recent comment should be first).
+                        Let’s assume the web application generates HTML at the server — any updates to the view require 
+                        implementation at the server level.</li>
+                        <li><strong>Feature Testing: </strong>
+                        The first step is to write a feature test that checks if your web application is rendering 
+                        comments to the browser. Let’s use the following outside-in TDD approach:</li>
+                        <ol>
+                            <li>Write a test that checks for the presence of a comment under a blog post.</li>
+                            <li>The test fails, because your web application does not render comments.</li>
+                            <li>Because your web application generates HTML at the server layer, you drop to the server to address the error.
+                            Although we could continue to write feature tests to check for the number of rendered comments, 
+                            we know server tests are cheaper, so we can test those details when we drop a layer.</li>
+                        </ol>
+                        <li><strong>Server Testing: </strong>
+                        At the server layer, we start by writing a test that informs the implementation of our 
+                        -generated HTML. Because our web application renders unique comments from the database, 
+                        we want to check that the server-generated HTML is dynamic.</li>
+                        <ol>
+                            <li>Write a test that checks for the presence of a dynamically generated comment element in the server HTML.</li>
+                            <li>The test fails, so we add implementation for a server-generated comment.</li>
+                            <li>Once we’re in the green and consider refactoring, we want to write a test that calls a method at the model 
+                            layer, let’s call it <i>Comment.latest()</i>. At the server layer, we’ll check if the method returns comments from the database.</li>
+                            <li>Because this method doesn’t exist, we must drop to the model/database layer.</li>
+                        </ol>
+                        <li><strong>Model and Database Testing:</strong>
+                        At the model layer, we start by writing a test that informs the implementation of our Comment.latest method. This method requires that 
+                        you interface with the web application’s database.</li>
+                        <ol>
+                            <li>Write a test that checks if the Comment.latest method returns ten comments when the database has eleven comments.</li>
+                            <li>Implement the Comment.latest method to return ten comments, so the test is green.</li>
+                            <li>Once you’ve considered refactoring, write a test that checks whether the method returns the last ten comments in reverse chronological order.</li>
+                            <li>Implement and refactor.</li>
+                            <li>Write a test that checks if Comment.latest() returns an empty array when your database is empty.</li>
+                            <li>Implement and refactor.</li>
+                            <li>Write a test that checks if Comment.latest returns the correct number and order of comments when your database has between zero and ten comments in it.</li>
+                            <li>Implement and refactor.</li>
+                        </ol>
+                        <li><strong>Taking Stock:</strong> At this point, your entire test suite should be green. You have written seven new tests, and the implementation code to make them pass — your web application 
+                        should render the last ten comments from your database in reverse chronological order.
+                        Let’s take stock of our seven new tests:</li>
+                        <ol>
+                            <li><strong>Feature:</strong> Comments are rendered to a user’s browser.</li>
+                            <li><strong>Server:</strong> The server generates an HTML field for comments.</li>
+                            <li><strong>Server:</strong> The server has access to ten comments from the database.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns ten comments from your database.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns the last ten comments in your database in reverse chronological order.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns an empty array when your database has zero comments.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns all of the comments when your database has between zero and ten comments.</li>
+                        </ol>    
+                        <li>Once your feature is working as expected, you should consider how your new tests fit into the broader test suite. The rest of the test suite could have few tests, 
+                        or over one hundred. It’s time to refactor.</li>
+                        <li><strong>Refactoring Your Test Suite: </strong>
+                        The way you approach refactoring will vary based on the size and types of tests in your suite. One guiding light in refactoring is to optimize the suite for confidence and speed. Because we used TDD to implement our comment feature, 
+                        we should feel confident that our comments are working as expected, and the feature is fully covered.
+                        Consider the questions below when deciding how to refactor your suite:</li>
+                        <ul>
+                            <li>How much longer does it take to run my test suite with these new tests?</li>
+                            <li>Is the additional amount of time that your test suite takes to run acceptable?</li>
+                            <li>Is there overlap between any of my new tests?</li>
+                            <li>Is there overlap between my new tests and existing tests?</li>
+                        </ul>   
+                        <li>Let’s take a moment to consider a few of these questions in the context of our test suite.</li>
+                        <i>How much longer does it take to run my test suite with these new tests?</i>
+                        <ul>
+                            <li>You can calculate this value by running your test suite before and after writing the new tests, 
+                            and calculate the difference. Seven new tests, like the ones above may only add a few seconds to your suite. 
+                            Let’s use our next question to think about how you can evaluate what an acceptable amount of time may be.</li>
+                        </ul>
+                        <i>Is the additional amount of time that your test suite takes to run acceptable?</i>
+                        <ul>
+                            <li>Although a few seconds may seem acceptable, this time can add up as your suite grows. 
+                            if you’re comfortable with the additional time, you should always consider whether you 
+                            can make speed improvements that don’t impact confidence.</li>
+                        </ul>
+                        <i>Is there overlap between any of my new tests?</i>
+                        <ul>
+                            <li>You should consider if any new tests, especially in the feature or server level, can be 
+                            deleted without impacting your confidence that the comments feature works as expected. 
+                            For example, our first server test checks if the server generates an HTML field for comments. 
+                            Your feature-level test checks the same functionality — it also takes longer, but provides a 
+                            higher level of confidence. We decide to delete the server test for reasons we will investigate 
+                            when we consider our next question.</li>
+                        </ul>
+                        <i>Is there overlap between my new tests and existing tests?</i>
+                        <ul>
+                            <li>Next, you should look outside your seven (now six) new tests to consider the coverage offered 
+                            by the other tests in your suite. Often, your test suite will have a feature test that checks 
+                            whether the web page renders as expected — this is usually good enough coverage for most new 
+                            features. Given the cost of feature-level tests, and the coverage of your lower-level tests, 
+                            it often makes sense to delete the new feature-level test.</li>
+                        </ul>
+                    </ul>
+                </div>
+                <li><strong>Headless browser testing: </strong>
+                Headless testing is a way of running browser UI tests without the head, which in this case means that there’s no 
+                browser UI, no GUI of any sorts. This is useful since when running tests, especially in a CI environment, there is 
+                nobody “watching” the visuals, so there is no need to have the extra overhead of the browser GUI.
+                One of the biggest reasons for using a headless browser/carrying out headless testing is performance, since it lets 
+                you run tests more quickly in a real browser environment. 
+                <strong>More about it</strong> <a href="https://blog.logrocket.com/introduction-to-headless-browser-testing-44b82310b27c/" target="_blank">here</a>.
+                <hr/>
+                <h3><strong>Outside-in TDD approach</strong></h3>
+                <li><strong>Feature Test Toolbelt: </strong>To write the most effective feature tests, we are going to 
+                employ a few additional tools. These tools are meant to support JavaScript testing. We will cover their 
+                uses in the scope of building a feature test that drives implementation.
+                <strong>Video implementation</strong> <a href="https://www.youtube.com/watch?v=eGcPoUfm6Ow&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&feature=emb_imp_woyt" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>Chai: </strong>
+                    Node.js has a default assertion library that provides enough functionality to write basic test code. The Chai testing library extends the types of assertions we can make.
+                    Chai is an assertion library for Node.js and browsers that can be paired with any JavaScript testing framework. <strong>Documentation</strong> <a href="https://www.chaijs.com/" target="_blank">here</a>.</li>
+                    <li><strong>PhantomJS: </strong>Is a headless browser scriptable with a JavaScript API, which allows us to write tests that mimic user interaction and then evaluate the results. It does not require us to render the application in a browser.
+                    A browser runs “headless” when it doesn’t render anything to the screen, but runs in the background. <strong>Documentation</strong> <a href="https://phantomjs.org/documentation/" target="_blank">here</a>.</li>
+                    <li><strong>WebdriverI/O: </strong>
+                    WebdriverIO provides methods that allow us to programmatically interact with the user-facing elements 
+                    of our app in the headless browser that PhantomJS runs. <strong>Documentation</strong> <a href="https://webdriver.io/docs/why-webdriverio/" target="_blank">here</a>.</li>
+                    <li><strong>Toolbelt High-Level Summary: </strong>
+                    Phantom allows us to run an instance of a headless browser so you can run tests that mimic user 
+                    interaction with a web application. WebdriverIO provides the methods to interact with browser values 
+                    programmatically. We can make assertions against these tests using the Chai assertion library.</li>
+                </ul>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode45" onclick="showCode('displayCode45', 'showCode45')">Display</button>
+            <div id="displayCode45">
+                <button onclick="closeCode('displayCode45', 'showCode45')">Close</button>
+                <li><strong>Feature Test I: </strong>
+                Feature tests exercise behavior by simulating a user navigating the application in a web browser.
+                Imagine we wanted to create a simple web-based poetry writing application.
+                The first feature test we want to write is to check our application’s empty state. 
+                The functionality we want to test is:</li>
+                <ul>
+                    <li>When a user visits the homepage, the poems section is empty.</li>
+                    <li>We want to make sure that when there are no poems in the database, there are no poems rendered on the homepage. This is the application’s empty state.</li>
+                </ul>
+                <li>The term ‘root’, refers to our application’s entry point, which in this example is the home page 
+                that users will visit in their browser.</li>
+                <li>Next, we add an it block to describe the behavior we want to test in our app.
+                When a user visits the root of our app, they should have a blank page on which to write their own poem.</li>
+                <li><strong>The Plumbing:</strong>
+                Next, we reach for our feature testing toolbelt. We start by to using the global browser variable
+                that is provided by WebdriverI/O.
+                The browser variable is powerful because it gives us access to the browser that Phantom 
+                is running in the background. We can simulate a user interacting with our website by calling 
+                different methods on the global browser variable in our test suite.
+                For example, we can use browser.url() to simulate a user visiting the home page of our application, 
+                which is the first behavior we want to test.
+                The .url method navigates to the URL that is passed to it as an argument. The following line of code
+                would navigate to the Codecademy website in the Phantom browser.
+                In the case of our poetry web app, we will pass in '/' as the argument, which will point the browser to the root file of our project, which in this case is our index.html.</li>
+                <li><strong>Assert: </strong>
+                The last thing our test needs is an assert statement to verify that the behavior we 
+                expect is equal to the actual behavior of our code. We want to make sure our app is in an empty state.
+                We can write a test for this behavior by deciding that poems will be listed in an HTML element 
+                with an id attribute set to poems. Then, write an assert statement to verify that the element with the ID poems is empty.
+                We can do this using the Chai assert.equal method, which evaluates if the two arguments are equal.
+                Because we will render the poetry onto the page as text, we can evaluate the contents of the HTML 
+                element as a string. The .getText method, from WebdriverI/O, gets the text content from the selected DOM element.
+                Here we are using browser.getText() to evaluate if the text in the element with the ID poems is equal 
+                to an empty string. Our final code for this feature test would look like this:                            
+                <pre>
+                    <code>
+            describe('User visits root', () => {
+                describe('without existing poems', () => {
+                    it('page starts blank', () => {
+                    browser.url('/');
+                
+                    assert.equal(browser.getText('#poems'), '');
+                    });
+                });
+            });              
+                    </code>
+                </pre>
+                <li>index.js should be, so test <strong>passes</strong>:</li>
+                <pre>
+                    <code>
+                    < section id="poems" >< /section >
+                    </code>
+                </pre>
+                <hr/>
+                <li><strong>Feature Test II: </strong>Now we want to write a test to check if the application saves 
+                the title and text of a user’s poem when they press the submit button.
+                The functionality we want to test is:</li>
+                <ol>
+                    <li>The user enters text into a text input element (the poem).</li>
+                    <li>The user enters text into a second text input element (the title of the poem).</li>
+                    <li>The user presses a submit button</li>
+                </ol>
+                <li>Next, we want to write the setup, exercise, and verification phases of our test.
+                In the setup phase for this test, we create variables to represent a user’s input
+                to the title and poem fields on the home page. The second test will look like this:</li>
+                <li>The next step for our poetry web app is to use our browser variable for the exercise phase of the test.
+                First, we will set the URL of the browser to go to the root of our project using the .url method.
+                Next, we will use the .setValue method, which sends a sequence of keystrokes to an element, based 
+                on a string argument.
+                We will use .setValue() to mimic a user entering the title and poem into the corresponding HTML 
+                input elements at the root of our web app.
+                The first argument passed to .setValue() is the CSS selector that references an HTML element, and the 
+                second argument is the value you want to assign that element.</li>
+                <pre>
+                    <code>
+            browser.setValue('input[id=title]', title);
+            browser.setValue('textarea[id=poem]', poem);
+                    </code>
+                </pre>
+                <li>In the example above, a text input with the ID of title will be set to a value of title. Also, the 
+                textarea with ID poem will be set to the value poem. The variables referenced here are the ones we 
+                created in the setup phase.
+                To complete the exercise phase of our test we would use the .click method to mimic a user clicking
+                on a submit button. browser.click('input[type=submit]');
+                Now that we have programmed the behavior we want to test in the exercise phase, we will write the 
+                verification phase of our test. We will compare the actual results of exercising the code with the 
+                expected results.
+                In the case of our poetry app, we want to verify that once a user submits a poem, the section of the 
+                app’s webpage that we have decided will display the poems includes that poem.
+                We have created that element already to make our first feature test pass. It is the following line 
+                of code in our index.html file:</li>
+                <pre>
+                    <code>
+                < section id="poems" >< /section >
+                    </code>
+                </pre>
+                <li>To add an assert statement to evaluate the behavior of our feature, we will use the browser 
+                variable, and .getText() to return the text contents of the element, with the id poem.
+                The Chai Assertion Library allows us to use the .include method to check if the string that is returned
+                from .getText() includes the substrings of the title and poem that the user has submitted:
+                assert.include(browser.getText('#poems'), title);
+                assert.include(browser.getText('#poems'), poem);
+                In both assert statements the first argument we pass to .include() is the function we created above it.</li>
+                <pre>
+                    <code>
+            describe('demo poetry web app', () => { 
+                it('saves the user poem and title', () => {
+                    // Setup
+                    const title = 'Words Birth Worlds';
+                    const poem = 'Our words are marvelous weapons with which we could behead the sun';
+                    // Exercise
+                    browser.url('/');
+                    browser.setValue('input[id=title]', title);
+                    browser.setValue('textarea[id=poem]', poem);
+                    browser.click('input[type=submit]');
+                    // Verify
+                    assert.include(browser.getText('#poems'), title);
+                    assert.include(browser.getText('#poems'), poem);
+                });
+            });
+                    </code>
+                </pre>
+                <li>On <strong>index.js:</strong></li>
+                <pre>
+                    <code>
+
+                < label for="title" >Title< /label >
+                < input id="title" >
+                    
+                < label for="poem" >Your poem:< /label >
+                < textarea id="poem" >< /textarea >
+                    
+                < input type="submit" >
+                    </code>
+                </pre>
+                <li>This will run an error. While this error message looks similar to the ones before, 
+                it is a different type of error message, and it signals the need for a shift in our TDD process.
+                What’s different here is that the failure comes from the verification phase instead of the exercise 
+                phase. While this isn’t always the case, that means that we’ve changed the implementation code enough 
+                to get to the part of the test where we’re specifying behavior, not just the existence of elements.                  
+                The kind of test we need to write in response to this error will force us to drop levels in the TDD 
+                Testing Pyramid.</li>
+            </div>
+            <li><strong>Server Testing Stack</strong></li>
         </div>
     </body>
 </html>
