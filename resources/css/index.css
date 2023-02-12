@@ -114,7 +114,8 @@ hr{
 #displayCode33, #displayCode34, #displayCode35, #displayCode36,
 #displayCode37, #displayCode38, #displayCode39, #displayCode40,
 #displayCode41, #displayCode42, #displayCode43, #displayCode44,
-#displayCode45 {
+#displayCode45, #displayCode46, #displayCode47, #displayCode48,
+#displayCode49 {
     display: none;
     justify-content: right;
 }

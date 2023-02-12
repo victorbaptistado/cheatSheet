@@ -32,8 +32,11 @@
                     <ul>
                         <li>To <strong>run a program</strong> with node <i>$ node myProgram.js</i></li>
                     </ul>
-                <li>Codecademy Material <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
-                <li>Node.js Documentation <a href="https://nodejs.org/en/docs/" target="_blank">here</a>.</li>
+                <li><strong>Codecademy Material</strong> <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-introduction-to-back-end/modules/wdcp-22-back-end-javascript-with-node-js/cheatsheet" target="_blank">here</a></li>
+                <li><strong>Node.js Documentation</strong> <a href="https://nodejs.org/en/docs/" target="_blank">here</a>.</li>
+                <li><strong>nodemon</strong> is a tool that helps develop Node.js based applications by automatically 
+                restarting the node application when file changes in the directory are detected. Documentation
+                <a href="https://www.npmjs.com/package/nodemon" target="_blank">here</a></li>
             </ul>
             <hr/>
             <h3>REPL</h3>
@@ -593,6 +596,7 @@
                 requests were handled. Any res.send() has by default sent a 200 OK status code.
                 The res object has a <i>.status()</i> method to allow us to set the status code,
                 and other methods like .send() can be chained from it.</li>
+                <li><strong>Glossary of status code </strong><a href="https://www.webfx.com/web-development/glossary/http-status-codes/" target="_blank">here</a>.</li>
                 <p class="center"><strong>Example:</strong></p>
                 <button id="showCode34" onclick="showCode('displayCode34', 'showCode34')">Display</button>
                 <div id="displayCode34">
@@ -3139,7 +3143,7 @@
                     programmatically. We can make assertions against these tests using the Chai assertion library.</li>
                 </ul>
             </ul>
-            <p class="center"><strong>Example:</strong></p>
+            <p class="center"><strong>Feature Test Example:</strong></p>
             <button id="showCode45" onclick="showCode('displayCode45', 'showCode45')">Display</button>
             <div id="displayCode45">
                 <button onclick="closeCode('displayCode45', 'showCode45')">Close</button>
@@ -3286,7 +3290,679 @@
                 The kind of test we need to write in response to this error will force us to drop levels in the TDD 
                 Testing Pyramid.</li>
             </div>
-            <li><strong>Server Testing Stack</strong></li>
+            <ul>
+                <li><strong>Server Testing Stack: </strong>
+                Server tests are used to test the server response only, not any front-end rendering of code or user interactions. 
+                We “disconnect” the browser and interact directly with the server using requests. The tests define the expected 
+                behavior of the interactions and check the actual responses against what we expect.
+                Server tests are commonly used to test API responses, but we also use server tests for any server response 
+                that our application relies on. This can include checking status codes and error messages. <strong>Video Implementation</strong>
+                <a href="https://www.youtube.com/watch?v=2E88EjDJgkw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                What we use:</li>
+                <ul>
+                    <li><strong>Chai</strong> - a library for extending the built in Node assertion library</li>
+                    <li><strong>jsdom</strong> - a library for interacting and testing the DOM returned by the server
+                    (this functionality is encapsulated in our parseTextFromHTML helper function).
+                    <strong>Documentation </strong><a href="https://github.com/jsdom/jsdom#readme" target="_blank">here</a>.</li>
+                    <li><strong>async / await</strong> - a pattern for making asynchronous code more readable</li>
+                    <li><strong>SuperTest</strong> - a library for making Node server requests and testing their 
+                    responses. <strong>Tutorial </strong>
+                    <a href="https://hackernoon.com/api-testing-using-supertest-1f830ce838f1" target="_blank">here</a>.
+                    <strong>Documentation </strong><a href="https://www.codecademy.com/paths/full-stack-engineer-career-path/tracks/fscp-22-back-end-and-feature-testing/modules/wdcp-22-server-testing-with-tdd/external_resources/ext-doc-supertest" target="_blank">here.</a></li>
+                </ul>
+            </ul>
+            <p class="center"><strong>Server Test Example:</strong></p>
+            <button id="showCode46" onclick="showCode('displayCode46', 'showCode46')">Display</button>
+            <div id="displayCode46">
+                <button onclick="closeCode('displayCode46', 'showCode46')">Close</button>
+                <ul>
+                    <li><strong>Testing Framework (Chai):</strong>When writing tests, sometimes you’ll find that 
+                    the tests require calculation steps or inline code to determine if the test is passing. 
+                    For example, to test if an array foo includes an element bar using Mocha with the built-in 
+                    Node assertion library, we use the JavaScript includes helper:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                    assert.ok(foo.includes(bar));
+                            </code>
+                        </pre>
+                        <li>To improve the readability and flow of our tests, we extend the built-in Node assertion library with Chai.</li>
+                        <pre>
+                            <code>
+                    const {assert} = require('chai'); 
+                            </code>
+                        </pre>
+                        <li>The main function in Chai we are using is .include(). This allows us to rewrite the previous example as:</li>
+                        <pre>
+                            <code>
+                    assert.include(foo, bar); 
+                            </code>
+                        </pre>
+                        <li>Include also works to check that text contains certain values:</li>
+                        <pre>
+                            <code>
+                    assert.include('foobar', 'bar'); // Evaluates to true  
+                            </code>
+                        </pre>
+                        <li>The large set of assertion methods in the chai library enable us to write more expressive tests that
+                        are easy for developers to understand. Example:</li>
+                        <pre>
+                            <code>
+                const {assert} = require('chai');
+                describe('Array', () => {
+                    describe('.pop()', () => {
+                        it('should return a value and remove the element from the array', () => {
+                        // setup
+                        const foo = [4];
+                        const includedNumber = 4; 
+                        // check setup
+                    assert.include(foo, includedNumber)
+                        // exercise
+                        const fooPop = foo.pop();
+
+                        // asserts
+                        assert.equal(fooPop, includedNumber)
+                        assert.equal(foo.length, 0)
+                        });
+                    });
+                });
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Testing HTML Responses: </strong>
+                Our back-end server is serving dynamic HTML to the user. For the homepage, this is located in 
+                the jsdom-test.js file to the right. It is possible to use .include() to verify that the HTML
+                response contains certain Strings, but gets cumbersome to verify the hierarchical relationships of DOM elements.
+
+                We can use the <strong>jsdom library</strong> to improve this type of assertion. It allows us to 
+                select elements of the DOM and check relationships and content. To increase the readability of our 
+                tests, we abstracted the jsdom functionality into a custom function, parseTextFromHTML:</li>
+                <ul>
+                    <pre>
+                        <code>   
+                const parseTextFromHTML = (htmlAsString, selector) => {
+                    const selectedElement = jsdom(htmlAsString).querySelector(selector);
+                    if (selectedElement !== null) {
+                        return selectedElement.textContent;
+                    } else {
+                        throw new Error(`No element with selector 
+                        ${selector} found in HTML string`);
+                    }
+                };
+
+                        </code>
+                    </pre>
+                    <li>This function takes the HTML response as a string and the desired selector as inputs and 
+                    returns the textContent of the corresponding element. If no element is found, it will return
+                    a TypeError.</li>
+                    <pre>
+                        <code>
+
+                
+                describe('HTML tests', () => {
+                    describe('#bar', () => {
+                        it('should include the string "Hello"', () => {
+                            // setup
+                            const foo = '< html >< div id="bar">Hello< /div >< div id="buzz">Hello< /div>< html>';
+                            //asserts     
+                            assert.include(parseTextFromHTML(foo, "#bar"), 'Hello'); 
+                        });
+                    });
+                });
+                        </code>
+                    </pre>
+                    <li><strong>Async / Await: </strong>
+                    A server typically handles many requests at a time, but may be only capable of processing a subset 
+                    of the requests concurrently. One side effect of this is that the server response time is neither 
+                    instant nor predictable. If no other processes are occurring on the server, requests are handled 
+                    quickly, but if the server is close to full capacity, the request can take a few seconds or even timeout.
+                    We need a way to receive asynchronous responses from the server and then act on them. The async/await pattern introduced in Node 8 helps us write readable descriptions of the behavior of our application which is an important part of writing good tests.                  
+                    To use this pattern, define the function with the async keyword. Then, within the function, use the await keyword in front of the asynchronous function you are calling.
+                    Here, we are waiting for someAsyncThing() to return before logging the result to the console:</li>
+                    <pre>
+                        <code>
+                const request = require('supertest');
+                const app = require('../../app');
+                
+                describe('the homepage', () => {
+                    it('returns the correct content', async () => {
+                    const response = await request(app)
+                        .get('/')
+                        .send();
+                        console.log(response.text);
+                    });
+                });                            
+                        </code>
+                    </pre>
+                    </ul>
+                    <li><strong>SuperTest:</strong>
+                    As you may have noticed in the previous exercise, we are using the function request to make 
+                    server calls to support our tests. This is actually a reference to the SuperTest library:
+                    <i>const request = require('supertest');</i>This library was specifically designed for testing Node server responses and integrates well with 
+                    Mocha and Chai. To use SuperTest, we pass the app object from our app into the request function. 
+                    To make a GET request, we use .get() with the desired route as the argument:</li>
+                    <ul>
+                        <pre>
+                            <code>                
+                await request(app)
+                        .get('/')
+                        .send();
+                            </code>
+                        </pre>    
+                        <li>It is also possible to perform a POST using SuperTest. We chain any desired properties or 
+                        inputs to the HTTP call, and use .send() to make the request:</li>
+                        <pre>
+                            <code>
+                await request(app)
+                        .post('/messages')
+                        .type('form')
+                        .send({author, message});
+                            </code>
+                        </pre>    
+                    </ul>
+                    <hr/>
+                    <li><strong>Server Testing Patterns: </strong></li>
+                    <ul>
+                        <li><strong>Status Codes: </strong>
+                        Server tests are slightly faster than browser-driven feature tests. Since the web browser is cut 
+                        out of the test, we are not testing how things are rendered for the user. Instead, we are focused 
+                        on the server response.
+                        One use of TDD at the server level is to ensure that the HTTP status codes are returned as 
+                        expected. Verifying status codes provide the most basic level of confidence that the server 
+                        is functioning correctly. Having a test suite that includes status codes provides a quick check 
+                        when implementing a new feature that we haven’t accidentally caused a request for valid routes to 
+                        respond not authorized (401) or not found (404). 
+                        To verify status codes, we are asserting that the response status is equal to the status code 
+                        integer that our application requires: <i>assert.equal(response.status, 200);</i>
+                        If we use the “red, green, refactor” approach to implement our server behavior we would start out 
+                        with an assertion like this and expect it to fail (“red”). We then implement the behavior to pass
+                        the test (“green”) and continue to refactor if needed, ensuring the test remains passing.</li>
+                        <pre>
+                            <code>
+                        //index-test.js
+            
+                        const {assert} = require('chai');
+                        const request = require('supertest');
+                        
+                        const app = require('../../app');
+                        
+                        describe('root page', () => {
+                            describe('GET request', () => {
+                                it('returns a 200 status', async () => {
+                                    const response = await request(app).
+                                    get('/');
+                                    assert.equal(response.status, 200);
+                                });
+                            });
+                        });
+                            </code>
+                        </pre>
+                        <pre>
+                            <code>
+                    //index.js
+            
+                    const express = require('express');
+                    const router = express.Router();
+            
+                    router.get('/', (req, res) => {
+                    res.send()
+                    });
+            
+                    module.exports = router;
+            
+                            </code>
+                        </pre>
+                        <li><strong>Response Content:</strong>
+                        In the previous exercise, we checked that the server responded with specific status codes. Now we need to 
+                        make sure the server is responding with the correct content. Specifically, we are looking at HTML responses 
+                        that are rendered by the front-end.
+                        Many servers return dynamic HTML content based on the user, the URL accessed, header values, and more. 
+                        We use TDD to ensure the server responds correctly for each case. When designing our tests, it is 
+                        important to consider both the intended and unintended user behavior.
+                        We can organize our tests into two categories:</li>
+                        <ul>
+                            <li>tests that exercise the “Happy Path” — expected use cases of our application</li>
+                            tests that exercise the “Sad Path” — unexpected or invalid use of our application
+                            <li>For our tests, once we retrieve the response from the server, we use assert.include() 
+                            from the Chai library to check the response.</li>
+                        </ul>
+                        <li>As an example, after requesting a valid profile page for “My Name”, you may receive the following 
+                        response content:</li>
+                        <pre>
+                            <code>
+            response.text = '< div>< div id="my-name">My Name< /div>< /div>';
+                            </code>
+                        </pre>
+                        <li>You can retrieve the content of #my-name and check it using the following:</li>
+                        <pre>
+                            <code>
+            assert.include(parseTextFromHTML(response.text, '#my-name'), "My Name"); //True
+                            </code>
+                        </pre>
+                        <li>We could also write a separate test to check the corresponding “sad path”. Perhaps there is not yet a page for “Your Name”, so you should not receive a response containing similar HTML. We use .notInclude() to verify that the response is not including “Your Name” :</li>
+                        <pre>
+                            <code>
+            assert.notInclude(parseTextFromHTML(response.text, '#my-name'), "Your Name"); //True
+                            </code>
+                        </pre>
+                        <li>Note that here we are identifying the HTML elements by their ID using our parseTextFromHTML() helper but you can use any selectors supported by the jsdom library. This helper is returning the text content of the corresponding HTML element only, but you could write a separate helper for accessing other attributes.</li>        
+                    </ul>
+                    <li><strong>Refactoring: Route Parameters</strong>
+                    In the previous exercise, we checked that the server responded with a specific message. On our home page, the title is constant for everyone, “Messaging App”.
+                    What if we want to create a profile page that is customized for each user?
+                    A straightforward implementation would be to generate hard coded routes for every single user of our app. Think: 'welcome/alice' => '< h1>Your Name is alice< /h1>', 'welcome/bob' => '< h1>Your Name is bob< /h1>', etc.
+                    Hopefully if you see repetitive code like this, you’ll have an urge to refactor it to something more elegant using a variable route parameter. This allows us to put any username into the url and have the server generate the appropriate response. Think: 'welcome/:username' => '< h1 >Your Name is ' + req.params.username +'< /h1 >'.
+                    If you are using the red, green, refactor approach, you will start with a set of passing (“green”) assertions for the section of code you are looking to improve. With the current behavior captured, you can begin refactoring, knowing that your tests will “catch” you by turning red if you miss something in your approach.</li>
+                    <pre>
+                        <code>
+                //profile-test.js
+    
+                const {assert} = require('chai');
+                const request = require('supertest');
+                const {jsdom} = require('jsdom');
+    
+                const app = require('../../app');
+    
+                const parseTextFromHTML = (htmlAsString, selector) => {
+                    const selectedElement = jsdom(htmlAsString).querySelector(selector);
+                    if (selectedElement !== null) {
+                        return selectedElement.textContent;
+                    } else {
+                        throw new Error(`No element with selector ${selector} found in HTML string`);
+                    }
+                };
+    
+                describe('profile page', () => {
+                    describe('GET request', () => {
+                        it('greets alice', async () => {
+                            const response = await request(app).
+                            get('/profile/alice');
+                            assert.equal(parseTextFromHTML(response.text, '#welcome-message'), 'Welcome alice!');
+                        });
+                        it('greets bob', async () => {
+                            const response = await request(app).
+                            get('/profile/bob');
+                            assert.equal(parseTextFromHTML(response.text, '#welcome-message'), 'Welcome bob!');
+                        });
+                    });
+                });
+                        </pre>
+                    </code>
+                    <pre>
+                        <code>
+                //profile.js
+    
+                const express = require('express');
+                const router = express.Router();
+    
+    
+                router.get('/:username', (req, res) => {
+                    res.send('< h1 id="welcome-message">Welcome ' + req.params.username + '!< /h1>');
+                });
+    
+                module.exports = router;
+                        </code>
+                    </pre>
+                    <li><strong>Refactoring: Handlebars</strong>
+                    Sometimes during the reflection of the refactor phase, you will realize that you can implement something better or more efficiently. In the code so far, we have been responding with inline HTML strings. On a large project, this could make it difficult for the front end developer to organize and maintain.
+                    An improved approach to this is using a templating library like Handlebars to separate the HTML view from the JavaScript controller.
+                    In the web app that you’ve built in this lesson, we’ve placed the templates in the /views folder and have an extension of .handlebars. Our controller will now use render to create the view and pass in any variables:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                        const param = 'Foo';
+                        res.render('templateName', {param});
+                            </code>
+                        </pre>
+                        <li>The templates are written like regular HTML, but variables can be accessed within the view using 
+                        double curly braces: <i>< h1 >{{ param }}< /h1></i> 
+                        When the view is rendered, it will replace {{ param }} with its actual value:
+                        <i>< h1>Foo< /h1></i></li>
+                    </ul>
+                    <li><strong>API Errors: </strong>
+                    As mentioned earlier, one of the use cases for server testing is for checking API responses, 
+                    especially the “sad path” where a user interacts with the server in an unexpected or disallowed 
+                    manner. We need to make sure our server properly handles invalid passwords, form field errors, etc.
+                    Ensuring the app is designed to withstand these issues and that the error interactions are well 
+                    bounded is important.
+                    Keep in mind that while there may only be one “happy path” for an interaction (user submits a 
+                    valid password), there can be many corresponding “sad paths” (password is too short, doesn’t 
+                    contain special characters, etc). By testing the majority of these on the server level, it saves 
+                    us from testing them at a more resource intensive level including the user view.</li>
+                    <li><strong>Summary</strong>
+                    We used several technologies to write tests for both “happy” and “sad” paths of:
+                    <ul>
+                        <li>Server status codes</li>
+                        <li>Server response content</li>
+                        <li>Error cases</li>
+                    </ul>
+                    <li>We also saw how TDD can be used at the server level to guide the implementation of the server code:</li>
+                    <ul>
+                        <li>We wrote a failing test</li>
+                        <li>We wrote the minimal required server code to pass the test</li>
+                        <li>When we decided or needed to refactor to meet external requirements, we used the existing tests to make sure our refactored code maintained the same end behavior</li>
+                    </ul>
+                </ul>
+                <hr/>
+            </div>
+            <li><strong>Is it worth a server test?: </strong>In general, it is up to the developer to make a judgement call on how in depth to write a test. Every test 
+            written adds time to the testing cycle and can require maintenance if changes are made to the server 
+            behavior. For example, extensively testing failure cases at the feature level might be more than is needed 
+            if the error behavior can be fully tested and described at the server level.
+            As you develop an application, you may realize that you can replace feature tests or reduce them with equal 
+            coverage at a lower level. One question to ask when deciding between a full feature test versus a server 
+            test is:
+            “Is it worth trading a slow feature test for a faster server test that doesn’t test the UI?”
+            Based on the context of the different levels of testing, you should aim to pick the set of tests that gives you the best combination of reliable, complete and fast tests.</li>
+        </div>
+        <div class="styleGuide">
+            <h2>Database</h2>
+            <ul>
+                <li><strong>Database</strong> is a set of data stored in a computer. This data is usually structured in 
+                a way that makes the data easily accessible.</li>
+                <li><strong>Relational Database: </strong>
+                A relational database is a type of database. It uses a structure that allows us to identify and access
+                data in relation to another piece of data in the database. Often, data in a relational database is 
+                organized into tables.</li>
+                <ul>
+                    <li><strong>Tables (Rows and Columns):</strong>
+                    Tables can have hundreds, thousands, sometimes even millions of rows of data. These rows are often called 
+                    records. Tables can also have many columns of data. Columns are labeled with a descriptive name 
+                    (say, age for example) and have a specific data type.
+                    For example, a column called age may have a type of INTEGER (denoting the type of data it is meant to hold).
+                    In the table above, there are three columns (name, age, and country).
+                    The name and country columns store string data types, whereas age stores integer data types. The set of 
+                    columns and data types make up the schema of this table.
+                    The table also has four rows, or records, in it (one each for Natalia, Ned, Zenas, and Laura).</li>
+                </ul>
+                <li><strong>NoSQL: </strong>
+                Any database technology that stores data differently from relational.
+                databases can be categorized as a NoSQL database.</li>
+                <li><strong>Relational database VS NoSQL: </strong>Using a <strong>relational</strong> database structure, we might separate the information for each person, having 
+                their id, name, and email, in one table named customers, and then another table for the subscriptions,
+                having the newsletter name, and other information associated with the subscriptions.
+                With a <strong>NoSQL database</strong>, instead of separating information in this way, 
+                we might just have a single 
+                document with the person’s information, as well as the subscription information, all in one document.</li>
+                <hr/>
+                <h3>Relational Database Management System (RDBMS)</h3>
+                <li><strong>Relational Database Management System (RDBMS):</strong>
+                A relational database management system (RDBMS) is a program that allows you to create, update, and 
+                administer a relational database. Most relational database management systems use the SQL language to 
+                access the database. <strong>SQL (Structured Query Language)</strong> is a programming language used 
+                to communicate with data stored in a relational database management system. SQL syntax is similar to 
+                the English language, which makes it relatively easy to write, read, and interpret.
+                Many RDBMSs use SQL (and variations of SQL) to access the data in tables. For example, SQLite is a 
+                relational database management system. SQLite contains a minimal set of SQL commands (which are the 
+                same across all RDBMSs). Other RDBMSs may use other variants.
+                (SQL is often pronounced in one of two ways. You can pronounce it by speaking each letter individually 
+                like “S-Q-L”, or pronounce it using the word “sequel”.)
+                By learning the fundamentals with one RDBMS, you can easily begin work in another. Here are some popular RDBMSs:</li>
+                <ul>               
+                    <li><strong>MySQL:</strong> Is the most popular open source SQL database. It is typically used for web 
+                    application development, and often accessed using PHP.
+                    The main advantages of MySQL are that it is easy to use, inexpensive, reliable (has been around 
+                    since 1995), and has a large community of developers who can help answer questions.                   
+                    Some of the disadvantages are that it has been known to suffer from poor performance when scaling,
+                    open source development has lagged since Oracle has taken control of MySQL, and it does not 
+                    include some advanced features that developers may be used to.</li>
+                    <li><strong>PostgreSQL</strong> Is an open source SQL database that is not controlled by any corporation. It is typically used for web application development.
+                    PostgreSQL shares many of the same advantages of MySQL. It is easy to use, inexpensive, reliable and has a large community of developers. It also provides some additional features such as foreign key support without requiring complex configuration.                   
+                    The main disadvantage of PostgreSQL is that it can be slower in performance than other databases such as MySQL. It is also slightly less popular than MySQL.
+                    For more information about PostgreSQL including installation instructions, read this 
+                    <a href="https://www.postgresql.org/" target="_blank">article</a>.</li>
+                    <p class="center"><strong>Postgre Implementation:</strong></p>
+                    <button id="showCode49" onclick="showCode('displayCode49', 'showCode49')">Display</button>
+                    <div id="displayCode49">
+                        <button onclick="closeCode('displayCode49', 'showCode49')">Close</button>
+                        <li>In order to run and use Postgres on your own computer, you will need to <strong>set up both 
+                        a Postgres server and a client.</strong></li>
+                        <li><strong>Setting Up Postgres (server): </strong>
+                        Installation 
+                        <a href="https://www.postgresql.org/download/windows/" target="_blank">here</a>.
+                        You’ll be prompted to enter in a password for the postgres user: for now, set the password 
+                        as “postgres”. If you are asked to enter a port, you can use the default of “5432”.
+                        After completing the installation, you may be asked whether you would like to use Stack 
+                        Builder to install additional software. You shouldn’t need to install anything else for now.</li>
+                        <li><strong>Setting up Postgres (client): </strong>
+                        Now that Postgres is running locally, we can connect to it via a “client” – a graphical or 
+                        command-line interface that enables us to connect to the Postgres server, write and execute 
+                        SQL commands as input, and see the resulting output.
+                        While you can have only one instance of Postgres running per port (typically 5432), you 
+                        can have multiple open connections to the same database with different interfaces. 
+                        There are many options; our preferences are listed below!</li>
+                        <ul>
+                            <li><strong>GUI: </strong>Our preference for a cross-platform software to visually 
+                            interact with Postgres is <a href="https://github.com/Paxa/postbird" target="_blank">Postbird</a>.
+                            A strong runner up is <u>PgAdmin</u>, one of the most popular and feature-rich open source 
+                            administration and development platforms for Postgres.                        
+                            Postbird will automatically open, and from there you can enter in the username (postgres) and password 
+                            (postgres) to connect to your locally running Postgres instance.
+                            From there you can now use Postbird to start writing SQL queries. You can select the database you want to 
+                            work in using the dropdown menu in the top left corner, you can add tables to that database using the plus 
+                            sign in the bottom left corner, and you can use the query tab to write SQL queries to manipulate and investigate
+                            tables that you create!
+                        </li>
+                            <li><strong>Command Line: </strong>
+                            You can also connect using the command line tool <a href="https://www.postgresql.org/docs/9.3/app-psql.html" target="_blank">psql</a>.</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <li><strong>Oracle DB: </strong>Oracle Corporation owns Oracle Database, and the code is not open sourced.
+                    Oracle DB is for large applications, particularly in the banking industry. Most of the world’s 
+                    top banks run Oracle applications because Oracle offers a powerful combination of technology and 
+                    comprehensive, pre-integrated business applications, including essential functionality built specifically for banks.                   
+                    The main disadvantage of using Oracle is that it is not free to use like its open source 
+                    competitors and can be quite expensive.</li>
+                    <li><strong>SQL Server</strong>
+                    Microsoft owns SQL Server. Like Oracle DB, the code is close sourced.                   
+                    Large enterprise applications mostly use SQL Server.
+                    Microsoft offers a free entry-level version called Express 
+                    but can become very expensive as you scale your application.</li> 
+                    <li><strong>SQLite</strong> is a popular open source SQL database. It can store an entire database 
+                    in a single file. One of the most significant advantages this provides is that all of the data can be stored locally without having to connect your database to a server.
+                    SQLite is a popular choice for databases in cellphones, PDAs, MP3 players, set-top boxes, and 
+                    other electronic gadgets. The SQL courses on Codecademy use SQLite.                   
+                    For more info on SQLite, including installation instructions, read this article.</li>
+                </ul>
+                <li><strong>Material</strong> <a href="https://www.codecademy.com/resources/docs/general/relational-database?page_ref=catalog" target="_blank">here</a>.</li>
+                <li><strong>List of SQL Commands</strong> <a href="https://www.codecademy.com/article/sql-commands" target="_blank">here</a>.</li>
+                <li><strong>Table Video implementation</strong> <a href="https://www.youtube.com/watch?v=nwLV5Txc8jM&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode47" onclick="showCode('displayCode47', 'showCode47')">Display</button>
+                <div id="displayCode47">
+                    <button onclick="closeCode('displayCode47', 'showCode47')">Close</button>
+                    <li><strong>Manipulation</strong></li>
+                    <ul>
+                        <li><strong>Statements:</strong>
+                        The code below is a SQL statement. A statement is text that the database recognizes as a 
+                        valid command. Statements always end in a semicolon <i>;</i>.</li>
+                        <pre>
+                            <code>
+                        CREATE TABLE table_name (
+                            column_1 data_type, 
+                            column_2 data_type, 
+                            column_3 data_type
+                        );
+                            </code>
+                        </pre>
+                        <ol>
+                            <li><strong>CREATE TABLE</strong> is a clause.  
+                            Clauses perform specific tasks in SQL. By convention, clauses are 
+                            written in capital letters. Clauses can also be referred to as commands.
+                            CREATE TABLE tells SQL you want to create a new table.</li>
+                            <li><strong>table_name</strong> refers to the name of the table that the command is 
+                            applied to.</li>
+                            <li><strong>(column_1 data_type, column_2 data_type, column_3 data_type)</strong> 
+                            is a parameter. A parameter 
+                            is a list of columns, data types, or values that are passed to a clause as an argument. 
+                            Here, the parameter is a list of column names and the associated data type.</li>
+                        </ol>
+                        <li><strong>SELECT</strong> statements are used to fetch data from a database.:</li>
+                        <pre>
+                            <code>
+                SELECT name FROM celebs;
+                            </code>
+                        </pre>
+                        <ol>
+                            <li><strong>SELECT</strong> is a clause that indicates that the statement is a query. You will use SELECT every 
+                            time you query data from a database. SELECT statements always return a new table called the result set.</li>
+                            <li>name specifies the column to query data from (we can use * to select every column in a table).</li>
+                            <li><strong>FROM</strong> celebs specifies the name of the table to query data from. In this statement, data is 
+                            queried from the celebs table.</li>
+                        </ol>
+                        <li>The <strong>INSERT</strong> statement inserts a new row into a table.
+                        (id, name, age) is a parameter identifying the columns that data will be inserted into.
+                        <strong>VALUES</strong> is a clause that indicates the data being inserted.</li>
+                        <pre>
+                            <code>
+                INSERT INTO celebs (id, name, age)
+                VALUES (1, 'Justin Bieber', 22);
+
+                //For multiple insertion
+                INSERT INTO table (col1, col2, col3)
+                VALUES
+                (row1_val1, row1_val2, row1_val3),
+                (row2_val1, row2_val2, row2_val3),
+                (row3_val1, row3_val2, row3_val3);
+                            </code>
+                        </pre>
+                        <li>The <strong>ALTER TABLE:</strong> statement adds a new column to a table. You can use this command 
+                        when you want to add columns to a table.</li>
+                        <ul>
+                            <pre>
+                                <code>
+                    ALTER TABLE celebs 
+                    ADD COLUMN twitter_handle TEXT;
+                                </code>
+                            </pre>
+                            <li><strong>ADD COLUMN</strong> is a clause that lets you add a new column to a table:</li>
+                            <ul>
+                                <li>twitter_handle is the name of the new column being added</li>
+                                <li>TEXT is the data type for the new column</li>
+                            </ul>
+                            <li>NULL is a special value in SQL that represents missing or unknown data. Here, the 
+                            rows that existed before the column was added have NULL (∅) values for twitter_handle.</li>
+                        </ul>
+                        <li>The <strong>UPDATE</strong> statement edits a row in a table. You can use the UPDATE statement when you 
+                        want to change existing records.
+                        The ALTER statement is used to modify columns. With ALTER, you can add columns, remove them, 
+                        or even modify them.
+                        The UPDATE statement is used to modify rows. However, UPDATE can only update a row, and cannot 
+                        remove or add rows.</li>
+                        <ul>
+                            <pre>
+                                <code>
+                UPDATE celebs 
+                SET twitter_handle = '@taylorswift13' 
+                WHERE id = 4; 
+                                </code>
+                            </pre>
+                            <li>SET is a clause that indicates the column to edit.</li>
+                            <ul>
+                                <li>twitter_handle is the name of the column that is going to be updated</li>
+                                <li>@taylorswift13 is the new value that is going to be inserted into the twitter_handle column.</li>
+                            </ul>
+                            <li><strong>WHERE</strong> is a clause that indicates which row(s) to update with the new 
+                            column value. Here the row with a 4 in the id column is the row that will have the twitter_
+                            handle updated to @taylorswift13.</li>
+                        </ul>
+                        <li>The <strong>DELETE FROM</strong> statement deletes one or more rows from a table. You can use the 
+                        statement when you want to delete existing records. The statement below deletes all 
+                        records in the celebs table with no twitter_handle:</li>
+                        <ul>
+                            <pre>
+                                <code>
+                DELETE FROM celebs 
+                WHERE twitter_handle IS NULL;
+                                </code>
+                            </pre>
+                            <li><strong>WHERE</strong> is a clause that lets you select which rows you want to delete. Here we want to delete all of the rows where the twitter_handle column IS NULL.</li>
+                            <li><strong>IS NULL</strong> is a condition in SQL that returns true when the value is NULL and false otherwise.</li>
+                        </ul>
+                        <li><strong>Constraints</strong> that add information about how a column can be used are invoked 
+                        after specifying the data type for a column. They can be used to tell the database to reject 
+                        inserted data that does not adhere to a certain restriction. The statement below sets 
+                        constraints on the celebs table.</li>
+                        <pre>
+                            <code>
+                        CREATE TABLE celebs (
+                            id INTEGER PRIMARY KEY, 
+                            name TEXT UNIQUE,
+                            date_of_birth TEXT NOT NULL,
+                            date_of_death TEXT DEFAULT 'Not Applicable'
+                        );
+                            </code>
+                        </pre>
+                        <ul>
+                            <li><strong>PRIMARY KEY</strong> columns can be used to uniquely identify the row. Attempts to insert a 
+                            row with an identical value to a row already in the table will result in a constraint 
+                            violation which will not allow you to insert the new row.</li>
+                            <li><strong>UNIQUE</strong> columns have a different value for every row. This is similar to PRIMARY KEY 
+                            except a table can have many different UNIQUE columns.</li>
+                            </li><strong>NOT NULL</strong> columns must have a value. Attempts to insert a row without a value for a 
+                            NOT NULL column will result in a constraint violation and the new row will not be inserted.</li>
+                            <li><strong>DEFAULT</strong> columns take an additional argument that will be the assumed value for an 
+                            inserted row if the new row does not specify a value for that column.</li>
+                        </ul>
+                    </ul>
+                </div>
+                <hr/>
+                <h3>NoSQL</h3>
+                <li><strong>NoSQL: </strong>
+                NoSQL keeps all the information in one place, in the form of key-values or documents.</li>
+                <ul>
+                    <li>Benefits:<strong>Scalability:</strong> NoSQL was designed with
+                    scalability as a priority. NoSQL can be an excellent choice for massive datasets that need to be 
+                    distributed across multiple servers and locations.
+                    <strong>Flexibility:</strong> Unlike a relational database, NoSQL databases don’t require a schema. This means that 
+                    NoSQL can handle unstructured or semi-structured data in different formats
+                    <strong>Developer Experience:</strong> NoSQL requires less organization and thus lets developers focus more on using
+                    the data than on figuring out how to store it.</li>
+                    <li><strong></strong>Drawbacks:</strong>
+                    <strong>Data Integrity:</strong> Relational databases are typically ACID compliant, ensuring high data integrity. 
+                    NoSQL databases follow BASE principles (basic availability, soft state, and eventual consistency)
+                    and can often sacrifice integrity for increased data distribution and availability. However, some 
+                    NoSQL databases do offer ACID compliance.
+                    <strong>Language Standardization:</strong> While some NoSQL databases do use the Structured Query Language (SQL), 
+                    typically, each database uses its unique language to set up, manage, and query data.</li>
+                </ul>
+                <li><strong>Types of NoSQL</strong> Databases:</li>
+                <ul>
+                    <li>A <strong>key-value database</strong> consists of individual records organized via key-value pairs. In this model, 
+                    keys and values can be any type of data, ranging from numbers to complex objects. However, keys 
+                    must be unique. This means this type of database is best when data is attributed to a unique key, 
+                    like an ID number. Ideally, the data is also simple, and we are looking to prioritize fast queries 
+                    over fancy features. Amazon <a href="https://aws.amazon.com/pt/dynamodb/" target="_blank">DynamoDB</a> 
+                    and <a href="https://redis.com/" target="_blank">Redis</a> are popular options for developers 
+                    looking to work with key-value databases.</li>
+                    <li>A <strong>document-based</strong> (also called document-oriented) database consists of data stored in hierarchical 
+                    structures. Some supported document formats include JSON, BSON, XML, and YAML. The document-based 
+                    model is considered an extension of the key-value database and provides querying capabilities not 
+                    solely based on unique keys. Documents are considered very flexible and can evolve to fit an 
+                    application’s needs. They can even model relationships!
+                    <a href="https://www.mongodb.com/?utm_campaign=academia_partners&utm_source=codecademy&utm_medium=referral" target="_blank">MongoDB</a> is a popular option for developers looking to work with a document database.</li>
+                    <li>A <strong>graph database</strong> stores data using a graph structure. In a graph structure, data is stored in 
+                    individual nodes (also called vertices) and establishes relationships via edges (also called 
+                    links or lines). The advantage of the relationships built using a graph database as opposed to 
+                    a relational database is that they are much simpler to set up, manage, and query. For example, 
+                    let’s say we wanted to build a recommendation engine for our e-commerce store. We could establish
+                    relationships between similar items our customers searched for to create recommendations.
+                    <a href="https://neo4j.com/" target="_blank">Neo4j</a> is a popular option for developers looking to work with a graph database.</li>
+                    <li>A <strong>column-oriented</strong> NoSQL database stores data similar to a relational database. However, 
+                    instead of storing data as rows, it is stored as columns. Column-oriented databases aim to 
+                    provide faster read speeds by being able to quickly aggregate data for a specific column. 
+                    Amazon’s <a href="https://aws.amazon.com/redshift/" target="_blank">Redshift</a> is a popular 
+                    option for developers looking to work with a column-oriented database.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode48" onclick="showCode('displayCode48', 'showCode48')">Display</button>
+                <div id="displayCode48">
+                    <button onclick="closeCode('displayCode48', 'showCode48')">Close</button>
+                    <ul>
+                    </ul>
+                </div>
+            </ul>
         </div>
     </body>
 </html>
