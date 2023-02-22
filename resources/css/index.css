@@ -18,6 +18,7 @@ body {
 
 /* --- TEXT SELECTORS --- */
 
+
 ul ul, ul ol{
     margin-left: 5%;
 }
@@ -115,7 +116,7 @@ hr{
 #displayCode37, #displayCode38, #displayCode39, #displayCode40,
 #displayCode41, #displayCode42, #displayCode43, #displayCode44,
 #displayCode45, #displayCode46, #displayCode47, #displayCode48,
-#displayCode49 {
+#displayCode49, #displayCode50, #displayCode51 {
     display: none;
     justify-content: right;
 }

@@ -8,7 +8,7 @@
     <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./index.html">AI</a></li>
                 <li><a href="./displayProperties.html">Display Properties</a></li>
                 <li><a href="./objects.html">Objects</a></li>
                 <li><a href="./developmentCycle.html">Development Cycle</a></li>
@@ -3659,7 +3659,8 @@
             <h2>Database</h2>
             <ul>
                 <li><strong>Database</strong> is a set of data stored in a computer. This data is usually structured in 
-                a way that makes the data easily accessible.</li>
+                a way that makes the data easily accessible. <strong>DBMS</strong> is the specific software that allows you to interact with a database.
+            </li>
                 <li><strong>Relational Database: </strong>
                 A relational database is a type of database. It uses a structure that allows us to identify and access
                 data in relation to another piece of data in the database. Often, data in a relational database is 
@@ -3682,8 +3683,9 @@
                 their id, name, and email, in one table named customers, and then another table for the subscriptions,
                 having the newsletter name, and other information associated with the subscriptions.
                 With a <strong>NoSQL database</strong>, instead of separating information in this way, 
-                we might just have a single 
-                document with the person’s information, as well as the subscription information, all in one document.</li>
+                we might just have a single document with the person’s information, as well as the subscription 
+                information, all in one document. Article about
+                <a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-nosql-database-management-systems-and-models" target="_blank">here</a>.</li>
                 <hr/>
                 <h3>Relational Database Management System (RDBMS)</h3>
                 <li><strong>Relational Database Management System (RDBMS):</strong>
@@ -3717,20 +3719,22 @@
                         <button onclick="closeCode('displayCode49', 'showCode49')">Close</button>
                         <li>In order to run and use Postgres on your own computer, you will need to <strong>set up both 
                         a Postgres server and a client.</strong></li>
-                        <li><strong>Setting Up Postgres (server): </strong>
+                        <li><strong>Setting Up PostgreSQL (server): </strong>
                         Installation 
                         <a href="https://www.postgresql.org/download/windows/" target="_blank">here</a>.
                         You’ll be prompted to enter in a password for the postgres user: for now, set the password 
                         as “postgres”. If you are asked to enter a port, you can use the default of “5432”.
                         After completing the installation, you may be asked whether you would like to use Stack 
                         Builder to install additional software. You shouldn’t need to install anything else for now.</li>
-                        <li><strong>Setting up Postgres (client): </strong>
+                        <li><strong>Setting up PostgresSQL (client): </strong>
                         Now that Postgres is running locally, we can connect to it via a “client” – a graphical or 
                         command-line interface that enables us to connect to the Postgres server, write and execute 
                         SQL commands as input, and see the resulting output.
                         While you can have only one instance of Postgres running per port (typically 5432), you 
                         can have multiple open connections to the same database with different interfaces. 
-                        There are many options; our preferences are listed below!</li>
+                        There are many options; our preferences are listed below. <strong>Instructions and project 
+                        to set-up Postgree Locally</strong>
+                        <a href="https://content.codecademy.com/programs/data-engineering-postgres/Movies_Off_Platform_Project/Movies_Off_Platform_Project.zip" target="_blank">here</a>.</li>
                         <ul>
                             <li><strong>GUI: </strong>Our preference for a cross-platform software to visually 
                             interact with Postgres is <a href="https://github.com/Paxa/postbird" target="_blank">Postbird</a>.
@@ -3765,25 +3769,46 @@
                     other electronic gadgets. The SQL courses on Codecademy use SQLite.                   
                     For more info on SQLite, including installation instructions, read this article.</li>
                 </ul>
-                <li><strong>Material</strong> <a href="https://www.codecademy.com/resources/docs/general/relational-database?page_ref=catalog" target="_blank">here</a>.</li>
-                <li><strong>List of SQL Commands</strong> <a href="https://www.codecademy.com/article/sql-commands" target="_blank">here</a>.</li>
-                <li><strong>Table Video implementation</strong> <a href="https://www.youtube.com/watch?v=nwLV5Txc8jM&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                <p class="center"><strong>Example:</strong></p>
+                <li>More info:</li>
+                <ul>
+                    <li><strong>Material</strong> <a href="https://www.codecademy.com/resources/docs/general/relational-database?page_ref=catalog" target="_blank">here</a>.</li>
+                    <li><strong>Tool</strong> for easy online testing and sharing of database problems and their solutions 
+                        <a href="http://sqlfiddle.com/" target="_blank">here</a>.
+                    </li>
+                    <li>
+                        <strong>Guidelines</strong> for SQL use
+                        <a href="https://gist.github.com/fredbenenson/7bb92718e19138c20591#file-kickstarter_sql_style_guide-md" target="_blank"> here</a>.
+                    </li>
+                </ul>
+                <p class="center"><strong>Creating, Querying & Manipulating Tables:</strong></p>
                 <button id="showCode47" onclick="showCode('displayCode47', 'showCode47')">Display</button>
                 <div id="displayCode47">
                     <button onclick="closeCode('displayCode47', 'showCode47')">Close</button>
-                    <li><strong>Manipulation</strong></li>
+                    <li><strong>List of SQL Commands</strong> <a href="https://www.codecademy.com/article/sql-commands" target="_blank">here</a>.</li>
+                    <hr/>
+                    <li><strong>Creating Tables</strong></li>
                     <ul>
+                        <li><strong>Creating Table Video Implementation</strong> <a href="https://www.youtube.com/watch?v=nwLV5Txc8jM&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
                         <li><strong>Statements:</strong>
                         The code below is a SQL statement. A statement is text that the database recognizes as a 
                         valid command. Statements always end in a semicolon <i>;</i>.</li>
                         <pre>
                             <code>
-                        CREATE TABLE table_name (
-                            column_1 data_type, 
-                            column_2 data_type, 
-                            column_3 data_type
-                        );
+                    CREATE TABLE table_name (
+                        column_1 data_type, 
+                        column_2 data_type, 
+                        column_3 data_type
+                    );
+
+                    //Example
+                    CREATE TABLE book (
+                        title varchar(100),
+                        isbn varchar(50) PRIMARY KEY,
+                        pages integer,
+                        price money,
+                        description varchar(256),
+                        publisher varchar(100)
+                    );
                             </code>
                         </pre>
                         <ol>
@@ -3798,10 +3823,44 @@
                             is a list of columns, data types, or values that are passed to a clause as an argument. 
                             Here, the parameter is a list of column names and the associated data type.</li>
                         </ol>
-                        <li><strong>SELECT</strong> statements are used to fetch data from a database.:</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Querying Tables</strong></li>
+                    <ul>
+                        <li><strong>Querying Table Video Implementation</strong> <a href="https://www.youtube.com/watch?v=gQ58W7v8qyA&ab_channel=Codecademy" target="_blank">here</a>.</li>
+                        <li><strong>SELECT</strong> statements are used to fetch data from a database:</li>
                         <pre>
                             <code>
                 SELECT name FROM celebs;
+
+                //We can select individual columns by their names (separated by a comma):
+                SELECT column1, column2 
+                FROM table_name;
+
+                //WHERE & LIKE
+                SELECT * FROM movies
+                WHERE name LIKE 'Se_en';
+
+                //CASE & WHEN
+                SELECT name,
+                    CASE
+                        WHEN imdb_rating > 8 THEN 'Fantastic'
+                        WHEN imdb_rating > 6 THEN 'Poorly Received'
+                        ELSE 'Avoid at All Costs'
+                    END AS 'Review'
+                FROM movies;
+
+                SELECT name AS 'Titles'
+                FROM movies;
+
+                //Multiple aliases
+                SELECT course_id AS "Course ID", exercise_id AS "Exercise ID" FROM bugs;
+
+                SELECT tools FROM inventory;
+                //might produce: tools, Hammer, Nails, Nails, Nails
+                //By adding DISTINCT before the column name,
+                SELECT DISTINCT tools FROM inventory;
+                //the result would now be: tools, Hammer, Nails
                             </code>
                         </pre>
                         <ol>
@@ -3810,7 +3869,42 @@
                             <li>name specifies the column to query data from (we can use * to select every column in a table).</li>
                             <li><strong>FROM</strong> celebs specifies the name of the table to query data from. In this statement, data is 
                             queried from the celebs table.</li>
-                        </ol>
+                            <li>You can add a WHERE clause to filter your results. For example, adding WHERE 
+                            release_year = 1999 to the end of your SELECT statement will find all of the movies
+                            released in 1999. We can combine multiple conditions in a WHERE clause 
+                            to make the result set more specific and useful, one way of doing this is to use 
+                            the <strong>AND</strong> & <STRONG>OR</STRONG>operator (we can combine both).
+                            <strong>AND</strong> operator displays a row if all the conditions are true.
+                            <strong>OR</strong> operator displays a row if any condition is true.</li>
+                            <li><strong>LIKE</strong> is a special operator used with the WHERE clause to search for a specific 
+                            pattern in a column. name LIKE 'Se_en' is a condition evaluating the name column for a specific pattern.
+                            Se_en represents a pattern with a wildcard character.
+                            The _ means you can substitute any individual character here without breaking the pattern.
+                            <i>%</i> is a wildcard character that matches zero or more missing letters in the pattern. For example:
+                            A% matches all movies with names that begin with letter ‘A’
+                            %a matches all movies that end with ‘a’
+                            We can also use % both before and after a pattern.</li>
+                            <li><strong>BETWEEN</strong> sets a condition between two values.</li>
+                            <li><strong>ORDER BY</strong> sorts the results either alphabetically or numerically.
+                            <strong>DESC</strong> is a keyword used in ORDER BY to sort the results in descending order (high to low or Z-A).
+                            <strong>ASC</strong> is a keyword used in ORDER BY to sort the results in ascending order (low to high or A-Z).</li>
+                            <li>LIMIT is a clause that lets you specify the maximum number of rows the result set will have. This saves space on 
+                            our screen and makes our queries run faster. LIMIT always goes at the very end of the query.</li>
+                            <li>A <strong>CASE</strong> statement allows us to create different outputs (usually in the SELECT statement). 
+                            It is SQL's way of handling if-then logic. 
+                            Each <strong>WHEN</strong> tests a condition and the following THEN gives us the string if the condition is true.
+                            The <strong>ELSE</strong> gives us the string if all the above conditions are false.
+                            The CASE statement must end with <strong>END</strong>. To shorten it, we can rename the column to ‘Review’ using AS</li>
+                            <li><strong>AS</strong> is a keyword in SQL that allows you to rename a column or table using an alias. The new 
+                            name can be anything you want as long as you put it inside of single quotes.
+                            When using AS, the columns are not being renamed in the table. The aliases only appear in the result.</li>
+                            <li><strong>DISTINCT</strong> is used to return unique values in the output. It filters out 
+                            all duplicate values in the specified column(s). For instance:</li>
+                        </ol>         
+                    </ul>
+                    <hr/>
+                    <li><strong>Manipulating Tables</strong></li>
+                    <ul>
                         <li>The <strong>INSERT</strong> statement inserts a new row into a table.
                         (id, name, age) is a parameter identifying the columns that data will be inserted into.
                         <strong>VALUES</strong> is a clause that indicates the data being inserted.</li>
@@ -3828,7 +3922,9 @@
                             </code>
                         </pre>
                         <li>The <strong>ALTER TABLE:</strong> statement adds a new column to a table. You can use this command 
-                        when you want to add columns to a table.</li>
+                        when you want to add columns to a table.
+                        The ALTER statement is used to modify columns. With ALTER, you can add columns, remove them, 
+                        or even modify them.</li>
                         <ul>
                             <pre>
                                 <code>
@@ -3846,8 +3942,6 @@
                         </ul>
                         <li>The <strong>UPDATE</strong> statement edits a row in a table. You can use the UPDATE statement when you 
                         want to change existing records.
-                        The ALTER statement is used to modify columns. With ALTER, you can add columns, remove them, 
-                        or even modify them.
                         The UPDATE statement is used to modify rows. However, UPDATE can only update a row, and cannot 
                         remove or add rows.</li>
                         <ul>
@@ -3855,7 +3949,7 @@
                                 <code>
                 UPDATE celebs 
                 SET twitter_handle = '@taylorswift13' 
-                WHERE id = 4; 
+                WHERE id > 4; 
                                 </code>
                             </pre>
                             <li>SET is a clause that indicates the column to edit.</li>
@@ -3875,10 +3969,14 @@
                                 <code>
                 DELETE FROM celebs 
                 WHERE twitter_handle IS NULL;
+
+                DELETE FROM employees
+                WHERE employee_id IS NOT NULL;
                                 </code>
                             </pre>
                             <li><strong>WHERE</strong> is a clause that lets you select which rows you want to delete. Here we want to delete all of the rows where the twitter_handle column IS NULL.</li>
-                            <li><strong>IS NULL</strong> is a condition in SQL that returns true when the value is NULL and false otherwise.</li>
+                            <li><strong>IS NULL</strong> is a condition in SQL that returns true when the value is NULL and false otherwise.
+                            There's also <strong> IS NOT NULL</strong> </li>
                         </ul>
                         <li><strong>Constraints</strong> that add information about how a column can be used are invoked 
                         after specifying the data type for a column. They can be used to tell the database to reject 
@@ -3892,21 +3990,579 @@
                             date_of_birth TEXT NOT NULL,
                             date_of_death TEXT DEFAULT 'Not Applicable'
                         );
+
                             </code>
                         </pre>
                         <ul>
                             <li><strong>PRIMARY KEY</strong> columns can be used to uniquely identify the row. Attempts to insert a 
                             row with an identical value to a row already in the table will result in a constraint 
                             violation which will not allow you to insert the new row.</li>
-                            <li><strong>UNIQUE</strong> columns have a different value for every row. This is similar to PRIMARY KEY 
-                            except a table can have many different UNIQUE columns.</li>
+                            <li><strong>UNIQUE</strong> columns have a different value for every row. This is similar to 
+                            PRIMARY KEY except a table can have many different UNIQUE columns.</li>
                             </li><strong>NOT NULL</strong> columns must have a value. Attempts to insert a row without a value for a 
                             NOT NULL column will result in a constraint violation and the new row will not be inserted.</li>
                             <li><strong>DEFAULT</strong> columns take an additional argument that will be the assumed value for an 
                             inserted row if the new row does not specify a value for that column.</li>
                         </ul>
+                        <li><strong>Information schema</strong> is a database containing meta information about 
+                        objects in the database including tables, columns and constraints. This schema provides users 
+                        with read-only views of many topics of interest.
+                        To determine if a column has been designated correctly as a primary key, we can query a 
+                        special view, key_column_usage, generated from this database. This view identifies all 
+                        columns in the current database that are restricted by some constraint such as primary 
+                        key or foreign key.</li>
+                        <pre>
+                            <code>
+                //Only table_name needs to be
+                   written based on the database
+                SELECT
+                    constraint_name, table_name, column_name
+                FROM
+                    information_schema.key_column_usage
+                WHERE
+                    table_name = 'recipe';
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Aggregates Functions</strong></li>
+                    <ul>
+                        <li><strong>Aggregating Functions Video Implementation I</strong> <a href="https://www.youtube.com/watch?v=-7fN2eWUTmI&ab_channel=Codecademy" target="_blank">here</a>.</li>
+                        <li><strong>Aggregating Functions Video Implementation II</strong><a href="https://www.youtube.com/watch?v=CQA_c6nqLvw&ab_channel=Codecademy" target="_blank">here</a>.</li>   
+                        <li>Calculations performed on multiple rows of a table are called aggregates.</li>
+                        <ul>
+                            <li><strong>COUNT():</strong> count the number of rows</li>
+                            <pre>
+                                <code>
+                    SELECT COUNT(*)
+                    FROM table_name;
+                                </code>
+                            </pre>
+                            <li><strong>SUM():</strong> calculates the sum of the values in a column</li>
+                            <pre>
+                                <code>
+                    SELECT SUM(downloads)
+                    FROM fake_apps;
+                                </code>
+                            </pre>
+                            <li><strong>MAX()/MIN():</strong> return the highest and lowest values in a column, respectively.</li>
+                            <pre>
+                                <code>
+                    SELECT MAX(downloads)
+                    FROM fake_apps;
+                                </code>
+                            </pre>
+                            <li><strong>AVG():</strong> calculates  the average of the values in a column</li>
+                            <pre>
+                                <code>
+                    SELECT AVG(downloads)
+                    FROM fake_apps;
+                                </code>
+                            </pre>
+                            <li><strong>ROUND():</strong> round the values in the column</li>
+                            <pre>
+                                <code>
+                    SELECT ROUND(price, 0)
+                    FROM fake_apps;
+                                </code>
+                            </pre>
+                            <li><strong>GROUP BY: </strong>Oftentimes, we will want to calculate an aggregate for data with certain characteristics.
+                            GROUP BY is a clause in SQL that is used with aggregate functions. It is used in collaboration with the SELECT 
+                            statement to arrange identical data into groups.
+                            Aggregate functions combine multiple rows together to form a single value of more meaningful information.
+                            The GROUP BY statement comes after any WHERE statements, but before ORDER BY or LIMIT.</li>
+                            <pre>
+                                <code>
+                    SELECT AVG(imdb_rating)
+                    FROM movies
+                    WHERE year = 1999;
+                        
+                    SELECT AVG(imdb_rating)
+                    FROM movies
+                    WHERE year = 2000;
+                        
+                    SELECT AVG(imdb_rating)
+                    FROM movies
+                    WHERE year = 2001;
+
+                    //CAN BE WRITTEN AS
+                    SELECT year,
+                        AVG(imdb_rating)
+                    FROM movies
+                    GROUP BY year
+                    ORDER BY year;
+                                </code>
+                            </pre>
+                            <li>Sometimes, we want to <strong>GROUP BY</strong> a calculation done on a column.
+                            SQL lets us use column reference(s) in our GROUP BY.</li>
+                            <pre>
+                                <code>
+                    SELECT ROUND(imdb_rating), COUNT(name)
+                    FROM movies
+                    GROUP BY ROUND(imdb_rating)
+                    ORDER BY ROUND(imdb_rating);
+                    However, this query may be time-consuming to write and more prone to error.
+                    
+                    //The following query is equivalent to the one above
+                    //The 1 refers to the first column in our 
+                        SELECT statement, ROUND(imdb_rating).
+                    SELECT ROUND(imdb_rating), COUNT(name)
+                    FROM movies
+                    GROUP BY 1
+                    ORDER BY 1;
+
+                    //1 refers to category, 2 refers to price
+                    SELECT category, price,
+                        AVG(downloads)
+                    FROM fake_apps
+                    GROUP BY 1, 2;
+                                </code>
+                            </pre>
+                            <li><strong>HAVING: </strong>filters groups.
+                            HAVING is very similar to WHERE. In fact, all types of WHERE clauses you learned about thus far can 
+                            be used with HAVING.
+                            <strong>WHERE</strong>When we want to limit the results of a query based on values of the individual rows.
+                            <strong>HAVING</strong>When we want to limit the results of a query based on an aggregate property.</li>
+                            <pre>
+                                <code>
+                SELECT year,
+                    genre,
+                    COUNT(name)
+                FROM movies
+                GROUP BY 1, 2
+                HAVING COUNT(name) > 10;
+
+
+                //GROUP BY & CASE
+                SELECT CASE
+                    WHEN url LIKE '%github.com%' THEN 'Github'
+                    WHEN url LIKE '%medium.com%' THEN 'Medium'
+                    WHEN url LIKE '%newyorktimes.com%' THEN 'New York Times'
+                    ELSE 'NO URL'
+                END AS 'SOURCE',
+                COUNT(*) 
+                FROM hacker_news
+                GROUP BY 1;
+                                </code>
+                            </pre>
+                            <li>SQLite Documentation about <strong>timestamps</strong> <a href='https://www.sqlite.org/lang_datefunc.html'>here</a></li>
+                        </ul>
                     </ul>
                 </div>
+                <p class="center"><strong>Multiple Tables:</strong></p>
+                <button id="showCode50" onclick="showCode('displayCode50', 'showCode50')">Display</button>
+                <div id="displayCode50">
+                    <button onclick="closeCode('displayCode50', 'showCode50')">Close</button>
+                    <li><strong>Introduction</strong></li>
+                    <ul>
+                        <li>In order to efficiently store data, we often spread related information across <strong>multiple tables</strong>.
+                        For instance, imagine that we’re running a magazine company where users can have different types 
+                        of subscriptions to different products. Different subscriptions might have many different properties. 
+                        Each customer would also have lots of associated information.
+                        We could have one table with all of the following information:</li>
+                        <ul>
+                            <li>order_id</li>
+                            <li>customer_id</li>
+                            <li>customer_name</li>
+                            <li>customer_address</li>
+                            <li>subscription_id</li>
+                            <li>subscription_description</li>
+                            <li>subscription_monthly_price</li>
+                            <li>subscription_length</li>
+                            <li>purchase_date</li>
+                        </ul>
+                        <li>However, a lot of this information would be repeated. If the same customer has multiple subscriptions, that customer’s name and address will be reported multiple times. If the same subscription type is ordered by multiple customers, then the subscription price and subscription description will be repeated. This will make our table big and unmanageable.
+                        So instead, we can split our data into three tables:</li>
+                        <ol>
+                            <li><strong>orders</strong> would contain just the information necessary to describe what was ordered:</li>
+                            <ul>
+                                <li>order_id, customer_id, subscription_id, purchase_date</li>
+                            </ul>
+                            <li><strong>subscriptions</strong> would contain the information to describe each type of subscription:
+                            <ul>
+                                <li>subscription_id, description, price_per_month, subscription_length</li>
+                            </ul>
+                            <li><strong>customers</strong> would contain the information for each customer:</li>
+                            <ul>
+                                <li>customer_id, customer_name, address</li>
+                            </ul>
+                        </ol>
+                    </ul>
+                    <li><strong>Database Normalization </strong>is a concept that most programmers use to refer 
+                    to restructuring a database in this manner. It's so that databases tables are structured to 
+                    avoid data redundancy and keep the data accurate and consistent.
+                    More info <a href="https://www.1keydata.com/database-normalization/" target="_blank">here</a>.
+                    Introduction to database normalization<a href="https://mikehillyer.com/articles/an-introduction-to-database-normalization/" target="_blank">here</a>.</li>
+                    <ul>
+                        <li>Say for example, we added 1 million rows to this table. Some values like customer_address
+                        might end up being stored many thousands of times, when we really only need to store it once 
+                        per customer.
+                        If we need the customer information, we can obtain it from the customers table, by their 
+                        customer_id. And, if we need the information for a subscription, all of its information is 
+                        stored in the subscriptions table. We only need the customer_id and subscription_id in the 
+                        orders table, and we can obtain their information from their respective tables.</li>
+                    </ul>
+                    <li>A <strong>database key</strong> is a column or group of columns in a table 
+                    that uniquely identifies a row in a table.</li>
+                    <ul>
+                        <li><strong>Primary keys: </strong>Each of these tables has a column that uniquely identifies each row of that table:
+                        <strong>order_id</strong> for orders; <strong>subscription_id</strong> for subscriptions;
+                        <strong>customer_id</strong> for customers. These special columns are called <strong>primary 
+                        keys</strong>. Sometimes, none of the columns in a table can uniquely identify a record. When 
+                        this happens, we can designate multiple columns in a table to serve as the primary key,
+                        also known as a <strong>composite primary key.</strong> Primary keys have a few requirements:</li>
+                        <ul>       
+                            <li>None of the values can be NULL.</li>
+                            <li>Each value must be unique (i.e., you can’t have two customers with the same customer_id in the customers table).</li>
+                            <li>A table can not have more than one primary key column.</li>
+                        </ul>
+                        <pre>
+                            <code>
+                //Composite primary key
+                CREATE TABLE popular_recipes (
+                    recipe_id varchar(20),
+                    ingredient_id varchar(20),
+                    downloaded integer,
+                    PRIMARY KEY (recipe_id, ingredient_id)
+                );
+                            </code>
+                        </pre>
+                        <li><strong>Foreign keys: </strong>When the primary key for one table appears in a different 
+                        table, it is called a foreign key.
+                        The most common types of joins will be joining a foreign key from one table with the primary 
+                        key from another table. Generally, the primary key will just be called <i>id</i>. 
+                        Foreign keys will have more descriptive names.
+                        To designate a foreign key on a single column in PostgreSQL, we use the <strong>REFERENCES</strong> keyword.</li>
+                        <pre>
+                            <code>
+                CREATE TABLE person (
+                    id integer PRIMARY KEY,
+                    name varchar(20),
+                    age integer
+                );
+                
+                CREATE TABLE email (
+                    email varchar(20) PRIMARY KEY,
+                    person_id integer REFERENCES person(id),
+                    storage integer,
+                    price money
+                );
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Database Relationship</strong></li>
+                    <ul>
+                        <li><strong>One-to-one relationship: </strong> A row of table A is associated with exactly 
+                        one row of table B and vice-versa. 
+                        Use a foreign key to the referenced table.
+                        To enforce a strictly one-to-one relationship in PostgreSQL, we need another keyword, UNIQUE. 
+                        By appending this keyword and adding repeated rows, it will throw an error.
+                        </li>
+                        <pre>
+                            <code>
+                                CREATE TABLE driver (
+                                    license_id char(20) PRIMARY KEY,
+                                    name varchar(20),
+                                    address varchar(100),
+                                    date_of_birth date
+                                );      
+                                 
+                                CREATE TABLE license (
+                                    id integer PRIMARY KEY,
+                                    state_issued varchar(20),
+                                    date_issued date,
+                                    date_expired  date,
+                                    license_id char(20) REFERENCES driver(license_id) UNIQUE
+                                ); 
+                            </code>
+                        </pre>
+                        <li><strong>One-to-Many Relationship: </strong>
+                        Analogous to a parent-child relationship where a parent can have multiple children, a parent table will house 
+                        a primary key and the child table will house both primary and foreign keys. The foreign key binds the child 
+                        table to the parent table. A one-to-many relationship exists when one row in a table links to many rows in another table.
+                        Use a foreign key on the many side of the relationship linking back to the "one" side:</li>
+                        <li><strong>Many-to-Many Relationship: </strong>
+                        Many-to-many relationship can be broken into two one-to-many relationships.
+                        To implement a many-to-many relationship in a relational database, we would create a third 
+                        cross-reference table also known as a <strong>join table</strong>. It will have these two constraints:
+                        <u>foreign keys</u> referencing the primary keys of the two member tables.
+                        a <u>composite primary key</u> made up of the two foreign keys.
+                        </li>
+                    </ul>
+                    <hr/>
+                    <ul>
+                        <li><strong>Joining: </strong>If we just look at the orders table, we can’t really tell 
+                        what’s happened in each order. However, if we refer to the other tables, we can get a 
+                        complete picture.</li> 
+                        <ul>
+                            <li>E.g: Related to order_id, we find a customer_id, 
+                            that has a customer_name stored in the customer table;</li>
+                            <li>E.g: Within order_id, we find the related subscritpion_id. Inside the 
+                            subscription table we reach the description from that subscription_id.</li>
+                        </ul>
+                        <li><strong>JOIN:</strong> Combining tables manually is time-consuming. SQL gives 
+                        us an easy sequence to join tables: JOIN.
+                        When we perform a simple JOIN (often called an inner join) 
+                        our result only includes rows that match our ON condition.
+                        if we want to combine two tables and keep un-matched rows,
+                        we use <strong>LEFT JOIN</strong>. A left join will keep all rows from the first table, 
+                        regardless of whether there is a matching row in the second table,
+                        but will omit the un-matched row from the second table.</li>
+                        <pre>
+                            <code>
+                SELECT * 
+                FROM orders
+                JOIN customers
+                    ON orders.customer_id = customers.customer_id;
+
+
+                //if we only wanted to select orders table's 
+                    order_id column and customers table's 
+                    customer_name column:
+
+                SELECT orders.order_id,
+                    customers.customer_name
+                FROM orders
+                JOIN customers
+                    ON orders.customer_id = customers.customer_id;
+
+                //JOIN Multiple
+                SELECT 
+                    AVG(people.weight), 
+                    teams.name, 
+                    batting.yearid 
+                FROM people 
+                INNER JOIN batting 
+                    ON people.playerid = batting.playerid
+                INNER JOIN teams
+                    ON batting.team_id = teams.id
+                GROUP BY 
+                    teams.name,
+                    batting.yearid
+                ORDER BY
+                    AVG(people.weight) 
+                    DESC;
+
+                //LEFT JOIN
+                SELECT *
+                FROM table1
+                LEFT JOIN table2
+                    ON table1.c2 = table2.c2;
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>The first line selects all columns from our combined table. If we only want to select 
+                            certain columns, we can specify which ones we want.</li>
+                            <li>The second line specifies the first table that we want to look in, orders</li>
+                            <li>The third line uses JOIN to say that we want to combine information from 
+                            orders with customers.</li>
+                            <li>The fourth line tells us how to combine the two tables. We want to match orders 
+                            table’s customer_id column with customers table’s customer_id column.</li>
+                        </ul>
+                        <li><strong>CROSS JOIN: </strong>Sometimes, we just want to combine all rows of one table with all rows of another table.
+                        A more common usage of CROSS JOIN is when we need to compare each row of a table to a list of values.
+                        For instance, if we had a table of shirts and a table of pants, we might want to know all the possible combinations to create different outfits. 
+                        Our code might look like this:</li>
+                        <pre>
+                            <code>
+                SELECT shirts.shirt_color, pants.pants_color
+                FROM shirts
+                CROSS JOIN pants;
+                            </code>
+                        </pre>
+                        <ul>
+                            <li>The first two lines select the columns shirt_color and pants_color.</li>
+                            <li>The third line pulls data from the table shirts.</li>
+                            <li>The fourth line performs a CROSS JOIN with pants.</li>
+                        </ul>
+                        <li><strong>UNION</strong> operator allows us to stack one dataset on top of the other. 
+                        SQL has strict rules for appending data:
+                        Tables must have the same number of columns.
+                        The columns must have the same data types in the same order as the first table.
+                        Duplicate rows will be excluded. If, however, you want to include duplicates, certain versions 
+                        of SQL provides the UNION ALL operator.</li>
+                        <pre>
+                            <code>
+                SELECT *
+                FROM table1
+                UNION
+                SELECT *
+                FROM table2;
+                            </code>
+                        </pre>
+                        <li>Often times, we want to combine two tables, but one of the tables is the result of another calculation.
+                        The <strong>WITH</strong> statement allows us to perform a separate query (such as aggregating customer’s subscriptions)
+                        previous_results is the alias that we will use to reference any columns from the query inside of the WITH clause.
+                        We can then go on to do whatever we want with this temporary table (such as join the temporary table with another table)
+                        Essentially, we are putting a whole first query inside the parentheses () and giving it a name. After that, we can use 
+                        this name as if it’s a table and write a new query using the first query.
+                        You can use WITH for more than one nested query using commas after the WITH.</li>
+                        <pre>
+                            <code>
+                WITH previous_results AS (
+                    SELECT ...
+                    ...
+                    ...
+                    ...
+                )
+                SELECT *
+                FROM previous_results
+                JOIN customers
+                ON _____ = _____;
+                            </code>
+                        </pre>
+                        <li><strong>Associating Tables: </strong>
+                        We have a person table and an email table, where a person can have many email addresses, but 
+                        an email address can only belong to one person. To implement this type of relationship, we 
+                        need to apply a constraint on the email table by adding another column to it and designating 
+                        it to associate with the person table.
+
+                        Let’s say we have a hobby table as well and populate it with all kinds of hobbies. If we try 
+                        to query both the hobby and person tables, how do we know for sure that a hobby is tied to a 
+                        particular person? There is nothing in the person table that links it to a hobby.
+
+                        To associate a hobby with a person, we need to relate the person table to the hobby table 
+                        with the type of relationship they have. Can a person have only one hobby or multiple hobbies?
+                        Can a hobby apply to only one person or can it be shared by multiple people?</li>
+                    </ul>
+                    <hr/>
+                </div>
+                <li><strong>Database Trigger: </strong>
+                Is procedural code that is automatically executed in response to certain events on a particular 
+                table or view in a database. The trigger is mostly used for maintaining the integrity of the information 
+                on the database. When you want something to happen every time someone makes a specific change to a table 
+                or view, a trigger is placed on that table or view. That trigger will call a function when the conditions 
+                for the trigger are met - triggers run in alphabetic order from their names. Adding a trigger saves people from forgetting to do that action, and ensures consistent rules are applied.
+                Triggers are very customizable. You have control over when they get called, when they run, along with what 
+                happens when they are called. There are two common options: BEFORE and AFTER.</li>
+                <p class="center"><strong>Database Trigger:</strong></p>
+                <button id="showCode51" onclick="showCode('displayCode51', 'showCode51')">Display</button>
+                <div id="displayCode51">
+                    <button onclick="closeCode('displayCode51', 'showCode51')">Close</button>
+                    <li><strong>BEFORE</strong> calls your trigger before the query that fired the trigger runs.</li>
+                    <li><strong>AFTER</strong> occurs once the query finishes its work.
+                    This is quite useful for logging purposes, such as inserting into an audit table 
+                    to track who did a change and when.</li>
+                    <pre>
+                        <code>
+            //Newer versions of Postgre
+                may use EXECUTE FUNCTION instead.
+            CREATE TRIGGER < trigger_name >
+                BEFORE UPDATE ON < table_name >
+                FOR EACH ROW
+                EXECUTE PROCEDURE< function >;
+                        </code>
+                    </pre>
+                    <li><strong>FOR EACH ROW:</strong> The trigger will fire and call the function for every row that is 
+                    impacted by the related query - therefore is called once for every row modified.
+                    The other option is to have it set to FOR EACH STATEMENT.</li> 
+                    <li><strong>FOR EACH STATEMENT: </strong> 
+                    calls the function in the trigger once for each query, not for each record -
+                    executes once for the entire operation (0 modified rows would still trigger this).</li>
+                    <li>You can use a WHEN clause to filter when a trigger calls its related function.
+                    You can use NEW and OLD to get records from the table before and after the query. Logically, INSERT 
+                    can not refer to OLD (nothing existed before the insert) and DELETE can not refer to NEW (nothing 
+                    exists after the delete).</li>
+                    <pre>
+                        <code>
+                            CREATE TRIGGER < trigger_name >
+                                BEFORE UPDATE ON < table_name >
+                                FOR EACH ROW
+                                WHEN (NEW.< column_name > < 13)
+                                EXECUTE PROCEDURE < procedure_name >();
+                        </code>
+                    </pre>
+                    <li><strong>DROP TRIGGER</strong> removes a trigger.</li>
+                    <pre>
+                        <code>    
+        DROP TRIGGER < trigger_name > 
+            ON < table_name >;</li>
+                        </code>
+                    </pre>
+                    <li>To find what triggers exists, you can use <strong>information_schema.triggers</strong></li>
+                    <pre>
+                        <code>
+        SELECT * FROM information_schema.triggers;
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>Designing</strong> Relational Databases</li>
+                <ul>
+                    <li><strong>Database Schema: </strong>Like an architectural blueprint, a database schema is documentation that helps its audience 
+                    such as a database designer, administrator and other users interact with a database. It gives 
+                    an overview of the purpose of the database along with the data that makes up the database, 
+                    how the data is organized into tables, how the tables are internally structured and how they 
+                    relate to one another. 
+                    An <strong>Entity Relationship Diagram</strong>, or ERD, is a method of diagramming a database with a little more 
+                    description put into it to allow a designer to better understand the database and the relationships 
+                    between the tables - more info <a href="https://www.lucidchart.com/pages/er-diagrams#section_5" target="_blank">here</a>.
+                    When designing a database schema consider the following steps:</li>
+                    <ul>
+                        <li><strong>Define the purpose</strong> of your database</li>
+                        <li><strong>Find the information</strong> that make up the database</li>
+                        <li><strong>Organize</strong> your information into <strong>tables</strong></li>
+                        <li><strong>Structure</strong> your tables into columns of information</li>
+                        <li><strong>Avoid redundant data</strong> that leads to inaccuracy and waste in space</li>
+                        <li><strong>Identify the relationships</strong> between your tables and implement them.</li>
+                    </ul>
+                    <li><strong>Three Tier Architecture:</strong> When discussing a new application or program that will be built, the number of tiers an 
+                    application will need is going to likely be discussed. A tier is used to help separate the 
+                    different processes that will be used within an application. This can be through the use of 
+                    different tech stacks or by simply dividing into separate teams for each tier. These tiers are 
+                    easier to understand after viewing a few examples which will be seen later in the article.
+                    The three tiers are: </li> 
+                    <ul>
+                        <li><strong>Presentation tier: </strong>
+                        This tier is the one most people will be familiar with as it represents items such as 
+                        the user interface or GUI. It represents how the user will interact with the application.
+                        This tier consists mostly of markup languages including HTML, JavaScript, and CSS,
+                        This is because this tier is mainly for presenting and gathering information from the user, 
+                        and less about processing the data in this tier.</li>
+                        <li><strong>Data tier: </strong>
+                        This is the tier that stores all of the data. Data at this level is not manipulated and is 
+                        strictly for storage. This is usually just a database to store the data on. The data tier can 
+                        only interact with the application tier, and is unable to communicate directly to the 
+                        presentation tier. This is because of the fact that the data tier is strictly for storage and 
+                        not manipulation. The data tier of applications is usually a database, meaning that services 
+                        like SQL, MongoDB, and PostgreSQL are used to create the database and assist with querying later.
+                        However, any querying done to the database is not considered to be a part of the data tier and is 
+                        instead a part of the application tier.</li>
+                        <li><strong>Application tier: </strong>
+                        This is where the bulk of the application will go. This tier will deal with processing data 
+                        gathered from the presentation tier and modifies the data within the data tier. It acts like a 
+                        bridge connecting the two other tiers.  
+                        For example, the application tier represents the process performed when you first opened an website's article. 
+                        The data for a article is grabbed from the data tier and then converted into a form you 
+                        can see in the presentation tier. The middle work between the two tiers is all done in the 
+                        application tier.
+                        Most of the work performed inside of the application tier will be done in programming languages 
+                        such as Java, Python, Perl, and other popular programming languages. This is because they are 
+                        best at manipulating the data into a number of different forms.</li>
+                    </ul>
+                    <li>An application can have as many tiers as wanted. 
+                    Two tiered can hold only presentation and data tiers (it can be used for very simplistic websites).
+                    More than three tiers can be used (but as more tiers are added though, it can become harder to maintain the project 
+                    and can even slow it down due to all of the tiers the project has to manage).
+                    A three tiered application is a nice middle ground for building a project. It allows for complex 
+                    applications without slowing down the application. Through the use of a presentation tier, 
+                    application tier, and data tier, full projects can be built and managed with different teams. 
+                    The different tiers also help allow for improved scalability for when an application grows and is 
+                    easier to manage than higher tiered application.</li>
+                    <li><strong>Free online database design tools:</strong></li>
+                    <ul>
+                        <li><a href="https://dbdiagram.io/home" target="_blank">DbDiagram.io</a> is simple tool to 
+                        draw ER diagrams by just writing code, designed for developers and data analysts.</li>
+                        <li><a href="https://sqldbm.com/home" target="_blank">SQLDBM</a> is a SQL Database Modeler</li>
+                        <li><a href="https://www.dbdesigner.net/" target="_blank">DB Designer</a> is a online database schema design and modeling tool</li>
+                        <li><a href="https://www.lucidchart.com/pages/" target="_blank">Lucidchart</a> 
+                        is the intelligent diagramming application that brings teams together to make better decisions and build the future.</li>
+                    </ul>
+                    <li><strong>More info: </strong></li>
+                    <ul>
+                        <li>Video information database-design <a href="https://www.youtube.com/watch?v=h0j0QN2b57M&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=2" target="_blank">here</a></li>
+                        <li></li>
+                    </ul>
+                </ul>
                 <hr/>
                 <h3>NoSQL</h3>
                 <li><strong>NoSQL: </strong>
