@@ -3809,6 +3809,18 @@
                         description varchar(256),
                         publisher varchar(100)
                     );
+
+                    //Create table from existing columns
+                    CREATE TABLE majors AS
+                    SELECT distinct major_1, major_1_credits_reqd
+                    FROM college;
+
+                    //Then DROP the previous college columns
+                        We just need a cross-reference 
+                        between tables
+                    ALTER TABLE college
+                    DROP COLUMN major_1, 
+                    DROP COLUMN major_1_credits_reqd;
                             </code>
                         </pre>
                         <ol>
@@ -3984,12 +3996,35 @@
                         constraints on the celebs table.</li>
                         <pre>
                             <code>
-                        CREATE TABLE celebs (
-                            id INTEGER PRIMARY KEY, 
-                            name TEXT UNIQUE,
-                            date_of_birth TEXT NOT NULL,
-                            date_of_death TEXT DEFAULT 'Not Applicable'
-                        );
+                CREATE TABLE celebs (
+                    id INTEGER PRIMARY KEY, 
+                    name TEXT UNIQUE,
+                    date_of_birth TEXT NOT NULL,
+                    date_of_death TEXT DEFAULT 'Not Applicable'
+                );
+
+                // If we don't need a constraint, we can
+                   use DROP in place of SET                
+                ALTER TABLE talks
+                ALTER COLUMN session_timeslot SET NOT NULL;
+   
+                //BACKFILL table, so error doesn't occur.            
+                UPDATE talks
+                SET title = 'TBD'
+                WHERE title IS NULL;
+
+                //CHECK
+                ALTER TABLE talks 
+                ADD CHECK (estimated_length > 0 AND estimated_length < 120);
+
+                //another CHECK example              
+                ALTER TABLE attendees 
+                ADD CHECK (standard_tickets_reserved + vip_tickets_reserved = total_tickets_reserved);
+
+                //Delete Cascade for referenced Foreign keys
+                ALTER TABLE registrations
+                ADD FOREIGN KEY (talk_id)
+                REFERENCES talks (id) ON DELETE CASCADE
 
                             </code>
                         </pre>
@@ -3999,10 +4034,35 @@
                             violation which will not allow you to insert the new row.</li>
                             <li><strong>UNIQUE</strong> columns have a different value for every row. This is similar to 
                             PRIMARY KEY except a table can have many different UNIQUE columns.</li>
-                            </li><strong>NOT NULL</strong> columns must have a value. Attempts to insert a row without a value for a 
+                            <li><strong>NOT NULL</strong> columns must have a value. Attempts to insert a row without a value for a 
                             NOT NULL column will result in a constraint violation and the new row will not be inserted.</li>
+                            <li><strong>CHECK</strong> statements can be used to implement more precise constraints on our table.
+                            In some situations, we might want to establish specific rules to determine what makes a row valid.
+                            A CHECK constraint can be written into a CREATE TABLE statement, or added to an existing table with 
+                            ALTER TABLE.
+                            As a general rule, any logic that you might use in a WHERE statement to filter 
+                            individual rows from an existing table can be applied within a CHECK</li>
+                            <li><strong>FOREIGN KEY</strong>
+                            Values inserted into child table must be validated by data that’s already present in a parent table.
+                            Formally, this property that ensures data can be validated by referencing another table in the data model 
+                            is called referential integrity. Referential integrity can be enforced by adding a FOREIGN KEY on the child 
+                            table that references the primary key of a parent table.
+                            By default, a foreign key constraint will prevent an engineer from deleting or updating a row of a parent table 
+                            that is referenced by some child table. This behavior is sometimes explicitly specified in a CREATE TABLE statement 
+                            using REFERENCES talks (id) ON DELETE RESTRICT or REFERENCES talks (id) ON UPDATE RESTRICT.
+                            Another way is using <strong>CASCADE</strong> clause.
+                            Rather than preventing changes, CASCADE clauses (ON UPDATE CASCADE, ON DELETE CASCADE) cause 
+                            the updates or deletes to automatically be applied to any child tables- once we right that statement,
+                            we're able to delete normally.</li>
                             <li><strong>DEFAULT</strong> columns take an additional argument that will be the assumed value for an 
                             inserted row if the new row does not specify a value for that column.</li>
+                            <li>We can use <strong>ALTER TABLE</strong> statements to add or remove constraints from existing 
+                            tables. If the table we’re attempting to add a constraint on doesn’t meet the constraint, 
+                            an error will occur, but we  can backfill the table so that it does adhere to the constraint.
+                            <strong>Backfilling</strong> is a term
+                            occasionally used in DB engineering to refer to the process of adding or updating past 
+                            values. In this case, we can fill our target column’s NULL values with a placeholder 
+                            value using the query below.</li>
                         </ul>
                         <li><strong>Information schema</strong> is a database containing meta information about 
                         objects in the database including tables, columns and constraints. This schema provides users 
@@ -4495,8 +4555,13 @@
                     relate to one another. 
                     An <strong>Entity Relationship Diagram</strong>, or ERD, is a method of diagramming a database with a little more 
                     description put into it to allow a designer to better understand the database and the relationships 
-                    between the tables - more info <a href="https://www.lucidchart.com/pages/er-diagrams#section_5" target="_blank">here</a>.
-                    When designing a database schema consider the following steps:</li>
+                    between the tables - more info <a href="https://www.lucidchart.com/pages/er-diagrams#section_5" target="_blank">here</a>.</li>
+                </ul>
+                <p class="center"><strong>How to design:</strong></p>
+                <button id="showCode52" onclick="showCode('displayCode52', 'showCode52')">Display</button>
+                <div id="displayCode52">
+                    <button onclick="closeCode('displayCode52', 'showCode52')">Close</button>
+                    <li>When designing a database schema consider the following steps:</li>
                     <ul>
                         <li><strong>Define the purpose</strong> of your database</li>
                         <li><strong>Find the information</strong> that make up the database</li>
@@ -4555,14 +4620,472 @@
                         <li><a href="https://sqldbm.com/home" target="_blank">SQLDBM</a> is a SQL Database Modeler</li>
                         <li><a href="https://www.dbdesigner.net/" target="_blank">DB Designer</a> is a online database schema design and modeling tool</li>
                         <li><a href="https://www.lucidchart.com/pages/" target="_blank">Lucidchart</a> 
-                        is the intelligent diagramming application that brings teams together to make better decisions and build the future.</li>
+                        is the intelligent diagramming application that brings teams together to make better 
+                        decisions and build the future.</li>
                     </ul>
                     <li><strong>More info: </strong></li>
                     <ul>
                         <li>Video information database-design <a href="https://www.youtube.com/watch?v=h0j0QN2b57M&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=2" target="_blank">here</a></li>
-                        <li></li>
+                    </ul>
+                </div>
+                <li><strong>Database Permissions</strong></li>
+                <ul>
+                    <li>The postgres user (or any initial user) has the ability to create new databases, tables, 
+                    users, etc. In PostgreSQL, the term for a user with these types of permissions is <strong>superuser</strong>. 
+                    A superuser bypasses all permission checks that other users face before being allowed to perform 
+                    an action. It's dangerous to let a user have access to everything, that's why we restrict their permission.</li>
+                </ul>
+                <p class="center"><strong>More about permissions:</strong></p>
+                <button id="showCode53" onclick="showCode('displayCode53', 'showCode53')">Display</button>
+                <div id="displayCode53">
+                    <button onclick="closeCode('displayCode53', 'showCode53')">Close</button>
+                    <li><strong>View list</strong></li>
+                    <ul>
+                        <li><strong>pg_catalog.pg_roles:</strong> A listing of all users in the database and a description
+                        of what special permissions these users have.</li>
+                        <li><strong>information_schema.table_privileges:</strong> Description of the permissions a user 
+                        (grantee) has on a table. This table can be used to answer questions about who can SELECT, INSERT,
+                        UPDATE, etc. values on a table.</li>
+                    </ul>
+                    <li><strong>Mimic Role: </strong>As a superuser, you can use <strong>SET ROLE</strong> to mimic the permissions of other users. 
+                    For example, if a superuser runs <i>SET ROLE < test role ></i> and then attempts to perform an action 
+                    that role couldn’t, they’d receive an error message indicating that they don’t have permission.
+                    This behavior is identical to connecting to the database with that role from the start. 
+                    As superuser, you can run <i>SET ROLE < superuser role ></i> to regain all superuser privileges.</li>
+                    <pre>
+                        <code>
+                    //Check the name of the current user
+                    SELECT current_user;
+
+                    //information_schema.table_privileges
+                    SELECT grantor, grantee, table_schema, table_name, privilege_type
+                    FROM information_schema.table_privileges 
+                    WHERE grantee = 'userB';
+                        </code>
+                    </pre>
+                    <li><strong>CREATE ROLE: </strong>As a superuser, one of the permissions you have is the ability to create new roles. In PostgreSQL, 
+                    roles can either be login roles or group roles. <strong>Login roles</strong> are used for most routine database 
+                    activity. <strong>Group roles</strong> typically do not have the ability to login themselves, but can hold other 
+                    roles as “members” and allow access to certain shared permissions.
+                    List of permissions available for CREATE ROLE <a href="https://www.postgresql.org/docs/10/sql-createrole.html" target="_blank">here</a>.</li>
+                    <pre>
+                        <code>          
+                //Create new role
+                CREATE ROLE < name > WITH < list of permissions >;
+
+                //Alter role
+                ALTER ROLE miriam WITH CREATEDB
+                        </code>
+                    </pre>
+                    <li><strong>Table level security: </strong><strong>GRANT</strong> and <strong>REVOKE</strong> are statements used to modify 
+                    permissions at the schema and table level.
+                    Every table or schema in a PostgreSQL database has an owner that can set the permissions on their 
+                    tables. As a superuser or table or schema owner, you may use GRAND and REVOKE to achieve that.
+                    To use a schema, a role must have a permission 
+                    called <strong>USAGE</strong> - without USAGE a role cannot access tables within that schema. Other schema level 
+                    permissions include <strong>CREATE</strong> and <strong>DROP</strong>, which allow the grantee the 
+                    ability to create or remove tables in that schema respectively. 
+                    To interact with a table, a role must have USAGE on the table’s schema. 
+                    Additionally, a table owner must also grant <strong>SELECT</strong>, <strong>UPDATE</strong>, 
+                    <strong>DELETE</strong>, <strong>INSERT</strong> etc. on a specific table 
+                    to define how that role can interact with the table.
+                    Let's examine what this looks like in practice. As the owner of the schema finance, perhaps you'd 
+                    like to grant the ability to SELECT and UPDATE a table named finance.revenue to a user named analyst.
+                    You could accomplish this with the following:</li>
+                    <ul>
+                        <li>First by <strong>granting USAGE</strong> on the schema. In this example, analyst is also granted the ability 
+                        to CREATE new tables in the schema. <i>GRANT USAGE, CREATE ON SCHEMA finance TO analyst;</i></li>
+                        <li>Then by <strong>granting</strong> the table <strong>specific permissions</strong>. 
+                        <i>GRANT SELECT, UPDATE ON finance.revenue TO analyst;</i></li>
+                        <li>Any GRANT statement can be reversed using quite similar syntax. First replacing GRANT with 
+                        <strong>REVOKE</strong> and TO to FROM. For example, to revoke the ability to UPDATE given above, the owner of 
+                        the table could use the following statement:
+                        <i>REVOKE UPDATE ON finance.revenue FROM analyst;</i></li>
+                        <li><strong>Default Permission: </strong>With it a superuser can set permissions to be updated 
+                        automatically when new objects are created in a schema
+                        (Default permissions can be used to set permissions at the database level as well).
+                        The following statement would allow analyst to SELECT on all newly-created 
+                        tables in finance immediately after another user has created them:</li>
+                        <pre>
+                            <code>
+                        ALTER DEFAULT PRIVILEGES IN SCHEMA finance
+                        GRANT SELECT ON TABLES TO analyst;
+                            </code>
+                        </pre>
+                        <li><strong>Group Role: </strong>Alice, bob, and charlie can each be login roles, and they can 
+                        also all be members of a group role called employees.
+                        This is a useful feature for maintaining databases with many users, but only a few “types” of users.
+                        One member can belong to more than one group role.
+                        For security reasons, PostgreSQL disallows the inheritance of certain powerful permissions such
+                        as LOGIN, SUPERUSER, CREATEDB, and CREATEROLE. There are several ways to create a new group role:</li>
+                        <pre>
+                            <code>
+        // CREATE ROLE and the WITH ROLE 
+            this automatically adds the listed names to the role
+        CREATE ROLE marketing WITH NOLOGIN ROLE alice, bob;
+
+        //CREATE ROLE and a GRANT statement
+            grants all the permissions of the newly created 
+            role to the listed names.
+        CREATE ROLE finance WITH NOLOGIN;
+        GRANT finance TO charlie;
+
+        //You can also add users to group(s) 
+            on creation by specifying 
+        IN ROLE along with the CREATE ROLE statement
+        CREATE ROLE fran WITH LOGIN IN ROLE employees, managers; 
+                            </code>
+                        </pre>
+                        <li><strong>Column level security: </strong>PostgreSQL offers the ability to write GRANT statements that specify specific <strong>columns</strong> for a set 
+                        of permissions to apply to. Consider the following example:</li>
+                        <pre>
+                            <code>
+        GRANT SELECT (project_code, project_name, project_status) 
+        ON projects to employees;
+
+        //To display grant by column
+        SELECT *
+        FROM information_schema.column_privileges 
+        WHERE grantee = 'manager';
+                            </code>
+                        </pre>
+                        <li><strong>Row-level security (RLS): </strong>PostgreSQL feature  
+                        that allows developers to define permissions on individual rows. To access (or modify) information from a 
+                        table with RLS, a row-specific condition must be met. Information about RLS 
+                        <a href="https://www.postgresql.org/docs/10/sql-createpolicy.html" target="_blank">here</a>.</li>
+                        <pre>
+                            <code>
+                            //First, we create a policy using a CREATE POLICY statement.
+                            CREATE POLICY emp_rls_policy ON accounts FOR SELECT 
+                            TO sales USING (salesperson=current_user);
+
+                            //Next, we need to enable RLS on the table the policy refers to.
+                            ALTER TABLE accounts ENABLE ROW LEVEL SECURITY;
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+                <li><strong>ACID </strong>(Atomic, Consistent, Isolated, and Durable): These properties help ensure that all the data in a 
+                transaction is complete, accurate, and has integrity. These properties also assist in recovering databases in case of a system 
+                failure and allows for concurrent use of a database.
+                Any single unit of work done to the database is defined as a <strong>transaction</strong> - these transactions can often be 
+                made up of multiple different steps, and most of the time represent changes made to the database.</li>
+                <ul>
+                    <li><strong>ATOM: </strong>“all changes to data are performed as if they are a single operation. That is, all the changes are performed, or none 
+                    of them are.” This means that we treat each transaction as a single operation. If a single task in the transaction fails, 
+                    then the entire transaction will fail. For example, let’s look at the following transaction</li>
+                    <li><strong>Consistent: </strong>“Data is in a consistent state when a transaction starts and when it ends.”
+                    Therefore, the transaction follows the rules from the database. E.g:
+                    Inside of a banking application, whenever money is transferred from one account to another, we need to make sure that the no money was lost or 
+                    added to the transaction. To do this, we would add the funds from both accounts together and store that value, transfer the money, 
+                    then add the account values and check the initial value to make sure both are equal. </li>
+                    <li><strong>Isolated: </strong>When working with multiple transactions that could occur at once, it is important to ensure that when one transaction 
+                    is reading or writing from a location in to a database, no other transaction is reading or writing from that same location. This process is 
+                    called isolation and is defined by IBM as “The intermediate state of a transaction is invisible to other transactions. As a result, 
+                    transaction that run concurrently appear to be serialized.”
+                    For example, if we had one transaction changing a row in a table, and another transaction trying to read data from that same table, 
+                    these two transaction would not be able to operate at the same time. Instead, these transaction would execute one at a time.
+                    This does not mean that we cannot perform multiple transactions at once. We can still have multiple transactions happen, it’s just 
+                    that no two transactions can read or write from the same location at the same time. Otherwise, we could encounter issues where a 
+                    transaction could use old data or a transaction could overwrite new data with old data.</li>
+                    <li><strong>Durable: </strong>“after a transaction successfully completes, changes to data persist and are not undone, even in the 
+                    event of a system failure.” These failures include instances of service outages and crashes. Durability can be achieved through a 
+                    number of methods including change logs that are referenced whenever the database is restarted for whatever reason.</li>
+                </ul>
+                <li><strong>SQL Injections </strong>
+                Is a common vulnerability affecting applications that use SQL as their database language. A hacker can use 
+                their knowledge of the SQL language to cleverly construct text inputs that modify the backend SQL query to their liking. 
+                They can force the application to output private data or respond in ways that provide intel. <i>Union-Based Injections</i>,
+                <i>Error-Based Injections</i>, <i>Boolean-Based Injections</i>, <i>Time-Based Injections</i>, <i>Out-of-Band SQL Injections</i></li>
+                <ul>
+                    <li><strong>SQL Injection Prevention: </strong>
+                    There are two main methods for preventing injection attacks: <strong>sanitization</strong> and
+                    <strong>prepared statements</strong>.</li>
+                    <ul>
+                        <li>Sanitization is the process of removing dangerous characters from user input. When it comes to SQL injections, 
+                        we would want to escape dangerous characters such as: <i>' ; \--</i>
+                        These sorts of characters can allow attackers to extend queries to output more data from a database.
+                        While this does provide a layer of protection, this method isn’t perfect. If a user finds a way to bypass your 
+                        sanitization process, they can easily inject data into your system.
+                        Additionally, depending on your query, removing certain characters may have no effect! Therefore, this shouldn’t 
+                        be your only defense mechanism.</li>
+                        <li>Prepared Statements
+                        Writing prepared statements in backend code is a common, reliable, and secure solution against SQL injections. 
+                        Prepared statements are nearly foolproof.
+                        How does it work? We provide the database the query we want to execute in advance. First, the database processes our 
+                        query. Then we pass in the parameters/user input. Any input, regardless of whether the content has SQL syntax, is then 
+                        treated only as a parameter and will not be treated as SQL code.
+                        In addition to providing added security, prepared statements also make queries far more efficient.
+                        Here is an example of what a prepared statement looks like in PHP web application backend code:</li>
+                        <pre>
+                            <code>
+                        $username= $_GET['user'];
+                        $stmt = $conn->prepare("SELECT * FROM Users WHERE name = '?'");
+                        $stmt->bind_param("s", $username);
+                        $stmt->execute();
+                            </code>
+                        </pre>
                     </ul>
                 </ul>
+                <li><strong>Indexes:</strong> An index is an organization of the data in a table to help with performance when searching 
+                and filtering records.
+                It's a data structure that helps to speed up database queries by allowing the database to
+                quickly locate the rows.
+                A table can have zero, one, or many indexes.
+                Indexing allows you to organize your database structure in such a way that it makes finding specific records much faster.
+                In small databases this is negligible, but as the datasets get larger this becomes more significant.
+                Indexes speed up searching and filtering, however, they slow down insert, update, and delete statements.
+                One thing to consider using or not is whether searching will occur often enough to make the advantages worth the time and effort.</li>
+                <p class="center"><strong>More about Indexes:</strong></p>
+                <button id="showCode54" onclick="showCode('displayCode54', 'showCode54')">Display</button>
+                <div id="displayCode54">
+                    <button onclick="closeCode('displayCode54', 'showCode54')">Close</button>
+                    <li><strong>Seek VS Scan: </strong>
+                    Different names are used in differente databases. SQL Server uses Seek and Scan, PostgreSQL uses Scan, 
+                    Index Scan and Bitmap Heap Scan. There are two major ways that a database searches for rows in a table/view when you 
+                    run any query. This isn’t limited to SELECT statements — this applies to every type of query that needs to find specific 
+                    rows. For example, in a database of orders, an UPDATE query for orders over $10k would need to search for those records.</li>
+                    <ul>
+                        <li><strong>Scan:</strong> Searches through every record in a database table/view to find the records being asked for.</li>
+                        <li><strong>Seek:</strong> Uses an index to find the specific records being asked for by jumping to their location and either grabbing the 
+                        data or, if it is a reference, using it to get the information.</li>
+                        <li>The DB server decides if it should use a seek or scan. This means that even if you write your query to take advantage
+                        of a good index, the server might ignore this and run the query using a scan. But why would it do this? If you are 
+                        examining over 50% - 70% of the records in the table then seeking no longer offers any advantage. If you are regularly 
+                        skipping the benefits of your indexes, they might need to be reexamined to see if the costs outweigh the benefits.</li>
+                    </ul>
+                    <li>To see existing indexes:</li>
+                    <pre>
+                        <code>
+                    SELECT *
+                    FROM pg_Indexes
+                    WHERE tablename = 'products';
+                        </code>
+                    </pre>
+                    <li><strong>Binary Tree (B-Tree): </strong> By default, index divides the possible matching records in half, then half, 
+                    then half, and so on until the specific match you 
+                    are searching for is found. This is known as a Binary Tree, or B-Tree.
+                    Let’s consider an example to expand on this concept. Say you had a sales department where you ranked your clients from 
+                    number 1 to 100 in order of loyalty. If you wanted to search the database for your most loyal client, who would have a 
+                    loyalty score of 100, you would have to search every record (the highest loyalty score could be anywhere in the data set).
+                    If you created an index on loyality_score, you could now use the B-Tree structure to speed up that search. The search would 
+                    divide all results in half, so in this case, the first check would be if the record you are searching for is greater than or 
+                    less than 50.</li>
+                    <li><strong>EXPLAIN ANALYZE: </strong>To get insight into how PostgreSQL breaks down your statements into runnable parts, we can investigate the query plan 
+                    by adding EXPLAIN ANALYZE before your query. Rather than returning the results of the query, it will return information 
+                    about the query. More info <a href="https://www.postgresql.org/docs/current/sql-explain.html" target="_blank">here</a></li>
+                    <ul>
+                        <li><strong>Seq Scan</strong> this means that the system is scanning every record to find the specific records 
+                        you are looking for. 
+                        <strong>Index</strong> means the server is taking advantage of an index to improve the speed of your search.</li>
+                        <li><strong>Planning time</strong> is the amount of time the server spends deciding the best way to solve your query, 
+                        should it use an index, or do a full scan of the table(s) for instance. The <strong>execution time</strong> is the amount of time the 
+                        actual query takes to run after the server has decided on a plan of attack. You need to take both of these into 
+                        consideration, and when examining your own indexes these are critical to understanding how effective your indexes are.</li>
+                        <li>We can use the code below and compare two different queries, to analyze if is faster using an index or 
+                        doing a full scan of the table(s).</li>
+                    </ul>
+                    <pre>
+                        <code>
+                EXPLAIN ANALYZE SELECT *
+                FROM customers;
+                        </code>
+                    </pre>
+                    <li><strong>CREATE INDEX:</strong> 
+                    When an index is created on a column, the database creates a separate data structure that 
+                    contains the values from that column along with pointers to the actual rows in the table that containthose values.
+                    In the code below, the "customers_user_name_idx" index will contain the values from the "user_name" column of the "customers" 
+                    table and pointers to the rows in the table that contain those values. This will allow the database to quickly find all 
+                    rows in the "customers" table that match a specific user name, which can be especially helpful if there are a large number 
+                    of rows in the table.
+                    To summarize, this code is creating an index on the "user_name" column of the "customers" table to speed up queries that 
+                    involve searching for rows based on the values in that column:</li>
+                    <pre>
+                        <code>
+                //user_name = column
+                CREATE INDEX customers_user_name_idx ON customers (user_name);
+
+
+                CREATE INDEX < index_name > ON < table_name > (< column_name >);
+                        </code>
+                    </pre>
+                    <li>Much like constraints, you can <strong>combine multiple columns</strong> together as a single index. 
+                    When using multicolumn indexes, the search structure will be based on the values found in all of the columns.
+                    For example, an index on First and Last Name might be a good idea if it is common to search by both together in 
+                    your situation. Consider a table where the last names 'Smith' and 'Johnson' appear many times. Having another filter 
+                    for the first name can help you find someone named 'Sarah Smith' much faster.
+                    The index is built in the specific order listed at creation, so (last_name, first_name) is different from 
+                    (first_name, last_name). Keep this in mind when you are building your indexes as the order will impact the efficiency 
+                    of your searches. You can create a multicolumn index as well (also known as Composite or Compound).</li>
+                    <pre>
+                        <code>
+                //multicolumn index (Composite or Compound)
+                CREATE INDEX customers_last_name_first_name_idx ON customers (last_name, first_name);
+                        </code>
+                    </pre>
+                    <li><strong>DROP </strong>index: <i>DROP INDEX IF EXISTS customers_city_idx;</i></li>
+                    <li><strong>Cons of using Index: </strong>
+                    <ul>
+                        <li>When new data is added, the index will be reshaped to fit that new data into 
+                        its organization. This means that when you write a single statement to modify the records, the server will have to modify 
+                        every index that would be impacted by this change. If you are adding a large amount of data to an existing table, it may 
+                        be better to drop the index, add the data, and then recreate the index rather than having to update the index on each 
+                        insertion. Keep in mind that these drawbacks are for each index you have on your table. If you have multiple indexes
+                        on a single table and you insert a record, you will need to update each index associated with the table. This can make 
+                        indexes very costly. If you are doing a large amount of inserts/updates it might be worth considering removing indexes 
+                        before doing the changes then putting the indexes back in once you are done.
+                        Updates and deletes have similar drawbacks. When deleting a record that is associated with an index, it might be faster 
+                        to find the record — by leveraging the index’s ability to search. However, once the record is found, removing or editing 
+                        it will result in the same issue as inserting a new record. The index itself will need to be redone. Note that if you’re 
+                        updating a non-indexed column, that update will be unaffected by the index. So if you are updating a non-indexed column 
+                        while filtering by one with an index, an update statement can actually be faster with an index.</li>
+                        <li>Another place where an index falls short of perfection is that indexes take up space. The index data structures 
+                        can sometimes take up as much space as the table itself.
+                        Given the speed advantages indexes can provide when used properly, you should not ignore them, but keep in mind this balance.
+                        If you wanted to examine the size of a table products you would run:
+                        <i>SELECT pg_size_pretty (pg_total_relation_size('products'));</i></li>
+                        <li><strong>When to use index?:</strong>
+                        In the real world, this often becomes a grey area and one that you might have to go back to after trying for a while.
+                        You will want to look at what a table is used for and by who. As a very rough rule of thumb, think carefully about any
+                        index on a table that gets regular Insert/Update/Delete. In contrast, a table that is fairly stable but is searched 
+                        regularly might be a good candidate for an index.
+                        There are some other conditions that can impact your search times you should be aware of when using an index.
+                        The higher the percentage of a table you are returning the less useful an index becomes. If we’re only searching 
+                        for 1 record in 1,000,000, an index could be incredibly useful. However, if we are searching for 900,000 out of that 
+                        same 1,000,000 the advantages of an index become useless. At higher percentages, the query planner might completely 
+                        ignore your index and do a full table scan, making your index only a burden on the system.
+                        Along this same line, if you are combining filtering conditions be aware of what you will be searching on. AND 
+                        statements are normally fine and the query planner will try to use an indexed field before non-indexed fields to 
+                        cut down on the total number of records needed to be searched. OR on the other hand, can be very dangerous; even 
+                        if you have a single non-indexed condition, if it’s in an OR, the system will still have to check every record in 
+                        your table, making your index useless.</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Partial Index: </strong>
+                    A partial index allows for indexing on a subset of a table, allowing searches to be conducted on just this group of 
+                    records in the table. 
+                    Unlike a regular index that indexes all rows in a table, a partial index only indexes the rows that satisfy a specified
+                    condition. This can be useful in situations where only a subset of rows in a table are frequently queried, or where the 
+                    indexed columns have a high degree of selectivity (i.e., only a small number of distinct values).
+                    If you would be searching an index of ~258 Thousand instead of 70+ Million,
+                    this can be powerful toolset when working with massive databases.
+                    It can be used conditioning calculations as well, speeding up even more.</li>
+                    <pre>
+                        <code>
+                CREATE INDEX users_user_name_internal_idx ON users (user_name)
+                WHERE email_address LIKE '%@wellsfargo.com';
+                        </code>
+                    </pre>
+                    <ul>
+                        <li><strong>ORDER BY: </strong>
+                        If you are commonly ordering your data in a specific way on an indexed column, you can add ORDER BY to the 
+                        index itself and PostgreSQL will store the data in your desired order. By doing this, the results that are returned 
+                        to you will already be sorted. You won’t need a second step of sorting them, saving time on your query.
+                        This could improve the speed.</li>
+                        <pre>
+                            <code>
+                CREATE INDEX logins_date_time_idx ON logins (date_time DESC, user_name);
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Primary Keys and Indexes: </strong>PostgreSQL automatically creates a unique index on any primary key you 
+                    have in your tables. It will also do this for 
+                    any column you define as having a unique constraint. A unique index, primary key, and unique constraint all reject any 
+                    attempt to have two records in a table that would have the same value (multicolumns versions of these would reject any 
+                    record where all the columns are equal).
+                    The primary key index standard is to end in _pkey instead of _idx to identify it as a specific type of index. It is also 
+                    the way the system names it when created automatically.</li>
+                    <li>All indexes are either a <strong>clustered index</strong> or a <strong>non-clustered index</strong>. 
+                    For now, let’s focus on the clustered index. A clustered index is often tied to the table’s primary key.</li>
+                    <ul>
+                        <li><strong>Cluster</strong> refers to a group of tables that are physically stored together on disk based on 
+                        their relationships with each other.
+                        In a clustered database, related data is stored together on disk, which can improve query performance by reducing 
+                        the need for disk seeks and improving data locality. For example, a database might cluster a "customer" table with 
+                        an "orders" table based on their relationship, so that the orders for each customer are stored together on disk.</li>
+                        <li><strong>Non-Clustered</strong>You can create many indexes on a table, but only one can be a clustered index, so 
+                        what about the rest? They are known as non-clustered indexes. Non-clustered indexes have records of the columns they 
+                        are indexing and a pointer back to the actual data in the table. If you are searching for just the records in the 
+                        non-clustered index, the system will simply seek for your query results and return them. When you search on a 
+                        non-clustered index for more information than is in the indexed columns, there are two searches. The first to 
+                        find the record in the index and another to find the record the pointer identifies. There are some things you 
+                        can do, such as creating a multicolumn index, that in some cases can help cut down or eliminate the need for the 
+                        look back to the main table in memory.
+                        Previously we compared how a clustered index functions as a dictionary. You can think of all other indexes 
+                        (non-clustered) more akin to an index in a book. The keywords you are looking for are organized (by type, 
+                        alphabetically, by the number of appearances, etc) and can be found quickly. However, the index doesn’t contain
+                        information beyond that. Instead, it contains a pointer (page number, paragraph number, etc) to where the rest of 
+                        the data can be found. This is the same way non-clustered indexes in databases work. You have a key that is sorted 
+                        and a pointer to where to find the rest of the data if needed.</li>
+                        <li><strong>Index-Only Scans: </strong>
+                        The lookup that a non-clustered index does back to the table after finding records has a cost.
+                        If you include the information that is regularly looked for, even if it isn’t used in the filtering, 
+                        as part of the index, a secondary search can be avoided.</li>
+                        <li><strong>Combining Indexes: </strong>
+                        Previously we went over multicolumn indexes as a way PostrgeSQL can speed searches on multicolumn filtering, 
+                        but if you don’t have an appropriate single index for a query, the server can combine indexes together to speed 
+                        the filter. Like anything automatically handled by a system, there are some things to keep in mind when using 
+                        this convenience.</li>
+                        <ul>
+                            <li>A single multicolumn index is faster (if ordered well) than combining indexes.</li>
+                            <li>A multicolumn index is less efficient than a single index in cases where a single index is needed.</li>
+                            <li>You could create all of them, then the server will try to use the best one in each case, but if they 
+                            are all not used relatively often/equally then this is a misuse of indexes.</li>
+                        </ul>
+                        <li>Take for example, searching for first_name and last_name in the customers table.</li>
+                        <ul>
+                            <li>If searches are most often for only one of the columns, that should be your index.</li>
+                            <li>If searches are most often last_name and first_name then you should have a multicolumn index.</li>
+                            <li>If the searches are frequent and evenly spread among; first_name alone, last_name alone, and the 
+                            combination of the two, that is a situation where you would want to have all three indexes.</li>
+                        </ul>
+                    </ul>
+                    <pre>
+                        <code>      
+                //To cluster your database table using an existing index
+                CLUSTER products USING products_product_name_idx;
+
+                //If you have already established what 
+                    index should be clustered (recluster)
+                CLUSTER products;
+
+
+                //if you want to cluster every table in 
+                    your database that has an identified index
+
+                CLUSTER;
+                        </code>
+                    </pre>
+                    <li><strong>Indexes Based On Expressions: </strong>
+                    An index is not limited to just a column reference, it can use the result of a function or scalar expression computed 
+                    from one or more columns.
+                    For example, if you want to ensure the company_name in a manufactures table is unique, you can add the UNIQUE option 
+                    to make a unique index constraint on the results on your index. Any duplicate will then be rejected. Using UNIQUE here 
+                    tells the system that your index also needs to be a constraint and only allow one record in the system that matches the 
+                    criteria for your index. In other words, by creating an index with UNIQUE the system will automatically create the 
+                    constraint to match the logic in the index at the same time. Just like the creation of a constraint, if you try to 
+                    create an index in this way where the data already in the table does not pass, the system will reject your creation and 
+                    notify you of the issue.
+                    Let’s look at our UNIQUE example a bit more. In PostgreSQL, 'ExampleCompany' is NOT the same thing as 'examplecompany' 
+                    even though we would probably want to reject this as a duplicate. You can add a function on your index to convert all 
+                    your company_name data to lower case by using LOWER. This ensures that 'ExampleCompany' would be considered the same as 
+                    'examplecompany'. This combination of the UNIQUE constraint and the use of the function LOWER would look like the code below.
+                    These special indexes compound the pros and cons of indexes. Because the results of the expression are stored in the 
+                    index, it saves the search function from having to perform it on every row on future searches. However, every change 
+                    in the table data that impacts the index means it has to do the expression again, making Inserts and Updates more 
+                    expensive on these indexes than a basic index. Be especially thoughtful about when to use indexes that use functions 
+                    or expressions.</li>
+                    <pre>
+                        <code>
+                    CREATE UNIQUE INDEX unique_manufacture_company_name_idx 
+                    ON manufacture(LOWER(company_name));
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>CREATE TEMP TABLE: </strong>If you are searching the same set of records from a table/view more than once in 
+                    a block of code, put the filtered rows into an object such as a temp table, table variable, or view depending on the 
+                    situation. This will eliminate the need to have to search the table/view for the same set of records more than once.</li>
+                </div>
                 <hr/>
                 <h3>NoSQL</h3>
                 <li><strong>NoSQL: </strong>
@@ -4585,27 +5108,27 @@
                 </ul>
                 <li><strong>Types of NoSQL</strong> Databases:</li>
                 <ul>
-                    <li>A <strong>key-value database</strong> consists of individual records organized via key-value pairs. In this model, 
+                    <li><strong>key-value database</strong> consists of individual records organized via key-value pairs. In this model, 
                     keys and values can be any type of data, ranging from numbers to complex objects. However, keys 
                     must be unique. This means this type of database is best when data is attributed to a unique key, 
                     like an ID number. Ideally, the data is also simple, and we are looking to prioritize fast queries 
                     over fancy features. Amazon <a href="https://aws.amazon.com/pt/dynamodb/" target="_blank">DynamoDB</a> 
                     and <a href="https://redis.com/" target="_blank">Redis</a> are popular options for developers 
                     looking to work with key-value databases.</li>
-                    <li>A <strong>document-based</strong> (also called document-oriented) database consists of data stored in hierarchical 
+                    <li><strong>document-based</strong> (also called document-oriented) database consists of data stored in hierarchical 
                     structures. Some supported document formats include JSON, BSON, XML, and YAML. The document-based 
                     model is considered an extension of the key-value database and provides querying capabilities not 
                     solely based on unique keys. Documents are considered very flexible and can evolve to fit an 
                     application’s needs. They can even model relationships!
                     <a href="https://www.mongodb.com/?utm_campaign=academia_partners&utm_source=codecademy&utm_medium=referral" target="_blank">MongoDB</a> is a popular option for developers looking to work with a document database.</li>
-                    <li>A <strong>graph database</strong> stores data using a graph structure. In a graph structure, data is stored in 
+                    <li><strong>graph database</strong> stores data using a graph structure. In a graph structure, data is stored in 
                     individual nodes (also called vertices) and establishes relationships via edges (also called 
                     links or lines). The advantage of the relationships built using a graph database as opposed to 
                     a relational database is that they are much simpler to set up, manage, and query. For example, 
                     let’s say we wanted to build a recommendation engine for our e-commerce store. We could establish
                     relationships between similar items our customers searched for to create recommendations.
                     <a href="https://neo4j.com/" target="_blank">Neo4j</a> is a popular option for developers looking to work with a graph database.</li>
-                    <li>A <strong>column-oriented</strong> NoSQL database stores data similar to a relational database. However, 
+                    <li><strong>column-oriented</strong> NoSQL database stores data similar to a relational database. However, 
                     instead of storing data as rows, it is stored as columns. Column-oriented databases aim to 
                     provide faster read speeds by being able to quickly aggregate data for a specific column. 
                     Amazon’s <a href="https://aws.amazon.com/redshift/" target="_blank">Redshift</a> is a popular 
