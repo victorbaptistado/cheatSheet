@@ -109,6 +109,68 @@
                 </pre>
             </div>
         </div>
+        <div class="styleGuide">
+            <h2>JSON & YAML</h2>
+            <li><strong>JSON</strong>
+            stands for JavaScript Object Notation. It is a lightweight data interchange format that is easy for 
+            humans to read and write, and easy for machines to parse and generate. It is a text-based format and is 
+            often used to transmit data between a server and a web application as an alternative to XML.
+            JSON is based on a subset of the JavaScript programming language and uses key-value pairs to represent data. 
+            The keys are always strings, while the values can be strings, numbers, booleans, arrays, or other JSON objects.
+            JSON supports a wide range of data types and is therefore a flexible format that can be used to represent data 
+            in many different contexts.</li>
+            <p class="center">JSON example</strong></p>
+            <button id="showCode58" onclick="showCode('displayCode58', 'showCode58')">Display</button>
+            <div id="displayCode58">
+                <button onclick="closeCode('displayCode58', 'showCode58')">Close</button>
+                <pre>
+                    <code>
+            {
+                "name": "John Doe",
+                "age": 35,
+                "isStudent": false,
+                "hobbies": ["reading", "traveling", "photography"],
+                "address": {
+                    "street": "123 Main St",
+                    "city": "New York",
+                    "state": "NY",
+                    "zip": "10001"
+                }
+            }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>YAML</strong> is a standard format for storing data. It originally stood for Yet Another Markup Language but now 
+            stands for YAML Ain’t Markup Language. Because of its emphasis on human readability, YAML is increasingly 
+            relied upon for configuration files. It can also be used for log files, debugging complex data structures, 
+            interprocess messaging, and cross-language data sharing.</li>
+            <p class="center">YAML example</strong></p>
+            <button id="showCode59" onclick="showCode('displayCode59', 'showCode59')">Display</button>
+            <div id="displayCode59">
+                <button onclick="closeCode('displayCode59', 'showCode59')">Close</button>
+                <pre>
+                    <code>                  
+                ---
+                # Our first YAML document
+                bottle: wine
+                capitals:
+                Japan: Tokyo
+                Argentina: Buenos Aires
+                oceans:
+                - Indian
+                - Atlantic
+                - Arctic
+                - Pacific
+                …
+                    </code>
+                </pre>
+            </div>
+            <li><strong>YAML VS JSON: </strong>YAML is often compared to JSON due to their similarities. Both formats are human-readable and can represent 
+            complex data structures. However, there are some key differences. YAML is generally considered more 
+            human-readable due to its use of whitespace for separating objects rather than curly braces or brackets. 
+            It also offers additional features such as comments and object references. JSON, however, is superior when 
+            it comes to performance, specifically the speed at which a computer can parse it.</li>
+        </div>
     </body>
 </html>
 

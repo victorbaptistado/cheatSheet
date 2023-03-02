@@ -605,5 +605,411 @@
                 </pre>    
             </div>
         </div>
-    </div>
+        <div class="styleGuide">
+            <h2>API Development (with Swagger and OpenAPI)</h2>
+            <ul>
+                <li>Developing an API by itself is no easy task. Creating an API encompasses a series of steps, each with its 
+                own complex processes. This collection of steps is known as the API development lifecycle.
+                While there are many frameworks and methodologies for the API lifecycle, there are typically 
+                <strong>five chronological stages:</strong></li>
+                <ul>
+                    <li><strong>Planning and Designing the API:</strong>
+                    This stage involves ideating and mapping out the various resources and operations and their 
+                    associated use cases before the API is fully implemented in code.
+                    Typically business team members (or sometimes even engineers) will begin by mapping out the 
+                    capabilities of the API and the data it should expose. This process usually captures the API 
+                    audience’s needs and the requirements from various stakeholders.
+                    When the API requirements are done being mapped out, engineering teams can then begin laying out the 
+                    architecture of the API. Naming conventions, protocols, technology, and much more are debated and finalized.
+                    </li>
+                </ul>
+            </ul>
+            <p class="center"><strong>More About</strong></p>
+            <button id="showCode57" onclick="showCode('displayCode57', 'showCode57')">Display</button>                   
+            <div id="displayCode57">
+                <button onclick="closeCode('displayCode57', 'showCode57')">Close</button>  
+                <ul>
+                    <li>One slip-up can result in endless support requests from end-users and eventually result in 
+                    a bad reputation. It’s crucial to plan, plan, and plan even more before actually implementing 
+                    an API. This is why API design, typically the first step in the API development lifecycle, is 
+                    so important.
+                    The design process is not just about the developers who are building the API but also about 
+                    understanding the API’s end-user, their needs, and how best the API can meet those needs.
+                    Typically, a <strong>well-designed API will have the following characteristics:</strong></li>
+                    <ul>
+                        <li><strong>Easy to read and work with:</strong> A well-designed API will be easy to work with, and its 
+                        resources and associated operations can quickly be memorized by developers who work with it 
+                        regularly.</li>
+                        <li><strong>Hard to misuse:</strong> Implementing and integrating with a well-designed API will be a 
+                        straightforward process and less error-prone. It has informative feedback and doesn’t enforce 
+                        strict guidelines on the API’s end-user.</li>
+                        <li><strong>Complete and concise:</strong> A well-designed API is a complete API. This means the API exposes 
+                        any data that the end-user expects it to expose. Most APIs are completed over a long period of 
+                        time – implementing end-user feedback and releasing new versions along the way.</li>
+                        <li><strong>Well documented:</strong> Finding any information about endpoints, integrations, and features 
+                        should be simple with a well-designed API. The documentation will cover and explain all the 
+                        available functionality of the API.</li>
+                        <li><strong>Reliable:</strong> An API’s end-user will depend on an API to be available and functioning when 
+                        they need it. They also expect functionality to not arbitrarily change without any proper notice.</li>
+                    </ul>
+                    <li><strong>Collections, Resources, and Their URLs: </strong> 
+                    For any resource or collection that represents some data in an API, the base URL should 
+                    always be neat, elegant, and, most importantly, intuitive. A long and difficult-to-read base 
+                    URL is not just bad to look at but can also provide a more error-prone and challenging 
+                    experience for the end-user. Try using <u>nouns for URLs</u>, to keep it clear.
+                    Also, <u>mapping HTTP</u> methods to describe the typical CRUD operations of our applications 
+                    allows developers to know exactly what they should expect to occur.</li>
+                    <li><strong>Responses: </strong>Give Feedback to Help Developers Succeed
+                    Providing good feedback to developers on how well they are using an API goes a long way in 
+                    improving adoption and retention. Good feedback involves positive validation on correct 
+                    implementations and an informative error on incorrect implementations that can help developers 
+                    debug and correct how they use the API.
+                    For APIs, errors (and relevant error codes) are a great way to provide context when things go 
+                    wrong! In general, there are three possible 
+                    <a href="https://www.restapitutorial.com/httpstatuscodes.html" target="_blank">error</a> outcomes when using an API:
+                    <u>The client application behaved erroneously</u> (client error - 4xx response code);
+                    <u>The API behaved erroneously</u> (server error - 5xx response code);
+                    <u>The client and API worked</u> (success - 2xx response code);
+                    When designing an API, describe these error responses well, but keep them concise and neat. 
+                    In addition, use specific response codes to detail errors accordingly in the API. Lastly, provide enough information in the error codes for an 
+                    end-user to start work on fixing the cause, and, if there’s more information needed, provide 
+                    links to additional documentation.</li>
+                    <li><strong>Requests: </strong>Handle complex requests elegantly. We want to make sure that our 
+                    data is complete, available, and accounts for relationships between different types of data. In 
+                    the interest of performance, we’d only want to surface the relevant data that an end-user needs 
+                    and even consider limiting the amount of data they get in the response.
+                    We’ve already seen how we can retrieve individual resources (e.g. /photos/1) and a collection 
+                    (e.g. /photos), but how can we add more complex behavior to our requests? One way to account for 
+                    specific properties and limit responses is to use a query parameter, adding a ? with key-value 
+                    pairs that list out what a user needs.                        
+                    Let’s take the example of our photo-sharing app. Someone might want to get photos from a specific 
+                    location and a specific hashtag. We might also want to limit the number of results to 10 per API 
+                    call to prevent server load. If the user wants to find the top 10 photos in Boston with a hashtag 
+                    #winter, the call would be:
+                    <pre>
+                        <code>    
+                    GET /photos?location=boston&hashtag=winter&limit=10
+                        </code>
+                    </pre>
+                    Notice how the complexities have now been reduced to a simple association with a query parameter. 
+                    These are just some of the ways we could design parameters that strive towards API completion and 
+                    help our end developers use our API intuitively.   
+                    Also, when in doubt, leave it out. Developing and maintaining APIs is a continuous process, so we 
+                    can wait for feedback from our end-users to see how we can improve our API. This way, we account 
+                    for the immediate and future needs of the API.</li>
+                </ul>
+                <hr/>
+                <ul>
+                    <li><strong>Best Practices in API Documentation</strong></li>
+                    <ul>
+                        <li><strong>Detailed Error Messages:</strong> Error messages are important because they tell end-users when they’re integrating with an API 
+                        incorrectly. Explain error standards and provide solutions on how to overcome them when an end-user 
+                        gets an error.</li>
+                        <li><strong>A List of All Exposed Resources: </strong>
+                        Resources are the core components of an API that end-users will constantly be interacting with. 
+                        An API should list all of its exposed resources and understand how end-users may integrate with them.</li>
+                        <li><strong>A Terms of Use Agreement: </strong>
+                        Terms of use is a legal agreement between the end-user and an organization, defining how the end-user 
+                        should ideally use the API’s services. These terms should include API limits under best practices, 
+                        with terms and conditions. Constraints also need to be clearly stated so that end-users understand 
+                        what API usage and practices are permitted, so they don’t accidentally have their access restricted.</li>
+                        <li><strong>A Changelog: </strong>A changelog is a document, usually published on an APIs website, that should detail 
+                        updates and versions of an API and how it might affect API end-users. This will help end-users know 
+                        the stability of the API and see if any changes need to be made to their integration with the API.</li>
+                        <li><strong>Less Technical Jargon:</strong> Keep in mind that many end-users working with an API may not have intimate
+                        knowledge of the domain to 
+                        understand technical jargon. Documentation should cater to the “very technical” developer audience and 
+                        the less technical decision-makers. A big mistake technical writing teams make is assuming their
+                        audience is entirely technical and has a complete understanding of how to work with APIs. If an API 
+                        does have technical or domain-specific jargon, it is helpful to link those specific items to further 
+                        documentation explaining the terms.</li>
+                        <li><strong>Examples of all Requests and Responses:</strong>
+                        An API call response is a guide for end-users, indicating whether they’re on the right track or are 
+                        doing something wrong. An API end-user should know exactly what to expect from a successful API call. 
+                        Ideally, an API provides examples for every single object it is supposed to return and examples of 
+                        parameters that end-users can add for a successful call.</li>
+                        It is also best to describe the entire sample response body in every supported format. Think of 
+                        standard formats like XML or JSON, but also HTTP headers, error codes, and messages.</li>
+                        <li><strong>An Authentication Guide:</strong> An API’s documentation should have a section dedicated to any 
+                        authentication (if it exists) required to start consuming the API’s data. Most APIs have 
+                        authentication schemes, and end-users have to authenticate before gaining access to the API. 
+                        Make sure this section is adequately documented and hand-holds end-users to authenticate against 
+                        the API successfully.</li>
+                    </ul>
+                    <li><strong>Arm Documentation with Resources:</strong> Excellent API documentation goes beyond the essential content 
+                    and ensures end-users reach success with an API as quickly as possible. Let’s examine some potential 
+                    candidates for resources to include in the documentation.</li>
+                    <ul>
+                        <li><strong>A Getting Started Guide:</strong> The getting started guide provides a detailed account of how to start 
+                        working with the API quickly. The emphasis in the guide should be on ensuring end-users reach success
+                        with the API as soon as possible, hand-holding them throughout the journey.</li>
+                        <li><strong>SDKs and Libraries:</strong>
+                        Code libraries help developers quickly call different resources. Having quick and easy methods 
+                        in different languages to work with an API allows developers to feel more comfortable working with 
+                        it. Software Development Kits (SDKs) - a set of libraries or tools that end-users can work with out 
+                        of the box, are challenging to build, and aren’t crucial for launch, but can significantly improve 
+                        API adoption.</li>
+                        <li><strong>A Interactive Console:</strong>
+                        One way to encourage end-users to test what they read in the API documentation immediately, is to 
+                        provide an interactive API console. Experimentation is powerful, and a console makes getting started 
+                        easy, with limited liability from the end-users perspective. An interactive console can go a long way 
+                        in helping developers learn about an API’s value very quickly.</li>
+                    </ul>
+                </ul>
+                <hr/>
+            </div>
+            <ul>
+                <li><strong>Developing the API: </strong>
+                Once the requirements are mapped out and the engineering team has a plan, the development stage 
+                begins. This stage focuses on implementing the API based on the plan and design and is when 
+                engineering teams will do the necessary work to bring the API to life.
+                Typically this is also where the API is documented.
+                In a few cases, coding before designing can be acceptable, like if the API will only be consumed by the team or 
+                company building it - this is especially true if the API developed is small, with only a few endpoints 
+                being used internally.</li>
+                <li><strong>Testing the API: </strong>
+                In the testing phase, the API would be thoroughly tested and monitored for performance issues. 
+                This phase typically catches any issues so that engineering teams can refine the API before it is 
+                released to the end-users (sometimes referred to as end-consumers). </li>
+                <li><strong>Deploying and Managing the API: </strong>
+                Ultimately, APIs must satisfy a use case for an end consumer, be it an internal developer team, 
+                a partner company, or the general public. After the testing phase, APIs are ready for release and 
+                are deployed to a secure environment to facilitate easy discovery and consumption.
+                On some occasions, mainly when APIs are public-facing, APIs are released into beta where end-users 
+                (sometimes only a small percentage) can test and experiment with the API and give feedback and report
+                bugs. The beta helps finalize any outstanding issues as well as gain valuable feedback before a full API release.</li>
+                <li><strong>Retiring the API: </strong>
+                Lastly, the final phase of the API lifecycle is deprecation. This phase is where support for an API’s 
+                version, or in many cases, an entire API itself, is discontinued.
+                Deprecation involves creating a detailed plan on migrating users away from the API and releasing the 
+                APIs resources. Deprecation needs to be handled with extreme care as it may impact many end-users and 
+                associated products that utilize the API.</li>
+            </ul>
+            <hr/>
+            <ul>
+                <h3>OpenAPI</h3>
+                <li><strong>OpenAPI Specification (OAS)</strong> is one of the most popular standards for designing human-readable 
+                API contracts. The OAS specifies the rules and syntax required to describe an API’s interface. The OAS has evolved to meet the 
+                needs of modern API teams and continues to introduce updates to make the specification simpler to use and easier 
+                for humans and computers to understand.
+                Here is the general structure of an OAS defined API contract using OAS 3.0:</li>
+                <ul>
+                    <li><strong>Info & OpenAPI: </strong>
+                    The info and openapi section of the API contract contains essential metadata. There are both required 
+                    and optional fields such as contact information, license information, terms of service links, and more! 
+                    Essentially, the info object should give an API’s end-users and internal developers a high-level overview 
+                    of what the API does. 
+                    More about <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#openapi-object" target="_blank">here</a>.</li>
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode60" onclick="showCode('displayCode60', 'showCode60')">Display</button>                   
+                    <div id="displayCode60">
+                        <button onclick="closeCode('displayCode60', 'showCode60')">Close</button>
+                        <pre>
+                            <code>
+                    openapi: 3.0.0
+                    info:
+                    title: Simple Pet Store
+                    version: 1.0.0
+                    description: This is a sample server for a pet store.
+                    termsOfService: http://example.com/terms/
+                    contact:
+                        name: API Blogger
+                        email: support@example.com
+                        url: http://example.com/support
+                    license:
+                        name: Apache 2.0
+                        url: http://www.apache.org/licenses/LICENSE-2.0.html
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Servers: </strong>
+                    An API is a contract between the end-user and a server (usually the server hosting the API). The servers 
+                    object can give a client information on where the API’s servers are located through its URL. Unlike the 
+                    2.0 version of the spec, which only allowed an API definition to have one server URL, OAS 3.0 supports 
+                    multiple servers. This is useful since, in the real world, APIs exist in numerous environments, and each 
+                    environment can have its own purpose.
+                    More about <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#info-object" target="_blank">here</a>.</li>
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode61" onclick="showCode('displayCode61', 'showCode61')">Display</button>                   
+                    <div id="displayCode61">
+                        <button onclick="closeCode('displayCode61', 'showCode61')">Close</button>
+                        <pre>
+                            <code>
+            servers:
+            - url: https://development.gigantic-server.com/v1
+                description: Development server
+            - url: https://staging.gigantic-server.com/v1
+                description: Staging server
+            - url: https://api.gigantic-server.com/v1
+                description: Production server
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Paths: </strong>
+                    An OAS contract’s paths object shows the various endpoints an API exposes and the corresponding HTTP 
+                    methods. It’s also under each method that the actual request-response cycle is detailed. The requests are 
+                    described by parameter objects and the responses by the responses objects. This section gives all parties 
+                    a clear sense of the data the API will expose and helps with planning, documenting, and implementing the API.
+                    More about <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#paths-object" target="_blank">here</a>.</li>
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode62" onclick="showCode('displayCode62', 'showCode62')">Display</button>                   
+                    <div id="displayCode62">
+                        <button onclick="closeCode('displayCode62', 'showCode62')">Close</button>
+                        <pre>
+                            <code>
+                        paths:
+                            /pet/{petId}:
+                            get:
+                                summary: Find pet by ID
+                                description: Returns a single pet
+                                parameters:
+                                - name: petId
+                                in: path
+                                description: ID of pet to return
+                                required: true
+                                schema:
+                                    type: integer
+                                    format: int64
+                                responses:
+                                200:
+                                    description: successful operation
+                                400:
+                                    description: Invalid ID supplied
+                                    content: {}
+                                404:
+                                    description: Pet not found
+                                    content: {}
+                            </code>
+                        </pre>
+                        <li>Notice two critical parts of the defined path:</li>
+                        <ul>
+                            <li>Parameters: Parameters are the variable parts of a request. There are four types of parameters that can 
+                            be specified using the OAS 3.0:</li>
+                            <ul>
+                                <li><strong>path parameters</strong>, such as /users/{id}</li>
+                                <li><strong>query parameters</strong>, such as /users?role=admin</li>
+                                <li><strong>header parameters</strong>, such as X-MyHeader: Value</li>
+                                <li><strong>cookie parameters</strong>, which are passed in the Cookie header, such as Cookie: debug=0; 
+                                csrftoken=BUSe35dohU3O1MZvDCU</li>
+                            </ul>
+                            <li>Responses: Responses are the objects returned on a request. Every response is defined by its HTTP 
+                            status code, and the data is returned. The HTTP status codes are used to define whether the 
+                            request was successful or unsuccessful.</li>
+                        </ul> 
+                    </div>
+                    <li><strong>External Docs: </strong>
+                    Any additional information that an API can offer to ease consumption and integration with the API is 
+                    always a good idea. OAS 3.0 allows an API to reference external documentation via the external 
+                    documentation object.
+                    More about <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#externalDocumentationObject" target="_blank">here</a>.</li> 
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode63" onclick="showCode('displayCode63', 'showCode63')">Display</button>                   
+                    <div id="displayCode63">
+                        <button onclick="closeCode('displayCode63', 'showCode63')">Close</button>
+                        <pre>
+                            <code>
+                    description: Find more info here
+                    url: https://example.com
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Tags: </strong>
+                    Tags are friendly categories to group various API operations. This allows end-users of the API to better 
+                    segment and identify what they want to use the API for. These tags can also be handled by other 
+                    third-party tools which integrate or read the OAS.   
+                    Tags can automatically be added to every path operation using the tags object. Tags can also be given 
+                    descriptions by adding an optional tags section in the root level of the API definition.</li> 
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode64" onclick="showCode('displayCode64', 'showCode64')">Display</button>                   
+                    <div id="displayCode64">
+                        <button onclick="closeCode('displayCode64', 'showCode64')">Close</button>
+                        <pre>
+                            <code>
+                    paths:
+                        /pet/findByStatus:
+                            get:
+                            summary: Finds pets by Status
+                            tags:
+                                - pets
+                        /pet:
+                            post:
+                            summary: Adds a new pet to the store
+                            tags:
+                                - pets
+                    tags:
+                    - name: pets
+                    description: Everything about your Pets
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Components: </strong>
+                    As an API needs to expose more resources and operations, the contract can tend to get really long. 
+                    The API may repeat a lot of existing parameters or response descriptions in many different paths and 
+                    operations, and rewriting them every time makes them prone to inconsistent descriptions and can be very 
+                    time-consuming. 
+                    The component object can hold a set of reusable objects for an APIs design. The reusable objects can be 
+                    schemas, responses, parameters, examples, and more. The exact reusable component can then be referenced 
+                    in any path item.</li> 
+                    <p class="center"><strong>More About</strong></p>
+                    <button id="showCode65" onclick="showCode('displayCode65', 'showCode65')">Display</button>                   
+                    <div id="displayCode65">
+                        <button onclick="closeCode('displayCode65', 'showCode65')">Close</button>
+                        <pre>
+                            <code>
+                paths:
+                    /pets/{petId}:
+                        get:
+                        summary: Get a pet by ID
+                        parameters:
+                            ...
+                        responses:
+                            '200':
+                            description: A single pet.
+                            content:
+                                application/json:
+                                schema:
+                                    $ref: '#/components/schemas/Pet'
+                    /pets:
+                        get:
+                        summary: Get all pets
+                        responses:
+                            '200':
+                            description: A list of pets.
+                            content:
+                                application/json:
+                                schema:
+                                    type: array
+                                    items:
+                                    $ref: '#/components/schemas/Pet'
+                components:
+                    schemas:
+                        Pet:
+                        type: object
+                        properties:
+                            id:
+                            type: integer
+                            name:
+                            type: string
+                            </code>
+                        </pre>
+                    </div>
+                </ul>
+                <hr/>
+                <h3>Swagger</h3>
+
+                <li><strong>Swagger</strong> refers to the toolkit used for designing, building, and documenting APIs,    
+                while <strong>OpenAPI</strong> refers 
+                to the open-source definition format used with Swagger. Previously, Swagger was also the name of the 
+                definition format, but the newest version changed the name to OpenAPI and changed the structure of the 
+                format to be easier to use.
+                The <strong>Swagger Editor</strong> is used to design the API specification, while <strong>Swagger CodeGen</strong>
+                is used to generate code based on the created specification. <strong>Swagger UI</strong> allows anyone 
+                to easily view the specification details in an easy-to-read way. Access them all <a href="https://swagger.io/tools/" target="_blank">here</a>
+                We can also clone Swagger from github and use it <a href="https://github.com/swagger-api/swagger-editor" target="_blank">here</a>.</li>
+                <ul>
+                    <li>Complete tutorial <a href="https://static-assets.codecademy.com/Courses/Swagger-OpenAPI/orders_project_finished.zip" target="_blank">here</a>.</li>
+                </ul>
+            </ul>
+        </div>
+    </body>
 </html>

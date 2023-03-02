@@ -3659,8 +3659,8 @@
             <h2>Database</h2>
             <ul>
                 <li><strong>Database</strong> is a set of data stored in a computer. This data is usually structured in 
-                a way that makes the data easily accessible. <strong>DBMS</strong> is the specific software that allows you to interact with a database.
-            </li>
+                a way that makes the data easily accessible. <strong>DBMS</strong> is the specific software that allows 
+                you to interact with a database.</li>
                 <li><strong>Relational Database: </strong>
                 A relational database is a type of database. It uses a structure that allows us to identify and access
                 data in relation to another piece of data in the database. Often, data in a relational database is 
@@ -3686,7 +3686,11 @@
                 we might just have a single document with the person’s information, as well as the subscription 
                 information, all in one document. Article about
                 <a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-nosql-database-management-systems-and-models" target="_blank">here</a>.</li>
-                <hr/>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>SQL</h2>
+            <ul>
                 <h3>Relational Database Management System (RDBMS)</h3>
                 <li><strong>Relational Database Management System (RDBMS):</strong>
                 A relational database management system (RDBMS) is a program that allows you to create, update, and 
@@ -3811,6 +3815,7 @@
                     );
 
                     //Create table from existing columns
+                        (It's easier to create in first place) 
                     CREATE TABLE majors AS
                     SELECT distinct major_1, major_1_credits_reqd
                     FROM college;
@@ -3933,6 +3938,22 @@
                 (row3_val1, row3_val2, row3_val3);
                             </code>
                         </pre>
+                        <ul>
+                            <li><strong>INSERT INTO nested tables</strong>:
+                                You can use a single SQL statement to insert the data into both the parent and child 
+                                tables using the RETURNING clause to retrieve the generated ID. For example:</li>
+                            <pre>
+                                <code>
+            WITH new_address AS (
+                INSERT INTO addresses (street, city, state, country)
+                VALUES ('123 Main St', 'Anytown', 'CA', 'USA')
+                RETURNING id
+                )
+                INSERT INTO users (name, email, address_id)
+                VALUES ('John Doe', 'jdoe@example.com', (SELECT id FROM new_address));          
+                                </code>
+                            </pre>
+                        </ul>
                         <li>The <strong>ALTER TABLE:</strong> statement adds a new column to a table. You can use this command 
                         when you want to add columns to a table.
                         The ALTER statement is used to modify columns. With ALTER, you can add columns, remove them, 
@@ -3940,8 +3961,13 @@
                         <ul>
                             <pre>
                                 <code>
+                    //Add column
                     ALTER TABLE celebs 
                     ADD COLUMN twitter_handle TEXT;
+
+                    //Rename column                
+                    ALTER TABLE table_name
+                    RENAME COLUMN old_name TO new_name;
                                 </code>
                             </pre>
                             <li><strong>ADD COLUMN</strong> is a clause that lets you add a new column to a table:</li>
@@ -4084,6 +4110,21 @@
                             </code>
                         </pre>
                     </ul>
+                    <li><strong>Auto-incrementing:</strong> Many times we need to automatically increment a 
+                    column, for example an id, so we don't need to do it manually for each new insert.</li>
+                    <pre>
+                        <code>
+            CREATE TABLE table_name(
+                    id SERIAL
+            );
+
+            //Alter existing table to use auto-incrementing.
+            // t = table, c = column                
+            CREATE SEQUENCE "public"."t_c_seq" OWNED BY "public"."t"."c";
+           
+            ALTER TABLE "public"."t" ALTER COLUMN "c" SET DEFAULT nextval('"public"."t_c_seq"');
+                        </code>
+                    </pre>
                     <hr/>
                     <li><strong>Aggregates Functions</strong></li>
                     <ul>
@@ -4487,6 +4528,7 @@
                     </ul>
                     <hr/>
                 </div>
+                <hr/>
                 <li><strong>Database Trigger: </strong>
                 Is procedural code that is automatically executed in response to certain events on a particular 
                 table or view in a database. The trigger is mostly used for maintaining the integrity of the information 
@@ -4546,6 +4588,7 @@
                         </code>
                     </pre>
                 </div>
+                <hr/>
                 <li><strong>Designing</strong> Relational Databases</li>
                 <ul>
                     <li><strong>Database Schema: </strong>Like an architectural blueprint, a database schema is documentation that helps its audience 
@@ -4627,7 +4670,67 @@
                     <ul>
                         <li>Video information database-design <a href="https://www.youtube.com/watch?v=h0j0QN2b57M&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=2" target="_blank">here</a></li>
                     </ul>
+                    <li><strong>Users table: </strong>The columns that are usually put in a users table 
+                    depend on the specific requirements of the Application
+                    Some applications may require additional columns, such as a user's role, account status,
+                    or other information relevant to the application. Some common columns that are often 
+                    included are:</li>
+                    <ul>
+                        <li><strong>id (primary key)</strong></li>
+                        <li><strong>first_name</strong></li>
+                        <li><strong>last_name</strong></li>
+                        <li><strong>email</strong></li>
+                        <li><strong>password (encrypted)</strong></li>
+                        <li><strong>phone</strong></li>
+                        <li><strong>address</strong></li>
+                        <li><strong>city</strong></li>
+                        <li><strong>state</strong></li>
+                        <li><strong>zip_code</strong></li>
+                        <li><strong>country</strong></li>
+                        <li><strong>created_at</strong></li>
+                        <li><strong>updated_at</strong></li>
+                    </ul>
+                    <li><strong>Orders table: </strong>An orders table typically contains the following columns:</li>
+                    <ul>
+                        <li><strong>order_id:</strong> a unique identifier for the order</li>
+                        <li><strong>user_id:</strong> a reference to the user who placed the order</li>
+                        <li><strong>order_date:</strong> the date and time when the order was placed</li>
+                        <li><strong>order_status:</strong> the current status of the order (e.g. pending, fulfilled, cancelled)</li>
+                        <li><strong>total_price:</strong> the total price of the order</li>
+                        <li><strong>shipping_address:</strong> the shipping address associated with the order</li>
+                        <li><strong>billing_address:</strong> the billing address associated with the order (if different from the shipping address)</li>
+                        <li><strong>payment_method:</strong> the payment method used for the order (e.g. credit card, PayPal)</li>
+                    </ul>
+                    <li><strong>Items table: </strong> Additional columns may be added depending on the 
+                    specific needs of the application. For example, if the application has a category or tags system, 
+                    the items table may include a category_id or tags column to help with filtering 
+                    and search. In a typical e-commerce application, an items table 
+                    might include the following columns:</li>
+                    <ul>
+                        <li><strong>id:</strong> a unique identifier for each item</li>
+                        <li><strong>name:</strong> the name of the item</li>
+                        <li><strong>description:</strong> a description of the item</li>
+                        <li><strong>price:</strong> the price of the item</li>
+                        <li><strong>quantity:</strong> the number of the item in stock</li>
+                        <li><strong>image_url:</strong> a URL for an image of the item</li>
+                        <li><strong>created_at:</strong> the timestamp for when the item was added to the database</li>
+                        <li><strong>updated_at:</strong> the timestamp for when the item was last updated in the database</li>
+                    </ul>
+                    <li><strong>orders_items table: </strong>An orders_items table is typically used as a 
+                    many-to-many relationship between the orders and items tables.
+                    These columns allow the orders_items table to represent the items included in each 
+                    order, along with the quantity and price of each item.
+                    It generally includes the following columns:</li>
+                    <ul>
+                        <li><strong>order_id:</strong> A foreign key that references the id column of the orders table.</li>
+                        <li><strong>item_id:</strong> A foreign key that references the id column of the items table.</li>
+                        <li><strong>quantity:</strong> The number of items of this type in the order.</li>
+                        <li><strong>price:</strong> The price of the item at the time of purchase, which may be different from the current price.</li>
+                        <li><strong>created_at:</strong> The date and time the item was added to the order.</li>
+                        <li><strong>updated_at:</strong> The date and time the item was last updated.</li>
+                    </ul>
                 </div>
+                <hr/>
                 <li><strong>Database Permissions</strong></li>
                 <ul>
                     <li>The postgres user (or any initial user) has the ability to create new databases, tables, 
@@ -4765,6 +4868,7 @@
                         </pre>
                     </ul>
                 </div>
+                <hr/>
                 <li><strong>ACID </strong>(Atomic, Consistent, Isolated, and Durable): These properties help ensure that all the data in a 
                 transaction is complete, accurate, and has integrity. These properties also assist in recovering databases in case of a system 
                 failure and allows for concurrent use of a database.
@@ -4792,6 +4896,7 @@
                     event of a system failure.” These failures include instances of service outages and crashes. Durability can be achieved through a 
                     number of methods including change logs that are referenced whenever the database is restarted for whatever reason.</li>
                 </ul>
+                <hr/>
                 <li><strong>SQL Injections </strong>
                 Is a common vulnerability affecting applications that use SQL as their database language. A hacker can use 
                 their knowledge of the SQL language to cleverly construct text inputs that modify the backend SQL query to their liking. 
@@ -4827,6 +4932,7 @@
                         </pre>
                     </ul>
                 </ul>
+                <hr/>
                 <li><strong>Indexes:</strong> An index is an organization of the data in a table to help with performance when searching 
                 and filtering records.
                 It's a data structure that helps to speed up database queries by allowing the database to
@@ -5087,7 +5193,225 @@
                     situation. This will eliminate the need to have to search the table/view for the same set of records more than once.</li>
                 </div>
                 <hr/>
-                <h3>NoSQL</h3>
+                <li><strong>Postgree database management: </strong>
+                The space PostgreSQL uses on disk can grow in several ways. Some ways are easier to predict, for example, the 
+                addition of new tables or the addition of more data to a table. However, there are some properties of the PostgreSQL 
+                data storage system that cause disk usage to increase in non-intuitive ways.</li>
+                <p class="center"><strong>More about database management:</strong></p>
+                <button id="showCode55" onclick="showCode('displayCode55', 'showCode55')">Display</button>
+                <div id="displayCode55">
+                    <button onclick="closeCode('displayCode55', 'showCode55')">Close</button>
+                    <li><strong>Understanding Object Size:</strong> In order to manage database disk utilization, you should first be able to measure 
+                    disk utilization. As a database user, you can use the following functions to check the size of a relation in a database.</li>
+                    <ul>
+                        <li><strong>pg_total_relation_size</strong> will return the size of the table and all its indexes in bytes. These values are often in the 
+                        millions or billions and thus hard to read. Because indexes are relations in their own right, you can also call 
+                        pg_total_relation_size on a single index to get the size of the index.</li>
+                        <li><strong>pg_table_size</strong> and <strong>pg_indexes_size</strong> return the size of the table’s data and table’s 
+                        indexes in bytes. The sum of these two functions is equal to pg_total_relation_size</li>
+                        <li><strong>pg_size_pretty</strong> can be used with the functions above to format a number in bytes as KB, MB, or GB.</li>
+                    </ul>
+                    <pre>
+                        <code>
+                    SELECT 
+                    pg_size_pretty(pg_table_size('time_series')) as tbl_size, 
+                    pg_size_pretty(pg_indexes_size('time_series')) as idx_size,
+                    pg_size_pretty(pg_total_relation_size('time_series')) as total_size;
+                        </code>
+                    </pre>
+                    <li><strong>Dead tuples:</strong> Each row in a PostgreSQL table is stored in a file on the disk of the host machine. When an UPDATE or DELETE is called, 
+                    PostgreSQL doesn’t physically delete the content from the disk. Instead, the database engine marks those rows so that they 
+                    aren’t returned in user queries. These rows are called <strong>dead tuples</strong>, and although they aren’t referenced in the current 
+                    version of databases’ tables, they still occupy space on disk and can affect performance.
+                    Unlike updates, deletes don’t add space to a table - however, a DELETE statement will create dead tuples and leave the 
+                    size of the table unchanged (when it should change to less).</li>
+                    <li><strong>VACUUM: </strong>There are also statements you can use that allow you to actively manage disk usage. 
+                    In PostgreSQL there is an operation 
+                    called VACUUM that can be used to manage storage space. Running VACUUM <i>< table name >;</i> will vacuum a specific table,
+                    while a VACUUM statement without a table name will run on the entire database. 
+                    VACUUM simply marks dead tuples and allows that space to be re-used by future updates.</li>
+                    <ul>
+                        <li><strong>Autovacuum: </strong>To ensure that vacuuming isn’t left completely to the database users, PostgreSQL has a feature called autovacuum
+                        enabled on most databases by default. When using autovacuum, PostgreSQL periodically checks for tables that have had a 
+                        large number of inserted, updated or deleted tuples that could be vacuumed to improve performance. When autovacuum is 
+                        enabled and finds such a table, a <i>VACUUM ANALYZE</i> command is run - this statement is a combination of two separate 
+                        operations.</li>
+                        <li>You can <strong>monitor</strong> a lot of information, such as last vacuum, autovacuum, dead tuplets, just
+                        by querying the table <i>pg_stat_all_tables</i> for vacuum and analyze statistics.</li>
+                        <pre>
+                            <code>
+                SELECT relname, 
+                    last_vacuum,
+                    last_autovacuum, 
+                    last_analyze
+                FROM pg_stat_all_tables 
+                WHERE relname = 'books';
+                            </code>
+                        </pre>
+                        <li><strong>VACUUM FULL: </strong>Rewrites all the data from a table into a “new” location on disk and only copies the required data 
+                        (excluding dead tuples). This allows PostgreSQL to fully clear the space the table occupied. One of the significant 
+                        drawbacks from VACUUM FULL is that it’s a slow operation that blocks other operations on the table while it’s working. 
+                        If you’ve got a large table, this could mean a VACUUM FULL operation might block other user’s or application’s queries. 
+                        In a local setting, this may seem trivial, but for production databases, preventing reads and writes on a table for even 
+                        a few seconds can have lasting effects. VACUUM FULL is quite a heavy operation that should be used sparingly. 
+                        The best strategy when designing a database maintenance plan is to make sure that VACUUM runs frequently and 
+                        autovacuum is enabled.</li>
+                        <pre>
+                            <code>
+                    //This will minimize subsequent
+                        effects of dead tuples
+                    VACUUM mock.time_series;
+
+                    VACUUM ANALYZE < table_name >;
+
+                    VACUUM FULL < table_name >;
+                            </code>
+                        </pre>
+                        <li><strong>TRUNCATE: </strong>Occasionally, you may need to remove all the rows, but retain the structure of a table.
+                        TRUNCATE quickly removes all rows from a table. It has the same effect as an unqualified delete, but since 
+                        PostgreSQL doesn’t scan through the table first, TRUNCATE runs much faster on large tables. Finally, TRUNCATE 
+                        simultaneously reclaims disk space immediately, rather than requiring a subsequent VACUUM or VACCUM FULL operation.
+                        <i>TRUNCATE < table_name ></i></li>
+                    </ul>
+                    <li>More Info:</li>
+                    <ul>
+                        <li><strong>Performance cheatsheet </strong><a href="https://severalnines.com/blog/performance-cheat-sheet-postgresql/" target="_blank">here</a>.</li>
+                        <li><strong>Advanced Postgree performance </strong><a href="https://thoughtbot.com/blog/advanced-postgres-performance-tips" target="_blank">here</a>.</li>
+                        <li><strong>Performance Tuning PostgreSQL </strong><a href="https://www.revsys.com/writings/postgresql-performance.html" target="_blank">here</a>.</li>
+                    </ul>
+                </div>
+                <hr/>
+                <h3>Integrating PostgreSQL to Node</h3>
+                <li><strong>Node-Postgres</strong></li>
+                <ul>
+                    <li><strong>Node-Postgres </strong>documentation <a href="https://node-postgres.com/" target="_blank">here</a>.</li>
+                    <li><strong>Project structure </strong>with node-postgres <a href="https://node-postgres.com/guides/project-structure" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Articles</strong></li>
+                <ul>
+                    <li><strong>CRUD REST API</strong> with Node.js, Express, and PostgreSQL <a href="https://blog.logrocket.com/crud-rest-api-node-js-express-postgresql/#what-express" target="_blank">here</a>.</li>
+                    <li><strong>Why not use OMR?</strong><a href="https://blog.logrocket.com/node-js-orms-why-shouldnt-use/" target="_blank"> here</a>.</li>
+                    <li>The minimal <strong>Node.js with Babel Setup</strong><a href="https://www.robinwieruch.de/minimal-node-js-babel-setup/" target="_blank"> here</a>.</li>
+                    <li><strong>Setup Express.js in Node.js</strong><a href="https://www.robinwieruch.de/node-js-express-tutorial/" target="_blank"> here</a>.</li>
+                    <li>Create a <strong>REST API with Express.js in Node.js</strong><a href="https://www.robinwieruch.de/node-express-server-rest-api/" target="_blank"> here</a>.</li>
+                    <li><strong>Setup PostgreSQL with Sequelize(ORM) in Express</strong><a href="https://www.robinwieruch.de/postgres-express-setup-tutorial/" target="_blank"> here</a>.</li>
+                    <li>Creating a <strong>REST API</strong> with <strong>Express.js and PostgreSQL</strong><a href="https://www.robinwieruch.de/postgresql-express-node-rest-api/" target="_blank"> here</a>.</li>
+                    <li><strong>Postgres Performance Heroku</strong><a href="https://devcenter.heroku.com/categories/postgres-performance" target="_blank"> here</a>.</li>
+                </ul>
+                <li>Samples</li>
+                <ul>
+                    <li><strong>Sample Databases 1</strong><a href="https://wiki.postgresql.org/wiki/Sample_Databases" target="_blank"> here</a>.</li>
+                    <li><strong>PostgresDB Samples 2</strong><a href="https://github.com/morenoh149/postgresDBSamples" target="_blank"> here</a>.</li>
+                    <li><strong>PostgreSQL Samples 3</strong> <a href="https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/" target="_blank"> here</a>.</li>
+                </ul>
+                <li><strong>Tools: </strong>Working directly with databases from your application isn’t always easy. Differences in the way data structures are 
+                represented often leads to challenges. The difficulty in expressing subtleties about relationships between different 
+                entities can also cause issues. To address this, many different tools have been created to help act as an interface 
+                between the core application and the data layer.
+                We’ll look at some of the differences that arise between three common approaches:</li>
+                <ul>
+                    <li><strong>Raw SQL</strong></li> 
+                    <li><strong>Query builders</strong></li>
+                    <li><strong>ORMs (object-relational mappers)</strong></li>
+                </ul>
+                <p class="center"><strong>Types of tools:</strong></p>
+                <button id="showCode56" onclick="showCode('displayCode56', 'showCode56')">Display</button>
+                <div id="displayCode56">
+                    <button onclick="closeCode('displayCode56', 'showCode56')">Close</button>
+                    <li><strong>Raw SQL: </strong>
+                    Some applications interface directly with the database by writing and executing queries using the native language 
+                    supported by the database engine. Often, a database driver is all that is needed to connect, authenticate, and 
+                    communicate with the database instance.
+                    Developers can send queries written in the database’s native language through the connection. In return, the database 
+                    will provide the query results, also in one of its native formats. For many relational database, the querying language 
+                    of choice is SQL.
+                    <ul>
+                        <li><u>Benefits: </u>Developers write and manage the database queries and handle the results explicitly.
+                        While this can be a lot of additional work, it means that there are few surprises in terms of what the database is storing,
+                        how it is representing your data, and how it will supply that data when it is retrieved later. The lack of abstraction 
+                        means that there are fewer “moving parts” that can lead to uncertainty.</li>
+                        <li><u>Drawbacks: </u>
+                        When interacting with a database from an application using plain SQL, you must understand the underlying data structure 
+                        in order to compose valid queries. You are completely responsible for translating between the data types and structures 
+                        that your application employs and the constructions available within the database system.
+                        Another thing to keep in mind when working with raw SQL is that it is entirely up to you to manage the safety of your 
+                        input. This is especially true if you are storing data provided by external users, where specially crafted input could 
+                        induce your database to exposing information you hadn’t intended to allow (SQL injection).
+                        Working with native querying languages almost always means composing queries with regular strings. This can be a painful 
+                        process in cases where you must escape input and concatenate strings together to create a valid query. Your database 
+                        operations can become wrapped up in many layers of string manipulation that has a high potential to accidentally mangle data.</li>
+                    </ul>
+                    <li><strong>Query builders: </strong>
+                    Offers a thin layer of abstraction that specifically targets some of the major 
+                    pain points of working directly with database-native languages. SQL query builders almost function as a templating system 
+                    for querying, allowing developers to walk the line between working directly with the database and adding additional layers 
+                    of abstraction. They do this by formalizing querying patterns and providing methods or functions that add input sanitation and 
+                    automatically escape items for easier integration into applications.
+                    <ul>
+                        <li><u>Benefits:</u> Because query builders use the same constructions (methods or functions) as the rest of your application, 
+                        developers often find them easier to manage long term than raw database queries written as strings. It is simple to tell 
+                        the difference between operators and data and it is easy to decompose queries into logical chunks that handle specific 
+                        parts of a query.
+                        Makes it easier for those familiar with the database to understand what an operation will do. This isn’t always the case 
+                        when using greater 
+                        levels of abstraction.
+                        SQL query builders often support multiple data backends, abstracting some of the subtle differences in various 
+                        relational databases, for instance. This allows you to use the same tools for projects that use different databases.</li>
+                        <li><u>Drawbacks: </u>SQL query builders suffer from a few of the same disadvantages as native querying languages.
+                        Query builders still require you to understand and account for the database’s structures 
+                        and capabilities, this means that you must have a fairly good 
+                        grasp of SQL in addition to the specific syntax and capabilities of the query builder itself.
+                        Additionally, SQL query builders still require you to define how the data you retrieve relates to your application data. 
+                        There is no automatic synchronization between your in-memory objects and those in the database.</li>
+                    </ul>
+                    <li><strong>ORMs (object-relational mappers): </strong>ORMs generally
+                    aim for a more complete abstraction with the hope of integrating with the application data more fluidly.
+                    Object-relational mappers, or ORMs, are pieces of software dedicated to translating between the data representations in 
+                    relational databases and the representation in memory used with object-oriented programming (OOP). The ORM provides an 
+                    object-oriented interface to data within the database, attempting to use familiar programming concepts and reduce the 
+                    amount of boilerplate code necessary in order to speed up development.
+                    Object-oriented programming tends to produce a lot of structures with significant state and relationships that must be 
+                    accounted for. Some other programming paradigms are more explicit about where state is stored and how it is managed. 
+                    For instance, purely functional languages don’t allow mutable state, so state is often an input for functions or objects 
+                    that output a new state. This clean separation of data from actions, as well as the explicitness of state life cycles can 
+                    help simplify the interaction with the database.
+                    Different ORMs employ different strategies to map between application and database structures. The two major categories are the 
+                    active record pattern and the data mapper pattern.
+                    <u>Drawbacks: </u>Many of these 
+                    advantages act as a double-edged sword. They can prevent you from understanding your databases and can make it challenging 
+                    to debug, change paradigms, or increase performance.
+                    Perhaps the most well-known problem of working with ORMs is <strong>object-relational impedance mismatch</strong>, a term used to describe 
+                    the difficulty of translating between object-oriented programming and the relational paradigm used by relational databases.
+                    The incompatibilities between the data models used by these two categories of technology means that additional, imperfect 
+                    abstraction is necessary with every increase in complexity. Object-relational impedance mismatch has been called the Vietnam
+                    of computer science.
+                    <ul>               
+                        <li><strong>Active record</strong> pattern attempts to encapsulate the database’s data within the structure of objects within your code. 
+                        Objects contain methods to save, update, or delete from the database and changes to your objects are meant to be easily 
+                        reflected in the database. In general, an active record object in your application represents a record within a database.
+                        Active record implementations allow you to manage your database by creating and connecting classes and instances within 
+                        your code. Since these generally map class instances directly to database records, it is easy to conceptualize what is in 
+                        your database if you understand what objects are used in your code.
+                        Unfortunately, this can also come with some major downsides. Applications tend to be very tightly coupled with the 
+                        database, which can cause problems when trying to migrate to a new database or even when testing your code. Your code 
+                        tends to rely on the database to fill in gaps that were offloaded from your objects. The “magic” translation between these 
+                        two domains can also lead to performance problems as the system tries to seamlessly map complex objects to the underlying 
+                        data structure.</li>
+                        <li><strong>Data mapper</strong> pattern is the other common ORM pattern. Like the active record pattern, the data mapper 
+                        attempts to act as an independent layer between your code and your database that mediates between the two. 
+                        However, instead of trying to seamlessly integrate objects and database records, it focuses on trying to decouple and 
+                        translate between them while letting each exist independently. This can help separate your business logic from 
+                        database-related details that deal with mappings, representation, serialization, etc.
+                        So rather than letting the ORM system figure out how to map between the objects and the database tables, the developer 
+                        is responsible for explicitly mapping between the two. This can help avoid tight coupling and behind-the-scenes 
+                        operations at the expense of significantly more work in figuring out appropriate mappings.</li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>NoSQL</h2>
+            <ul>
                 <li><strong>NoSQL: </strong>
                 NoSQL keeps all the information in one place, in the form of key-values or documents.</li>
                 <ul>
