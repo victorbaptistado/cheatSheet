@@ -606,6 +606,89 @@
             </div>
         </div>
         <div class="styleGuide">
+            <h2><strong>Connecting Front-End & Back-End</strong></h2>
+            <ul>
+                <h3>Transfering Data</h3>
+                <li>In web applications, the front-end and the back-end communicate via an <strong>HTTP request/response</strong> 
+                cycle. Once the server has received the request made by the front-end, it builds a response to 
+                send back to the client.</li>
+                <li><strong>HTTP request</strong> from the client to the server can be broken down into:</li>
+                <ul>
+                    <li>A start line that includes an HTTP method, the path for the requested resource, and the HTTP version number.</li>
+                    <li>Headers that provide the server with additional information about the sender and the request.</li>
+                    <li>A body, if needed. Generally, POST and PUT requests will include a body to send data.</li>
+                </ul>
+                <li><strong>HTTP response</strong> can also be broken down into at least two parts:</li>
+                <ul>
+                    <li>A status line that indicates whether or not the request was completed successfully.</li>
+                    <li>A series of headers to give more context about the response.</li>
+                    <li>Often a response from the server will contain a body, which includes data requested 
+                    from the client. Generally, the server will send back the following types of data:</li>
+                    <ul>
+                        <li>HTML documents</li>
+                        <li>Static assets, like stylesheets, JavaScript files, and images</li>
+                        <li>Formatted data</li>
+                    </ul>
+                </ul>
+                <hr/>
+                <h3>Different Types of Rendering</h3>
+                <li><strong>Client-side rendering:</strong> The content of the page is dynamically generated in 
+                the browser as the user navigates the app.
+                In client-side rendering, the server sends the browser a boilerplate HTML document 
+                that includes a reference to a JavaScript file. This JavaScript code is responsible 
+                for dynamically generating content in the browser, as the user moves through the 
+                site. With client-side rendering, content is generated and rendered as needed; 
+                only the requested content will be loaded, at the time it is requested.
+                In terms of user experience, the initial page load can be slow, since the JavaScript 
+                first has to generate the content for a given view before it is visible and 
+                interactable. As the user navigates the app, however, JavaScript code will produce 
+                content directly in the browser. Since round-trip calls to the server are not 
+                necessary to render additional content, subsequent loads will be much faster. 
+                Because of its quick rendering time after the initial load, client-side rendering 
+                tends to be preferred for highly interactive web applications.
+                Front-End frameworks like React, Vue, and Angular often rely on client-side 
+                rendering to deliver Single Page Applications.
+                When deciding whether client-side rendering is right for your app, consider the 
+                following pros and cons:</li>
+                <ul>
+                    <li><strong>Pros:</strong> Fast speed after initial page load.</li>
+                    <li><strong>Cons:</strong> Poor Search Engine Optimization (SEO) performance with dynamically 
+                    generated content. Can lead to poor user experience on slower devices.</li>
+                </ul> 
+                <li><strong>Server-side rendering:</strong> The server 
+                generates the content and sends it to the browser, on-demand.
+                Pages are generated and rendered on-demand. Every time the user navigates to a different 
+                page on the site, the server builds the web page and sends it to the client. Because the 
+                content is ready to be rendered when it arrives in the browser, the time it takes for the 
+                page to become viewable is usually quick.
+                Before the page is fully interactable, the browser must download and parse the JavaScript. 
+                This process can be slow, and largely depends on the amount of JavaScript code, the quality 
+                of the network connection, and the user’s device.
+                Since static content loads quickly, server-side rendering is ideal for informational sites 
+                where there is little interactivity. Implementing server-side rendering for sites that have 
+                rich interactions can lead to a poor user experience since more requests to the server need 
+                to be made, and JavaScript has to load before the user can engage with the site.
+                Consider the following pros and cons before choosing server-side rendering for your next app:</li>
+                <ul>
+                    <li><strong>Pros: </strong>Visual elements of the page load quickly, since the content is ready 
+                    to render before it’s sent to the browser.
+                    Better Search Engine Optimization (SEO) performance, since search engines can index static 
+                    content immediately.</li>
+                    <li><strong>Cons: </strong>Time to interactive 
+                    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Time_to_interactive" target="_blank">(TTI)</a> can be slow if the page is 
+                    JavaScript-heavy. Speed depends on many factors outside of the developer’s control, 
+                    like network connection quality, and the user’s device.</li>
+                </ul>
+                <li><strong>Hybrid-rendering:</strong></li> Combine 
+                client-side and server-side rendering to incorporate the 
+                advantages of both. In hybrid-rendering, static content is generated on the server, 
+                while dynamic content is generated on the client-side as the user navigates the site. 
+                <li><strong>OpenAPI Specification (OAS): </strong> is a standard for describing RESTful APIs. 
+                Similar to how create-react-app provides a standard for React projects by generating 
+                templates, OAS provides the rules and syntax necessary to describe an API.</li>
+            </ul>  
+        </div>
+        <div class="styleGuide">
             <h2>API Development (with Swagger and OpenAPI)</h2>
             <ul>
                 <li>Developing an API by itself is no easy task. Creating an API encompasses a series of steps, each with its 
