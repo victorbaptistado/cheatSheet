@@ -120,7 +120,8 @@ hr{
 #displayCode53, #displayCode54, #displayCode55, #displayCode56,
 #displayCode57, #displayCode58, #displayCode59,#displayCode60,
 #displayCode61, #displayCode62, #displayCode63, #displayCode64,
-#displayCode65 {
+#displayCode65, #displayCode66, #displayCode67, #displayCode68,
+#displayCode69, #displayCode70 {
     display: none;
     justify-content: right;
 }

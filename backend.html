@@ -8,10 +8,10 @@
     <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="./index.html">AI</a></li>
+                <li><a href="./AI.html">AI</a></li>
                 <li><a href="./displayProperties.html">Display Properties</a></li>
                 <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./operationalSystem.html">Operational System</a></li>
                 <li><a href="./debug.html">Debug</a></li>
                 <li><a href="./git.html">Git</a></li>
                 <li><a href="./form.html">Form</a></li>
@@ -1427,14 +1427,19 @@
             <ul>
                 <li><strong>Cross-origin resource sharing (CORS)</strong> is a standard mechanism that allows JavaScript XMLHttpRequest 
                 (XHR) calls executed in a web page to interact with resources from non-origin domains (different domains that are outside
-                current). 
-                The CORS standard is needed because it allows servers to specify not only who can access the assets, but also
-                how they can be accessed.</li>
+                current). The CORS standard is needed because it allows servers to specify not only who can access the 
+                assets, but also how they can be accessed.</li>
                 <li>Servers will allow GET requests, meaning they will allow resources from external origins (say, a web page) 
                 to read their assets. HTTP requests methods like PATCH, PUT, or DELETE, however, may be denied to prevent
                 malicious behavior. For many servers, this is intentional. For example, it is likely that server A does not
                 want servers B, C, or D to edit or delete its assets.
-                <u>With CORS, a server can specify who can access its assets and which HTTP request methods are allowed from external resources.</u></li>
+                <u>With CORS, a server can specify who can access its assets and which HTTP request methods are allowed 
+                from external resources - like building with a security entrance. For example, if you need to borrow a 
+                ladder, you could ask a neighbor in the building who has one. The building’s security would likely not 
+                have a problem with this request (i.e., same-origin). If you needed a particular tool, however, and 
+                you ordered it from an outside source like an online marketplace (i.e., cross-origin), the security 
+                at the entrance may request that the delivery person provide identification when your tool arrives.</u></li>
+                
                 <li>An <strong>HTTP header</strong> is a piece of information associated with a request or a response.
                 Headers are passed back and forth between your web browser (also referred to as a client) and a server when
                 the web page you are on wants to use resources hosted on a different server. Headers are used to describe requests
@@ -1459,7 +1464,19 @@
                 that the original request is safe, it will allow the original request. Otherwise, it will block the original request.</li>
                 <hr/>
                 <h3>How to implement CORS?</h3>
-                <li>Implementing the request headers to set up CORS correctly depends on the language and framework of the backend.
+                <li><strong>Cross-origin request</strong>s are made using the <strong>standard HTTP request</strong> methods. Most servers will allow 
+                GET requests, meaning they will allow resources from external origins (say, a web page) to read their 
+                assets. HTTP requests methods like PATCH, PUT, or DELETE, however, may be denied to prevent malicious 
+                behavior. For many servers, this is intentional. For example, it is likely that server A does not want 
+                servers B, C, or D to edit or delete its assets.
+                <strong>Headers</strong> are passed back and forth between your web browser (also referred to as a client) and a server 
+                when the web page you are on wants to use resources hosted on a different server. Headers are used to 
+                describe requests and responses. The CORS standard manages cross-origin requests by adding new HTTP 
+                headers to the standard list of headers. A descriptive list of all HTTP headers added by 
+                the CORS standard. 
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#CORS" target="_blank">here</a>.</li>
+                <li>Implementing the request headers to set up CORS correctly depends on the language and framework of 
+                the backend.</li>
                 <ul>
                     <li>If you are using Node, you can use setHeader(), <i>response.setHeader('Content-Type', 'text/html');</i>.</li>
                     <li>If you are using Express, you can use CORS middleware: <i>$ npm install cors</i></li>
@@ -3798,34 +3815,34 @@
                         valid command. Statements always end in a semicolon <i>;</i>.</li>
                         <pre>
                             <code>
-                    CREATE TABLE table_name (
-                        column_1 data_type, 
-                        column_2 data_type, 
-                        column_3 data_type
-                    );
+                CREATE TABLE table_name (
+                    column_1 data_type, 
+                    column_2 data_type, 
+                    column_3 data_type
+                );
 
-                    //Example
-                    CREATE TABLE book (
-                        title varchar(100),
-                        isbn varchar(50) PRIMARY KEY,
-                        pages integer,
-                        price money,
-                        description varchar(256),
-                        publisher varchar(100)
-                    );
+                //Example
+                CREATE TABLE book (
+                    title varchar(100),
+                    isbn varchar(50) PRIMARY KEY,
+                    pages integer,
+                    price money,
+                    description varchar(256),
+                    publisher varchar(100)
+                );
 
-                    //Create table from existing columns
-                        (It's easier to create in first place) 
-                    CREATE TABLE majors AS
-                    SELECT distinct major_1, major_1_credits_reqd
-                    FROM college;
+                //Create table from existing columns
+                    (It's easier to create in first place) 
+                CREATE TABLE majors AS
+                SELECT distinct major_1, major_1_credits_reqd
+                FROM college;
 
-                    //Then DROP the previous college columns
-                        We just need a cross-reference 
-                        between tables
-                    ALTER TABLE college
-                    DROP COLUMN major_1, 
-                    DROP COLUMN major_1_credits_reqd;
+                //Then DROP the previous college columns
+                    We just need a cross-reference 
+                    between tables
+                ALTER TABLE college
+                DROP COLUMN major_1, 
+                DROP COLUMN major_1_credits_reqd;
                             </code>
                         </pre>
                         <ol>
@@ -5298,12 +5315,13 @@
                     <li>Creating a <strong>REST API</strong> with <strong>Express.js and PostgreSQL</strong><a href="https://www.robinwieruch.de/postgresql-express-node-rest-api/" target="_blank"> here</a>.</li>
                     <li><strong>Postgres Performance Heroku</strong><a href="https://devcenter.heroku.com/categories/postgres-performance" target="_blank"> here</a>.</li>
                 </ul>
-                <li>Samples</li>
+                <li><strong>Samples</strong></li>
                 <ul>
                     <li><strong>Sample Databases 1</strong><a href="https://wiki.postgresql.org/wiki/Sample_Databases" target="_blank"> here</a>.</li>
                     <li><strong>PostgresDB Samples 2</strong><a href="https://github.com/morenoh149/postgresDBSamples" target="_blank"> here</a>.</li>
                     <li><strong>PostgreSQL Samples 3</strong> <a href="https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/" target="_blank"> here</a>.</li>
                 </ul>
+                <li><strong>Supabase </strong><a href="https://supabase.com/" target="_blank">here</a>.</li>
                 <li><strong>Tools: </strong>Working directly with databases from your application isn’t always easy. Differences in the way data structures are 
                 represented often leads to challenges. The difficulty in expressing subtleties about relationships between different 
                 entities can also cause issues. To address this, many different tools have been created to help act as an interface 
@@ -5407,6 +5425,111 @@
                         operations at the expense of significantly more work in figuring out appropriate mappings.</li>
                     </ul>
                 </div>
+                <hr/>
+                <h3>Postgres Security</h3>
+                <li>Set up <strong>host-based authentication</strong> to define who is allowed to connect to the server.</li>
+                <li>Implemented a <strong>role management system</strong> that operates on the Principle of Least Privilege.</li>
+                <li>Enforced <strong>secure authentication</strong> and <strong>dissuaded automated attacks.</strong></li>
+                <hr/>
+                <h3>Authentication and authorization in POSTGRES</h3>
+                <li><strong>Host-based authentication</strong> is a type of authentication mechanism that verifies the 
+                identity of a user based on the host or computer they are using to access a system. In this 
+                type of authentication, the identity of the user is authenticated based on the identity of 
+                the computer or host from which the user is trying to access the system. More
+                in <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-data-security/modules/wdcp-22-authentication-authorization-postgres/cheatsheet" target="_blank">here</a></li>
+                <ul>
+                    <li><strong><i>pg_hba.conf</i></strong> file (created within the project) allows you to specify 
+                    rules for how Postgres should handle 
+                    different connections. Rules can apply narrowly or broadly, depending on how precise 
+                    the parameters are. In the pg_hba.conf file, all the entries follow the same basic format, 
+                    with blank lines or lines beginning with a # symbol being ignored. The basic format of 
+                    entries is:</li>
+                    <pre>
+                        <code>
+                connection_type  db  user  address  auth_method  [auth_options]
+                        </code>
+                    </pre>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode68" onclick="showCode('displayCode68', 'showCode68')">Display</button>
+                <div id="displayCode68">
+                    <button onclick="closeCode('displayCode68', 'showCode68')">Close</button>
+                    <li>Let’s <strong>build an entry</strong>. The entry we’ll be building will allow SSL connections 
+                    to a database called db_example for members of the g_example group on the same network 
+                    as the server and use sha-256 password authentication.</li>
+                    <ul>
+                        <li><strong>connection_type</strong> will be <strong>hostssl</strong>, which matches external connections that use SSL. host is like hostssl, but matches connections that don’t use SSL as well.
+                        db will be db_example. The keyword all can be used to match all databases.</li>
+                        <li><strong>user</strong> will be <strong>+g_example</strong>. The + matches users who are members of this group, rather 
+                        than the group itself. If we were creating a rule for a specific user, we would omit 
+                        the +. The keyword all can be used to match all users.</li>
+                        <li><strong>address</strong> will be <strong>samenet</strong>, a shorthand for connections on the same subnet as the 
+                        server. Specific IP addresses can be put here as well. The keyword all can be used 
+                        to match any address.</li>
+                        <li><strong>auth_method</strong> will be <strong>scram-sha-256</strong>. There are other options, including reject, 
+                        which unconditionally rejects connections matching the rule.</li>
+                        <li>We’ll leave auth-options blank.</li>
+                    </ul>
+                    <li>All together, it looks like:</li>
+                    <pre>
+                        <code>
+            hostssl  db_example  +g_example  samenet  scram-sha-256
+                        </code>
+                    </pre>
+                    <li>The owner, who has the username u_owner, wants to be able to access all the 
+                    databases from their home computer. Implement a rule to allow connections from their 
+                    IP address: 104.20.25.250 using sha-256 password authentication. Since this connection 
+                    goes over the public internet, the connection needs to use SSL.</li>
+                    <pre>
+                        <code>
+            hostssl  all  u_owner  104.20.25.250  scram-sha-256
+                        </code>
+                    </pre>
+                    <li>Let’s implement a <strong>default-deny</strong> rule at the very bottom of pg_hba.conf, to ensure 
+                    that all external connections we don’t specifically allow are blocked. This rule should 
+                    match all types of external connections, for all databases, users, and addresses, and 
+                    reject them.</li>
+                    <pre>
+                        <code>
+            host  all  all  all  reject
+                        </code>
+                    </pre>
+                </div>
+            <li><strong>User and Role Management:</strong>
+            To solve this, you decide to create a system that uses three types of roles: permissions, 
+            groups, and users.
+            Permissions will determine privileges based on tasks, such as reading and writing to a given 
+            table. Groups will be collections of permissions, and represent a group of users.
+            Users represent specific people or applications, and join groups based on what their job is.
+            We’ll be using two main commands today: CREATE ROLE and GRANT. <strong>A video implementation</strong>
+            <a href="https://www.youtube.com/watch?v=aniANzg0BSk" target="_blank">here</a>.</li>
+            <ul>
+                <li><strong>CREATE ROLE</strong> follows the format
+                below. It has a variety of optional parameters such as SUPERUSER/NOSUPERUSER, but Postgres provides 
+                sensible default values for these parameters, so we won’t need to specify them here. 
+                (You should always do extra research when creating your own application.) 
+                <strong><i>CREATE ROLE role_name;</i></strong></li>
+                <li><strong>GRANT</strong> follows two formats. <strong><i>PERMISSION ON table TO role;</i></strong>
+                is used for granting permissions; if we wanted to allow the p_example role to select on the example table, we would 
+                use GRANT SELECT ON example TO p_example;.
+                <strong><i>GRANT role TO other_role;</i></strong> is used to assign one role to another role; if we wanted to 
+                give g_example all the permissions of p_example, we 
+                would use GRANT p_example TO g_example;.</li>
+            </ul>
+            <hr/>
+            <h3>Server Configuration</h3>
+            <li>A configuration file called <strong><i>postgresql.conf</i></strong> (created within the project) it's needed in order to make some final tweaks to improve the overall security of the 
+            Postgres server. Some of the changes will enforce secure authentication, while others will make it more difficult for an 
+            attacker to target the server using automated tools. We’ll be changing three parameters in this exercise:</li>
+            <ul>
+                <li>The <strong>listen_addresses</strong> parameter controls what IP addresses are allowed to connect to the server. 
+                An IP address that isn’t 
+                allowed to connect won’t even be able to try to authenticate. Setting this to '*' allows connections from any address to 
+                try and authenticate, but this is generally a bad idea!</li>
+                <li>The <strong>port parameter</strong> is the port the Postgres server listens on. Port numbers 49152—65535 aren’t reserved by any 
+                software, so a port in this range usually doesn’t conflict with any other software.</li>
+                <li>The <strong>ssl parameter</strong> determines whether or not the server will support SSL connections. In a real environment,
+                the server also needs to be provided with the appropriate certificate and key.</li>
             </ul>
         </div>
         <div class="styleGuide">
@@ -5465,6 +5588,532 @@
                     <ul>
                     </ul>
                 </div>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>WebSecurity</h2>
+            <ul>
+                <li><strong>OWASP (Open Web Application Security Project)</strong> is a respected authority 
+                in the field of web security.
+                OWASP Top Ten threats can be used as a guide for a webapp security - see it
+                <a href="https://owasp.org/www-project-top-ten" target="_blank">here.</a></li>
+                <li><strong>Security Principles: </strong>A good rule of thumb for web security, and cybersecurity in general, is something called the
+                CIA triad (no, not the US federal agency). CIA stands for Confidentiality, Integrity, and 
+                Availability.</li>
+                <ul>
+                    <li>Confidentiality refers to protecting private information from eyes that shouldn’t have 
+                    access to it. It’s the need to enforce access - who can see this, and who shouldn’t? Examples 
+                    of enforcing confidentiality include implementing robust user authentication and encryption of 
+                    important user data.</li>
+                    <li>Integrity refers to data integrity here. We need security controls that protect data from 
+                    being changed or deleted, and that the damage can be reversed if done accidentally. Some 
+                    techniques related to integrity are database security, keeping backups and using cryptography 
+                    to check for changes.</li>
+                    <li>Availability refers to data being consistently, reliably available to those authorized. For 
+                    example, social media websites ensure that even with high traffic or when a server is 
+                    compromised, information gets to a user’s screen. This is accomplished through constant 
+                    maintenance of hardware and software, monitoring servers and networks, and having a plan for 
+                    any disasters.</li>
+                </ul>
+            </ul>
+            <hr/>
+            <h3>Data Security</h3>
+            <ul>
+                <li></strong>Transport Layer Security(TLS): </strong>
+                is a protocol for establishing secure connections between computers. TLS’s largest 
+                claim to fame is that it powers HTTPS, the protocol that lets us browse the web securely.
+                As suggested by its name, TLS provides security for data that is sent through transport 
+                layer protocols. It does this by creating a secure connection (often conceptualized as 
+                a tunnel) through which data can be transmitted to its destination. You can think of 
+                TLS as a wrapper for transport layer protocols. TLS makes use of other algorithms and 
+                protocols to handle things like encryption and key exchange. However, TLS is not itself 
+                an encryption algorithm.
+                TLS uses public-key certificates in order to make sure that servers (and sometimes 
+                clients) are who they say they are. These certificates are created using the ability 
+                of asymmetric cryptography to digitally sign data, verifying its authenticity and 
+                provenance.</li>
+                <ul>
+                    <li><strong>Secure Sockets Layer (SSL)</strong> is the predecessor of TLS. Like TLS, it is a protocol 
+                    meant to establish secure communications between computers. The primary difference 
+                    between SSL and TLS is that SSL has a history of serious security vulnerabilities, 
+                    with the final version being deprecated in 2015.
+                    Both SSL and TLS use the same kind of certificate, and TLS was originally created 
+                    to replace SSL. Because SSL was around first, it’s still common to refer to 
+                    ‘SSL/TLS certificates’ as just ‘SSL certificates’. For the most part, whenever 
+                    you hear someone talk about SSL, you can probably assume they’re actually talking 
+                    about TLS.</li>
+                </ul>
+                <li><strong>Role-Based Access Control (RBAC) </strong>is a way of managing permissions using roles.
+                As the name suggests, roles are a core part of Role-Based Access Control. A role serves 
+                as an layer between permissions and users; rather than permissions being granted 
+                directly to users, permissions are granted to roles, and then users are assigned roles 
+                as appropriate.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode67" onclick="showCode('displayCode67', 'showCode67')">Display</button>
+            <div id="displayCode67">
+                <button onclick="closeCode('displayCode67', 'showCode67')">Close</button>
+                <ul>
+                    <li>employee</li>
+                    <ul>
+                        <li>Time-Tracking Software (Personal Access)</li>
+                        <li>Payroll Software (Personal Access)</li>
+                    </ul>
+                    <li>mechanic</li>
+                    <ul>
+                        <li>Work Orders (View/Edit)</li>
+                    </ul>
+                    <li>cashier</li>
+                    <ul>
+                        <li>Point Of Sale Terminal Access</li>
+                        <li>Inventory Database (Read)</li>
+                        <li>Work Orders (Read)</li>
+                    </ul>
+                    <li>inventory_manager</li>
+                    <ul>
+                        <li>Inventory Database (Read/Write)</li>
+                        <li>Supply Orders (View/Create)</li>
+                    </ul>
+                    <li>hr</li>
+                        <li>Time-Tracking Software (Administrative)</li>
+                    <li>payroll</li>
+                    <ul>
+                        <li>Payroll Software (Administrative)</li>
+                    </ul>
+                    <li>billing</li>
+                    <ul>
+                        <li>Invoice Software (Create/Pay)</li>
+                        <li>Supply Orders (View)</li>
+                    </ul>
+                    <li>it</li>
+                    <ul>
+                        <li>Administrative Computer Access</li>
+                    </ul>
+                </ul>
+            </div>
+            <hr/>
+            <h3>Common Attacks on Web Applications</h3>
+            <ul>
+                <li><strong>Cross-Site Scripting (XSS)</strong> is a common web application vulnerability 
+                that occurs when a web application renders unsanitized input to the front end of an application. 
+                An attacker takes advantage of this vulnerability by injecting malicious code, generally in the form of 
+                JavaScript, through the browser.
+                XSS is preventable with <strong>input sanitization</strong> and <strong>application-level firewalls</strong>.
+                Prevention Cheatsheet 
+                <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank">here</a>.
+                <ul>
+                    <strong>Sanitization</strong> is the process of removing/replacing problematic characters with safe 
+                    versions. Depending on the backend language, there may or may not be built-in functions to aid in this 
+                    process. However, if these functions do not exist, we can generally succeed 
+                    in preventing XSS attacks by removing characters such as <, >, ", =, and potentially dangerous keywords.
+                    Rather than remove characters, we can also replace them with HTML-encoded versions of the characters. 
+                    This allows us to retain the characters, but remove their capacity to affect the page’s HTML.
+                    For example, the < character would be converted to the “<” string. The browser will render this string 
+                    as the “<” character, but it will not interpret it as actual HTML, preventing the attack.
+                    It is important to note, however, that depending on how the data is used, this type of escaping may 
+                    not be enough. It’s important to consider all potential avenues for an attack.
+                    There are also JavaScript packages like sanitize-html that help sanitizer user inputs. Here are some
+                    types of XSS attacks:</li>
+                    <ul>
+                        <li><strong>Stored XSS (server and/or database)</strong> <a href="https://owasp.org/www-community/attacks/xss/#stored-xss-attacks" target="_blank">here</a>.</li>
+                        <li><strong>Reflected XSS (server and/or database)</strong> <a href="https://owasp.org/www-community/attacks/xss/#reflected-xss-attacks" target="_blank">here</a>.</li>
+                        <li><strong>DOM-based Atacks (client side)</strong> <a href="https://owasp.org/www-community/attacks/DOM_Based_XSS" target="_blank">here</a>.</li>
+                    </ul>
+                    <li>Video protecting against <strong>XSS attacks</strong> <a href="https://www.youtube.com/watch?v=JHOmNd2218g" target="_blank">here</a>.</li>
+                    <li>Video Acme Bank pproctecting against <strong>Various attacks</strong> 
+                    <a href="https://www.youtube.com/watch?v=d0pWvLyngHM" target="_blank">here</a>.</li>
+                    <li><strong>Securing Cookies and Headers: </strong></li>
+                    <ul>
+                        <li><strong>Cookies</strong> can be used to steal user’s data. An express server that uses 
+                        express-session to store cookies has the properties httpOnly and secure to configure 
+                        how to store and send cookies. Setting <strong>httpOnly</strong> and <strong>secure</strong>
+                        to true helps mitigate the risk of client-side script accessing the protected cookie.
+                        In order to set up a cookie in an Express server, you can use the library 
+                        express-session to set up a session and configure the application with specific 
+                        properties pertaining to cookies:</li>
+                        <pre>
+                            <code>
+                            app.use(
+                            session({
+                                secret: "my-secret",
+                                resave: true,
+                                saveUninitialized: true,
+                                cookie: {
+                                httpOnly: true,
+                                secure: true
+                                },
+                            })
+                            );
+                            </code>
+                        </pre>
+                        <li><strong>Setting Security Headers: </strong>
+                        Moreover, we can include the helmet package to edit HTTP headers. Helmet.js is a 
+                        collection of 15 Node modules that interface with Express. Each module provides 
+                        configuration options for securing different HTTP headers. One of them being the 
+                        contentSecurityPolicy which is an added layer of security that helps to detect and 
+                        mitigate certain types of attacks. Fortunately, by just including this package in 
+                        your express app, 11 of these modules (including the content security policy module) 
+                        will be configured automatically. You can require helmet 
+                        using: <i><strong>const helmet = require('helmet');</strong></i>
+                        You can use helmet by adding the following line 
+                        of code:</li>
+                        <pre>
+                            <code>
+                            app.use(helmet());
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Data Validation and Sanitization: </strong>
+                    In the <strong>Reflected</strong> and <strong>Stored XSS Attacks</strong>, an attacker can inject malicious 
+                    code into the server and/or database using a form.
+                    When we validate data we ensure that the user is not submitting information that doesn’t 
+                    fit a certain format. Moreover, we can use sanitization in order to reformat data so no 
+                    malicious code is sent.
+                    In other words, <strong>validation</strong> checks if the input meets a set of criteria (such as a string 
+                    contains no standalone single quotation marks), whereas <strong>sanitization</strong> modifies the input 
+                    to ensure that it is valid (such as removing single quotes).
+                    There are many packages that help validate user data, and one common package is 
+                    express-validator - recomended for express applications.
+                    <strong>Documentation</strong> <a href="https://express-validator.github.io/docs/validation-chain-api/" target="_blank">here</a>.
+                    List of express-validor's method <strong>validations</strong> 
+                    <a href="https://github.com/validatorjs/validator.js" target="_blank">here</a>.</li>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode69" onclick="showCode('displayCode69', 'showCode69')">Display</button>
+                    <div id="displayCode69">
+                        <button onclick="closeCode('displayCode69', 'showCode69')">Close</button>
+                        <li>With <strong>express-validator</strong>, we can verify if a string matches a certain format by importing 
+                        certain functions such as check:
+                        <i>const { check } = require("express-validator");</i>
+                        Once the function is imported, it can be used as a middleware within our endpoints, 
+                        to validate any input that’s submitted within objects attached to req (such as data 
+                        sent in a form through req.body):</li>
+                        <ul>
+                            <pre>
+                                <code>
+                        app.post("/login", [
+                            check('email').isEmail(),
+                        ], (req, res) => {});
+                                </code>
+                            </pre>
+                            <li>In the example above, the email field is sent through a login form and retrieved from 
+                            req.body. Notice how we’re using an array since we can pass in multiple check‘s for input 
+                            data.
+                            If the input data is valid, then the rest of the request will be executed and we know 
+                            that the data passed in is safe and properly formatted.</li>
+                        </ul>
+                    </div>
+                    <li><strong>DOM-Based Precautions: </strong>
+                    Ideally, one could take a step further and <strong>avoid rendering user input</strong>, 
+                    especially if it affects DOM elements such as the document.url, document.location, or document.referrer.
+                    Lastly, one should <strong>validate and sanitize</strong> all user input in order to prevent any data manipulation.
+                    </li>
+                </ul>
+                <li><strong>Cross-Site Request Forgery (CSRF) Attacks</strong></li>
+                <ul>
+                    <li>Cross-Site Request Forgery (CSRF) is a common class of vulnerability that tricks a user into submitting a web request on behalf of an attacker.
+                    <strong>More info</strong> <a href="https://owasp.org/www-community/attacks/csrf" target="_blank">here</a>.</li>
+                    <li><strong>Preventing: </strong>
+                    One of the simplest ways to prevent these attacks is to add a <strong>CSRF token</strong>. This token is 
+                    a unique value that is added to each request. This value is dynamically generated by the 
+                    server and used to verify all requests. This token is kept strictly with the form the 
+                    user is currently on if they were making the legitimate request, so the attacker does 
+                    not have access to it, and cannot get the user to complete the same request without the 
+                    token. Since this value is unique for every request and constantly changing, it is nearly 
+                    impossible for an attacker to pre-create the URLs/requests for an attack AND bypass 
+                    the token check.
+                    While a CSRF token can prevent many malicious requests, it can still fail. If an application is vulnerable to Cross-Site Scripting (XSS) attack, a hacker could use their XSS attack to extract this token!
+                    As an extra layer of security, we can ask users to re-authenticate by manually enter 
+                    additional information prior to a critical request. For example, prior to changing a 
+                    username, email, or password, we may want the user to enter their current password. 
+                    By ensuring the request has the correct password, we can ensure that an attacker isn’t 
+                    able to easily compromise a user, even with XSS.
+                    </li>
+                </ul>
+                <li><strong>SQL Injection</strong></li>
+                <ul>
+                    <li>When you log in to Codecademy, you provide a username and password which are used 
+                    to authenticate you. When you provide these 
+                    credentials, the Codecademy server will take your input and compare it against user 
+                    data inside a database.
+                    That step of checking the input against the database can be abused by attackers. 
+                    Through a cleverly and carefully crafted input an attacker can inject code directly 
+                    into the database query, getting precious data.
+                    A hacker can use their knowledge of the SQL language to cleverly construct text 
+                    inputs that modify the backend SQL query to their liking. They can force the 
+                    application to output private data or respond in ways that provide intel.
+                    Here are some types:</li>
+                    <ul>
+                        <li><strong>Union-Based Injections</strong></li>
+                        <li><strong>Error-Based Injections</strong></li>
+                        <li><strong>Boolean-Based Injections</strong></li>
+                        <li><strong>Time-Based Injections</strong></li>
+                        <li><strong>Out-of-Band SQL Injections</strong></li>
+                    </ul>
+                    <li><strong>Prevention: </strong>
+                    There are two main methods for preventing injection attacks: sanitization and prepared statements.
+                    <strong>Video Implementation</strong>
+                    <a href="https://www.youtube.com/watch?v=SwBz06hM_XY&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                    <ul>
+                        <li><strong>Sanitization: </strong>When it comes to SQL injections, we would want to escape 
+                        dangerous characters such as: <i>' ; \--</i>
+                        While this does provide a layer of protection, this method isn’t perfect. If 
+                        a user finds a way to bypass your sanitization process, they can easily inject 
+                        data into your system. 
+                        Additionally, depending on your query, removing certain characters may have no 
+                        effect! Therefore, this shouldn’t be your only defense mechanism.
+                        <strong>validator.js</strong> is a library of string validators and sanitizers 
+                        that can be used server-side with Node.js. validator.js can be used to validate 
+                        forms and sanitize inputs before using a form value in the application code
+                        (that's different from express-validator, which is sanitization for express
+                        framework). <strong>A list of all validators methods</strong> <a href="https://www.npmjs.com/package/validator" target="_blank">here</a>.</li>
+                        <pre>
+                            <code>
+                const validator = require('validator');
+
+                app.post('/submit', 
+                (req, res) => {
+                    console.log( validator.isEmail(req.body.email)); 
+                })
+                            </code>
+                        </pre>
+                        <li><strong>Prepared Statements:</strong>
+                        Arguably, the best technique to protect against SQL injections
+                        Writing prepared statements (also known as parameterized queries) in backend code 
+                        is a common, reliable, and secure solution against SQL injections. 
+                        Prepared statements are nearly foolproof.
+                        Prepared statements are predefined SQL queries that take user
+                        input and place them into placeholders using array syntax.</li>
+                    </ul>   
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode70" onclick="showCode('displayCode70', 'showCode70')">Display</button>
+                    <div id="displayCode70">
+                        <button onclick="closeCode('displayCode70', 'showCode70')">Close</button>
+                        <li><strong>How does it work? </strong>We provide the database the query we want 
+                        to execute in advance.
+                        First, a SQL query template is sent to the database. Certain values, called 
+                        parameters, are left unspecified. For example, user input.
+                        The database processes the query and performs optimizations.
+                        Values are bound to the parameters and the SQL query is executed.
+                        Then we pass in the parameters/user input. Any input, regardless of whether the 
+                        content has SQL syntax, is then treated only as a parameter and will not be treated
+                        as SQL code. In addition to providing added security, prepared 
+                        statements also make queries far more efficient.</li>
+                        <li>Consider this insecure SQLite database query that directly constructs the query 
+                        string from user input:</li>
+                        <pre>
+                            <code>
+            db.get(`SELECT * FROM Employee  WHERE FirstName = ${req.body.firstName} 
+                AND LastName =  ${req.body.lastName}`, (error, results) => {
+                    ...
+            });
+                            </code>
+                        </pre>
+                        <li>The query can be reconstructed to use the following <strong>array syntax</strong>, where the 
+                        first element replaces the first question mark, and the second element replaces 
+                        the second question mark.
+                        This minimal change ensures that the input strings are properly escaped and 
+                        special characters are removed, preventing SQL injection attacks.</li>
+                        <pre>
+                            <code>
+            db.all("SELECT * FROM Employee  WHERE FirstName = ? AND LastName = ? ", 
+                [req.body.lastName, req.body.firstName], 
+                (error, results) => {
+                ...
+            });
+                            </code>
+                        </pre>
+                        <li>Another way to implement prepared statements is to use <strong>named placeholders</strong>. 
+                        Instead of using an array, we use an <strong>object to map</strong> the parameters to the query 
+                        variables. Consider the following prepared statement using placeholders:</li>
+                        <pre>
+                            <code>
+            db.all("SELECT * FROM Employee  WHERE FirstName = ? AND LastName = ? ", 
+                [req.body.lastName, req.body.firstName], 
+                (error, results) => {
+                ...
+            });
+                            </code>
+                        </pre>
+                        <li>The query can be reconstructed to use named placeholders by replacing the <i>?</i> with 
+                        a variable beginning with the <i>$</i> character, and passing an object that maps to the
+                        named placeholder value. This minimal change makes the code more readable for complicated queries.</li>
+                        <pre>
+                            <code>
+            db.all("SELECT * FROM Employee  WHERE FirstName = $firstName 
+            AND LastName = $lastName ", 
+                {
+                    $firstName: req.body.firstName,
+                    $lastName: req.body.lastName
+                },
+                (error, results) => {
+                ...
+            });
+                            </code>
+                        </pre>
+                    </div>
+                </ul>
+            </ul>
+            <hr/>
+            <h3>Defensive Coding In Javascript</h3>
+            <ul>
+                <li><strong>Dangerous Code</strong></li>   
+                <ul> 
+                    <li><strong>The eval Function </strong>
+                    in JavaScript takes a string as an argument and executes it as Javascript source code. 
+                    The functions, <i>setInterval()</i>, <i>setTimeout()</i>, and new <i>Function()</i> use <i>eval()</i> 
+                    in their implementations, and should be used with the same caution.
+                    We might be able to mitigate this risk with npm packages like 
+                    <a href="https://github.com/hacksparrow/safe-eval" target="_blank">safe-eval</a> and 
+                    <a href="https://www.npmjs.com/package/expression-eval" target="_blank">expression-eval</a>. 
+                    Both allow us to limit which methods and properties are available to eval(). 
+                    Best practices with eval are: Avoid using it altogether!
+                    If you must use it, use a safer version, and only allow trusted, non-user input.</li>
+                    <li><strong>The exec method </strong> takes a string as an argument 
+                    and runs it as a shell command, enabling shell syntax within JavaScript. The danger is 
+                    that unrestricted commands can access, modify, and delete files.
+                    The <strong><i>execFile()</i></strong> method is an alternative that works similarly 
+                    to <strong><i>exec()</i></strong> but requires 
+                    separation of the commands and its arguments. This prevents piped commands and path 
+                    variable access. This separation ensures that an attacker cannot inject their malicious 
+                    commands. Whereas exec will allow for additional unintended commands in the input,
+                    execFile will detect an error.</li>
+                    <li><strong>fs Module</strong>
+                    The file system, or fs, module in Node.js enables file system operations. 
+                    It gives us access to methods like: <i>chmod()</i> to change file permissions,
+                    <i>mkdir()</i> to create directories, <i>rmdir()</i> to delete directories and many more.
+                    The fs module coupled with improperly sanitized user input gives attackers access to our 
+                    entire file system and exposes it to path traversal and file inclusion vulnerabilities.
+                    To mitigate the risk, we can tweak our code to restrict traversal scope to a directory 
+                    of our choice. We use the <i>join()</i> method of the path method to combine our desired directory with 
+                    the user-provided file name. Hiding the directory the server is operating on makes 
+                    it tougher to reach valuable information.</li>
+                    <pre>
+                        <code>
+                const user_input = "example.txt"
+                const root_directory = process.cwd();    // Hard-code path to restrict scope
+                const filePath = path.join(root_directory , fileName);
+                fs.unlinkSync(filePath);
+                        </code>
+                    </pre>
+                    <li><strong>Regular Expressions</strong>
+                    are used in almost every single programming language to validate whether user input 
+                    adheres to an expected condition. Attackers can make use of insecure regex expressions 
+                    to trigger a <a href="https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS" target="_blank">Regular expression Denial of Service (ReDoS)</a>.
+                    The <strong>RegEx</strong> engine can take a large amount of time on poorly defined Regex expressions. 
+                    To prevent this danger, we can use the <strong>validator</strong> npm package. It provides a library of 
+                    string validators and sanitizers for things like IP addresses, emails, and phone numbers. 
+                    For Regex expression we must write ourselves, we can use tools like the safe-regex npm 
+                    package to detect dangerous regular expressions.
+                    We encourage you to take a look at some examples in the 
+                    <a href="https://www.npmjs.com/package/safe-regex" target="_blank">safe-regex</a> documentation.</li>
+                </ul>
+                <li><strong>Secure Your Code</strong></li>
+                <li><strong>Video Implementation: </strong>
+                <a href="https://www.youtube.com/watch?v=MJ-ZzgqCblI" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>Strict Mode: </strong>
+                    Let’s learn about some defensive tools. One of them is JavaScript’s strict mode. 
+                    Using strict mode throws errors that would otherwise be silent, which can help reveal 
+                    vulnerabilities. To invoke strict mode, simply put "use strict"; in single or double
+                    quotes on top of your JavaScript file.</li>
+                    <li><strong>Static Code Analysis: </strong>
+                    Static Code Analysis evaluates a code without executing it. A lint, or linter, is a 
+                    static code analysis tool used to improve source code by finding and flagging 
+                    programming errors, bugs, and patterns that may compromise security. Some of the
+                    most popular JavaScript linters are: ESLint, JSLint, JSHint.
+                    </li>
+                </ul>
+            </ul>
+            <hr/>
+            <h3>Managing Environment Variables, API keys, AND files in NODE.JS</h3>
+            <ul>
+                <li>Exposing sensitive developer-only data like credentials and keys remains a common mistake.
+                This vulnerability counts as <strong>Sensitive Data Exposure</strong>, one of OWASP’s top ten web application security risks.
+                We will introduce how to store sensitive application data securely into environment variables. 
+                We will also learn how .gitignore helps you control which files, folders, and secrets we want to 
+                display in public code repositories.</li>
+                <li><strong>Environment Variables:</strong>
+                An environment variable is no different than other variables we use while programming. It is used to store 
+                information we want to reference in a program. The only difference is that it’s a key-value pair whose value 
+                is set and stored outside a program, usually by the operating system or the production environment. 
+                Environment variables can prevent the secret development keys and passwords from getting out. 
+                They also reward us with more efficient coding in the long run. 
+                Environment variables are not recommended for every situation because they are global variables.
+                On a large-scale application, global variables can be hard to keep track of.
+                Whether the database is hosted online or locally, it is generally a good idea to keep database credentials 
+                in the .env file rather than hard-coding it. This ensures our database is not exposed on accidental pushes 
+                to a git repository and allows for quick configuration when distributing or deploying our project on a 
+                different environment. While the credentials may differ depending on the database, the following are 
+                typically present in each database: <strong>Host IP address, Port, Username, Password</strong>.
+                <strong>API keys</strong> also must be kept in .env, since it can be used by others, and the API price
+                would go high above. </li>
+                <pre>
+                    <code>
+                    DB_HOST=123.45.678.90
+                    DB_USER=root
+                    DB_PASS=123456
+                    API_KEY=V3rYPubl1cK3y
+                    </code>
+                </pre>
+                <ul>
+                    <li>We must initialize them in a file called .env (note the dot in the beginning). We can create 
+                    this file by running the command <strong><i>touch .env</i></strong>.
+                    Node.js stores all the environment variables into a <strong>global variable</strong> called <strong>process.env</strong>. 
+                    We can use a npm package called <strong>dotenv</strong> 
+                    (documentation <a href="https://github.com/motdotla/dotenv#readme" target="_blank">here</a>) 
+                    to load all our environment variables 
+                    from .env to process.env, allowing us to access them in our program - you’d normally have to use 
+                    the command npm install dotenv to install the dotenv package. We need to set <strong>.gitignore</strong>
+                    so the .env file doesn't upload to a repository.</li>
+                </ul>
+                <li><strong>Environment Variables vs Config Variables </strong>
+                share some similarities; choosing one comes down to the developer’s preference and environment. 
+                While a <strong>config.json</strong> file allows us to have a greater variety of data types and complex data structures,
+                the data in a <strong>.env</strong> file is generally more intelligible. Moreover, some online hosting platforms 
+                natively support environment variables. At the end of the day, they both accomplish the same purpose: keeping your 
+                information secure.</li>
+                <li><strong>Environment Variables and Project Collaboration: </strong>             
+                The best practice when it comes to working as part of a team or shared project is to include 
+                a sample .env file in the public repository as a template 
+                for the next person. This would usually be named <strong>sample.env</strong> or <strong>example.env</strong>. This file contains 
+                the names of all the environment variables we need to run a project but their values are empty.
+                Writing <strong>comments</strong> to explain each variable is recommended and it helps to group related variables. 
+                Other developers can simply add their credentials and rename this file to .env. Take a look at 
+                the example.env file in the workspace.
+                It’s also best practice to provide instructions for obtaining someone’s own credentials or API keys 
+                in the project <strong>README.md</strong> file. Take a look at the README.md in the workspace for an example.
+                Just be careful to NOT add the sample.env file or the README.md to .gitignore.</li>
+            </ul>
+            <hr/>
+            <ul>
+                <h3>Remediation and Incident Response</h3>
+                <li>In Cybersecurity, the term <strong>incident</strong> is when something bad happens, like a breach or 
+                policy violation, that harms or potentially harms the security of a system. While a big 
+                part of security is preventing incidents from happening in the first place, the reality 
+                is that sooner or later, there’s going to be an incident.
+                <strong>NIST (the United States National Institute of Standards and Technology)</strong> 
+                runs the Computer Security Research Center (CSRC), whose recommendations and guides are 
+                highly respected within the industry. NIST Guide
+                <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf" target="_blank">here</a></li>
+                <ul>
+                    <li><strong>Remediation: </strong>NIST defines remediation as “The act of mitigating a vulnerability or 
+                    a threat”. In simple terms, remediation is simply “the process of fixing a security issue”. 
+                    It could be patching a vulnerability in a piece of software, removing malware from 
+                    an infected computer, or kicking a malicious attacker out of a network. Not all 
+                    remediation comes as the result of an incident; arguably the best remediation happens 
+                    before the security issue can evolve into an incident.</li>
+                    <li><strong>Incident response: </strong>NIST defines incident response as “The mitigation of violations of security 
+                    policies and recommended practices.”, but a simpler definition might be “everything 
+                    that needs to happen to investigate and recover from an incident”.
+                    Incident response begins before an incident even occurs, with preparations to ensure 
+                    that an organization is able to respond quickly when an incident does occur. These 
+                    preparations can include training, ensuring access to tools, and creating incident 
+                    response plans that contain details about what to do when an incident happens.
+                    <strong>Incident Response Playbook</strong> contains procedures outlining what needs 
+                    to happen to respond to an incident. These playbooks contain information on what 
+                    constitutes an incident, what procedures should be enacted and by who, who needs to 
+                    be contacted, etc...</li>
+                </ul>
             </ul>
         </div>
     </body>

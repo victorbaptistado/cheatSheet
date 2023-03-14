@@ -8,10 +8,10 @@
     <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="./index.html">Cheat Sheet</a></li>
+                <li><a href="./AI.html">Cheat Sheet</a></li>
                 <li><a href="./displayProperties.html">Display Properties</a></li>
                 <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./developmentCycle.html">Development Cycle</a></li>
+                <li><a href="./operationalSystem.html">Operational System</a></li>
                 <li><a href="./debug.html">Debug</a></li>
                 <li><a href="./git.html">Git</a></li>
                 <li><a href="./form.html">Form</a></li>       
@@ -683,10 +683,118 @@
                 client-side and server-side rendering to incorporate the 
                 advantages of both. In hybrid-rendering, static content is generated on the server, 
                 while dynamic content is generated on the client-side as the user navigates the site. 
+                <hr/>
+                <h3>RESTful APIs</h3>
                 <li><strong>OpenAPI Specification (OAS): </strong> is a standard for describing RESTful APIs. 
                 Similar to how create-react-app provides a standard for React projects by generating 
                 templates, OAS provides the rules and syntax necessary to describe an API.</li>
-            </ul>  
+                <p class="center"><strong>RESTful endpoints</strong></p>
+                <button type="button" id="showCode66" onclick="showCode('displayCode66', 'showCode66')">Display</button>
+                <div id="displayCode66">
+                    <button onclick="closeCode('displayCode66', 'showCode66')">Close</button>
+                    <li><strong>GET: </strong></li>
+                    <pre>
+                        <code>
+                export const getBooks = async () => {
+                    const response = await fetch(`${API_ENDPOINT}/books`);
+                    const books = await response.json();
+                
+                    return books;
+                };
+                        </code>
+                    </pre>
+                    <li><strong>POST: </strong></li>
+                    <pre>
+                        <code>
+                export const addNewBook = async (newTitle, newStart, newEnd) => { 
+                    const response = await fetch(`${API_ENDPOINT}/books`, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            title: newTitle,
+                            start: newStart,
+                            end: newEnd
+                        }),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        });
+                        const newBook = await response.json();
+                        return newBook;
+                };                            
+                        </code>
+                    </pre>
+                    <li><strong>PUT: </strong></li>
+                    <pre>
+                        <code>
+                export const updateBook = async (id, newTitle, newStart, newEnd) => {
+                    const response = await fetch(`${API_ENDPOINT}/books/:/${id}`, {
+                        method: "PUT",
+                        body: JSON.stringify({
+                            newTitle,
+                            newStart,
+                            newEnd
+                        }),
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                    })
+                    return response.status;
+                }                            
+                        </code>
+                    </pre>
+                    <li><strong>DELETE: </strong></li>
+                    <pre>
+                        <code>
+                export const deleteBook = async (id) => {
+                    const response = await fetch(`${API_ENDPOINT}/:${id}`, {
+                    method: 'DELETE'
+                    });
+                    return response.status;
+                }
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>More info: </strong></li>
+                <ul>
+                    <li>Front-end back-end API connection <strong>Bookstore</strong>
+                    <a href="https://static-assets.codecademy.com/Courses/Connecting-FE-to-BE/creating-rest-api.zip" target="_blank">here</a>.</li>
+                    <li>Front-end, Back-end & Database connection <strong>Restaurant</strong> 
+                    <a href="https://static-assets.codecademy.com/Courses/Connecting-FE-to-BE/external-api/external-api.zip" target="_blank">here</a>.</li>
+                    <li><strong>OpenAPI code generator</strong>: Swagger Codegen, OpenAPI Generator, 
+                    and AutoRest.</li>
+                </ul>
+                <hr/>
+                <h2>MVC (Model View Controller)</h2>
+                <li>As we design our software we sometimes need to view and organize our system at the big 
+                picture level. One popular architectural pattern is the Model View Controller pattern, or MVC.
+                The main drawback of MVC is that it can introduce unneeded complexity to an application. 
+                Having multiple components and structure may not be necessary for simpler applications. A 
+                decent guideline is that if our application requires multiple people for development, 
+                having a pattern such as MVC probably would be helpful. This will help team members reason 
+                about class intents and where an object might fit into the application.
+                Overall, the MVC pattern is ideal for more complex projects in which there are expected to 
+                be changes in the way data is represented or presented over the product’s lifetime. The 
+                separation of these concerns allows flexibility when making changes to the system.</li>
+                <ul>
+                    <li><strong>Model</strong> is made up of the data storage, as well as any classes that represent that 
+                    data as it moves around the application. Data is often stored outside the application 
+                    in a database or files. While the data can be stored in different formats, we often read 
+                    data from storage into a representational object. These objects should be extremely 
+                    simple and have very little behavior outside of allowing access to their data.</li>
+                    <li><strong>View</strong> component is the classes that describe how our application will be presented 
+                    to the user — it’s what the users see. These might be our React components or HTML 
+                    elements in a web application or XML files in an Android application.</li>
+                    <li><strong>Controller</strong> is the brain of our application. The View and the Model do not define 
+                    much behavior for our applications, instead, they merely represent presentational and 
+                    data objects. The Controller defines the behaviors that our system will accomplish 
+                    using the Model and View. The Controller is responsible for receiving events (clicks, 
+                    submitted forms, typing) passed in from the View and processing them to make meaningful 
+                    responses. The Controller will interact with the Model, making queries or representing 
+                    data as appropriate to make these responses happen.</li>
+                </ul>
+                <li><strong>MVC </strong>expenses project<a href="https://static-assets.codecademy.com/Courses/Connecting-FE-to-BE/mvc/mvc.zip" target="_blank">here</a>.</li>
+                <li><strong>MVC </strong>todoList project <a href="https://static-assets.codecademy.com/Courses/Connecting-FE-to-BE/mvc/to-do-list.zip" target="_blank">here</a>
+            </ul>
         </div>
         <div class="styleGuide">
             <h2>API Development (with Swagger and OpenAPI)</h2>
@@ -1091,6 +1199,34 @@
                 We can also clone Swagger from github and use it <a href="https://github.com/swagger-api/swagger-editor" target="_blank">here</a>.</li>
                 <ul>
                     <li>Complete tutorial <a href="https://static-assets.codecademy.com/Courses/Swagger-OpenAPI/orders_project_finished.zip" target="_blank">here</a>.</li>
+                </ul>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Deploying Fullstack Web Applications</h2>
+            <ul>
+                <li><strong>Heroku</strong> is a cloud-based Platform as a Service (PaaS) that enables developers to get an 
+                app up and running quickly, without the hassle of setting up a server.
+                With Heroku, we don’t need a dedicated DevOps team. We can allow engineers to focus on 
+                building the best user experience for our customers, and the same idea (scaled down) also 
+                makes it valuable to a single developer, or small team of developers - more time spent 
+                building the app, less time spent configuring the deployment (right now Heroku became
+                non-free, but there's a free plan with limitations). Heroku is very useful for a
+                MVP for example. Here are some disavantages:</li>
+                <ul>
+                    <li><strong>Scalability:</strong> Heroku offers easy scaling options, but this can become expensive for 
+                    high-traffic applications. If you anticipate high levels of traffic, you may want to 
+                    consider other options that offer more cost-effective scaling options.</li>
+                    <li><strong>Customizability:</strong> Heroku offers a flexible platform that supports a wide range of 
+                    programming languages and frameworks, but this flexibility comes at a cost of 
+                    customizability. If you need more control over the underlying infrastructure, you may 
+                    want to consider other hosting options.</li>
+                    <li><strong>Security:</strong> Heroku offers a range of security features, including SSL encryption, 
+                    access controls, and intrusion detection. However, you are responsible for securing 
+                    your own application code and data.</li>
+                    <li><strong>Cost:</strong> Heroku's pricing model can be cost-effective for small and medium-sized 
+                    applications, but it can become expensive for large applications with high levels 
+                    of traffic. You may want to consider other options if you need to keep costs low.</li>
                 </ul>
             </ul>
         </div>
