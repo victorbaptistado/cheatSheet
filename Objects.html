@@ -12,7 +12,7 @@
                 <li><a href="./displayProperties.html">Display Properties</a></li>
                 <li><a href="#">Objects</a></li>
                 <li><a href="./operationalSystem.html">Operational System</a></li>
-                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./debugTesting.html">Debug & Testing</a></li>
                 <li><a href="./git.html">Git</a></li>
                 <li><a href="./form.html">Form</a></li>
                 <li><a href="./api.html">API</a></li>
@@ -171,8 +171,839 @@
             It also offers additional features such as comments and object references. JSON, however, is superior when 
             it comes to performance, specifically the speed at which a computer can parse it.</li>
         </div>
+        <div class="styleGuide">
+            <h2>Data Structures & Algorithms</h2>
+            <h3>Data Structures</h3>
+            <ul>
+                <li>At the backbone of every program or piece of software are two entities: data and 
+                algorithms. Algorithms transform data into something a program can effectively use. 
+                Therefore, it is important to understand how to structure data so algorithms can maintain, 
+                utilize, and iterate through data quickly.
+                Data structures are the way we are able to store and retrieve data. You may already be 
+                familiar with Python lists and dictionaries or Javascript arrays and objects. If so, 
+                you know that lists and arrays are sequential with data accessed by index while 
+                dictionaries and objects use a named key to store and retrieve information.
+                The data structures that exist in programming languages are pretty similar to real-world 
+                systems that we use outside of the digital sphere. Imagine that you go to the grocery store. 
+                At this particular grocery store, the frozen pizza is stored next to the bell peppers and 
+                the toothbrushes are next to the milk. The store does not have signs that indicate where 
+                different items are located. In this disorganized grocery store, you would have a pretty 
+                difficult time trying to find what you were looking for!
+                Fortunately, most grocery stores have a clear order to the way the store is stocked and 
+                laid out. Similarly, data structures provide us with a way to organize information 
+                (including other data structures!) in a digital space.</li>
+                <li><strong>How are data structures used: </strong>
+                Different types and use cases for data will be better suited to different manners of 
+                inputting, processing, storing, and retrieving. This is why we have several data 
+                structures to choose from, and the ability to create our own.    
+                Data structures handle four main functions for us:</li>
+                <ul>
+                    <li><strong>Inputting information: </strong>
+                    Is largely concerned with how the data is received. What kind of information can be 
+                    included? Will the new data be added to the beginning, end, or somewhere in the middle 
+                    of the existing data? Does an existing point of data need to be updated or destroyed?</li>
+                    <li><strong>Processing information: </strong>
+                    Processing gets at the way that data is manipulated in the data structure. This can 
+                    occur concurrently or as a result of other processes that data structures handle. 
+                    How does existing data that has been stored need to change to accommodate new, 
+                    updated, or removed data?</li>
+                    <li><strong>Maintaining information: </strong>Maintaining is focused on how the data 
+                    is organized within the structure. Which relationships need to be maintained between 
+                    pieces of data? How much memory must the system reserve (allocate) to accommodate the data?</li>
+                    <li><strong>Retrieving information</strong>
+                    Retrieving is devoted to finding and returning the data that is stored in the structure. 
+                    How can we access that information again? What steps does the data structure need 
+                    to take to get the information back to us?
+                    </li>
+                </ul>
+                <li><strong>Choosing the best data structure: </strong>
+                Your plumber probably would not be the best professional to diagnose an illness and 
+                your doctor probably wouldn’t be the best person to do your taxes — they are each 
+                better suited for other tasks! Similarly, different data structures are better suited 
+                for different tasks. Choosing the wrong data structure can result in slow or unresponsive 
+                code (and mess up your program!), so it’s important to consider a few factors as you make 
+                your decision:</li>
+                <ul>
+                    <li><strong>What is the intended purpose for the data?</strong> Do any data structures have built-in functionality 
+                    that is ideally suited for this purpose? Do you want to search, sort, or iterate data in a 
+                    way in which certain data structures would be better suited than others?</li>
+                    <li><strong>Do you want or need control over how memory is set aside to store your data?</strong> 
+                    Data structures that use static memory allocation (e.g., stacks or arrays) will manage 
+                    memory for you and assume a fixed amount of memory upon instantiation with a cap on 
+                    how much data may be added. Data structures that utilize dynamic memory allocation 
+                    (e.g., heaps or linked lists) allow you to allocate and reallocate memory within the 
+                    life of the program. While memory allocation is not something that you’ll need to 
+                    consider in languages like Python or Javascript (these languages will manage memory 
+                    for you, regardless of which data structure you use), it is something to bear in mind 
+                    when working in other languages like C.</li>
+                    <li><strong>How long will it take different data structures to accomplish various tasks relative to 
+                    other data structures?</strong> Technically, two data structures may both be able to accomplish 
+                    the same task for you, but one may be quite a bit faster. This consideration, known as 
+                    runtime will be covered further in depth when you explore all the nifty tricks of 
+                    asymptotic notation.</li>
+                </ul>
+                <li>As you’ve seen, data structures are the essential building blocks that we use to organize
+                all of our digital information. Choosing the right data structure allows us to use the 
+                algorithms we want and keeps our code running smoothly. Understanding data structures and 
+                how to use them well can play a vital role in many situations including
+                technical interviews in which you may be asked to evaluate and determine runtime for data 
+                structures given specific algorithms;
+                day-to-day work for many software engineers who manipulate data stored in structures;
+                data science work where data is stored and accessed through data structures;
+                a whole lot more!</li>
+            </ul>
+            <hr/>
+            <h3>Data Structure APIs</h3>
+            <ul>
+                <li>A brief overview of APIs as they relate to JavaScript data structures.
+                Data structures are all about choosing the right tool for the job. Do you need to 
+                store data in an ordered way, or do you just need to be able to store it and retrieve 
+                it quickly? What’s more important to your use case: how fast the data structure performs, 
+                or how much memory it takes up? Different data structures all have advantages, 
+                disadvantages, and use cases, and that’s the whole reason that there are different data 
+                structures.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode85" onclick="showCode('displayCode85', 'showCode85')">Display</button>
+                <div id="displayCode85">
+                    <button onclick="closeCode('displayCode85', 'showCode85')">Close</button>
+                    <li>Consider the Array in JavaScript. It’s a really great data structure for storing 
+                    ordered data because you can retrieve elements by index number. If you want the first 
+                    element of an array, all you need to do is fetch it with index 0: arrayName[0]. It also 
+                    provides all sorts of helpful methods for manipulating elements, such as .push(), .pop(), 
+                    .sort(), and more. However, if you want to find out if a particular element exists in an 
+                    array, you may need to iterate through the entire array.
+                    What if I asked you to keep track of a series of numbers as I gave them to you, and then 
+                    asked at the end whether I’d given you a particular number, you could probably do that in 
+                    your memory. But if I asked you to do that in a computer program, you’d have to make choices 
+                    about how to store the data. Let’s look at two possibilities of how we’d build storeNumber() 
+                    and doYouHaveThisNumber() functions. Given the following list of numbers:
+                    <i>1, 250, -42, 0.4, 17</i>
+                    How might you store these numbers if I gave you each at a time? You might use an array:</li>
+
+                    <pre>
+                        <code>
+                    const listOfNumbers = [];
+                    
+                    const storeNumber = num => listOfNumbers.push(num);
+                    
+                    const doYouHaveThisNumber = num => listOfNumbers.includes(num);
+                        </code>
+                    </pre>
+                    <li>In this program, <i>storeNumber()</i> adds a number to the array, and <i>doYouHaveThisNumber()</i> 
+                    returns true if that number exists in the array, and false otherwise. Looks pretty good, 
+                    but what if you had 10000000 numbers? <i>doYouHaveThisNumber()</i> might start getting pretty 
+                    slow, since Array.prototype.includes() iterates through the entire array until it finds 
+                    the input value.
+                    Let’s try using another built-in data type in JavaScript, the Object. Since all we want
+                    to keep track of is whether we received a particular number, we can just store those 
+                    numbers in an object, and set their values to true if we received them:</li>
+                    <pre>
+                        <code>
+                const receivedNumbers = {};
+                
+                const storeNumber = num => receivedNumbers[num] = true;
+                
+                const doYouHaveThisNumber = num => receivedNumbers[num] === true;
+                        </code>
+                    </pre>
+                
+                    <li>In this case, we’ll have the same result on the outside, but because retrieving a 
+                    value from an object is much faster than iterating through an array, the overall result
+                    will be faster.
+                    In both cases, the public API of the code, meaning the parts of the code that we want the 
+                    end-user to interact with, remained the same: we had two functions, <i>storeNumber()</i> and 
+                    <i>doYouHaveThisNumber()</i>. The underlying implementation, or the way the functionality was 
+                    actually achieved, is what altered.</li>
+                    <li><strong>What is an API?</strong>
+                    API is an acronym for application programming interface. An API allows end-users to access 
+                    properties and methods of data structures easily and without needing to do the “behind the 
+                    scenes” work.
+                    For example, if you want to add a new element to the end of an array, you don’t need to 
+                    loop through the entire array, counting how many elements there are, and then setting 
+                    myArray[currentCount + 1] equal to the new value. Instead, you can just call .push() with 
+                    the value you want to add. As a JavaScript programmer, you don’t actually need to know the 
+                    actual strategy, or the underlying implementation, of how .push() added an element to the 
+                    end of the array in order to use it.
+                    The API of arrays provides lots of useful functionality, from adding and removing elements 
+                    to the start and end of the array, to iterator methods that call a function on each element. 
+                    If you wanted to find the smallest number in an array of numbers, however, you’d have to 
+                    implement that functionality yourself.</li>
+                    <li><strong>Creating Your Own APIs</strong>
+                    As you build your own data structures, you will implement the functionality to create 
+                    public APIs. As in the example of storeNumber() and doYouHaveThisNumber(), the same 
+                    public API can be implemented in different ways, so it’s important to think about the 
+                    advantages and disadvantages of different implementations.
+                    An API is like a message to end-users. Some languages have classes that can have methods 
+                    or fields that are either public (can be called from anywhere) or private (can only be 
+                    called from within the class). Public methods are the ones that end-users of that class
+                    can call, and private methods are only used by the class itself. JavaScript doesn’t really 
+                    support this concept, so properties that aren’t meant to be public are often preceded by 
+                    an underscore _. Let’s look at an example where we want to build a data structure with a 
+                    restricted API.
+                    A <strong>stack</strong> is a data structure that only allows data to be added (pushed) or removed (popped) 
+                    from the “top” of the stack. It just so happens that we could use an array as a stack, 
+                    since it already has a <i>.push()</i> and <i>.pop()</i> method! However, arrays also allow you to add 
+                    elements to the beginning or randomly access elements by index.
+                    We’re not going to cover all the ins and outs of the stack data structure right now, but 
+                    to demonstrate public API vs implementation, let’s build a quick custom Stack class:</li>
+                    <pre>
+                        <code>
+                    class Stack {
+                        constructor() {
+                            this._array = [];
+                        }
+                        }
+                        </code>
+                    </pre>
+                    <li>In Stack, the array itself is stored as _array, so it’s a signal to other developers that to 
+                    use the Stack as intended, they shouldn’t need to access it directly. From there, we can 
+                    implement the <i>.push()</i> and <i>.pop()</i> methods:</li>
+                    <pre>
+                        <code>
+                class Stack {
+                    constructor() {
+                        this._array = [];
+                    }
+                    
+                    push(newValue) {
+                        this._array.push(newValue);
+                    }
+                    
+                    pop() {
+                        return this._array.pop();
+                    }
+                    }
+                        </code>
+                    </pre>
+                    <li>Now we’ve created a Stack data structure that limits direct interaction with 
+                    the underlying data to <i>.push()</i> and <i>.pop().</i> A developer could still access our 
+                    underlying array to do other manipulation:</li>
+                    <pre>
+                        <code>
+                    const stack = new Stack();
+                    stack._array.unshift('value');
+                        </code>
+                    </pre>
+                    <li>But they would then be breaking the intended behavior of the Stack class. The whole 
+                    point of a public API is that we offer functionality to other end-users. If somebody 
+                    were using our Stack class in a program, we could totally change the underlying 
+                    implementation, and as long as the end-user API remained the same, their program 
+                    should continue to function. As you build your own classes and data structures, it’s important to keep in mind this 
+                    distinction between implementation (what does this need internally to do its job) and 
+                    the outside API (how should users of this actually interact with it?).</li>
+                </div>
+            </ul>
+            <hr/>
+            <h3>Nodes</h3>
+            <ul>
+                <li>Nodes are the fundamental building blocks of many computer science data structures. 
+                They form the basis for linked lists, stacks, queues, trees, and more.
+                An individual node contains data and links to other nodes. Each data structure adds 
+                additional constraints or behavior to these features to create the desired structure.
+                The data contained within a node can be a variety of types, depending on the language 
+                you are using. The <strong>link</strong> or links within the node are sometimes referred 
+                to as <strong>pointers</strong>. This is because they “point” to another node.
+                Typically, data structures implement nodes with one or more links. If these links are 
+                null, it denotes that you have reached the end of the particular node or link path you 
+                were previously following.</li>
+                <ul>
+                    <li><strong>More info </strong><a href="https://en.wikipedia.org/wiki/Node_(computer_science)#:~:text=A%20node%20is%20a%20basic,are%20often%20implemented%20by%20pointers" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Node Linking: </strong>
+                Often, due to the data structure, nodes may only be linked to from a single 
+                other node. This makes it very important to consider how you implement modifying or 
+                removing nodes from a data structure.
+                If you inadvertently remove the single link to a node, that node’s data and any 
+                linked nodes could be “lost” to your application. When this happens to a node, it is 
+                called an <strong>orphaned node</strong>.
+                For example, <i>node_a -> node_b -> node_c</i>. node_c is only linked to by node_b. If you would 
+                like to remove node_b but not node_c, you can’t simply delete the link from node_a to node_b.
+                The most straightforward method to preserve node_c would be to change the link in 
+                node_a to point to node_c instead of node_b. However, some data structures may handle 
+                this in a different manner.</li>
+                <li><strong>Linked List: </strong>
+                Are one of the basic data structures used in computer science. They have 
+                many direct applications and serve as the foundation for more complex data structures.
+                The list is comprised of a series of nodes as shown in the diagram. The head node is the 
+                node at the beginning of the list. Each node contains data and a link (or pointer) to the 
+                next node in the list. The list is terminated when a node’s link is null. This is called
+                the tail node.
+                Consider a one-way air travel itinerary. The trip could involve traveling through several
+                airports (nodes) connected by air travel segments (links). In this example, the initial 
+                departure city is the head node and the final arrival city is the tail node.
+                Since the nodes use links to denote the next node in the sequence, the nodes are not 
+                required to be sequentially located in memory. These links also allow for quick insertion 
+                and removal of nodes as you will see in future exercises.
+                Common operations on a linked list may include: <strong>adding nodes, removing nodes, 
+                finding a node, traversing (or traveling through) the linked list.</strong>
+                Linked lists typically contain unidirectional links (next node), but some implementations 
+                make use of bidirectional links (next and previous nodes).
+                With linked lists, because nodes are linked to from only one other node,
+                you can’t just go adding and removing nodes willy-nilly without doing a 
+                bit of maintenance:</li>
+                <ul>
+                    <li><strong>Adding a new node: </strong>
+                    Adding a new node to the beginning of the list requires you to link your new 
+                    node to the current head node. This way, you maintain your connection with the
+                    following nodes in the list.</li>
+                    <li><strong>Removing a node: </strong>
+                    If you accidentally remove the single link to a node, that node’s data and any following 
+                    nodes could be lost to your application, leaving you with orphaned nodes.
+                    To properly maintain the list when removing a node from the middle of a linked list, you 
+                    need to be sure to adjust the link on the previous node so that it points to the following node.
+                    Depending on the language, nodes which are not referenced are removed automatically. 
+                    “Removing” a node is equivalent to removing all references to the node.</li>
+                </ul>
+                <li><strong>Nodes in Javascript & Swapping Elements in a Linked List</strong></li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode86" onclick="showCode('displayCode86', 'showCode86')">Display</button>
+                <div id="displayCode86">
+                    <button onclick="closeCode('displayCode86', 'showCode86')">Close</button>
+                    <li><strong>Node Class</strong></li>
+                    <pre>
+                        <code>
+                class Node {
+                    constructor(data) {
+                        this.data = data;
+                        this.next = null;
+                    }
+                    setNextNode(node) {
+                        //Checks if is a node instance
+                        //Not a different type
+                        if (node instanceof Node || node === null) {
+                            this.next = node;
+                        } else {
+                            throw new Error('Next node must be a member of the Node class.');
+                        }
+                    }
+                    getNextNode() {
+                        return this.next;
+                    }
+                }
+                
+                const firstNode = new Node('I am an instance of a Node!');
+                const secondNode = new Node('I am the next Node!');
+
+                firstNode.setNextNode(secondNode);
+                console.log(firstNode.getNextNode());
+                
+                module.exports = Node;
+                        </code>
+                    </pre>
+                    <hr/>
+                    <pre>
+                        <code>
+                class Node {
+                    constructor(data) {
+                        this.data = data;
+                        this.next = null;
+                    }
+                    setNextNode(node) {
+                        //Checks if is a node instance
+                        //Not a different type
+                        if (node instanceof Node || node === null) {
+                            this.next = node;
+                        } else {
+                            throw new Error('Next node must be a member of the Node class.');
+                        }
+                    }
+                    
+                    getNextNode() {
+                        return this.next;
+                    }
+                }
+                        
+                const strawberryNode = new Node('Berry Tasty');
+                const vanillaNode = new Node('Vanilla');
+                const coconutNode = new Node('Coconuts for Coconut');
+                
+                vanillaNode.setNextNode(strawberryNode);
+                strawberryNode.setNextNode(coconutNode);
+                
+                let currentNode = vanillaNode;
+                while(currentNode){
+                console.log(currentNode.data);
+                currentNode = currentNode.getNextNode();
+                };
+                
+                module.exports = Node;
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>LinkedList</strong></li>
+                    <pre>
+                        <code>
+                const Node = require('./Node');
+
+                class LinkedList {
+                    constructor() {
+                        this.head = null;
+                }
+
+                addToHead(data) {
+                    const newHead = new Node(data);
+                    const currentHead = this.head;
+                    this.head = newHead;
+                    if (currentHead) {
+                        this.head.setNextNode(currentHead);
+                    }
+                }
+
+                addToTail(data) {
+                    let tail = this.head;
+                    if (!tail) {
+                        this.head = new Node(data);
+                        } else {
+                            while (tail.getNextNode() !== null) {
+                                tail = tail.getNextNode();
+                        }
+                        tail.setNextNode(new Node(data));
+                    }
+                }
+
+                removeHead() {
+                    const removedHead = this.head;
+                    if (!removedHead) {
+                        return;
+                    }
+                    this.head = removedHead.getNextNode();
+                    return removedHead.data;
+                }
+
+                printList() {
+                    let currentNode = this.head;
+                    let output = '< head > ';
+                    while (currentNode !== null) {
+                        output += currentNode.data + ' ';
+                        currentNode = currentNode.getNextNode();
+                    }
+                    output += '< tail >';
+                    console.log(output);
+                }
+
+                }
+
+                module.exports = LinkedList;
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Swapping Elements in a Linked List</strong>
+                    Learn how to swap two nodes in a singly linked list in JavaScript.
+                    Since singly linked lists only have pointers from each node to its next node, 
+                    swapping two nodes in the list isn’t as easy as doing so in an array (where you 
+                    have access to the indices). You not only have to find the elements, but also reset
+                    the pointers around them to maintain the integrity of the list. This means keeping 
+                    track of the two nodes to be swapped as well as the nodes preceding them.
+                    Given an input of a linked list, data1, and data2, the general steps for doing so 
+                    is as follows:</li>
+                    <ul>    
+                        <li>Iterate through the list looking for the node that matches data1 to be swapped 
+                        (node1), keeping track of the node’s previous node as you iterate (node1Prev)</li>
+                        <li>Repeat step 1 looking for the node that matches data2 (giving you node2 and node2Prev)</li>
+                        <li>If node1Prev is null, node1 was the head of the list, so set the list’s head to node2</li>
+                        <li>Otherwise, set node1Prev‘s next node to node2</li>
+                        <li>If node2Prev is null, set the list’s head to node1</li>
+                        <li>Otherwise, set node2Prev‘s next node to node1</li>
+                        <li>Set node1‘s next node to node2‘s next node</li>
+                        <li>Set node2‘s next node to node1‘s next node</li>
+                    </ul>
+                    <li><strong>Finding the Matching and Preceding Nodes: </strong>Let’s look at what implementing steps 1 and 2 looks like. In order to swap the 
+                    two nodes, we must first find them. We also need to keep track of the nodes that
+                    precede them so that we can properly reset their pointers. (We will use the Node 
+                    class’s <i>.getNextNode()</i> method in order to access the next node.)
+                    We will start by setting node1 equal to the head of the list, and then creating a 
+                    while loop that runs while node1 isn’t null. Inside the loop, we will check if 
+                    node1‘s data matches data1. If so, we break out of the loop as we have found the 
+                    correct node. If there is no match, we update node1Prev to be node1 and move node1 
+                    to its next node:</li>
+                    <pre>
+                        <code>
+                function swapNodes(list, data1, data2) {
+                    let node1 = list.head;
+                    let node2 = list.head;
+                    let node1Prev = null;
+                    let node2Prev = null;
+                    
+                    while (node1 !== null) {
+                    if (node1.data === data1) {
+                        break;
+                    }
+                    node1Prev = node1;
+                    node1 = node1.getNextNode();
+                    }
+                }
+                        </code>
+                    </pre>
+                    <li>At the end of this, we have found our matching node, and also saved its 
+                    previous node, which we will use in the next step.</li>
+                    <li><strong>Updating the Preceding Nodes’ Pointers: </strong>
+                    Our next step is to set node1Prev and node2Prev‘s next nodes, starting with 
+                    node1Prev. We will start by checking if node1Prev is null. If it is, then the 
+                    node1 is the head of the list, and so we will update the head to be node2.
+                    If node1Prev isn’t null, then we set its next node to node2:</li>
+                    <pre>
+                        <code>
+                // Still inside the swapNodes() function
+                if (node1Prev === null) {
+                    list.head = node2;
+                } else {
+                    node1Prev.setNextNode(node2);
+                }
+                    </code>
+                </pre>
+                    <li>After this step, we have finished updating the pointers that point to our 
+                    swapped nodes. The next step will be to update the pointers from them.</li>
+                    <li><strong>Updating the Nodes’ Next Pointers: </strong>
+                    The last step is to update the pointers from node1 and node2. This is 
+                    relatively simple, and mirrors a swapping function for an array in that we 
+                    will use a temporary variable.</li>
+                    <li><strong>Edge Cases: </strong>We have completed the basic swap algorithm 
+                    in JavaScript! However, we haven’t accounted for some edge cases. What if there 
+                    is no matching node for one of the inputs? The current swapNodes() function 
+                    will not run because we will try to access the next node of a node that is 
+                    null. (Remember that our initial while loop only breaks if the matching node 
+                    is found. Otherwise, it runs until the node is null.) Thankfully this has a 
+                    quick fix. We can put in an if that checks if either node1 or node2 is null. 
+                    If they are, we can print a statement that explains a match was not found, and 
+                    return to end the method. We can put this right after the while loops that 
+                    iterate through the list to find the matching nodes:</li>
+                    <pre>
+                        <code>
+                if (node1 === null || node2 === null) {
+                    console.log('Swap not possible - one or more element is not in the list')
+                    return;
+                }
+                        </code>
+                    </pre>
+                    <li>The last edge case is if the two nodes to be swapped are the same. While 
+                    our current implementation will run without error, there’s no point in 
+                    executing the whole function if it isn’t necessary. We can add a brief 
+                    check at the beginning of the function that checks if the data1 is the 
+                    same as data2, and then return to end the function:</li>
+                    <pre>
+                        <code>
+                    if (data1 === data2) {
+                        console.log('Elements are the same - no swap needed.');
+                        return;
+                    }
+                        </code>
+                    </pre>
+                    <li><strong>Finished Function</strong></li>
+                    <pre>
+                        <code>
+                const LinkedList = require('./LinkedList.js')
+
+                const testList = new LinkedList();
+                for (let i = 0; i <= 10; i++) {
+                    testList.addToTail(i);
+                }
+
+                testList.printList();
+                swapNodes(testList, 2, 5);
+                testList.printList();
+
+                function swapNodes(list, data1, data2) {
+                    console.log(`Swapping ${data1} and ${data2}:`);
+                    
+                    let node1Prev = null;
+                    let node2Prev = null;
+                    let node1 = list.head;
+                    let node2 = list.head;
+
+                    if (data1 === data2) {
+                        console.log('Elements are the same - no swap to be made');
+                        return;
+                    }
+                    
+                    while (node1 !== null) {
+                        if (node1.data === data1) { 
+                        break;
+                    }
+                    node1Prev = node1;
+                    node1 = node1.getNextNode();
+                    }
+                    
+                    while (node2 !== null) {
+                            if (node2.data === data2) {
+                            break;
+                        }
+                        node2Prev = node2;
+                        node2 = node2.getNextNode();
+                    }
+                    
+                    if (node1 === null || node2 === null) {
+                        console.log('Swap not possible - one or more element is not in the list');
+                        return;
+                    }
+
+                    if (node1Prev === null) {
+                        list.head = node2;
+                    } else {
+                        node1Prev.setNextNode(node2);
+                    }
+
+                    if (node2Prev === null) { 
+                        list.head = node1;
+                    } else {
+                    node2Prev.setNextNode(node1);
+                    }
+                    
+                    let temp = node1.getNextNode();
+                    node1.setNextNode(node2.getNextNode());
+                    node2.setNextNode(temp); 
+                }
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Time and Space Complexity: </strong>
+                    The worst case for time complexity in swapNodes() is if both while loops must 
+                    iterate all the way through to the end (either if there are no matching nodes, 
+                    or if the matching node is the tail). This means that it has a linear big O 
+                    runtime of O(n), since each while loop has a O(n) runtime, and constants are dropped.
+                    There are four new variables created in the function regardless of the input, 
+                    which means that it has a constant space complexity of O(1).                    
+                    </li>
+                </div>
+                <li><strong>Two-Pointer Linked List Techniques: </strong>
+                Many common singly linked list problems can be solved by iterating with two pointers. 
+                This is sometimes known as the runner technique. 
+                A Two-Pointer Linked List is a data structure used in computer science to store and 
+                manipulate collections of data. It is similar to a regular linked list, but it includes 
+                two pointers that can be used to traverse the list more efficiently. Two-Pointer Linked 
+                Lists can be used to implement various algorithms and data structures, such as stacks, 
+                queues, and trees.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode87" onclick="showCode('displayCode87', 'showCode87')">Display</button>
+                <div id="displayCode87">
+                    <button onclick="closeCode('displayCode87', 'showCode87')">Close</button>
+                    <li><strong>Two Pointers Moving in Parallel: </strong>
+                    Consider the following problem: 
+                    Create a function that returns the nth last element of a singly linked list.
+                    In order to do this, you’ll need some way of knowing how far you are from the end 
+                    of the list itself. However, in a singly linked list, there’s no easy way to iterate 
+                    back through the list when you find the end.
+                    If you want, you can try your hand at the problem directly, or we can walk through 
+                    some approaches below.</li>
+                    <ul>
+                        <li><strong>Approaches: </strong>
+                        One thing that might first come to mind is to use an array to store a representation 
+                        of the linked list. While this approach results in an easy-to-read implementation, 
+                        it could also use up lots of memory maintaining a dual representation of the same data. 
+                        If the linked list has one million nodes, we’ll need one million pointers in an array to 
+                        keep track of it! An approach like this results in an extra O(n) space being allocated.</li>
+                        <pre>
+                            <code>
+                    const arrayNthLast = (list, n) => {
+                        const linkedListArray = [];
+                        let currentNode = list.removeHead();
+                        while (currentNode) {
+                            linkedListArray.push(currentNode);
+                            currentNode = currentNode.getNextNode();
+                        }
+                        return linkedListArray[linkedListArray.length - n];
+                    }
+                            </code>
+                        </pre>
+                        <li>Instead of creating an entire parallel list, we can solve this problem by using two 
+                        pointers at different positions in the list but moving at the same rate. As in the 
+                        previous example, we will use one pointer to iterate through the entire list, but 
+                        we’ll also move a second pointer delayed n steps behind the first one.</li>
+                        <pre>
+                            <code>
+                    nthLastNodePointer = null
+                    tailPointer = linked list head
+                    count = 0
+
+                    while tail pointer exists
+                    move tail pointer forward
+                    if count >= n
+                        set nthLastNodePointer to head if it's still null or move it forward
+                    increment count
+
+                    return nthLastNodePointer
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Solution: </strong>
+                    In JavaScript, we could implement the nth-last-node-finder function as such:</li>
+                    <pre>
+                        <code>
+                const nthLastNode = (linkedList, n) => {
+                    let current = null;
+                    let tailSeeker = linkedList.head;
+                    let count = 0;
+                    while (tailSeeker) {
+                        tailSeeker = tailSeeker.next;
+                        if (count >= n) {
+                        if (!current) {
+                            current = linkedList.head;
+                        }
+                        current = current.next;
+                        }
+                        count++
+                    }
+                    return current;
+                }
+                        </code>
+                    </pre>
+                    <li>The exact variable names aren’t important, and the internal implementation 
+                    could be written in a number of ways, but the important part is that we are 
+                    able to complete this problem efficiently–in O(n) time (we must iterate through 
+                    the entire list once), and O(1) space complexity (we always use only three 
+                    variables no matter what size the list is: two pointers and a counter).</li>
+                    <li><strong>Pointers at Different Speeds: </strong>
+                    Another two-pointer technique involves sending pointers through the list at 
+                    different iteration “speeds”.                    
+                    Consider this problem: Find the middle node of a linked list.</li>
+                    <li><strong>Approaches</strong>As before, it’s possible to find a solution by iterating through the entire list, 
+                    creating an array representation, and then returning the middle index. But as before, 
+                    this potentially takes up lots of extra space:</li>
+                    <pre>
+                        <code>
+                    create array
+                    while the linked list has not been fully iterated through
+                        push the current element onto array
+                        move forward one node
+                    return array[length / 2]
+                        </code>
+                    </pre>
+                    <li>Instead, we can use two pointers to move through the list. The first pointer 
+                    takes two steps through the list for every one step that the second takes, so 
+                    it iterates twice as fast.</li>
+                    <pre>
+                        <code>
+                fastPointer = list head
+                slowPointer = list head
+                while fastPointer is not null
+                    move fastPointer forward
+                    if the end of the list has not been reached
+                    move fastPointer forward again
+                    move slowPointer forward
+                return slowPointer
+                        </code>
+                    </pre>
+                    <li>When the first pointer reaches the end of the list, the “slower” second pointer 
+                    will be pointing to the middle element. Let’s visualize the steps of the algorithm:
+                    </li>
+                    <li><strong>Starting State</strong></li>
+                    <pre>
+                        <code>
+                F
+                S
+                1  2  3  4  5  6  7
+                        </code>
+                    </pre>
+                    <li><strong>First Tick</strong></li>
+                    <pre>
+                            <code>
+                    F
+                S
+                1  2  3  4  5  6  7    
+                        </code>
+                    </pre>
+                    <li><strong>Second Tick</strong></li>
+                    <pre>
+                        <code>
+                            F
+                    S
+                1  2  3  4  5  6  7  
+                        </code>
+                    </pre>
+                    <li><strong>Third Tick</strong></li>
+                    <pre>
+                        <code>
+                                F
+                    S
+                1  2  3  4  5  6  7    
+                        </code>
+                    </pre>
+                    <li><strong>Final Tick</strong></li>
+                    <pre>
+                        <code>
+                                    F
+                        S
+                1  2  3  4  5  6  7  null   
+                        </code>
+                    </pre>
+                    <li>As long as we always move the fast pointer first and check to see that it is 
+                    not null before moving it and the slow pointer again, we’ll exit iteration at 
+                    the proper time and have a reference to the middle node with the slow pointer.</li>
+                    <li><strong>Solution and Alternatives</strong></li>
+                    <pre>
+                        <code>
+                const findMiddle = linkedList => {
+                    let fast = linkedList.head;
+                    let slow = linkedList.head;
+                    
+                    // As long as the end of the list is not reached
+                    while (fast !== null) {
+                        // Move the fast pointer at least one step
+                        fast = fast.getNextNode();
+                        // If it isn't at the end of the list
+                        if (fast !== null) {
+                        // Move both pointers forward once
+                        fast = fast.getNextNode();
+                        slow = slow.getNextNode();
+                        }
+                    }
+                    // At this point, the slow pointer is in the middle
+                    return slow;
+                    };
+                        </code>
+                    </pre>
+                    <li>As with the nth-to-last solution, this solution has O(n) time complexity, and O(1) 
+                    space complexity, since only two nodes are created no matter the size of the input list.</li>
+                    <li><strong>Half-Speed</strong></li>
+                    <li>Another equally valid solution is to move the fast pointer once with each loop iteration 
+                    but only move the slow pointer every-other iteration.</li>
+                    <pre>
+                        <code>
+                    const findMiddleAlternate = linkedList => {
+                        let count = 0;
+                        let fast = linkedList.head;
+                        let slow = linkedList.head;
+                        
+                        while(fast !== null) {
+                            fast = fast.getNextNode();
+                            if (count % 2 !== 0) {
+                            slow = slow.getNextNode();
+                            }
+                            count++;
+                        }
+                        return slow;
+                    }
+                        </code>
+                    </pre>
+                    <li><strong>Conclusions: </strong>
+                    Many linked list problems can be solved with the two-pointer technique. If it seems 
+                    like a linked list problem requires keeping track of multiple positions or creating
+                    other data representations (such as using an array), consider whether two pointers
+                    iterating in parallel or at different speeds could help solve the problem efficiently. 
+                    We won’t cover full solutions to these here, but variations on the two-pointer 
+                    technique can be used to: Detect a cycle in a linked list, Rotate a linked list by k places
+                    </li>
+                    <hr/>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/list?slide=6" target="_blank">Visualizer: Singly-Linked List</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=njTh_OwMljA&feature=emb_title" target="_blank">Video: Linked List Data Structure Overview</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/linked-list" target="_blank">Cheatsheet: Linked List</a></li>
+                </ul>
+                <li><strong>Code Challenges:</strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Beginner - Middle of a Linked List</a></li>
+                    <li><a href="https://www.codecademy.com/code-challenges/code-challenge-reverse-a-singly-linked-list-javascript" target="_blank">Intermediate - Reverse a Singly-Linked List</a></li>
+                    <li><a href="https://www.codecademy.com/code-challenges/code-challenge-swap-elements-in-a-linked-list-javascript" target="_blank">Intermediate - Swap Elements in a Linked List</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=singly%20linked%20list" target="_blank">More Practice Problems</a></li>
+                </ul>
+                <li><strong>Doubly Linked Lists: </strong>Get started with doubly linked lists!
+                While a singly linked list consists of nodes with links from the one node to 
+                the next, a doubly linked list also has a link to the node before it. These 
+                previous links, along with the added tail property, allow you to iterate backward 
+                through the list as easily as you could iterate forward through the singly linked list.</li>
+            </ul>
+        </div>
     </body>
 </html>
-
-
 

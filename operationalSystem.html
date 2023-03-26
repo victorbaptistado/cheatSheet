@@ -2,6 +2,7 @@
 <html>
     <header>
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="./component/button.js" defer></script>
         <title>Operational System</title>
     </header>
     <body>
@@ -11,7 +12,7 @@
                 <li><a href="./displayProperties.html">Display Properties</a></li>
                 <li><a href="./objects.html">Objects</a></li>
                 <li><a href="#">Operational System</a></li>
-                <li><a href="./debug.html">Debug</a></li>
+                <li><a href="./debugTesting.html">Debug & Testing</a></li>
                 <li><a href="./git.html">Git</a></li>
                 <li><a href="./form.html">Form</a></li>
                 <li><a href="./api.html">API</a></li>
@@ -24,8 +25,7 @@
             <h1>Operational System</h1>
         </header>
         <div class="styleGuide">
-            <h2>Operational System</h2>
-            <h3>Computer interaction</h3>
+            <h2>Operating System</h2>
             <ul>
                 <li>The four main functions that makes a computer's interactions possible are:</li>
                 <ul>
@@ -158,6 +158,1063 @@
                 computer. A computer typically contains multiple ports. This connection allows for 
                 communication between the IO device and our computers. Examples of IO devices include
                 keyboards, mice, and monitors.</li>      
+            </ul>
+            <hr/>
+            <h3>Operating System (OS)</h3>
+            <ul>
+                <li><strong>Operating System (OS) </strong>is a system software that’s responsible for 
+                handling the basic functionalities of a computer, the process of interacting with our computers. 
+                Some examples of popular OSs are:
+                Windows, Linux, Mac, Android, iOS. Every computer contains at least one operating system 
+                which starts working the moment a computer is turned on. The OS has control over both the 
+                software and hardware resources of a computer. At the core of an operating system is the 
+                <i><strong>kernel</strong></i> which manages all the interactions between the hardware and software components of 
+                a computer. <strong>Some OS functions are: </strong>
+                Process Management, Memory Management, File Management, IO Management, Multitasking
+                Networking, Security, Providing a user interface.</li>
+                <ul>
+                    <li><strong>Process Management: </strong>
+                    Computer programs contain specific 
+                    instructions that dictate how a program should work when they’re run.
+                    When we run a program, the instance of that execution is represented by a process. 
+                    Operating systems handle the responsibility of managing active processes.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode71" onclick="showCode('displayCode71', 'showCode71')">Display</button>
+                <div id="displayCode71">
+                    <button onclick="closeCode('displayCode71', 'showCode71')">Close</button>
+                    <ul>
+                        <li>When using a computer, multiple programs can often be found running at the same time. 
+                        Perhaps one for playing music, another for creating documents, and one for browsing 
+                        the web. All of these programs have certain functionalities, but on their own they do
+                        nothing. To actually make use of them, they must be executed.
+                        While a computer program is a static collection of coded instructions stored on a disk, 
+                        <u>a process is an abstraction representing the program when it is running</u>. A process is 
+                        created when a program is executed. These processes are not only central for the 
+                        usability of a computer, but they are the building blocks of an operating system.
+                        Managing these processes is central to operating system development.
+                        Processes can sometimes also be called “tasks” or “jobs”, although these 
+                        definitions are ambiguous. The key defining factor is that processes generally 
+                        operate independently and do not share data; for example, a music player program 
+                        will launch a music player process that would be independent of the process 
+                        managing an office suite.</li>
+                        <li><strong>Lifecycle of a Process: </strong>
+                        To best optimize the performance of processes as their priority changes or as they 
+                        wait for access to a limited resource, processes are put into one of five states:</li>
+                        <ul>
+                            <li>New: The program has been started and waits to be added into memory in order to become a full process.
+                            <li>Ready: Process fully initialized, loaded into memory, and waiting to be picked up by the processor.
+                            <li>Running: Currently being executed by the processor.</li>
+                            <li>Blocked: The process requires a contested resource that it must wait for.</li>
+                            <li>Finished: The process has been completed.</li>
+                        </ul>
+                        <li>The life cycle of a process is its journey between these five states, beginning 
+                        with New and ending with Finished. As CPU cores traditionally only executed one 
+                        task at a time, managing the state of processes allows the processor to
+                        interleave these tasks and allows multiple processes to best share these 
+                        cores and other limited computer resources. For example, instead of a process 
+                        occupying the processor while waiting for user input, it can be marked as blocked 
+                        to have the processor focus on another process in the ready state until that input 
+                        arrives. Blocking isn’t inherently negative as some tasks require more time. 
+                        Marking these processes as blocked allows the processor to prioritize other tasks, 
+                        creating a more responsive and efficient system. Similarly, some processes may also 
+                        be reverted to the Ready state through preemption, where tasks are temporarily 
+                        interrupted by an external scheduler for urgent reasons, such as a hardware interrupt 
+                        signal asking the system to shutdown.
+                        All of these switching processes do come with overhead that is best to be avoided. 
+                        This is called context switching and is typically an expensive operation as the 
+                        current state of the process needs to be stored and then be reloaded later to resume 
+                        execution.</li>
+                        <hr/>
+                        <li><strong>Process Layout and Process Control Block: </strong>                     
+                        When a process is initialized, its layout within memory has four distinct sections:
+                        <ul>
+                            <li>A text section for the compiled code</li>
+                            <li>A data section for initialized variables</li>
+                            <li>A stack for local variables defined within functions</li>
+                            <li>A heap for dynamic memory allocation</li>
+                        </ul>
+                        <li>Processes are also initialized with a Process Control Block that is required
+                        by the operating system for managing the process. This contains:</li>
+                        <ul>  
+                            <li>A unique process ID and the ID of any parent processes that launched the current one</li>
+                            <li>The current process state</li>
+                            <li>How long the process has been running and any time limits the process may have</li>
+                            <li>Allowed system resources and other permissions</li>
+                            <li>The priority of the process</li>
+                            <li>The program counter for the address of the instruction currently being executed</li>
+                            <li>The address of other registers within the CPU holding intermediate values</li>
+                            <li>Information required for memory management such as page and segment tables</li>
+                        </ul>
+                        <li>Additionally, when one process launches another, the original enters a parent-child 
+                        relationship with the newly-launched process that shares much of the above data. 
+                        For example, when an existing music player process starts a new process for 
+                        scanning the user’s music library, both of these processes generally share the 
+                        same system resources and permissions. Parent processes usually also wait for 
+                        their children to complete before terminating themselves, unless the child was 
+                        created specifically to run independently in the background.</li>
+                        <hr/>
+                        <li><strong>Threads: </strong>While a process is an abstract data structure that represents all of the 
+                        necessary information to run a program, a thread represents the actual sequence
+                        of processor instructions that are actively being executed.
+                        Each process contains at least one thread to be able to execute, although more can 
+                        be created to allow for concurrent processing if it is supported by the CPU. These 
+                        threads live within the process and share all of the common resources available to 
+                        it, such as memory pages and active files, as shown in the image to the right.
+                        These shared resources are critical for the definition of a thread. While each 
+                        process is typically independent, multiple threads usually work together within 
+                        the context of a process. By sharing data directly, there is faster communication 
+                        and context switching between threads than what is possible for processes, all while
+                        taking fewer system resources.
+                        For example, within a video game process, multiple threads may exist to manage 
+                        separate services relating to the operation of the game, such as one thread for 
+                        collecting user inputs and another for producing sounds. As these threads live 
+                        within the same process, they can easily share information about the game, such 
+                        as the type of ground the player is walking on. This can be used to affect both 
+                        the speed the character moves from the input thread as well as the noises created 
+                        by the sound thread.</li>
+                        <li><strong>Multithreading: </strong>
+                        Typically, a single CPU core can only execute one thread, and therefore one process, 
+                        at a time. With a clever use of blocking and context switching, this limitation can 
+                        be obscured to users through nanosecond-long pauses that allow processes to be 
+                        completed near-simultaneously. With some hardware advances, single CPU cores can 
+                        now execute multiple threads at once, which is a capability called multithreading.
+                        Parallelizing computations have a variety of benefits, such as improved system utilization 
+                        and system responsiveness. This is because tasks can be more evenly split between multiple 
+                        threads, exhausting all available computing resources and allowing longer tasks to run in 
+                        the background, separate from user input. The image to the right shows how threads share 
+                        data to achieve this.
+                        However, these optimizations come with disadvantages due to the additional complexity 
+                        required for the implementation. Not only are these programs more difficult to write 
+                        because of their non-sequential nature, but they also create whole new classes of bugs.
+                        The two of the most common examples are data races, where multiple threads attempt to 
+                        modify the same piece of data, and deadlocks, where multiple threads all attempt to wait
+                        for each other and freeze the system. Also, since these bugs are usually related to the 
+                        tight timing of CPU interactions, the programs can be considered non-deterministic and 
+                        therefore untestable, compounding the problem.</li>
+                        <li><strong>Kernel Threads vs User Threads: </strong>
+                        Threads can behave differently depending on the environment they are created in.
+                        A thread built into the existing process is considered a kernel thread. This 
+                        means that the kernel within the operating system is fully aware of these 
+                        threads and directly manages their execution.
+                        There are also user threads that exist solely in userspace and, while
+                        functionally identical, are not known or controlled by the kernel. This allows 
+                        for more fine-grained control by developers. These threads are even more 
+                        efficient than their kernel counterparts as they save on the costly indirection 
+                        of making a system call to constantly interact with the kernel.
+                        While these user threads typically operate independently of the kernel, they 
+                        do need to be mapped to existing kernel threads in order to have the operating 
+                        system execute them. There are three common models for mapping user threads to 
+                        kernel threads, as shown in the image to the right:</li>
+                        <ul>
+                            <li>1:1 Kernel-level threading for a simple implementation that best allows 
+                            for hardware acceleration provided by the kernel threads.</li>
+                            <li>N:1 User-level threading for ultra-light threads that can quickly 
+                            communicate and context switch, but do not benefit from hardware 
+                            acceleration due to sharing the same kernel thread.</li>
+                            <li>M:N Hybrid threading to get the best of both of the above solutions: 
+                            very light and fast threads that can be hardware accelerated as necessary.
+                            However, this complex implementation can lead to bugs such as priority
+                            inversion where less important tasks are mistakenly prioritized and run first.</li>
+                        </ul>
+                        <hr/>
+                        <li><strong>Schedulers</strong>
+                        Just as there are multiple queues throughout the process lifecycle, there 
+                        are also multiple schedulers to manage these queues. These are the 
+                        long-term, medium-term, and short-term schedulers and their locations 
+                        within the context of the process lifecycle is shown to the right.
+                        <ul>
+                            <li><strong>Long-term scheduler: </strong>Is the first scheduler encountered by a process
+                            and determines which of these newly created processes are loaded into 
+                            memory and admitted into the ready queue. This allows the long-term 
+                            scheduler to play a crucial role in the memory management of the system 
+                            by determining the level of multitasking possible by the computer.
+                            With a lot of available memory, the long-term scheduler can add many 
+                            processes to the ready queue. This allows the processes to easily 
+                            interleave with one another in order to quickly enter and exit the CPU, 
+                            and for all of them to execute over time, giving the appearance of
+                            parallel execution even if it is not possible on the system.
+                            The long-term scheduler is also able to be more decisive because it runs 
+                            less frequently. This decisiveness is important for maximizing system 
+                            utilization between IO-bound processes that mostly access hard drives and
+                            CPU-bound processes that mostly perform computations.</li>
+                            <li><strong>Short-term Scheduler: </strong>
+                            After the long-term scheduler moves a process into the ready queue, 
+                            the short-term scheduler operates next to pass it onto the CPU. 
+                            Alongside this power to admit processes, the short-term scheduler 
+                            can also forcibly recall processes from the CPU through preemption. 
+                            This is useful if a higher priority process suddenly comes along and 
+                            needs to be executed right away. The scheduler can also preempt set 
+                            time intervals in order to more fairly share the processor and 
+                            prevent a single long-running process from hogging the CPU. All of 
+                            this is accomplished by having the short-term scheduler be the sole 
+                            maintainer of context switches, storing and reloading the relevant 
+                            process information as needed.</li>
+                            <li><strong>Medium-term Scheduler: </strong>
+                            However this is an expensive operation, so it is best done 
+                            infrequently to mitigate the impact to throughput from the increased 
+                            overhead. When a process attempts to access a resource that is not 
+                            available or has a prolonged lack of activity, the medium-term 
+                            scheduler kicks in to remove the process from the CPU and free up 
+                            the necessary cores for other processes. This is done by blocking the
+                            process, and some longer waits also cause the process to be moved to 
+                            a special swap section of the hard drive to further free up memory.</li>
+                        </ul>
+                        <li><strong>Scheduling algorithm: </strong>
+                        While there are a set of common queues and states for processes, how 
+                        these processes move within these data structures depends on the 
+                        algorithm used and the goals for the system.</li>
+                        <ul>
+                            <li><strong>First Come First Served: </strong>
+                            The most basic type of scheduling algorithm is first come, first served, 
+                            in which processes are simply put into a standard queue and then executed
+                            in the order that they arrived.
+                            This algorithm does have some drawbacks that reserve it only for 
+                            special use cases such as generally low throughput due to the convoy 
+                            effect. This is where a long process can solely occupy the CPU while 
+                            doing minimal computations. Similarly, there is no concept of 
+                            priority, so latency and wait times can be excessively long as a 
+                            process’s execution depends solely on its arrival in the queue and 
+                            the arbitrary amount of time a previous process takes.
+                            However, the simplicity does have some benefits such as minimal 
+                            scheduling overhead from only context switching when a process ends.
+                            Also, assuming each process eventually completes, every process 
+                            should be able to run and not have to suffer from starvation by 
+                            never being executed.</li>
+                            <li><strong>Priority scheduling:</strong> Is an algorithm that assigns each process 
+                            a numeric priority before organizing those processes according to this priority.
+                            For example, a live video chat might have a high priority due to its 
+                            latency requirements, while the process rendering the computer’s 
+                            wallpaper may have a lower priority due to it being considered more 
+                            inconsequential. With priority scheduling, the processing of the 
+                            wallpaper would be delayed or even interrupted in order to provide 
+                            sufficient resources for the video chat.
+                            <strong>Shortest job first</strong> is a 
+                            variation of priority scheduling that prioritizes running the process 
+                            with the shortest execution time first. If the scheduler supports 
+                            preemption, then a similar algorithm for shortest remaining time can 
+                            be used instead. This reevaluates the priority of the processes every 
+                            time an interruption occurs.
+                            This algorithm typically works best in specialized situations where 
+                            all of the process times can be reasonably estimated beforehand.
+                            While this algorithm minimizes the average amount of time each 
+                            process has to wait until it is fully executed and thereby maximizes 
+                            throughput, this comes at a cost. Some longer processes may become 
+                            “starved” and never execute if shorter processes are continually 
+                            prioritized in front of them. This can be mitigated by “aging” each 
+                            process such that the priority of a process increases the longer it 
+                            has been waiting.
+                            This algorithm also has a fair amount of overhead as processes can 
+                            be arbitrarily interrupted whenever a shorter one comes along. 
+                            Similarly, the sorted queue at the heart of the algorithm must be 
+                            maintained as processes are added, removed, or modified.</li>
+                            <li><strong>Round robin: </strong>Is a scheduling algorithm where a fixed amount of 
+                            execution time called a time slice is chosen and then assigned 
+                            to each process, continually cycling through all of these processes 
+                            until they are completed. Processes that do not finish during their 
+                            assigned time are rescheduled to allow all other processes an 
+                            opportunity to run first. This can be seen in the example to the 
+                            right where each process is given a maximum of 2 seconds to run 
+                            before the next process is handed to the scheduler.
+                            Overall this algorithm provides a balanced throughput between first 
+                            come, first served and shortest job first due to treating each 
+                            process equally and giving each process an opportunity to run. 
+                            On average, longer jobs are completed faster than in shortest job 
+                            first, and shorter jobs are completed faster than in first come, 
+                            first served.
+                            Starvation also can not occur as there is no preference for a certain 
+                            subset of processes. Each process will be run occasionally as the 
+                            scheduler makes its rounds. This leads to lower latency and response 
+                            times as they only correspond to the number of processes running and 
+                            the time slice allotted to each process. However, this can cause high 
+                            waiting times as, while each process can be run often, it may not 
+                            necessarily complete quickly.
+                            Deadlines are also largely ignored, making this algorithm not the 
+                            best fit for real-time devices such as car safety systems that need 
+                            to guarantee the deployment of an airbag by some set time. The 
+                            greatest weakness of this algorithm is that due to the context 
+                            switching required at every time slice, round robin has extensive 
+                            scheduling overhead that steals CPU utilization away from all of 
+                            the other processes on the system.</li>
+                            <li><strong>Multiple-level queue scheduling: </strong>Is an algorithm that attempts 
+                            to categorize processes before placing them in a relevant prioritized
+                            subsection of the ready queue. In the example to the right, the 
+                            middle subsection of the ready queue, also called a level, contains 
+                            IO-bound tasks while the other levels contain higher and 
+                            lower-priority CPU-bound tasks. This categorization allows higher-priority
+                            CPU-bound tasks to be executed before IO-bound tasks, while the IO-bound 
+                            tasks are in turn able to be run before lower-priority CPU-bound tasks.
+                            Tasks are executed one at a time by level, such that all of the 
+                            processes in the topmost level are executed first before moving on to 
+                            lower levels. If a process is placed at a higher level while a 
+                            lower-level one is being processed, the scheduler will temporarily 
+                            move back up to take care of the higher-level task first. For example, 
+                            if the scheduler was focusing on executing the CPU-bound processes 
+                            while an IO-bound process was added to the ready queue, the scheduler 
+                            would preempt and prioritize completing this new IO-bound process 
+                            before returning to finish the CPU-bound tasks. Processes also do not 
+                            move between levels. This can cause starvation if the scheduler never 
+                            processes a lower level.
+                            Each level can also have its own scheduling algorithm. In the example
+                            to the right, the top, high-priority level uses round robin, while 
+                            the middle IO level uses first come, first served to best account 
+                            for possible resource blocks. The bottom, low-priority level is left 
+                            with shortest job first to organize longer-running background tasks. 
+                            This mixing of different algorithms attempts to combine the best 
+                            qualities of each. However, this also creates intense complexity 
+                            as there are many independently moving parts.</li>
+                        </ul>
+                        <hr/>
+                        <li><strong>Synchronization: </strong>In this lesson, we will learn about synchronization which ensures that 
+                        threads in a multi-threaded program use shared resources safely.
+                        Recall that the power of multi-threading comes from the ability to take one 
+                        big task and split it up into a number of smaller tasks that can be executed 
+                        concurrently. Using multi-threading, a five-second task split into five parts 
+                        may only take one second to complete. With most multi-threaded programs, 
+                        though, our threads will need to share some resources.
+                        Sharing, in this context, means that each thread should at some point gain 
+                        access to the resource so that it may do its work, but that only one thread 
+                        may have access to it at a time.
+                        Programmatically, these resources are used in various places in our code. 
+                        These areas are known as critical sections. In order to synchronize our 
+                        programs, we must ensure all critical sections have the three 
+                        properties below. If we use our synchronization tools to make sure these 
+                        conditions are met for every critical section, then we have successfully 
+                        synchronized our 
+                        program:</li>
+                        <ul>
+                            <li><strong>Mutual exclusion:</strong> only one thread can be inside the critical section at a time</li>
+                            <li><strong>Progress:</strong> if no thread is inside the critical section, then a thread 
+                            trying to access it must be allowed to do so</li>
+                            <li><strong>Bounded waiting:</strong> each thread waiting to access the critical section must, 
+                            at some point, gain access</li>
+                        </ul>
+                        <li><strong>Race Conditions: </strong>
+                        If an outcome is deterministic, then that outcome is not in any way dependent 
+                        on chance. The heads-or-tails outcome of flipping a coin where both sides are 
+                        heads is deterministic because we know that no matter how we flip it, it will 
+                        always come up heads.
+                        This is how we want our programs to be – deterministic. Unless we explicitly 
+                        include an element of randomness, we want our programs to behave the same way
+                        each time we run them. A singly-threaded program is inherently deterministic. When 
+                        the program has a single thread, the order in which those tasks are executed 
+                        is the same every time.
+                        In multi-threaded programs, since the tasks are executed concurrently, the 
+                        sequential order of tasks is not guaranteed. In other words, they are 
+                        non-deterministic and to some extent, random. When this randomness affects 
+                        the behavior of the program, we have what is known as a race condition.</li>
+                        <ul>
+                            <li><strong>The Increment a Number Problem: </strong>
+                            Consider the following problem. Given a number,x, which has been 
+                            initialized with the value 0, create a program that increments x 
+                            one-hundred times so that when the program is finished executing, 
+                            x equals 100.
+                            We could implement this program without concurrency, using a single 
+                            thread which increments x once, then again, and again until it has 
+                            done so one-hundred times.
+                            Alternatively, we could write a program that spawns one-hundred 
+                            threads which will individually increment x once, but collectively 
+                            increment x one hundred times. But that doesn't work.
+                            That x has not been incremented properly is the result of this race 
+                            condition. To fix this, we must make sure that only one thread can 
+                            modify x at a given time. In the next exercise, we discuss one way to 
+                            do this.</li>
+                            <li><strong>Locking: </strong>
+                            Recall that a program is synchronized when each critical section 
+                            satisfies the mutual exclusion, progress, and bounded waiting conditions.    
+                            Our program from the last exercise failed because multiple threads 
+                            were allowed to access x at the same time in defiance of the mutual 
+                            exclusion condition. Remember that condition says that there must only 
+                            be one thread at a time with access to a critical section.
+                            A common way to fix this issue is with a mutual exclusion lock, or mutex.
+                            To understand this concept, let’s take a look at how we can use a mutex 
+                            to synchronize our increment-a-number problem.                              
+                            Previously, our increment() function contained one line, x = x + 1, 
+                            which was the only critical section in our program. Now, as we can see 
+                            with the image on the right, we have surrounded our critical section with
+                            functions of our mutex object, lock() and unlock().
+                            If a thread calls lock(), it receives the mutex. If thread_one calls 
+                            lock(), the mutex, mtx, will belong to it. Any other thread that calls 
+                            lock() on mtx will wait indefinitely until thread 1 releases it by calling unlock().
+                            Think of the critical section as a room only one person is allowed in at 
+                            a time. A mutex is like the lock on the door. One person enters the room 
+                            and locks the door behind them while the others wait outside. Once that 
+                            person leaves, they unlock the door which allows for the next person to enter, and so on.
+                            This pattern of receiving the mutex, incrementing x, and giving up the 
+                            mutex will repeat until every thread has called increment(), completing the program.</li>
+                            <li><strong>Condition Variables: </strong>
+                            Consider the following example: two people work at a guitar store. One
+                            person makes guitars while the other sells them, but both keep track of 
+                            their inventory number as they create and sell the guitars. Take a look 
+                            at the pseudocode to the right to see how we could simulate this situation
+                            using threads. We create two threads representing a maker and a seller. When the maker 
+                            thread calls make_guitar(), the num_guitars variable is incremented. When 
+                            seller thread calls sell_guitar(), num_guitars is decremented as long as 
+                            num_guitars is greater than 0.                           
+                            Both threads must access the shared variable num_guitars which means, in 
+                            order to synchronize our program, we must enforce mutual exclusion on 
+                            num_guitars.  
+                            Up until now, locking was our only tool to achieve this. Using locks, 
+                            the seller thread could continuously request a lock on num_guitars, 
+                            check whether it was greater than one, and then unlock it. This lock, 
+                            check, unlock cycle is incredibly inefficient.
+                            A more efficient way to handle this is to notify the seller thread when
+                            num_guitars is greater than 0. We can do this by using what is called a 
+                            condition variable.
+                            Let’s walk through sell_guitar(). First, the seller thread locks 
+                            guitar_mtx so it can check that the value of num_guitars() is greater 
+                            than 0. While num_guitars == 0 is true, the seller thread waits 
+                            indefinitely to continue executing until the condition becomes false. 
+                            It does this by calling the wait() function on the condition variable, 
+                            guitar_cv, and passing it into guitar_mtx. The wait() function frees the 
+                            mutex, allowing the maker thread to execute, and then waits for the 
+                            signal to continue.
+                            On the maker thread side, each time it calls make_guitar(), num_guitars 
+                            is increased by 1, and the condition variable is notified. The
+                            notification alerts the seller thread, which then locks the mutex again 
+                            and continues on with execution.
+                            The biggest advantage here is that the seller thread is not constantly 
+                            requesting the mutex to check whether num_guitars is greater than 0. It 
+                            simply waits to be notified, then retrieves the mutex.</li>
+                            <li><strong>Atomic Variables: </strong>
+                            Recall the increment-a-number problem. In the no-locks solution, the 
+                            race condition arose because the x = x + 1 operation actually takes place
+                            in three atomic steps. If two threads try to complete those steps at the 
+                            same time, the value of x will not be set properly.
+                            The solution from exercise three was to use locks to ensure that only one 
+                            thread at a time had access to x. But there is another solution which is 
+                            far simpler: make x an atomic variable.
+                            An atomic variable is a variable that can be modified in an inherently 
+                            thread-safe manner without the use of locks or any other synchronization 
+                            mechanism. The variable is atomic because the operations required to modify
+                            it take place, from our threads’ perspective, in exactly one atomic step.
+                            So, if we simply declare x with type atomic_int, we can forgo using locks
+                            to synchronize our program. Because each x = x + 1 operation will take 
+                            place in one atomic step, by definition, it cannot take place concurrently
+                            with any other atomic step. So, we are at no risk of a race condition.</li>
+                            <li><strong>Semaphores: </strong>
+                            One of the classic problems in synchronization is the producer-consumer 
+                            problem (also known as the bounded buffer problem). We can think about 
+                            the problem like this: let us return to our guitar store where we are 
+                            constantly both selling the guitars we have in stock as well as making 
+                            new ones. But we only have enough space in our store to hold n guitars 
+                            at a time.
+                            Programmatically, we can represent the spots for guitars in our store 
+                            as places in a buffer. Since we can have a maximum of n guitars in the 
+                            store at a time, our buffer is of length n. The problem we face is 
+                            synchronizing the buffer such that multiple threads can write to it and 
+                            read from it in a thread-safe manner.
+                            There are two rules: if the buffer is empty, no thread can read from it, 
+                            and if the buffer is full, no thread can write to it.
+                            One solution could be for each thread to lock the entire buffer, see 
+                            whether it can do its operation, and then unlock it. But consider how 
+                            inefficient this is, especially as n becomes large and the number of 
+                            threads increases. If we can hold five thousand items and have a hundred 
+                            threads writing to and reading from our buffer, then each time a thread 
+                            performs a task, the other ninety-nine are forced to wait.
+                            The best solution is to use semaphores. Semaphores are essentially just 
+                            integers that will keep track of two values, num_free for how many empty 
+                            places and num_occupied for how many occupied places there are in the 
+                            buffer.
+                            As a result, the adding and removing of items from the buffer and 
+                            corresponding semaphore values will look like the graphic to the right. 
+                            As elements are added to the buffer, the number of taken spaces increases,
+                            and the number of empty spaces decreases. The same occurs in reverse when 
+                            elements are removed from the buffer. When there are no empty spaces, the 
+                            producer thread must wait. Conversely, when there are no taken spaces, the 
+                            consumer thread must wait.    
+                            <pre>
+                                <code>
+                write()
+                    wait until num_free > 1
+                        decrement num_free
+                    add to the buffer 
+                    increment num_occupied
+                
+                read()
+                    wait until num_occupied > 1
+                        decrement num_occupied
+                    read from the buffer
+                    increment num_free
+                                </code>
+                            </pre>
+                            <li><strong>Resume:</strong>
+                            With <strong>locks</strong>, we are able to provide mutual exclusion on areas of our code 
+                            where threads must access shared resources. In other words, locks make 
+                            sure that only one thread at a time can access certain areas of our code.
+                            Locks are not the only way to synchronize our programs. <strong>Atomic</strong> variables, 
+                            for instance, are inherently thread-safe because modifying them takes 
+                            place in exactly one atomic step. <strong>Condition variables</strong> and <strong>semaphores</strong> 
+                            likewise allow us to synchronize our programs while preserving efficiency 
+                            in cases where locking the entirety of a large resource is not a good option.</li>
+                            <li><strong>Deadlocks: </strong> arise because two threads need a lock that the other thread 
+                            has and neither is willing to give theirs up. The way in which locks are 
+                            implemented guarantees that this risk will always be possible – if a
+                            thread tries to lock a mutex that is unavailable, it will wait 
+                            indefinitely until it gets the lock before executing. By waiting 
+                            indefinitely, none of the thread’s other tasks will execute – including 
+                            releasing any other locks it might possess. As a result, two threads can 
+                            easily get stuck trying to get each other’s locks.
+                            While deadlocks are highly undesirable, they are also not the end of the 
+                            world. Though imperfect, we have several tools that can help us recover 
+                            from deadlocks in a way that will not wreck our program.</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <ul>
+                        <li><strong>Memory Management: </strong>
+                        We utilize a significant amount of memory in order to store data in our computers; 
+                        however, not all data is treated the same. Some data, like pictures, need to be stored 
+                        permanently. Other data, like the information we need to run a process, only needs to 
+                        be stored temporarily while the application is in use. This temporary memory is known 
+                        as primary, or main, memory. While hardware like hard disks are used to store permanent 
+                        data, the operating system is responsible for the management of primary memory stored in RAM.</li>
+                    </ul>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode72" onclick="showCode('displayCode72', 'showCode72')">Display</button>
+                    <div id="displayCode72">
+                        <button onclick="closeCode('displayCode72', 'showCode72')">Close</button>
+                        <li><strong>What Is Memory Management?</strong>
+                        One of the jobs of the operating system is to control processes’ access to our 
+                        computer’s shared hardware resources, including and especially its memory. 
+                        Memory stores the information necessary for our processes to function.
+                        At the lowest level, data in memory is just a sequence of 0s and 1s which 
+                        represent a piece of information. A handful of 0s and 1s might represent a number, 
+                        while a great many could represent an image or a video.
+                        But memory is a finite resource; we only have so much of it. This is why our 
+                        computers can only store a limited number of files before we have to get rid of 
+                        some in order to add new ones.
+                        Given that memory is limited, the job of the OS is not only to provide our processes 
+                        access to memory, but to do so efficiently. And since memory stores information 
+                        critical to our computer’s functions, the OS must make sure that the access it 
+                        provides is safe and secure.
+                        Not all memory is the same though. In a grocery store like the one to the right, 
+                        some of the more popular, smaller items like chewing gum and candy bars are stored 
+                        close to the register. Bulkier, less popular items are stored further away. The same
+                        is true of memory, our computers have tons of space in deep storage but relatively 
+                        little in the faster-access regions of memory. It is the job of the OS to determine 
+                        what goes where at what time.</li>
+                        <li><strong>The Memory Hierarchy</strong>
+                        The term memory is a catch-all for what is actually a highly diverse set of places 
+                        where information is stored. These places differ in two fundamental respects: size 
+                        and speed. The general rule of thumb is this: the faster the memory the less of it 
+                        we have to work with.</li>
+                        <ul>
+                            <li><strong>Registers: </strong>Are the closest form of memory to the processor. For that reason, they 
+                            are the fastest. But they also store the least amount of information. A computer’s 
+                            registers contain the actual values the processor does calculations with. Executing 
+                            a line of code like x = x + 1 entails fetching the current value of x from wherever 
+                            it exists in memory, putting it into a register, and adding 1 to it.</li>
+                            <li><strong>Cache memory:</strong> Acts as a staging ground to store data that will be needed by the 
+                            processor in the immediate future. Most computers have more than one cache, these 
+                            levels vary in size and speed. The cache can prevent bottlenecks between the
+                            processor and the main memory (RAM) by storing copies of the most frequently used data.</li>
+                            <li><strong>Main memory: </strong>Is further removed from the processor. It is larger and slower than the 
+                            cache and stores the data and instructions the processor is currently working on. 
+                            The main memory can only hold information while it has power, it is a temporary memory location.</li>
+                            <li><strong>Disk:</strong> Think of disk as a form of deep storage, like a box collecting 
+                            dust in the closet. Disk is where we can store the largest amount of information. But 
+                            it is also the slowest. Much like retrieving files from the closet, retrieving 
+                            information from disk is more involved and, for that reason, slower than retrieving 
+                            information from locations closer to the processor.</li>
+                        </ul>
+                        <li><strong>Ways of storing information in memory</strong> (main memory, or RAM).</li>
+                        <ul>
+                            <li><strong>Segmentation: </strong>The first and simplest way of storing data is segmentation.                   
+                            Using segmentation, process data is stored in blocks of contiguous, meaning adjacent 
+                            or back-to-back, memory which vary in size. These blocks are called segments. When a 
+                            process requests a piece of information from disk, a contiguous block of free memory 
+                            must be found and then allocated (that is, have data written to it). If no block of 
+                            memory is currently available, the process will wait for one before proceeding.
+                            While this may be the simplest way to handle memory allocation, as we will discuss 
+                            in the next exercise, segmentation carries with it some major efficiency concerns.</li>
+                            <li><strong>Fragmentation: </strong>If memory is allocated contiguously (which is the case 
+                            under segmentation) think about what will happen over time as more and more 
+                            blocks of memory are allocated and freed.
+                            At the beginning, our allocated memory is easily collapsed into contiguous 
+                            blocks. But as we free some of those blocks and try to allocate new ones, 
+                            the address space gets messy.
+                            Because our operating system cannot anticipate the future needs of our processes, 
+                            we begin to have smaller and smaller blocks of free memory. As a result, we may 
+                            have 50 bytes of free memory in total, but if these are split across five blocks 
+                            of 10 bytes, when we need room for a block of 20 bytes, it has nowhere to go.
+                            As the size of these contiguous blocks of memory gets smaller, we say our memory 
+                            is becoming more fragmented. Fragmentation is a main cause of memory inefficiency
+                            since fragmented memory stalls processes with large allocation needs.</li>
+                            <li><strong>Virtual Memory and Privilege Separation: </strong>                                
+                            Like any other of the computer’s shared hardware resources, the OS must protect 
+                            memory so that rogue processes cannot disrupt the computer’s (and the other 
+                            processes running on it) ability to run. Consider that the operating system 
+                            itself exists in memory.
+                            The kernel space (the area where the core of the operating system is stored) 
+                            is a section of memory just like the others, but the information stored here 
+                            is absolutely essential for our computer to be able to run safely and securely 
+                            (or really, run at all). Therefore, the information here must never be accessed 
+                            by any user-space (or non-kernel) process.
+                            If a user-space process had access to kernel memory, it could corrupt the OS 
+                            and take our whole computer down. A malevolent process with access to the 
+                            kernel-space could try to steal information like passwords or, even worse, 
+                            seize control of the computer and undertake rogue tasks. A cell-phone whose 
+                            OS is hijacked is one thing, but consider the implications if the computer 
+                            whose kernel is compromised is responsible for the functioning of an airplane 
+                            or a nuclear plant.
+                            It is not just the kernel that needs protection from user-space processes, 
+                            though. User-space processes need protection from each other! Think about 
+                            why this might be. If a malevolent user-space process could invade the memory 
+                            of another user-space process like a piece of anti-malware software, the
+                            malevolent process could disable it and go undetected.
+                            To protect processes from each other and to protect the kernel, we can 
+                            use virtual memory. Virtualization gives the OS the ability to start a process,
+                            give it a certain amount of memory to work with, and have it seem to the process 
+                            as though that is the only memory that exists.</li>
+                            <li><strong>Paging: </strong>Recall that, as memory is allocated and freed using 
+                            segmentation, the size of contiguous blocks of free memory tends to decrease. 
+                            In other words, our memory becomes fragmented.
+                            A far more efficient memory management technique is called paging. Paging 
+                            differs from segmentation in two fundamental respects.
+                            Process information is stored in equal-sized blocks of memory known as pages
+                            Pages belonging to a given process are stored at non-contiguous addresses in physical memory
+                            With paging, any data needing to be placed in or removed from memory will be 
+                            a page-sized block of data. So, unlike with segmentation, the space between 
+                            blocks of memory will never change. Since fragmentation was caused by these 
+                            spaces tending to become smaller over time, paging does not risk the 
+                            fragmentation problem.
+                            Any benefit from paging would be lost, though, if the pages had to be stored 
+                            in contiguous locations in memory. There is no difference between allocating 
+                            100 bytes of contiguous memory or 10 contiguous blocks of 10-byte-sized pages. 
+                            So, the real power of paging comes from the ability to spread out a given 
+                            processes’ memory across non-contiguous locations.
+                            To add a wrinkle, though, we still want our process to think that the OS has 
+                            allocated its memory contiguously. Therefore, we must use virtualization. 
+                            Our OS gives each process a certain number of pages which are stored at 
+                            contiguous addresses in virtual memory. So, from the process’ perspective, 
+                            its memory is stored contiguously. Importantly though, these addresses in 
+                            virtual memory need not map to contiguous addresses in physical memory.</li>
+                            <li><strong>Linkers and Loaders: </strong>
+                            After we are done writing a program, there is still work to be done in order 
+                            to get that program in a state which our computer can execute. We must compile 
+                            our code into a form the computer can understand. From this point, the final 
+                            two steps necessary to run our program are linking and loading.
+                            Most programs, but particularly larger ones, have a long list of dependencies. 
+                            At execution time, our computer needs to have instructions it can comprehend not 
+                            only for our program but for all of the programs ours depends on. The linker’s 
+                            job is to connect our program with these dependencies. The <strong>linker</strong> outputs a file
+                            called an executable which is what the computer will actually use to run our 
+                            program. When we run that executable, the first step to execute our program 
+                            is called <strong>loading</strong>. The loader takes information from the executable file and 
+                            loads the information necessary to run the process into main memory.
+                            It is important to understand that both linking and loading can occur either 
+                            statically or dynamically.
+                            If a program is linked statically, the entirety of the dependencies necessary 
+                            to run the program are linked when an executable is created. Conversely, if 
+                            a program is linked dynamically, the linking takes place at runtime which 
+                            gives our OS the opportunity to see whether some dependencies already exist 
+                            in memory before linking with them again.
+                            On the loading side, if a program is <strong>statically loaded</strong>, then the entirety of 
+                            the program and its dependencies are loaded into memory at execution time. 
+                            With <strong>dynamic loading</strong>, the OS only loads the parts of the program that are 
+                            needed at a given time.
+                            The result is that dynamic linking and loading tend to be much more efficient 
+                            with memory. However, the tradeoff is speed. Statically linked/loaded programs 
+                            tend to execute faster because there is no back and forth of fetching 
+                            dependencies once the program is running.</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <ul>
+                        <li><strong>File System Management: </strong>
+                        If we store source code, such as a C program, in a folder on our computer, we are utilizing 
+                        our computer’s file system. The operating system manages information about individual files
+                        as well as the directories they belong in. The OS is also responsible for maintaining file 
+                        systems by being able to perform tasks such as creating, deleting, renaming, and copying 
+                        files and/or directories.</li>
+                    </ul>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode73" onclick="showCode('displayCode73', 'showCode73')">Display</button>
+                    <div id="displayCode73">
+                        <button onclick="closeCode('displayCode73', 'showCode73')">Close</button>
+                        <li><strong>Introduction to Filesystems: </strong>
+                        Whether it is playing music, looking at photos, or watching a movie, computers 
+                        are responsible for holding a lot of data. Having this data be stored safely in 
+                        an efficient way is critical for the operation of any computer and the filesystem 
+                        is the component within the operating system that handles this.
+                        The <strong>filesystem</strong> is the data structure used by the operating system to store and 
+                        retrieve data. This is a software abstraction that allows developers to manipulate 
+                        data without having to be concerned with the minutiae of how each storage device works.
+                        This data is organized into files that are units of storage used to describe a self-contained 
+                        piece of data. Each file has a format depending on what that file contains. This is indicated 
+                        by the file’s extension that follows the file’s name.
+                        These files are in turn organized into directories. A <strong>directory</strong> is a data structure 
+                        that contains references to files and other directories. They are typically organized
+                        in a hierarchical tree structure called a directory tree, as shown in the image on the right.
+                        In this lesson, we’ll learn about the metadata and permissions that organize files, 
+                        the layers of abstraction that make up a filesystem, and common operations for 
+                        files and directories.</li>
+                        <li><strong>File Metadata, Permissions, and Attributes: </strong>
+                        Not only is it expected that files will hold important data, but it is also 
+                        assumed that a certain amount of metadata is kept to manage these files.
+                        The file control block holds all of this metadata for the file, including 
+                        file permissions, owners, sizes, and create, modified, and access times.
+                        Alongside this bookkeeping metadata, files can also have attributes that 
+                        indicate special behavior. While this differs on the operating system, 
+                        common attributes include:</li>
+                        <ul>
+                            <li>Hidden: Cannot be viewed by default in file managers.</li>
+                            <li>Immutable: Cannot be modified or deleted.</li>
+                            <li>Compressed: The file is in a compressed form to save space.</li>
+                        </ul>
+                        <li><strong>File Permissions Overview: </strong>
+                        Within the file permissions are controls for the three main actions that can be 
+                        performed on a file: reading, writing, and executing. These permissions differ 
+                        by user as well as collections of users called groups.
+                        In Unix operating systems, the permissions for a file are represented using a 
+                        line of 10 characters. The first character can either be - for a file or d for 
+                        a directory. The other 9 characters are separated into three equal parts called triads.
+                        The first triad containing the first three characters contains the permissions for 
+                        the owner, the second triad contains the permissions for the group, and the third 
+                        triad contains the permissions for any other user outside of this.
+                        Each of these three characters within a triad are flags indicating a permission. 
+                        r means that the file is readable, w means that the file is writable, and x means 
+                        that the file is executable.</li>
+                        <li><strong>Hardware Representation of Data: </strong>
+                        As data is the cornerstone of how a computer operates, discussing its physical 
+                        representation is crucial to best understanding it. What does it look like in 
+                        the real world when a file is saved onto a hard drive?
+                        For this discussion we will focus mainly on the spinning metal hard disc drive, 
+                        as most of the design choices for filesystems were based on their inclusion and 
+                        they are still the most prevalent form of data storage, especially in servers.
+                        Within a hard disk drive is a spinning platter with a thin magnetic coating. 
+                        A pointy head that looks like a thin fountain pen moves over this platter to 
+                        etch data into the platter by adjusting the direction of the magnetic field 
+                        at an incredibly precise location.
+                        The smallest chunk of this physical storage is called a sector. It is the smallest 
+                        unit of storage for the physical drive and its size is determined by a balance 
+                        between excessive metadata and wasting space.
+                        Smaller sectors require more information to index the entire drive, like a librarian
+                        trying to organize millions of small pamphlets. This ruins performance for finding 
+                        files as well as creates substantial overhead for documenting the location and 
+                        content of each sector.
+                        However, larger sector sizes also have drawbacks. For example, if saving a file that
+                        has a size of 512 bytes and the sector size is 4096 bytes, the entire sector is 
+                        written and used, effectively wasting 3584 bytes of space.
+                        This is abstracted further in the software filesystem, where blocks are used to 
+                        represent groupings of sectors. This is used as an abstraction so that the 
+                        operating system and all of the applications that reside on it can have a common 
+                        block size to target instead of needing to accommodate whatever arbitrary sector 
+                        size is chosen by the hardware manufacturer.</li>
+                        <li><strong>Hardware Representation of Data: </strong>
+                        As data is the cornerstone of how a computer operates, discussing its physical 
+                        representation is crucial to best understanding it. What does it look like in 
+                        the real world when a file is saved onto a hard drive?
+                        For this discussion we will focus mainly on the spinning metal hard disc drive, 
+                        as most of the design choices for filesystems were based on their inclusion and 
+                        they are still the most prevalent form of data storage, especially in servers.
+                        Within a hard disk drive is a spinning platter with a thin magnetic coating. 
+                        A pointy head that looks like a thin fountain pen moves over this platter to 
+                        etch data into the platter by adjusting the direction of the magnetic field at 
+                        an incredibly precise location.
+                        The smallest chunk of this physical storage is called a sector. It is the smallest 
+                        unit of storage for the physical drive and its size is determined by a balance 
+                        between excessive metadata and wasting space.
+                        Smaller sectors require more information to index the entire drive, like a 
+                        librarian trying to organize millions of small pamphlets. This ruins performance 
+                        for finding files as well as creates substantial overhead for documenting the 
+                        location and content of each sector.
+                        However, larger sector sizes also have drawbacks. For example, if saving a file 
+                        that has a size of 512 bytes and the sector size is 4096 bytes, the entire sector 
+                        is written and used, effectively wasting 3584 bytes of space.
+                        This is abstracted further in the software filesystem, where blocks are used to
+                        represent groupings of sectors. This is used as an abstraction so that the 
+                        operating system and all of the applications that reside on it can have a common
+                        block size to target instead of needing to accommodate whatever arbitrary sector 
+                        size is chosen by the hardware manufacturer.</li>
+                        <li><strong>The Layers of a Filesystem: </strong>
+                        Building upon this system of sectors and blocks, the rest of the filesystem is 
+                        also implemented as a collection of abstract layers.
+                        For example, user applications such as text editors make up the highest layer. 
+                        At this level a developer can easily and abstractly request to write to a file. 
+                        However, this simple task becomes more intricate as it bubbles down to the lowest 
+                        device layer. At this level the on-board computers of the storage device need to 
+                        activate certain motors with a precise amount of force to alter the magnetic state 
+                        of a sector of the drive. The entirety of the most common layers are:</li>
+                        <ul>
+                            <li><strong>Application Programs:</strong> The day to day programs that are run by the user, like 
+                            web browsers and text editors.</li>
+                            <li><strong>Logical File System:</strong> The system that manages the file control blocks containing 
+                            the metadata of files such as file permissions, owners, sizes, and access times. 
+                            Simplifies the access to files for applications regardless of how the underlying 
+                            filesystem or hardware organizes them.</li>
+                            <li><strong>File-Organization Module:</strong> The component responsible for organizing the software
+                            blocks of the filesystem. Simplifies hardware differences between storage devices 
+                            for the logical file system.</li>
+                            <li><strong>Basic File System:</strong> Communication layer between software block layout and hardware 
+                            sector layout. Schedules IO requests and manages resource blocks for 
+                            file-organization module.</li>
+                            <li><strong>IO Control:</strong> The low-level software drivers that can communicate with the storage device’s 
+                            controller. Understands how to manipulate the physical device to read and write data.
+                            Devices - The mechanisms of the physical storage devices. For example, the motors 
+                            and controls that do the physical act of storing data within the medium, be it 
+                            changing the magnetic state of spinning disks or altering the placement of electrons 
+                            in flash storage.</li>
+                        </ul>
+                        <li><strong>File Operations: </strong>
+                        A file can be manipulated in a variety of ways. In fact, Unix built upon this to 
+                        create an operating system where everything is treated as a file. Therefore 
+                        learning some simple command line file operations is crucial:</li>
+                        <ul>
+                            <li>New empty files are commonly created using the touch command.</li>
+                            <li>The contents of a directory can be listed using the ls command. 
+                            (Be sure to type a lowercase “L” as in “list” and not the number 1.)</li>
+                            <li>A string of text can be output to the terminal using the echo command. 
+                            This is useful in coordination with the > operator that redirects the 
+                            text output to a file.</li>
+                            <li>A file can be output and read using the cat command.</li>
+                            <li>A file can be deleted using the rm command.</li>
+                        </ul>
+                        <li><strong>Directory Operations: </strong>    
+                        Directories give a hierarchy to files and therefore learning commands for their 
+                        manipulation is important as well:
+                        New empty directories can be created using the mkdir command. This can also 
+                        create directories within existing directories, called sub-directories.
+                        Again, the contents of a directory can be listed using the ls command.
+                        A directory can be deleted using the rm command with the -r recursive flag to 
+                        also delete any files it may contain.</li>
+                        <hr/>
+                    </div>
+                    <ul>
+                        <li><strong>IO Management: </strong>
+                        IO stands for Input/Output and represents the 
+                        devices used for interaction. A mouse is considered an input device, because we use them
+                        to send data to our computer. A monitor is regarded as an output device since it is used 
+                        to communicate data (like an image) to us, the user. The operating system plays a large 
+                        role in managing IO by ensuring communication between IO hardware and IO software.</li>
+                    </ul>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode74" onclick="showCode('displayCode74', 'showCode74')">Display</button>
+                    <div id="displayCode74">
+                        <button onclick="closeCode('displayCode74', 'showCode74')">Close</button>
+                        <li><strong>Introduction to IO Systems: </strong>
+                        IO systems are a combination of hardware and software tools that help a 
+                        user interact with a computer successfully. The I in IO stands for input 
+                        and the O stands for output. The main role of IO systems is to accept input 
+                        (e.g., from a mouse or keyboard) from users for a computer and provide output
+                        (e.g., through a screen or headphones) from a computer to users.
+                        A computer can receive lots of input and provide numerous output while a user is 
+                        active on a computer. For example, a computer can produce the output of audio while 
+                        also accepting input from a keyboard. The management of such input and output is 
+                        handled by the operating system on a computer. The operating system oversees the 
+                        queue of IO messages and handles them from the moment they are received until they 
+                        provide output to a user.
+                        IO systems are composed of two main components which we will explore in the next 
+                        two lessons: IO hardware and IO software. IO hardware refers to the physical devices
+                        that a user interacts with. Some examples include a keyboard, a mouse, display 
+                        screens, speakers, and headphones. IO software is the code that supports IO 
+                        hardware so that a CPU may understand the input from a user and provide an 
+                        appropriate output.</li>
+                        <hr/>
+                        <h3>IO Hardware</h3>
+                        <li><strong>IO Hardware: </strong>IO, or Input/Output, devices refer to 
+                        any physical devices that interact with a CPU. Input devices send signals to a 
+                        computer and output devices allow for computers to send information out 
+                        from a computer. When it comes to devices, we mainly think of examples that 
+                        require direct human interaction; however, the large range of IO 
+                        devices can be categorized into three categories: human-readable, 
+                        machine-readable, and communication.
+                        <strong>Human readable</strong> devices are devices that can be interpreted/understood 
+                        in a natural language structure by humans. Some examples include printers, 
+                        keyboards, and a mouse. 
+                        <strong>Machine readable</strong> devices are devices that 
+                        are formatted to allow communication between different hardware, without 
+                        the need for human interpretation. Some examples include hard drives/disks,
+                        controllers, and SD cards.
+                        <strong>Communication devices</strong> are devices that allow devices to interact over a 
+                        network. A network is a set of devices that are linked to share some 
+                        resources over a shared medium. Some examples of communication devices
+                        include modems and Bluetooth adapters.</li>
+                        <li><strong>Drivers & Controllers: </strong>Device drivers and device 
+                        controllers are important components of IO systems. <strong>Device drivers</strong> 
+                        exist as software programs that the OS uses to communicate with device
+                        controllers. <strong>Device controllers</strong> are hardware units that work as an interface 
+                        between physical IO devices, and device drivers. An interface can be thought 
+                        of as a bridge that brings the software side and hardware side together.
+                        Device drivers and controllers are crucial for different IO devices to 
+                        communicate with the OS. Consider them to be like a translating service. 
+                        If one person speaks fluent Spanish, and another person only speaks English, 
+                        a translator, who understands both languages is necessary for meaning making 
+                        in the conversation. Similarly, device controllers work as a translator between 
+                        an operating system that may understand code, and hardware that uses signals. 
+                        The device drivers can be thought of as the service the translator provides.</li>
+                        <li><strong>Transferring Data: </strong>
+                        In order for data to be successfully transferred between IO devices and the 
+                        CPU, it is important that the data can be written and read over some medium. 
+                        Devices are designed to read or write data in one of the following three ways:
+                        <strong>Character devices</strong> are represented as a sequential series of bytes. They are 
+                        accessed one byte at a time. The operating system interacts with these devices 
+                        with read/write system calls. One example of a character device is a USB. 
+                        A USB has data written on it in a sequential manner.
+                        <strong>Block devices</strong> have memory stored in blocks of a fixed size. They allow for 
+                        system calls where memory does not need to be read sequentially. Block devices 
+                        allow for “random access”, meaning we can read or write to any place within the 
+                        device. Most devices have blocks of the size 512 bytes or greater. Hard disks are 
+                        a perfect example of block devices.
+                        <strong>Network devices</strong> are different from character and block devices because they require 
+                        a different interface (such as a socket interface) for access to other devices. 
+                        An example of a network device is an ethernet card which is used to send and receive 
+                        data over multiple devices.</li>
+                        <li><strong>Blocking vs. Non-blocking</strong>
+                        IO devices and operating systems communicate via data packets known as IO requests. 
+                        When an IO device makes a request an application can respond in one of two ways: 
+                        blocking, and non-blocking.</li>
+                        <ul>
+                            <li><strong>Blocking Requests: </strong>Most IO requests are considered blocking requests. 
+                            When the IO makes a request, an application typically cannot continue executing other 
+                            requests until it has the necessary information changes from the IO. Therefore, 
+                            blocking calls requires a process to stop and wait for input/output. Consider a word 
+                            processing software - when we have a new document open, the application halts while 
+                            waiting for the user to type some words.</li>
+                            <li><strong>Non-blocking Requests: </strong>Non-blocking requests get placed into a queue while 
+                            waiting so that the CPU resources can be used to complete other tasks in an event pool. 
+                            The event pool is the queue mentioned earlier. IO device responses can be handled later, 
+                            as long as the request has been acknowledged by the OS. Non-blocking is also commonly 
+                            referred to as asynchronous. Think about a collaborative application in which there are 
+                            multiple requests being made by different users simultaneously. The application does not 
+                            halt for every user each time it is waiting for some input from a single user.</li>
+                            <li><strong>Interrupts & Polling: </strong>An interrupt is a signal that is sent from 
+                            the hardware of an IO device to a computer to get its immediate attention. Because 
+                            interrupts are handled on the hardware’s end, they decrease overhead on the software 
+                            side. When a device sends an interrupt signal, the CPU is notified via some trigger 
+                            and will immediately halt the task at hand. It will send the interrupt over to an 
+                            interrupt handler. The interrupt handler is like a pool or queue of interrupts being 
+                            sent to the CPU. Once the interrupt has been responded to, the CPU can go back to 
+                            resuming its task.
+                            As an example, consider going to the grocery store looking for bananas. We see an 
+                            employee stocking a shelf and decide to ask for their help. Once we have signaled 
+                            for their attention, they acknowledge us, stop their task, and walk over to help us 
+                            find the item. After they have found the bananas and let us know, they return to their 
+                            previous task. In this example we are an IO device, sending an interrupt (our search for 
+                            bananas) to the CPU (the employee).    
+                            <strong>Polling</strong> provides similar functionality to interrupts; however, it is not a hardware
+                            mechanism. Polling is a CPU protocol, in which there are regular intervals set up for the 
+                            CPU to take some time to check on whether any IO device requires its attention. Just as
+                            an interrupt handler takes care of interrupt requests, the CPU is responsible for handling 
+                            IO requests in polling.</li>
+                            <li><strong>Memory-mapped IO vs Direct-Memory Access: </strong>
+                            <strong>Memory-mapped IO</strong> refers to a system that is designed to allow both an IO 
+                            device that is connected to a computer, and the memory of the computer to share address 
+                            space to the interface.
+                            There are a few advantages to using memory-mapped IO. It allows for similar sets of 
+                            instructions to be used over multiple hardware components. IO devices are not treated 
+                            differently from other kinds of memory devices. A separate set of instructions is not 
+                            required for IO devices to communicate with a computer.
+                            <strong>Direct memory access (DMA)</strong> refers to a method in which IO devices have 
+                            direct access to the main memory of a computer without too much involvement of the CPU. 
+                            For DMA, a CPU will trigger the execution of data to/from an IO device to a computer, 
+                            but then will continue to complete other tasks while the data transfer executes. 
+                            In order to implement the DMA method, computers use hardware devices known as 
+                            Direct-memory access controllers.
+                            One advantage of using DMAs is that it removes overhead for the CPU so that the 
+                            CPU may process other tasks. However, using DMA may result in cache coherency discrepancies. 
+                            This means that if a computer has a cache, and a DMA only has access to the main memory, it 
+                            may update the main memory and so the cache, which has not been updated, will not match.</li>
+                        </ul>
+                        <hr/>
+                        <h3>IO Software</h3>
+                        <li><strong>IO devices</strong> refer to any physical devices that interact with a CPU. The physical devices send 
+                        signals to computers and receive information from computers. The role of IO software is to 
+                        receive signals from physical devices, interpret them and then perform tasks accordingly through 
+                        the operating system.
+                        <strong>IO software</strong> refers to the code that interprets those signals and plans the execution of IO requests. 
+                        There are different types of IO software to handle different tasks. Some IO requests can be processed 
+                        by software that is more generic and meant for multiple devices.
+                        For example, the software used to accomplish the request to retrieve and store data to a hard drive 
+                        is similar to the software used to retrieve and store data from a USB. This type of software is 
+                        referred to as device-independent software. Other IO requests can be processed by software that is 
+                        designed for specific devices. This type of software is known as a device driver. An example of a
+                        device driver may be the software you install to your computer to be able to connect a printer.</li>
+                        <li><strong>User-space, Kernel-space, & Hardware: </strong>
+                        IO software is necessary to the functionality of IO hardware. Consider a car. The car’s main 
+                        structure is the hardware: the wheels, the engine, etc. The hardware isn’t solely responsible 
+                        for making the car functional; user-space and kernel-space play a vital role in the software 
+                        aspect of this process. 
+                        The user-space is the space in memory that holds and runs user processes. Think about when 
+                        we connect our Bluetooth device to the audio system of a car. The memory in which the Bluetooth 
+                        mounts to the car can be considered to be the user-space. Pressing play or selecting a song on 
+                        different phones can be considered independent calls that exist in user libraries that access 
+                        the kernel through calls, and result in output in the car. User libraries hold more complex, 
+                        modifiable, user-controlled code that interfaces with the kernel.
+                        The kernel-space is the place in memory where the kernel performs its functionality. 
+                        The software behind the Engine Control Unit (ECU) of a car is the kernel-space. 
+                        Just like the ECU controls or manages the electric functions of a car, the kernel 
+                        manages resources and requests. The kernel manages the scheduling of tasks, buffering 
+                        (storing data in memory when transferring between a computer and IO devices), spooling
+                        (holding output data for an IO device), etc.
+                        The kernel and user-space are closely related because the kernel provides services 
+                        and resources that user-space programs need to operate.</li>
+                        <li><strong>Layers of IO Systems: </strong>
+                        In IO systems, IO software is made up of multiple layers due to the many different 
+                        responsibilities they have. These layers include the following:
+                        <ul>
+                            <li><strong>User-level IO software or user processes:</strong> This is the level at which IO requests are made. 
+                            It is at this level that a system call is made in the user-space to be sent to the kernel-space.</li>
+                            <li><strong>Device-independent software:</strong> This layer refers to software components that are generic and 
+                            applicable to multiple devices. These calls are not dependent on or exclusive to any single IO device.</li>
+                            <li><strong>Device drivers:</strong> This layer refers to the software components that are specific to an IO device. 
+                            They often code snippets that have been developed by the manufacturer of the IO device and must 
+                            be installed by the user before the IO device can interact with a computer.
+                            Interrupt handlers: Interrupt handlers are snippets of code that provide the functionality to 
+                            device drivers. They process interrupts made by IO devices.</li>
+                            <li><strong>Hardware:</strong> This layer refers to the physical IO device which interacts with device drivers 
+                            through input such as pressing a key on a keyboard or output such as displaying data onto a screen.</li>
+                        </ul>
+                        <li><strong>Device Drivers: </strong>
+                        Device drivers are software components, or blocks of code, that are specific to a device. They are 
+                        often written by the manufacturer of IO devices and must be installed into a computer before an IO 
+                        device may successfully interface with a computer. The chunks of code are part of the kernel-space 
+                        because once they are installed, they don’t require user involvement to interact with device controllers.
+                        Unlike device-independent IO software, device drivers are great for taking IO hardware beyond generic 
+                        functionality. Device drivers allow for an IO device to be used to perform tasks that are specific to its hardware.
+                        There are two types of device drivers:</li>
+                        <ul>        
+                            <li><strong>Kernel-mode drivers</strong>: These drivers allow for basic functionality on a CPU. They even contribute to
+                            the start-up of an operating system when we turn on our computers.</li>
+                            <li><strong>User-mode drivers:</strong> When a user adds additional hardware to their computer, that 
+                            additional hardware comes with its own set of drivers that need to be installed. 
+                            For example, when we are in the process 
+                            of installing a new printer and connecting it to our laptop.</li>
+                        </ul>
+                        <li><strong>Device-Independent IO Software: </strong>
+                        Unlike device drivers, device-independent IO software is not specific to any single IO device. 
+                        It holds functions that are more generic and can be used by all devices. It includes generic 
+                        interface calls, buffering, providing a generic block size that an IO device and the computer 
+                        can use to transfer data, etc. Generic interface calls include initializing the hardware, 
+                        allocating resources, turning off a device, etc. Device-independent sofware calls for buffering
+                        refer to storing some data in memory when transferring it from one device to the other.
+                        Device-independent software also has the capability to report errors that occur between the 
+                        interaction of IO devices and the computer. Due to the fact that device-independent software 
+                        must be applicable to all devices that connect to a computer, its functionality is not 
+                        extremely complex or intricately connected to any single device and can be handled in the 
+                        kernel-space in IO systems. Consider the following functions of a car: displaying mileage 
+                        on a dashboard and what song is playing on the media system screen. Both these tasks 
+                        are different, but a similar subtask they share is retrieving data from memory and outputting
+                        it to a screen to be displayed. This subtask can be executed through device-independent 
+                        IO software. Although both screens are different, the code to retrieve the data to be 
+                        displayed is the same.</li>
+                        <li><strong>Interrupt Handlers: </strong>
+                        In the IO hardware lesson, we learned that interrupts are hardware mechanisms that send 
+                        signals when an IO device needs the computer’s attention.
+                        Interrupt handlers refer to the software components that manage the pool of interrupts 
+                        that are sent to the CPU. Interrupt handlers receive and acknowledge that a signal has 
+                        been received, place it in a queue, and execute the interrupts by priority. When an 
+                        interrupt is received the interrupt handler notifies the CPU. The CPU will then halt 
+                        its current processes, and wait for the execution of the interrupt before continuing.
+                        Consider pressing a keyboard button and trying to turn up the volume on a computer at 
+                        the same time. Although it may seem to be simultaneous, the computer will place both 
+                        in a queue based on when the signal is received by the interrupt handler. Once the 
+                        interrupt by the first is completed (e.g. the keyboard button is displayed on a word 
+                        processing document), the second one will begin execution (the volume is adjusted).</li>
+                        <hr/>
+                    </div>
+                </ul>
             </ul>
         </div>
     </body>

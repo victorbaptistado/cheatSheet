@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Debug & Testing</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="./AI.html">AI</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./objects.html">Objects</a></li>
+                <li><a href="./operationalSystem.html">Operational System</a></li>
+                <li><a href="#">Debug & Testing</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>
+                <li><a href="./api.html">API</a></li>
+                <li><a href="./react.html">REACT</a></li> 
+                <li><a href="./helpfulContent.html">Helpful Content</a></li>
+                <li><a href="./backend.html">Backend</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Debugging & Testing</h1>
+        </header>
+        <div class="styleGuide">
+            <h2>Debugging</h2>
+            <ul>
+                <li><strong>Is your code throwing errors?</strong> If so, read the error stack trace for the type, description, and location of the error. Go to the error’s location and try to fix.</li>
+                <li><strong>Is your code broken but not throwing errors?</strong> Walk through your code using console.log() statements. When unexpected results occur, isolate the bug and try to fix it.</li>
+                <li><strong>Did you locate the bug using steps 1 and 2, but can’t fix the bug?</strong> Consult documentation to make sure you are using all JavaScript functionality properly. If you are still stuck, Google your issue and consult Stack Overflow for help. Read solutions or post your own Stack Overflow question if none exist on the topic.</li>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Testing</h2>
+            <ul>
+                <li>Testing can be overwhelming, because there are so many different types of tests: 
+                acceptance tests, integration tests, and unit tests, not to mention test driven 
+                development vs. ad hoc testing.</li>
+            </ul>
+            <hr/>            
+            <h3>Testing plan</h3> 
+            <ul>
+                <li><strong>Creating a testing plan:</strong></li>
+                <ul>
+                    <li><strong>The happy path: </strong>
+                    For the classic Tic Tac Toe example, the happy path is starting with an empty 
+                    board and playing a game until X wins.</li>
+                    <li><strong>Variations on the happy path: </strong>
+                    A variation on the happy path would be if O wins, or if there is a tie game.</li>
+                    <li><strong>Edge cases:</strong> An edge case would be if a player tries to play a 
+                    move in the same square more than once.</li>
+                    <li><strong>Complex things: </strong>
+                    The algorithm to find the winner is the most complex part of this example. 
+                    Here’s a sample test plan:</li>
+                    <ul>
+                        <li>Test that the initial state of the board is correct (i.e. board is visible and empty)</li>
+                        <li>Test that a move can be played</li>
+                        <li>Test that moves alternate between X and O</li>
+                        <li>Test that a move can be played to a square only once</li>
+                        <li>Test that a winner can be found in a row</li>
+                        <li>Test that a winner can be found in a column</li>
+                        <li>Test that a winner can be found in a diagonal</li>
+                        <li>Test that a draw can be found</li>
+                    </ul>
+                </ul>
+            </ul>
+            <hr/>
+            <h3>React Test</h3>
+            <ul>
+                <li><strong>Jest: </strong>Used with any Javascript Framework.</li>
+                <ul>
+                    <li><strong>Jest </strong>tutorial <a href="https://www.valentinog.com/blog/jest/" target="_blank">here</a>.</li>
+                    <li><strong>Jest </strong>documentation <a href="https://jestjs.io/docs/tutorial-react" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Enzyme: </strong>Used only with React.</li>
+                <ul>
+                    <li><strong>Enzyme </strong>documentation <a href="https://enzymejs.github.io/enzyme/" target="_blank">here</a>.</li>
+                </ul>
+            </ul>
+        </div>
+    </body>
+</html>
+
+
+
