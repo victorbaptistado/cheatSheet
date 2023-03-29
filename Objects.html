@@ -220,7 +220,16 @@
                 Your plumber probably would not be the best professional to diagnose an illness and 
                 your doctor probably wouldn’t be the best person to do your taxes — they are each 
                 better suited for other tasks! Similarly, different data structures are better suited 
-                for different tasks. Choosing the wrong data structure can result in slow or unresponsive 
+                for different tasks. 
+                They are the essential building blocks that we use to organize
+                all of our digital information. Choosing the right data structure allows us to use the 
+                algorithms we want and keeps our code running smoothly. Understanding data structures and 
+                how to use them well can play a vital role in many situations including
+                technical interviews in which you may be asked to evaluate and determine runtime for data 
+                structures given specific algorithms;
+                day-to-day work for many software engineers who manipulate data stored in structures;
+                data science work where data is stored and accessed through data structures;
+                a whole lot more. Choosing the wrong data structure can result in slow or unresponsive 
                 code (and mess up your program!), so it’s important to consider a few factors as you make 
                 your decision:</li>
                 <ul>
@@ -242,15 +251,101 @@
                     runtime will be covered further in depth when you explore all the nifty tricks of 
                     asymptotic notation.</li>
                 </ul>
-                <li>As you’ve seen, data structures are the essential building blocks that we use to organize
-                all of our digital information. Choosing the right data structure allows us to use the 
-                algorithms we want and keeps our code running smoothly. Understanding data structures and 
-                how to use them well can play a vital role in many situations including
-                technical interviews in which you may be asked to evaluate and determine runtime for data 
-                structures given specific algorithms;
-                day-to-day work for many software engineers who manipulate data stored in structures;
-                data science work where data is stored and accessed through data structures;
-                a whole lot more!</li>
+                <li><strong>Node VS Array VS Object VS Stack VS Queues VS Hash: </strong>
+                Nodes are often used as building blocks for more complex structures. In contrast, 
+                arrays and objects are data structures that store collections of values directly.
+                Nodes, arrays, and objects are different types of data structures, but can be used 
+                in complementary ways to represent and manipulate complex data structures and relationships 
+                in software applications.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode92" onclick="showCode('displayCode92', 'showCode92')">Display</button>
+                <div id="displayCode92">
+                    <button onclick="closeCode('displayCode92', 'showCode92')">Close</button>
+                    <li><strong>Advantages of nodes:</strong>
+                    <ul>
+                        <li>Nodes are fundamental building blocks for many data structures, such as linked lists, 
+                        trees, and graphs.</li>
+                        <li>Nodes provide a flexible and efficient way to represent complex relationships 
+                        between data elements.</li> 
+                        <li>Nodes can be used to implement various algorithms, such as 
+                        traversal, search, and sorting algorithms.</li>
+                        <li>Nodes can be easily modified or rearranged to reflect changes in the underlying data.</li>
+                        <li><strong>Examples: </strong>
+                        In a linked list, each element is a node that contains a value and a reference 
+                        to the next node.
+                        In a binary tree, each element is a node that contains a value and references 
+                        to the left and right child nodes.
+                        In a graph, each element is a node that represents a vertex and contains 
+                        information about its neighbors.</li>
+                    </ul>
+                    <li><strong>Advantages of arrays:</strong>
+                    <ul>
+                        <li>Arrays provide a straightforward and efficient way to store and access a 
+                        fixed-size collection of elements.</li>
+                        <li>Arrays support constant-time access to individual elements based on their 
+                        index, making them useful for many algorithms and operations.</li>
+                        <li>Arrays can be easily sorted and searched using standard algorithms like 
+                        binary search.</li>
+                        <li>Arrays provide a simple and efficient way to represent tabular data, such as 
+                        spreadsheets and matrices.</li>
+                        <li><strong>Examples:</strong> An array of integers that stores the temperatures 
+                        for each day of the week.
+                        An array of strings that stores the names of students in a class.
+                        An array of objects that represents a database table of users.</li>
+                    </ul>
+                    <li><strong>Advantages of objects:</strong>
+                    <ul>
+                        <li>Objects provide a flexible and dynamic way to store and manipulate 
+                        collections of key-value pairs.</li>
+                        <li>Objects can be easily extended and modified at runtime, making them ideal 
+                        for handling dynamic data.</li>
+                        <li>Objects provide a simple and intuitive way to represent real-world entities, 
+                        such as users, products, and orders.</li>
+                        <li>Objects can be used to implement complex data models and relationships, such as 
+                        inheritance and composition.</li>
+                        <li><strong>Examples: </strong>An object that represents a user profile and contains properties like name, email, and address.
+                        An object that represents a product and contains properties like name, description, and price.
+                        An object that represents a car and contains properties like make, model, and
+                        year.</li>
+                    </ul>
+                    <li><strong>Stacks:</strong> A stack is a data structure that stores a collection of elements in a Last-In, 
+                    First-Out (LIFO) order. Elements can be added to or removed from the top of the 
+                    stack.</li>
+                    <ul>
+                        <li>Stacks provide an efficient way to implement recursive algorithms, such as 
+                        parsing expressions and evaluating function calls.</li>
+                        <li>Stacks can be used to keep track of the state of an algorithm or system, such as 
+                        undoing changes or backtracking through a maze.</li>
+                        <li>Stacks can be implemented using an array or a linked list.</li>
+                        <li><strong>Examples: </strong>A stack that keeps track of the history of a web browser.
+                        A stack that evaluates expressions in reverse Polish notation.
+                        A stack that handles function calls in a program.</li>
+                    </ul>
+                    <li><strong>Queues:</strong>A queue is a data structure that stores a collection 
+                    of elements in a First-In, First-Out (FIFO) order. Elements can be added to the back of the queue and 
+                    removed from the front of the queue. </li>
+                    <ul>
+                        <li>Queues can be used to implement algorithms that require processing elements 
+                        in a specific order, such as breadth-first search and scheduling.</li>
+                        <li>Queues can be implemented using an array or a linked list.</li>
+                        <li>Queues can be optimized for specific use cases, such as priority queues or 
+                        circular queues.</li>
+                        <li><strong>Examples: </strong>A queue that represents a waiting list for a concert.
+                        A queue that schedules tasks for a CPU.
+                        A queue that handles incoming requests in a web server.</li>
+                    </ul>
+                    <li><strong>Hash tables:</strong>A hash table is a data structure that stores 
+                    a collection of key-value pairs, where the keys are hashed to map to unique indexes in an array. </li>
+                    <ul>
+                        <li>Hash tables provide constant-time access to elements based on their key, 
+                        making them efficient for many operations.</li>
+                        <li>Hash tables can be used to implement dictionaries, caches, and databases.</li>
+                        <li>Hash tables can be implemented using an array and a hashing function.</li>
+                        <li><strong>Examples: </strong>A hash table that stores a dictionary of words and their definitions.
+                        A hash table that caches frequently accessed data in a web application.
+                        A hash table that stores user sessions in a server.</li>
+                    </ul>                
+                </div>
             </ul>
             <hr/>
             <h3>Data Structure APIs</h3>
@@ -306,7 +401,6 @@
                 const doYouHaveThisNumber = num => receivedNumbers[num] === true;
                         </code>
                     </pre>
-                
                     <li>In this case, we’ll have the same result on the outside, but because retrieving a 
                     value from an object is much faster than iterating through an array, the overall result
                     will be faster.
@@ -396,8 +490,13 @@
             <hr/>
             <h3>Nodes</h3>
             <ul>
-                <li>Nodes are the fundamental building blocks of many computer science data structures. 
-                They form the basis for linked lists, stacks, queues, trees, and more.
+                <li>Nodes are the fundamental <strong>building blocks</strong> of many computer science data structures. 
+                They form the basis for linked lists, stacks, queues, trees, and more. 
+                Node is not a specific data structure, but rather a building block that can be used to implement
+                various data structures, including both <strong>linear</strong> and <strong>non-linear</strong> ones.                 
+                Not every software application has a node in the context of data structures. 
+                The concept of a node is used to represent individual elements 
+                in such data structures, which are used to store and manipulate collections of data.
                 An individual node contains data and links to other nodes. Each data structure adds 
                 additional constraints or behavior to these features to create the desired structure.
                 The data contained within a node can be a variety of types, depending on the language 
@@ -405,10 +504,40 @@
                 to as <strong>pointers</strong>. This is because they “point” to another node.
                 Typically, data structures implement nodes with one or more links. If these links are 
                 null, it denotes that you have reached the end of the particular node or link path you 
-                were previously following.</li>
+                were previously following. Nodes are a fundamental data structure that can be implemented 
+                in various contexts, including:</li>
+                <ul>
+                    <li><strong>Linked lists:</strong> Nodes are used to represent individual elements in a linked list data 
+                    structure, where each node contains a value and a pointer to the next node in the list.</li>
+                    <li><strong>Trees:</strong> Nodes are used to represent individual elements in a tree data structure, where 
+                    each node contains a value and pointers to its child nodes.</li>    
+                    <li><strong>Graphs:</strong> Nodes are used to represent vertices or nodes in a graph data structure, where 
+                    each node contains a value and pointers to its neighboring nodes or edges.</li>
+                    <li><strong>Network or distributed systems:</strong> Nodes can refer to physical or logical devices in a 
+                    network or distributed system, where each node can send, receive or process data.</li>
+                    <li><strong>Web development:</strong> Nodes can refer to elements in the Document Object Model (DOM) of a 
+                    web page, where each HTML element is represented as a node in the DOM tree.</li>
+                </ul>
                 <ul>
                     <li><strong>More info </strong><a href="https://en.wikipedia.org/wiki/Node_(computer_science)#:~:text=A%20node%20is%20a%20basic,are%20often%20implemented%20by%20pointers" target="_blank">here</a>.</li>
                 </ul>
+                <li><strong>Linear & Non-Linear</strong> data structure:</li>
+                <ul>
+                    <li><strong>Linear data structure: </strong> Is a type of data structure where data elements are arranged sequentially 
+                    or linearly. In other words, data elements are stored in a linear manner, such that each element 
+                    is connected to its previous and next element in the sequence. Linear data structures can be 
+                    thought of as a sequence of data elements that can be traversed in a specific order. Examples 
+                    of linear data structures include <strong>arrays, linked lists, stacks, and queues</strong>. These structures are 
+                    commonly used in programming to store and manipulate collections of related data elements.</li>
+                    <li><strong>Non-Linear data structure: </strong>Is a type of data structure where data elements 
+                    are not arranged in a sequential or linear manner. In other words, data elements are not 
+                    connected to their previous and next elements in a specific order. Non-linear data structures 
+                    can be thought of as structures that have elements that are connected in a way that does not 
+                    form a straight line. Examples of non-linear data structures include <strong>trees, graphs, 
+                    and heaps</strong>. These structures are commonly used in programming to represent complex 
+                    relationships between data elements or to efficiently perform certain operations on data.</li>
+                </ul>
+                <hr/>
                 <li><strong>Node Linking: </strong>
                 Often, due to the data structure, nodes may only be linked to from a single 
                 other node. This makes it very important to consider how you implement modifying or 
@@ -424,10 +553,10 @@
                 <li><strong>Linked List: </strong>
                 Are one of the basic data structures used in computer science. They have 
                 many direct applications and serve as the foundation for more complex data structures.
-                The list is comprised of a series of nodes as shown in the diagram. The head node is the 
-                node at the beginning of the list. Each node contains data and a link (or pointer) to the 
-                next node in the list. The list is terminated when a node’s link is null. This is called
-                the tail node.
+                The list is comprised of a series of nodes. The <strong>head node</strong> is the 
+                node at the beginning of the list. Each node contains <strong>data and a link (or pointer)</strong> 
+                to the next node in the list. The list is terminated when a node’s link is null. This is called
+                the <strong>tail node</strong>.
                 Consider a one-way air travel itinerary. The trip could involve traveling through several
                 airports (nodes) connected by air travel segments (links). In this example, the initial 
                 departure city is the head node and the final arrival city is the tail node.
@@ -763,6 +892,7 @@
                     There are four new variables created in the function regardless of the input, 
                     which means that it has a constant space complexity of O(1).                    
                     </li>
+                    <hr/>
                 </div>
                 <li><strong>Two-Pointer Linked List Techniques: </strong>
                 Many common singly linked list problems can be solved by iterating with two pointers. 
@@ -997,13 +1127,1451 @@
                     <li><a href="https://www.codecademy.com/code-challenges/code-challenge-swap-elements-in-a-linked-list-javascript" target="_blank">Intermediate - Swap Elements in a Linked List</a></li>
                     <li><a href="https://leetcode.com/problemset/all/?search=singly%20linked%20list" target="_blank">More Practice Problems</a></li>
                 </ul>
-                <li><strong>Doubly Linked Lists: </strong>Get started with doubly linked lists!
-                While a singly linked list consists of nodes with links from the one node to 
-                the next, a doubly linked list also has a link to the node before it. These 
-                previous links, along with the added tail property, allow you to iterate backward 
-                through the list as easily as you could iterate forward through the singly linked list.</li>
-            </ul>
-        </div>
+                <li><strong>Doubly Linked Lists: </strong>
+                Like a singly linked list, a doubly linked list is comprised of a series of nodes. 
+                Each node contains data and two links (or pointers) to the next and previous nodes 
+                in the list. The head node is the node at the beginning of the list, and the tail 
+                node is the node at the end of the list. The head node’s previous pointer is set to 
+                null and the tail node’s next pointer is set to null.
+                Think of your daily commute on the subway as a real-world example of a doubly linked 
+                list. Your home is the head of the list, your place of work is the tail, and every 
+                stop in between is another node in the list. In the morning when you take the subway 
+                to get to work, you are traversing the list from the head to the tail, using the 
+                stop’s next pointer. While this can also be done using a singly linked list, a doubly 
+                linked list will also allow you to traverse back through the list easily, using the 
+                stop’s previous pointer. 
+                Your <strong>browser history</strong> is another example of a doubly linked list. When you open your 
+                browser, the page that you land on is the head of your list. As you click on things 
+                and navigate to new pages, you are moving forward and adding to the tail of your list. 
+                If you ever want to go back to something you’ve already visited, you can use the “back” 
+                button to move backward through your list.
+                You will take the exact same route to get home, just in reverse.
+                Common operations on a doubly linked list may include:</li>
+                <ul>
+                    <li><strong>Adding nodes</strong> to both ends of the list</li>
+                    <li><strong>Removing nodes</strong> from both ends of the list</li>
+                    <li><strong>Finding, and removing, a node</strong> from anywhere in the list</li>
+                    <li><strong>Traversing (or traveling through)</strong> the list</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode97" onclick="showCode('displayCode97', 'showCode97')">Display</button>
+                <div id="displayCode97">
+                    <button onclick="closeCode('displayCode97', 'showCode97')">Close</button>
+                    <li><strong>Adding nodes to both ends of the list</strong></li>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode88" onclick="showCode('displayCode88', 'showCode88')">Display</button>
+                    <div id="displayCode88">
+                        <button onclick="closeCode('displayCode88', 'showCode88')">Close</button>
+                        <li><strong>Adding to the List</strong>
+                        In a doubly linked list, adding to the list is a little complicated as 
+                        we have to keep track of and set the node’s previous pointer as well as 
+                        update the tail of the list if necessary.</li>
+                        <li><strong>Adding to the Head</strong>
+                        When adding to the head of the doubly linked list, we first need to check 
+                        if there is a current head to the list. If there isn’t, then the list is 
+                        empty, and we can simply make our new node both the head and tail of the 
+                        list and set both pointers to null. If the list is not empty, then we will:</li>
+                        <ul>
+                            <li>Set the current head’s previous pointer to our new head</li>
+                            <li>Set the new head’s next pointer to the current head</li>
+                            <li>Set the new head’s previous pointer to null</li>
+                        </ul>
+                        <li><strong>Adding to the Tail</strong>
+                        Similarly, there are two cases when adding a node to the tail of a doubly 
+                        linked list. If the list is empty, then we make the new node the head and 
+                        tail of the list and set the pointers to null. If the list is not empty, then we:</li>
+                        <ul>
+                            <li>Set the current tail’s next pointer to the new tail</li>
+                            <li>Set the new tail’s previous pointer to the current tail</li>
+                            <li>Set the new tail’s next pointer to null</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <li><strong>Removing nodes from both ends of the list</strong></li>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode89" onclick="showCode('displayCode89', 'showCode89')">Display</button>
+                        <div id="displayCode89">
+                        <button onclick="closeCode('displayCode89', 'showCode89')">Close</button>
+                        <li><strong>Removing from the Head and Tail</strong>
+                        Due to the extra pointer and tail property, removing the head from a doubly 
+                        linked list is slightly more complicated than removing the head from a singly
+                        linked list. However, the previous pointer and tail property make it much 
+                        simpler to remove the tail of the list, as we don’t have to traverse the 
+                        entire list to be able to do it.</li>
+                        <li><strong>Removing the Head</strong>
+                        Removing the head involves updating the pointer at the beginning of the list. 
+                        We will set the previous pointer of the new head (the element directly after 
+                        the current head) to null, and update the head property of the list. If the 
+                        head was also the tail, the tail removal process will occur as well.</li>
+                        <li><strong>Removing the Tail</strong>
+                        Similarly, removing the tail involves updating the pointer at the end of the 
+                        list. We will set the next pointer of the new tail (the element directly 
+                        before the tail) to null, and update the tail property of the list. If the 
+                        tail was also the head, the head removal process will occur as well.</li>
+                    </div>
+                    <li><strong>Finding, and removing, a node from anywhere in the list</strong></li>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode90" onclick="showCode('displayCode90', 'showCode90')">Display</button>
+                    <div id="displayCode90">
+                        <button onclick="closeCode('displayCode90', 'showCode90')">Close</button>
+                        <li><strong>Removing from the Middle of the List: </strong>
+                        It is also possible to remove a node from the middle of the list. Since 
+                        that node is neither the head nor the tail of the list, there are two 
+                        pointers that must be updated:</li>
+                        <ul>
+                            <li>We must set the removed node’s preceding node’s next pointer to its 
+                            following node.</li>
+                            <li>We must set the removed node’s following node’s previous pointer 
+                            to its preceding node.</li>
+                        </ul>
+                        <li>There is no need to change the pointers of the removed node, as updating 
+                        the pointers of its neighboring nodes will remove it from the list. If no 
+                        nodes in the list are pointing to it, the node is orphaned.</li>
+                    </div>
+                    <li><strong>Traversing (or traveling through) the list</strong></li>
+                    <p class="center"><strong>Example:</strong></p>
+                    <button id="showCode91" onclick="showCode('displayCode91', 'showCode91')">Display</button>
+                    <div id="displayCode91">
+                        <button onclick="closeCode('displayCode91', 'showCode91')">Close</button>
+
+                    </div>
+                </div>
+                <li><strong>Doubly Linked Lists Implementation</strong></li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode93" onclick="showCode('displayCode93', 'showCode93')">Display</button>
+                <div id="displayCode93">
+                    <button onclick="closeCode('displayCode93', 'showCode93')">Close</button>
+                    <li><strong>Node Class</strong></li>
+                    <pre>
+                        <code>
+                class Node {
+                    constructor(data) {
+                        this.data = data;
+                        this.next = null;
+                        this.previous = null;
+                    }
+                    
+                    setNextNode(node) {
+                        if (node instanceof Node || node === null) {
+                            this.next = node;
+                        } else {
+                            throw new Error('Next node must be a member of the Node class')
+                        }
+                    }
+                    
+                    setPreviousNode(node) {
+                        if (node instanceof Node || node === null) {
+                            this.previous = node;
+                        } else {
+                            throw new Error('Previous node must be a member of the Node class')
+                        }
+                    }
+                    
+                    getNextNode() {
+                        return this.next;
+                    }
+                    
+                    getPreviousNode() {
+                        return this.previous;
+                    }
+                }
+                    
+                    module.exports = Node;
+                        </code>
+                    </pre>
+                    <li><strong>DoublyLinkedList.js</strong></li>
+                    <pre>
+                        <code>
+                const Node = require('./Node');
+
+                class DoublyLinkedList {
+                    constructor() {
+                        this.head = null;
+                        this.tail = null;
+                    }
+                
+                    addToHead(data) {
+                        const newHead = new Node(data);
+                        const currentHead = this.head;
+                        if (currentHead) {
+                            currentHead.setPreviousNode(newHead);
+                            newHead.setNextNode(currentHead);
+                        }
+                        this.head = newHead;
+                        if (!this.tail) {
+                            this.tail = newHead;
+                        }
+                    }
+                
+                    addToTail(data) {
+                        const newTail = new Node(data);
+                        const currentTail = this.tail;
+                        if (currentTail) {
+                            currentTail.setNextNode(newTail);
+                            newTail.setPreviousNode(currentTail);
+                        }
+                        this.tail = newTail;
+                        if (!this.head) {
+                            this.head = newTail;
+                        }
+                    }
+                
+                    removeHead() {
+                        const removedHead = this.head;
+                        if (!removedHead) {
+                            return;
+                        }
+                        this.head = removedHead.getNextNode();
+                        if (this.head) {
+                            this.head.setPreviousNode(null);
+                        }
+                        if (removedHead === this.tail) {
+                            this.removeTail();
+                        }
+                        return removedHead.data;
+                    }
+                
+                    removeTail() {
+                        const removedTail = this.tail;
+                        if (!removedTail) {
+                            return;
+                        }
+                        this.tail = removedTail.getPreviousNode();
+                        if (this.tail) {
+                            this.tail.setNextNode(null);
+                        }
+                        if (removedTail === this.head) {
+                            this.removeHead();
+                        }
+                        return removedTail.data;
+                    }
+                
+                    removeByData(data) {
+                        let nodeToRemove;
+                        let currentNode = this.head;
+                        while (currentNode !== null) {
+                            if (currentNode.data === data) {
+                                nodeToRemove = currentNode;
+                                break;
+                            }
+                            currentNode = currentNode.getNextNode();
+                        }
+                        if (!nodeToRemove) {
+                            return null;
+                        }
+                        if (nodeToRemove === this.head) {
+                            this.removeHead();
+                        } else if (nodeToRemove === this.tail) {
+                            this.removeTail();
+                        } else {
+                            const nextNode = nodeToRemove.getNextNode();
+                            const previousNode = nodeToRemove.getPreviousNode();
+                            nextNode.setPreviousNode(previousNode);
+                            previousNode.setNextNode(nextNode);
+                        }
+                        return nodeToRemove;
+                    }
+                
+                    printList() {
+                        let currentNode = this.head;
+                        let output = '< head > ';
+                        while (currentNode !== null) {
+                            output += currentNode.data + ' ';
+                            currentNode = currentNode.getNextNode();
+                        }
+                        output += '< tail >';
+                        console.log(output);
+                    }
+                }
+                
+                module.exports = DoublyLinkedList;
+                        </code>
+                    </pre>
+                    <li><strong>index.js</strong></li>
+                    <pre>
+                        <code>
+            const Node = require('./Node');
+            const DoublyLinkedList = require('./DoublyLinkedList');
+            
+            const subway = new DoublyLinkedList();
+            
+            subway.addToHead('TimesSquare');
+            subway.addToHead('GrandCentral');
+            subway.addToHead('CentralPark');
+            
+            subway.addToTail('PennStation');
+            subway.addToTail('WallStreet');
+            subway.addToTail('BrooklynBridge');
+            
+            subway.removeHead();
+            subway.removeTail();
+            
+            subway.removeByData('TimesSquare');
+            subway.printList();
+                        </code>
+                    </pre>
+                    <hr/>
+                </div>
+                <li><strong>Additional Resources: </strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/list?slide=6" target="_blank">Visualizer: Doubly-Linked List</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=ChWWEncl76Y" target="_blank">Video: Linked List Data Structure in Javascript</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/doubly-linked-list" target="_blank">Cheatsheet: Doubly-Linked List</a></li>
+                </ul>
+                <li><strong>Code Challenges: </strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Intermediate - Remove Nth Node From End of List</a></li>
+                    <li><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank">Intermediate - Reverse Linked List II</a></li>
+                    <li><a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/" target="_blank">Intermediate - Flatten a Multilevel Doubly Linked List</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=linked%20list" target="_blank">More Practice Problems</a></li>
+                </ul>
+                <hr/>
+                <h3>Queues</h3>
+                <li>A <strong>queue</strong> is a linear collection of nodes that exclusively 
+                adds (enqueues) nodes to the tail, and removes (dequeues) nodes from the head of the 
+                queue. They can be implemented using different underlying data structures, but one of 
+                the more common methods is to use a singly linked list, which is what you will be using 
+                for your JavaScript Queue class. Think of the queue data structure as an actual queue, 
+                or line, in a grocery store. The person at the front gets to leave the line first, and 
+                every person who joins the line has to join in the back.</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode94" onclick="showCode('displayCode94', 'showCode94')">Display</button>
+                <div id="displayCode94">
+                    <button onclick="closeCode('displayCode94', 'showCode94')">Close</button>
+                    <li>A queue is a data structure which contains an ordered set of data.
+                    Queues provide three methods for interaction:</li>
+                    <ul>
+                        <li><strong>Enqueue:</strong> adds data to the “back” or end of the queue</li>
+                        <li><strong>Dequeue:</strong> provides and removes data from the “front” or beginning of the queue</li>
+                        <li><strong>Peek:</strong> reveals data from the “front” of the queue without removing it</li>
+                    </ul>
+                    <li>This data structure mimics a physical queue of objects like a line of people buying 
+                    movie tickets. Each person has a name (the data). The first person to enqueue, or
+                    get into line, is both at the front and back of the line. As each new person enqueues, 
+                    they become the new back of the line.
+                    When the cashier serves someone, they begin at the front of the line (or people 
+                    would get very mad!). Each person served is dequeued from the front of the line, 
+                    they purchase a ticket and leave.
+                    If they just want to know who is next in line, they can peek and get their name 
+                    without removing them from the queue.
+                    The first person in the queue is the first to be served. Queues are a First In, 
+                    First Out or FIFO structure.</li>
+                    <li><strong>Queues Implementation</strong>
+                    Queues can be implemented using a linked list as the underlying data structure. 
+                    The front of the queue is equivalent to the head node of a linked list and the 
+                    back of the queue is equivalent to the tail node.
+                    Since operations are only allowed affecting the front or back of the queue, any 
+                    traversal or modification to other nodes within the linked list is disallowed. 
+                    Since both ends of the queue must be accessible, a reference to both the head 
+                    node and the tail node must be maintained.
+                    One last constraint that may be placed on a queue is its length. If a queue has 
+                    a limit on the amount of data that can be placed into it, it is considered a bounded queue.
+                    Similar to stacks, attempting to enqueue data onto an already full queue will 
+                    result in a queue overflow. If you attempt to dequeue data from an empty queue,
+                    it will result in a queue underflow.</li>
+                    <li><strong>Queue.js</strong></li>
+                    <pre>
+                        <code>
+                const LinkedList = require("./LinkedList");
+
+                class Queue {
+                    constructor(maxSize = Infinity) {
+                        this.queue = new LinkedList();
+                        this.maxSize = maxSize;
+                        this.size = 0;
+                    }
+
+                    isEmpty() {
+                        return this.size === 0;
+                    }
+
+                    hasRoom() {
+                        return this.size < this.maxSize;
+                    }
+
+                    enqueue(data) {
+                        if (this.hasRoom()) {
+                            this.queue.addToTail(data);
+                            this.size++;
+                        } else {
+                            throw new Error("Queue is full!");
+                        }
+                    }
+
+                    dequeue() {
+                        if (!this.isEmpty()) {
+                            const data = this.queue.removeHead();
+                            this.size--;
+                            return data;
+                        } else {
+                            throw new Error("Queue is empty!");
+                        }
+                    }
+                }
+
+                module.exports = Queue;
+                        </code>
+                    </pre>
+                    <li><strong>scripts.js</strong></li>
+                    <pre>
+                        <code>
+                    const runway = require('./runway');
+
+                    const flights = [
+                        'Botswana Bird flight #345',
+                        'Singapore Skies flight #890',
+                        'Mexico Mirage flight #234',
+                        'Greenland Flying Seals flight #567'
+                    ];
+                    
+                    // Enqueue runway with planes
+                    const departing = runway.load(flights);
+                    // Clear each plane to takeoff
+                    runway.clear(departing);
+                        </code>
+                    </pre>
+                    <li><strong>runway.js</strong></li>
+                    <pre>
+                        <code>
+            const Queue = require('./Queue');
+
+            const load = flights => {
+                const runway = new Queue(3);
+                flights.forEach(flight => {
+                    try {
+                        runway.enqueue(flight);
+                        console.log(`${flight} taxi to runway.`);
+                    } catch(e) {
+                        console.log('Runway full!');
+                    }
+                });
+            return runway;
+            };
+
+            const clear = runway => {
+                while(runway.isEmpty() === false) {
+                    const cleared = runway.dequeue()
+                    console.log('\nFlights wait...\n');
+                    console.log(`${cleared}, is cleared for takeoff!\n${cleared} in air.`);
+                }
+
+                console.log('\nAll planes took off, runway clear.');
+            };
+
+            module.exports = { load, clear };
+                        </code>
+                    </pre>
+                    <hr/>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/list?slide=5" target="_blank">Visualizer: Queue</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=zp6pBNbUB2U" target="_blank">Video: Queue Datastructure</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/queue" target="_blank">Cheatsheet: Queue</a></li>
+                </ul>
+                <li><strong>Code Challenges:</strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/number-of-recent-calls" target="_blank">Beginner - Number of Recent Calls</a></li>
+                    <li><a href="https://leetcode.com/problems/time-needed-to-buy-tickets" target="_blank">Beginner - Time Needed to Buy Tickets</a></li>
+                    <li><a href="https://leetcode.com/problems/reveal-cards-in-increasing-order" target="_blank">Intermediate - Reveal Cards in Increasing Order</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=queue" target="_blank">More Practice Problems</a></li>
+                </ul>
+                <hr/>
+                <h3>Stacks</h3>
+                <li><strong>Stacks</strong> are another data structure with a perfectly descriptive name. 
+                Like a queue, a stack is a linear collection of nodes that adds (pushes) 
+                data to one end of the data structure (let’s say the top, for the purposes 
+                of this example). However, unlike a queue, a stack removes data (pops) from 
+                the same end of the data structure. Think of it as a stack of books, where 
+                you can only pick up the top book, and add a new book to the top.
+                Stacks are often thought of as a “First In, Last Out” (FILO) data structure — 
+                the first book you add to the stack won’t be removed until all other books are 
+                removed from the stack.
+                Queues on the other hand are thought of as a “First In, First Out” (FIFO) data 
+                structure — the first person in line will be the first person to leave the line.
+                A real-world computing example of a stack is a web browser’s back/forward function.</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode95" onclick="showCode('displayCode95', 'showCode95')">Display</button>
+                <div id="displayCode95">
+                    <button onclick="closeCode('displayCode95', 'showCode95')">Close</button>
+                    <li><strong>Stacks Introduction: </strong>
+                    A stack is a data structure which contains an ordered set of data.
+                    Stacks mimic a physical “stack” of objects. Consider a set of gym weights.
+                    Each plate has a weight (the data). The first plate you add, or push, onto 
+                    the floor is both the bottom and top of the stack. Each weight added becomes 
+                    the new top of the stack.
+                    At any point, the only weight you can remove, or pop, from the stack is the 
+                    top one. You can peek and read the top weight without removing it from the stack.
+                    The last plate that you put down becomes the first, and only, one that you can 
+                    access. This is a Last In, First Out or LIFO structure. A less frequently used 
+                    term is First In, Last Out, or FILO.
+                    Stacks provide three methods for interaction:</li>
+                    <ul>
+                        <li><strong>Push:</strong> adds data to the “top” of the stack</li>
+                        <li><strong>Pop:</strong> returns and removes data from the “top” of the stack</li>
+                        <li><strong>Peek:</strong> returns data from the “top” of the stack without 
+                        removing it</li>
+                    </ul>
+                    <li><strong>Stacks Implementation: </strong>
+                    Stacks can be implemented using a linked list as the underlying data structure 
+                    because it’s more efficient than a list or array (which is implement using node).
+                    Depending on the implementation, the top of the stack is equivalent to the head 
+                    node of a linked list and the bottom of the stack is equivalent to the tail node.
+                    A constraint that may be placed on a stack is its size. This is done to limit and 
+                    quantify the resources the data structure will take up when it is “full”.
+                    Attempting to push data onto an already full stack will result in a stack overflow. 
+                    Similarly, if you attempt to pop data from an empty stack, it will result in a stack
+                    underflow.</li>
+                    <hr/>
+                    <li><strong>Node.js</strong></li>
+                    <pre>
+                        <code>
+            class Node {
+                constructor(data) {
+                    this.data = data;
+                    this.next = null;
+                }
+                
+                setNextNode(node) {
+                    if (!(node instanceof Node)) {
+                    throw new Error('Next node must be a 
+                                member of the Node class');
+                    }
+                    this.next = node;
+                }
+                
+                setNext(data) {
+                    this.next = data;
+                }
+                
+                getNextNode() {
+                    return this.next;
+                }
+            }
+                
+            module.exports = Node;
+                        </code>
+                    </pre>
+                    <li><strong>LinkedList.js</strong></li>
+                    <pre>
+                        <code>
+            const Node = require('./Node');
+
+            class LinkedList {
+                    constructor() {
+                    this.head = null;
+                }
+            
+                addToHead(value) {
+                    const nextNode = new Node(value);
+                    const currentHead = this.head;
+                    this.head = nextNode;
+                    if (currentHead) {
+                        this.head.setNextNode(currentHead);
+                    }
+                }
+            
+                addToTail(value) {
+                    let lastNode = this.head;
+                    if (!lastNode) {
+                        this.head = new Node(value);
+                    } else {
+                        let temp = this.head;
+                        while (temp.getNextNode() !== null) {
+                            temp = temp.getNextNode();
+                        }
+                        temp.setNextNode(new Node(value));
+                    }
+                }
+            
+                findNodeIteratively(comparator) {
+                    let current = this.head;
+                
+                    while (current) {
+                        if (comparator(current.value)) {
+                        return current;
+                        }
+                        current = current.getNextNode();
+                    }
+                    return null;
+                }
+            
+                removeHead() {
+                    const removedHead = this.head;
+                    if (!removedHead) return;
+                
+                    if (removedHead.next) {
+                        this.head = removedHead.next;
+                    }
+                    return removedHead.data;
+                }
+            
+                get size() {
+                    let count = 0;
+                    let currentNode = this.head;
+                
+                    while (currentNode !== null) {
+                        count++;
+                        currentNode = currentNode.next;
+                    }
+                    return count;
+                }
+            }
+            
+            module.exports = LinkedList;
+                        </code>
+                    </pre>
+                    <li><strong>Stack.js</strong></li>
+                    <pre>
+                        <code>
+            const LinkedList = require('./LinkedList');
+
+            class Stack {
+                constructor(maxSize = Infinity) {
+                    this.stack = new LinkedList();
+                    this.maxSize = maxSize;
+                    this.size = 0;
+                }
+            
+                // Add helper methods below this line
+                hasRoom() {
+                    return this.size < this.maxSize;
+                }
+                
+                isEmpty() {
+                    return this.size === 0;
+                }
+            
+                push(value) {
+                    if (this.hasRoom()) {
+                        this.stack.addToHead(value);
+                        this.size++;
+                    } else {
+                        throw new Error('Stack is full');
+                    }
+                }
+            
+                pop() {
+                    if (!this.isEmpty()) {
+                        const value = this.stack.removeHead();
+                        this.size--;
+                        return value;
+                    } else {
+                        throw new Error('Stack is empty');
+                    }
+                }
+            
+                peek() {
+                    if (!this.isEmpty()) {
+                        return this.stack.head.data;
+                    } else {
+                        return null;
+                    }
+                } 
+            }
+            
+            module.exports = Stack;
+                        </code>
+                    </pre>
+                    <li><strong>main.js</strong></li>
+                    <pre>
+                        <code>
+            const Stack = require('./Stack');
+
+            // 1. Define an empty pizza stack with a maxSize of 6
+            const pizzaStack = new Stack(6);
+            
+            // 2. Add pizzas as they are ready until we fill up the stack
+            for (let i=1; i < 7; i++) {
+                pizzaStack.push('Pizza #'+i);
+            }
+            
+            // 3. Try pushing another pizza to check for overflow
+            try {
+                pizzaStack.push('Pizza #7');
+            } catch(e) {
+                console.log(e);
+            }
+            
+            // 4. Peek at the pizza on the top of stack and log its value
+            console.log('The first pizza to deliver is', pizzaStack.peek());
+            
+            // 5. Deliver all the pizzas from the top of the stack down
+            for (let i=0; i < 6; i++) {
+                pizzaStack.pop();
+            }
+            
+            // 6. Try popping another pizza to check for empty stack
+            try {
+                pizzaStack.pop();
+            } catch(e) {
+                console.log(e);
+            }                
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/list?slide=4" target="_blank">Visualizer: Stacks</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=1AJ4ldcH2t4" target="_blank">Video: Stacks and Queues</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/stack" target="_blank">Cheatsheet: Stacks</a></li>
+                </ul>
+                <li><strong>Code Challenges:</strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/baseball-game" target="_blank">Beginner - Baseball Game</a></li>
+                    <li><a href="https://leetcode.com/problems/valid-parentheses" target="_blank">Beginner - Valid Parentheses</a></li>
+                    <li><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank">Intermediate - Daily Temperatures</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=stack" target="_blank">More Practice Problems</a></li>
+                </ul>
+                <hr/>
+                <h3>Hash Maps</h3>
+                <li><strong>Hash maps</strong> map keys to their related values, and are one of the most efficient 
+                data structures when it comes to retrieving stored data. 
+                This is because the key associated with every value
+                added allows for faster retrieval later on. When you come across a coding problem that requires 
+                you to store and retrieve data, keep in mind that hash maps will often be the most efficient 
+                data structure for that scenario. Hashing is a technique used to map large data sets of arbitrary 
+                size to smaller data sets of a fixed size.</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode98" onclick="showCode('displayCode98', 'showCode98')">Display</button>
+                <div id="displayCode98">
+                    <button onclick="closeCode('displayCode98', 'showCode98')">Close</button>
+                    <li><strong>Table: </strong>
+                    A data structure’s main utility is allowing for data to be represented in a way that resembles 
+                    the way people will use that data. In some cases, the primary function of that data is that it 
+                    will be sequenced through like a list and so we use a data structure that allows for easier 
+                    iteration, like a linked list. In others, the usefulness comes from specifying interrelationships
+                    within the data. In the case of tabular data there is a relationship between the elements of a row. Each column 
+                    corresponds to a different feature of the row. Let’s consider the following table.
+                    Each State on the left corresponds to a specific State Flower given on the right. 
+                    For instance, “New York” corresponds to “Rose”. This kind of table, with only two 
+                    columns, represents a special relationship that mathematicians would call a “map”. 
+                    This table maps states to state flowers, but many other relationships can be modeled with maps.</li>
+                    <table>
+                        <tr>
+                            <th>State</th>
+                            <th>State Flower</th>
+                        </tr>
+                        <tr>
+                            <td>Alabama</td>
+                            <td>Camellia</td>
+                        </tr>
+                        <tr>
+                            <td>Hawaii</td>
+                            <td>Hibiscus</td>
+                        </tr>
+                        <tr>
+                            <td>Mississippi</td>
+                            <td>Magnolia</td>
+                        </tr>
+                        <tr>
+                            <td>New York</td>
+                            <td>Rose</td>
+                        </tr>
+                        <tr>
+                            <td>West Virginia</td>
+                            <td>Rhododendron</td>
+                        </tr>
+                    </table>   
+                    <li><strong>Maps: </strong>
+                    Being a map means relating two pieces of information, but a map also has one further 
+                    requirement. In the below table we map different jazz musicians to the state where they were born. 
+                    When talking about a map we describe the inputs (jazz musicians, in this case) as the 
+                    keys to the map. The output (here the state of origin) is said to be the value at a given key.
+                    In order for a relationship to be a map, every key that is used can only be the key to 
+                    a single value. In this example every musician can only have one state that they were 
+                    born in, so it works. There doesn’t need to be a value for every possible key, there 
+                    just can’t be more than one value for a given key. For instance, Miles Davis can’t be 
+                    born in both Illinois and Kentucky.
+                    If we looked at this relationship the other way, with states as the keys and jazz musicians 
+                    born in a given state as values, this would not be a map. In the example above, if we look 
+                    at “North Carolina” and try to get the jazz musician from that state, we’ll find it very 
+                    difficult to do. Our relationship would give two different outputs: “John Coltrane” and 
+                    “Thelonious Monk”. We would still be able to describe that relationship with a table, but it wouldn’t be a
+                    map, and so we can’t save such a relationship using a hash map.</li>
+                    <table>
+                        <tr>
+                            <th>Musician</th>
+                            <th>State of Birth</th>
+                        </tr>
+                        <tr>
+                            <td>Miles Davis</td>
+                            <td>Illinois</td>
+                        </tr>
+                        <tr>
+                            <td>John Coltrane</td>
+                            <td>North Carolina</td>
+                        </tr>
+                        <tr>
+                            <td>Duke Ellington</td>
+                            <td>Ohio</td>
+                        </tr>
+                        <tr>
+                            <td>Dizzy Gillespie</td>
+                            <td>South Carolina</td>
+                        </tr>
+                        <tr>
+                            <td>Thelonious Monk</td>
+                            <td>North Carolina</td>
+                        </tr>
+                    </table>
+                    <li><strong>Hash Map Methodology: </strong>
+                    In the case of a map between two things, we don’t really care about the exact sequence 
+                    of the data. We only care that a given input, when fed into the map, gives the accurate 
+                    output. Developing a data structure that performs this is tricky because computers care 
+                    much more about values than relationships. A computer doesn’t really care to memorize the 
+                    astrological signs of all of our friends, so we need to trick the computer into caring.
+                    We perform this trick using a structure that our computer is already familiar with, an 
+                    array. An array uses indices to keep track of values in memory, so we’ll need a way of 
+                    turning each key in our map to an index in our array.
+                    Imagine we want our computer to remember that our good friend Joan McNeil is a Libra. We 
+                    take her name, and we turn that name into a number. Let’s say that the number we correspond 
+                    with the name “Joan McNeil” is 17. We find the 17th index of the array we’re using to store
+                    our map and save the value (Libra) there.
+                    How did we get 17, though? We use a special function that turns data like the string “Joan 
+                    McNeil” into a number. This function is called a <strong>hashing function</strong>, or a hash function. 
+                    Hashing functions are useful in many domains, but for our data structure the most important
+                    aspect is that a hashing function returns an array index as output.</li>
+                    <li><strong>Hash Functions: </strong>
+                    A hash function takes a string (or some other type of data) as input and returns an array 
+                    index as output. In order for it to return an array index, our hash map implementation needs 
+                    to know the size of our array. If the array we are saving values into only has 4 slots, our 
+                    hash map’s hashing method should not return an index bigger than that.
+                    In order for our hash map implementation to guarantee that it returns an index that fits into 
+                    the underlying array, the hash function will first compute a value using some scoring metric: 
+                    this is the hash value, hash code, or just the hash. Our hash map implementation then takes 
+                    that hash value <a href="https://en.wikipedia.org/wiki/Modulo" target="_blank">mod</a>
+                    the size of the array. This guarantees that the value returned by the 
+                    hash function can be used as an index into the array we’re using.
+                    It is actually a defining feature of all hash functions that they greatly reduce any possible 
+                    inputs (any string you can imagine) into a much smaller range of potential outputs (an integer 
+                    smaller than the size of our array). For this reason, hash functions are also known as 
+                    <i>compression functions</i>. Much like an image that has been shrunk to a lower resolution, the output of a hash function 
+                    contains less data than the input. Because of this, hashing is not a reversible process. 
+                    With just a hash value it is impossible to know for sure the key that was plugged into the 
+                    hashing function.</li>
+                    <li><strong>How to Write a Hash Function: </strong>
+                    A hash function needs to be simple by design. Performing complex 
+                    mathematical calculations that our hash table needs to compute every time it wants to 
+                    assign or retrieve a value for a key will significantly damage a hash table’s performance 
+                    for two things that it should be able to do quickly.
+                    Hash functions also need to be able to take whatever types of data we want to use as a key.
+                    We only discussed strings, a very common use case, but it’s possible to use numbers as hash 
+                    table keys as well.
+                    A very common hash function for integers, for example, is to perform the modular operation
+                    on it to make sure it’s less than the size of the underlying array. If the integer is already
+                    small enough to be an index into the array, there’s nothing to be done.
+                    Many hash functions implementations for strings take advantage of the fact that strings 
+                    are represented internally as numerical data. Frequently a hash function will perform a 
+                    shift of the data bitwise, which is computationally simple for a computer to do but also 
+                    can predictably assign numbers to strings.</li>
+                    <li><strong>Basic Hash Maps: </strong>
+                    Now that we have all of the main ingredients for a hash map, let’s put them all together. 
+                    First, we need some sort of associated data that we’re hoping to preserve. Second, we need 
+                    an array of a fixed size to insert our data into. Lastly, we need a hash function that 
+                    translates the keys of our array into indexes into the array. The storage location at the 
+                    index given by a hash is called the hash bucket.
+                    Let’s use the following example for our hash map:</li>
+                    <ul>
+                        <table>
+                            <tr>
+                                <th>Key: Album Name</th>
+                                <th>Value: Release Year</th>
+                            </tr>
+                            <tr>
+                                <td>The Low End Theory</td>
+                                <td>1991</td>
+                            </tr>
+                            <tr>
+                                <td>Midnight Marauders</td>
+                                <td>1993</td>
+                            </tr>
+                            <tr>
+                                <td>Beats, Rhymes and Life</td>
+                                <td>1996</td>
+                            </tr>
+                            <tr>
+                                <td>The Love Movement</td>
+                                <td>1998</td>
+                            </tr>
+                        </table>
+                        <li>Our map here relates to several A Tribe Called Quest studio albums with the year they 
+                        were produced in. We’ll need an array of at least size 4 to contain all of these elements.
+                        And a way to turn each album name into an index into that array.
+                        For each album name, find that album’s hash by performing the following calculation:
+                        <i>hash_value = ((# of lowercase 'a's in album name) + (# of number of lowercase 'e's in album name))</i>
+                        And then take that hash and calculate an array index by performing hash_value mod 4. Following
+                        these steps we get the following schema:</li>
+                        <table>
+                            <tr>
+                                <th>Album Name</th>
+                                <th>Hash</th>
+                                <th>Hash mod 4</th>
+                                <th>Release Year</th>
+                            </tr>
+                            <tr>
+                                <td>The Low End Theory</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>1991</td>
+                            </tr>
+                            <tr>
+                                <td>Midnight Marauders</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>1993</td>
+                            </tr>
+                            <tr>
+                                <td>Beats, Rhymes and Life</td>
+                                <td>5</td>
+                                <td>1</td>
+                                <td>1996</td>
+                            </tr>
+                            <tr>
+                                <td>The Love Movement</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>1998</td>
+                            </tr>
+                        </table>
+                        <li>First, the key is translated into the hash using our hashing function. Then, 
+                        our hash map performs modulo arithmetic to turn the hash into an array index.</li>
+                    </ul>
+                    <li><strong>Collisions: </strong>
+                    Remember hash functions are designed to compress data from a large number of possible 
+                    keys to a much smaller range. Because of this compression, it’s likely that our hash 
+                    function might produce the same hash for two different keys. This is known as a hash 
+                    collision. There are several strategies for resolving hash collisions.
+                    The first strategy we’re going to learn about is called <strong>separate chaining</strong>. The separate 
+                    chaining strategy avoids collisions by updating the underlying data structure. Instead 
+                    of an array of values that are mapped to by hashes, it could be an array of linked lists.</li>
+                    <ul>
+                        <li><strong>Separate Chaining: </strong>
+                        A hash map with a linked list separate chaining strategy follows a similar flow to 
+                        the hash maps that have been described so far. The user wants to assign a value to 
+                        a key in the map. The hash map takes the key and transforms it into a hash code. 
+                        The hash code is then converted into an index to an array using the modulus operation. 
+                        If the value of the array at the hash function’s returned index is empty, a new linked 
+                        list is created with the value as the first element of the linked list. If a linked 
+                        list already exists at the address, append the value to the linked list given.
+                        This is effective for hash functions that are particularly good at giving unique indices, 
+                        so the linked lists never get very long. But in the worst-case scenario, where the hash 
+                        function gives all keys the same index, lookup performance is only as good as it would 
+                        be on a linked list. Hash maps are frequently employed because looking up a value (for 
+                        a given key) is quick. Looking up a value in a linked list is much slower than a perfect,
+                        collision-free hash map of the same size. A hash map that uses separate chaining with 
+                        linked lists but experiences frequent collisions loses one of its most essential features.</li>
+                        <li><strong>Saving Keys: </strong>
+                        A hash collision resolution strategy like separate chaining involves assigning two 
+                        keys with the same hash to different parts of the underlying data structure. How do
+                        we know which values relate back to which keys? If the linked list at the array index 
+                        given by the hash has multiple elements, they would be indistinguishable to someone 
+                        with just the key.
+                        If we save both the key and the value, then we will be able to check against the saved 
+                        key when we’re accessing data in a hash map. By saving the key with the value, we can 
+                        avoid situations in which two keys have the same hash code where we might not be able 
+                        to distinguish which value goes with a given key.
+                        Now, when we go to read or write a value for a key we do the following: calculate the 
+                        hash for the key, find the appropriate index for that hash, and begin iterating through
+                        our linked list. For each element, if the saved key is the same as our key, return the 
+                        value. Otherwise, continue iterating through the list comparing the keys saved in that 
+                        list with our key.</li>
+                        <li><strong>Open Addressing: Linear Probing: </strong>
+                        Another popular hash collision strategy is called open addressing. In open addressing 
+                        we stick to the array as our underlying data structure, but we continue looking for a 
+                        new index to save our data if the first result of our hash function has a different key’s data.
+                        A common open method of open addressing is called <strong>probing</strong>. Probing means continuing to 
+                        find new array indices in a fixed sequence until an empty index is found.
+                        Suppose we want to associate famous horses with their owners. We want our first key, 
+                        “Bucephalus”, to store our first value, “Alexander the Great”. Our hash function returns 
+                        an array index 3 and so we save “Alexander the Great”, along with our key “Bucephalus”, 
+                        into the array at index 3.
+                        After that, we want to store “Seabiscuit”s owner “Charles Howard”. Unfortunately “Seabiscuit”
+                        also has a hash value of 3. Our probing method adds one to the hash value and tells us to 
+                        continue looking at index 4. Since index 4 is open we store “Charles Howard” into the array 
+                        at index 4. Because “Seabiscuit” has a hash of 3 but “Charles Howard” is located at index 4, 
+                        we must also save “Seabiscuit” into the array at that index.
+                        When we attempt to look up “Seabiscuit” in our Horse Owner’s Hash Map, we first check the 
+                        array at index 3. Upon noticing that our key (Seabiscuit) is different from the key sitting 
+                        in index 3 (Bucephalus), we realize that this can’t be the value we were looking for at all. 
+                        Only by continuing to the next index do we check the key and notice that at index 4 our key 
+                        matches the key saved into the index 4 bucket. Realizing that index 4 has the key “Seabiscuit” 
+                        means we can retrieve the information at that location, 
+                        Seabiscuit’s owner’s name: Charles Howard.
+                        <strong>Other Open Addressing Techniques: </strong>
+                        There are more sophisticated ways to find the next address after a hash collision, although 
+                        anything too calculation-intensive would negatively affect a hash table’s performance. Linear 
+                        probing systems, for instance, could jump by five steps instead of one step.
+                        In a quadratic probing open addressing system, we add increasingly large numbers to the hash 
+                        code. At the first collision we just add 1, but if the hash collides there too we add 4 ,and 
+                        the third time we add 9. Having a probe sequence change over time like this avoids clustering.
+                        <strong>Clustering</strong> is what happens when a single hash collision causes additional hash collisions. 
+                        Imagine a hash collision triggers a linear probing sequence to assigns a value to the next 
+                        hash bucket over. Any key that would hash to this “next bucket” will now collide with a key 
+                        that, in a sense, doesn’t belong to that bucket anyway.
+                        As a result the new key needs to be assigned to the next, next bucket over. This propagates 
+                        the problem because now there are two hash buckets taken up by key-value pairs that were 
+                        assigned as a result of a hash collision, displacing further pairs of information we might 
+                        want to save to the table.</li>
+                    </ul>
+                    <li><strong>Review: </strong>
+                    A hash map is: built on top of an array using a special indexing system;
+                    a key-value storage with fast assignments and lookup;
+                    a table that represents a map from a set of keys to a set of values.
+                    Hash maps accomplish all this by using a hash function, which turns a key into 
+                    an index into the underlying array.
+                    A hash collision is when a hash function returns the same index for two different keys.
+                    There are different hash collision strategies. Two important ones are separate 
+                    chaining, where each array index points to a different data structure, and open 
+                    addressing, where a collision triggers a probing sequence to find where to store 
+                    the value for a given key.</li>
+                    <hr/>
+                    <li><strong>Node</strong></li>
+                    <pre>
+                        <code>
+            class Node {
+                constructor(data) {
+                    this.data = data;
+                    this.next = null;
+                }
+                
+                setNextNode(node) {
+                    if (!(node instanceof Node)) {
+                        throw new Error('Next node must be a member of the Node class');
+                    }
+                    this.next = node;
+                }
+                
+                setNext(data) {
+                    this.next = data;
+                }
+                
+                getNextNode() {
+                        return this.next;
+                    }
+                }
+                
+                module.exports = Node;
+                        </code>
+                    </pre>
+                    <li><strong>LinkedList.js</strong></li>
+                    <pre>
+                        <code>
+            const Node = require('./Node');
+
+            class LinkedList {
+                constructor() {
+                    this.head = null;
+                }
+            
+                addToHead(data) {
+                    const newHead = new Node(data);
+                    const currentHead = this.head;
+                    this.head = newHead;
+                    if (currentHead) {
+                        this.head.setNextNode(currentHead);
+                    }
+                }
+            
+                addToTail(data) {
+                    let tail = this.head;
+                    if (!tail) {
+                        this.head = new Node(data);
+                    } else {
+                        while (tail.getNextNode() !== null) {
+                        tail = tail.getNextNode();
+                        }
+                        tail.setNextNode(new Node(data));
+                    }
+                }
+            
+                removeHead() {
+                    const removedHead = this.head;
+                    if (!removedHead) {
+                        return;
+                    }
+                    if (removedHead.next) {
+                        this.head = removedHead.next;
+                    }
+                    return removedHead.data;
+                }
+            
+                printList() {
+                    let currentNode = this.head;
+                    let output = '< head > ';
+                    while (currentNode !== null) {
+                        output += currentNode.data + ' ';
+                        currentNode = currentNode.next;
+                    }
+                    output += `< tail >`;
+                    console.log(output);
+                }
+            
+                findNodeIteratively(data) {
+                    let currentNode = this.head;
+                    while (currentNode !== null) {
+                        if (currentNode.data === data) {
+                        return currentNode;
+                        }
+                        currentNode = currentNode.next;
+                    }
+                    return null;
+                }
+            
+                findNodeRecursively(data, currentNode = this.head) {
+                    if (currentNode === null) {
+                        return null;
+                    } else if (currentNode.data === data) {
+                        return currentNode;
+                    } else {
+                        return this.findNodeRecursively(data, currentNode.next);
+                    }
+                }
+            
+            }
+            
+            module.exports = LinkedList;
+                        
+                        </code>
+                    </pre>
+                    <li><strong>HashMap.js</strong></li>
+                    <pre>
+                        <code>
+                const LinkedList = require('./LinkedList');
+                const Node = require('./Node');
+                class HashMap {
+                constructor(size = 0) {
+                    this.hashmap = new Array(size)
+                    .fill(null)
+                    .map(() => new LinkedList());
+                }
+
+                hash(key) {
+                    let hashCode = 0;
+                    for (let i = 0; i < key.length; i++) {
+                    hashCode += hashCode + key.charCodeAt(i);
+                    }
+                    return hashCode % this.hashmap.length;
+                }
+
+                assign(key, value) {
+                    const arrayIndex = this.hash(key);
+                    const linkedList = this.hashmap[arrayIndex];
+                    console.log(`Storing ${value} at index ${arrayIndex}`);
+                    if (linkedList.head === null) {
+                        linkedList.addToHead({ key, value });
+                        return;
+                    }
+                    let current = linkedList.head;
+                    while (current) {
+                        if (current.data.key === key) {
+                            current.data = { key, value };
+                        }
+                        if (!current.next) {
+                            current.next = new Node({ key, value });
+                            break;
+                        }
+                        current = current.next;
+                    }
+                }
+
+                retrieve(key) {
+                    const arrayIndex = this.hash(key);
+                    let current = this.hashmap[arrayIndex].head;
+                    while (current) {
+                        if (current.data.key === key) {
+                            console.log(`\nRetrieving ${current.data.value} from index ${arrayIndex}`);
+                            return current.data.value;
+                        }
+                            current = current.next;
+                        }
+                        return null;
+                    }
+                }
+
+                module.exports = HashMap;
+                        </code>
+                    </pre>
+                    <li><strong>census.js</strong></li>
+                    <pre>
+                        <code>
+                const HashMap = require('./HashMap');
+
+                const birdCensus = new HashMap(16);
+
+                birdCensus.assign('mandarin duck', 'Central Park Pond')
+                birdCensus.assign('monk parakeet', 'Brooklyn College');
+                birdCensus.assign('horned owl', 'Pelham Bay Park');
+
+                birdCensus.retrieve('mandarin duck');
+                birdCensus.retrieve('monk parakeet');
+                birdCensus.retrieve('horned owl');
+
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/hashtable?slide=1" target="_blank">Visualizer: Hash Maps</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=QuFPIZj55hU&feature=emb_title" target="_blank">Video: Hash Maps</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/hash-table" target="_blank">Cheatsheet: Hash Maps</a></li>
+                </ul>
+                <hr/>
+                <h3>Trees</h3>
+                <li><strong>Tree data structures</strong> are built using tree nodes (a variation on the nodes you created earlier)
+                and are another way of storing information. Specifically, trees are used for data that has a 
+                hierarchical structure, such as a family tree or a computer’s file system. The tree data structure 
+                you are going to create is an excellent foundation for further variations on trees, including AVL 
+                trees, red-black trees, and binary tree.</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode99" onclick="showCode('displayCode99', 'showCode99')">Display</button>
+                <div id="displayCode99">
+                    <button onclick="closeCode('displayCode99', 'showCode99')">Close</button>
+                    <li><strong>Trees Introduction: </strong>
+                    Trees are an essential data structure for storing hierarchical data with a directed flow.
+                    Similar to linked lists and graphs, trees are composed of nodes which hold data. The 
+                    diagram represents nodes as rectangles and data as text.
+                    Nodes also store references to zero or more other tree nodes. Data moves down from node 
+                    to node. We depict those references as lines drawn between rectangles.
+                    Trees are often displayed with a single node at the top and connected nodes branching downwards.</li>
+                    <li><strong>Tree Detail:</strong> 
+                    The relationship between nodes is critical to the functionality of a tree. The hierarchical 
+                    structure of a tree allows for efficient searching, sorting, and retrieval of data.
+                    </li>
+                    <ul>
+                        <li><strong>Parent Node:</strong> A node that has one or more child nodes is called a parent node.</li>
+                        <li><strong>Child Node:</strong> A node that is connected to a parent node is called a child node.</li>
+                        <li><strong>Sibling Node:</strong> Nodes that share the same parent are called sibling nodes.</li>
+                        <li><strong>Ancestor Node:</strong> A node that is higher in the hierarchy than another node is called an 
+                        ancestor node.</li>
+                        <li><strong>Descendant Node:</strong> A node that is lower in the hierarchy than another node is called a 
+                        descendant node.</li>
+                        <li><strong>Root Node:</strong> The topmost node in a tree is called the root node. 
+                        It is the only node in the tree that has no parent.</li>
+                        <li><strong>Leaf Node:</strong> A node that has no child nodes is called a leaf node or 
+                        a terminal node.</li>
+                        <li><strong>Internal Node:</strong> A node that has one or more child nodes is called an internal node or 
+                        a non-terminal node.</li>
+                    </ul>
+                    <li><strong>Tree Varietals: </strong>                    
+                    Trees come in various shapes and sizes depending on the dataset modeled.
+                    Some are <strong>wide</strong>, with parent nodes referencing many child nodes.
+                    Some are <strong>deep</strong>, with many parent-child relationships.
+                    Trees can be both wide and deep, but each node will only ever have at most one parent; 
+                    otherwise, they wouldn’t be trees.
+                    Each time we move from a parent to a child, we’re moving <strong>down a level</strong>. 
+                    Depending on the orientation we refer to this as the depth (counting levels down from 
+                    the root node) or height (counting levels up from a leaf node).</li>
+                    <li><strong>Binary Search Tree: </strong>
+                    Constraints are placed on the data or node arrangement of a tree to solve difficult 
+                    problems like efficient search.
+                    A binary tree is a type of tree where each parent can have no more than two children, 
+                    known as the left child and right child.
+                    Further constraints make a binary search tree:
+                    left child values must be lesser than their parent;
+                    right child values must be greater than their parent.
+                    The constraints of a binary search tree allow us to search the tree efficiently. 
+                    At each node, we can discard half of the remaining possible values.
+                    Let’s walk through locating the value 31.</li>
+                    <ul>
+                        <li>Start at the root: 39</li>
+                        <li>31 < 39, we move to the left child: 23</li>
+                        <li>23 < 31, we move to the right child: 35</li>
+                        <li>31 < 35, we move to the left child: 31</li>
+                        <li>We found the value 31.</li>
+                        <li>In a dataset of fifteen elements, we only made three comparisons!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>TreeNode.js</strong></li>
+                    <pre>
+                        <code>
+            class TreeNode {
+                constructor(data) {
+                    this.data = data;
+                    this.children = [];
+                }
+                
+                addChild(child) {
+                    if (child instanceof TreeNode) {
+                        this.children.push(child);
+                    } else {
+                        this.children.push(new TreeNode(child));
+                    }
+                }
+                
+                removeChild(childToRemove) {
+                    const length = this.children.length;
+                    this.children = this.children.filter(child => {
+                        return childToRemove instanceof TreeNode
+                        ? child !== childToRemove
+                        : child.data !== childToRemove;
+                    });
+                
+                    if (length === this.children.length) {
+                    this.children.forEach(child => child.removeChild(childToRemove));
+                    }
+                }
+                
+                print(level = 0) {
+                    let result = '';
+                    for (let i = 0; i < level; i++) {
+                        result += '-- ';
+                    }
+                    console.log(`${result}${this.data}`);
+                    this.children.forEach(child => child.print(level + 1));
+                }
+                
+                depthFirstTraversal() {
+                    console.log(this.data);
+                    this.children.forEach(child => child.depthFirstTraversal());
+                }
+                
+                breadthFirstTraversal() {
+                    let queue = [ this ];
+                    while (queue.length > 0) {
+                        const current = queue.shift();
+                        console.log(current.data);
+                        queue = queue.concat(current.children);
+                    }
+                }
+            };
+                
+            module.exports = TreeNode;
+                        </code>
+                    </pre>
+                    <li><strong>script.js</strong></li>
+                    <pre>
+                        <code>
+            const TreeNode = require('./TreeNode');
+
+            const menu = new TreeNode('Menu');
+            
+            const entries = {
+                'Breakfast' : [ 'Cereal', 'BBQ Chicken', 'Oatmeal' ],
+                'Lunch' : [ 'Soup', 'Sandwich', 'Lasagna' ],
+                'Dinner' : [ 'Yogurt', 'Filet Mignon', 'Fish Florentine' ]
+            };
+            
+            const meals = Object.keys(entries);
+            for (let meal=0; meal < meals.length; meal++){
+                menu.addChild(meals[meal]);
+                const entrylist = entries[meals[meal]];
+                entrylist.forEach( entry => {
+                menu.children[meal].addChild(entry);
+                });
+            }
+            
+            menu.print();
+
+                        </code>
+                    </pre>
+                    <li><strong>Review:</strong> 
+                    Before has a successfully built a tree data structure in JavaScript, implemented using:</li>
+                    <ul>
+                        <li>A TreeNode class that contains data and maintains a collection of TreeNode classes 
+                        called <strong>children</strong>.</li>
+                        <li>An <strong>.addChild()</strong> method that adds a child to the tree as either data or TreeNode</li>
+                        <li>A <strong>.removeChild()</strong> method that removes a child from the tree as either data or TreeNode</li>
+                        <li>A <strong>.depthFirstTraversal()</strong> recursive method that fully traverses the tree with a top-down 
+                        approach for each child of the tree</li>
+                        <li>A <strong>.breadthFirstTraversal()</strong> iterative method that fully traverses the tree a level at a 
+                        time, instead of a child at a time</li>
+                    </ul>
+                    <hr/>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://en.wikipedia.org/wiki/Tree_(data_structure)" target="_blank">Article: Wikipedia Tree Data Structure</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=oSWTXtMglKE" target="_blank">Video: Tree Data Structure Overview</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/tree" target="_blank">Cheatsheet: Trees</a></li>
+                </ul>
+                <hr/>
+                <h3>Heaps</h3>
+                <li>Heaps are another variation of the tree data structure and are adept at keeping track 
+                of the maximum or minimum value held within, referred to as max-heaps and min-heaps, respectively. 
+                Specifically, heaps are a type of binary tree, since each child node is either greater or less 
+                than its parent (depending on if it’s a max-heap or min-heap). They are efficient for accessing 
+                the root value, which will either be the max or min (again, depending on the type of heap) and 
+                inserting new values.</li>
+            </div>
+            <div class="styleGuide">
+                <h2>Big O notation</h2>
+                <ul>
+                    <li><strong>The Big O notation</strong> is used to describe the time complexity or space complexity of 
+                    an algorithm, which is a measure of how the time or space requirements of an 
+                    algorithm grow as the size of the input data increases (In Big O notation, the 
+                    letter "O" stands for "order of").
+                    The time complexity of an algorithm is typically expressed as a function of 
+                    the size of the input data, n. The Big O notation expresses the worst-case 
+                    scenario for the time or space requirements of an algorithm. It provides an 
+                    upper bound on the growth rate of the algorithm's resource usage, which helps 
+                    to analyze and compare the efficiency of different algorithms.
+                    It's worth noting that Big O notation describes the worst-case scenario for an 
+                    algorithm's time or space requirements. In practice, the actual running time or 
+                    memory usage of an algorithm may be better than the Big O notation suggests. 
+                    However, Big O notation provides a useful way to compare the efficiency of 
+                    different algorithms and to estimate the performance of an algorithm for large input sizes.</li>
+                    <p class="center"><strong>Types of Big O notation:</strong></p>
+                    <button id="showCode96" onclick="showCode('displayCode96', 'showCode96')">Display</button>
+                    <div id="displayCode96">
+                        <button onclick="closeCode('displayCode96', 'showCode96')">Close</button>
+                        <li>In general, <strong>O(1)</strong> is better than <strong>O(log n)</strong>, 
+                        which is better than <strong>O(n)</strong>, which is better than <strong>O(n log n)</strong>, 
+                        which is better than <strong>O(n ^ 2)</strong>,
+                        which is better than <strong>O(2 ^ n)</strong>, which is better than <strong>O(n!)</strong>,
+                        because they are faster and more efficient, especially when dealing with large amounts of data. 
+                        However, it's important to note that some operations, such as sorting or searching,
+                        may have a time complexity of O(n log n) or higher, which means they will be slower
+                        and less efficient, even for smaller input sizes.</li>
+                        <ul>
+                            <li><strong>O(1) - Constant time complexity:</strong> represents a constant time complexity, which means that the algorithm 
+                            takes the same amount of time to run regardless of the input size. In other words, 
+                            the algorithm's running time is independent of the size of the input data.
+                            For example, consider an algorithm that retrieves the first element of an array. 
+                            This operation takes the same amount of time, no matter how large the array is. 
+                            Therefore, the time complexity of this algorithm is O(1).
+                            Algorithms with O(1) complexity are generally considered very efficient, as they 
+                            can process large amounts of data quickly, without being slowed down by the input 
+                            size. However, not all algorithms can achieve O(1) complexity, and sometimes 
+                            achieving constant time complexity may require additional space or other 
+                            trade-offs.</li>
+                            <li><strong>O(n) - Linear time complexity:</strong> It has a running time that is 
+                            directly proportional to the size of the input data. For example, if an 
+                            algorithm takes n steps to process a list of n elements, it has O(n) time complexity.</li>
+                            <li><strong>O(log n) - Logarithmic time complexity:</strong> Takes less time to 
+                            process as the input size grows. It typically indicates that the algorithm 
+                            divides the input data into smaller and smaller pieces, such as in binary 
+                            search. For example, if an algorithm takes log(n) steps to search for an 
+                            element in a sorted list of n elements, it has O(log n) time complexity.</li>
+                            <li><strong>O(n^2) - Quadratic time complexity:</strong> Has a running time that 
+                            grows exponentially as the input size increases. It typically indicates 
+                            that the algorithm performs nested loops or comparisons on the input data. 
+                            For example, if an algorithm takes n^2 steps to process a list of n elements, 
+                            it has O(n^2) time complexity.</li>
+                            <li><strong>O(n log n) - Linearithmic time complexity:</strong> An algorithm with O(n log n) time complexity grows slightly 
+                            faster than O(n), but slower than O(n^2). This complexity often appears 
+                            in sorting algorithms, such as merge sort and quicksort.</li>
+                            <li><strong>O(2^n) - Exponential time complexity:</strong> An algorithm with O(2^n) time complexity grows exponentially 
+                            as the input size increases. This complexity often appears in algorithms 
+                            that generate all possible subsets or permutations of a set, such as the 
+                            traveling salesman problem.</li>
+                            <li><strong>O(n!) - Factorial time complexity:</strong> An algorithm with O(n!) time complexity grows even faster than 
+                            O(2^n), making it very inefficient for large input sizes. This complexity 
+                            often appears in algorithms that generate all possible permutations of a 
+                            set, such as the brute force solution to the traveling salesman problem.</li>
+                            <li><strong>O(sqrt(n)) - Square root time complexity:</strong> An algorithm with O(sqrt(n)) time complexity takes time 
+                            proportional to the square root of the input size. This complexity often 
+                            appears in algorithms that involve searching for elements in a data 
+                            structure, such as square root decomposition.</li>
+                            <li><strong>O(1/eps) - Epsilon time complexity:</strong> An algorithm with O(1/eps) time complexity takes a constant 
+                            amount of time plus an error term that decreases as the input size 
+                            increases. This complexity often appears in algorithms that use numerical 
+                            methods, such as computing the square root or sine of a number.</li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </ul>
     </body>
 </html>
 

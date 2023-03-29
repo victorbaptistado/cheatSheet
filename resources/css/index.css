@@ -89,6 +89,29 @@ hr{
     color: white;
 }
 
+/* --- TABLES --- */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
 /* --- BUTTON --- */
 
 
@@ -125,7 +148,10 @@ hr{
 #displayCode73, #displayCode74, #displayCode75, #displayCode76,
 #displayCode77, #displayCode78, #displayCode79, #displayCode80,
 #displayCode81, #displayCode82, #displayCode83, #displayCode84,
-#displayCode85, #displayCode86, #displayCode87  {
+#displayCode85, #displayCode86, #displayCode87, #displayCode88,
+#displayCode89, #displayCode90, #displayCode91, #displayCode92,
+#displayCode93, #displayCode94, #displayCode95, #displayCode96,
+#displayCode97, #displayCode98, #displayCode99 {
     display: none;
     justify-content: right;
 }
