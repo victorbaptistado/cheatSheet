@@ -41,6 +41,9 @@
                     <li>Creating mobile app <strong>Wireframe</strong> <a href="https://xd.adobe.com/ideas/process/wireframing/guide-to-creating-mobile-app-wireframes/">here</a>.</li>
                 </ul>
                 <hr/>
+                <h2>Code Practice</h2>
+                <li>Codewars <a href="https://www.codewars.com/" target="_blank">here</a>.</li>
+                <hr/>
                 <h2>Projects</h2>
                 <ul>
                     <li>Download e-commerce ( React, Node.js, and Postgres) <strong>full project</strong> <a href="https://static-assets.codecademy.com/Paths/full-stack-career-path/portfolio-projects/e-commerce-pern-app/codecademy-ecommerce-pern-app-master.zip" target="_blank">here</a>.</li>
@@ -1439,6 +1442,323 @@
                         <li><strong>What You Need to Know to Ace Your Technical Interview </strong><a href="https://www.glassdoor.com/blog/technical-interview-tips/" target="_blank">here</a>.</li>
                         <li><strong>The Essential Guide to Take-home Coding Challenges</strong><a href="https://www.freecodecamp.org/news/the-essential-guide-to-take-home-coding-challenges-a0e746220dd7/" target="_blank">here</a>.</li>
                         <li><strong>Hackerrank</strong> interview coding exercises <a href="https://www.hackerrank.com/" target="_blank">here</a>.</li>
+                    </ul>
+                    <hr/>  
+                    <h3>Whiteboarding</h3>
+                    <li>This lesson covers strategies to improve performance in a whiteboarding interview. 
+                    Each exercise features a step in the interview with a video
+                    demonstration of the technique. Video <a href="https://www.youtube.com/watch?v=SgAVxPV9JVk&t=10s" target="_blank">
+                    here</a>. <strong>Review video </strong><a href="https://www.youtube.com/watch?v=eADUTW9mrEo&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.. 
+                    The steps are:</li>
+                    <ul>
+                        <li><strong>Clarify the Problem: </strong>
+                        Whiteboarding interviews begin with a problem from the interviewer. 
+                        The interviewee must be confident they understand the dimensions of the problem!
+                        Software development is full of ambiguity. Programming requires concrete 
+                        deliverables, but company needs can be murky. Even when the need is clear, 
+                        a feature could have dozens of possible implementations. The ability to clearly 
+                        define a problem is an important skill to demonstrate.
+                        Video <a href="https://www.youtube.com/watch?v=xzYgM0eIauA&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode104" onclick="showCode('displayCode104', 'showCode104')">Display</button>
+                        <div id="displayCode104">
+                            <button onclick="closeCode('displayCode104', 'showCode104')">Close</button>
+                            <li>When the interviewer presents their technical question, repeat the question 
+                            back to the interviewer <strong>in your own words</strong>. This gives you a moment to think 
+                            and will resolve any glaring misunderstandings.
+                            Once you’ve repeated the question, <strong>ask every clarifying question that comes 
+                            to mind.</strong>
+                            Assumptions must be communicated to the interviewer so there is agreement on 
+                            the scope of the problem.
+                            For example, if asked:
+                            <i>Write a function that returns duplicate characters in string.</i>
+                            Here are some questions which may come to mind:</li>
+                            <ul>
+                                <li>What is the desired return value?</li>
+                                <li>True|False, a list of characters, or …?</li>
+                                <li>Do punctuation and spaces count as “characters”?</li>
+                                <li>Should case be considered?</li>
+                                <li>are <i>"a"</i> and <i>"A"</i> duplicates?</li>
+                                <li>Should we be checking for Unicode characters?</li>
+                                <li>Can we assume it’s a 26 character alphabet?</li>
+                            </ul>
+                            <hr/>
+                            <li><strong>Exercise: </strong>We’ll apply these steps to a single problem through the rest of the lesson.
+                            Given a list of numbers, return whether the list contains Pythagorean Triplets.
+                            Rephrase this problem in your own words and write that down.
+                            Then, write down every question or assumption you have.</li>
+                            <hr/>
+                        </div>
+                        <li><strong>Create Inputs: </strong>
+                        When the question is clear, we then produce concrete inputs and outputs. 
+                        These inputs guide a solution for the remainder of the interview so write 
+                        them on the board!
+                        You may still be unclear how to solve the problem in code, but it’s certain 
+                        that given an input, X, your function will produce an output, Y.
+                        <strong>Video </strong><a href="" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode105" onclick="showCode('displayCode105', 'showCode105')">Display</button>
+                        <div id="displayCode105">
+                            <button onclick="closeCode('displayCode105', 'showCode105')">Close</button>
+                            <li>Make one input the happy path: input that reflects a common scenario.
+                            For example, you’re asked to write a function which capitalizes the first 
+                            letter of an input string. A good input could be "apple", which returns 
+                            "Apple" because this demonstrates the function’s purpose.
+                            If the input were "Apple", it would return "Apple". That’s correct but less 
+                            informative.
+                            Also think about edge cases, or inputs which do not reflect a common scenario 
+                            and may cause problems.
+                            For the capitalization function, what should you return if given None as input? 
+                            Or a number?</li>
+                            <hr/>
+                            <li><strong>Exercise: </strong>
+                            Write inputs and outputs for the Pythagorean Triplet problem.
+                            Try to give yourself a few different cases.</li>
+                            <hr/>
+                        </div>
+                        <li><strong>Outline the Solution: </strong>
+                        It’s time to start breaking down the problem by category.
+                        Given a question which requires the use of a stack, what do you know 
+                        about stacks? Have you encountered other problems that use stacks and 
+                        how were they solved?
+                        Is this a searching question? Can you sort the input and will that help? 
+                        Does this problem sound like it can be modeled as a graph, with vertices 
+                        and connected edges?
+                        Understanding the applications of different data structures is very 
+                        useful! The more questions you practice, the more you will be able to 
+                        see patterns between problems. <strong>Video </strong>
+                        <a href="https://www.youtube.com/watch?v=yt-YB_9ZHUE&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                        </li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode83" onclick="showCode('displayCode106', 'showCode106')">Display</button>
+                        <div id="displayCode106">
+                            <button onclick="closeCode('displayCode106', 'showCode106')">Close</button>
+                            <li>This step varies the most because it requires details of the specific 
+                            problem, but regardless of the question make certain you are communicating 
+                            with the interviewer as a potential co-worker. <strong>Show them your thought 
+                            process!</strong>
+                            During this step, the interviewer may make suggestions on how to proceed. 
+                            Acknowledge the interviewer and incorporate their suggestions into your 
+                            approach. <strong>Don’t disregard their input! It gives the impression you would be difficult 
+                            to work with on the job.</strong>
+                            When you and the interviewer are satisfied with a workable solution, write 
+                            the steps next to your input. Follow these steps as you write code on the 
+                            board.</li>
+                            <hr/>
+                            <li><strong>Exercise: </strong>Come up with an outline of how to solve the Pythagorean Triplet problem.
+                            Don’t worry about efficiency, just aim for high-level steps which will 
+                            produce the correct output.</li>
+                            <hr/>
+                        </div>
+                        <li><strong>Code the Solution</strong>
+                        We’ve finally come to the portion where you’ll write some code! 
+                        Previous steps improve your odds for success because you have an outline 
+                        and clear inputs for testing.
+                        <strong>Writing code on the board is a collaborative process.</strong> Refer to 
+                        your outline and explain the step you’re implementing.
+                        The goal is to be facing the interviewer when talking through the implementation 
+                        and facing the board when you’re writing the code.                        
+                        <strong>Video</strong>
+                        <a href="https://www.youtube.com/watch?v=hwoGhge9y5I&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode107" onclick="showCode('displayCode107', 'showCode107')">Display</button>
+                        <div id="displayCode107">
+                            <button onclick="closeCode('displayCode107', 'showCode107')">Close</button>
+                            <li>Try to avoid writing code in silence or narrating at a low level like 
+                            <i>“for… i… in… range… length of the list… colon”</i> when writing 
+                            <i>for i in range(len(input_list)):</i>.
+                            When you’re finished with the implementation, look it over for any mistaken 
+                            syntax or logical errors.</li>
+                            <hr/>
+                            <li>Code the solution to the Pythagorean Triplets problem by writing it out 
+                            on paper. Use your outline from the previous exercise as a guide.
+                            Before writing each step on paper, say what you will do out loud. Better 
+                            to practice by yourself than in a real interview!</li>
+                            <hr/>
+                        </div>
+                        <li><strong>Test the Solution: </strong>
+                        With a working implementation on the whiteboard, use the test inputs to 
+                        walk through the evaluation of your code.
+                        Write out any temporary variables on the board and update them when they change
+                        during execution.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode108" onclick="showCode('displayCode108', 'showCode108')">Display</button>
+                        <div id="displayCode108">
+                            <button onclick="closeCode('displayCode108', 'showCode108')">Close</button>
+                            <li>This is another opportunity to showcase your communication skills, and will help
+                            you catch any logical errors which you may not have noticed in earlier steps.
+                            If you catch an error, don’t panic! Mistakes happen. Explain the issue and 
+                            talk through what you can do to fix the bug.
+                            Your interviewer may want to see you write the correction or they may be 
+                            satisfied with the explanation. <strong>Video </strong>
+                            <a href="https://www.youtube.com/watch?v=qZpIz_lmp4Q&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                            <hr/>
+                            <li><strong>Exercise: </strong>Use your test inputs and implementation to 
+                            talk through your solution.
+                            Again, say each line aloud so you become more comfortable speaking about 
+                            the code you’ve written. Track the variables used and update them as you go.</li>
+                            <hr/>
+                        </div>
+                        <li><strong>Analyze the Solution: </strong>
+                        You’re satisfied with your implementation and you’ve demonstrated how it
+                        works, but you’re not quite done.
+                        Analyze the time and space complexity of the solution. With this step you 
+                        are demonstrating that you care about the efficiency of your code.
+                        Explain your code’s big O notation. If you can optimize to a more efficient 
+                        runtime, explain how that would work. If you can’t optimize, explain why it’s 
+                        not possible. <strong>Video </strong>
+                        <a href="https://www.youtube.com/watch?v=bn5ORboA-6Y&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode109" onclick="showCode('displayCode109', 'showCode109')">Display</button>
+                        <div id="displayCode109">
+                            <button onclick="closeCode('displayCode109', 'showCode109')">Close</button>
+                            <li><strong>Exercise: </strong>Talk through the big O time and space complexity of your solution.
+                            Explain how an optimization would be possible or not.</li>
+                        </div>
+                    </ul>
+                    <hr/>
+                </ul>
+            </div>
+            <div class="styleGuide">
+                <h2>Behavioral Interviews</h2>
+                <ul>
+                    <li>The behavioral interview can take on many forms. More than likely, this interview 
+                    will be with a recruiter or a senior company manager. It consists of questions focusing 
+                    on your ability to react to certain industry situations, assesses the greatest strengths 
+                    and weaknesses of your character, and your ability to overcome certain situations. In 
+                    this section, we’ll take a look at some tips for how to approach this style of job 
+                    interview. 
+                    <li><strong>Before the Interview</strong></li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode125" onclick="showCode('displayCode125', 'showCode125')">Display</button>
+                    <div id="displayCode125">
+                        <button onclick="closeCode('displayCode125', 'showCode125')">Close</button>
+                        <li><strong>Research the Company and the Interviewer: </strong>
+                        You are likely to succeed in your interview if you are familiar with the products of 
+                        the company you want to work for. Take a closer look and see if you can identify the 
+                        company’s vision and mission. Why do they mesh with you? Also, do some research on the 
+                        actual product you would be working on to make sure you are one step ahead of other 
+                        job candidates.
+                        Don’t stop at just the company! Most recruiters are happy to tell you who you will 
+                        be interviewing with. Look your interviewer up on LinkedIn or GitHub to see if you 
+                        can find anything out that’ll give you an edge – maybe your interviewer has a side 
+                        business or hobby you can connect with and mention in your interview.
+                        An interviewer is likely to remember you as that person “who plays the same musical 
+                        instrument as I do” than the person “who can recite MDN backward and forward.”
+                        Career Changers: Why Did You Make the Switch?
+                        What’s your “why?” Many interviewers like to ask “why” to figure out who is in it 
+                        for the money and who is in it because they are truly, genuinely interested in creating
+                        something awesome. Construct an elevator pitch if you don’t already have one – a short, 
+                        30-second snippet of who you are, what you do, and where you see yourself going. Here’s 
+                        an example:
+                        “Hi, I’m Christina. I’m a musician that took her love of practicing, mentoring students, 
+                        and breaking down problems and turned it into a tech career, if you can believe it!” 
+                        “I’m currently a technical writer, creating blogs and articles for beginner level to 
+                        professional level developers and engineers. I see that you got your start in writing 
+                        as well! I would love to be able to pick your brain about how to transition to web 
+                        development.” When you create your elevator pitch, it helps guide you into thinking 
+                        about why you are taking the coding or tech journey. Be thinking about this as you head 
+                        into that initial interview.</li>
+                        <li><strong>Questions to Think About: </strong>
+                        There are several interview questions, that no matter the industry, always seem to pop 
+                        up in interview situations. Knowing the answers to these questions will prepare 
+                        you better for your interview. 
+                        Keep a notebook or the notepad app open to jot down ideas and flesh out ones you’ve 
+                        thought through. Think about or jot down anecdotes to share that answer the 
+                        following questions:</li>
+                        <ul>
+                            <li>What is your greatest strength?</li>
+                            <li>What is your greatest weakness?</li>
+                            <li>Tell me about a time you had a conflict with a coworker?</li>
+                            <li>What makes you unique?</li>
+                            <li>Why should we hire you?</li>
+                        </ul> 
+                        <li><strong>Know the Market Rate for Developers and Engineers in Your Area: </strong>
+                        If you happen to live in the middle of the Midwest but are interviewing for an 
+                        engineering position in Seattle or San Francisco, it’s definitely a good idea to 
+                        research median and average level salaries for a software engineer/developer in the 
+                        area you will be living in before you comment on any salary requirements. Many times 
+                        a recruiter will immediately ask for a salary expectation – if you don’t know the 
+                        numbers for the area, you can possibly sell yourself short.
+                        Hint: Respond with “What is the budget for this position?” and see what the recruiter 
+                        has to say.</li>
+                        <li><strong>Prepare a Q&A for the Interviewer: </strong>
+                        Interviewers tend to leave 10 minutes or so at the end of the interview to open the 
+                        floor for questions. This can be a time for you to shine. Take the time to ask the 
+                        interviewer about the culture of the workplace, how the company responds to disease 
+                        pandemic situations, what the work/life balance is like, etc. Remember, this is 
+                        usually answered in your initial interview, so don’t bring up anything yet in relation 
+                        to salary or bonuses/benefits unless they open the floor to that conversation.</li>
+                        <hr/>
+                    </div>
+                    <li><strong>During the Interview</strong></li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode126" onclick="showCode('displayCode126', 'showCode126')">Display</button>
+                    <div id="displayCode126">
+                        <button onclick="closeCode('displayCode126', 'showCode126')">Close</button>
+                        <li><strong>Use STAR Method to Tell Your Anecdotes: </strong>
+                        In the previous section, we talked about coming up with anecdotes to talk about 
+                        all of those really tough interview questions. There is a method, called the 
+                        STAR Method, that can assist in crafting an engaging anecdote.
+                        If you can follow these four guidelines when answering your questions, you 
+                        will do very well. STAR stands for:</li>
+                        <ul>
+                            <li>S - Situation: the basic setup or premise of your anecdote. It sets the stage.</li>
+                            <li>T - Task: your responsibility within the situation. What can you quantify here?</li>
+                            <li>A - Action: the breakdown of what it took to get you from point A to point B.</li>
+                            <li>R - Result: the outcome of the action.</li>
+                        </ul>
+                        <li><strong>Ask Questions: </strong>
+                        Don’t be afraid to ask questions! You are interviewing the company as much as 
+                        they are interviewing you.
+                        By the same token, if something is not clear, be sure to ask a clarifying 
+                        question to make sure you understand the initial ask.</li>
+                        <hr/>
+                    </div>
+                    <li><strong>After the Interview</strong></li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode127" onclick="showCode('displayCode127', 'showCode127')">Display</button>
+                    <div id="displayCode127">
+                        <button onclick="closeCode('displayCode127', 'showCode127')">Close</button>
+                        <li>Interview Follow-up
+                        After the interviews are over, keep in close contact with the recruiter. They will be the ones to help navigate you through the next steps. If you don’t have e-mail addresses for the interviewers who talked to you, ask the recruiter for them so you can send a thank-you note for taking the time to speak with you.
+                        The thank-you note doesn’t have to be anything lavish or fancy. Here’s a simple 
+                        example:</li>
+                        <ul>
+                            <li><i>Dear [ name of interviewer ]:
+                            
+                            I just wanted to take the time to thank you for meeting with me today about [ position applied for at [ company applied to ].
+                            [ Mention something here about anything you’ve discussed during the interview that might be memorable so they will remember your meeting ].
+                            If there are any other questions, please don’t hesitate to reach out. Thanks again.
+                            
+                            Sincerely,
+                            [ Your Name ]</i></li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <li><strong>Remember to Breathe</strong></li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode128" onclick="showCode('displayCode128', 'showCode128')">Display</button>
+                    <div id="displayCode128">
+                        <button onclick="closeCode('displayCode128', 'showCode128')">Close</button>
+                        <li>This is the first interview of many if all goes well! Remember to take full 
+                        breaths to keep yourself as calm as you can be, try not to interrupt the 
+                        interviewer (It’s hard to do sometimes when you’re interviewing via phone or 
+                        video conference!), and, most of all, have fun. You will only get better as you
+                        do more behavioral interviews!</li>
+                    </div>
+                    <li><strong>Additional resources:</strong></li>
+                    <ul>
+                        <li><a href="https://www.codecademy.com/resources/blog/technical-and-behavioral-interview-tips/" target="_blank">How To Master The Art of the Tech Industry Job Interview - Article</a></li>
+                        <li><a href="https://blog.pramp.com/how-to-succeed-in-a-behavioral-interview-796af6233dd1?gi=4110c9a36d2f" target="_blank">How to Succeed in A Behavioral Interview</a></li>
+                        <li><a href="https://careerkarma.com/" target="_blank">Career Karma: Helpful website</a></li>
+                        <li><a href="https://www.dailycodingproblem.com/" target="_blank">Resource: Daily Coding Problem</a></li>
+                        <li><a href="https://leetcode.com/" target="_blank">Resource: LeetCode</a></li>
+                        <li><a href="https://www.educative.io/blog/behavioral-interviews-how-to-prepare-and-ace-interview-questions" target="_blank">Article: Educative’s Behavioral interviews: How to prepare and ace interview 
+                        questions</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=GJdiM-muYqc" target="_blank">Video: Google Coding Interview Question, First Recurring Character</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=qli-JCrSwuk" target="_blank">Video: Facebook Coding Interview Question, How Many Ways to Decode This Message?</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=5o-kdjv7FD0" target="_blank">Video: Amazon Coding Interview Question, Recursive Staircase Problem?</a></li>
                     </ul>
                 </ul>
             </div>

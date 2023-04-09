@@ -172,7 +172,7 @@
             it comes to performance, specifically the speed at which a computer can parse it.</li>
         </div>
         <div class="styleGuide">
-            <h2>Data Structures & Algorithms</h2>
+            <h2>Data Structures</h2>
             <h3>Data Structures</h3>
             <ul>
                 <li>At the backbone of every program or piece of software are two entities: data and 
@@ -344,7 +344,47 @@
                         <li><strong>Examples: </strong>A hash table that stores a dictionary of words and their definitions.
                         A hash table that caches frequently accessed data in a web application.
                         A hash table that stores user sessions in a server.</li>
-                    </ul>                
+                    </ul>
+                    <hr/>
+                    <li><strong>Stack Runtimes vs Queue Runtimes: </strong>
+                    A <strong>queue</strong> is a FIFO (first in, first out) data structure, which means that the first element 
+                    added to it, will always be the first element removed from it. Removing this element does 
+                    not require you to iterate through the queue.
+                    On the other hand, a <strong>stack</strong> is a FILO (first in, last out) data structure. This means that 
+                    the first element added will be the last element removed. Removing this element will require 
+                    you to iterate through the stack, all the way to the bottom.
+                    While finding the first value added to a queue has a better big O runtime than doing so in 
+                    a stack, consider finding the last value added. In a queue, we will have to iterate through 
+                    the entire queue to retrieve the element at the end. This will be a big O runtime of O(n). 
+                    On the other hand, the last value added to a stack is the value at the top of the stack, so 
+                    removing it will just be a big O runtime of O(1).</li>
+                    <li><strong>Hash Map Runtimes vs Linked List Runtimes: </strong>
+                    Similarly, let’s compare the runtimes of searching for a particular element in a linked 
+                    list and in a hash map.
+                    To find an element in a <strong>linked list</strong>, we will have to search through the entire list to 
+                    see if the element is there. Refer to the findMax() function we looked at above for an 
+                    example. Iterating through the list means that this process has a big O runtime of O(n).
+                    Retrieving an element from a <strong>hash map</strong> is more efficient, due to its structure. Hash maps
+                    store information using key-value pairs, which means that every value is linked to a unique 
+                    key. In order to find the value from the key, it uses the hash function, which has a big O 
+                    runtime of O(1). If you don’t have to search through the entire data structure, retrieving 
+                    an element from a hash map is faster than retrieving an element from a linked list.
+                    However, there is the possibility that the element you are looking for is not at the spot 
+                    that you expect it to be. This happens when two keys have the same hash. There are a few 
+                    ways hash maps resolve this issue, including separate chaining and open addressing.
+                    <strong>Separate Chaining: </strong>
+                    One way to solve hash map collisions is to create a linked list at the array index where 
+                    the collision occurred. All elements that hash to the same index will be in that list. 
+                    This means that to find an element in a hash map that uses separate chaining, you must 
+                    first find the correct index, and then search through the list at that index (if there 
+                    is more than one element). It has a Big O(n).</li>
+                    <li><strong>Open Addressing: </strong>
+                    Another way to solve hash map collisions is to simply move down the array until you find an 
+                    open index, and place the element there. This is a type of open addressing that is called linear 
+                    probing. When retrieving an element from a hash map that uses linear probing, the worst case would 
+                    be if the element hashes to the first index, but is actually at the last index. Since you would 
+                    have to search through the entire array, the big O runtime for retrieving an element from this 
+                    kind of hash map is O(n).</li>
                 </div>
             </ul>
             <hr/>
@@ -446,7 +486,7 @@
                         constructor() {
                             this._array = [];
                         }
-                        }
+                    }
                         </code>
                     </pre>
                     <li>In Stack, the array itself is stored as _array, so it’s a signal to other developers that to 
@@ -901,7 +941,11 @@
                 manipulate collections of data. It is similar to a regular linked list, but it includes 
                 two pointers that can be used to traverse the list more efficiently. Two-Pointer Linked 
                 Lists can be used to implement various algorithms and data structures, such as stacks, 
-                queues, and trees.</li>
+                queues, and trees. When you see a problem that requires you to iterate through an 
+                array (or string), take a moment and think about if it would be possible to iterate 
+                through it in sections at the same time instead of in separate loops. Common problems
+                that can be solved using the two-pointer technique are the two sum problem (finding two 
+                numbers in an array that sum to a specified number) and reversing the characters in a string.</li>
                 <p class="center"><strong>Example:</strong></p>
                 <button id="showCode87" onclick="showCode('displayCode87', 'showCode87')">Display</button>
                 <div id="displayCode87">
@@ -1233,7 +1277,13 @@
                     <button id="showCode91" onclick="showCode('displayCode91', 'showCode91')">Display</button>
                     <div id="displayCode91">
                         <button onclick="closeCode('displayCode91', 'showCode91')">Close</button>
-
+                        <li>In the context of a node, traversing typically refers to the process of visiting 
+                        each node in a tree or graph data structure exactly once. This is done by starting 
+                        at a designated root node, and following edges or pointers to other nodes in the 
+                        structure. Depending on the application, there are different ways to traverse a 
+                        tree or graph, such as depth-first traversal or breadth-first traversal. 
+                        The purpose of traversing a tree or graph is often to perform some operation on 
+                        the nodes or extract information from the structure.</li>
                     </div>
                 </div>
                 <li><strong>Doubly Linked Lists Implementation</strong></li>
@@ -2488,15 +2538,2824 @@
                 <hr/>
                 <h3>Heaps</h3>
                 <li>Heaps are another variation of the tree data structure and are adept at keeping track 
-                of the maximum or minimum value held within, referred to as max-heaps and min-heaps, respectively. 
+                of the maximum or minimum value held within, referred to as <strong>max-heaps</strong> and 
+                <strong>min-heaps</strong>, respectively. 
                 Specifically, heaps are a type of binary tree, since each child node is either greater or less 
                 than its parent (depending on if it’s a max-heap or min-heap). They are efficient for accessing 
                 the root value, which will either be the max or min (again, depending on the type of heap) and 
                 inserting new values.</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode100" onclick="showCode('displayCode100', 'showCode100')">Display</button>
+                <div id="displayCode100">
+                    <button onclick="closeCode('displayCode100', 'showCode100')">Close</button>
+                    <li><strong>Introduction to Heaps</strong>
+                    Heaps are used to maintain a maximum or minimum value in a dataset. Our examples use numbers 
+                    since this is a straight-forward value, but heaps have many practical applications.
+                    Imagine you have a demanding boss. They always want the 
+                    most important thing done. Of course, once you finish the most important task, another one 
+                    takes its place.
+                    You can manage this problem using a priority queue to ensure you’re always working on the 
+                    most pressing assignment and heaps are commonly used to create a priority queue.
+                    Heaps tracking the maximum or minimum value are 
+                    <strong>max-heaps</strong> or <strong>min-heaps</strong>. 
+                    The main difference between a min-heap and a max-heap is the order in which their elements 
+                    are arranged.</li>
+                    <ul>
+                        <li><strong>Min-heap:</strong> The minimum key element is present at the root, and the key 
+                        present at the root node must be smaller than or equal to the keys present at all of its 
+                        children.</li>
+                        <li><strong>Max-heap:</strong> The maximum key element is present at the root, and 
+                        the key present at the root node must be greater than or equal to the keys present at all 
+                        of its children.</li>
+                    </ul>
+                    <li><strong>Heap Representations: </strong>
+                    We can picture min-heaps as binary trees, where each node has at most two children. As 
+                    we add elements to the heap, they’re added from left to right until we’ve filled the entire level.
+                    At the top, we’ve filled the level containing 12 and 20. The next addition comes as the 
+                    left child of 12, starting a new level in the tree. We would continue filling this level from 
+                    left to right until 20 had its right child filled.
+                    Conceptually, the tree representation is beneficial for understanding. Practically, we implement 
+                    heaps in a sequential data structure like an array or list for efficiency.
+                    Notice how by filling the tree from left to right; we’re leaving no gaps in the array. The 
+                    location of each child or parent derives from a formula using the index.</li>
+                    <ul>
+                        <li><strong>left child: </strong>(index * 2) + 1</li>
+                        <li><strong>right child: </strong>(index * 2) + 2</li>
+                        <li><strong>parent: </strong>(index - 1) / 2 — not used on the root!</li>
+                    </ul>
+                    <li><strong>Heapify</strong></li>
+                    <ul>
+                        <li><strong>Adding an Element - Heapify Up: </strong>
+                        Sometimes you will add an element to the heap that violates the heap’s essential properties.
+                        We’re adding 3 as a left child of 11, which violates the min-heap property that children 
+                        must be larger or equal to their parent.
+                        We need to restore the fundamental heap properties. This restoration is known as <strong>heapify 
+                        or heapifying</strong>. We’re adding an element to the bottom of the tree and moving upwards, so 
+                        we’re heapifying up.
+                        As long as we’ve violated the heap properties, we’ll swap the offending child with its 
+                        parent until we restore the properties, or until there’s no parent left. If there is no 
+                        parent left, that element becomes the new root of the tree.</li>
+                        <li><strong>Removing an Element - Heapify Down: </strong>
+                        Heapify down is a method used in binary heaps to maintain the heap property after 
+                        removing the top element from the heap. When an element is removed from the top of 
+                        the heap, the last element in the heap is moved to the top, and then heapify down is 
+                        performed to maintain the heap property. The heapify down function takes the index of 
+                        the root of the heapify routine and compares it with its children to ensure that the heap 
+                        property is maintained. In a max-heap, if the root is smaller than its children, it is swapped with the 
+                        larger child, and the process is repeated until the heap property is restored.
+                        In summary, heapify down is a method used in binary heaps to maintain the heap property
+                        after removing the top element from the heap. It involves comparing the root with its 
+                        children and swapping it with the larger child until the heap property is restored.</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>MinHeap.js</strong></li>
+                    <pre>
+                        <code>
+                class MinHeap {
+                    constructor() {
+                        this.heap = [ null ];
+                        this.size = 0;
+                    }
+                    
+                    popMin() {
+                        if (this.size === 0) {
+                            return null 
+                        }
+                        const min = this.heap[1];
+                        this.heap[1] = this.heap[this.size];
+                        this.heap.pop();
+                        this.size--;
+                        this.heapify();
+                        return min;
+                    }
+                    
+                    add(value) {
+                        this.heap.push(value);
+                        this.size++;
+                        this.bubbleUp();
+                    }
+                    
+                    bubbleUp() {
+                        let current = this.size;
+                        let swapCount = 0;
+                        while (current > 1 && this.heap[getParent(current)] > this.heap[current]) {
+                            this.swap(current, getParent(current));
+                            current = getParent(current);
+                            swapCount++;
+                        }
+                        if (this.size == 10000) {
+                            console.log(`Heap of ${this.size} elements restored with ${swapCount} swaps`);
+                        }
+                    }
+                    
+                    heapify() {
+                        let current = 1;
+                        let leftChild = getLeft(current);
+                        let rightChild = getRight(current);
+                        let swapCount = 0;
+                    
+                        while (this.canSwap(current, leftChild, rightChild)) {
+                            // Only compare left & right if they both exist
+                            if (this.exists(leftChild) && this.exists(rightChild)) { 
+                                // Make sure to swap with the smaller of the two children
+                                if (this.heap[leftChild] < this.heap[rightChild]) {
+                                    this.swap(current, leftChild);
+                                    current = leftChild;
+                                    swapCount++;
+                                } else {
+                                    this.swap(current, rightChild);
+                                    current = rightChild;
+                                    swapCount++;
+                                }
+                            } else {
+                                // If only one child exist, always swap with the left
+                                this.swap(current, leftChild);
+                                current = leftChild;
+                                swapCount++;
+                            }
+                            leftChild = getLeft(current);
+                            rightChild = getRight(current);
+                        }
+                        if (this.size == 9999) {
+                            console.log(`Heap of ${this.size} elements restored with ${swapCount} swaps`);
+                        }
+                    }
+                    
+                    exists(index) {
+                        return index <= this.size;
+                    }
+                    
+                    canSwap(current, leftChild, rightChild) {
+                        // Check that one of the possible swap conditions exists
+                        return (
+                            this.exists(leftChild) && this.heap[current] > this.heap[leftChild]
+                            || this.exists(rightChild) && this.heap[current] > this.heap[rightChild]
+                        );
+                    }
+                    
+                    swap(a, b) {
+                        [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+                    }
+                    
+                    }
+                    
+                    const getParent = current => Math.floor((current / 2));
+                    const getLeft = current => current * 2;
+                    const getRight = current => current * 2 + 1;
+                    
+                    module.exports = MinHeap;
+                        </code>
+                    </pre>
+                    <li><strong>script.js</strong></li>
+                    <pre>
+                        <code>
+                // import MinHeap class
+                const MinHeap = require('./MinHeap');
+                
+                // instantiate a MinHeap class
+                const minHeap = new MinHeap();
+                
+                // populate minHeap with descending numbers from 10001 to 1
+                console.log('Adding');
+                for (let i=10000; i >=1; i--) {
+                    minHeap.add(i);
+                }
+                
+                // remove the minimum value from heap
+                console.log('Removing');
+                console.log('Minimum value = ' + minHeap.popMin());
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/heap?slide=1" target="_blank">Visualizer: Heaps</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=t0Cq6tVNRBA" target="_blank">Video: Heap Data Structure Overview</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/heap" target="_blank">Cheatsheet: Heaps</a></li>                      
+                </ul>
+                <li><strong>Code Challenges:</strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/last-stone-weight" target="_blank">Beginner - Last Stone Weight</a></li>
+                    <li><a href="https://leetcode.com/problems/sort-characters-by-frequency/" target="_blank">Intermediate - Sort Characters By Frequency</a></li>
+                    <li><a href="https://www.codecademy.com/code-challenges/code-challenge-max-product-finder-javascript" target="_blank">Advanced - Max Product Finder</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=heap" target="_blank">More Practice Problems</a></li>
+                </ul>
+                <hr/>
+                <h3>Graphs</h3>
+                <li><strong>Graphs</strong> are used to 
+                represent data points, or vertices, that are connected by edges. Common applications for graphs 
+                are th,ings like maps, where each location is a vertex, and each path, or road, between the locations 
+                is an edge. Graphs can be directed (a one-way street) or undirected (a two-way street), as well as 
+                weighted or unweighted (think of the length of each street as a potential measurement of weight).</li>
+                <p class="center"><strong>More About:</strong></p>
+                <button id="showCode101" onclick="showCode('displayCode101', 'showCode101')">Display</button>
+                <div id="displayCode101">
+                    <button onclick="closeCode('displayCode101', 'showCode101')">Close</button>
+                    <li><strong>Introduction to Graphs: </strong>
+                    Graphs are the perfect data structure for modeling networks, which make them an indispensable 
+                    piece of your data structure toolkit. They’re composed of nodes, or vertices, which hold data, 
+                    and edges, which are a connection between two vertices. A single node is a <strong>vertex</strong>.
+                    Consider a map of the area where you live. As a graph, we could model bus stops as vertices, 
+                    with bus routes between stops functioning as the edges.
+                    What about the internet? Web pages can be vertices, and the hyperlinks which connect them are edges.
+                    Real-world relationships modeled as graphs are numerous, making them an essential concept to master.</li>
+                    <li><strong>Path</strong>
+                    Graphs have varying degrees of connection. The higher the ratio of edges to vertices, 
+                    the more connected the graph.
+                    In a social network for example, people are vertices and edges are friendships. 
+                    We use a single line for an edge, but these friendships are bi-directional. 
+                    A <strong>path</strong> is vertices which are connected by any number of intermediate edges. The paths from 
+                    Alice to Patty could go Alice to Ted to Patty or, Alice to Ted to Ron to Patty.
+                    A <strong>disconnected graph</strong> is a graph in which at least one node is not reachable 
+                    from a node. When no path exists between two vertices, a graph is disconnected.</li>
+                    <li><strong>Weighted graph:</strong>
+                    This is a weighted graph, where edges have a number or cost associated with traveling between 
+                    the vertices. When tallying the cost of a path, we add up the total cost of the edges used.
+                    These costs are essential to algorithms that find the shortest distance between two vertices.
+                    A weighted graph is a graph in which each edge has a weight or value assigned to it. The 
+                    weight can be any numerical value, usually positive, and represents some property of the
+                    edge, such as distance, cost, or time. A graph without weights is called an unweighted graph, 
+                    and all edges in an unweighted graph are assumed to have the same weight, usually 1. Weighted 
+                    graphs can be further classified as directed weighted graphs and undirected weighted graphs, 
+                    depending on whether the edges have a direction or not.
+                    In a weighted graph, the shortest path is not always the least expensive.</li>
+                    <ul>
+                        <li><strong>Directed Graphs: </strong>
+                        Imagine you’re a superhero escaping a villain’s lair. As you move from perilous room to 
+                        perilous room, the doors close immediately behind you, barring any return.
+                        For this dramatic example, we need a directed graph, where edges restrict the direction 
+                        of movement between vertices.
+                        Is a graph in which each edge has a weight or value assigned to it, and the edges have 
+                        a direction. The weight can be any numerical value and represents some property of the 
+                        edge. Directed weighted graphs are used in various applications, such as network routing, 
+                        transportation planning, and scheduling.
+                        A <strong>cycle</strong> in a graph is a path that starts and ends at the same vertex, passing through 
+                        at least one other vertex. Cycles can have different lengths, and they can be used to 
+                        detect certain properties of a graph, such as connectivity and reachability;</li>
+                        <li><strong>Undirected Graphs: </strong>Is a graph in which edges do not have a direction. 
+                        The weight can be any 
+                        numerical value and represents some property of the edge. Undirected weighted graphs
+                        are used in various applications, such as network analysis, transportation planning, 
+                        and scheduling</li>
+                    </ul>
+                    <li><strong>Representing Graphs: </strong>
+                    We typically represent the vertex-edge relationship of a graph in two ways: an adjacency 
+                    list or an adjacency matrix.
+                    An <strong>adjacency matrix</strong> is a table. Across the top, every vertex in the graph appears as a 
+                    column. Down the side, every vertex appears again as a row. Edges can be bi-directional, 
+                    so each vertex is listed twice.
+                    To find an edge between B and P, we would look for the B row and then trace across to the 
+                    P column. The contents of this cell represent a possible edge.
+                    Our diagram uses 1 to mark an edge, 0 for the absence of an edge. In a weighted graph, the 
+                    cell contains the cost of that edge.
+                    In an <strong>adjacency list</strong>, each vertex contains a list of the vertices where an edge exists. To 
+                    find an edge, one looks through the list for the desired vertex.</li>
+                    <hr/>
+                    <li><strong>Graph.js</strong></li>
+                    <pre>
+                        <code>
+                const Edge = require('./Edge.js');
+                const Vertex = require('./Vertex.js');
+                
+                class Graph {
+                    constructor(isWeighted = false, isDirected = false) {
+                        this.vertices = [];
+                        this.isWeighted = isWeighted;
+                        this.isDirected = isDirected;
+                    }
+                
+                    addVertex(data) {
+                        const newVertex = new Vertex(data);
+                        this.vertices.push(newVertex);
+                    
+                        return newVertex;
+                    }
+                
+                    removeVertex(vertex) {
+                        this.vertices = this.vertices.filter(v => v !== vertex);
+                    }
+                
+                    addEdge(vertexOne, vertexTwo, weight) {
+                        const edgeWeight = this.isWeighted ? weight : null;
+                
+                        if (vertexOne instanceof Vertex && vertexTwo instanceof Vertex) {
+                            vertexOne.addEdge(vertexTwo, edgeWeight);
+                    
+                            if (!this.isDirected) {
+                                vertexTwo.addEdge(vertexOne, edgeWeight);
+                            }
+                        } else {
+                            throw new Error('Expected Vertex arguments.');
+                        }
+                    }
+                
+                    removeEdge(vertexOne, vertexTwo) {
+                        if (vertexOne instanceof Vertex && vertexTwo instanceof Vertex) {
+                            vertexOne.removeEdge(vertexTwo);
+                    
+                            if (!this.isDirected) {
+                                vertexTwo.removeEdge(vertexOne);
+                            }
+                        } else {
+                            throw new Error('Expected Vertex arguments.');
+                        }
+                    }
+                
+                    print() {
+                        this.vertices.forEach(vertex => vertex.print());
+                    }
+                }
+                
+                module.exports = Graph;
+                        </code>
+                    </pre>
+                    <li><strong>Vertex.js</strong></li>
+                    <pre>
+                        <code>
+                const Edge = require('./Edge.js');
+
+                class Vertex {
+                    constructor(data) {
+                        this.data = data;
+                        this.edges = [];
+                    }
+                
+                    addEdge(vertex, weight) {
+                    if (vertex instanceof Vertex) {
+                            this.edges.push(new Edge(this, vertex, weight));
+                        } else {
+                            throw new Error('Edge start and end must both be Vertex');
+                        }
+                    }
+                
+                    removeEdge(vertex) {
+                        this.edges = this.edges.filter(edge => edge.end !== vertex);
+                    }
+                
+                    print() {
+                        const edgeList = this.edges.map(edge =>
+                            edge.weight !== null ? `${edge.end.data} (${edge.weight})` : edge.end.data);
+                    
+                        const output = `${this.data} --> ${edgeList.join(', ')}`;
+                        console.log(output);
+                    }
+                }
+                
+                module.exports = Vertex;
+                        </code>
+                    </pre>
+                    <li><strong>Edge.js</strong></li>
+                    <pre>
+                        <code>
+                class Edge {
+                    constructor(start, end, weight = null) {
+                        this.start = start;
+                        this.end = end;
+                        this.weight = weight;
+                    }
+                }
+                    
+                    module.exports = Edge;
+                        </code>
+                    </pre>
+                    <li><strong>trainNetwork.js</strong></li>
+                    <pre>
+                        <code>
+                const Graph = require('./Graph.js');
+
+                const trainNetwork = new Graph(true, true);
+                const laStation = trainNetwork.addVertex('Los Angeles');
+                const sfStation = trainNetwork.addVertex('San Francisco');
+                const nyStation = trainNetwork.addVertex('New York');
+                const atlStation = trainNetwork.addVertex('Atlanta');
+                const denStation = trainNetwork.addVertex('Denver');
+                const calStation = trainNetwork.addVertex('Calgary');
+                
+                trainNetwork.addEdge(sfStation, laStation, 400);
+                trainNetwork.addEdge(laStation, sfStation, 400);
+                trainNetwork.addEdge(nyStation, denStation, 1800);
+                trainNetwork.addEdge(denStation, nyStation, 1800);
+                trainNetwork.addEdge(calStation, denStation, 1000);
+                trainNetwork.addEdge(denStation, calStation, 1000);
+                trainNetwork.addEdge(atlStation, laStation, 2100);
+                trainNetwork.addEdge(laStation, atlStation, 2100);
+                
+                trainNetwork.removeEdge(nyStation, denStation);
+                trainNetwork.removeEdge(calStation, denStation);
+                trainNetwork.removeEdge(denStation, calStation);
+                trainNetwork.removeVertex(calStation);
+                
+                trainNetwork.print();
+                        </code>
+                    </pre>
+                </div>
+                <li><strong>Additional Resources:</strong></li>
+                <ul>
+                    <li><a href="https://visualgo.net/en/graphds?slide=1" target="_blank">Visualizer: Graphs</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=5hPfm_uqXmw" target="_blank">Video: Introduction to Graph Theory</a></li>
+                    <li><a href="https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/graph" target="_blank">GitHub Repo: Graph JS Practice</a></li>
+                </ul>
+                <li><strong>Code Challenges:</strong></li>
+                <ul>
+                    <li><a href="https://leetcode.com/problems/find-the-town-judge/" target="_blank">Beginner - Find the Town Judge</a></li>
+                    <li><a href="https://leetcode.com/problems/find-center-of-star-graph/" target="_blank">Beginner - Find Center of Star Graph</a></li>
+                    <li><a href="https://leetcode.com/problems/clone-graph/" target="_blank">Intermediate - Clone Graph</a></li>
+                    <li><a href="https://leetcode.com/problemset/all/?search=graph" target="_blank">More Practice Problems</a></li>
+                </ul>
+            </div>
+            <div class="styleGuide"> 
+                <h2>Algorithms</h2>
+                <ul>
+                    <li>An <strong>algorithm</strong> is a set of well-defined steps or instructions that
+                    a developer gives to the computer to solve 
+                    a problem or perform a task. In computer science and programming, algorithms are used to 
+                    process and manipulate data, automate tasks, and solve complex problems.
+                    All the code you’ve written so far has been algorithms.
+                    Think about recipes, they are a written series of steps that provide cooks instructions on 
+                    how to make a dish. Now try to focus on one dish you know really well and visualize its recipe. 
+                    Doesn’t that recipe sound very similar to how programming thinks about algorithms?
+                    An algorithm typically begins with an input, which is processed by a series of steps or 
+                    operations to produce an output. These steps may involve basic operations, such as arithmetic 
+                    or logical operations, or more complex operations, such as sorting or searching. Algorithms 
+                    may also include conditional statements, loops, and other control structures to control the 
+                    flow of execution and handle different cases.</li>
+                    <hr/>
+                    <h3>Recursion</h3>
+                    <li><strong>Recursion</strong> is a programming technique in which a function calls itself 
+                    directly or indirectly in order to solve a problem. In the context of data structures, 
+                    recursion is often used to traverse or search through a hierarchical data structure, 
+                    such as a tree or a graph.
+                    Recursion is a powerful tool for solving problems that require the execution of a similar 
+                    action multiple times until a certain condition is met. For many problems, a recursive 
+                    solution will result in fewer lines of code and will be easier to comprehend than a 
+                    solution that uses a for or while loop.
+                    Have you ever thought about what would happen if you called a function or method 
+                    from within that function or method? That’s called recursion and can actually make 
+                    your program more efficient. It can be used for problems that can be broken up into 
+                    multiple steps, often ones that you would otherwise solve iteratively.</li>
+                    <p class="center"><strong>More About:</strong></p>
+                    <button id="showCode102" onclick="showCode('displayCode102', 'showCode102')">Display</button>
+                    <div id="displayCode102">
+                        <button onclick="closeCode('displayCode102', 'showCode102')">Close</button>
+                        <li>You’ve heard about a trendy new spot that sells fruit sandwiches. What are fruit 
+                        sandwiches? You have no idea, but you’re eager to find out!
+                        Sadly, when you arrive at the store, the line is out the door and around the block. 
+                        Undeterred, you hatch a plan to find out how many people are in line before you.
+                        You tap the person in front of you and ask them how many people are ahead of them. 
+                        They have no idea, (the line is huge!) so they ask you to wait a moment and tap the 
+                        person in front of them, repeating this process through the line.
+                        Finally, the second to last person taps the person at the front of the line. Nobody 
+                        is ahead of them, so they reply “It’s just me so: one person!”. Then this message is 
+                        repeated back down the line.
+                        The next person says “okay, there was one person ahead of me, I’ll add myself… I can 
+                        tell the person behind me: 2 people in line.”
+                        Each person waiting for a reply: receives the message adds themselves to the count
+                        responds to the person tapping them
+                        This chain eventually reaches you with the final number. Your plan was a success!
+                        You executed a recursive strategy. The “function” of asking a person involved asking 
+                        a person. The self-referential logic can seem like it goes on forever, but each 
+                        question brings you closer to the front of the line where no more people are asked 
+                        about the line. We repeat Step 2 with a different input which brings us closer to Step 1.
+                        Your approach had two aspects which are essential to recursive thinking. Break the
+                        problem into two possibilities: There’s nobody left in line, don’t ask;
+                        There’s someone in line, ask them.</li>
+                        <li><strong>Recursion Outline: </strong>
+                        Recursion is a strategy for solving problems by defining the problem in terms of 
+                        itself. For example, to sum the elements of a list we would take the first element 
+                        and add it to the sum of the remaining elements.
+                        How would we get that sum of remaining elements? Easy! We’d take the first element 
+                        of the remaining elements and add it to the… Maybe you can understand why recursion 
+                        can be a tricky subject!
+                        In programming, recursion means a function definition will include an invocation of 
+                        the function within its own body. Here’s a pseudo-code example:</li>
+                        <ul>
+                            <pre>
+                                <code>
+                        define function, speller
+                            if there are no more letters
+                            print "all done"
+                            print the first letter
+                            invoke speller with the given name minus the first letter
+                                </code>
+                            </pre>
+                            <li>If we invoked this function with “Zoe” as the argument, we would see “Z”, “o”, 
+                            and “e” printed out before “all done”.    
+                            We call the function a total of 4 times!</li>
+                            <ol>
+                                <li>function called with “Zoe”</li>
+                                <li>function called with “oe”</li>
+                                <li>function called with “e”</li>
+                                <li>function called with “”</li>
+                            </ol>
+                            <li>Let’s break the function into three chunks:</li>
+                            <pre>
+                                <code>
+                            if there are no more letters
+                        print "all done"
+                                </code>
+                            </pre>
+                            <li>This section is the base case. We are NOT invoking the function under this condition. The 
+                            equivalent base case from the previous exercise was when we had reached the front of the line.</li>
+                            <pre>
+                                <code>
+                        print the first letter
+                                </code>
+                            </pre>
+                            <li>This section solves a piece of the problem. If we want to spell someone’s name, we’ll have to 
+                            spell at least one letter.</li>
+                            <pre>
+                                <code>
+                        invoke speller with the given name minus the first letter
+                                </code>
+                            </pre>    
+                            <li>This section is the recursive step, calling the function with arguments which bring us 
+                            closer to the base case. In this example, we’re reducing the length of the name by a single 
+                            letter. Eventually, there will be a function call with no letters given as the argument.
+                            For comparison’s sake, here is pseudo-code for an iterative approach to the same problem:</li>
+                            <pre>
+                                <code>
+                        define function, speller
+                        for each letter in the name argument
+                            print the letter
+                        print "all done"
+                                </code>
+                            </pre>
+                        </ul>
+                        <li><strong>Recursive </strong> VS <strong>While Loop: </strong>
+                        <strong>While loops</strong> are used when you want to repeat a block of code as long as or until a
+                        certain condition is met. They are useful when you know how many times you need to 
+                        repeat the code, or when you need to iterate over a sequence of items. <strong>Recursive 
+                        functions</strong>, on the other hand, are used when a function needs to call itself to solve 
+                        a problem. They are useful when you need to solve a problem that can be broken down 
+                        into smaller subproblems, and the solution to the larger problem can be obtained by 
+                        combining the solutions to the smaller subproblems.</li>
+                        <li><strong>Call Stacks</strong> & <strong>Execution Frames: </strong>
+                        A recursive approach requires the function invoking itself with different arguments. 
+                        How does the computer keep track of the various arguments and different function
+                        invocations if it’s the same function definition?
+                        Repeatedly invoking functions may be familiar when it occurs sequentially, but it can 
+                        be jarring to see this invocation occur within a function definition.
+                        Languages make this possible with call stacks and execution contexts.
+                        Stacks, a data structure, follow a strict protocol for the order data enters 
+                        and exits the structure: the last thing to enter is the first thing to leave.
+                        Your programming language often manages the call stack, which exists outside of any 
+                        specific function. This call stack tracks the ordering of the different function 
+                        invocations, so the last function to enter the call stack is the first function to 
+                        exit the call stack.
+                        Video <a href="https://www.youtube.com/watch?time_continue=232&v=Qm4axEzqw0k&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                        We can think of execution contexts as the specific values we plug into a function call.
+                        A function which adds two numbers:</li>
+                        <ul>
+                            <pre>
+                                <code>
+                    Invoking the function with 3 and 4 as arguments...
+                    execution context:
+                    X = 3
+                    Y = 4
+                        
+                    Invoking the function with 6 and 2 as arguments...
+                    execution context:
+                    X = 6
+                    Y = 2
+                                </code>
+                            </pre>
+                            <li>Consider a pseudo-code function which sums the integers in an array:</li>
+                            <pre>
+                                <code> 
+                    function, sum_list 
+                    if list has a single element
+                        return that single element
+                    otherwise...
+                        add first element to value of sum_list called with 
+                        every element minus the first
+                                </code>
+                            </pre>
+                            <li>This function will be invoked as many times as there are elements within 
+                            the list! Let’s step through:</li>
+                            <pre>
+                                <code>
+                CALL STACK EMPTY
+                ___________________
+                    
+                Our first function call...
+                sum_list([5, 6, 7])
+                    
+                CALL STACK CONTAINS
+                ___________________
+                sum_list([5, 6, 7])
+                with the execution context of a list being [5, 6, 7]
+                ___________________
+                    
+                Base case, a list of one element not met.
+                We invoke sum_list with the list of [6, 7]...
+                    
+                CALL STACK CONTAINS
+                ___________________
+                sum_list([6, 7])
+                with the execution context of a list being [6, 7]
+                ___________________
+                sum_list([5, 6, 7])
+                with the execution context of a list being [5, 6, 7]
+                ___________________
+                    
+                Base case, a list of one element not met.
+                We invoke sum_list with the list of [7]...
+                    
+                CALL STACK CONTAINS
+                ___________________
+                sum_list([7])
+                with the execution context of a list being [7]
+                ___________________
+                sum_list([6, 7])
+                with the execution context of a list being [6, 7]
+                ___________________
+                sum_list([5, 6, 7])
+                with the execution context of a list being [5, 6, 7]
+                ___________________
+                    
+                We've reached our base case! List is one element. 
+                We return that one element.
+                This return value does two things:
+                    
+                1) "pops" sum_list([7]) from CALL STACK.
+                2) provides a return value for sum_list([6, 7])
+                    
+                ----------------
+                CALL STACK CONTAINS
+                ___________________
+                sum_list([6, 7])
+                with the execution context of a list being [6, 7]
+                RETURN VALUE = 7
+                ___________________
+                sum_list([5, 6, 7])
+                with the execution context of a list being [5, 6, 7]
+                ___________________
+                    
+                sum_list([6, 7]) waits for the return value of sum_list([7]), which it just received. 
+                    
+                sum_list([6, 7]) has resolved and "popped" from the call stack...
+                    
+                    
+                ----------------
+                CALL STACK contains
+                ___________________
+                sum_list([5, 6, 7])
+                with the execution context of a list being [5, 6, 7]
+                RETURN VALUE = 6 + 7
+                ___________________
+                    
+                sum_list([5, 6, 7]) waits for the return value of sum_list([6, 7]), which it just received. 
+                sum_list([5, 6, 7]) has resolved and "popped" from the call stack.
+                    
+                    
+                ----------------
+                CALL STACK is empty
+                ___________________
+                RETURN VALUE = (5 + 6 + 7) = 18
+                                </code>
+                            </pre>
+                        </ul>
+                        <li><strong>Base Case and Recursive Step: </strong>
+                        Recursion has two fundamental aspects: the base case and the recursive step. 
+                        Recursive case – the conditions under which the function will perform an action and call itself.
+                        Base case – the conditions under which the function returns a value without making any 
+                        additional calls to itself.
+                        When using iteration, we rely on a counting variable and a boolean condition. For 
+                        example, when iterating through the values in a list, we would increment the counting 
+                        variable until it exceeded the length of the dataset.
+                        Recursive functions have a similar concept, which we call the base case. 
+                        <strong>The base case</strong> 
+                        dictates whether the function will recurse, or call itself. Without a base case, it’s 
+                        the iterative equivalent to writing an infinite loop.
+                        Because we’re using a call stack to track the function calls, your computer will throw 
+                        an error due to a stack overflow if the base case is not sufficient.
+                        The other fundamental aspect of a recursive function is the <strong>recursive step</strong>. This portion 
+                        of the function is the step that moves us closer to the base case.
+                        In an iterative function, this is handled by a loop construct that decrements or increments 
+                        the counting variable which moves the counter closer to a boolean condition, terminating the loop.
+                        In a recursive function, the “counting variable” equivalent is the <strong>argument to the recursive 
+                        call</strong>. If we’re counting down to 0, for example, our base case would be the function call that 
+                        receives 0 as an argument. We might design a recursive step that takes the argument passed in, 
+                        decrements it by one, and calls the function again with the decremented argument. In this way, 
+                        we would be moving towards 0 as our base case.
+                        Analyzing the Big O runtime of a recursive function is very similar to analyzing an iterative 
+                        function. Substitute iterations of a loop with recursive calls.
+                        For example, if we loop through once for each element printing the value, we have a O(N) or 
+                        linear runtime. Similarly, if we have a single recursive call for each element in the original 
+                        function call, we have a O(N) or linear runtime.</li>
+                        <pre>
+                            <code>
+                const recursiveFactorial = (n) => {
+                    if (n === 0) {
+                        return 1;
+                    //Below, recursive case is the condition 
+                    //under which a function 
+                    //calls itself.
+                    } else if (n > 0) {
+                        return n * recursiveFactorial(n - 1);
+                    }
+                }
+                    
+                const iterativeFactorial = (n) => {
+                    result = 1;
+                    while(n > 0) {
+                        result *= n;
+                        n -= 1;
+                    }
+                    return result;
+                }
+                    
+                module.exports = {
+                    recursiveFactorial,
+                    iterativeFactorial
+                };
+                            </code>
+                        </pre>
+                        <li>LinkedList.js</li>
+                        <pre>
+                            <code>
+                const Node = require('./Node');
+
+                class LinkedList {
+                    constructor() {
+                        this.head = null;
+                }
+
+                addToHead(data) {
+                    const nextNode = new Node(data);
+                    const currentHead = this.head;
+                    this.head = nextNode;
+                    if (currentHead) {
+                        this.head.setNextNode(currentHead);
+                    }
+                }
+
+                addToTail(data) {
+                    let lastNode = this.head;
+                    if (!lastNode) {
+                        this.head = new Node(data);
+                    } else {
+                        let temp = this.head;
+                        while (temp.getNextNode() !== null) {
+                            temp = temp.getNextNode();
+                        }
+                        temp.setNextNode(new Node(data));
+                    }
+                }
+
+                removeHead() {
+                    const removedHead = this.head;
+                    if (!removedHead) {
+                        return;
+                    }
+                    if (removedHead.next) {
+                        this.head = removedHead.next;
+                    }
+                    return removedHead.data;
+                }
+
+                printList() {
+                    let currentNode = this.head;
+                    let output = '< head > ';
+                    while (currentNode !== null) {
+                        output += currentNode.data + ' ';
+                        currentNode = currentNode.next;
+                    }
+                    output = output.concat("< tail >");
+                    console.log(output);
+                }
+
+                findNodeIteratively(data) {
+                    let currentNode = this.head;
+                    while (currentNode !== null) {
+                    if (currentNode.data === data) {
+                        return currentNode;
+                    }
+                        currentNode = currentNode.next;
+                    }
+                    return null;
+                }
+
+                findNodeRecursively(data, currentNode = this.head) {
+                        if (currentNode === null) {
+                            return null;
+                        } else if (currentNode.data === data) {
+                            return currentNode;
+                        } else {
+                            return this.findNodeRecursively(data, currentNode.next);
+                        }
+                    }
+
+                }
+
+                module.exports = LinkedList;
+                            </code>
+                        </pre>
+                        <li><strong>Node.js</strong></li>
+                        <pre>
+                            <code>
+                class Node {
+                    constructor(data) {
+                        this.data = data;
+                        this.next = null;
+                    }
+                    
+                    setNextNode(node) {
+                        if (!(node instanceof Node)) {
+                            throw new Error('Next node must be a member of the Node class');
+                        }
+                        this.next = node;
+                    }
+                    
+                    setNext(data) {
+                        this.next = data;
+                    }
+                    
+                    getNextNode() {
+                        return this.next;
+                    }
+                }
+                    
+                module.exports = Node;
+                            </code>
+                        </pre>
+                        <li>Node.js</li>
+                        <pre>
+                            <code>
+                const Node = require('./Node');
+                const LinkedList = require('./LinkedList');
+
+                const myList = new LinkedList();
+
+                myList.addToHead('Node 1');
+                myList.addToHead('Node 2');
+                myList.addToHead('Node 3');
+                myList.addToHead('Node 4');
+
+                // Add checkpoint 2 code below:
+                const myNodeRecursive = myList.findNodeIteratively('Node 2');
+                console.log(myNodeRecursive);
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Code Challenges:</strong></li>
+                    <ul>
+                        <li><a href="https://leetcode.com/problems/fibonacci-number/" target="_blank">Beginner - Fibonacci Number</a></li>
+                        <li><a href="https://leetcode.com/problems/power-of-three/" target="_blank">Beginner - Power of Three</a></li>
+                        <li><a href="https://www.codecademy.com/code-challenges/code-challenge-egg-dropper-javascript" target="_blank">Advanced - Egg Dropper</a></li>
+                    </ul>
+                    <li><strong>Dynamic Programming:</strong> Is a programming technique used to solve recursive problems 
+                    more efficiently. Let’s take a look at a simple algorithm that can get computationally 
+                    complex very quickly, and then let’s use dynamic programming to increase its efficiency.</li>
+                    <ul>
+                        <li><strong>Memoization: </strong>Is a specialized form of caching used to store the result 
+                        of a function call. The next time that function is called, instead of running the 
+                        function itself, the result is used directly. Memoization can result in much faster
+                        overall execution times (although it can increase memory requirements as function 
+                        results are stored in memory).    
+                        Memoization is a great technique to use alongside recursion. The memo can even be 
+                        saved between function calls if it’s being used for common calculations in a program.</li>
+                        <p class="center"><strong>More info</strong></p>
+                        <button type="button" id="showCode123" onclick="showCode('displayCode123', 'showCode123')">Display</button>
+                        <div id="displayCode123">
+                            <button onclick="closeCode('displayCode123', 'showCode123')">Close</button>
+                            <li>Dynamic programming and memoization are great techniques breaking up complex
+                            recursive problems into smaller chunks. They are especially useful when tackling 
+                            problems that involve combinations. For example, if I asked you to calculate the
+                            total number of ways to get four dice rolls to sum to 13, you could imagine 
+                            breaking that into multiple parts. You could split 13 into 6 and 7 and then 
+                            find all the combinations of two rolls that would match each one of these. 
+                            As you went down each path, you’d probably start seeing a lot of similar 
+                            calculations, and memoization would help you reduce the number of overall 
+                            function calls by storing intermediate values.</li>
+                            <li><strong>Fibonacci</strong> series is a classic mathematical series in which the next 
+                            number is calculated as the sum of the previous two numbers:
+                            0, 1, 1, 2, 3, 5, 8, 13, 21, etc.
+                            It can be calculated iteratively but summing the two previous numbers, or 
+                            the nth Fibonacci number can be calculated recursively:</li>
+                            <pre>
+                                <code>
+                function fib(n)
+                if n is 1 or 0:
+                    return n
+                else
+                    return fib(n - 1) + fib(n - 2)
+                                </code>
+                            </pre>
+                            <li>This technique breaks up calculating the nth number into many smaller 
+                            problems, calculating each step as the sum of calculating the previous 
+                            two numbers.
+                            Although this technique will certainly work to find the correct number, 
+                            as n grows, the number of recursive calls grows very quickly. Let’s visualize 
+                            all the function calls if we were to calculate the fourth Fibonacci number:</li>
+                            <pre>
+                                <code>
+                fib(4) -> fib(3) + fib(2)
+                fib(3) -> fib(2) + fib(1)
+                    fib(2) -> fib(1) + fib(0)
+                fib(2) -> fib(1) + fib(0)
+                                </code>
+                            </pre>
+                            <li>As you can seefib(2) is called twice, fib(1) is called three times. If 
+                            n were larger than 4, you’d see these numbers of calls get high very quickly. 
+                            For instance, to calculate the 10th number, we’d make 34 calls to fib(2) and 
+                            177 total function calls! Why do we need to call the same function multiple 
+                            times with the same input?
+                            We don’t! We can use a technique called memoization to cut down greatly on 
+                            the number of function calls necessary to calculate the correct number.</li>
+                            <li><strong>Memoizing Fibonacci: </strong>
+                            In the previous example, many function calls to <i>fib()</i> were redundant. Let’s 
+                            memoize it in order to speed up execution.
+                            To begin, we’ll use a plain JavaScript object to store the memoized values. 
+                            We’ll set keys using n and values to store the result of that Fibonacci number. 
+                            Then, whenever we need to calculate a number, if it’s already been calculated, 
+                            we can retrieve the value from the object in <i>O(1)</i> time.
+                            <i>const memo = {};</i>
+                            In pseudocode, our approach to memoization will look something like this:</li>
+                            <pre>
+                                <code>
+                    Create a memo object            
+                    
+                    function fibonacci(n)
+                    if n key exists in memo object
+                        return memo[n]
+                    else
+                        calculate current fibonacci number
+                        store value in memo
+                        return value
+                                </code>
+                            </pre>
+                            <pre>
+                                <code>
+                const memo = {};
+
+                const fibonacci = num => {
+                    if (num in memo) {
+                        return memo[num];
+                    } else if (num <= 1) {
+                        return num;
+                    } else {
+                        const result = fibonacci(num - 1) + fibonacci(num - 2);
+                        memo[num] = result;
+                        return result;
+                    }
+                }
+
+                // Test your code with calls here:
+                console.log(fibonacci(20));
+                console.log(fibonacci(200));
+                                </code>
+                            </pre>
+                        </div>
+                    </ul>
+                    <hr/>
+                    <h3>Sort Algorithm</h3>
+                    <li>A <strong>sorting algorithm</strong> is a method or process used to arrange a large number of items in a 
+                    specific order, such as alphabetical, numerical, or chronological order. Sorting algorithms 
+                    take lists of items as input data, perform specific operations on those lists, and deliver 
+                    ordered arrays. The goal of a sorting algorithm is to rearrange the elements of an array or 
+                    list in a specific order, such as ascending or descending order, based on some criterion. 
+                    There are various types of sorting algorithms, including comparison sorts and integer sorts, 
+                    and each algorithm has its own advantages and disadvantages depending on the specific use case.</li>
+                    <ul>
+                        <li><strong>Bubble Sort:</strong> </a>
+                        Is an introductory sorting algorithm that iterates through a list and 
+                        compares pairings of adjacent elements (it's not the most efficient sorting algorithm).
+                        According to the sorting criteria, the algorithm swaps elements to shift elements 
+                        towards the beginning or end of the list - doing this continuously results in the largest 
+                        element “bubbling” up to the end of the array, giving this sort its name. 
+                        By default, a list is sorted if for any element <i>e</i> and position <i>1</i> through N:
+                        e1 <= e2 <= e3 … eN, where N is the number of elements in the list.
+                        For example, bubble sort transforms a list:
+                        <i>[5, 2, 9, 1, 5]</i> to an ascending order, from lowest to highest:
+                        <i>[1, 2, 5, 5, 9]</i>
+                        We implement the algorithm with two loops.
+                        The <strong>first loop</strong> iterates as long as the list is unsorted and we assume it’s unsorted to start.
+                        Within this loop, another iteration moves through the list. For each pairing, the 
+                        algorithm asks: In comparison, is the first element larger than the second element?
+                        If it is, we swap the position of the elements. The larger element is now at a greater 
+                        index than the smaller element.
+                        When a swap is made, we know the list is still unsorted. The <strong>outer loop</strong> will run again 
+                        when the inner loop concludes.
+                        The process repeats until the largest element makes its way to the last index of the list. 
+                        The outer loop runs until no swaps are made within the inner loop.</li>
+                        <ul>
+                            <li><strong>Additional Resources:</strong></li>
+                            <ul>
+                                <li><a href="https://visualgo.net/en/sorting?slide=7" target="_blank">Interactive: Bubble Sort</a></li>
+                            </ul>
+                            <li><strong>Code Challenges:</strong></li>
+                            <ul>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-top-score-sorter-javascript" target="_blank">Intermediate - Top Score Sorter</a></li>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-find-xth-number-in-order-javascript" target="_blank">Intermediate - GetX</a></li>
+                            </ul>
+                        </ul>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode105" onclick="showCode('displayCode105', 'showCode105')">Display</button>
+                        <div id="displayCode105">
+                            <button onclick="closeCode('displayCode105', 'showCode105')">Close</button>
+                            <li>As mentioned, the bubble sort algorithm swaps elements if the element on the left is 
+                            larger than the one on the right.
+                            How does this algorithm swap these elements in practice?
+                            Let’s say we have the two values stored at the following indices index_1 and index_2. 
+                            How would we swap these two elements within the list?
+                            It is tempting to write code like:</li>
+                            <pre>
+                                <code>
+                            list[index_1] = list[index_2]
+                            list[index_2] = list[index_1]
+                                </code>
+                            </pre>
+                            <li>However, if we do this, we lose the original value at index_1. The element gets replaced 
+                            by the value at index_2. Both indices end up with the value at index_2.
+                            Programming languages have different ways of avoiding this issue. In some languages, we 
+                            create a temporary variable which holds one element during the swap:</li>
+                            <pre>
+                                <code>
+                            temp = list[index_1]
+                            list[index_1] = list[index_2]
+                            list[index_2] = temp
+                                </code>
+                            </pre>
+                            <li>Other languages provide multiple assignment which removes the need for a temporary 
+                            variable. <i>list[index_1], list[index_2] = list[index_2], list[index_1]</i></li>
+                            <hr/>
+                            <li><strong>Algorithm Analysis: </strong>
+                            Given a moderately unsorted data-set, bubble sort requires multiple passes through the 
+                            input before producing a sorted list. Each pass through the list will place the next 
+                            largest value in its proper place.
+                            We are performing n-1 comparisons for our inner loop. Then, we must go through the list 
+                            n times in order to ensure that each item in our list has been placed in its proper order.                           
+                            The n signifies the number of elements in the list. In a worst case scenario, the inner 
+                            loop does n-1 comparisons for each n element in the list.
+                            Therefore we calculate the algorithm’s efficiency as: <i>O(n(n−1))=O(n(n))=O(n^2)</i>
+                            The diagram analyzes the pseudocode implementation of bubble sort to show how we 
+                            draw this conclusion.                           
+                            When calculating the run-time efficiency of an algorithm, we drop the constant (-1), 
+                            which simplifies our inner loop comparisons to <i>n</i>. This is how we arrive at the 
+                            algorithm’s runtime: <i>O(n^2)</i>.</li>
+                            <hr/>
+                            <li>Below is a quick pseudocode example of what we will create in this lesson:</li>
+                            <pre>
+                                <code>
+                while array is not sorted
+                    for each value in array
+                    if current value > next value
+                        swap current value and next value
+                
+                return array 
+                                </code>
+                            </pre>
+                            <ul>
+                                <li>One loop will execute an inner loop depending on the state of a variable 
+                                representing whether the input array might be sorted or not.</li>
+                                <li>An inner loop will compare and swap pairs of elements in the array.</li>
+                            </ul>
+                            <hr/>
+                        </div>
+                        <li><strong>Merge Sort: </strong>
+                        Merge sort is a sorting algorithm created by John von Neumann in 1945. Merge sort’s 
+                        “killer app” was the strategy that breaks the list-to-be-sorted into smaller parts, 
+                        sometimes called a divide-and-conquer algorithm.
+                        In a divide-and-conquer algorithm, the data is continually broken down into smaller 
+                        elements until sorting them becomes really simple.
+                        Merge sort was the first of many sorts that use this strategy, and is still in use 
+                        today in many different applications.</li>
+                        <ul>
+                            <li><strong>Additional Resources:</strong></li>
+                            <ul>
+                                <li><a href="https://visualgo.net/en/sorting?slide=11" target="_blank">Interactive: Merge Sort</a></li>
+                            </ul>
+                            <li><strong>Code Challenges:</strong></li>
+                            <ul>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-top-score-sorter-javascript" target="_blank">Intermediate - Top Score Sorter</a></li>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-find-xth-number-in-order-javascript" target="_blank">Intermediate - GetX</a></li>
+                            </ul>
+                        </ul>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode106" onclick="showCode('displayCode106', 'showCode106')">Display</button>
+                        <div id="displayCode106">
+                            <button onclick="closeCode('displayCode106', 'showCode106')">Close</button>
+                            <li><strong>How To Merge Sort: </strong>
+                            Merge sorting takes two steps: splitting the data into “runs” or smaller components, 
+                            and the re-combining those runs into sorted lists (the “merge”).
+                            When splitting the data, we divide the input to our sort in half. We then recursively 
+                            call the sort on each of those halves, which cuts the halves into quarters. This process 
+                            continues until all of the lists contain only a single element. Then we begin merging.
+                            When merging two single-element lists, we check if the first element is smaller or larger 
+                            than the other. Then we return the two-element list with the smaller element followed by 
+                            the larger element.</li>
+                            <li><strong>Merging: </strong>
+                            When merging larger pre-sorted lists, we build the list similarly to how we did 
+                            with single-element lists.
+                            Let’s call the two lists left and right. Bothleft and right are already sorted.
+                            We want to combine them (to merge them) into a larger sorted list, let’s call it 
+                            both. To accomplish this we’ll need to iterate through both with two indices, 
+                            left_index and right_index.
+                            At first left_index and right_index both point to the start of their respective 
+                            lists. left_index points to the smallest element of left (its first element) and 
+                            right_index points to the smallest element of right.
+                            Compare the elements at left_index and right_index. The smaller of these two elements 
+                            should be the first element of both because it’s the smallest of both! It’s the smallest 
+                            of the two smallest values.
+                            Let’s say that smallest value was in left. We continue by incrementing left_index to 
+                            point to the next-smallest value in left. Then we compare the 2nd smallest value in 
+                            left against the smallest value of right. Whichever is smaller of these two is now the 
+                            2nd smallest value of both.
+                            This process of “look at the two next-smallest elements of each list and add the smaller 
+                            one to our resulting list” continues on for as long as both lists have elements to compare. 
+                            Once one list is exhausted, say every element from left has been added to the result, then 
+                            we know that all the elements of the other list, right, should go at the end of the 
+                            resulting list (they’re larger than every element we’ve added so far).</li>
+                            <li><strong>Merge Sort Performance: </strong>
+                            Merge sort was unique for its time in that the best, worst, and average time complexity 
+                            are all the same: <i>Θ(N*log(N))</i>. This means an almost-sorted list will take the same amount 
+                            of time as a completely out-of-order list. This is acceptable because the worst-case 
+                            scenario, where a sort could stand to take the most time, is as fast as a sorting algorithm can be.
+                            Some sorts attempt to improve upon the merge sort by first inspecting the input and 
+                            looking for “runs” that are already pre-sorted. 
+                            <a href="https://en.wikipedia.org/wiki/Timsort" target="_blank">Timsort</a> is one such 
+                            algorithm that attempts 
+                            to use pre-sorted data in a list to the sorting algorithm’s advantage. If the data is 
+                            already sorted, Timsort runs in <i>Θ(N)</i> time.
+                            <strong>Merge sort also requires space</strong>. Each separation requires a temporary array, 
+                            and so a merge 
+                            sort would require enough space to save the whole of the input a second time. This means the 
+                            worst-case space complexity of merge sort is <i>O(N)</i>.</li>
+                            <hr/>
+                            <li>The algorithm consists of <strong>two distinct steps:</strong></li>
+                            <ul>
+                                <li><strong>Splitting the input array: </strong>The algorithm recursively splits the input array until 
+                                each element is in its own array. This portion of the algorithm is represented in the 
+                                top half of the image to the right.</li>
+                                <li><strong>Merging sorted arrays:</strong> The algorithm compares and combines the elements of arrays 
+                                until the input array is sorted. This is shown in the bottom half of the image.</li>
+                                <li>An important point to remember 
+                                about merge sort is that the algorithm is broken into two parts: splitting and merging.
+                                Regardless of the order or length (including odd or even lengths) of an input array, 
+                                the merge sort algorithm will always split the elements into their own arrays first, 
+                                and then combine them into a sorted array. The fact that the same steps are taken 
+                                regardless of the input (order and length) results in an average, best, and worst 
+                                case complexity all equal to the same value, O(n log n).
+                                This time complexity makes merge sort one of the most efficient and popular sorting 
+                                algorithms. Take a look at merge sort compared to a few others on toptal.com.</li>
+                            </ul>
+                            <li><strong>Index.js</strong></li>
+                            <pre>
+                                <code>
+                    const mergeSort = (startArray) => {
+                        const length = startArray.length;
+                        if (length === 1) {
+                            return startArray;
+                        }
+                        
+                        const mid = Math.floor(length / 2);
+                        const leftArray = startArray.slice(0, mid);
+                        const rightArray = startArray.slice(mid, length);
+                        
+                        return merge(mergeSort(leftArray), mergeSort(rightArray))
+                        }
+                        
+                        const merge = (leftArray, rightArray) => {
+                        const sortedArray = [];
+                        while (leftArray.length > 0 && rightArray.length > 0) {
+                            if (leftArray[0] < rightArray[0]) {
+                            sortedArray.push(leftArray[0]);
+                            leftArray.shift();
+                            } else {
+                            sortedArray.push(rightArray[0]);
+                            rightArray.shift();
+                            }
+                        }
+                        
+                        return sortedArray.concat(leftArray).concat(rightArray);
+                    }
+ 
+                        const inputArr = [3, 5, 2, 90, 4, 7];
+                        
+                        console.log(mergeSort(inputArr));
+                        
+                        module.exports = {
+                            mergeSort
+                    };
+                                </code>
+                            </pre>
+                            <hr/>
+                        </div>
+                        <li><strong>Quicksort: </strong>
+                        Quicksort is an efficient recursive algorithm for sorting arrays or lists of values. 
+                        The algorithm is a comparison sort, where values are ordered by a comparison operation 
+                        such as > or <.
+                        Quicksort uses a divide and conquer strategy, breaking the problem into smaller sub-problems
+                        until the solution is so clear there’s nothing to solve.
+                        <strong>Video 
+                        <a href="https://www.youtube.com/watch?v=-oXfZUyA7Po&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a></strong>.</li>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode107" onclick="showCode('displayCode107', 'showCode107')">Display</button>
+                        <div id="displayCode107">
+                            <button onclick="closeCode('displayCode107', 'showCode107')">Close</button>
+                            <li>The problem: many values in the array which are out of order.
+                            The solution: break the array into sub-arrays containing at most one element. One element 
+                            is sorted by default!
+                            We choose a single <strong>pivot</strong> element from the list. Every other element is compared with the 
+                            pivot, which partitions the array into three groups. A sub-array of elements smaller than the 
+                            pivot. The pivot itself. A sub-array of elements greater than the pivot.
+                            The process is repeated on the sub-arrays until they contain zero or one element. 
+                            Elements in the “smaller than” group are never compared with elements in the “greater than” 
+                            group. If the smaller and greater groupings are roughly equal, this cuts the problem in 
+                            half with each partition step!</li>
+                            <pre>
+                                <code>
+                [6,5,2,1,9,3,8,7]
+                6 # The pivot
+                [5, 2, 1, 3] # lesser than 6
+                [9, 8, 7] # greater than 6 
+
+
+                [5,2,1,3]  # these values
+                # will never be compared with 
+                [9,8,7] # these values
+                                </code>
+                            </pre>
+                            <li>Depending on the implementation, the sub-arrays of one element each are recombined 
+                            into a new array with sorted ordering, or values within the original array are swapped 
+                            in-place, producing a sorted mutation of the original array.</li>
+                            <li><strong>Quicksort Runtime: </strong>
+                            The key to Quicksort’s runtime efficiency is the division of the array. The array is 
+                            partitioned according to comparisons with the pivot element, so which pivot is the optimal 
+                            choice to produce sub-arrays of roughly equal length?
+                            The graphic displays two data sets which always use the first element as the pivot. Notice 
+                            how many more steps are required when the quicksort algorithm is run on an already sorted input. 
+                            The partition step of the algorithm hardly divides the array at all!
+                            The worst case occurs when we have an imbalanced partition like when the first element is 
+                            continually chosen in a sorted data-set.
+                            One popular strategy is to select a random element as the pivot for each step. The benefit is 
+                            that no particular data set can be chosen ahead of time to make the algorithm perform poorly.
+                            Another popular strategy is to take the first, middle, and last elements of the array and choose 
+                            the median element as the pivot. The benefit is that the division of the array tends to be more uniform.
+                            Quicksort is an unusual algorithm in that the worst case runtime is <i>O(N^2)</i>, but the average case is <i>O(N * logN)</i>.
+                            We typically only discuss the worst case when talking about an algorithm’s runtime, but for 
+                            Quicksort it’s so uncommon that we generally refer to it as <i>O(N * logN)</i>
+                            <strong>Video</strong>
+                            <a target="_blank" href="https://www.youtube.com/watch?v=BT7gWd8zRtA&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title">here</a>.</li>
+                            <li><strong>Pseudocode</strong></li>
+                            <pre>
+                                <code>
+                    If there is more than one element left in the array:
+                    Find the pivot index through partitioning
+                    
+                    If the left pointer is less than the pivot index:
+                        Call quicksort() on the portion of the array between the left pointer and the pivot. 
+                    
+                    If the pivot index is less than the right pointer:
+                        Call quicksort() on the portion of the array between the pivot index and the right pointer.
+                    
+                    Return the sorted array
+                                </code>
+                            </pre>
+                            <hr/>
+                            <li><strong>quicksort.js</strong></li>
+                            <pre>
+                                <code>
+                    const swap = require('./swap');
+
+                    const quicksort = (array, leftBound = 0, rightBound = array.length - 1) => {
+                        if (leftBound < rightBound) {
+                            const pivotIndex = partition(array, leftBound, rightBound);
+                            quicksort(array, leftBound, pivotIndex - 1);
+                            quicksort(array, pivotIndex, rightBound);
+                        }
+                        return array;
+                    }
+                    
+                    const partition = (array, leftIndex, rightIndex) => {
+                        const pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+                        while (leftIndex <= rightIndex) {
+                            while (array[leftIndex] < pivot) {
+                                leftIndex++;
+                            }
+                            while (array[rightIndex] > pivot) {
+                                rightIndex--;
+                            }
+                            if (leftIndex <= rightIndex) {
+                                swap(array, leftIndex, rightIndex);
+                                leftIndex++;
+                                rightIndex--;
+                            }
+                        }
+                        return leftIndex;
+                    }
+                    
+                    module.exports = {
+                        quicksort,
+                        partition
+                    };
+                                </code>
+                            </pre>
+                            <li><strong>swap.js</strong></li>
+                            <pre>
+                                <code>
+                        const swap = (arr, indexOne, indexTwo) => {
+                            const temp = arr[indexTwo];
+                            arr[indexTwo] = arr[indexOne];
+                            arr[indexOne] = temp;
+                        }
+                            
+                        module.exports = swap;              
+                                </code>
+                            </pre>
+                            <li><strong>script.js</strong></li>
+                            <pre>
+                                <code>
+                    const { quicksort, partition } = require('./quicksort');
+
+                    let numbers = [];
+                    let max = 1000000;
+                    for (let i = max; i > 0; i--) {
+                        numbers.push(i);
+                    }
+                    
+                    
+                    console.log(`Before  quicksort number @ index      0 = ${numbers[0]}`);
+                    console.log(`Before  quicksort number @ index ${max/4} = ${numbers[max/4]}`);
+                    console.log(`Before  quicksort number @ index ${max/2} = ${numbers[max/2]}`);
+                    console.log(`Before  quicksort number @ index ${3*max/4} = ${numbers[3*max/4]}`);
+                    console.log(`Before  quicksort number @ index ${max-1} = ${numbers[max - 1]}`);
+                    const sorted = quicksort(numbers);
+                    console.log(`---`);
+                    console.log(`After   quicksort number @ index      0 = ${sorted[0]}`);
+                    console.log(`After   quicksort number @ index ${max/4-1} = ${sorted[max/4-1]}`);
+                    console.log(`After   quicksort number @ index ${max/2-1} = ${sorted[max/2-1]}`);
+                    console.log(`After   quicksort number @ index ${3*max/4-1} = ${sorted[3*max/4-1]}`);
+                    console.log(`After   quicksort number @ index ${max-1} = ${sorted[max - 1]}`); 
+                                </code>
+                            </pre>
+                        </div>
+                        <ul>
+                            <li><strong>Additional Resources:</strong></li>
+                            <ul>
+                                <li><a href="https://visualgo.net/en/sorting?slide=12" target="_blank">Interactive: Quicksort</a></li>
+                            </ul>
+                            <li><strong>Code Challenges:</strong></li>
+                            <ul>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-top-score-sorter-javascript" target="_blank">Intermediate - Top Score Sorter</a></li>
+                                <li><a href="https://www.codecademy.com/code-challenges/code-challenge-find-xth-number-in-order-javascript" target="_blank">Intermediate - GetX</a></li>
+                            </ul>
+                        </ul>
+                    </ul>
+                    <hr/>
+                    <h3>Search and Graph Search Algorithms</h3>
+                    <li><strong>Binary Search: </strong>
+                    When given a sorted array of data, binary search is a way of searching through that data to find 
+                    an element in <i>O(log n)</i> time using a divide and conquer approach. It doesn’t require you to look 
+                    through the entire array in a linear way, which would have a linear big O runtime of <i>O(n)</i>.
+                    With a sorted data-set, we can take advantage of the ordering to perform a search which is more efficient 
+                    than going element by element.
+                    Let’s say you were looking up the word “Telescope” in the dictionary. You wouldn’t flip through the “A” 
+                    words and “B” words, page by page until you got to the page you wanted because you know “T” is near the 
+                    end of the alphabet.
+                    You might flip it open near the end and see “R” words. Maybe then you jump ahead and land at “V” words. 
+                    You would then go slightly backward to find the “T” words.
+                    At each point, you knew to look forward or backward based on the ordering of the alphabet. We can use 
+                    this intuition for an algorithm called binary search.
+                    A sorted data-set speeds up searching by a significant amount!</li>
+                    <p class="center"><strong>More About:</strong></p>
+                    <button id="showCode108" onclick="showCode('displayCode108', 'showCode108')">Display</button>
+                    <div id="displayCode108">
+                        <button onclick="closeCode('displayCode108', 'showCode108')">Close</button>
+                        <li>Binary search requires a sorted data-set. We then take the following steps:</li>
+                        <ol>
+                            <li>Check the middle value of the dataset.</li>
+                            <li>If this value matches our target we can return the index.</li>
+                            <li>If the middle value is less than our target;</li>
+                            <li>Start at step 1 using the right half of the list.</li>
+                            <li>If the middle value is greater than our target;</li>
+                            <li>Start at step 1 using the left half of the list.</li>
+                            <li>We eventually run out of values in the list or find the target value.</li>
+                        </ol>
+                        <hr/>
+                        <li><strong>Time Complexity of Binary Search: </strong>
+                        How efficient is binary search?
+                        In each iteration, we are cutting the list in half. The time complexity is <i>O(log N)</i>.
+                        A sorted list of 64 elements will take at most log2(64) = 6 comparisons.
+                        When there’s 2 elements, the search value is either one or the other, and thus, there is at
+                        most 6 comparisons in a sorted list of size 64. </li>
+                        <li><strong>In the worst case:</strong>
+                        <ul>                       
+                            <li>Comparison 1: We look at the middle of all 64 elements</li>
+                            <li>Comparison 2: If the middle is not equal to our search value, we would look at 32 elements</li>
+                            <li>Comparison 3: If the new middle is not equal to our search value, we would look at 16 elements</li>
+                            <li>Comparison 4: If the new middle is not equal to our search value, we would look at 8 elements</li>
+                            <li>Comparison 5: If the new middle is not equal to our search value, we would look at 4 elements</li>
+                            <li>Comparison 6: If the new middle is not equal to our search value, we would look at 2 elements</li>
+                        </ul>
+                        <hr/>
+                        <li><strong>index.js</strong></li>
+                        <pre>
+                            <code>
+                const binarySearch = (arr, target) => {
+                    let left = 0;
+                    let right = arr.length;
+                    
+                    while (right > left) {
+                        const indexToCheck = Math.floor((left + right) / 2);
+                        const checking = arr[indexToCheck];
+                        console.log(indexToCheck);
+                    
+                        if (checking === target) {
+                            return indexToCheck;
+                        } else if (checking < target) {
+                            left = indexToCheck + 1;
+                        } else {
+                            right = indexToCheck;
+                        }
+                    }
+                    
+                    return null;
+                }
+
+                const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+                const target = 41;
+
+                targetIndex = binarySearch(searchable, target);
+
+                console.log(`The target index is ${targetIndex}.`);
+
+                module.exports = binarySearch;
+                            </code>
+                        </pre>
+                        <li>You used the following steps to create this function:</li>
+                        <ul>
+                            <li>Initialize the left and right indices as 0 and the length of the array.</li>
+                            <li>Create a while loop that continues to execute until the left index 
+                            equals the right index.</li>
+                            <li>Get the value at the index that falls in the middle of left and right.</li>
+                            <li>Return the index if the value is equal to target.</li>
+                            <li>Set left equal to the current index plus one if the target is greater 
+                            than the value.</li>
+                            <li>Set right equal to the current index if the target is less than the value.</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <li><strong>Binary Search Trees</strong>
+                    Binary search trees are a type of tree data structure with the added condition 
+                    that each element to the left of a node must be less than that parent node, and 
+                    each element to the right of a node must 
+                    be greater than that parent node. Each left and right subtree is also itself a 
+                    binary search tree, which makes searching for elements more efficient.            
+                    A binary tree is an efficient data structure for fast data storage and retrieval due 
+                    to its <i>O(log N)</i> runtime. It is a specialized tree data structure that is made up of 
+                    a root node, and at most two child branches or subtrees. Each child node is itself 
+                    a binary tree.</li>
+                    <p class="center"><strong>More About:</strong></p>
+                    <button id="showCode109" onclick="showCode('displayCode109', 'showCode109')">Display</button>
+                    <div id="displayCode109">
+                        <button onclick="closeCode('displayCode109', 'showCode109')">Close</button>
+                        <li><strong>Each node has the following properties:</strong></li>
+                        <ul>
+                            <li><strong>data</strong></li>
+                            <li>a <strong>depth value</strong>, where depth of 1 indicates the top level of the tree and a 
+                            depth greater than 1 is a level somewhere lower in the tree</li>
+                            <li>a <strong>left pointer</strong> that points to a left child which is itself a binary tree, 
+                            and must have a data lesser than the root node’s data</li>
+                            <li>a <strong>right pointer</strong> that points to a right child which is itself a binary tree, 
+                            and must have a data greater than the root node’s data.</li>
+                            <hr/>
+                            <li><strong>Inserting a Value: </strong>
+                            When inserting a new value into a binary tree, we compare it with the 
+                            root node’s value:</li>
+                            <hr/>
+                            <pre>
+                                <code>
+
+                                </code>
+                            </pre>
+                            <li><strong>Review:</strong></li>
+                            <ul>
+                                <li>a BinaryTree class containing value, left and right child nodes and 
+                                a depth;</li>
+                                <li>an <i>.insert()</i> method to add and place a value at the correct 
+                                location in the binary tree;</li>
+                                <li>a <i>.getNodeByValue()</i> method to retrieve a child node by its 
+                                value or null;</li>
+                                <li>a <i>.depthFirstTraversal()</i> method to traverse the binary 
+                                tree using the inorder traversal option.</li>
+                            </ul>
+                            <li><strong>BinaryTree.js</strong></li>
+                            <pre>
+                                <code>
+                class BinaryTree {
+                    constructor(value, depth = 1) {
+                        this.value = value;
+                        this.depth = depth;
+                        this.left = null;
+                        this.right = null;
+                    }
+
+                    insert(value) {
+                        if (value < this.value) {
+                            if (!this.left) {
+                                this.left = new BinaryTree(value, this.depth + 1);
+                            } else {
+                                this.left.insert(value);
+                            }
+                            } else {
+                            if (!this.right) {
+                                this.right = new BinaryTree(value, this.depth + 1);
+                            } else {
+                                this.right.insert(value);
+                            }
+                        }
+                    }
+                    
+                    getNodeByValue(value) {
+                        if (this.value === value) {
+                            return this;
+                        } else if ((this.left) && (value < this.value)) {
+                            return this.left.getNodeByValue(value);
+                        } else if (this.right) {
+                            return this.right.getNodeByValue(value);
+                        } else {
+                            return null;
+                        }
+                    }
+
+                    depthFirstTraversal() {
+                        if (this.left) {
+                            this.left.depthFirstTraversal();
+                        }
+                        console.log(`Depth=${this.depth}, Value=${this.value}`);
+                        if (this.right) {
+                            this.right.depthFirstTraversal();
+                        }
+                    }
+                };
+
+                module.exports = BinaryTree;
+                                </code>
+                            </pre>
+                            <li><strong>script.js</strong></li>
+                            <pre>
+                                <code>
+                const BinaryTree = require('./BinaryTree');
+                const randomize = () => Math.floor(Math.random() * 40);
+                const bt = new BinaryTree(15);
+                let numbers = [];
+
+                for (let i = 0; i < 10; i++) {
+                    numbers.push(randomize());
+                    bt.insert(numbers[i]);
+                }
+
+                console.log(`Inserted [ ${numbers} ] to binary tree`);
+
+                console.log('Depth First Traversal');
+                bt.depthFirstTraversal();
+                                </code>
+                            </pre>
+                        </ul>
+                    </div>
+                    <ul>
+                        <li><strong>Additional Resources:</strong></li>
+                        <ul>
+                            <li><a href="https://www.cs.usfca.edu/~galles/visualization/Search.html" target="_blank">Interactive: Searching Sorted List</a></li>
+                            <li><a href="https://visualgo.net/en/bst?slide=1" target="_blank">Interactive: Binary Search Tree</a></li>
+                        </ul>
+                        <li>Code Challenges:</li>
+                        <ul>
+                            <li><a href="https://leetcode.com/problems/binary-search/" target="_blank">Beginner - Binary Search</a></li>
+                            <li><a href="https://leetcode.com/problems/search-insert-position/" target="_blank">Beginner - Search Insert Position</a></li>
+                            <li><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank">Beginner - Convert Sorted Array to Bnary Search Tree</a></li>
+                            <li><a href="https://leetcode.com/problems/find-mode-in-binary-search-tree/" target="_blank">Beginner - Find Mode in Binary Search Tree</a></li>
+                        </ul>
+                    </ul>
+                    <hr/>
+                    <h3>Graph Traversals</h3>
+                    <li>There are many ways to traverse a graph, but you will focus on three methods: 
+                    depth-first search (DFS), breadth-first search (BFS), and Dijkstra’s algorithm. 
+                    These traversal methods are core algorithms for searching a graph. <strong>Video</strong>
+                    <a href="https://www.youtube.com/watch?v=swpIQgPoCWs&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                    <p class="center"><strong>More About:</strong></p>
+                    <button id="showCode110" onclick="showCode('displayCode110', 'showCode110')">Display</button>
+                    <div id="displayCode110">
+                        <button onclick="closeCode('displayCode110', 'showCode110')">Close</button>
+                        <li>Using graphs to model complex networks is pretty swell, but one way that graphs 
+                        can really come in handy is with graph search algorithms. You can use a graph 
+                        search algorithm to traverse the 
+                        entirety of a graph data structure in search of a specific vertex value.
+                        There are two common approaches to using a graph search to progress through a graph:</li>
+                        <li><strong>depth-first search</strong>, known as DFS follows each possible path to its end</li>
+                        <li><strong>breadth-first search</strong>, known as BFS broadens its search from the point of origin 
+                        to an ever-expanding circle of neighboring vertices</li>
+                        <li>To enable searching, we add vertices to a list, visited. This list is pretty 
+                        important because it keeps the search from visiting the same vertex multiple times! 
+                        This is particularly vital for cyclical graphs where you might otherwise end up in 
+                        an infinite loop. So how do you calculate the runtime for graph search algorithms?
+                        In an upper bound scenario, we would be looking at every vertex and every edge. 
+                        Because of this, the big O runtime for both depth-first search and breadth-first 
+                        search is <i>O(vertices + edges)</i>.</li>
+                        <hr/>
+                        <li><strong>GPS system example:</strong> When building a GPS system, graph traversal algorithms can be useful in finding 
+                        the shortest path between two locations on the map. Here's how each type of graph 
+                        search algorithm could be used:</li>
+                        <ul>
+                            <li><strong>Breadth-first search:</strong> BFS is useful when all the edges in the graph have the same 
+                            weight. In a GPS system, if all the roads have the same speed limit, BFS can be 
+                            used to find the shortest path between two locations.</li>
+                            <li><strong>Depth-first search:</strong> DFS is useful when the graph has many paths and the shortest 
+                            path is not the only goal. In a GPS system, if a user wants to take a scenic route 
+                            that may not be the shortest path, DFS can be used to find alternative paths.</li>
+                            <li><strong>Dijkstra's algorithm:</strong> Dijkstra's algorithm is useful when the graph has weighted 
+                            edges. In a GPS system, Dijkstra's algorithm can be used to find the shortest path 
+                            between two locations when the roads have different speed limits.</li>
+                            <li><strong>A* algorithm:</strong> A* algorithm is useful when the graph is very large and it is 
+                            important to find the shortest path quickly. In a GPS system, the A* algorithm 
+                            can be used to find the shortest path between two locations when the roads have 
+                            different speed limits and the graph is very large.</li>
+                        </ul>
+                        <li>When path-finding, graph search algorithms typically do not take into 
+                        consideration certain map-routing factors, such as:</li>
+                        <ul>
+                            <li><strong>Traffic congestion:</strong> Graph search algorithms typically assume that the 
+                            time required to traverse each edge of the graph is constant. However, 
+                            in reality, the time required to travel from one point to another can 
+                            vary based on traffic congestion.</li>
+                            <li><strong>Road closures and diversions:</strong> Graph search algorithms may not take into 
+                            account road closures, diversions, or other disruptions that could affect 
+                            the optimal route.</li>
+                            <li><strong>Weather conditions:</strong> Graph search algorithms typically do not consider weather 
+                            conditions, which can affect travel times and the condition of roads.</li>
+                            <li><strong>Safety and security:</strong> In certain situations, there may be routes that are safer 
+                            or more secure than others. However, graph search algorithms do not consider 
+                            these factors and may provide a route that is not the safest or most secure.</li>
+                            <li><strong>User preferences:</strong> Graph search algorithms typically do not take into account
+                            the user's preferences or priorities, such as avoiding toll roads or highways, 
+                            taking scenic routes, or minimizing travel time.</li>
+                        </ul>
+                        <hr/>
+                    </div>
+                    <ul>
+                        <li><strong>Depth-First Search: </strong>
+                        Simply put, a depth-first graph search continues down a path until it reaches 
+                        the end. It is helpful for determining if a path exists between two vertices. 
+                        DFS has many applications, including topological sorting and detecting cycles, 
+                        but one of the more interesting real-world applications is that it can be used 
+                        to solve problems that have a singular correct answer (a path between the start 
+                        state and end state), such as a sudoku exercise. <strong>Video </strong>
+                        <a href="https://www.youtube.com/watch?v=0_ZzqX5bpyA&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode111" onclick="showCode('displayCode111', 'showCode111')">Display</button>
+                        <div id="displayCode111">
+                            <button onclick="closeCode('displayCode111', 'showCode111')">Close</button>
+                            <li>Imagine you’re in a car, on the road with your friend, “D.” D is on a mission 
+                            to get to your destination by process of elimination. D won’t stop and ask 
+                            for directions. D just sticks to a chosen path until you reach the end.
+                            At that point, if the end wasn’t actually your destination, D brings you back 
+                            to the last point when there was an intersection and tries another path.
+                            Like your friend D, depth-first search algorithms check the values along a 
+                            path of vertices before moving to another path.
+                            While this isn’t exactly ideal when you want to find the shortest path between 
+                            two points, DFS can be very helpful for determining if a path even exists.
+                            In order to accomplish this path-finding feat, DFS implementations use either 
+                            a stack data structure or, more commonly, recursion to keep track of the path 
+                            the search is on and the current vertex.
+                            In a stack implementation, the most recently added vertex is popped off the 
+                            stack when the search has reached the end of the path. Meanwhile, in a 
+                            recursive implementation, the DFS function is recursively called for each 
+                            connected vertex.</li>
+                            <hr/>
+                            <li><strong>depthFirstTraversal.js</strong></li>
+                            <pre>
+                                <code>
+            const testGraph = require('./testGraph.js');
+
+            const depthFirstTraversal = (start, callback, visitedVertices = [start]) => {
+                callback(start);
+
+                start.edges.forEach((edge) => {
+                    const neighbor = edge.end;
+
+                    if (!visitedVertices.includes(neighbor)) {
+                        visitedVertices.push(neighbor);
+                        depthFirstTraversal(neighbor, callback, visitedVertices);
+                    }
+                });
+            };
+
+            depthFirstTraversal(testGraph.vertices[0], (vertex) => { console.log(vertex.data) });
+                                </code>
+                            </pre>
+                            <hr/>
+                            <li><strong>testGraph.js</strong></li>
+                            <pre>
+                                <code>
+                    const { Graph } = require('./Graph.js');
+
+                    const simpleGraph = new Graph(true, false);
+                    const startNode = simpleGraph.addVertex('v0.0.0');
+                    const v1 = simpleGraph.addVertex('v1.0.0');
+                    const v2 = simpleGraph.addVertex('v2.0.0');
+                    
+                    const v11 = simpleGraph.addVertex('v1.1.0');
+                    const v12 = simpleGraph.addVertex('v1.2.0');
+                    const v21 = simpleGraph.addVertex('v2.1.0');
+                    
+                    const v111 = simpleGraph.addVertex('v1.1.1');
+                    const v112 = simpleGraph.addVertex('v1.1.2');
+                    const v121 = simpleGraph.addVertex('v1.2.1');
+                    const v211 = simpleGraph.addVertex('v2.1.1');
+                    
+                    simpleGraph.addEdge(startNode, v1);
+                    simpleGraph.addEdge(startNode, v2);
+                    
+                    simpleGraph.addEdge(v1, v11);
+                    simpleGraph.addEdge(v1, v12);
+                    simpleGraph.addEdge(v2, v21);
+                    
+                    simpleGraph.addEdge(v11, v111);
+                    simpleGraph.addEdge(v11, v112);
+                    simpleGraph.addEdge(v12, v121);
+                    simpleGraph.addEdge(v21, v211);
+                    
+                    module.exports = simpleGraph;
+                                </code>
+                            </pre>
+                            <hr/>
+                        </div>
+                        <li><strong>Breadth-First Search: </strong>
+                        On the other hand, a breadth-first graph search approach checks the values of 
+                        all neighboring vertices before moving into another level of depth. This is an 
+                        incredibly inefficient way to find just any path between two vertices, but it’s 
+                        an excellent way to identify the shortest path between them. Because of this,
+                        BFS is helpful for figuring out directions from one place to another.
+                        <strong>Video </strong><a href="https://www.youtube.com/watch?v=WiasVg9M81I&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode112" onclick="showCode('displayCode112', 'showCode112')">Display</button>
+                        <div id="displayCode112">
+                            <button onclick="closeCode('displayCode112', 'showCode112')">Close</button>
+                            <li>You’re back in a car, but this time, your friend “B” is navigating. Unlike D, 
+                            B is a bit hesitant about whether you’ve gone the right way and keeps checking 
+                            in to see if you are on the best path. At each intersection, B tries out each 
+                            possible route one by one, but only for a block in each direction to see if 
+                            you’ve found your destination.
+                            Like B, breadth-first search, known as BFS, checks the values of all 
+                            neighboring vertices before moving into another level of depth.
+                            This is an incredibly inefficient way to find just any path between two 
+                            points, but it’s an excellent way to identify the shortest path between 
+                            two vertices. Because of this, BFS is helpful for figuring out directions 
+                            from one place to another.
+                            Unlike DFS, BFS graph search implementations use a queue data structure to 
+                            keep track of the current vertex and vertices that still have unvisited 
+                            neighbors. In BFS graph search a vertex is dequeued when all neighboring 
+                            vertices have been visited.</li> 
+                            <hr/>
+                            <li><strong>breadthFirstTraversal.js</strong></li>
+                            <pre>
+                                <code>
+                const testGraph = require('./testGraph.js');
+                const Queue = require('./Queue.js');
+                
+                const breadthFirstTraversal = (start) => {
+                    const visitedVertices = [start];
+                    const visitQueue = new Queue();
+                    visitQueue.enqueue(start);
+                    
+                    while(!visitQueue.isEmpty()){
+                        const current = visitQueue.dequeue();
+                        console.log(current.data);
+                        
+                        current.edges.forEach((edge) => {
+                            const neighbor = edge.end;
+                            if (!visitedVertices.includes(neighbor)) {
+                                visitedVertices.push(neighbor);
+                                visitQueue.enqueue(neighbor);
+                            }
+                        })
+                    };
+                };
+                
+                breadthFirstTraversal(testGraph.vertices[0]);
+                                </code>
+                            </pre>
+                            <li><strong>Queue.js</strong></li>
+                            <pre>
+                                <code>
+                const LinkedList = require('./LinkedList');
+
+                class Queue {
+                    constructor(maxSize = Infinity) {
+                        this.queue = new LinkedList();
+                        this.maxSize = maxSize;
+                        this.size = 0;
+                    }
+                
+                    hasRoom() {
+                        return this.size < this.maxSize;
+                    }
+                
+                    isEmpty() {
+                        return this.size === 0;
+                    }
+                
+                    enqueue(data) {
+                        if (this.hasRoom()) {
+                            this.queue.addToTail(data);
+                            this.size++;
+                        } else {
+                            throw new Error('Queue is full!');
+                        }
+                    }
+                
+                    dequeue() {
+                        if (!this.isEmpty()) {
+                            const data = this.queue.removeHead();
+                            this.size--;
+                            return data;
+                        } else {
+                            throw new Error('Queue is empty!');
+                        }
+                    }
+                }
+                
+                module.exports = Queue;
+                                </code>
+                            </pre>
+                            <li><strong>testGraph.js</strong></li>
+                            <pre>
+                                <code>
+                const { Graph } = require('./Graph.js');
+
+                const simpleGraph = new Graph(true, false);
+                const startNode = simpleGraph.addVertex('v0.0.0');
+                const v1 = simpleGraph.addVertex('v1.0.0');
+                const v2 = simpleGraph.addVertex('v2.0.0');
+                
+                const v11 = simpleGraph.addVertex('v1.1.0');
+                const v12 = simpleGraph.addVertex('v1.2.0');
+                const v21 = simpleGraph.addVertex('v2.1.0');
+                
+                const v111 = simpleGraph.addVertex('v1.1.1');
+                const v112 = simpleGraph.addVertex('v1.1.2');
+                const v121 = simpleGraph.addVertex('v1.2.1');
+                const v211 = simpleGraph.addVertex('v2.1.1');
+                
+                simpleGraph.addEdge(startNode, v1);
+                simpleGraph.addEdge(startNode, v2);
+                
+                simpleGraph.addEdge(v1, v11);
+                simpleGraph.addEdge(v1, v12);
+                simpleGraph.addEdge(v2, v21);
+                
+                simpleGraph.addEdge(v11, v111);
+                simpleGraph.addEdge(v11, v112);
+                simpleGraph.addEdge(v12, v121);
+                simpleGraph.addEdge(v21, v211);
+                
+                module.exports = simpleGraph;
+                                </code>
+                            </pre>
+                            <hr/>
+                        </div>
+                        <li><strong>Dijkstra’s algorithm: </strong> is a method for finding the shortest distance from a given 
+                        point to every other point in a weighted graph. The algorithm works by keeping 
+                        track of all the distances and updating the distances as it conducts a breadth-first 
+                        search. A common application of this algorithm is to find the quickest route 
+                        from one destination to another. <strong>Video</strong> 
+                        <a href="https://content.codecademy.com/programs/cs-path/dijkstra's%20conceptual/Dijkstra's%20Conceptual.mp4" target="_blank">here</a>.</li>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode113" onclick="showCode('displayCode113', 'showCode113')">Display</button>
+                        <div id="displayCode113">
+                            <button onclick="closeCode('displayCode113', 'showCode113')">Close</button>
+                            <li>One of the most common applications of graph searches is to find the 
+                            shortest distance between vertices. Finding this distance has a variety 
+                            of applications such as finding the optimal route to a destination or 
+                            transferring data in a computer network.
+                            Finding the shortest path between vertex A 
+                            and vertex E may seem easy in your brain, but telling a computer how to find 
+                            it is a bit more complicated.
+                            Fortunately, there is an algorithm that computes the shortest distance from 
+                            a given vertex to the rest of the vertices in a graph. This is called 
+                            Dijkstra’s Algorithm. That works as following:</li>
+                            <ol>
+                                <li>Instantiate a dictionary that will eventually map vertices to their
+                                distance from the start vertex</li>
+                                <li>Assign the start vertex a distance of 0 in a min heap</li>
+                                <li>Assign every other vertex a distance of infinity in a min heap</li>
+                                <li>Remove the vertex with the smallest distance from the min heap and set that 
+                                to the current vertex</li>
+                                <li>For the current vertex, consider all of its adjacent vertices and calculate 
+                                the distance to them as (distance to the current vertex) + (edge weight of 
+                                current vertex to adjacent vertex).</li>
+                                <li>If this new distance is less than the current distance, replace the current 
+                                distance.</li>
+                                <li>Repeat 4 and 5 until the heap is empty</li>
+                                <li>After the heap is empty, return the distances</li>
+                            </ol>
+                            <hr/>
+                            <li><strong>Conceptual Runtime: </strong>
+                            How efficient is Dijkstra’s algorithm? Let’s break it into different parts:</li>
+                            <ul>
+                                <li>Searching through the graph</li>
+                                <li>Keeping track of distances</li>
+                            </ul>
+                            <li>Just like breadth-first search and depth-first search, to search through
+                            an entire graph, in the worst case, we would go through all of the edges and 
+                            all of the vertices resulting in a runtime of O(E + V).
+                            For Dijkstra’s, we use a min-heap to keep track of all the distances. Searching 
+                            through and updating a min-heap with V nodes takes O(log V) because in each 
+                            layer of the min-heap, we reduce the number of nodes we are looking at by a 
+                            factor of 2.
+                            In the worst case, we would update the min-heap every iteration. Since there 
+                            are at most E + V iterations of Dijkstra’s and it takes log V to update a 
+                            min-heap in the worst case, then the runtime of Dijkstra’s is <i>O((E+V)log V)</i>.</li>
+                            <hr/>
+                            <li>Dijkstra’s Algorithm is used for evaluating the shortest paths between vertices in 
+                            a graph. The general strategy is to iterate through the vertices in such a way that 
+                            will always allow us to only consider the shorter path at each vertex and maintain 
+                            every possible shortest path as we go.</li>
+                            <hr/>
+                            <li><strong>dijkstras.js</strong></li>
+                            <pre>
+                                <code>
+                const testSingleVertexGraph = require('./testSingleVertexGraph.js');
+                const testSimpleGraph = require('./testSimpleGraph.js');
+                const testDisconnectedGraph = require('./testDisconnectedGraph.js');
+                const testGraph = require('./testGraph.js');
+                const PriorityQueue = require('./PriorityQueue.js');
+                
+                const dijkstras = (graph, startingVertex) => {
+                    const distances = {};
+                    const previous = {};
+                    const queue = new PriorityQueue();
+                
+                    queue.add({ vertex: startingVertex, priority: 0 });
+                
+                    graph.vertices.forEach((vertex) => {
+                        distances[vertex.data] = Infinity;
+                        previous[vertex.data] = null;
+                    });
+                
+                    distances[startingVertex.data] = 0;
+                
+                    while (!queue.isEmpty()) {
+                        const { vertex } = queue.popMin();
+                
+                        vertex.edges.forEach((edge) => {
+                            const alternate = edge.weight + distances[vertex.data];
+                            const neighborValue = edge.end.data;
+                
+                            if (alternate < distances[neighborValue]) {
+                                distances[neighborValue] = alternate;
+                                previous[neighborValue] = vertex;
+                
+                                queue.add({ vertex: edge.end, priority: distances[neighborValue] })
+                            }
+                        })
+                    }
+                
+                    return { distances, previous };
+                };
+                
+                const results = dijkstras(testGraph, testSimpleGraph.vertices[0]);
+                console.log(results);
+                
+                module.exports = dijkstras;
+                                </code>
+                            </pre>
+                            <li><strong>testSingleGraph.js</strong></li>
+                            <pre>
+                                <code>
+            const { Graph } = require('./Graph.js');
+
+            const testSimpleGraph = new Graph(true, true);
+            const a = testSimpleGraph.addVertex('A');
+            
+            module.exports = testSimpleGraph;
+                                    
+                                </code>
+                            </pre>
+                            <li><strong>testSimpleGraph.js</strong></li>
+                            <pre>
+                                <code>
+            const { Graph } = require('./Graph.js');
+
+            const testSimpleGraph = new Graph(true, true);
+            const a = testSimpleGraph.addVertex('A');
+            const b = testSimpleGraph.addVertex('B');
+            const c = testSimpleGraph.addVertex('C');
+            
+            testSimpleGraph.addEdge(a, b, 1);
+            testSimpleGraph.addEdge(b, c, 1);
+            
+            module.exports = testSimpleGraph;         
+                                </code>
+                            </pre>
+                            <li><strong>testDisconnectedGraph.js</strong></li>
+                            <pre>
+                                <code>
+                    const { Graph } = require('./Graph.js');
+
+                    const testDisconnectedGraph = new Graph(true, true);
+                    const a = testDisconnectedGraph.addVertex('A');
+                    const b = testDisconnectedGraph.addVertex('B');
+                    const c = testDisconnectedGraph.addVertex('C');
+                    const d = testDisconnectedGraph.addVertex('D');
+                    const e = testDisconnectedGraph.addVertex('E');
+                    const f = testDisconnectedGraph.addVertex('F');
+                    const g = testDisconnectedGraph.addVertex('G');
+                    
+                    testDisconnectedGraph.addEdge(a, b, 1);
+                    testDisconnectedGraph.addEdge(b, c, 1);
+                    
+                    testDisconnectedGraph.addEdge(d, e, 1);
+                    testDisconnectedGraph.addEdge(e, f, 1);
+                    
+                    module.exports = testDisconnectedGraph;
+                                </code>
+                            </pre>
+                            <li><strong>testGraph.js</strong></li>
+                            <pre>
+                                <code>
+                    const { Graph } = require('./Graph.js');
+
+                    const testGraph = new Graph(true, true);
+                    const a = testGraph.addVertex('A');
+                    const b = testGraph.addVertex('B');
+                    const c = testGraph.addVertex('C');
+                    const d = testGraph.addVertex('D');
+                    const e = testGraph.addVertex('E');
+                    const f = testGraph.addVertex('F');
+                    const g = testGraph.addVertex('G');
+                    
+                    testGraph.addEdge(a, c, 100);
+                    testGraph.addEdge(a, b, 3);
+                    testGraph.addEdge(a, d, 4);
+                    testGraph.addEdge(d, c, 3);
+                    testGraph.addEdge(d, e, 8);
+                    testGraph.addEdge(e, b, -2);
+                    testGraph.addEdge(e, f, 10);
+                    testGraph.addEdge(b, g, 9);
+                    testGraph.addEdge(e, g, -50);
+                    
+                    module.exports = testGraph;
+                                </code>
+                            </pre>
+                            <hr/>
+                            <li>We first need to initialize the two objects that we would use to 
+                            keep track of the shortest paths from the starting vertex to every 
+                            vertex in the graph. The previous object keeps track of the preceding 
+                            vertices in the path, like a reverse linked-list. We can use it to 
+                            reconstruct the entire path, but backwards. The distances object keeps 
+                            track of how far each vertex is from the starting vertex.
+                            Before we can start traversing through the edges in the graph, we must 
+                            initialize each vertex’s distance and previous vertex. This is because 
+                            up until now, we have not traversed down any paths to any of the vertices, 
+                            so the initial distances should all be Infinity (and any actual paths are 
+                            guaranteed to be less than the initial distance), and the previous vertices
+                            are all null. The only exception is the starting vertex where the distance 
+                            from the starting vertex to itself is 0.</li>
+                            <pre>
+                                <code>
+                    distances = {}
+                    previous = {}
+                    
+                    for every vertex in the graph:
+                    distances[vertex] = Infinity
+                    previous[vertex] = null
+                    
+                    distances[starting vertex] = 0
+                                </code>
+                            </pre>
+                            <li>Next, a priority queue is used to traverse through the graph. In order 
+                            for a vertex to be queued, the path to that vertex must be smaller than 
+                            what was previously recorded in distances. We can initially queue up the 
+                            starting vertex because no other paths have been evaluated yet, so the 
+                            “path” to itself is the shortest so far.
+                            We continue to evaluate paths as long as there are vertices left in the 
+                            queue. In order to evaluate new paths, we must dequeue a vertex from the 
+                            queue and iterate through its neighbors. We then look at the distances to 
+                            this vertex’s neighbors and the distance from the starting vertex to this 
+                            vertex. The summation of these two distances is the full distance of the 
+                            alternate path to the neighbor.</li>
+                            <pre>
+                                <code>
+                    distances = {}
+                    previous = {}
+                    queue = priority queue
+                    
+                    add starting vertex to queue
+                    
+                    for every vertex in the graph:
+                    distances[vertex] = Infinity
+                    previous[vertex] = null
+                    
+                    distances[starting vertex] = 0
+                    
+                    while there are vertices in the queue:
+                    dequeue vertex from queue
+                    
+                    for every neighbor in vertex:
+                        alternate = distances[vertex] + distance from vertex to neighbor
+                                </code>
+                            </pre>
+                            <li>Finally, we must compare the distance of the alternate path to the 
+                            distance of the current path to the vertex. If the alternate path 
+                            turns out to be shorter, then we want to ditch the current path and 
+                            replace it with the alternate path. This means we will have to replace 
+                            the neighbor’s previous vertex to the vertex, and the neighbor’s distance 
+                            with the alternate distance.
+                            With the discovery of a shorter path to the neighbor, it raises the 
+                            possibility of shorter paths to other vertices in the graph through this 
+                            path. To cover this case, we should add the neighbor to the queue so we can
+                            explore its connected vertices.</li>
+                            <pre>
+                                <code>
+                distances = {}
+                previous = {}
+                queue = priority queue
+                
+                add starting vertex to queue
+                
+                for every vertex in the graph:
+                distances[vertex] = Infinity
+                previous[vertex] = null
+                
+                distances[starting vertex] = 0
+                
+                while there are vertices in the queue:
+                dequeue vertex from queue
+                
+                for every neighbor in vertex:
+                    alternate = distances[vertex] + distance from vertex to neighbor
+                
+                    if alternate < distances[neighbor]:
+                        distances[neighbor] = alternate
+                        previous[neighbor] = vertex
+                        add neighbor to queue
+                                </code>
+                            </pre>
+                        </ul>
+                        
+                    <li><strong>Graph Search Traversal Order: </strong>
+                    What if you don’t need to find a path, but you do need to get a list of all the 
+                    values in a graph?
+                    Well, it turns out that in addition to path-finding, depth-first search is pretty 
+                    adept at organizing vertices (or vertex values) with a clear order of visitation 
+                    from beginning to end.
+                    There are three main traversal orders that you’ll come across for graph traversal:</li>
+                    <ul>
+                        <li><strong>Preorder</strong>, in which each vertex is added to the “visited” list and added to the output 
+                        list BEFORE getting added to the stack</li>
+                        <li><strong>Postorder</strong>, in which each vertex is added to the “visited” list and added to the output 
+                        list AFTER it is popped off the stack</li>
+                        <li><strong>Reverse Post-Order</strong> (also known as Topological Sort), which returns an output list that 
+                        is exactly the reverse of the post-order list</li>
+                    </ul>
+                </ul>
+                <hr/>
+                <ul>
+                    <li><strong>Additional Resources:</strong></li>
+                    <ul>
+                        <li><a href="https://visualgo.net/en/dfsbfs?slide=1" target="_blank">Interactive: Graph Traversal</a></li>
+                    </ul>
+                    <li><strong>Code Challenges:</strong></li>
+                    <ul>
+                        <li><a href="https://leetcode.com/problems/find-the-town-judge/" target="_blank">Beginner - Find the Town Judge</a></li>
+                        <li><a href="https://leetcode.com/problems/find-center-of-star-graph/" target="_blank">Beginner - Find Center of Star Graph</a></li>
+                        <li><a href="https://leetcode.com/problems/clone-graph/" target="_blank">Intermediate - Clone Graph</a></li>
+                    </ul>
+                </ul>
+                <hr/>
+                <h3>Other algorithms</h3>
+                <ul>
+                    <li><strong>Sieve Of Eratosthenes: </strong> is a simple and ancient algorithm for finding 
+                    all prime numbers up to a specified integer. </li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode120" onclick="showCode('displayCode120', 'showCode120')">Display</button>
+                    <div id="displayCode120">
+                        <button onclick="closeCode('displayCode120', 'showCode120')">Close</button>
+                        <li>The algorithm works by iteratively marking as composite (i.e., not prime) 
+                        the multiples of each prime, starting with the multiples of 2. It proceeds as follows:</li>
+                        <ol>
+                            <li>Create a list of consecutive integers from 2 through n: (2, 3, 4, ..., n).</li>
+                            <li>Initially, let p equal 2, the smallest prime number.</li>
+                            <li>Enumerate the multiples of p by counting in increments of p from 2p to n, 
+                            and mark them in the list (these will be 2p, 3p, 4p, ...; the p itself should 
+                            not be marked).</li>
+                            <li>Find the smallest number in the list greater than p that is not marked. 
+                            If there was no such number, stop. Otherwise, let p now equal this new
+                            number (which is the next prime), and repeat from step 3.</li>
+                            <li>When the algorithm terminates, the numbers remaining not marked in the list 
+                            are all the primes below n.</li>
+                        </ol>
+                        <pre>
+                            <code>
+            const sieveOfEratosthenes = (limit) => {
+
+                const output = new Array(limit + 1).fill(true);
+                    output[0] = false;
+                    output[1] = false;
+                
+                    for (let i = 2; i <= limit; i++) {
+                    if (output[i] === true) {
+                        for (let j = i * 2; j <= limit; j = j + i) {
+                        output[j] = false;
+                        }
+                    }
+                    }
+                
+                    const findTrueIndices = (arr) => {
+                        const newArray = [];
+                        for(i = 0; i < arr.length; i++){
+                        if(arr[i] === true){
+                            newArray.push(i);
+                        }
+                        
+                        }
+                        return newArray;
+                    }
+                return findTrueIndices(output);
+            }
+            
+            const test = sieveOfEratosthenes(13);
+            // should return [2, 3, 5, 7, 11, 13]
+            console.log(test);
+            
+            // Leave this line for testing:
+            module.exports = sieveOfEratosthenes;                     
+                            </code>
+                        </pre>
+                        <hr/>
+                    </div>
+                    <li><strong>Capturing Rainwater: </strong>is a common algorithmic problem that 
+                    involves calculating the amount of water that can be trapped or captured between 
+                    a set of walls or bars in a given landscape. The bars are represented as an array 
+                    of non-negative integers, where each integer represents the height of a bar. The 
+                    task is to calculate the total amount of water that can be trapped or stored between 
+                    the bars.</li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode121" onclick="showCode('displayCode121', 'showCode121')">Display</button>
+                    <div id="displayCode121">
+                        <button onclick="closeCode('displayCode121', 'showCode121')">Close</button>
+                        <li>The <strong>naive solution</strong> to the problem is to:</li>
+                        <ol>
+                            <li>Traverse every element in the array</li>
+                            <li>Find the highest left bound for that index</li>
+                            <li>Find the highest right bound for that index</li>
+                            <li>Take the lower of those two values</li>
+                            <li>Subtract the height of that index from that minimum</li>
+                            <li>Add the difference to the total amount of water</li>
+                        </ol>
+                        <hr/>
+                        <li>The previous solution had a quadratic runtime, but it’s possible to solve 
+                        this problem in O(n) time by using two pointers. The pointers will start
+                        at each end of the array and move towards each other. The two-pointer approach 
+                        is a common approach for problems that require working with arrays, as it allows
+                        you to go through the array in a single loop and without needing to create copy 
+                        arrays. We’ll start by creating the following variables:</li>
+                        <pre>
+                            <code>
+                        totalWater = 0
+                        leftPointer = 0 
+                        rightPointer = heights.length - 1
+                        leftBound = 0
+                        rightBound = 0
+                            </code>
+                        </pre>
+                        <li>leftPointer and rightPointer will start at the beginning and end of 
+                        the array, respectively, and move towards each other until they meet. 
+                        The algorithm is as follows:</li>
+                        <pre>
+                            <code>
+                        while leftPointer < rightPointer
+                            if the element at leftPointer <= the element at rightPointer
+                                if the element is larger than leftBound, set leftBound to the element
+                                add the difference between leftBound and the element at leftPointer to totalWater
+                                move leftPointer forward by one
+                            else
+                                if the element is larger than rightBound, set rightBound to the element
+                                add the difference between rightBound and the element at rightPointer to totalWater
+                                move rightPointer back by one 
+                            
+                        return totalWater
+                            </code>
+                        </pre>
+                        <hr/>
+                    </div>
+                    <li><strong>The Array Sort Method: </strong>
+                    the internal <i>.sort()</i> method does return an altered array that is more sorted 
+                    than before, but it’s not what we would expect to see. The numbers are ordered
+                    by the first digit, so while 1 comes before 2 (as expected), 10 also comes 
+                    before 2 since its first digit is a 1. The same pattern can be seen in the 
+                    sorting of the strings, where it’s sorted according to the first character. 
+                    This is because <i>.sort()</i>‘s default comparator converts the values in the array 
+                    to strings and then compares them lexically.
+                    But what if we want to sort the array another way? Yes, it’s possible to use one of 
+                    the sorting algorithms listed above, but the .sort() method will actually allow us 
+                    to tell it how we want it to compare the elements in the array.</li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode122" onclick="showCode('displayCode122', 'showCode122')">Display</button>
+                    <div id="displayCode122">
+                        <button onclick="closeCode('displayCode122', 'showCode122')">Close</button>
+                        <li>A negative return value means that a will be placed before b and a positive
+                        value means a will be placed after b.</li>
+                        <pre>
+                            <code>
+                function ascendingOrder(a, b) {
+                    return a - b;
+                }
+                    
+                function descendingOrder(a, b) {
+                    return b - a;
+                }
+                    
+                // Use this array to test your code:
+                const testArray = [10, 43, 5, 0, -2, -20, 4, 3, 2, 1, 11];
+                testArray.sort(ascendingOrder);
+                console.log(testArray);
+                            </code>
+                        </pre>
+                        <hr/>
+                        Explicit Ordering
+                        Let’s try a more complicated custom comparator. Given an input array, we 
+                        want to sort the array given to an explicit order. If elements aren’t in the 
+                        given explicit order, put them at the back in the same order they appeared in.
+                        For example, given:
+                        <pre>
+                            <code>
+                const inputArray = ['a', 'b', 'c', 'd', 'e', 'f', 'n', 'y', 'g'];
+                const order = ['a', 'n', 'd', 'y'];
+                            </code>
+                        </pre>
+                        the comparator function explicitSort(inputArray, order) should return:
+                        <pre>
+                            <code>
+                ['a', 'n', 'd', 'y', 'b', 'c', 'e', 'f', 'g']
+                            </code>
+                        </pre>
+                        <li>In order to do this, we are going to use an <i>explicitSortWithComparator()</i>
+                        function that takes inputArray and order as parameters, and has an internal 
+                        <i>explicitComparator()</i> function, which is what will take a and b. At the end 
+                        of <i>explicitSortWithComparator()</i>, we will call <i>.sort(explicitComparator)</i> on 
+                        inputArray and return the result.</li>
+                        <pre>
+                            <code>
+                const explicitSortWithComparator = (inputArray, order) => {
+
+                    const explicitComparator = (a, b) => {
+                        // Compare the indexes of a and b in the order array
+                        const aIndex = order.indexOf(a);
+                        const bIndex = order.indexOf(b);
+                        if (aIndex === -1) {
+                                return 1; // a is not in order, so place it after b
+                            } else if (bIndex === -1) {
+                                return -1; // b is not in order, so place it after a
+                            } else {
+                                return aIndex - bIndex; // compare the indexes of a and b
+                            }
+                        }
+                        
+                        return inputArray.sort(explicitComparator).slice();
+                    }
+                    
+                    // Use this array to test your code:
+                    const inputArray = ['a', 'b', 'c', 'd', 'e', 'f', 'n', 'y', 'g']
+                    const order = ['a', 'n', 'd', 'y']
+                    console.log(explicitSortWithComparator(inputArray, order));
+                    
+                    module.exports = explicitSortWithComparator;
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Time and Space Complexities: </strong>
+                        The time and space complexities of your custom comparator functions will vary 
+                        depending on your implementations, but what about the time and space complexities 
+                        of JavaScript’s internal .sort() method? That depends on the length of the array 
+                        you want to sort. If the array has 10 or fewer elements, then the method will use 
+                        insertion sort, with a time complexity of O(n^2) and a space complexity of O(1). 
+                        If the array is longer, then the method will use quicksort, giving it a time 
+                        complexity of O(n log n) and a space complexity of O(log n).</li>
+                        <hr/>
+                    </div>
+                    <li><strong>The Knapsack Problem: </strong>Imagine that you’re a thief breaking into a house. 
+                    There are so many valuables to steal - diamonds, gold, jewelry, and more! But remember, 
+                    you’re just one person who can only carry so much. Each item has a weight and value, and
+                    your goal is to maximize the total value of items while remaining within the weight limit 
+                    of your knapsack. This is called the knapsack problem and is commonly used in programming 
+                    interviews. We will solve this problem in two ways: recursively, and using
+                    dynamic programming.</li>
+                    <p class="center"><strong>More info</strong></p>
+                    <button type="button" id="showCode124" onclick="showCode('displayCode124', 'showCode124')">Display</button>
+                    <div id="displayCode124">
+                        <button onclick="closeCode('displayCode124', 'showCode124')">Close</button>
+                        <li>The first step to solving this problem is to understand the parameters involved.
+                        You will be given:</li>
+                        <ul>
+                            <li>the total amount of weight you can carry (weightCap)</li>
+                            <li>the weights of all of the items in an array (weights)</li>
+                            <li>the values of all of the items in an array (values)</li>
+                        </ul>    
+                        <li>Your function should return the maximum value that you will be able to carry.</li>
+                        <li>An Example: 
+                        Let’s say that you have a knapsack that can only carry 5 pounds, and the 
+                        house you’re robbing has three items that you want to steal:</li>
+                        <ul>
+                            <li>A ring that weighs 1 pound with a value of $250</li>
+                            <li>Earrings that weigh 3 pounds with a value of $300</li>
+                            <li>A necklace that weighs 5 pounds with a value of $500</li>
+                        </ul>
+                        <li>This information can be summarized as follows:</li>
+                        <pre>
+                            <code>
+            weightCap = 5 
+            weights = [1, 3, 5]
+            values = [250, 300, 500]
+                            </code>
+                        </pre>
+                        <li>You have four possible ways to fill your knapsack:</li>
+                        <ul>
+                            <li>Take only the ring, giving you $250</li>
+                            <li>Take only the earrings, giving you $300</li>
+                            <li>Take only the necklace, giving you $500</li>
+                            <li>Take the ring and the earrings, giving you $550</li>
+                        </ul>
+                        <li>Since the ring and the earrings have a combined weight of 4 pounds, 
+                        taking both gives you the maximum value while staying within your weight 
+                        capacity. Now that you’re familiar with the problem, let’s take a look at two 
+                        different approaches to solving it!</li>
+                        <li><strong>The Recursive Solution: </strong>
+                        The brute force solution to this problem is to look at every subset of the items 
+                        that has a total weight less than weightCap. Then you simply take the maximum of 
+                        those subsets, giving you the optimized subset with the highest value possible.
+                        You will need an additional parameter, i, that tells us where we are in the list 
+                        of items. With each step, we will break the problem down into subproblems, and 
+                        compare them to find the maximum value. There are three possibilities for every 
+                        call of the function:</li>
+
+                        <li>weightCap or i are zero, meaning the knapsack can hold no weight, or there 
+                        are no more items to look at. In either case, we return 0.</li>
+                        <li>The weight of the item we’re looking at exceeds weightCap, in which case we just
+                        move on, calling the function on the next item.</li>
+                        <li>If neither of the above are true, that means we have to consider whether or not 
+                        the item we are at (i) should be included in the optimal solution.
+                        Steps 1 and 2 from above can be solved as follows:</li>
+                        <pre>
+                            <code>
+                    const recursiveKnapsack = function(weightCap, weights, values, i) {
+                        if (weightCap === 0 || i === 0) {
+                            return 0;
+                        } else if (weights[i - 1] > weightCap) {
+                            return recursiveKnapsack(weightCap, weights, values, i - 1);
+                        } 
+                    };
+                            </code>
+                        </pre>
+                        <li>For step 3, we need to look at both situations and determine if we want to 
+                        include this item in our optimized solution or not.</li>
+                        <pre>
+                            <code>
+                const recursiveKnapsack = function(weightCap, weights, values, i) {
+                    if (weightCap === 0 || i === 0) {
+                        return 0;
+                    } else if (weights[i - 1] > weightCap) {
+                        return recursiveKnapsack(weightCap, weights, values, i - 1);
+                    } else {
+                        const includeItem = values[i - 1] + recursiveKnapsack(weightCap - weights[i - 1], weights, values, i - 1);
+                        const excludeItem = recursiveKnapsack(weightCap, weights, values, i - 1);
+                        return Math.max(includeItem, excludeItem);
+                    }
+                };
+                            </code>
+                        </pre>
+                        <li>While this recursive solution works, it has a big O runtime of O(2^n). 
+                        In the worst case, each step would require us to evaluate two subproblems, 
+                        sometimes repeatedly, as there’s overlap between subproblems. We can drastically 
+                        improve on this runtime by using dynamic programming.</li>
+                        <hr/>
+                        <li>The Dynamic Programming Approach
+                        The knapsack problem is suited for dynamic programming because memoization 
+                        will allow us to store information instead of making duplicate calls. We will 
+                        store this information in a two-dimensional array that has a row for every item 
+                        and weightCap + 1 number of columns where each element in the 2D array (matrix) 
+                        represents a subproblem. The element at the bottom right will be the optimal solution.
+                        But what exactly do the rows and columns represent? The rows represent the items
+                        we have seen. So if we are at row 4, then we have only seen the first 4 items,
+                        meaning the others aren’t being considered yet. The columns represent how much 
+                        weight the knapsack can hold. If we are at column 7, then we are looking at a 
+                        subset of the larger problem where our knapsack has a weight capacity of 7. The 
+                        number stored inside matrix is the maximum value we can take given the weight 
+                        capacity and number of items we have seen for that subproblem. By the time we get 
+                        to the bottom right space in matrix, we have considered every possible subproblem 
+                        and taken the maximum possible value.
+                        There are some elements in the matrix that will be easy to fill. Every element in 
+                        the zeroeth row represents a subproblem with 0 items to consider, so there is no 
+                        value. Likewise, every element in the zeroeth column represents a subproblem where
+                        our knapsack has a capacity of 0, giving us no value to take. Because of this, we 
+                        start by filling the zeroeth row and column with 0.
+                        The pseudocode for the entire algorithm is as follows:</li>
+                        <pre>
+                            <code>
+                matrix = array with length equal to number of items
+                for every number of items you can carry (index):
+                    fill matrix[index] with an array of length weightCap + 1
+                    for every weight < weightCap (weight):
+                    if index or weight == 0:
+                        set element at [index][weight] to 0  
+                    else if the weight of element at index - 1 <= weight:
+                        find possible values of including and excluding the item
+                        set element at [index][weight] to max of those values
+                    else:
+                        set element at [index][weight] to element one above
+                return element at bottom right of matrix
+                            </code>
+                        </pre>
+                        <pre>
+                            <code>
+                const dynamicKnapsack = function(weightCap, weights, values) {
+                    const numItem = weights.length;
+                    const matrix = new Array(numItem);
+                    
+                    for (let index = 0; index <= numItem; index++) {
+                        matrix[index] = new Array(weightCap + 1);
+                        for (let weight = 0; weight <= weightCap; weight++) {
+                            // Write your code here:
+                            if (index === 0 || weight === 0) {
+                                matrix[index][weight] = 0;
+                            } else if (weights[index - 1] <= weight) {
+                                const include = values[index - 1] + matrix[index - 1][weight - weights[index - 1]];
+                                const exclude = matrix[index - 1][weight];
+                                matrix[index][weight] = Math.max(include, exclude);
+                            } else {
+                                matrix[index][weight] = matrix[index - 1][weight];
+                            }
+                        }
+                    }
+                    return matrix[numItem][weightCap]; 
+                };
+                    
+                // Use this to test your function:
+                const weightCap = 50;
+                const weights = [31, 10, 20, 19, 4, 3, 6];
+                const values = [70, 20, 39, 37, 7, 5, 10];
+                console.log(dynamicKnapsack(weightCap, weights, values));
+                
+                // Leave this so we can test your code:
+                module.exports = dynamicKnapsack;
+                            </code>
+                        </pre>
+                        <li>This version has a big O runtime of O(index * weight) compared to the 
+                        recursive implementation’s runtime of O(2^n). While this optimized runtime 
+                        might seem worse using small cases, it is much more efficient as the 
+                        parameters grow.</li>
+                        <hr/>
+                    </div>
+                </ul>
             </div>
             <div class="styleGuide">
-                <h2>Big O notation</h2>
+                <h2>Asymptotic Notation</h2>
                 <ul>
+                    <li><strong>Asymptotic Notation: </strong>
+                    When writing programs, it’s important to make smart programming choices so that code runs 
+                    most efficiently. Computers seem to take no time evaluating programs, but when scaling 
+                    programs to deal with massive amounts of data, writing efficient code becomes the difference 
+                    between success and failure. 
+                    <ul>
+                        <li><strong>Runtime: </strong>In computer science, we define how efficient a program is by its
+                        <strong>runtime</strong>. We can’t just time the program, however, because different computers 
+                        run at different speeds. Programming is also done 
+                        in many different languages. We need a general way 
+                        to define a program’s runtime across these variable factors. We do this with 
+                        <strong>Asymptotic Notation</strong>.
+                        With asymptotic notation, we calculate a program’s runtime by looking at how many instructions 
+                        the computer has to perform based on the size of the program’s input.</li>
+                        <p class="center"><strong>More About:</strong></p>
+                        <button id="showCode103" onclick="showCode('displayCode103', 'showCode103')">Display</button>
+                        <div id="displayCode103">
+                            <button onclick="closeCode('displayCode103', 'showCode103')">Close</button>
+                            <li>Cheetahs. Ferraris. Life. All are fast, but how do you know which one is the fastest? You can 
+                            measure a cheetah’s and a Ferrari’s speed with a speedometer. You can measure life with 
+                            years and months.
+                            But what about computer programs? In fact, you can time a computer program, but different 
+                            computers run at different speeds. For example, a program that takes 12 nanoseconds on one 
+                            computer could take 45 milliseconds on another. Therefore, we need a more general way to 
+                            gauge a program’s runtime. We do this with Asymptotic Notation.
+                            Instead of timing a program, through asymptotic notation, we can calculate a program’s 
+                            runtime by looking at how many instructions the computer has to perform based on the size 
+                            of the program’s input: N.
+                            For instance, a program that has input of size N may tell the computer to run 5N2+3N+2 
+                            instructions. (We will get into how we get this kind of expression in future exercises.) 
+                            Nevertheless, this is still a fairly messy and large expression. For asymptotic notation, 
+                            we drop all of our constants (the numbers) because as N becomes extremely large, the constants 
+                            will make minute differences. After changing our constants, we have N2+N. If we take each of 
+                            these terms in the expression and graph them, we see that the N2 term grows faster than 
+                            the N term. For example, when N is 1000: the N2 term is 1,000,000; the N term is 1,000
+                            As you can see, the N2 term is much more significant than the N term. When N is larger 
+                            than 1000, the difference becomes even more significant. Because the difference is so 
+                            enormous, we don’t even need to consider the N term when calculating the runtime. Thus, 
+                            for this program, we would describe the runtime in terms of N2. 
+                            (If there is a second input, we may define the size of that input as M.)
+                            There are three different 
+                            ways we could describe the runtime of this program: <strong>big Theta</strong> or <i>Θ(N2)</i>, 
+                            <strong>big O</strong> or <i>O(N2)</i>, 
+                            <strong>big Omega</strong> or <i>Ω(N2)</i>. 
+                            When describing runtime, people typically discuss the worst case (using big O) because 
+                            you should always prepare for the worst case scenario.
+                            You may see the term <strong>execution count</strong> used in evaluating algorithms. Execution count is more 
+                            precise than Big O notation. The following method, <i>addUpTo()</i>, depending on how
+                            we count the number of operations, can be as low as 2N or as high as 5N + 2.
+                            Determining execution count can increase in difficulty as our algorithms become even more 
+                            sophisticate.
+                            But regardless of the execution count, the number of operations grows roughly proportionally 
+                            with n. If n doubles, the number of operations will also roughly double.
+                            Big O Notation is a way to formalize fuzzy counting. It allows us to talk formally about 
+                            how the runtime of an algorithm grows as the inputs grow. As we will see, Big O doesn’t 
+                            focus on the details, only the trends. <strong>Video about</strong> 
+                            <a href="https://www.youtube.com/watch?time_continue=226&v=ZPLaE0HOR3M&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                            <hr/>
+                            <li><strong>Adding Runtimes: </strong>
+                            Sometimes, a program has so much going on that it’s hard to find the runtime of it. 
+                            Take a look at the pseudocode program that first prints all the positive values up to 
+                            N and then returns the number of times it takes to divide N by 2 until N is 1.</li>
+                            <ul>
+                                <pre>
+                                    <code>
+                                
+                            Function that takes a positive integer N:
+                            Set a variable i equal to 1
+                            Loop until i is equal to N:
+                                Print i
+                                Increment i
+                        
+                            Set a count variable to 0
+                            Loop while N is not equal to 1:
+                                Increment count
+                                N = N/2
+                            Return count
+                                    </code>
+                                </pre>
+                                <li>Rather than look at this program all at once, let’s divide into two chunks: the first 
+                                loop and the second loop.
+                                In the first loop, we iterate until we reach N. Thus the runtime of the first loop is Θ(N).
+                                However, the second loop, as demonstrated in a previous exercise, runs in Θ(log N).
+                                Now, we can add the runtimes together, so the runtime is Θ(N) + Θ(log N).
+                                However, <strong>when analyzing the runtime of a program, we only care about the slowest part 
+                                of the program, and because Θ(N) is slower than Θ(log N), we would actually just say 
+                                the runtime of this program is Θ(N)</strong>. It is also appropriate to say the runtime is O(N) 
+                                because if it runs in Θ(N) for every case, then it also runs in Θ(N) for the worst case. 
+                                Most of the time people will just use big O notation.</li>
+                            </ul>
+                        </div>
+                        <li><strong>Space Complexity: </strong>As we know, a simple for loop that goes through every element in an 
+                        array of size n has a linear runtime of O(n). However, this function takes O(1) space 
+                        since no new variables are being created and therefore no more space must be allocated.
+                        A recursive function that is passed the same array or object in each call doesn’t add to the space 
+                        complexity if the array or object is passed by reference (which it is in JavaScript).
+                        Like with time complexity, space complexity denotes space growth in relation to the input size. 
+                        It’s also important to note that space complexity usually refers to any additional space that 
+                        will be needed, and doesn’t count the space of the input. So a function could have 10 arrays 
+                        passed into it, but if all it does inside is print 'Hello World!', then it still 
+                        takes O(1) space. Space complexity is important to consider alongside time complexity when 
+                        comparing data structures and algorithms. While two functions may have very similar runtimes, 
+                        one could use less space.</li>
+                    </ul>
+                    <hr/>
+                    <h3>Big Theta - Θ(N2)</h3>
+                    <li>We use big Theta when a program has only one case in term of runtime.
+                    It represents a set of functions that have the same growth rate as a given function, 
+                    up to constant factors.
+                    This notation is often used in the analysis of algorithms to describe their time complexity 
+                    in terms of the input size n.
+                    <strong>Video</strong> 
+                    <a href="https://www.youtube.com/watch?v=LkjqqGg0VN0&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                    There are many ways we could describe the runtime of this program:</li>
+                    <ul>
+                        <li>This program has a best case runtime of <i>Θ(1)</i>.</li>
+                        <li>This program has a worst case runtime of <i>Θ(N)</i>.</li>
+                        <li>This program has a runtime of <i>Ω(1)</i>.</li>
+                        <li>This program has a runtime <i>O(N)</i>.</li>
+                    </ul>
+                    <p class="center"><strong>More About:</strong></p>
+                    <button id="showCode104" onclick="showCode('displayCode104', 'showCode104')">Display</button>
+                    <div id="displayCode104">
+                        <button onclick="closeCode('displayCode104', 'showCode104')">Close</button> 
+                        <li>Take a look at the pseudocode for a function that prints the values in 
+                        a list below:</li>
+                        <pre>
+                            <code>
+                        Function with input that is a list of size N:
+                            For each value in list:
+                            Print the value
+                            </code>
+                        </pre>
+                        <li>The number of instructions the computer has to perform is based on how many iterations 
+                        the loop will do because if the loop does more iterations, then the computer will perform 
+                        instructions. Now, let’s see how many iterations the loop will do dependent on the value of N.</li>
+                        <table>
+                            <tr>
+                                <th>Size of List</th>
+                                <th>Number of Iterations</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>N</td>
+                                <td>N</td>
+                            </tr>
+                        </table>
+                        <li>As we can see in every case, with a list of size N, the program has a runtime of N because 
+                        the program has to print a value N times. Thus, we would say the runtime is Θ(N).
+                        Let’s look at a more complicated example. In the following pseudocode program, the 
+                        function takes in an integer, N, and counts the number of times it takes for N to be 
+                        divided by 2 until N reaches 1. Function that has integer input N:</li>
+                        <pre>
+                            <code>
+                    Set a count variable to 0
+                    Loop while N is not equal to 1:
+                        Increment count
+                        N = N/2
+                    Return count
+                            </code>
+                        </pre>
+                        <li>Now, let’s see how many iterations the loop will perform based on N.</li>
+                        <table>
+                            <tr>
+                                <th>N</th>
+                                <th>Number of Iterations</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>N</td>
+                                <td>log2N</td>
+                            </tr>
+                        </table>
+                        <li>As we can see, in every case, with an integer N, the loop will iterate log2(N) times. 
+                        However, because we drop constants in asymptotic notation, we would say that the runtime 
+                        of this program is Θ(log N).</li>
+                        <ul>
+                            <li><strong>Θ(1):</strong> This is constant runtime. This is the runtime when a program will 
+                            always do the same thing regardless of the input. For instance, a program 
+                            that only prints “hello, world” runs in Θ(1) because the program will always 
+                            just print “hello, world”.</li>
+                            <li><strong>Θ(log N):</strong> This is logarithmic runtime. You will see this runtime in search 
+                            algorithms.</li>
+                            <li><strong>Θ(N):</strong> This is linear runtime. You will often see this when you have to iterate 
+                            through an entire dataset.</li>
+                            <li><strong>Θ(N*logN):</strong> You will see this runtime in sorting algorithms.</li>
+                            <li><strong>Θ(N2):</strong> This is an example of a polynomial runtime. When N is raised to 
+                            the 2nd power, it’s known as a quadratic runtime. You will see this runtime 
+                            when you have to search through a two-dimensional dataset (like a matrix) or 
+                            nested loops.</li>
+                            <li><strong>Θ(2N):</strong> This is exponential runtime. You will often see this runtime in 
+                            recursive algorithms (Don’t worry if you don’t know what that is yet!).</li>
+                            <li><strong>Θ(N!):</strong> This is factorial runtime. You will often see this runtime when you 
+                            have to generate all of the different permutations of something. For instance, 
+                            a program that generates all the different ways to order the letters “abcd” would 
+                            run in this runtime.</li>
+                        </ul>
+                    </div>
+                    <hr/>
+                    <h3>Big Omega - Ω(N2)</h3>
+                    <li><strong>Big Omega </strong>describes the best case scenarium. 
+                    <strong>Video </strong><a href="https://www.youtube.com/watch?v=EkDbukKyipU&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                    <hr/>
+                    <h3>Big O - O(N2)</h3>
                     <li><strong>The Big O notation</strong> is used to describe the time complexity or space complexity of 
                     an algorithm, which is a measure of how the time or space requirements of an 
                     algorithm grow as the size of the input data increases (In Big O notation, the 
@@ -2569,6 +5428,18 @@
                             methods, such as computing the square root or sine of a number.</li>
                         </ul>
                     </div>
+                </ul>
+                <ul>
+                    <li><strong>Additional Resources: </strong></li>
+                    <ul>
+                        <li><a href="https://www.bigocheatsheet.com/" target="_blank">Article: Big-O Cheat Sheet</a></li>
+                    </ul>
+                    <li><strong>Code Challenges: </strong></li>
+                    <ul>
+                        <li><a href="https://www.codecademy.com/code-challenges/code-challenge-calculate-the-mean-and-mode-javascript" target="_blank">Intermediate - Calculate the Mean and Mode</a></li>
+                        <li><a href="https://www.codecademy.com/code-challenges/code-challenge-stairmaster-javascript" target="_blank">Intermediate - Stairmaster</a></li>
+                        <li><a href="https://www.codecademy.com/code-challenges/code-challenge-maximize-stock-trading-profit-javascript" target="_blank">Intermediate - Maximize Stock Trading Profit</a></li>
+                    </ul>
                 </ul>
             </div>
         </ul>
