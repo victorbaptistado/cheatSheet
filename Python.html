@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet">
+        <script src="./component/button.js" defer></script>
+        <title>Python</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="#">AI</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./objects.html">Objects</a></li>
+                <li><a href="./operationalSystem.html">Operational System</a></li>
+                <li><a href="./debugTesting.html">Debug & Testing</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>
+                <li><a href="./api.html">API</a></li>
+                <li><a href="./react.html">REACT</a></li>
+                <li><a href="./helpfulContent.html">Helpful Content</a></li>
+                <li><a href="./backend.html">Backend</a></li>
+            </ul>
+        </nav>
+        <div class="styleGuide">
+            <h3>Installation and Configuration</h3>
+            <li><strong>Installing Python: </strong><a href="https://www.codecademy.com/article/install-python3" target="_blank">here</a>.</li>
+            <li><strong>Jupyter Notebooks: </strong> Are a powerful way to write and iterate on your 
+            Python code for data analysis. <strong>More about </strong><a href="https://www.codecademy.com/article/how-to-use-jupyter-notebooks-py3" target="_blank">here</a>.</li>
+            <li>Programming in Python on a Chromebook <a href="https://www.codecademy.com/article/programming-python-on-chromebook" target="_blank">here</a>.</li>
+        </div>
+        <div class="styleGuide">
+            <h1>Python</h1>
+            <ul>
+                <li><strong>Codecademy Documentation</strong> <a
+                        href="https://www.codecademy.com/resources/docs/python?page_ref=catalog"
+                        target="_blank">here</a>.
+                    <strong>Video Project </strong><a
+                        href="https://www.youtube.com/watch?v=YLPtJyjln8A&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title"
+                        target="_blank">here</a>.
+                </li>
+                <li><strong>Basics:</strong></li>
+                <ul>
+                    <li><strong>Comments: </strong>Python interprets anything after a <i>#</i> as a comment.
+                    <li><strong>Multiline String: </strong>Use <i>""" written-comment """</i> or
+                        <i>''' written-comment '''</i>. Can be used within variables and comments.
+                    </li>
+                    <li><strong>print(): </strong>Is used to tell a computer to talk, to output.</li>
+                    <li><strong>Variables: </strong>Example: <i>an_int = 2</i>.
+                        Variables can be reassigned to a new value that is a different data type from its current value.
+                    </li>
+                    <li><strong>Mathematics: </strong>
+                        <ul>
+                            <li><strong>Exponential: </strong>Use the notation <i>**</i>. e.g:
+                                <i>print(8 ** 2)</i>.
+                            </li>
+                            <li><strong>Modulo: </strong>Is indicated by <i>%</i> and gives the remainder of a division
+                                calculation. If the number is divisible, then the result of the modulo operator will
+                                be 0. The modulo operator is useful in programming when we want to perform an action
+                                every
+                                nth-time the code is run.</li>
+                        </ul>
+                    <li><strong>Concatenation: </strong>
+                        The <i>+</i> operator doesn’t just add two numbers, it can also “add” two strings.
+                        If you want to concatenate a string with a number you will need to make the number a
+                        string first, using the <i>str()</i> function. If you’re trying to <i>print()</i> a numeric
+                        variable
+                        you can use commas to pass it as a different argument rather than converting it to a string.
+                    </li>
+                    <li><strong>Input: </strong>Another way to assign a value to a variable is through user input.
+                        While we output a variable’s value using <i>print()</i>, we assign information to a variable
+                        using
+                        <i>input()</i>. The <i>input()</i> function requires a prompt message, which it will print out
+                        for the
+                        user before they enter the new information. For example:
+                        <i>likes_snakes = input("Do you like snakes? ")</i>
+                        Once you have that information stored as a variable you can use it to simulate interaction:
+                        >>> <i>print("Oh cool! I like " + likes_snakes + " too, but I think my favorite animal is
+                            dog.")</i>
+                    </li>
+                    <li><strong>Boolean: </strong></li>
+                    <ul>
+                        <li><strong>True and False</strong> are the only bool types, and any variable that
+                            is assigned one of these values is called a boolean variable.
+                            Boolean variables can be created in several ways. The easiest way is to simply
+                            assign True or False to a variable: <i>set_to_true = True</i>;
+                            <i>set_to_false = False</i>.
+                        </li>
+                        <li><strong>Relational operators: </strong>Compare two items and return either True or
+                            False. For this reason, you will sometimes hear them called comparators.
+                            <ul>
+                                <li><strong>Equals:</strong> <i>==</i> ; <strong>Not equals:</strong> <i>!=</i> ;
+                                These operators compare two items and return True or False if they are equal or not.</li>
+                                <li><i>></i> greater than; <i>>=</i> greater than or equal to; <i></i> less than;
+                                    <i><=</i> less than or equal to.</li>
+                            </ul>
+                        <li><strong>Boolean Operators:</strong>
+                            The conditions you want to check in your conditional statement will require more
+                            than one boolean expression to cover. In these cases, you can build larger boolean
+                            expressions using boolean operators. These operators (also known as logical
+                            operators) combine smaller boolean expressions into larger boolean expressions.
+                            <i>and</i>, <i>or</i>, <i>not</i>.
+                        </li>
+                    </ul>
+                </ul>
+                <hr />
+                <h3>CONTROL FLOW</h3>
+                <li><strong>If, Else & Else If Statements: </strong></li>
+                <pre>
+                        <code>
+            print("Thank you for the donation!")
+
+            if donation >= 1000:
+                print("You've achieved platinum status")
+            elif donation >= 500:
+                print("You've achieved gold donor status")
+            elif donation >= 100:
+                print("You've achieved silver donor status")
+            else:
+                print("You've achieved bronze donor status")
+                        </code>
+                    </pre>
+                <hr />
+                <h3>Lists</h3>
+                <li>In Python, a list is one of the many built-in data structures that allows
+                    us to work with a collection
+                    of data in sequential order. <i>heights = [61, 70, 67, 64]</i></li>
+                <li><strong>Index: </strong>e.g: <i>print(calls[2])</i>.
+                    We can use the index -i to select the item of a list in reverse, This selects
+                    te last element in a list: <i>print(calls[-1])</i>.</li>
+                <li><strong>Two-Dimensional (2D) Lists: </strong>
+                    We’ve seen that the items in a list can be numbers or strings. Lists can contain other
+                    lists! We will commonly refer to these as two-dimensional (2D) lists. <i>heights = [["Noelle", 61],
+                        ["Ava", 70], ["Sam", 67], ["Mia", 64]]</i>
+                    Two-dimensional lists can be using an additional set for each dimension past the first:
+                    <i>noelles_height = heights[0][1]</i>
+                </li>
+                <li><strong>Built-in</strong> methods. List of methods by Codecademy <a href="https://www.codecademy.com/resources/docs/python/built-in-functions?page_req=catalog" target="_blank">here</a>.
+                List of methods by Python Docs <a href="https://docs.python.org/3/library/functions.html" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>.append(): </strong> add a single element to a list.</li>
+                    <li><strong>.insert(): </strong>.insert() allows us to add an element to a specific
+                        index in a list (all elements from the specified index and up to the last index are shifted one
+                        index to the right). The <i>.insert()</i> method takes in two inputs:
+                        The index you want to insert into. The element you want to insert at the specified index.
+                        <i>store_line.insert(2, "Vikor")</i>
+                    </li>
+                    <li><strong>+: </strong>When we want to add multiple items to a list, we can
+                    use + to combine two lists (this is also known as concatenation).
+                    <i>items_sold_new = items_sold + ["biscuit", "tart"]</i>
+                    </li>
+                    <li><strong>.remove(): </strong>remove elements in a list. <i>shopping_line.remove("Chris")</i></li>
+                    <li><strong>.pop(): </strong>is a method to remove elements at a specific index. It takes
+                    an optional single input: The index for the element you want to remove. <i>cs_topics.pop(2)</i>
+                    <i>.pop()</i> without an index will remove whatever the last element of the list is.</li>
+                    <li><strong>.range(): </strong> The function <i>range()</i> takes a single input, and
+                    generates numbers starting at 0 and ending at the number before the input.
+                    <i>my_range = range(10)</i>.
+                    In order to use this object as a list, we have to first convert it using another built-in
+                    function called <i>list()</i>. The <i>list()</i> function takes in a single input for
+                    the object you want to convert. <i>print(list(my_range))</i>.
+                    If we call <i>range()</i> with two inputs, we can create a list that starts at a different
+                    number. <i>range(2, 9)</i> would generate numbers starting at 2 and ending at 8
+                    (just before 9). If we use a third input, we can create a list that “skips” numbers.
+                    For example, range(2, 9, 2) will give us a list where each number is 2 greater than
+                    the previous number: <i>my_range2 = range(2, 9, 2)</i>. That would output [2, 4, 6, 8].
+                    </li>
+                    <li><strong>len()</strong>: gets the number of elements in a list. <i>print(len(my_list))</i></li>
+                    <li><strong>slicing</strong>: extracts only a portion of a list.
+                        <i>sliced_list = letters[1:6]</i>. If we want to select the first n elements of a list,
+                        we could use the following code: <i>fruits[:n]</i>.
+                        We can do something similar when we want to slice the last n elements in a list:
+                        <i>fruits[-n:]</i>. Negative indices can also accomplish taking all but n last elements
+                        of a list. <i>fruits[:-n]</i>.
+                    </li>
+                    <li><strong>count(): </strong>Suppose we have a list called letters that represents the letters in
+                        the word
+                        “Mississippi”: <i>letters = ["m", "i", "s", "s", "i", "s", "s", "i", "p", "p", "i"]</i>
+                        If we want to know how many times <i>i</i> appears in this word, we can use: <i>num_i =
+                            letters.count("i")</i></li>
+                    <li><strong>sort(): </strong>When we want to sort a list in either numerical (1, 2, 3, …) or
+                        alphabetical (a, b, c, …) order. <i>names.sort()</i>. It also provides us the option
+                        to go in reverse, in descending order: <i>names.sort(reverse=True)</i>.</li>
+                    <li><strong>sorted(): </strong> Is different from the <i>.sort()</i> method in two ways:
+                        It comes before a list, instead of after as all built-in functions do.
+                        It generates a new list rather than modifying the one that already exists.
+                        <i>sorted_names = sorted(names)</i>.
+                    </li>
+                    <li><strong>help(): </strong>Python prints a link to documentation for us and provide
+                        some details: <i>help("string")</i>.</li>
+                </ul>
+                <li><strong>Zip Function: </strong>
+                In Python, we have an assortment of built-in functions that allow us to build our programs
+                faster and cleaner. One of those functions is zip().
+                The <i>zip()</i> function allows us to quickly combine associated data-sets without needing to
+                rely on multi-dimensional lists. <i>zip()</i> can work with many different scenarios, we
+                are going to explore only a single one in this article.
+                Let’s use a list of student names and associated heights as our example data set:
+                Suppose that we already had a list of names and a list of heights:
+                <i>names = ["Jenny", "Alexus", "Sam", "Grace"]</i>
+                <i>heights = [61, 70, 67, 64]</i>
+                If we wanted to create a nested list that paired each name with a height, we could use
+                the built-in function <i>zip()</i>.
+                The <i>zip()</i> function takes two (or more) lists as inputs and returns an object that
+                contains a list of pairs. Each pair contains one element from each of the inputs.
+                This is how we would do it for our names and heights lists:
+                <i>names_and_heights = zip(names, heights)</i>
+                If we were to then examine this new variable names_and_heights, we would find it looks a
+                bit strange: <i>print(names_and_heights)</i>
+                Would output: <i>< zip object at 0x7f1631e86b48></i>
+                This zip object contains the location of this variable in our computer’s memory. Don’t
+                worry though, it is fairly simple to convert this object into a useable list by using
+                the built-in function <i>list()</i>:
+                <i>converted_list = list(names_and_heights)</i> outputs:
+                <i>[('Jenny', 61), ('Alexus', 70), ('Sam', 67), ('Grace', 64)]</i>
+                Notice two things:
+                Our data set has been converted from a zip memory object to an actual list
+                (denoted by [ ])
+                Our inner lists don’t use square brackets [ ] around the values. This is because they
+                have been converted into tuples (an immutable type of list).
+                <hr/>
+                <h3>String</h3>
+                <li><strong>String: </strong>A string can be thought of as a list
+                    of characters - like any other list, each character in a string has an index. E.g:
+                    <i>first_initial = my_name[0]</i>. We can, for example, slice a string:
+                    <i>temp_password = last_name[2:6]</i>. <strong>Video Project Thread Shed</strong> <a href="https://www.youtube.com/watch?v=x1AxPYJwHCw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                </li>
+                <pre>
+                    <code>
+                    //Strings and Conditionals
+                    
+                    print("blue" in "blueberry")
+                    # => True
+                    print("blue" in "strawberry")
+                    # => False
+                    </code>
+                </pre>
+                <li><strong>String Built-in</strong> methods: They all have the same syntax:
+                <i>string_name.string_method(arguments)</i></li>
+                <ul>
+                    <li><strong>Formatting Methods: </strong>
+                    <ul>
+                        <li>.lower() returns the string with all lowercase characters.</li>
+                        <li>.upper() returns the string with all uppercase characters.</li>
+                        <li>.title() returns the string in title case, which means the first letter of each word 
+                        is capitalized.</li>
+                    </ul>
+                    <li><strong>.split()</strong> is performed on a string, takes one argument, and returns 
+                    a list of substrings found between the given argument (which in the case of <i>.split()</i> is
+                    known as the delimiter). 
+                    If we provide an argument for <i>.split()</i> we can dictate the character we want our string to be split on. 
+                    The following syntax should be used: <i>string_name.split(delimiter)</i>.
+                    <i>.split</i> returns a list with each word in the string.
+                    Newline or <i>\n</i> will allow us to split a multi-line string by line breaks and <i>\t</i> will allow 
+                    us to split a string by tabs. </li>
+                    <pre>
+                        <code>
+                greatest_guitarist = "santana"
+                print(greatest_guitarist.split('n'))
+                # => ['sa', 'ta', 'a']
+                        </code>
+                    </pre>
+                    <li><strong>.join():</strong> Joins a list of strings together with a given delimiter.
+                    The string .join() acts on is the delimiter you want to join with, therefore the list 
+                    you want to join has to be the argument.</li> 
+                    <pre>
+                        <code>
+                my_munequita = ['My', 'Spanish', 'Harlem', 'Mona', 'Lisa']
+                print(' '.join(my_munequita))
+                # => 'My Spanish Harlem Mona Lisa'
+
+                print(' '.join(my_munequita))
+                # => 'MySpanishHarlemMonaLisa'
+                        </code>
+                    </pre>
+                    <li><strong>.strip():</strong> Removes all whitespace characters from the beginning and end.
+                    You can also use <i>.strip()</i> with a character argument, which will strip that character from 
+                    either end of the string.</li>
+                    <li><strong>replace():</strong> Takes two arguments and replaces all instances of the first 
+                    argument in a string with the second argument. 
+                    <i>string_name.replace(substring_being_replaced, new_substring)</i></li>
+                    <li><strong>.find():</strong> takes a string as an argument and searching the string it was run on for 
+                    that string. It then returns the first index value where that string is located.
+                    <i>print('smooth'.find('t')) # => '4'</i>. You can also search for larger strings, and 
+                    <i>.find()</i> will return the index value of the first character of that string.
+                    <i>print("smooth".find('oo'))</i></li>
+                    <li><strong>.format(): </strong>takes variables as an argument and includes them in the 
+                    string that it is run on. You include <i>{}</i> marks as placeholders for where those variables
+                    will be imported.</li>
+                    <pre>
+                        <code>
+            def favorite_song_statement(song, artist):
+                return "My favorite song is {} by {}.".format(song, artist)   
+                
+            print(favorite_song_statement("Smooth", "Santana"))
+            # => "My favorite song is Smooth by Santana."
+
+            //OR even better
+
+            def favorite_song_statement(song, artist):
+                return "My favorite song is {song} by {artist}.".format(song=song, artist=artist)
+
+                        </code>
+                    </pre>
+                </ul>
+                <hr />
+                <h3>Tuples</h3>
+                <li><strong>Tuples: </strong>
+                    Is a collection of ordered, immutable elements enclosed in parentheses, separated by commas.
+                    Tuples are similar to lists in many ways, but the main difference is that tuples are
+                    immutable, meaning they cannot be changed once created.
+                    <strong>Video</strong> <a
+                        href="https://www.youtube.com/watch?v=yDvRR8nWMNI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title"
+                        target="_blank">here</a>.
+                </li>
+                A tuple can be created using parentheses, <i>my_tuple = (1, 2, 3, 'four')</i>.
+                Once a tuple is created, its elements can be accessed using indexing, just like a list.
+                However, because tuples are immutable, you cannot modify the values of the elements once
+                the tuple has been created.
+                <li><strong>Tuple unpacking: </strong> Allows you to assign the elements of
+                a tuple to multiple variables in one step. <i>a, b, c = (1, 2, 3)</i>.
+                In this case, a is assigned the value of 1, b is assigned the value of 2, and c is assigned
+                the value of 3. This can be a convenient way to assign multiple variables at once.</li>
+                <hr />
+                <h3>Loops</h3>
+                <li><strong>For Loop: </strong>Tells in advance how many times the loop will need to
+                    iterate, because we will be working on a collection with a predefined length.</li>
+                <ul>
+                    <pre>
+                            <code>
+            ingredients = ["milk", "sugar", "vanilla extract", "dough", "chocolate"]
+
+            for ingredient in ingredients:
+                return ingredient
+                            </code>
+                        </pre>
+                    <li><strong>Using Range: </strong>Often we won’t be iterating through a specific list (or any
+                        collection), but rather only
+                        want to perform a certain action multiple times.</li>
+                    <pre>
+                            <code>
+            for temp in range(6):
+                return "Learning Loops!"
+                            </code>
+                        </pre>
+                </ul>
+                <li><strong>While loop: </strong>Is a form of indefinite iteration.
+                A while loop performs a set of instructions as long as a given condition is true.</li>
+                <ul>
+                    <pre>
+                            <code>
+                count = 0
+                while count <= 3:
+                    # Loop Body
+                    print(count)
+                    count += 1
+                            </code>
+                        </pre>
+                    <li>If we use the length of the list as the basis for how long our while loop
+                        needs to run, we can iterate the exact length of the list.</li>
+                    <pre>
+                            <code>
+                length = len(ingredients)
+                index = 0
+                
+                while index < length:
+                    print(ingredients[index])
+                    index += 1
+                            </code>
+                        </pre>
+                </ul>
+                <li><strong>Loop Control: </strong></li>
+                <ul>
+                    <li><strong>Break: </strong>When the program hits a break statement it immediately terminates
+                        a loop. For example:</li>
+                    <pre>
+                            <code>
+            items_on_sale = ["blue shirt", "striped socks", 
+                    "knit dress", "red headband", "dinosaur onesie"]
+                
+            print("Checking the sale list!")
+                
+            for item in items_on_sale:
+                print(item)
+                if item == "knit dress":
+                break
+                
+            print("End of search!")  
+                            </code>
+                        </pre>
+                    <li><strong>Continue: </strong>There are situations where we don’t want to end the
+                        loop entirely. We use <i>continue</i> if we only want to skip the current iteration
+                        of the loop</li>
+                    <li><strong>List comprehensions: </strong> Another way to write elegant loops in our programs</li>
+                    <pre>
+                            <code>
+                numbers = [2, -1, 79, 33, -45]
+                doubled = []
+                
+                for number in numbers:
+                    doubled.append(number * 2)
+                
+                print(doubled)
+
+                //Can be written in a list comprehension as:
+                numbers = [2, -1, 79, 33, -45]
+                doubled = [num * 2 for num in numbers]
+                print(doubled)
+
+
+                numbers = [2, -1, 79, 33, -45]
+                only_negative_doubled = []
+                
+                for num in numbers:
+                if num < 0: 
+                    only_negative_doubled.append(num * 2)
+                
+                print(only_negative_doubled) 
+
+                numbers = [2, -1, 79, 33, -45]
+                negative_doubled = [num * 2 for num in numbers if num < 0]
+                print(negative_doubled)
+
+
+                            </code>
+                        </pre>
+                </ul>
+                <li><strong>Video project </strong><a href="https://www.youtube.com/watch?v=ddMHCEs-wmE"
+                        target="_blank">here</a>.</li>
+            </ul>
+            <hr />
+            <h3>Functions</h3>
+            <li><strong>Video Project (Getting Ready for Physics Class): </strong><a
+                    href="https://www.youtube.com/watch?v=tBG5dCcTjZo&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title"
+                    target="_blank">here</a>.</li>
+            <li><strong>function definition:</strong></li>
+            <pre>
+                <code>
+        def function_name(single_parameter):
+            # functions tasks go here</li>
+
+        //Call function:
+        function_name()
+                </code>
+            </pre>
+        <li><strong>Multiple Returns</strong></li>
+        <pre>
+                <code>
+        def top_tourist_locations_italy():
+            first = "Rome"
+            second = "Venice"
+            third = "Florence"
+            return first, second, third
+
+        most_popular1, most_popular2, most_popular3 = top_tourist_locations_italy()
+
+        print(most_popular1)
+        print(most_popular2)
+        print(most_popular3)
+                </code>
+            </pre>
+            <hr/>
+            <h3>Modules</h3>
+            <ul>
+                <li>Usually, to use a module in a file, the basic syntax you need at the top of that file is:
+                <i>from module_name import object_name</i>. Often, a library will include a lot of code that 
+                you don’t need that may slow down your program or conflict with existing code. Because of this, 
+                it makes sense to only import what you need.</li>
+                <li><strong>Python Standard Library: </strong></li>
+                <ul>
+                    <li><strong>datetime:</strong> Helps you work with dates and times in Python.
+                    <strong>Video about</strong> <a href="https://www.youtube.com/watch?v=smDBZDvsm0I&t=10s" target="_blank">here</a>.</li>
+                    <pre>
+                        <code>
+                from datetime import datetime
+                    current_time = datetime.now()
+                    print(current_time)
+                        </code>
+                    </pre>
+                    <li><strong>random: </strong>Allows you to generate numbers or select items at random.
+                        Two common random functions are: <i>random.choice()</i> which takes a list as an 
+                        argument and returns a number from the list.
+                        <i>random.randint()</i> takes two numbers as arguments and generates a random number 
+                        between the two numbers you passed in</li>
+                    <pre>
+                        <code>
+                            
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
+            <hr>
+            <h3>Dictionary</h3>
+            <ul>
+                <li>A dictionary is an unordered set of key: value pairs.
+                It provides us with a way to map pieces of data to each other so that we can quickly find values 
+                that are associated with one another. <strong>Video Project </strong>
+                <a href="https://www.youtube.com/watch?v=WjVJcCBazNI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <i>menu = {"avocado toast": 6, "carrot juice": 5, "blueberry muffin": 2}</i>
+                <li><strong>Adding key: </strong></li>
+                <ul>
+                    <li><strong>Single key: </strong><i>menu["cheesecake"] = 8</i>.</li>
+                    <li><strong>Multiple key: </strong>We can use the <i>.update()</i> method.
+                    <i>sensors.update({"pantry": 22, "guest room": 25, "patio": 34})</i>.</li>
+                </ul>
+                <li><strong>Dict Comprehensions: </strong>Python allows you to create a dictionary using a dict 
+                comprehension, with this syntax: 
+                <i>students = {key:value for key, value in zip(names, heights)}</i></li>
+                <pre>
+                    <code>
+            songs = ["Like a Rolling Stone", "Satisfaction", "Imagine", 
+                    "What's Going On", "Respect", "Good Vibrations"]
+            playcounts = [78, 29, 44, 21, 89, 5]
+
+
+            plays = {songs: playcounts for songs, 
+                    playcounts in zip(songs, playcounts)}
+
+                    </code>
+                </pre>
+                <li><strong>Accessing key/value: </strong> Once you have a dictionary, you can access the values 
+                in it by providing the key. <i>zodiac_elements["earth"]</i>
+                But this solution is not sustainable, because it throws an error when there's no such key and 
+                we can’t predict every key a user may call and add all of those placeholder 
+                values to our dictionary.
+                Dictionaries have a <strong>.get()</strong> method to search for a value instead of the 
+                my_dict[key] notation we have been using. If the key you are trying to <i>.get()</i> does not exist, 
+                it will return <i>None</i> by default: <i>zodiac_elements.get("earth")</i>. 
+                You can also specify a value to return if the key doesn’t exist: 
+                <i>zodiac_elements.get("energy", "fire")</i>.</li>
+                <li><strong>Deleting key/value: </strong>We can use <i>.pop()</i> to remove a key when we know what's the 
+                key/value. <i>health_points += available_items.pop("stamina grains", 0)</i>, this removes "stamina grains"
+                grains from available_items and adds the removed value to health_points.</li>
+                <li><strong>Accessing all Keys: </strong>Sometimes we want to operate on all of the keys in a 
+                dictionary. We can do this with the <i>built-in list()</i>. 
+                There's also <i>.keys()</i> method that returns a dict_keys object. A dict_keys object is a 
+                view object, which provides a look at the current state of the dictionary, without the user 
+                being able to modify anything. It can be used in the place of a list for iteration:</li>
+                <pre>
+                    <code>
+            for student in test_scores.keys():
+                print(student)
+                    </code>
+                </pre>
+                <li><strong>Accessing all Values: </strong>Dictionaries have a <i>.values()</i> method that returns 
+                a dict_values object (just like a dict_keys object but for values) with all of the values 
+                in the dictionary. It can be used in the place of a list for iteration:</li>
+                <pre>
+                    <code>
+            for score_list in test_scores.values():
+                print(score_list)
+                    </code>
+                </pre>
+                <li><strong>Accessing all Items: </strong>You can get both the keys and the values with the 
+                <i>.items()</i> method. Like <i>.keys()</i> and <i>.values()</i>, it returns a dict_list object. 
+                Each element of the dict_list returned by <i>.items()</i> is a tuple consisting of <i>(key, value)</i>.
+                So for iteration:</li>
+                <pre>
+                    <code>
+            for company, value in biggest_brands.items():
+                print(company + " has a value of " + str(value) + " billion dollars. ")
+                    </code>
+                </pre>
+            </ul>
+        </div>
+    </body>
+</html>
