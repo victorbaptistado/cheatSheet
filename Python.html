@@ -560,6 +560,367 @@
                 print(company + " has a value of " + str(value) + " billion dollars. ")
                     </code>
                 </pre>
+                <hr/>
+                <h3>Files</h3>
+                <li><strong>Reading a File: </strong>
+                Below opens a file object called <i>cool_doc</i> and creates a new indented block where you can 
+                read the contents of the opened file. We then read the contents of the file <i>cool_doc</i> 
+                using <i>cool_doc.read()</i> and save the resulting string into the variable <i>cool_contents</i>. 
+                Then we print </i>cool_contents</i>, which outputs the statement Wowsers!
+                The <i>with</i> keyword invokes something called a context manager for the file that we’re calling 
+                <i>open()</i> on. This context manager takes care of opening the file when we call <i>open()</i> 
+                and then closing the file after we leave the indented block.
+                <strong>Video Project </strong><a href="https://www.youtube.com/watch?v=73P754J686A&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <pre>
+                    <code>
+            # real_cool_document.txt
+            Wowsers!
+
+            # We could read that file like this:
+
+            # script.py
+
+            with open('real_cool_document.txt') as cool_doc:
+                cool_contents = cool_doc.read()
+                print(cool_contents)
+                    </code>
+                </pre>
+                <li><strong>Reading lines</strong></li>
+                <ul>
+                    <li><strong>.readlines(): </strong>We can use the <i>.readlines()</i> function to read a 
+                    text file line by line instead of having the whole thing.</li>
+                    <pre>
+                        <code>
+            # keats_sonnet.txt
+            To one who has been long in city pent,
+            ’Tis very sweet to look into the fair
+            And open face of heaven,—to breathe a prayer
+            Full in the smile of the blue firmament.
+            
+            # script.py
+
+            with open('keats_sonnet.txt') as keats_sonnet:
+            for line in keats_sonnet.readlines():
+                print(line)
+                        </code>
+                    </pre>
+                    <li><strong>.readline(): </strong>Sometimes you don’t want to iterate through a whole file. 
+                    For that, there’s a different file method, <i>.readline()</i>, which will only read a single line 
+                    at a time. If the entire document is read line by line in this way subsequent calls to 
+                    <i>.readline()</i> will not throw an error but will start returning an empty string ("").</li>
+                    <pre>
+                        <code>
+            # millay_sonnet.txt
+            I shall forget you presently, my dear,
+            So make the most of this, your little day,
+            Your little month, your little half a year,
+            Ere I forget, or die, or move away,
+            
+            # script.py
+
+            with open('millay_sonnet.txt') as sonnet_doc:
+                first_line = sonnet_doc.readline()
+                second_line = sonnet_doc.readline()
+                print(second_line)
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Writing a File: </strong>
+                We pass the argument <i>'w'</i> to <i>open()</i> in order to indicate to open the file in write-mode. 
+                The default argument is <i>'r'</i> and passing <i>'r'</i> to <i>open()</i> opens the file in 
+                read-mode as we’ve been doing. Here's how to create a file:</li>
+                <pre>
+                    <code>
+            # script.py
+
+            with open('generated_file.txt', 'w') as gen_file:
+                gen_file.write("What an incredible file!")
+                    </code>
+                </pre>
+                <li><strong>Append-mode: </strong>To append a file, we open it with 'a' for append-mode.</li>
+                <pre>
+                    <code>
+            # generated_file.txt
+            This was a popular file...
+            
+            # Then we can add another line to that file with the following code:
+            
+            # script.py
+            with open('generated_file.txt', 'a') as gen_file:
+                gen_file.write("\n... and it still is")
+                    </code>
+                </pre>
+                <li><strong>CSV Files: </strong></li>
+                <ul>
+                    <li><strong>Reading a CSV File: </strong>In Python we can convert that data into a dictionary 
+                    using the CSV library’s DictReader object. Comma-Separated Values and CSV files are usually 
+                    the way that data from spreadsheet software (like Microsoft Excel or Google Sheets) is exported 
+                    into a portable format. Here’s how we’d create a list of the email addresses 
+                    of all of the users in the above table:</li>
+                    <pre>
+                        <code>
+                # When CSV is sepparated by comma
+
+                import csv
+                    
+                list_of_email_addresses = []
+                with open('users.csv', newline='') as users_csv:
+                    user_reader = csv.DictReader(users_csv)
+                    for row in user_reader:
+                        list_of_email_addresses.append(row['Email'])
+
+                # When CSV is has ";" as a delimiter
+
+                with open('addresses.csv', newline='') as addresses_csv:
+                address_reader = csv.DictReader(addresses_csv, delimiter=';')
+                for row in address_reader:
+                print(row['Address'])
+                        </code>
+                    </pre>
+                    <li><strong>Writing a CSV file:</strong></li>
+                    <pre>
+                        <code>
+                big_list = [{'name': 'Fredrick Stein', 'userid': 6712359021, 'is_admin': False}, 
+                {'name': 'Wiltmore Denis', 'userid': 2525942, 'is_admin': False}, 
+                {'name': 'Greely Plonk', 'userid': 15890235, 'is_admin': False}, 
+                {'name': 'Dendris Stulo', 'userid': 572189563, 'is_admin': True}] 
+    
+                import csv
+    
+                with open('output.csv', 'w') as output_csv:
+                    fields = ['name', 'userid', 'is_admin']
+                    output_writer = csv.DictWriter(output_csv, fieldnames=fields)
+                    
+                    output_writer.writeheader()
+                    for item in big_list:
+                    output_writer.writerow(item)
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>JSON files</strong></li>
+                <ul>
+                    <li><strong>Reading a JSON file: </strong></li>
+                    <pre>
+                        <code>
+                # purchase_14781239.json
+
+                {
+                'user': 'ellen_greg',
+                'action': 'purchase',
+                'item_id': '14781239',
+                }
+
+                We would be able to read that in as a Python dictionary with the following code:
+
+                # json_reader.py
+
+                import json
+                
+                with open('purchase_14781239.json') as purchase_json:
+                    purchase_data = json.load(purchase_json)
+                
+                print(purchase_data['user'])
+                # Prints 'ellen_greg'
+                        </code>
+                    </pre>
+                    <li><strong>Writing a JSON File: </strong></li>
+                    <pre>
+                        <code>
+                turn_to_json = {
+                    'eventId': 674189,
+                    'dateTime': '2015-02-12T09:23:17.511Z',
+                    'chocolate': 'Semi-sweet Dark',
+                    'isTomatoAFruit': True
+                }
+
+                import json
+ 
+                with open('output.json', 'w') as json_file:
+                    json.dump(turn_to_json, json_file)
+                        </code>
+                    </pre>
+                </ul>
+                <hr/>
+                <h3>Class</h3>
+                <li><strong>Class: </strong>is a template for a data type. It describes the kinds of information 
+                that class will hold and how a programmer will interact with that data.
+                A class must be <strong>instantiated</strong>. In other words, we must create an instance of the class, in order 
+                to breathe life into the schematic. <i>type()</i> returns the actual class an object is an implementation of.
+                <strong>Video Project</strong> <a href="https://www.youtube.com/watch?v=Dk-ePlxdmBU&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <pre>
+                    <code>
+                # Creates empty class:
+                class CoolClass:
+                    pass
+
+                # Create instanc of class:
+                cool_instance = CoolClass()
+                    </code>
+                </pre>
+                <li><strong>Class Variable: </strong>When we want the same data to be available to every instance of a class we use a class variable. 
+                A class variable is a variable that’s the same for every instance of the class.</li>
+                <pre>
+                    <code>
+            class Musician:
+                title = "Rockstar"
+                
+            drummer = Musician()
+            print(drummer.title)
+            # prints "Rockstar"
+                </pre>
+                <li><strong>Class Methods: </strong>Methods are functions that are defined as part of a class. 
+                The first argument in a method is always the object that is calling the method. Convention 
+                recommends that we name this first argument <strong>self</strong>. Methods always have at least this one argument.</li>
+                <pre>
+                    <code>
+            class DistanceConverter:
+                kms_in_a_mile = 1.609
+                def how_many_kms(self, miles):
+                    return miles * self.kms_in_a_mile
+                
+            converter = DistanceConverter()
+            kms_in_5_miles = converter.how_many_kms(5)
+            print(kms_in_5_miles)
+            # prints "8.045"
+                    </code>
+                </pre>
+                <li><strong>Contructor: </strong>There are several methods that we can define in a Python 
+                class that have special behavior. These methods are sometimes called “magic,” because they 
+                behave differently from regular methods. Another popular term is dunder methods, so-named 
+                because they have two underscores (double-underscore abbreviated to “dunder”) on either 
+                side of them.The first dunder method we’re going to use is the <strong>__init__()</strong> method 
+                (note the two underscores before and after the word “init”). This method is used to 
+                initialize a newly created object. It is called every time the class is instantiated.
+                Methods that are used to prepare an object being instantiated are called <strong>constructors</strong>. 
+                The word “constructor” is used to describe similar features in other object-oriented 
+                programming languages but programmers who refer to a constructor in Python are usually 
+                talking about the <i>__init__()</i> method. Below we created a class called Shouter and every time 
+                we create an instance of Shouter the program prints out a shout.</li>
+                <pre>
+                    <code>
+            class Shouter:
+                def __init__(self):
+                    print("HELLO?!")
+                
+                shout1 = Shouter()
+                # prints "HELLO?!"
+                
+                shout2 = Shouter()
+                # prints "HELLO?!"
+                    </code>
+                </pre>
+                <li><strong>Instance Variables: </strong>The data held by an object is referred to as an 
+                instance variable. 
+                Instance variables aren’t shared by all instances of a class — they are variables that are 
+                specific to the object they are attached to.
+                A class is a schematic for a data type and an object is an instance 
+                of a class, but why is there such a strong need to differentiate the two if each object 
+                can only have the methods and class variables the class has? This is because each instance 
+                of a class can hold different kinds of data.</li>
+                <pre>
+                    <code>
+            class FakeDict:
+                pass
+
+            fake_dict1 = FakeDict()
+            fake_dict2 = FakeDict()
+            
+            fake_dict1.fake_key = "This works!"
+            fake_dict2.fake_key = "This too!"
+            
+            # Let's join the two strings together!
+            working_string = "{} {}".format(fake_dict1.fake_key, fake_dict2.fake_key)
+            print(working_string)
+            # prints "This works! This too!"
+                    </code>
+                </pre>
+                <li><strong>Attribute Functions: </strong>
+                Instance variables and class variables are both accessed similarly in Python, because 
+                they are both considered attributes of an object. If we aren’t sure if an object has an 
+                attribute or not, <i>hasattr()</i> will return True if an object has a given attribute 
+                and False otherwise <i>hasattr(object, “attribute”)</i>. If we want to get the actual value of 
+                the attribute, <i>getattr()</i> 
+                is a Python function that will return the value of a given object and attribute. In this 
+                function, we can also supply a third argument that will be the default if the object does 
+                not have the given attribute. <i>getattr(object, “attribute”, default)</i>.</li>
+                <pre>
+                    <code>
+            class NoCustomAttributes:
+                pass
+ 
+            attributeless = NoCustomAttributes()
+            
+            try:
+                attributeless.fake_attribute
+            except AttributeError:
+                print("This text gets printed!")
+            
+            # prints "This text gets printed!"
+                    </code>
+                </pre>
+                <li><strong>Self: </strong>Instance variables are more powerful 
+                when you can guarantee a rigidity to the data the object is holding.</li>
+                <pre>
+                    <code>
+                # We can define a secure method on the SearchEngineEntry class that returns 
+                the secure link to an entry.
+
+                class SearchEngineEntry:
+                    secure_prefix = "https://"
+                    def __init__(self, url):
+                        self.url = url
+                
+                def secure(self):
+                    return "{prefix}{site}".format(prefix=self.secure_prefix, site=self.url)
+                
+                codecademy = SearchEngineEntry("www.codecademy.com")
+                wikipedia = SearchEngineEntry("www.wikipedia.org")
+                
+                print(codecademy.secure())
+                # prints "https://www.codecademy.com"
+                
+                print(wikipedia.secure())
+                # prints "https://www.wikipedia.org"
+                    </code>
+                </pre>
+                <li><strong>Everything is an Object: </strong>
+                Attributes can be added to user-defined objects after instantiation, so it’s possible 
+                for an object to have some attributes that are not explicitly defined in an object’s 
+                constructor. We can use the <i>dir()</i> function to investigate an object’s attributes at runtime. 
+                <i>dir()</i> is short for directory and offers an organized presentation of object attributes.</li>
+                <pre>
+                    <code>     
+            class FakeDict:
+            pass
+            
+            fake_dict = FakeDict()
+            fake_dict.attribute = "Cool"
+            
+            dir(fake_dict)
+            # Prints ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', 
+            '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', 
+            '__init__()', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', 
+            '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', 
+            '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'attribute']
+                    </code>
+                </pre>
+                <li><strong>String Representation: </strong><i>__repr__()</i> is a method we can use to tell Python what 
+                we want the string representation of the class to be. <i>__repr__()</i> can only have 
+                one parameter, self, and must return a string.</li>
+                <pre>
+                    <code>
+        class Employee():
+            def __init__(self, name):
+                self.name = name
+            
+            def __repr__(self):
+                return self.name
+            
+        argus = Employee("Argus Filch")
+        print(argus)
+        # prints "Argus Filch"
+                    </code>
+                </pre>
             </ul>
         </div>
     </body>
