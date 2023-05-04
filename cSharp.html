@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <script src="./component/button.js" defer></script>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>C#</title>
+    </header>
+    <body>
+        <nav>
+            <ul class="mainNav">
+                <li><a href="#">AI</a></li>
+                <li><a href="./displayProperties.html">Display Properties</a></li>
+                <li><a href="./objects.html">Objects</a></li>
+                <li><a href="./operationalSystem.html">Operational System</a></li>
+                <li><a href="./debugTesting.html">Debug & Testing</a></li>
+                <li><a href="./git.html">Git</a></li>
+                <li><a href="./form.html">Form</a></li>
+                <li><a href="./api.html">API</a></li>  
+                <li><a href="./react.html">REACT</a></li>
+                <li><a href="./helpfulContent.html">Helpful Content</a></li> 
+                <li><a href="./backend.html">Backend</a></li>
+            </ul>
+        </nav>
+        <div class="styleGuide">
+            <h1>C#</h1>
+            <ul>
+                <li><strong>Documentation </strong><a href="https://learn.microsoft.com/en-us/docs/" target="_blank">here</a>.
+                <strong>Setting Up Visual Code: </strong></li>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=Eigr7wKvhgE&feature=youtu.be" target="_blank">Mac</a>.</li>
+                    <li><a href="https://www.youtube.com/watch?v=rlgBGfHu6XA" target="_blank">Windows</a>.</li>
+                </ul>
+                <li><strong>Basics: </strong>Video Project 
+                <a href="https://www.youtube.com/watch?v=95joydfyp98&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>Console.WriteLine():</strong> Prints on console.</li>
+                    <li><strong>Console.ReadLine():</strong> Captures text that a user types into the console.</li>
+                    <li><strong>dotnet run: </strong> This command is used to run a .NET Core 
+                    application from the command line. The .NET Core runtime compiles the code and runs the 
+                    application. The command is used to execute the code without any explicit compile or 
+                    launch commands.</li>
+                    <li><strong>Comments: </strong>Single line <i>//</i>, and multi-line <i>/* */</i>. </li>
+                    <li><strong>Variables: </strong>It’s good practice to use camelCase styling, and they 
+                    should only contain underscores, letters, and digits.</li>
+                    <li><strong>Methods: </strong>It’s convention to use PascalCase to name your method. 
+                    The name starts with an uppercase letter and each word following begins with an 
+                    uppercase as well. Everytime your code runs, the <i>Main()</i> method is executed.</li>
+                </ul>
+            <hr/>
+            <h3>Variables</h3>
+            <li><strong>Data Types: </strong>C# is <strong>strongly-typed</strong>, so it requires us to specify the data 
+            types that we’re using. It is also <strong>statically-typed</strong>, which means it 
+            will check that we used the correct types before the program even runs. <strong>List of 
+            DataTypes </strong>
+            <a href="https://content.codecademy.com/courses/learn-c-sharp/data-types-variables/C%23%20Data%20Types%20Cheat%20Sheet.pdf" target="_blank">here</a>.
+            <strong>Video Project Mad Libs </strong><a href="https://www.youtube.com/watch?v=yVAxbEW9ej4&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+            <strong>Video Project Money Maker </strong><a href="https://www.youtube.com/watch?v=O6YGUo3HCfE&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            
+                <li><strong>Data Type Conversion: </strong>C# checks to make sure that when we convert data types from 
+                one to another that we’re not losing any data.</li>
+                <ul>
+                    <li><strong>Implicit conversion:</strong> happens automatically if no data will be lost in the conversion. 
+                    That’s why it’s possible to convert an int (which can hold less data) to a double 
+                    (which can hold more), but not the other way around.</li>
+                    <li><strong>Explicit conversion:</strong> requires a cast operator to convert a data type into another one. 
+                    So if we do want to convert a double to an int, we could use the operator <i>(int)</i>.
+                    But sometimes it's not possible to convert, like int to string. 
+                    It’s only possible to convert data types using 
+                    <a href="https://learn.microsoft.com/en-us/dotnet/api/system.convert?view=netframework-4.7.2" target="_blank">built-in methods</a>. 
+                    For most data types, there is a <i>Convert.ToX()</i> method, like 
+                    <i>Convert.ToString()</i> and <i>Convert.ToDouble()</i>. 
+                    <i>int faveNumber = Convert.ToInt32(Console.ReadLine());</i></li>
+                </ul>
+                <li><strong>Numbers: </strong></li>
+                <ul>
+                    <li><strong>Int: </strong> <i>int variableName = 7;</i>.</li>
+                    <li><strong>Double and Decimal: </strong>These values are useful for anything that 
+                    requires more precision than a whole number, like measuring the precise location of an 
+                    object in 3D space. A double is usually the best choice of the three because it is more 
+                    precise than a float, but faster to process than a decimal. However, make sure to use a 
+                    decimal for financial applications, since it is the most precise.
+                    <i>double variableName = 39.76876;</i> Don’t forget the m to defining a decimal and not a double: 
+                    <i>decimal variableName = 489872.76m;</i></li>
+                    <li><strong>Built-in methods: </strong>
+                    <ul>
+                        <li><strong>Math.Abs(): </strong>Will find the absolute value of a number. 
+                        <i>Example: Math.Abs(-5) returns 5</i>.</li>
+                        <li><strong>Math.Sqrt(): </strong>Will find the square root of a number. 
+                        <i>Example: Math.Sqrt(16) returns 4</i>.</li>
+                        <li><strong>Math.Floor(): </strong> Will round the given double or decimal down to the nearest whole number. 
+                        <i>Example: Math.Floor(8.65) returns 8</i>.</li>
+                        <li><strong>Math.Min(): </strong>returns the smaller of two numbers. 
+                        <i>Example: Math.Min(39, 12) returns 12</i>.</li>
+                    </ul>
+                </ul>
+                <li><strong>Text: </strong></li>
+                <ul>
+                    <li><strong>Concatanation & Interpolation: </strong>For Concatanation we use <i>+</i>, 
+                    if we want to concatenate a string with something that is 
+                    another data type, C# will implicitly convert that value to a string.
+                    <strong>Interpolation: </strong>enables us to insert our variable values and expressions in 
+                    the middle of a string, without having to worry about spaces and punctuation.</li>
+                    <pre>
+                        <code>
+                string yourFaveMusician = "David Bowie";
+                string myFaveMusician = "Solange";
+                
+                Console.WriteLine($"Your favorite musician is 
+                    {yourFaveMusician} and mine is {myFaveMusician}.");
+                        </code>
+                    </pre>
+                    <li><strong>Built-in methods:</strong></li>
+                    <ul>
+                        <li><strong>.Length: </strong>e.g: <i>userTweet.Length;</i></li>
+                        <li><strong>.IndexOf(): </strong>Find the position of a specific character 
+                        or substring. <i>string word = "radio"; word.IndexOf("a"); // returns 1</i></li>
+                        <li><strong>.Substring(): </strong>Grabs part of a string using the specified character 
+                        position, continues until the end of the string, and returns a new string. <i>.IndexOf()</i> 
+                        is usually used first to get the specific character position.
+                        We can also pass <i>.Substring()</i> a second argument, which will determine the number of 
+                        characters in the resulting substring (second example).
+                        Bracket notation is a style of syntax that uses brackets <i>[]</i> and an integer value to 
+                        identify a particular value in a collection. In this case, we can use it to find a 
+                        specific character in a string.</li>
+                        <pre>
+                            <code>
+                string plantName = "Cactaceae, Cactus"; 
+                int charPosition = plantName.IndexOf("Cactus"); // returns 11
+                string commonName = plantName.Substring(charPosition); // returns Cactus
+
+                // Length
+                string name = "Codecademy"; 
+                int start = 2;
+                int length = 6;
+                string substringName = name.Substring(start, length); // returns 'decade'
+
+                // Bracket notation              
+                string plantName = "Cactaceae, Cactus";
+                int charPosition = plantName.IndexOf("u"); // returns 15
+                char u = plantName[charPosition]; // returns u
+                            </code>
+                        </pre>
+                        <li><strong>ToUpper, ToLower: </strong></li>
+                        <pre>
+                            <code>
+                string shouting = "I'm not shouting, you're shouting".ToUpper();
+                Console.WriteLine(shouting);
+                // prints I'M NOT SHOUTING, YOU'RE SHOUTING.
+                            </code>
+                        </pre>
+                    </ul>
+                </ul>
+            <hr/>
+            <h3>Logic</h3>
+            <li><strong>Video Project Password </strong> <a href="https://www.youtube.com/watch?v=U_rcOw1aNHo&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>. 
+            <strong>Video Project</strong> Choose Your Own Adventure <a href="https://www.youtube.com/watch?v=HeYCX8Yqc2M&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <li><strong>Basic: </strong></li>
+            <ul>
+                <li><strong>Boolean: </strong><i>bool variableName = true;</i></li>
+                <li><strong>Comparison Operators: </strong><i>==</i>, <i>!=</i>, <i><</i>, <i>></i>
+                <i><=</i>, <i>>=</i>.</li>
+                <li><strong>Logical Operators: </strong><i>&&</i>, <i>||</i>, <i>!</i>.</li>
+            </ul>
+            <li><strong>Conditional Statements & Control Flow: </strong></li>
+            <ul>
+                <li><strong>If Statement:</strong></li>
+                <pre>
+                    <code>
+        using System;
+
+        namespace ElseIfStatement
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    int guests = 0;
+                    
+                    if(guests >= 4)
+                    {
+                        Console.WriteLine("Catan");
+                    }
+                        else if (guests >= 1)
+                    {
+                        Console.WriteLine("Innovation");
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Solitaire");
+                    }
+                }
+            }
+        }
+                    </code>
+                </pre>
+                <li><strong>Switch Statements: </strong></li>
+                <pre>
+                    <code>
+        using System;
+
+        namespace SwitchStatement
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                // Code from Checkpoint 1
+                // string genre = "Horror";
+
+                // Code from Checkpoint 5
+                Console.WriteLine("Choose a movie genre: ");
+                string genre = Console.ReadLine();
+
+                switch (genre)
+                {
+                    case "Drama":
+                    Console.WriteLine("Citizen Kane");
+                    break;
+
+                    case "Comedy":
+                    Console.WriteLine("Duck Soup");
+                    break;
+
+                    case "Adventure":
+                    Console.WriteLine("King Kong");
+                    break;
+
+                    case "Horror":
+                    Console.WriteLine("Psycho");
+                    break;
+
+                    case "Science Fiction":
+                    Console.WriteLine("2001: A Space Odyssey");
+                    break;
+
+                    default:
+                    Console.WriteLine("No movie found");
+                    break;
+                }
+
+                }
+            }
+        }
+                    </code>
+                </pre>
+                <li><strong>Ternary Operators: </strong></li>
+                <pre>
+                    <code>
+        string color = "blue";
+        string result = (color == "blue") ? "blue" : "NOT blue";
+        
+        Console.WriteLine(result);
+                    </code>
+                </pre>
+            </ul>
+            <hr/>
+            <h3>Methods Calls and Input</h3>
+            <li><strong>Basics: </strong>In C#, it’s convention to use PascalCase to name your method.
+            The name starts with an uppercase letter and each word following begins with an uppercase 
+            as well. Every time you run the code, the <i>Main()</i> method is executed.
+            <strong>Video Project Architect Arithmetic </strong><a href="https://www.youtube.com/watch?v=a3NaiX0rUT8&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+            <strong>Video Project Exquisite Corpse </strong><a href="https://www.youtube.com/watch?v=35wIwRKT9XI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <pre>
+                <code>
+            namespace DefineParameters
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                {
+                    VisitPlanets(4);
+                    VisitPlanets(1);
+                    VisitPlanets(10);
+                }
+                
+                static void VisitPlanets(int numberOfPlanets = 0)
+                {
+                    Console.WriteLine($"You visited {numberOfPlanets} new planets...");
+                }
+                }
+            }
+                </code>
+            </pre>
+            <li><strong>Named Arguments: </strong>
+            Say your method has lots of optional parameters, but you only want to specify one 
+            when you call it. Named arguments aren’t always necessary, but they can be useful when
+            a method has many optional parameters and you want to differentiate between similar arguments.
+            In this example, your method has five optional parameters:
+            <i>static void YourMethodName(int a = 0, int b = 0, int c = 0, int d = 0, int e = 0) {...}</i>
+            When you call the method, you only want to specify d. But calling the method this way 
+            would set a to 4, not d.</i> <i>YourMethodName(4);</i> Refer to the parameter by its name instead:
+            <i>YourMethodName(d: 4);</i> With named arguments, you can list them in any order:
+            <i>YourMethodName(d: 4, b: 1, a: 2);</i> You can also mix named arguments with positional 
+            arguments, but positional arguments MUST come before named arguments:
+            <pre>
+                <code>
+            YourMethodName(2, 1, d: 4) // a is 2, b is 1, d is 4
+            YourMethodName(d: 4, 2, 1) // Error!
+                </code>
+            </pre>
+            <li><strong>Method Overloading: </strong>Say you want to use <i>Math.Round()</i>, a built-in method. 
+            You go to the Microsoft documentation to learn how to use it, and find at least 8 different 
+            versions. They all have the same name: <i>Math.Round()</i>.
+            What’s happening here is called method overloading, and each “version” is called an overload. 
+            Though they have the same name, the overloads are different because they have either <i>(i)</i> 
+            different parameter types or <i>(ii)</i> different number of parameters. This is useful if you want
+            the same method to have different behavior based on its inputs.</li>
+            <li><strong>Method Output: </strong>
+            <ul>
+                <li><strong>Method Declaration: </strong>When a method is declared, it must announce the 
+                type of value it will return. Generally, the method declaration is a combination of details 
+                including: the access modifiers, return type, method name, and parameter types.</li>
+                <li><strong>Return: </strong>Outputs a single value from a method.</li>
+                <li><strong>Out: </strong>Outputs multiple values. For example, the <i>Int32.TryParse()</i> method 
+                tries to parse its input as an integer. If it can properly parse the input, the method returns 
+                true and sets its out variable to the new value. If it cannot properly parse the input, the
+                method returns false and sets the out variable to 0.
+                We can use out parameters in our own methods as well. In the second example below, <i>Yell()</i> 
+                converts phrase to uppercase and sets a boolean variable to true:</li>
+                <pre>
+                    <code>
+
+        int number;
+        bool success = Int32.TryParse("10602", out number); 
+        // number is 10602 and success is true
+        int number2;
+        bool success2 = Int32.TryParse(" !!! ", out number2);
+        // number2 is 0 and success2 is false
+        
+
+        // Second Example 
+        static string Yell(string phrase, out bool wasYellCalled)
+        {
+            wasYellCalled = true;
+            return phrase.ToUpper();
+        }
+
+        string message = "garrrr";
+            Yell(message, out bool flag);
+            // returns "GARRRR" and flag is true
+                    </code>
+                </pre>
+                <li><strong>Alternate Expressions: </strong>In C# there are other ways to define a method, which 
+                can save us effort in typing and make our code easier to read. They’re called expression-bodied 
+                definitions and lambda expressions.</li>
+                <ul>
+                    <li><strong>Expression-bodied Definitions: </strong></li>
+                    <pre>
+                        <code>
+            bool IsEven(int num)
+            {
+                return num % 2 == 0;
+            }
+
+            //The above function can be written like this:
+            bool isEven(int num) => num % 2 == 0;
+
+            //It also works for void
+            void Shout(string x) => Console.WriteLine(x.ToUpper());
+                        </code>
+                    </pre>
+                    <li><strong>Lambda Expressions: </strong>Are great for situations when you need to 
+                    pass a method as an argument. With a lambda expression, we can define <i>IsEven()</i> 
+                    directly in the method call. We don’t even need to give it a name (anonymous method).</li>
+                    <pre>
+                        <code>
+            int[] numbers = {1, 3, 5, 6, 7, 8};
+ 
+            public static bool IsEven(int num)
+            {
+                return num % 2 == 0;
+            }
+            bool hasEvenNumber = Array.Exists(numbers, IsEven);
+
+            //Can be written as
+            bool hasEvenNumber = Array.Exists(numbers, (int num) => num % 2 == 0 );
+
+            //We can remove the parameter type if it can be inferred
+            //We can remove the parentheses if there is one parameter
+            //So we can even reduce further to:
+            bool hasEvenNumbers = Array.Exists(numbers, num => num % 2 == 0 );
+
+            //Lambda expressions with more than one expression use curly braces and semicolon:
+            bool hasBigDozen = Array.Exists(numbers, (int num) => {
+                bool isDozenMultiple = num % 12 == 0;
+                bool greaterThan20 = num > 20;
+                return isDozenMultiple && greaterThan20;
+            });
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
+            <hr/>
+            <h3>Arrays</h3>
+            <li>In C#, arrays are a collection of values that all share the same data type.
+            When we define a variable to hold an array we also have to specify the type.
+            <i>int[] plantHeights = { 3, 4, 6 };</i> . If you decide to define an array and then 
+            initialize it later (rather in one line like above) you must use the new keyword:</li>
+            <pre>
+                <code>
+            // Initial declaration
+            int[] plantHeights;
+                
+            // This works
+            plantHeights = new int[] { 3, 4, 6 };  
+                </code>
+            </pre>
+            <li><strong>Array Properties: </strong></li>
+            <ul>
+                <li><strong>.Length:</strong> <i>int arrayLength = plantHeights.Length</i></li>
+            </ul>
+            <li><strong>Accessing Array: </strong><i>int plantTwoHeight = plantHeights[1];</i></li>
+            <li><strong>Modifying Array: </strong></li>
+            <pre>
+                <code>
+            int[] plantHeights = { 3, 4, 6 };
+
+            // plantHeights will be [3, 5, 6]
+            plantHeights[1] = 5; 
+                </code>
+            </pre>
+            <li><strong>Built-in Methods: </strong>Documentation 
+            <a href="https://learn.microsoft.com/en-us/dotnet/api/system.array?view=net-7.0" target="_blank">here</a>.</li>
+            <ul>
+                <li><strong>Array.Sort(): </strong>It sorts an array. This method is a quick way to further 
+                organize array data into a logical sequence: <i>Array.Sort(plantHeights);</i></li>
+                <li><strong>Array.IndexOf(): </strong>Takes a value and returns its index. IndexOf() typically 
+                takes two parameters: the first is the array and the second is the value whose index we’re 
+                locating. <i>IndexOf()</i> also has several overloads that allow you to search for a specific range 
+                of the array. <i>Array.IndexOf(plantHeights, 6);</i></li>
+                <li><strong>Array.Find(): </strong>Searches a one-dimensional array for a specific value or set 
+                of values that match a certain condition and returns the first occurrence in the array.
+                Takes two parameters: the first is the array and the second is a predicate that defines what 
+                we’re looking for. A predicate is a method that takes one input and outputs a boolean. Unlike 
+                IndexOf(), Find() returns the actual values that match the condition, instead of their index.
+                It’s customary to use a lambda function for the predicate to determine if the value meets the 
+                necessary criteria.
+                <i>int firstHeight = Array.Find(plantHeights, height => height > 5);</i></li>
+            </ul>
+            <hr/>
+            <h3>Lists</h3>
+            <li>Arrays have their drawbacks: They have a limited length; You have to keep track of the number 
+            of elements in the array using a separate index; You can only edit one element at a time;
+            Lists resolve all of these issues. Like arrays, they are a sequential collection of values and 
+            they can hold references to any type. 
+            Arrays though are faster to use when you have a pre-determined number of elements, and lists are 
+            better to use when the number is unknown or you’d like the extra features. 
+
+            In order to use lists, you’ll need to add this to the top of your file: 
+            <i>using System.Collections.Generic;</i></li> 
+            <pre>
+                <code>
+
+            // The list is named citiesList and it holds instances of the type string:
+            List< string > citiesList = new List< string >();
+
+            citiesList.Add("Delhi");
+            citiesList.Add("Los Angeles");
+
+            // We can do it all in one line using object initialization:
+            List< string > citiesList2 = new List< string > { "Delhi", "Los Angeles" };
+            
+            // You can access elements using indices and square brackets:
+            string city = citiesList[0];
+
+            // You can re-assign elements using bracket notation:
+            citiesList[0] = "New Delhi";
+                </code>
+            </pre>
+            <li><strong>List Methods: </strong><strong>Documentation 
+            <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-7.0" target="_blank">here</a>.</strong></li>
+            <ul>
+                <li><strong>Count and Contains: </strong>We can find the number of elements in the list using the 
+                <strong>Count property</strong>. We can check if an element exists in a list using the 
+                <strong>Contains()</strong> method.</li>
+                <pre>
+                    <code>
+            // Count
+
+            List< string > citiesList = new List< string > { "Delhi", "Los Angeles" };
+            int numberCities = citiesList.Count;
+            // numberCities is 2
+
+
+            // Contains
+            bool hasDelhi = citiesList.Contains("Delhi");
+            bool hasDubai = citiesList.Contains("Dubai");
+            // hasDelhi is true, hasDubai is false
+                    </code>
+                </pre>
+                <li><strong>Remove(): </strong>To remove a specific item from a list we use the <i>Remove()</i> method. It expects the specific 
+                item as an argument and it returns true if it was successfully removed.
+                <i>bool removed = marathons.Remove(143.12);</i></li>
+                <li><strong>Clear(): </strong>If we need to remove all of the elements from a list, we could iterate through the entire list 
+                and call <i>Remove()</i>. The easier way is to use the <i>Clear()</i> method.
+                <i>marathons.Clear();</i></li>
+                <li><strong>Range methods:</strong></li>
+                <ul>
+                    <li><strong>AddRange():</strong> Takes an array or list as an argument. Adds the values to the 
+                    end of the list. Returns nothing.</li>
+                    <li><strong>InsertRange():</strong> Takes an int and array or list as an argument. Adds the 
+                    values at the int index. Returns nothing.</li>
+                    <li><strong>RemoveRange():</strong> Takes two int values. The first int is the index at which 
+                    to begin removing and the second int is the number of elements to remove. Returns nothing.</li>
+                    <li><strong>GetRange():</strong> Takes two int values. The first int is the index of the first 
+                    desired element and the second int is the number of elements in the desired range. 
+                    Returns a list of the same type.</li>
+                </ul>
+            </ul>
+            <li><strong>Looping through Lists: </strong>Like arrays, we can perform an operation for 
+            every element in the list using <i>for</i> and <i>foreach loops</i>.
+            With for loops, make sure to use Count to stay within the bounds of the list.
+            Generally, we prefer foreach loops because they require less typing and thus less chance for typos.
+            If the index is used in the operation — like printing out each index and element together — 
+            then we’ll use for loops.</li>
+            <pre>
+                <code>
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                Console.WriteLine(numbers[i]);
+            }
+            With a foreach loop, the counting is handled for you:
+
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+                </code>
+            </pre>
+            <li><strong>Generic Collections: </strong>
+            Generic collections are data structures that are defined with a generic type. Each class is 
+            defined generally without a specific type in mind. 
+            Lists are a type of generic collection, which are defined with generic type parameters. 
+            The type parameters are specified when instantiating any generic class.
+            When we make an actual instance, we define 
+            the specific type:
+            <i> List< string > citiesList = new List< string >();</i>
+            <i>List< Object > objects = new List< Object >();</i>
+            Imagine it like a set of general instructions: in a toy store, we can tell the employees how 
+            to add and remove items from a shelf without specifying the type of toy. In the same way, we 
+            can use Add() and Remove() without knowing a lists’s data type.
+            For this reason, the formal class name of lists is List< T >. That T is a type parameter: it 
+            represents some type that we can specify later. The general instructions, however are neatly 
+            contained in the generic List< T > class.
+            Let’s see why this is useful by imagining the other, more difficult ways we could 
+            create “generic” collections:
+            <ul>
+                <li> Use type-specific classes, like StringList, IntList, etc. — 
+                We would have to make a list class for EVERY type, defining 
+                the same properties and methods for each list class.</li>
+                <li>Use a list containing Object types, List< Object > — Using Object 
+                means we can’t use any of the unique functionality of each type 
+                and it takes a lot of computing power to convert references to and from the Object type.</li>
+            </ul>
+            <hr/>
+            <h3>Loop</h3>
+            <li><strong>While Loop: </strong>Are good when you know your stopping condition, but not when 
+            you know how many times you want a program to loop or if you have a specific collection to loop through.
+            <strong>Video Project Caesar Cipher </strong><a href="https://www.youtube.com/watch?v=dcZ4eMTc8GU&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+            <strong>Video Project True or False? </strong><a href="https://www.youtube.com/watch?v=_iVIviVh4yI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode135" onclick="showCode('displayCode135', 'showCode135')">Display</button>
+            <div id="displayCode135">
+                <button onclick="closeCode('displayCode135', 'showCode135')">Close</button>
+                <pre>
+                    <code>
+        namespace WhileLoop
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    int emails = 20;      
+                    while (emails > 0)
+                    {
+                        emails--;
+                        Console.WriteLine($"one email deleted, {emails} left");
+                    }
+                Console.WriteLine("INBOX ZERO ACHIEVED!");
+                }
+            }
+        }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>Do...While Loop: </strong>Are only necessary if you definitely want 
+            something to run once, but then stop if a condition is met.</li>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode134" onclick="showCode('displayCode134', 'showCode134')">Display</button>
+            <div id="displayCode134">
+                <button onclick="closeCode('displayCode134', 'showCode134')">Close</button>
+                <pre>
+                    <code>
+        namespace DoWhileLoop
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                bool buttonClick = true;   
+                do
+                    {
+                        Console.WriteLine("BLARRRRRRRRR");
+                    } while (!buttonClick);
+                    
+                Console.WriteLine("Time for a five minute break");
+                }
+            }
+        }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>For Loop: </strong>are best if you want something to run 
+            a specific number of times, rather than given a certain condition.</li>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode133" onclick="showCode('displayCode133', 'showCode133')">Display</button>
+            <div id="displayCode133">
+                <button onclick="closeCode('displayCode133', 'showCode133')">Close</button>
+                <pre>
+                    <code>
+            namespace ForLoop
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                    { 
+                        for (int i = 1; i < 17; i++)
+                        {
+                            CreateTemplate(i);
+                        }
+                    }   
+                    static void CreateTemplate(int week)
+                    {
+                        Console.WriteLine($"Week {week}");
+                        Console.WriteLine("Announcements: \n \n \n ");
+                        Console.WriteLine("Report Backs: \n \n \n");
+                        Console.WriteLine("Discussion Items: \n \n \n");
+                    }    
+                }
+            }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>For Each Loop</strong>Are the best way to loop over an array, or any other
+            collection. We can also call foreach loops: collection loops.</li>
+             <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode132" onclick="showCode('displayCode132', 'showCode132')">Display</button>
+            <div id="displayCode132">
+                <button onclick="closeCode('displayCode132', 'showCode132')">Close</button>
+                <pre>
+                    <code>
+            namespace ForEachLoop
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                    {
+                        string[] todo = { "respond to email", "make wireframe", "program feature", "fix bugs" };
+                    
+                        foreach (string item in todo)
+                        {
+                            CreateTodoItem(item);
+                        }
+                    }   
+                    static void CreateTodoItem(string item)
+                    {
+                        Console.WriteLine($"[] {item}");
+                    }
+                }
+            }
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Classes and Objects</h3>
+            <li><strong>Basics:</strong> <strong>Video Project The Object of Your Affection</strong>
+            <a href="https://www.youtube.com/watch?v=21AaJwfTaQU&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>. </li>
+            <ul>
+                <li>In C#, a custom data type is defined with a class, and each instance of this type is an object.
+                C# provides built-in data types, like <i>string</i>: each instance of the string type has its own values 
+                and functionality.</li>
+                <li>The code for a class is usually put into a file of its own, named with the name of the class.
+                In other parts of code, like <i>Main()</i> in another file, we can use the class. We make instances, 
+                or objects, of the class with the new keyword: <i>Forest f = new Forest();</i></li>
+                <li><strong>Struct: </strong>If you need a struct, click <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct" target="_blank">here</a>.</li>
+                <li><strong>Field: </strong>We need to associate different pieces of data, like a size and name, to each Forest object. 
+                In C#, these pieces of data are called fields. Fields are one type of class member, which is 
+                the general term for the building blocks of a class.It is common practice to name fields using all lowercase</li>
+                <pre>
+                    <code>
+            class Forest {
+                public string name;
+                public int trees;
+            }
+                    </code>
+                </pre>
+            </ul>
+            <li><strong>Properties: </strong>Are another type of class member. Each property is like a 
+            spokesperson for a field: it controls the access (getting and setting) to that field. We can use this to validate 
+            values before they are set to a field. 
+            It’s common to name a property with the title-cased version of its field’s name, e.g. age and Age, 
+            name and Name. 
+            Properties should be used to represent data and should be simple, while methods should be used to represent 
+            actions that can be performed on an object
+            A property is made up of two methods:</li>
+            <ul>
+                <li><strong>get():</strong> method, or getter: called when the property is accessed</li>
+                <li><strong>set():</strong> method, or setter: called when the property is assigned a value</li>
+            </ul>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode131" onclick="showCode('displayCode131', 'showCode131')">Display</button>
+            <div id="displayCode131">
+                <button onclick="closeCode('displayCode131', 'showCode131')">Close</button>
+                <pre>
+                    <code>
+            //Forest.cs: 
+            public int Area
+            {
+                get { return area; }
+                set 
+                { 
+                    if (value < 0) { area = 0; }
+                    else { area = value; }
+                }
+            }
+
+            //Program.cs:
+            Forest f = new Forest();
+            // set() is called
+            f.Area = -1; 
+            // get() is called; prints 0
+            Console.WriteLine(f.Area);
+                    </code>
+                </pre>
+                <li>The basic getter and setter pattern is so common that there is a short-hand called an 
+                automatic property. You don’t have to write out the get() and set() methods, and you don’t 
+                have to define a size field. A hidden field is defined in the background for us. 
+                All we have to worry about is the Size property.</li>
+                    
+                    <pre>
+                        <code>
+                    public string size;
+                    public string Size
+                    {
+                    get { return size; }
+                    set { size = value; }
+                    }
+                    
+                    // This pattern can be written as an automatic property:
+                    
+                    public string Size
+                    { get; set; }
+                        </code>
+                    </pre>        
+                    <hr/>
+            </div>
+            <li><strong>Public & Private: </strong>A public member can be accessed by any class
+            private — a private member can only be accessed by code in the same class.
+            For “defensive coding”, you are protecting the inner mechanisms of a class with private so 
+            that other code can’t break your class. You only expose what you want to be public.
+            Access modifiers can be applied to all members of a class, including fields, properties, 
+            and the rest of the members covered in this lesson.</li>
+            <p class="center"><strong>Examples:</strong></p>
+            <button id="showCode129" onclick="showCode('displayCode129', 'showCode129')">Display</button>
+            <div id="displayCode129">
+                <button onclick="closeCode('displayCode129', 'showCode129')">Close</button>
+                <pre>
+                    <code>
+            class Forest
+            {
+                public int age;
+                private string biome;
+                
+                public string Name
+                { get; set; }
+                
+                public int Trees
+                { get; set; }
+                
+                public string Biome
+                {
+                    get { return biome; }
+                    set
+                    {
+                        if (value == "Tropical" ||
+                            value == "Temperate" ||
+                            value == "Boreal")
+                        {
+                            biome = value;
+                        }
+                        else
+                        {
+                            biome = "Unknown";
+                        }
+                    }
+                }
+                
+                public int Age
+                { 
+                    get { return age; }
+                    private set { age = value; }
+                }
+                    public int Grow()
+                {
+                    Trees += 30;
+                    Age++;
+                    return Trees;
+                }
+                public int Burn()
+                {
+                    Trees -= 20;
+                    Age++;
+                    return Trees;
+                }
+            }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>Constructors: </strong>Runs every time an object is created to set those 
+            values at once. If no constructor is defined in a class, one is automatically created 
+            for us. It takes no parameters, so it’s called a parameterless constructor.
+            Constructors in C# have the same name as the class name.  We can refer to the current 
+            instance of a class with the <i>this</i> keyword - the word this might seem frustratingly vague. 
+            Think back to the “class is to instance as blueprint is to house” analogy. The class/blueprint 
+            has to use the generic this because the class/blueprint is going to be reused for every instance/house.
+            Just like other methods, constructors can be overloaded. For example, we may want to define 
+            an additional constructor that takes one argument.</li>
+            <p class="center"><strong>Aditional information:</strong></p>
+            <button id="showCode136" onclick="showCode('displayCode136', 'showCode136')">Display</button>
+            <div id="displayCode136">
+                <button onclick="closeCode('displayCode136', 'showCode136')">Close</button>
+                <pre>
+                    <code>
+                public Forest(int area, string country)
+                { 
+                    this.Area = area;
+                    this.Country = country;
+                }
+                
+                
+                //Overload 
+                public Forest(int area)
+                { 
+                    this.Area = area;
+                    this.Country = "Unknown";
+                }
+    
+                Forest f = new Forest(800, "Hungary");
+                Forest f2 = new Forest(400);
+                    </code>
+                </pre>
+                <li>Later on, if we need to adjust the constructor, we’ll need to find every copy of the code 
+                and make the exact same change. That means more work and chances for errors.
+                We have two options to resolve this. In either case we will remove the duplicated code:</li>
+                <ol>
+                    <li>Use <strong>default arguments</strong>. This is useful if you are using C# 4.0 or later (which is fairly common)
+                    and the only difference between constructors is default values.
+                    public Forest(int area, string country = "Unknown")</li>
+                    <pre>
+                        <code>
+                    {
+                        this.Area = area;
+                        this.Country = country;
+                    }
+                        </code>
+                    </pre>
+                    <li>Use <strong>: this()</strong>, which refers to another constructor in the same class. This is useful for 
+                    old C# programs (before 4.0) and when your second constructor has additional functionality. 
+                    This example has an additional functionality of announcing the default value.</li>
+                    <pre>
+                        <code>
+                public Forest(int area, string country)
+                { 
+                    this.Area = area;
+                    this.Country = country;
+                }
+                
+                public Forest(int area) : this(area, "Unknown")
+                { 
+                    Console.WriteLine("Country property not specified. Value defaulted to 'Unknown'.");
+                }
+                        </code>
+                    </pre>
+                    <li>Remember that this.Area refers to the current instance of a class. When we use this() like a 
+                    method, it refers to another constructor in the current class. In this example, the second 
+                    constructor calls <i>this()</i> — which refers to the first <i>Forest()</i> constructor — AND 
+                    it prints information to the console.</li>
+                </ol>
+            </div>
+            <li><strong>static: </strong>What if we needed to do something related to the type itself, 
+            not instances of that type? For example, where do we store the count of all Forest objects, 
+            or an explanation of forests in general? We use static. 
+            <ul>
+                <li><strong>Field & Property: </strong>To make a static field and property, static is associated with the class, not an instance,
+                Thus any static member is accessed from the class, not an instance.</li>
+                <li><strong>Method: </strong>To make a static method, just add static after the access modifier (public or private).
+                We add static to both the field definition and method - this is because a static method 
+                can only access other static members. It cannot access instance members</li>
+                <li><strong>Constructor: </strong>An instance constructor is run before an instance is used, 
+                and a static constructor is run once before a class is used. Typically we use static constructors 
+                to set values to static fields and properties. A static constructor does not accept an access modifier.</li>
+                <li><strong>Classes: </strong>What if we made the whole class static?
+                <i>static class Forest {}</i>
+                A static class cannot be instantiated, so you only want to do this if you are making a utility 
+                or library, like Math or Console. These two common classes are static because they are just 
+                tools — they don’t need specific instances and they don’t store new information.</li>
+                <li><strong>Main: </strong><i>Main()</i> is like any other method you’ve encountered. 
+                It has a special use for C#, but that doesn’t mean you can’t treat it like a plain old method!</li>
+            </ul>
+            <pre>
+                <code>
+            
+            // Property  
+            class Forest
+            {
+              private static string definition;
+              public static string Definition
+                { 
+                    get { return definition; }
+                    set { definition = value; }
+                }
+            }
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine(Forest.Definition);
+            }
+
+            // Method 
+            class Forest
+            {
+                private static string definition;
+                public static void Define()
+                { 
+                    Console.WriteLine(definition); 
+                }
+            }
+                </code>
+            </pre>
+            <p class="center"><strong>Entire Structure of a Class:</strong></p>
+            <button id="showCode137" onclick="showCode('displayCode137', 'showCode137')">Display</button>
+            <div id="displayCode137">
+                <button onclick="closeCode('displayCode137', 'showCode137')">Close</button>
+                <pre>
+                    <code>
+        // Forest.cs
+              
+        namespace StaticMembers
+        {
+            class Forest
+            {
+                // FIELDS
+                
+                public int age;
+                private string biome;
+                private static int forestsCreated;
+                private static string treeFacts;
+                
+                // CONSTRUCTORS
+                
+                public Forest(string name, string biome)
+                {
+                    this.Name = name;
+                    this.Biome = biome;
+                    Age = 0;
+                    ForestsCreated++;
+                }
+                
+                public Forest(string name) : this(name, "Unknown")
+                { }
+                
+                static Forest()
+                {
+                    treeFacts = "Forests provide a diversity 
+                    of ecosystem services including:\r\n  
+                    aiding in regulating climate.\r\n  purifying 
+                    water.\r\n  mitigating natural hazards such as floods.\n";
+                    ForestsCreated = 0;    
+                }
+                
+                // PROPERTIES
+                
+                public string Name
+                { get; set; }
+                
+                public int Trees
+                { get; set; }
+                
+                public string Biome
+                {
+                    get { return biome; }
+                    set
+                    {
+                        if (value == "Tropical" ||
+                            value == "Temperate" ||
+                            value == "Boreal")
+                        {
+                            biome = value;
+                        }
+                        else
+                        {
+                            biome = "Unknown";
+                        }
+                    }
+                }
+                
+                public int Age
+                { 
+                    get { return age; }
+                    private set { age = value; }
+                }
+                
+                public static int ForestsCreated
+                {
+                    get { return forestsCreated; }
+                    private set { forestsCreated = value; }
+                }
+                
+                public static string TreeFacts
+                {
+                    get { return treeFacts; }
+                }
+                
+                // METHODS
+                
+                public int Grow()
+                {
+                    Trees += 30;
+                    Age += 1;
+                    return Trees;
+                }
+                
+                public int Burn()
+                {
+                    Trees -= 20;
+                    Age += 1;
+                    return Trees;
+                }
+                
+                public static void PrintTreeFacts()
+                {
+                    Console.WriteLine(TreeFacts);
+                }   
+            }
+        }
+
+
+        // Program.cs
+        using System;
+
+        namespace StaticMembers
+        {
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    Console.WriteLine(Forest.ForestsCreated);
+                    Forest f = new Forest("Congo", "Tropical");
+                    Forest r = new Forest("Rendlesham");
+                    Console.WriteLine(Forest.ForestsCreated);
+                }
+            }
+        }
+
+
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Interface</h3>
+            <li><strong>Interfaces: </strong>Are sets of actions and values (methods, properties, etc) that 
+            describe how a class can be used. This lets the computer check that we are using each type legally, 
+            thus preventing a whole group of type errors. They are declared with a signature but their behaviors 
+            are not defined. A class implements an interface if it defines those properties, methods, and other 
+            members, but it doesn’t specify how they work. Every interface should have a name starting with “I”.</li>
+            <ul>
+                <li>In C#, we must first clearly announce that a class implements an interface using the 
+                colon syntax: <i>class Sedan : IAutomobile</i>. This empty Sedan class “promises” to implement 
+                the IAutomobile interface. In other words, it must have the properties and methods the highway 
+                patrol asked for (Speed, LicensePlate, Wheels, and Honk()). If we don’t, we get a type error.
+                Remember that these members must be public.</li>
+                <li>The interface says what a class <strong>MUST have</strong>. It does not say what a class 
+                MUST NOT have. In fact, interfaces cannot specify two types of members that are commonly found in classes:
+                Constructors, Fields.</li>
+                <li>There can be <strong>multiple classes</strong> that implement an interface.
+                For example, we can create a Truck class that also implements the interface.
+                This is where we start to see the power of interfaces. Even though Sedan and Truck are different 
+                types, we can assume that they behave similarly because they share an interface. Car designers 
+                can build different vehicle classes, but the highway patrol can treat them all the same.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode138" onclick="showCode('displayCode138', 'showCode138')">Display</button>
+            <div id="displayCode138">
+                <button onclick="closeCode('displayCode138', 'showCode138')">Close</button>
+                <li>IAutomobile.cs defines the interface. Sedan.cs define a class that implement 
+                    the interface. Program.cs demonstrates those classes in action</li>
+                <pre>
+                    <code>
+            // Sedan.cs
+
+            namespace LearnInterfaces
+            {
+                class Sedan : IAutomobile
+                {
+                    public string LicensePlate
+                    { get; }
+
+                    public double Speed
+                    { get; }
+
+                    public int Wheels
+                    { get; }
+                    
+                    public void Honk()
+                    {
+                        Console.WriteLine("HONK!");
+                    }
+                }
+            }
+            
+
+            // IAutomobile.cs
+
+            using System;
+
+            namespace LearnInterfaces
+            {
+                interface IAutomobile
+                {
+                    string LicensePlate { get; }
+                    double Speed { get; }
+                    int Wheels { get; }
+                    void Honk();
+                }
+            }
+
+            using System;
+
+            namespace LearnInterfaces
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                    {
+                        Sedan s = new Sedan(60);
+                        Console.WriteLine($"Sedan with license plate 
+                        {s.LicensePlate} and {s.Wheels} wheels, driving 
+                        at {s.Speed} km/h.");
+                        s.SpeedUp();
+                        Console.WriteLine($"Sedan's faster speed: {s.Speed}");
+
+                        Sedan s2 = new Sedan(70);
+                        Console.WriteLine($"Sedan with license plate 
+                        {s2.LicensePlate} and {s2.Wheels} wheels, 
+                        driving at {s2.Speed} km/h.");
+                        s2.SpeedUp();
+                        Console.WriteLine($"Sedan's faster speed: {s2.Speed}");
+
+                    }
+                }
+            }
+
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Inheritance</h3>
+            <li>Duplicated code leads to errors. 
+            Say you have two classes Sedan and Truck. They’re different types, but they share a few properties 
+            and methods, like <i>SpeedUp()</i> and <i>SlowDown()</i>. If one of those members (say it’s </i>SpeedUp()</i>) 
+            has to change, then we would have to change the code in every location where <i>SpeedUp()</i> is defined.
+            With inheritance, you can define one superclass that contains the shared members 
+            (like <i>SpeedUp()</i> and <i>SlowDown()</i>). All classes that need those members can inherit 
+            them from the superclass. <strong>Video project Supernatural Inheritance</strong>
+            <a href="https://www.youtube.com/watch?v=vQknhZBG4rU&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <ul>
+                <li>In inheritance, one class inherits the members of another class. The class that 
+                inherits is called a <strong>subclass</strong> or derived class. The other class is called a <strong>superclass</strong> 
+                or base class. Example: Sedan and Truck are subclasses (or derived classes). 
+                They will inherit members from a new class called Vehicle, which is the superclass (or base class).
+                this inheritance hierarchy can extend either way: a new PickupTruck class could inherit from 
+                Truck, which inherits from Vehicle, which inherits from a new Machine class. The only rule is 
+                that a class can only inherit from one base class, e.g. Vehicle can’t inherit from Machine and 
+                Contraption.</li>
+                <li>A superclass is defined just like any other class. a subclass inherits, or “extends”, a 
+                superclass using colon syntax <i>:</i>. A class can extend a superclass and implement an 
+                interface with the same syntax. Separate them with commas and make sure the superclass comes 
+                before any interfaces: <i>class Sedan : Vehicle, IAutomobile</i>. The above code means that 
+                Sedan will inherit all the functionality of the Vehicle class, and it “promises” to implement 
+                all the functionality in the IAutomobile interface.</li>
+                <li>We can restrict access to a superclass and its subclasses using <strong>protected</strong>.</li>
+            </ul>
+            <p class="center"><strong>Hint:</strong></p>
+            <button id="showCode139" onclick="showCode('displayCode139', 'showCode139')">Display</button>
+            <div id="displayCode139">
+                <button onclick="closeCode('displayCode139', 'showCode139')">Close</button>
+                <li>While working on Vehicle and Sedan, you may have seen this error:
+                Sedan.cs(11,13): error CS0200: Property or indexer 'Vehicle.Wheels' cannot be assigned to -- 
+                it is read only Remember public and private? A public member can be accessed by any code outside of the enclosing 
+                class. A private member can only be accessed by code within the same class.
+                The above error comes up because either:</li>
+                <ul>
+                    <li>There is no setter for Vehicle.Wheels, or</li>
+                    <li>The setter is private</li>
+                </ul>
+                <li>How do we fix this problem? Making the setter public is not secure. Making it private is too 
+                restrictive – we only want the subclass Sedan to access the property. C# has another access 
+                modifier to solved that: protected!
+                A protected member can be accessed by the current class and any class that inherits from it.
+                In this case, if the setter for Vehicle.Wheels is protected, then any Vehicle, Truck, and Sedan
+                instance can call it.</li>
+            </div>
+            <li><strong>Access Inherited Members with Base: </strong>
+            To construct a Sedan, we must first construct an instance of its superclass Vehicle.
+            We can refer to a superclass inside a subclass with the <i>base</i> keyword.
+            For example, in Sedan: <i>base.SpeedUp();</i> refers to the <i>SpeedUp()</i> method in Vehicle.
+            There’s special syntax for calling the superclass constructor, as seen below.
+            The above code shows a Sedan that inherits from Vehicle. The Sedan constructor calls the Vehicle 
+            constructor with one argument, speed. This works as long as Vehicle has a constructor with one 
+            argument of type double. 
+            Even if we don’t use <i>base()</i> in Sedan, it will call a Vehicle constructor. Without an explicit 
+            call to <i>base()</i>, any subclass constructor will implicitly call the default parameterless constructor 
+            for its superclass. For example, this code implicitly calls <i>Vehicle()</i>:
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode140" onclick="showCode('displayCode140', 'showCode140')">Display</button>
+            <div id="displayCode140">
+                <button onclick="closeCode('displayCode140', 'showCode140')">Close</button>
+                <pre>
+                    <code>
+                class Sedan : Vehicle
+                {
+                public Sedan (double speed) : base(speed)
+                {
+                }
+                }
+
+                
+                class Sedan : Vehicle
+                {
+                    // Implicitly calls base(), aka Vehicle()
+                    public Sedan (double speed)
+                    {
+                    }
+                }
+                
+                // The above code is equivalent to this:
+                // This code will ONLY work if the constructor Vehicle() exists.
+                {
+                public Sedan (double speed) : base()
+                {
+                }
+                }
+                    </code>
+                </pre>
+            </div>
+            <li><strong>Override Inherited Members: </strong>To do that, we use the override and virtual modifiers.
+            In the superclass, we mark the method in question as virtual, which tells the computer “this member 
+            might be overridden in subclasses”: <i>public virtual void SpeedUp()</i>
+            In the subclass, we mark the method as override, which tells the computer “I know this member is 
+            defined in the superclass, but I’d like to override it with this method”:
+            <i>public override void SpeedUp()</i>
+            As an aside: there’s another way to solve this problem. Instead of using virtual and override to 
+            override a member, we can define a new member with the same name. Essentially, the inherited 
+            member still exists, but it is “hidden” by the member in the subclass - If this sounds confusing, 
+            that’s okay! We also think it leads to unnecessary confusion, and that leads to errors. We’re 
+            going to stick with the virtual - override approach in this lesson.</li>
+            <li><strong>Make Inherited Members Abstract: </strong>Now we want to add one more method to Vehicle 
+            called <i>Describe()</i>. It will be different for every subclass, so there’s no point in defining a default 
+            one in Vehicle. Regardless, we want to make sure that it is implemented in each subclass.
+            This might sound similar to an interface. Why not add this method to the IAutomobile interface? 
+            We want <i>Describe()</i> to be available to all vehicles, not just automobiles.
+            To do this we need one more modifier: abstract. This line would go into the Vehicle class:
+            <i>public abstract string Describe();</i> This is like the Vehicle class telling its subclasses: 
+            “If you inherit from me, you must define a <i>Describe()</i> method because I won’t be giving you any 
+            default functionality to inherit.” In other words, abstract members have no implementation in 
+            the superclass, but they must be implemented in all subclasses.
+            If one member of a class is abstract, then the class itself can’t really exist as an instance. 
+            Imagine calling Vehicle.Describe(). It doesn’t make sense because it doesn’t exist! This means 
+            that the entire Vehicle class must be abstract. Label it with abstract as well:
+            <i>abstract class Vehicle</i> If you don’t do this, you’ll get an error. Once we write the abstract 
+            method and mark the class as abstract, we’ll need to actually implement it in each subclass.
+            To make it clear that this Describe() method in Sedan is overriding the Describe() method in 
+            Vehicle, we will need to label it override.</li>
+            <pre>
+                <code>        
+            public override string Describe()
+            {
+                return $"This Sedan is moving on {Wheels} 
+                wheels at {Speed} km/h, with license plate {LicensePlate}.";
+            }
+                </code>
+            </pre>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode141" onclick="showCode('displayCode141', 'showCode141')">Display</button>
+            <div id="displayCode141">
+                <button onclick="closeCode('displayCode141', 'showCode141')">Close</button>
+                <pre>
+                    <code>
+            //Program.cs
+
+            using System;
+
+            namespace LearnInheritance
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                    {
+                    Sedan s = new Sedan(60);
+                    // Call SpeedUp() here
+                    Console.WriteLine(s.Describe());
+                    
+                    Truck t = new Truck(45, 500);
+                    // Call SpeedUp() here
+                    Console.WriteLine(t.Describe());
+                    
+                    Bicycle b = new Bicycle(10);
+                    // Call SpeedUp() here
+                    Console.WriteLine(b.Describe());
+                    }
+                }
+            }
+
+            //Vehicle.cs
+
+            using System;
+
+            namespace LearnInheritance
+            {
+                abstract class Vehicle
+                {
+                    public string LicensePlate
+                    { get; private set; }
+
+                    public double Speed
+                    { get; protected set; }
+
+                    public int Wheels
+                    { get; protected set; }
+
+                    public Vehicle(double speed)
+                    {
+                        Speed = speed;
+                        LicensePlate = Tools.GenerateLicensePlate();
+                    }
+
+                    public virtual void SpeedUp()
+                    {
+                        Speed += 5;
+                    }
+
+                    public virtual void SlowDown()
+                    {
+                        Speed -= 5;
+                    }
+                    
+                    public void Honk()
+                    {
+                        Console.WriteLine("HONK!");
+                    }
+
+                    public abstract string Describe();
+
+                }
+            }
+
+
+            // Sedan.cs
+
+            using System;
+
+            namespace LearnInheritance
+            {
+                class Sedan : Vehicle, IAutomobile
+                {
+                    public Sedan(double speed) : base(speed)
+                    {
+                        Wheels = 4;
+                    }
+                    
+                    public override string Describe()
+                    {
+                        return $"This Sedan is moving on {Wheels} wheels at {Speed} km/h, with license plate {LicensePlate}.";
+                    }
+                }
+            }
+
+
+            // Bicycle.cs
+
+            using System;
+
+            namespace LearnInheritance
+            {
+                class Bicycle : Vehicle
+                {
+                    public Bicycle(double speed) : base(speed)
+                    {
+                        Wheels = 2;
+                    }
+
+                    public override void SpeedUp()
+                    {
+                        Speed += 5;
+                        
+                        if (Speed > 15)
+                        {
+                            Speed = 15;
+                        }
+                    }
+
+                    public override void SlowDown()
+                    {
+                        Speed -= 5;
+                        if (Speed < 0)
+                            {
+                                Speed = 0;
+                            }
+                    }
+
+                    public override string Describe()
+                    {
+                        return $"This Bicycle is moving on {Wheels} wheels at 
+                        {Speed} km/h, with license plate {LicensePlate}.";
+                    }
+                }
+            }
+
+                    </code>
+                </pre>
+            </div>
+            <hr/>
+            <h3>Reference Fundamentals</h3>
+            <li>A <strong>reference</strong> is like directions 
+            to a house, which “points” to a house. It isn’t the actual house. A value type is the house itself.
+            Classes and interfaces are reference types. A variable of this type holds a reference to the data, 
+            not the data itself. This is different from value types like <i>int</i> and <i>bool</i>.
+            <strong>Video Project Rover Center Control</strong> 
+            <a href="https://www.youtube.com/watch?v=bzzBb4_w3qk&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <pre>
+                <code>
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    Book bookLocation = new Book();
+                    Book sameBookLocation = bookLocation;
+                    bool falseValue = false;
+                    bool anotherFalseValue  = falseValue;
+                }
+            }
+                </code>
+            </pre>
+            <li><strong>Referential Comparison: </strong>When we compare reference types with ==, the C# compiler performs a referential 
+            comparison, which means it checks if two variables refer to the same memory location.</li>
+            <pre>
+                <code>
+            Dissertation d1 = new Dissertation(50);
+            Dissertation d2 = new Dissertation(50);
+            Console.WriteLine(d1 == d2);
+            // Output: false
+                </code>
+            </pre>
+            <li><strong>References of Different Types: </strong></li>
+            On Example 1, whenever we use diss1 and diss2 we can handle the Dissertation object as if it were a Dissertation 
+            type. Since Dissertation also implements the IFlippable interface, we can reference it that way too.
+            On Example 2, now diss and fdiss refer to the same object, but fdiss is an IFlippable 
+            reference, so it can ONLY use IFlippable functionality.
+            <pre>
+                <code>
+            Dissertation diss1 = new Dissertation();
+            Dissertation diss2 = diss1;
+
+            Dissertation diss = new Dissertation(50);
+            IFlippable fdiss = diss;
+                </code>
+            </pre>
+            <li><strong>Arrays of References: </strong></li>
+            It would be faster and safer if we could store the references in an array and loop through it. 
+            But would it be an array of <i>Diary[]</i> or an array of <i>Dissertation[]</i> or something else? 
+            Since both dissertations and diaries are flippable (they both implement the IFlippable interface), 
+            we can create references to them as IFlippables. Instead of dealing with individual variables, 
+            we can use an array of IFlippable references.
+            We can only access the functionality defined in the interface. For example, we couldn’t access 
+            <i>f.Title</i> because Title isn’t a property defined in IFlippable.</li>
+            <pre>
+                <code>
+            IFlippable f1 = new Diary(1);
+            IFlippable f2 = new Diary(30);
+            IFlippable f3 = new Dissertation(50);
+            IFlippable f4 = new Dissertation(49);
+
+            IFlippable[] classroom = new IFlippable[] { new Diary(1), 
+            new Diary(30), new Dissertation(50), new Dissertation(49) };
+
+            // Then to “flip” each element, we can write a foreach loop:
+
+            foreach (IFlippable f in classroom) 
+            {
+              f.Flip();
+            }
+                </code>
+            </pre>
+            <li><strong>Polymorphism: </strong>C# support polymorphism.
+            You’ll never have to write polymorphism in your code, but this vocabulary is essential to 
+            communicating with other developers.
+            Polymorphism is the ability in programming to present the same interface for differing data types.</li>
+            <li><strong>Casting: </strong></li>
+            <ul>
+                <li><strong>Upcasting</strong> is using a reference “up” the inheritance hierarchy.
+                Is creating a superclass or interface reference from a subclass reference</li>
+                <li><strong>Downcast</strong> Is creating a subclass reference from a superclass or interface reference.
+                You’ll need to do this when you want to access the specific functionality of a subclass.
+                Upcasting can be done implicitly, while downcasting cannot.
+                Not every downcast is possible in C#. In this case, Dissertation has a Define() method that 
+                is incompatible with Book. This is the computer’s way of telling you: there’s a chance that 
+                this cast won’t work.</li>
+            </ul>
+            <li><strong>Null and Unassigned References: </strong>What about a reference that refers to no 
+            object? In C# a reference to no object is called either a null reference or unassigned. 
+            We’ll need to apply these concepts in C# whenever we want to show that a reference is 
+            “missing”, create a reference variable without defining it, or initialize an empty array.
+            In the first use case, we’d like to create a reference that is “missing” or empty. We set it 
+            equal to the keyword null: <i>Diary dy = null;</i>
+            In the second case, if we create a reference variable without a value, it is unassigned:
+            <i>Diary dy; // dy is unassigned</i>
+            In the third case, if we create an empty array of reference types, each element is an 
+            unassigned reference: <i>Diary[] diaries = new Diary[5];
+            // diaries[1] is unassigned, diaries[2] is unassigned, etc.</i>
+            Be careful when checking for null and unassigned references. We can only compare a null reference 
+            if it is explicitly labeled null:
+            <i>Diary dy = null; Console.WriteLine(dy == null); // Output: true </i>
+            For the other two cases, comparing an unassigned variable we’ll get an error:
+            <i>Object o; Console.WriteLine (o == null); // error CS0165: Use of unassigned local variable 'o'</i>
+            This might seem annoying at first, but it’s actually a good thing: the C# compiler 
+            prevents future issues down the road by raising an error the first time an unassigned 
+            variable is used.</li>
+            <li><strong>Object Class: </strong>
+            Every class is derived from Object. Whether it’s the class’ superclass or the 
+            superclass’ superclass’ superclass, Object is at the top of the class’ inheritance hierarchy.
+            Since references can be upcast to any type in its inheritance hierarchy, then all types can 
+            by referenced as Objects.
+            We done't use Object references for everything necause the functionality of an object 
+            is limited by its reference type. We lose all of a specific type’s specific functionality when we 
+            reference it as an Object type. We would also lose the automatic type-checking that saves us from 
+            type errors. When we do use them, Object references can be very useful! For example, if we’re not sure what type
+            a variable is, we can safely store it as an Object. We can also assume that any object has access 
+            to the standard Object members for basic manipulation.</li>
+            <pre>
+                <code>
+        Object o1 = new Dissertation();
+        Object o2 = new Diary();
+        Object o3 = new Random();
+        Object o4 = new Forest("Amazon");
+                </code>
+            </pre>
+            <li><strong>Object Members: </strong>
+            Object has a few useful members and they’re accessible by every type. Here are some important ones:</li>
+            <ul>
+                <li><strong>Equals(Object):</strong> Returns true if the current instance and the argument are equal 
+                (using value equality for value types and referential equality for reference types)</li>
+                <li><strong>GetType():</strong> Returns the type of the object</li>
+                <li><strong>ToString()</strong> Returns a string describing the object.
+                Under the hood, <i>Console.WriteLine()</i> uses <i>ToString()</i>.</li>
+                <li>The <i>Equals()</i> and <i>ToString()</i> methods in Object are virtual, so they 
+                can be overridden.</li>
+            </ul>
+            <li><strong>Strings: </strong> 
+            String, or string, is a class that represents text. Technically its value is stored as a collection 
+            of char objects. Since it is a class, it is a reference type.
+            Like other reference types, string references can be null or unassigned. They can also have a third 
+            value: empty. In some cases its behavior looks
+            like a value type:</li>
+            <ul>
+                <li>A string reference will always point to the original object, so “modifying” one reference 
+                to a string will not affect other references.</li>
+                <li>Comparing strings with the equality operator (==) performs a value, not referential, 
+                comparison.</li>
+            </ul>
+            <hr/>
+            <h3>LINQ (Language Integrated Query)</h3>
+            <li><strong>LINQ </strong>is a Microsoft .NET Framework component that adds native data querying capabilities to .NET languages.
+            To use LINQ in a file, add this line to the top: <i>using System.Linq;</i>. Often it's used
+            together with generic coletions <i>using System.Collections.Generic;</i>
+            <strong>Documentation </strong><a href="https://learn.microsoft.com/en-us/dotnet/csharp/linq/" target="_blank">here</a>.
+            <strong>Video Project </strong><a href="https://www.youtube.com/watch?v=Vn6D1kEBWq0&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+            <li><strong>Var: </strong>Every LINQ query returns either a single value or an object of type IEnumerable< T >.
+            It works with foreach loops, just like arrays and lists. You can check its length with Count().
+            Since the single value type and/or the parameter type T is not always known, it’s common to store 
+            a query’s returned value in a variable of type <i>var</i>. <i>var</i> is just an implicitly typed 
+            variable — we let the C# compiler determine the actual type for us.
+            In the case below, shortNames is actually of type IEnumerable< string >, but we don’t need to 
+            worry ourselves about that as long as we have var.</li>
+            <pre>
+                <code>
+        string[] names = { "Tiana", "Dwayne", "Helena" };
+        var shortNames = names.Where(n => n.Length < 4);
+                </code>
+            </pre>
+            <li><strong>Method and Query Syntax: </strong>In LINQ, you can write queries in two ways: in 
+            query syntax and method syntax. In LINQ, we see <i>where/Where()</i> and <i>select/Select()</i> 
+            show up as both keywords and method calls. To cover both cases, they’re generally called <i>operators</i>.
+            Every developer has a personal preference between syntaxes, but you should be able to read both.
+            Generally follow these rules: For single operator queries, <strong>use method syntax</strong>.
+            For everything else, <strong>use query syntax</strong>.</li>
+            <ul>
+                <li><strong>Query syntax: </strong>Looks like a multi-line sentence. If you’ve used SQL, 
+                you might see some similarities:</li>
+                <p class="center"><strong>Examples:</strong></p>
+                <button id="showCode142" onclick="showCode('displayCode142', 'showCode142')">Display</button>
+                <div id="displayCode142">
+                    <button onclick="closeCode('displayCode142', 'showCode142')">Close</button>
+                    <li>A basic LINQ query, in query syntax, has three parts:</li>
+                    <pre>
+                        <code>
+                    string[] heroes = { "D. Va", "Lucio", 
+                        "Mercy", "Soldier 76", "Pharah", "Reinhardt" };
+                    
+                    var shortHeroes = from h in heroes
+                    where h.Length < 8
+                    select h;
+                        </code>
+                    </pre>
+                    <li><strong>from operator: </strong>Declares a variable to iterate through the sequence. 
+                    In this case, h is used to iterate through heroes.</li>
+                    <li><strong>where operator: </strong>Picks elements from the sequence if they satisfy the given condition. 
+                    The condition is normally written like the conditional expressions you would find in an if 
+                    statement. In this case, the condition is h.Length < 8.</li>
+                    <li><strong>select operator: </strong>Determines what is returned for each element in the sequence. In this 
+                    case, it’s just the element itself.</li>
+                    <li>The from and select operators are required, where is optional. In this next example, select 
+                    is used to make a new string starting with “Hero: “ for each element:</li>
+                    <pre>
+                        <code>
+                    var heroTitles = from hero in heroes
+                    select $"HERO: {hero.ToUpper()}";
+                        </code>
+                    </pre>
+                    <li>Each element in heroTitles would look like "HERO: D. VA", "HERO: LUCIO", etc.</li>
+                    <pre>
+                        <code>
+                var longLoudHeroes = from h in heroes
+                where h.Length > 6
+                select h.ToUpper();
+                        </code>
+                    </pre>
+                    <hr/>
+                </div>
+                <li><strong>Method syntax: </strong>Looks like plain old C#. We make method calls on the 
+                collection we are querying:</li>
+                <p class="center"><strong>Examples:</strong></p>
+                <button id="showCode143" onclick="showCode('displayCode143', 'showCode143')">Display</button>
+                <div id="displayCode143">
+                    <button onclick="closeCode('displayCode143', 'showCode143')">Close</button>
+                    <pre>
+                        <code>
+                var longHeroes = heroes.Where(h => h.Length > 6);
+                var longLoudHeroes = longHeroes.Select(h => h.ToUpper());
+                        </code>
+                    </pre>
+                    <li>In method syntax, each query operator is written as a regular method call.
+                    In the last exercise we selected every element with a length under 8. 
+                    Here it is in method syntax:</li>
+                    <pre>
+                        <code>
+                string[] heroes = { "D. Va", "Lucio", "Mercy", 
+                    "Soldier 76", "Pharah", "Reinhardt" };
+                var shortHeroes = heroes.Where(h => h.Length < 8);
+                        </code>
+                    </pre>
+                    <li>The <strong>where operator</strong> is written as the <strong>method Where()</strong>, which takes a lambda expression as 
+                    an argument. Remember that lambda expressions are a quick way to write a method. In this
+                    case, the method returns true if h is less than 8 characters long.
+                    <i>Where()</i> calls this lambda expression for every element in heroes. If it returns true, 
+                    then the element is added to the resulting collection.
+                    For example, the shortHeroes sequence from above 
+                    would be: <i>[ D. Va, Lucio, Mercy, Pharah ]</i></li>
+                    <li><strong>select: </strong>To transform each element in a sequence — like writing them 
+                    in uppercase — we can use the select operator. In method syntax it’s written as the 
+                    method <i>Select()</i>, which takes a lambda expression:</li>
+                    <pre>
+                        <code>
+                    string[] heroes = { "D. Va", "Lucio", "Mercy", "Soldier 76", "Pharah", "Reinhardt" };
+                    var loudHeroes = heroes.Select(h => h.ToUpper());
+                        </code>
+                    </pre>
+                    <li>We can combine <i>Select()</i> with <i>Where()</i> in two ways:</li>
+                    <ul>
+                        <li><strong>Use separate statements:</strong></li>
+                        <pre>
+                            <code>
+            var longHeroes = heroes.Where(h => h.Length > 6);
+            var longLoudHeroes = longHeroes.Select(h => h.ToUpper());
+                            </code>              
+                        </pre>
+                        <li><strong>Chain the expressions:</strong></li>
+                        <pre>
+                            <code>
+            var longLoudHeroes = heroes
+                .Where(h => h.Length > 6)
+                .Select(h => h.ToUpper());
+                            </code>
+                        </pre>
+                    <li>As with most of LINQ, the choice is up to you.
+                    In the first option, we use two variable names and two statements. You can tell 
+                    there are two separate statements by counting the semi-colons.
+                    In the second option, we use one variable name and one statement.
+                    If we must use method-syntax, we prefer the second option (chaining) because it is
+                    easier to read and write. You can imagine each line like a step in a conveyor belt, 
+                    filtering and transforming the sequence as it goes.</li>
+                </div>
+            </ul>
+            <li><strong>LINQ with Other Collections: </strong>
+            You’ve mostly seen LINQ used with arrays, but it can be used for lists as well! The syntax 
+            is the same:</li>
+            <pre>
+                <code>
+            List< string > heroesList = new List< string > { "D. Va", "Lucio", "Soldier 76" };
+
+            var longLoudheroes = from h in heroesList
+                where h.Length > 6
+                select h.ToUpper();
+                
+            // longLoudHeroes is [ "SOLDIER 76" ]
+                </code>
+            </pre>
+        </div>
+    </body>
+</html>
