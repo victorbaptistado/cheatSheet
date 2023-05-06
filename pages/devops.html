@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <script src="./component/button.js" defer></script>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Devops</title>
+        <h1>DevOps</h1>
+    </header>
+    <body>
+        <div class="styleGuide">   
+            <h2>DevOps</h2>
+            <ul>
+                <li><strong>DevOps</strong> is a culture supported by practices and tools. This culture enables 
+                Development and Operations teams to work together.</li>
+                <p class="center"><strong>More About</strong></p>
+                <button id="showCode75" onclick="showCode('displayCode75', 'showCode75')">Display</button>                   
+                <div id="displayCode75">
+                  <button onclick="closeCode('displayCode75', 'showCode75')">Close</button>
+                  <li>DevOps seeks to change the dynamic between many Operations and Development 
+                  teams. It aims to enable trust, collaboration, problem resolution, and continuous 
+                  improvement. The tools and practices of DevOps will produce little benefit without 
+                  such a culture. In this article, we will discuss concepts DevOps teams use to 
+                  enable this culture: <strong>Systems-level thinking</strong>, 
+                  <strong>Continuous learning and experimentation</strong>,
+                  <strong>Feedback loops</strong>.</li>
+                  <li><strong>Systems-level thinking: </strong>
+                  DevOps seeks to have each member of the team consider the entire development
+                  process. All members share responsibility for the final result. Thinking 
+                  about the whole process, or systems-level thinking, requires the involvement
+                  of many perspectives.
+                  To achieve systems-level thinking, the DevOps culture creates teams comprised 
+                  of people from many domains. A team might have several developers but also at 
+                  least one Operations member. The goal is to have a diversified skill-set across 
+                  the team. Development members will pick up aspects of Operations, and Operations 
+                  members will gain knowledge of development work. These knowledge gains allow 
+                  members to make better decisions at each development stage.
+                  A <strong>bottleneck</strong> is a system’s slowest point, causing a slowdown 
+                  in the entire process. When each team member is only looking at their small 
+                  piece, the big picture is often made invisible. This makes identifying bottlenecks 
+                  more challenging. A Development team with an expansive process view can resolve 
+                  systemic issues and increase throughput for the entire process.</li>
+                  <li><strong>Continuous learning and experimentation: </strong>
+                  DevOps seeks to include process improvement as a part of everyday work. Combining 
+                  Development and Operations teams should expose a variety of inefficiencies. 
+                  The team should identify ways to simplify and automate their production processes.
+                  Though we intend to make improvements, making changes will result in new problems. 
+                  These problems are an expected part of DevOps. Failure is an opportunity to learn 
+                  rather than something to punish. One method DevOps uses to normalize failure is 
+                  through blameless retrospectives (a.k.a. “post-mortems”). Teams hold retrospectives 
+                  at the end of a sprint, project, or issue resolution. Here, team members discuss what 
+                  went well as well as things to improve.
+                  Members should base improvements on information coming from the system. DevOps 
+                  requires information to flow throughout the development process. Let’s discuss 
+                  the way DevOps creates these feedback loops.</li>
+                  <li><strong>Feedback loops: </strong>DevOps employs a variety of strategies 
+                  to incorporate feedback into its processes on an ongoing basis. Let’s take 
+                  a look at a few of these feedback loops.
+                  <ul>
+                      <li><strong>Metrics: </strong>DevOps seeks to use metrics from each stage 
+                      of the development process to improve and adapt. Operations members can 
+                      help developers build monitoring into their application’s build processes 
+                      and deployments. This information will better inform developers on code 
+                      quality and reveal defects.
+                      Adding metrics to the software can be very helpful, but having too many 
+                      can produce unwanted noise. We must focus on metrics that affect the customer. 
+                      Some of these include:</li>
+                      <ul>
+                          <li>Time to load a website page</li>
+                          <li>Time to issue/outage resolution</li>
+                          <li>Time to new feature release</li>
+                          
+                      </ul>
+                      <li><strong>Shifting Left: </strong>
+                      A defect, or problem, becomes more expensive to fix as it moves along 
+                      the development process. A defect with someone’s idea is cheap to resolve. 
+                      When that defect has made its way onto thousands of servers, fixing it is 
+                      much more expensive. DevOps seeks to discover defects as early as possible, 
+                      a strategy known as shifting left.</li>
+                      <li><strong>Building Quality: </strong>
+                      Involving even more teams can lead to further improvement. Teams like
+                      Security and Accessibility can integrate with Development teams as well. 
+                      Considering aspects like these throughout the development process is what 
+                      DevOps refers to as “building quality in.“</li>
+                  </ul>
+                </div>
+                <li><strong>DevOps Tools:</strong></li>
+                <ul>
+                    <li><strong>Source control management (SCM)</strong> tools help developers track 
+                    and manage source code changes. Like Git.</li>
+                    <li><strong>Environment tools</strong> assist with the configuration of hardware 
+                    and software for running code. Like 
+                    <a href="https://www.docker.com/" target="_blank">Docker</a> and
+                    <a href="https://kubernetes.io/" target="_blank">Kubernets</a>.</li>
+                    <li><strong>Automation tools</strong> assist in performing routine tasks 
+                    via scripts. Like 
+                    <a href="https://github.com/features/actions" target="_blank">Github Actions</a>
+                    and <a href="https://www.jenkins.io/" target="_blank">Jinks</a>.</li>
+                    <li><strong>Infrastructure as code (IaC)</strong> tools allow us to define infrastructure as 
+                    source files. IaC allows us to manage and track changes to our infrastructure
+                    over time. Like <a href="https://www.docker.com/" target="_blank">Docker</a>,
+                    <a href="https://www.chef.io/" target="_blank">Chef</a> and
+                    <a href="https://www.terraform.io/" target="_blank">Terraform</a>.</li>
+                    <li><strong>Testing tools</strong> ensure the correctness of our code. Like 
+                    <a href="https://mochajs.org/" target="_blank">Mocha</a>
+                    and <a href="https://jestjs.io/" target="_blank">Jest</a>.</li>
+                </ul>
+            <li><strong>DevOps automation:</strong>
+            Automation is using tools or programming to perform repetitive and time-consuming tasks. 
+            When compared to doing the work by hand, automation is:</li>
+            <ul>
+                <li><strong>Faster:</strong> Automated processes can perform operations much faster than people.</li>
+                <li><strong>Less error-prone:</strong> Automation is able to perform a task more consistently than a person.</li>
+                <li><strong>Cheaper:</strong> Workers don’t have to be paid to do these repetitive workflows.</li>
+                <li><strong>Automation sounds powerful:</strong> Let’s explore what we can do with it.</li>
+            </ul>
+            <p class="center"><strong>More about</strong></p>
+            <button type="button" id="showCode80" onclick="showCode('displayCode80', 'showCode80')">Display</button>
+            <div id="displayCode80">
+                <button onclick="closeCode('displayCode80', 'showCode80')">Close</button>
+                <li><strong>What can we automate?</strong>
+                We can integrate automation into nearly every aspect of software development. 
+                Let’s take a look at some of the ways automation can play a role in software development:</li>
+                <ul>
+                    <li><strong>Planning: </strong>Many project planning tools such as 
+                    <a href="https://www.atlassian.com/software/jira" target="">Jira</a>,
+                    <a href="https://monday.com/" target="_blank">Monday</a>, and
+                    <a href="https://slack.com/intl/pt-br/" target="_blank">Slack</a>
+                    have automation features. These features allow:  
+                    Recurring meetings and standups to be auto-generated
+                    Notifications to be sent to team members when items are completed and more</li>
+                    <li><strong>Building, testing, and deploying: </strong>
+                    One of the main areas of automation in DevOps is building, testing, and 
+                    deploying our code. The main practice for this is <strong>continuous integration 
+                    and continuous deployment (CI/CD)</strong> (More about 
+                    <a href="https://www.codecademy.com/article/continuous-integration" target="_blank">CI</a> and
+                    <a href="https://www.codecademy.com/article/continuous-delivery-and-deployment" target="_blank">CD</a>). 
+                    CI/CD tools allow for automated building, 
+                    testing, and deployment of application code. CI/CD helps ensure a working 
+                    prototype is available and running with the most recent changes.</li>
+                    <li><strong>Monitoring: </strong>Automation is useful for processing logs and collecting 
+                    metrics when monitoring software. Visualization tools allow for the 
+                    processed data to be converted to interactive diagrams.</li>
+                </ul>
+                <li><strong>Popular automation tools: </strong>
+                There are many tools available to assist in DevOps automation. In this section, 
+                we will be taking a brief look at some of the most popular automation tools 
+                used in DevOps.
+                While they have their differences, all three automatically build, 
+                test, and deploy code. Learning these tools allows us to automate 
+                aspects of our DevOps workflows. When learning one tool, keep an 
+                open mind about learning the others as well. Each DevOps team will 
+                have their own DevOps automation workflow. Having flexibility with 
+                our tooling can be a great asset.
+                </li>
+                <ul>
+                    <li><a href="https://www.jenkins.io/" target="_blank">Jenkins</a>: Most popular and well-known</li>
+                    <li><a href="https://github.com/features/actions" target="_blank">GitHub Actions</a>: Integrated into Github</li>
+                    <li><a href="https://gradle.org/" target="_blank">Gradle</a>: Focus on building and compiling</li>
+                </ul>
+            </div>
+            <hr/>
+            <h3>Infrastructure</h3>
+            <li><strong>Infrastructure</strong> is the hardware and software used to develop, test, and deploy 
+            applications. Examples of hardware components include computers, routers, switches, 
+            data centers, and cables. Software components include operating systems and web 
+            server applications. Infrastructure components seek to:
+            Prevent disruptions to web services that are costly to the business.
+            Reduce delays in the flow of data, which can affect user experience.
+            Protect sensitive consumer and business data from cyber-attacks.
+            Historically, businesses managed their infrastructure on company premises with their staff. 
+            Due to the complexity of infrastructure components and how they interact, this is can be a 
+            tall order.
+            Moving to a cloud-based infrastructure mitigates many of these challenges.</li>
+            <li><strong>The Role of the Operations Team: </strong>
+            The Operations team’s primary responsibility is managing the business application 
+            infrastructure. This role has a massive impact on user experience and the success
+            of the business. There are dozens of tasks that fall under this responsibility, including:
+            <ul>
+                <li>Installing and replacing physical components such as servers, switches, hard drives.</li>
+                <li>Performing software/firmware upgrades such as security patches.</li>                  
+                <li>Configuring infrastructure such as firewalls, user access, and ports.</li>
+                <li>Monitoring network health and alerting personnel when issues arise.</li>
+                <li>A vast amount of responsibility falls onto the Operations team. 
+                In a DevOps culture, Development and Operations members share 
+                some of these responsibilities.</li>
+            </ul>
+            <li><strong>Environment</strong> in the context of creating and deploying 
+            software, is the subset of infrastructure resources used to execute a 
+            program under specific constraints. Throughout the various stages of 
+            development, different environments are used to handle the requirements 
+            of the Development and Operations team members. Each environment allows 
+            developers to test their code under the environment’s specific set of 
+            resources and constraints.
+            Regardless of the terminology or where the boundaries are drawn, the 
+            ultimate objective of separating the development of software into various 
+            environments is to ensure stable software is released to end-users. 
+            Differences in environments — for example, how a web server is configured 
+            locally versus in production — are a common source of bugs. 
+            Though the names and number of environments can vary from organization 
+            to organization, the five environments we will cover in this article are:</li>
+            <ul>
+                <li><strong>Local development environment: </strong>
+                Is where programmers initially build the 
+                features of an application, often on their own computer and with their 
+                own unique version of the project. In a local development environment, 
+                a programmer can work on their feature without worrying about, or potentially
+                breaking, what other developers may be working on. In this environment, the 
+                developer can run unit tests as well as integration tests with mocked external 
+                services, while end to end tests are less common.
+                In our email client example, the local development environment is where 
+                developers would be programming all the features and functionalities of 
+                the client. Individual developers may each be assigned to locally 
+                develop – and test in isolation – a single feature, such as fetching the 
+                user’s emails, displaying them, navigating between emails, drafting emails, etc.</li>
+                <li><strong>Integration environment: </strong>
+                is where developers attempt to merge their changes into a unified codebase, 
+                often using source-control software like Git. The application is likely to 
+                have tests fail during this integration step as multiple developers, who had 
+                previously been working in isolation, simultaneously attempt to merge their code.
+                If this happens, developers can work on fixes in their local development environment 
+                and attempt to merge again. Integration tests may need to be updated in this 
+                environment as well.
+                In our email client example, as developers complete their individual features 
+                locally, they may simultaneously attempt to integrate their changes into a 
+                unified codebase.</li>
+                <li><strong>Testing/quality assurance (QA) environment:</strong>
+                The quality assurance (QA) environment (a.k.a. the testing environment) is 
+                where tests are executed to ensure the functionality and usability of each 
+                new feature as it is added to a project. These tests include unit tests of 
+                individual units of code, integration tests of interactions between internal 
+                services, and end-to-end tests which include all internal and external services 
+                running. When these tests are written and performed depends on the organization,
+                but new and existing features are typically run against a test environment 
+                throughout the development process. The testing environment typically requires 
+                less infrastructure than is used in production.
+                In our email client example, tests run automatically when there is a change to 
+                the main branch to verify the functionality of units in isolation, such as 
+                testing displaying an email with mocked data. They’ll also have integration 
+                tests executed that exclusively test the application’s internal services 
+                (the client as a whole) with mocks for any external services needed 
+                (actual email data). End-to-end tests would also be conducted that use 
+                real networking and external services, with the client working as an actual 
+                email client.</li>
+                <li><strong>Staging environment: </strong>
+                Is an environment that attempts to match production as closely as possible in 
+                terms of resources used, including 
+                <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">computational load</a>, 
+                hardware, and architecture. 
+                This means that when an application is in staging, it should be able to handle the 
+                amount of work it is expected to be doing in production. In some cases, an 
+                organization may choose to employ a period when the project is used internally 
+                (often referred to as 
+                <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food" target="_blank">“dogfooding”</a>) 
+                before moving to production.
+                In our email client example, the email client will be fully functional at this 
+                stage and will be tested, simulated and in use internally within the organization. 
+                The architecture and hardware used for our client is the same as it will be once 
+                our project reaches the production environment.</li>
+                <li><strong>Production environment: </strong>
+                The production environment refers to the infrastructure resources that support 
+                the application accessed by clients. This infrastructure consisted of hardware 
+                and software components including databases, servers, APIs, and external services 
+                scaled for real-world usage. The infrastructure required in the production 
+                environment must be able to handle large amounts of traffic, cyber-attacks, 
+                hardware failures, etc.
+                Depending on how a company wants to release their project, deployment strategies
+                can greatly differ. 
+                These various approaches allow the development team to test their application 
+                in a full production environment, including when the application is released 
+                to 100% of users.
+                For our email client example, the organization will use a phased 
+                approach – at first, only 10% of users will be able to use the feature, 
+                gradually increasing to 100%. Some examples of deployment strategies include:
+                <ul>
+                    <li><strong>Completely replacing</strong> the existing application with the next version.</li>
+                    <li><strong>Granting early access</strong> to a small group of users before releasing to 
+                    the full user base (“canary deployment”).</li>
+                    <li><strong>Executing A/B tests</strong> where different versions of the application can 
+                    be run simultaneously and new features are toggled on or off using 
+                    feature flags.</li>
+                </ul>
+            </ul>
+            <li><strong>Types of Infrastructure: </strong>
+            Various types of infrastructure have emerged 
+            over the years.
+            Until recently, deploying a website required massive amounts of infrastructure. 
+            This infrastructure needed a large staff to operate it. Today, managing infrastructure 
+            might only involve an account and some settings in a web browser.</li>
+            <p class="center"><strong>More info</strong></p>
+            <button type="button" id="showCode76" onclick="showCode('displayCode76', 'showCode76')">Display</button>
+            <div id="displayCode76">
+                <button onclick="closeCode('displayCode76', 'showCode76')">Close</button>
+                <li><strong>Traditional Infrastructure: </strong>
+                Traditional infrastructure refers to the ways that companies managed infrastructure 
+                for web services. With traditional infrastructure, the company acquires, configures, 
+                and maintains physical infrastructure components. These components include servers, 
+                power supplies, and cooling.
+                Traditional infrastructure offers the ultimate amount of control and flexibility. 
+                But we learned many challenges arise when managing infrastructure. Two key challenges
+                that traditional infrastructure faces are:
+                Differences in development environments can lead to bugs.
+                Taking full advantage of the computing resources of each machine.
+                Consider an application that relies on a library. Different machines will have 
+                different versions of this library installed or different versions of an operating 
+                system. These differences can lead to inconsistent behavior between machines.
+                Now, imagine a server that is only able to host a single application. This scenario 
+                is common with a traditional infrastructure approach. That application might have 
+                only used 40% of the server’s physical capacity. With many such servers, a lot of 
+                physical capacity goes to waste.
+                What if there is a way to take advantage of this unused physical capacity and 
+                eliminate differences between environments? In the next sections, we’ll explore
+                how virtualization and containerization address these challenges.</li>
+                <li><strong>Virtualization: </strong>
+                Virtualization technology allows many virtual machines (VMs) to run on 
+                one physical computer. Each virtual machine can simulate the execution 
+                of a computer. VMs are distinct environments with their own operating 
+                system (OS), dependencies, and users.
+                Virtualization relies on a layer of software called a hypervisor. 
+                Hypervisors sit atop the host machine, allocating its physical resources 
+                to different VMs. With virtualization, each server uses more of its 
+                physical capacity. Having fully utilized servers reduces the number of 
+                physical servers needed. Requiring fewer servers lowers maintenance, power, 
+                and cooling costs. These savings are the main benefits of virtualization.
+                Another benefit is the convenience of configuring and provisioning virtual 
+                machines. Virtual machine management software allows VM configuration with 
+                several clicks. Using these tools is more efficient than installing and managing 
+                pieces of hardware. VMs also allow for remote configuration.
+                However, there are some challenges with virtualization. For example, it can have 
+                some high upfront costs. These costs come from buying VM software licenses and 
+                hiring qualified staff. Also, not all machines are capable of virtualization.
+                Virtualization paved the way for a shift in infrastructure management. It allowed 
+                us to abstract an application’s environment. Yet, each virtual machine still 
+                requires an operating system. These operating systems each need some slice of 
+                the host machine’s resources. Let’s look at how a successor of virtualization 
+                solved this problem. This successor is containerization.</li>
+                <li><strong>Containerization: </strong>Containerization is another form of virtualization. 
+                With containerization, users create virtual environments called containers. 
+                Containers share the operating system of the host physical machine. By comparison, 
+                virtual machines each have their own operating system, requiring more system 
+                resources. Sharing the operating system makes containers smaller and more 
+                portable than virtual machines.
+                The technology for containerization has been around for decades. Yet, it did not 
+                become widespread until 2013 with the release of Docker. Docker standardized 
+                building and deploying containers. It provided a simple interface for developers 
+                to interact with.
+                Containerization brings several benefits. When compared to virtual machines, 
+                containers are smaller and faster to create. The smaller size allows many more 
+                containers to run on a single machine. The speed of creating containers offers 
+                convenience for developers.
+                Like virtual machines, containers reduce bugs caused by differences between 
+                development and production environments.
+                A container combines an application and its dependencies into a single package. 
+                This combination allows containers to migrate to different environments with ease.
+                Some challenges with containers include increased complexity and potential security 
+                issues. Containers are less isolated compared to virtual environments due to their 
+                shared kernel. If someone gains control of the operating system, then they have 
+                access to all the containers.
+                Virtualization and containerization led to an important shift in infrastructure 
+                technology, cloud-based infrastructure.</li>
+                <li><strong>Cloud-Based Infrastructure: </strong>
+                Cloud-based infrastructure means infrastructure and computing resources available 
+                to users over the internet. Usually, a third-party company owns, houses, and manages 
+                the physical infrastructure.
+                With cloud-based infrastructure, applications are entirely separate from their 
+                environments. Cloud providers create physical pools of resources. Virtualization 
+                allows many instances of an application to run on these resources. A simple 
+                interface on the web enables users to configure the pool.
+                Cloud-based infrastructure has several benefits:</li>
+                <ul>
+                    <li>It maximizes the cost savings brought by virtualization.</li>
+                    <li>It allows specific companies to specialize in physical infrastructure 
+                    management and security.</li>
+                    <li>It allows a company to deploy an initial infrastructure that can 
+                    scale as demand grows.</li>
+                </ul>
+                <li>As with other types of infrastructure, cloud-based services have several downsides 
+                as well:</li>
+                <ul>
+                    <li>They need an internet connection which may not always be available.</li>
+                    <li>They allow less control/flexibility compared to in-house infrastructure.</li>
+                    <li>A third-party company may have access to some critical data.</li>
+                </ul>
+                <li>For most, the advantages of using cloud-based infrastructure far outweigh the 
+                disadvantages. The majority of companies today use cloud-based services. 
+                The biggest providers are Amazon Web Services (AWS), Microsoft Azure, and
+                Google Cloud. Cloud-based infrastructure takes away the physical management 
+                of infrastructure. But, it does not always take away the configuration of that 
+                infrastructure. Cloud administrators need to configure the resources provided 
+                by the cloud service. The advent of serverless computing removed the need for 
+                businesses to configure infrastructure. Let’s dig in.</li>
+                <li><strong>Serverless: </strong>
+                Serverless computing is a model for cloud-based infrastructure. It allows 
+                applications development without needing to configure infrastructure. 
+                Serverless providers automate many of the resources needed to support an 
+                application. These resources include databases, networking components, and 
+                servers. Serverless applications are still run on servers. However, the 
+                provisioning, configuration, and management of these servers are invisible 
+                to developers.
+                The most popular serverless model is <strong>Functions-as-a-Service (FaaS)</strong>. With 
+                FaaS, applications consist of one or more functions. Each function performs 
+                a task in response to a specific event. When an event occurs, the cloud 
+                provider provisions infrastructure from the cloud. It then uses this 
+                infrastructure to execute the function. When the function finishes executing,
+                the resources return to the underlying pool.
+                This model allows infrastructure usage to match what customers need for their 
+                applications. When no functionality is requested, no resources are used to 
+                support the application. When usage increases, the cloud provider provisions 
+                more infrastructure for the application.
+                The FaaS model begins with some event (such as a button click) occurring. 
+                Next, virtual infrastructure is allocated, and some function loads into memory. 
+                The function then executes and returns a response. Finally, resources return to 
+                the underlying pool until needed again.                      
+                Serverless computing has several main benefits:
+                <ul>
+                    <li>Developers can focus on business logic without worrying about 
+                    infrastructure configuration.</li>
+                    <li>Infrastructure usage and scaling correlates with user demand.</li>
+                </ul>
+                <ul>
+                    <li>Serverless computing has several downsides as well:</li>
+                    <li>It can be more expensive if functions run often.</li>
+                    <li>There can be some start-up delay if a function was not used recently.</li>
+                    <li>It can be challenging to switch from one provider to another.</li>    
+                    <li>Managing state within a serverless application is more complex.</li>
+                </ul>
+                <li>For these reasons, serverless computing is better suited for some apps 
+                than others. An app with infrequent surges in demand is an ideal candidate.
+                In time, some of the downsides may get worked out. After all, serverless is 
+                still new and catching on fast. It was not popularized until 2014 with the 
+                introduction of AWS Lambda. Microsoft Azure Functions and Google Cloud Functions 
+                followed shortly after.
+                Serverless computing is the latest trend to change the infrastructure landscape.
+                It won’t be the last. The next major shift might come from technology that 
+                exists today. Or perhaps it has already begun.</li>
+            </div>
+            <li><strong>Infrastructure Configuration: </strong>
+            Before an application is deployed, its infrastructure must be provisioned and configured.
+            Traditionally, business staff performed these tasks manually.
+            For example, Camila just learned that one of the packages used by her team’s 
+            application has a major security flaw. A new patch for the package is available 
+            which fixes the problem. Camila is eager to protect customers’ data so she rushes 
+            to update the package on production servers.
+            Days later, the team finishes testing a new auto-complete feature. They deploy the 
+            feature, only to find that it does not work in production! How was this missed during 
+            staging? Camila’s stomach sinks. She realizes she forgot to update the package on staging servers. Staging and production were not in sync.                       
+            Stories like this are all too common. With good infrastructure configuration practices, 
+            they are preventable</li>
+            <p class="center"><strong>More about</strong></p>
+            <button type="button" id="showCode77" onclick="showCode('displayCode77', 'showCode77')">Display</button>
+            <div id="displayCode77">
+                <button onclick="closeCode('displayCode77', 'showCode77')">Close</button>
+                <li><strong>Provisioning: </strong>
+                Means setting up servers, network equipment, and other infrastructure. Traditional 
+                server provisioning has several steps:</li>
+                <ul>
+                    <li>An operations team member must acquire a server and install an operating system.</li>
+                    <li>Next, they configure the IP address, hostname, firewall, and DNS settings.</li>
+                    <li>Finally, they connect it to a network.</li>
+                </ul>
+                <li>In today’s cloud world, server provisioning means spinning up a virtual machine. 
+                There are other types of provisioning as well:</li>
+                <ul>
+                    <li>Network provisioning means setting up network components such as switches, 
+                    routers, and gateways.</li>
+                    <li>User provisioning means setting up users, user groups, and privileges.</li>
+                    <li>Service provisioning refers to the provisioning of cloud services.</li>
+                </ul>
+                <li>Once infrastructure has been provisioned it can be configured.</li>
+                <hr/>
+                <li><strong>Configuration:</strong> Infrastructure configuration involves customizing 
+                provisioned resources. Some example tasks include:</li>
+                <ul>
+                    <li>Installing dependencies on a server.</li>
+                    <li>Updating to a specific Linux distribution.</li>
+                    <li>Setting up logging.</li>
+                    <li>Creating database configuration files.</li>
+                </ul>
+                <li>Unlike the initial step of provisioning, infrastructure configuration can be 
+                ongoing. Software needs updating. Passwords need changing. Further changes to 
+                infrastructure fall under the realm of infrastructure configuration.
+                As a company grows, its infrastructure needs to scale as well. Keeping up with 
+                infrastructure configuration becomes a daunting task. Let’s dive into some of the 
+                problems that arise. Infrastructure configuration is often fraught with challenges. Below are some 
+                common problems with manually configuring infrastructure:</li>
+                <ul>
+                    <li><strong>Cost:</strong> Infrastructure configuration is tedious and repetitive. 
+                    Large-scale infrastructure requires a large staff to configure it. 
+                    High staffing needs lead to high operating costs.</li>
+                    <li><strong>Scalability:</strong> Provisioning new infrastructure is time-consuming. The 
+                    time required makes it difficult to scale in response to increased demand.</li>
+                    <li><strong>Configuration Drift:</strong> Manual setup is prone to error. Over time, configurations 
+                    will become inconsistent. These accumulating errors 
+                    are known as configuration drift.</li>
+                    <li><strong>Poor Visibility:</strong> Due to human error, there is no guarantee that servers are in their desired 
+                    configuration. It can be difficult to pinpoint these errors later on.
+                    Many of these problems have been mitigated with modern practices. However, 
+                    it took a while to get to where we are today. Let’s explore how infrastructure 
+                    configuration has evolved over the years.</li>
+                </ul>
+                <hr/>
+                <li><strong>Modern Infrastructure configuration: </strong>
+                Realizing the flaws with manual configuration, teams began to automate tasks. 
+                At first, this consisted of shell scripts that configured servers. Tools such 
+                as csshx allowed commands to be passed to many servers simultaneously.
+                These steps helped pave the way for how DevOps handles infrastructure. People 
+                realized that many common-sense development practices were missing from 
+                infrastructure configuration. A developer would never change code without 
+                checking it into version control. Why was it okay for server configurations to 
+                remain untracked? This thinking led to one of the core principles of DevOps, 
+                which is discussed in the next section.</li>
+                <li><strong>Infrastructure as Code (IaC)</strong>
+                is the act of defining infrastructure in configuration files that are 
+                stored and tracked in version control. With IaC, best practices from 
+                development are applied to infrastructure. For example:</li>
+                <ul>
+                    <li>Configuration files should be version-controlled.</li>
+                    <li>Configuration files should be the source of truth for infrastructure state.</li>
+                    <li>Changes to configuration files should be tested before they are deployed.</li>
+                    <li>Provisioning and configuration should be automated as much as possible.</li>
+                </ul>
+                <li><strong>Benefits of IaC </strong>compared to manual configuration:
+                <ul>
+                    <li><strong>Speed: </strong>It is easier to automate repetitive tasks 
+                    since configuration files are machine-readable.</li>
+                    <li><strong>Consistency:</strong>It leads to reliable configurations 
+                    since setup tasks are automated from configuration files.</li>
+                    <li><strong>Visibility: </strong>
+                    It is easy to tell exactly when and where changes are made.</li>
+                    <li><strong>Cost: </strong>It lowers staff hours spent configuring 
+                    and troubleshooting infrastructure.</li>
+                </ul>
+                <li><strong>IaC tools: </strong>IaC gave rise to some important tools 
+                in the DevOps toolbox. IaC tools can be categorized in two different ways. 
+                Let’s first look at how IaC tools are split by the stage of configuration 
+                they focus on.</li>
+                <ul>
+                    <li><strong>Configuration orchestration vs configuration management: </strong>
+                    IaC tools can be classified as either configuration orchestration or 
+                    configuration management tools. <strong>Configuration orchestration</strong> focuses on the 
+                    provisioning of cloud resources. <strong>Configuration management</strong> focuses on maintaining 
+                    a desired state in already provisioned resources. Most tools can perform some 
+                    degree of both tasks but specialize in one.
+                    One example of a configuration orchestration tool is <a href="" target="_blank">Terraform</a>. It has native 
+                    support for the most common cloud providers. Configuration files are written in 
+                    either HashiCorp Configuration Language (HCL) or JavaScript Object Notation 
+                    (JSON). These files are then passed into Terraform. Terraform makes the cloud 
+                    API calls needed to spin up the declared resources.
+                    Configuration management tools include 
+                    <a href="https://www.ansible.com/" target="_blank">Ansible</a>,
+                    <a href="https://www.chef.io/" target="_blank" >Chef</a> and 
+                    <a href="https://puppet.com/" target="_blank">Puppet</a>. These tools 
+                    maintain a consistent state across cloud resources. They can help automate daily 
+                    tasks. Examples of these tasks are:</li>
+                    <ul>
+                        <li>Updating dependencies.</li>
+                        <li>Modifying database settings.</li>
+                        <li>Monitoring health are examples.</li>
+                    </ul>
+                    <li><strong>Declarative vs imperative approach: </strong>
+                    IaC tools take one of two approaches to configuration files. In the 
+                    declarative approach, configuration files describe the desired state 
+                    of infrastructure. With the declarative approach, an IaC tool will 
+                    configure your infrastructure for you based on this defined state. 
+                    In the imperative approach, configuration files list the specific 
+                    commands, in a specific order, needed for configuring infrastructure.
+                    Both approaches are capable of achieving the same configuration. The 
+                    difference is that the declarative approach focuses on what infrastructure 
+                    state you want to achieve, while the imperative approach focuses on how to 
+                    get there. Most IaC tools, such as Terraform and Puppet, fall under the declarative
+                    approach. Chef is a notable exception; it follows the imperative approach. 
+                    Ansible is a tool that allows for declarative or imperative configuration files. For example, the declarative approach to a peanut butter and jelly
+                    sandwich might show a picture of a completed sandwich. A sandwich-making robot 
+                    would then attempt to recreate the sandwich. The imperative approach would list
+                    the steps needed to complete the sandwich:
+                    <ul>
+                        <li>Slice the bread.</li>
+                        <li>Spread the peanut butter and jelly on the slices.</li>
+                        <li>Put the slices together.</li>
+                    </ul>
+                    <li><strong>Configuration examples: </strong>
+                    Below we have an Ansible “play” which is written in YAML. Ansible will 
+                    execute tasks in the order in which they appear in the play.
+                    The following play is declarative — it describes the desired state and lets 
+                    Ansible determine the correct way to achieve it. The play ensures that a 
+                    database server is always running the latest version:</li>
+                    <pre>
+                        <code>
+        - name: Update mysql server
+        hosts: databases
+        remote_user: root
+        
+        tasks:
+        - name: Update mysql server to the latest version
+            ansible.builtin.yum:
+            name: mysql-server
+            state: latest
+            update-cache: yes
+        - name: Restart mysql server
+            ansible.builtin.service:
+            name: mysql-server
+            state: restarted
+            sleep: 1
+                        </code>
+                    </pre>
+                    <li>The first task in this declarative play updates the MySQL server 
+                    to the latest version. It uses the built-in Ansible package manager 
+                    called yum. The second task restarts the MySQL server with one second 
+                    of downtime. It uses another built-in Ansible module called service.
+                    Below, we have another play that achieves the same configuration. 
+                    This time, however, we list the exact shell commands that will configure 
+                    the server. This makes it an example of the imperative approach:</li>
+                    <pre>
+                        <code>
+        - name: Update mysql server
+        hosts: databases
+        remote_user: root
+        
+        tasks:
+        - name: Update mysql server to the latest version
+            ansible.builtin.shell:
+            echo “Ensuring mysql-server is at latest version”
+            yum clean mysql-server
+            ​​yum update mysql-server
+        - name: Restart mysql server
+            ansible.builtin.shell:
+            echo “Restarting mysql server”
+            service mysql stop
+            sleep 1
+            service mysql start
+                        </code>
+                    </pre>  
+                    <li>As is often the case, these two approaches offer a tradeoff. 
+                    The declarative approach is convenient. We don’t have to know 
+                    exactly how to achieve the desired configuration. The imperative 
+                    approach offers more control and insight into what is going on. 
+                    This control comes at the expense of convenience.
+                    Either way, the use of IaC tools helps maintain a healthy and 
+                    scalable infrastructure. We’ve come a long way since the early 
+                    days of infrastructure configuration. Let’s review what we learned.</li>
+                </ul>
+                <hr/>
+            </div>
+            <li><strong>Application’s architecture</strong> is the framework for how an app is 
+            designed, built and deployed.</li>
+            <p class="center"><strong>More about</strong></p>
+            <button type="button" id="showCode78" onclick="showCode('displayCode78', 'showCode78')">Display</button>
+            <div id="displayCode78">
+                <button onclick="closeCode('displayCode78', 'showCode78')">Close</button>
+                <h3>Monolithic architecture</h3>
+                <li><strong>Monolithic architecture:</strong> An entire application and all its features 
+                live within a single codebase. The application is written in a single language. 
+                When developers add features, they must redeploy the entire application.
+                Monolithic applications, or monoliths, have been around since in-house infrastructure 
+                was the norm. Since then, several other types of architecture have also become popular. 
+                Still, a monolithic architecture has its benefits over other types. Here are some
+                <strong>benefits</strong>:</li>
+                <ul>
+                    <li><strong>Initial Development: </strong>
+                    Starting to write a monolithic application is fast. A developer simply chooses 
+                    a language and framework they are comfortable with. It is possible to get a 
+                    basic application up and running in minutes.</li>
+                    <li><strong>Simple Deployment: </strong>
+                    Monolithic applications are simple to deploy since they live in a single codebase. 
+                    The entire application can be started from a single file. It can run on almost any 
+                    infrastructure from traditional to serverless.</li>
+                    <li><strong>Simple Testing: </strong>
+                    Like deploying a monolith, testing a monolith only requires starting a process on 
+                    one computer. More complex architectures may require networking, monitoring and many 
+                    servers to be configured in order to test the application.</li>
+                </ul>
+                <li><strong>Monolithic Architecture Drawbacks</strong>
+                Despite its simplicity, a monolithic architecture has several drawbacks.
+                These drawbacks tend to become more pronounced as the application grows larger.</li>
+                <ul>
+                    <li><strong>Single Point of Failure: </strong>
+                    In a monolith, all features share the same code and thus are interdependent. 
+                    An error in one feature can make the entire application unusable. This fragility 
+                    also extends to the monolithic infrastructure as well. A monolithic application uses 
+                    a smaller and more concentrated set of infrastructure components. Failures in these 
+                    components can bring down the entire application.</li>
+                    <li><strong>Inefficient Scaling: </strong>
+                    Keeping up with increased demand requires deploying more instances of the application.
+                    Each instance needs enough resources to load the entire application. This requirement 
+                    holds even if a single feature drives the increased demand — due to the monolithic 
+                    structure, that feature cannot be scaled independently. This limitation leads to 
+                    allocating more physical infrastructure than is needed.</li>
+                    <li><strong>Complex Codebase: </strong>
+                    As a monolith grows, its codebase becomes quite large and difficult to understand. 
+                    When working in one area of an application, developers may change code that is a 
+                    dependency of other features. If developers aren’t aware of these dependencies, they 
+                    can introduce unexpected bugs.</li>
+                </ul>
+                <li><strong>Monolithic Architecture Use Cases: </strong>
+                Despite the advent of newer architectures, monoliths still have their uses. A monolithic 
+                architecture can be a good choice when:</li>
+                <ul>
+                    <li>Developing small, internal applications</li>
+                    <li>Starting a large application and then switching architectures when complexity increases</li>
+                </ul>
+                <li>There is another architecture which mitigates some of the issues faced by a monolith 
+                while only slightly increasing its complexity. This architecture is n-tier architecture.</li>
+                <hr/>
+                <h3>N-Tier Architecture</h3>
+                <li><strong>N-Tier Architecture: </strong>
+                An n-tier architecture splits an application into several layers. Each layer has 
+                a distinct responsibility. When a layer is hosted on its own dedicated server, it 
+                is called a tier. Other names for this architecture are multi-tier and multi-layer 
+                architecture.
+                A three-tier application is the most common type of n-tier architecture. This 
+                application consists of the following layers:</li>
+                <ul>
+                    <li><strong>Presentation layer: </strong>
+                    This layer is what the user sees and interacts with.</li>
+                    <li><strong>Logic layer:</strong>This layer contains all the 
+                    business logic and decision making.</li>
+                    <li><strong>Data layer:</strong>This layer handles interacting 
+                    with a database.</li>
+                </ul>
+                <li>A business could implement an n-tier architecture by maintaining their website 
+                front-end in the presentation layer, handling payments in the logic layer, and 
+                managing user data and inventory in the data layer.
+                N-tier architecture, like the monolithic architecture, has been around for a 
+                long time. It is a time-tested approach for enterprise applications. Let’s see 
+                why n-tier could be used over a monolithic architecture.</li>
+                <li><strong></strong>N-Tier Architecture Benefits
+                An n-tier architecture has the following improvements over a monolithic architecture.</li>
+                <ul>
+                    <li><strong>Separation of Concerns: </strong>
+                    Having distinct responsibilities for each layer makes their codebases simpler. 
+                    It enables each development team to specialize in one area of the application. 
+                    Teams can make changes to one layer without worrying about affecting other layers.</li>
+                    <li><strong>Better Scalability: </strong>
+                    The tiers within an n-tier application can be scaled independently of each other 
+                    based on demand. This independence leads to more efficient use of the underlying 
+                    infrastructure.</li>
+                </ul>
+                <li><strong>N-Tier Architecture Drawbacks: </strong>
+                N-tier architectures still suffer from some of the problems faced by monolithic 
+                architectures. The main problems are:</li>
+                <ul>
+                    <li><strong>Several Points of Failure: </strong>
+                    An entire tier within an n-tier application can still be brought down by 
+                    one error. Though the other tiers may remain intact, the application is 
+                    still vulnerable.</li>
+                    <li><strong>Complex Deployment: </strong>
+                    Deploying several tiers is more complicated than deploying a monolith. Extra 
+                    thought must be given to communication between tiers, logging and performance 
+                    monitoring.</li>
+                </ul>
+                <li><strong>N-Tier Use Cases: </strong>
+                N-tier architectures are a good middle ground between monolithic and more 
+                complex architectures (discussed next). Many companies have sustained successful 
+                n-tier applications for years. This architecture can be a suitable choice for:</li>
+                <ul>
+                    <li>Large internal applications</li>
+                    <li>Enterprise applications when other architectures are deemed undesirable</li>
+                </ul>
+                <li>The final architecture we’ll examine is the most complex. It is known as 
+                microservices architecture.</li>
+                <hr/>
+                <h3>Microservices Architecture</h3>
+                <li><strong>Microservices architecture: </strong>
+                Refers to an application where features are spread 
+                across different services. Each service is responsible for a tightly defined 
+                component of business logic. Services should aim to have smaller, independent 
+                codebases. These aspects make microservices a more granular approach than 
+                architectures like n-tier.
+                Let’s say a business want to switch from their monolith to
+                microservices. They would create a microservice for each individual component 
+                of their online store. One service could handle product searches while another 
+                could handle payments. Each service would directly access only its own data. 
+                However, they can also communicate over a network.
+                The microservices architecture is relatively new compared to monolithic and 
+                n-tier architectures. It is closely associated with DevOps and cloud-based 
+                infrastructure. Let’s see how microservices solve many of the issues faced 
+                by other architectures.</li>
+                <li><strong>Microservices Architecture Benefits: </strong>Microservice 
+                architectures offer a number of benefits related to scalability 
+                and reliability. Here are the major advantages.</li>
+                <ul>
+                    <li><strong>Resistance to Failures: </strong>
+                    A well designed microservices application has no single point of failure. 
+                    This is because services are deployed independently and each access their 
+                    own data. If an error occurs in a service related to payment, the search 
+                    service can continue to function.</li>
+                    
+                    <li><strong>Superior Scalability: </strong>
+                    Much like the tiers of an n-tier application, microservices can be scaled 
+                    independently. If one service is in high demand, more instances can be deployed 
+                    than other services. The smaller the size of the service, the more efficiently 
+                    it can be scaled to meet demand.</li>
+                    
+                    <li><strong>Diverse Technology: </strong>
+                    Microservices applications are not limited to any one language or technology. 
+                    Each service can use the technology that is best suited for the task it performs.</li>
+                    
+                    <li><strong>Smaller Codebases: </strong>
+                    Each microservice has its own codebase and is often managed by its own team. 
+                    Separate codebases are smaller, more maintainable, and simpler to understand.</li>
+                </ul>
+                <li><strong>Architecture Drawbacks: </strong>
+                The drawbacks of microservices come from the complexity of having
+                many components. These are the main challenges to a microservices application:</li>
+                <ul>
+                    <li><strong>Slower Initial Development: </strong>
+                    Getting an application up and running is not nearly as simple as 
+                    with a monolith. A microservice architecture requires creating and 
+                    deploying many small services whose interactions can become complex.</li>
+                    <li><strong>Complex Deployment: </strong>
+                    Deploying microservices is even more complicated than deploying n-tier 
+                    applications. It requires setting up inter-service communication, logging, 
+                    monitoring, and performance tuning. </li>
+                    <li><strong>Difficult Testing: </strong>
+                    Each service often depends on sending or receiving data from one or 
+                    more other services. Developers must find ways to mock up the other 
+                    services to test their functionality.</li>
+                </ul>
+                <li><strong>Microservices Architecture Use Cases: </strong>
+                Microservices applications are complex to set up. However, they provide 
+                many long-term benefits over other architectures. So, they are generally 
+                used for one purpose: large, enterprise applications. Netflix, Facebook, 
+                Amazon, and Google are just some popular applications that deploy microservices.</li>
+                <hr/>
+            </div>
+            <li><strong>Monitoring: </strong>
+            In DevOps culture, feedback loops are critical to improving processes and fixing 
+            issues. Monitoring is feedback coming from our code deployment environments.
+            Monitoring refers to the set of technical practices and tools that tell us what is 
+            happening in a system. Monitoring is achieved by defining and exposing the measurements 
+            we want to see while the system is running. As a result
+            we gain deeper insights into our systems’ operations, we can identify issues sooner,
+            we can provide longer-lasting solutions.</li>
+            <p class="center"><strong>More info</strong></p>
+            <button type="button" id="showCode12" onclick="showCode('displayCode12', 'showCode12')">Display</button>
+            <div id="displayCode12">
+                <button onclick="closeCode('displayCode12', 'showCode12')">Close</button>
+                <li><strong>Goals of Monitoring: </strong>
+                Metrics can provide all sorts of business value. Let’s take a look at an example 
+                where the team is monitoring their servers handling payments:
+                After an update to the payment system, the number of servers handling payments drops. 
+                The monitoring system sends out an alert to engineers. Order processing starts slowing, 
+                but engineers begin finding the issue.
+                Monitoring is a critical way of learning that something is wrong with the health of
+                the system. Without monitoring, the company might not know of a problem until customers 
+                complain. Orders not going through cost the company money. Monitoring can inform the 
+                engineering team as soon as a problem starts. Let’s see what happens next:
+                Deb is the engineer assigned to the order processing issue. She can open the logs 
+                of the downed servers and find out what was happening before the crash. The last 
+                message in each case is the system trying to talk with an authorization provider. 
+                She can locate the issue. The update had accidentally changed the authorization 
+                request format. She puts the fix in.
+                Monitoring also helps determine why a system is failing. Using logs and metrics, 
+                engineers can investigate what is happening within the system. The ability to see
+                inside a system leads to more informed solutions. But, not all issues are resolved 
+                by individuals:
+                The order processing issue has been resolved, but graphs are indicating high usage 
+                of server CPUs. The system automatically deploys more servers and balances the 
+                web traffic across them.
+                Monitoring can help stop problems before they cause a failure. Through monitoring 
+                our systems, we can detect strains early and implement automation to respond as 
+                necessary.</li>
+                <li><strong>What Should We Measure?</strong></li>
+                <ul>
+                    <li><strong>Request Metrics: </strong>
+                    Request metrics have to do with measuring the requests that our server 
+                    receives. Some metrics in this category include:</li>
+                    <ul>
+                        <li><strong></strong>Number of Incoming Requests    
+                        We can measure the amount of traffic to predict the amount of 
+                        infrastructure we will need.</li>
+                        <li><strong></strong>Response time
+                        When requests take a long time to resolve, that’s usually a sign something 
+                        is wrong in our system.</li>
+                        <li><strong></strong>Error Responses
+                        The error codes of our responses can provide helpful data. 400-level 
+                        codes (such as 404) tend to indicate client-side errors. Pay extra 
+                        attention to 500-level errors, which show an error on the server-side.</li>
+                    </ul>
+                    <li><strong>Server Metrics</strong>
+                    Server metrics tell us about what our servers might be experiencing at 
+                    the physical level:</li>
+                    <ul><li><strong>Hardware usage:</strong> 
+                        Metrics like CPU, RAM, and disk space usage tell us about our systems’ 
+                        available capacity. When usage is low, we can save money by shutting 
+                        servers down. When high, we would be wise to add more servers.</li>
+                        <li><strong>Uptime: </strong>
+                        This is the degree to which our servers are available to our users. 
+                        We want servers to be available as much as possible, with many 
+                        organizations aiming to be “up” at least 99% of the time.</li>
+                    </ul>
+                </ul>
+                <li><strong>Observability — Measuring Monitoring: </strong>
+                Good monitoring seeks to create observability in a system. Observability 
+                is the ability to use a system’s information to locate and fix a problem.
+                Some key questions we can investigate to measure observability include:</li>
+                <ul>
+                    <li><strong>Issue Metrics: </strong></li>
+                    <ul>
+                        <li><strong>How long did it take to notice a system issue?</strong>
+                        An ideal system notifies us before a problem affects a single user. 
+                        In the worst case, we only find out about a problem when we get 
+                        thousands of angry user emails.</li>
+                        <li><strong>How long did it take to locate the cause of the issue?</strong>
+                        Monitoring should assist in finding the cause of the issue. When 
+                        our logs fail to reflect critical issues, it is a clear sign we are 
+                        not capturing essential metrics.</li>   
+                    </ul>           
+                    <li><strong>Alert Metrics: </strong>
+                    The quality of our alerts tells us much about how effective our monitoring 
+                    systems are. Useless or incorrect alerts add to the chance that valuable 
+                    alerts will be ignored or unseen. Keeping our alerts at a high quality to 
+                    ensure that each is given proper attention.
+                    These metrics help us evaluate the performance of our monitoring systems. 
+                    There is much more to learn, but these guidelines will give us an excellent start.
+                    Some types of alerts that may hamper the observability of our system include:</li>
+                    <ul>
+                        <li><strong>False negatives: </strong>
+                        Pay attention when a user-affecting issue has happened, and the system 
+                        does not alert us. The lack of alert indicates a hole in our monitoring. 
+                        We should hold a retrospective meeting to find out what metrics could 
+                        have alerted us to the problem.</li>
+                        <li><strong>False positives: </strong>
+                        This occurs when an alert is generated, but there is nothing wrong 
+                        with the system. The threshold for an alert may need to be adjusted, 
+                        or the alert might need to be deleted altogether.</li>
+                        <li><strong>Unactionable alerts: </strong>
+                        This type of alert has little to do with a problem and doesn’t need 
+                        anything done. Like false negatives, we should reduce or delete 
+                        unactionable alerts.</li>
+                    </ul>
+                </ul>
+            </div>
+            <li><strong>Resiliency: </strong>
+            Is a system’s ability to continue to perform despite experiencing problems. 
+            Creating a resilient system allows our services to be highly-available, which means 
+            our customers can access our functionality a vast majority of the time.</li>
+            <p class="center"><strong>More info</strong></p>
+            <button type="button" id="showCode79" onclick="showCode('displayCode79', 'showCode79')">Display</button>
+            <div id="displayCode79">
+                <button onclick="closeCode('displayCode79', 'showCode79')">Close</button>
+                <li><strong>System threats</strong>
+                Infrastructure can fail in a variety of ways. It is impossible to prevent 
+                any failure within such a system. Instead, we can only predict how it might 
+                fail and design the system to respond acceptably. Let’s discuss some common 
+                types of failures.</li>
+                <ul>
+                    <li><strong>Internal failures: </strong>
+                    Over time, infrastructure becomes more prone to failure. Some reasons 
+                    for this include:</li>
+                    <li><strong>Hardware failures:</strong></li>
+                    <ul>
+                        <li>Disk drives, RAM, CPU breakage over time.</li>
+                        <li>Firmware becomes outdated over time, hardware support ends.</li>
+                    </ul>
+                    <li><strong>External Failures: </strong>
+                    Systems dependent on external services require the resiliency of those 
+                    external services. We can’t control whether a service or API we use will 
+                    stop being supported or be shut down.</li>   
+                    <li><strong>Attack: </strong>
+                    Cyberattacks are attempts to disrupt system services or steal an 
+                    organization’s data. They can happen to businesses of all different sizes 
+                    and types. Some common types of cyberattack include:
+                    <ul>
+                        <li>Distributed Denial of Service (DDoS) attacks try to crash 
+                        a target by overwhelming it with requests.</li>
+                        <li>SQL injections try to run malicious database code to reveal 
+                        internal information.</li>                         
+                    </ul>
+                </ul>
+                <hr/>
+                <h3>Methods for resiliency</h3>
+                <li><strong>Methods for resiliency: </strong>
+                Failures will always happen. Resiliency is about making our systems able 
+                to handle failure well. Two strategies for doing this are:</li>
+                <ul>
+                    <li><strong>Reducing the workload: </strong>
+                    We can start by reducing the requests our system needs to process. We can 
+                    minimize system work via two mechanisms: input validation and caching.
+                    <strong>Input validation: </strong> involves running checks on requests 
+                    coming into the system. These checks will allow us to “throw away” malformed 
+                    or malicious requests. Validation prevents these “bad” requests from reaching 
+                    our inner systems. <strong>Caching: </strong>
+                    some of the regular requests that come into our system might 
+                    return the same results again and again. Caching stores 
+                    the commonly requested results, reducing the work necessary to resolve 
+                    similar requests. Caching separates requests into two types:
+                    <strong>Cache hits:</strong> those that are already in the cache.
+                    <strong>Cache misses:</strong> which need work from the application server.</li>
+                    <li><strong>Spreading the work around: </strong>
+                    We need our system to be able to handle varying levels of workload. The 
+                    amount of work will vary in a system over time, and during high traffic 
+                    events, it needs to be more distributed.
+                    <strong>Automatic scaling: </strong>
+                    Allows us to use more or fewer servers based on need. Monitoring can 
+                    detect when our system is encountering a high or low amount of traffic.
+                    When monitoring detects a high amount of traffic, our system can add more 
+                    servers. Upon low traffic level detection, automatic scaling can reduce 
+                    the number of servers.
+                    Adding or removing servers isn’t enough. We need a system to direct the 
+                    appropriate amount of traffic to any servers we have. Let’s discuss the 
+                    mechanism for doing so, load balancing.
+                    <strong>Load balancing: </strong>
+                    A load balancer distributes requests across many resources. With two 
+                    servers, a load balancer might send every other request to each server.</li>
+                </ul>
+                <hr/>
+                <h3>Measuring resiliency</h3>
+                <li>We want to be able to estimate how our systems will perform under adverse 
+                conditions. There are three approaches we can use to measure the resiliency 
+                of our systems. Each approach provides a different degree of accuracy.</li>
+                <ul>
+                    <li><strong>Analysis of infrastructure</strong>
+                    Static infrastructure analysis is the easiest but least 
+                    accurate method of measuring resiliency. We make assumptions 
+                    about system performance based on our infrastructure specifications.     
+                    Imagine we have three servers, each capable of handling 3000 
+                    requests per second. We then reason that our system can handle 
+                    9000 requests per second. But when we connect everything, we find our 
+                    system starts to struggle at 8000 requests per second.
+                    Unfortunately, the conditions our systems can handle on paper often 
+                    differ from reality. While this kind of analysis can produce a ballpark 
+                    figure, we shouldn’t rely on it for exact amounts.</li>
+                    <li><strong>Controlled chaos: </strong>
+                    Remember, we want to know how our system will perform under difficult 
+                    circumstances. It makes sense then to create some problems on purpose, 
+                    to see how our system responds. Let’s take a look at some ways engineers 
+                    test the resiliency of their systems.</li>
+                    <ul>
+                        <li><strong>Penetration testing: </strong>
+                        Involves trying to exploit security vulnerabilities 
+                        by simulating cyberattacks. Penetration testing gives us a chance to see 
+                        how our system might respond to a malicious user. Using penetration 
+                        testing allows us to identify holes in our security that we need to fix.</li>
+                        <li><strong>Load testing:</strong> seeks to replicate situations in which the system is 
+                        under heavy use. Load testing might simulate millions of customers 
+                        trying to access our site all at once. Load testing can help us 
+                        identify areas in which the system will break under real-world conditions.</li>
+                        <li><strong>Chaos engineering: </strong>
+                        Engineers practicing chaos engineering will purposely cause system failures. 
+                        The engineers might unplug a server, take down a critical API, or disconnect 
+                        storage. These actions reveal how our system will respond in failure scenarios.
+                        We can use these insights to identify weaknesses and strategies for these
+                        situations.</li>
+                    </ul>
+                    <li><strong>The Real World: </strong>
+                    The most accurate predictor of how systems react to problems is how they 
+                    respond to real problems. We can use aspects of monitoring to measure our 
+                    system’s responses to problems. Some important metrics might include:</li>
+                    <ul>
+                        <li><strong>Uptime:</strong> what percentage of the time is our 
+                        system available?</li>
+                        <li><strong>Recovery speed:</strong> when an outage occurs, 
+                        how long does it take for the system to become available?</li>
+                        <li><strong>Request resolution time:</strong> how fast are incoming 
+                        requests able to be processed?</li>
+                        <li><strong>Request failures:</strong> how many requests are failing to resolve?
+                        With these processes and metrics, we have a way to create and 
+                        measure system resiliency.</li>
+                    </ul>
+                </ul>
+                <hr/>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

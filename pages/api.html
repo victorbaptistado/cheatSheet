@@ -4,26 +4,9 @@
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
         <script src="./component/button.js" defer></script>
         <title>API</title>
+        <h1>API</h1>
     </header>
     <body>
-        <nav>
-            <ul class="mainNav">
-                <li><a href="./AI.html">AI</a></li>
-                <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./operationalSystem.html">Operational System</a></li>
-                <li><a href="./debugTesting.html">Debug & Testing</a></li>
-                <li><a href="./git.html">Git</a></li>
-                <li><a href="./form.html">Form</a></li>       
-                <li><a href="#">API</a></li>   
-                <li><a href="./react.html">REACT</a></li>  
-                <li><a href="./index.html">Helpful Content</a></li>       
-                <li><a href="./backend.html">Backend</a></li>
-            </ul>
-        </nav>
-        <header>
-            <h1>API</h1>
-        </header>
         <div class="styleGuide">
             <section>
                 <h2>API</h2>
@@ -484,7 +467,7 @@
             </li>
                 <li>To fetch from API, it's common the need of an <strong>API key</strong> & a 
                 <strong>query params</strong>.</li>
-               <pre>
+                <pre>
                     <code>
                     // there are two paramaters on this request, separated by "&".
                     const requestParams = `?api_key=${tmdbKey}&with_genres=${selectedGenre}`;
@@ -533,7 +516,7 @@
                                     const jsonResponse = await response.json();
                                     // Code to execute with jsonResponse. Return to end function getData and return a value.
                                         e.g. const genres = jsonResponse.genres;
-                                              return genres;
+                                                return genres;
                                 }
 
                                 // handles error
@@ -578,8 +561,8 @@
                     export const asyncFunction = () => {
 
                         //sends request (fetch takes two arguments: 
-                                         endpoint and an object with information 
-                                         for the POST request.)
+                                            endpoint and an object with information 
+                                            for the POST request.)
 
                         fetch("http://api-to-call.com/endpoint", {
                             method: 'POST';

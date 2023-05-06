@@ -3,255 +3,247 @@
     <header>
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
         <title>Jquery</title>
-    </header>
-    <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="#">AI</a></li>
-                <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./operationalSystem.html">Operational System</a></li>
-                <li><a href="./debugTesting.html">Debug & Testing</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="./AI.html">AI</a></li>
                 <li><a href="./git.html">Git</a></li>
-                <li><a href="./form.html">Form</a></li>
-                <li><a href="./api.html">API</a></li>  
-                <li><a href="./react.html">REACT</a></li>
-                <li><a href="./index.html">Helpful Content</a></li> 
-                <li><a href="./backend.html">Backend</a></li>
             </ul>
         </nav>
-        <header>
-            <div class="styleGuide">
-                <h1>JQuery</h1>
+        <h1>Jquery</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h1>JQuery</h1>
+            <ul>
+                <li><strong>JQuery</strong> is a JavaScript library that makes it easy to add 
+                dynamic behavior to HTML elements.
+                Let’s use LEGO bricks as an analogy for understanding how jQuery works. With an 
+                infinite number of bricks, you could build an entire city — of course, this would 
+                take a long time. What if you were given pre-made LEGO buildings, LEGO roads, LEGO 
+                parks, etc? You could build a city much faster.
+                The JavaScript language represents an infinite supply of LEGO bricks — the possibilities 
+                are endless but time-consuming. The pre-made LEGO structures are like jQuery methods. 
+                You can use these methods to add dynamic behavior, such as <i>.hide()</i>, <i>.show()</i>, 
+                <i>.fadeIn()</i>, <i>.fadeOut()</i> etc., to HTML elements. <strong>Video 1</strong>
+                <a href="https://www.youtube.com/watch?v=Fj2j643chAw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                <strong>Video 2</strong> <a href="https://www.youtube.com/watch?v=-T_T4NRwrWQ&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                <strong>Video 3</strong> <a href="https://www.youtube.com/watch?v=6qIEyC23PSM&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                <strong>Documentation </strong><a href="https://api.jquery.com/" target="_blank">here</a>.</li>
+                <strong>Alternative Documentation </strong>
+                <a href="https://jqapi.com/" target="_blank">here</a>.
+                <li><strong>Setup: </strong>
+                To include jQuery, we use a script tag. You must include the script tag in the 
+                HTML document before you link to a JavaScript file that uses the jQuery library. 
+                In this example, the jQuery library is loaded from the jQuery content delivery 
+                network (CDN). A CDN is a collection of servers that can deliver content.</li>
+                <pre>
+                    <code>
+            //within a script tag:
+
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous">< /script >
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Implementation</h3>
+                <li><strong>JQuery Objects: </strong>The $ symbol is an alias for the jQuery function. The $ symbol and jQuery are interchangeable.
+                The jQuery function takes a parameter that targets an element, like '#navMenu', 
+                and turns it into a jQuery object. Then, you can call any jQuery method on a jQuery object.
+                Developers often save jQuery objects in variables. It is best practice 
+                to name jQuery object variables with a leading $.
+                <i>const $jQueryObject = $('.someClass');</i></li>
+                <li><strong>.ready()</strong>: a web page must be rendered in a user’s browser 
+                before it’s possible to have any dynamic behavior. To solve this problem, we will 
+                use our first jQuery method.
+                The jQuery .ready() method waits until the HTML page’s DOM is ready to manipulate. 
+                You should wrap all JavaScript behavior inside of the .ready() method. This will 
+                make sure the web page is rendered in the browser before any jQuery code executes.</li>
+                <pre>
+                    <code>
+        $(document).ready(() => {
+        
+        });
+                        </code>
+                    </pre>
+                <li><strong>Targeting by Class & Id: </strong> We can use <i>$()</i> syntax to create jQuery 
+                objects for elements on a web 
+                page. Typically, we pass a string into <i>$()</i> to target elements by id, class, or tag. 
+                Once targeted, we can use . notation to attach a handler method that triggers a 
+                callback function.                
+                <i>$('.someClass').handlerMethod();</i>
+                In this example above, every element with a class of 'someClass' is targeted. Note, we 
+                prepend the class name with a period (.someClass). Then, we call the <i>.handlerMethod()</i> 
+                on all of the referenced items.</li>
+                <pre>
+                    <code>
+        //Targeting by Class
+                    
+        $(document).ready(() => {
+            $('.product-photo').show();
+        });
+
+        //Targeting by id
+
+        $(document).ready(() => {
+            $("#nav-dropdown").hide();
+        });
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Event Handlers</h3>
+                <li><strong>Event Handlers: </strong>
+                The jQuery <i>.on()</i> method adds event handlers to jQuery objects. The method takes 
+                two parameters: a string 
+                declaring the event to listen for (the handler) and a callback function to fire when the 
+                event is detected. 
+                <pre>
+                    <code>
+        $('#login').on('click', () => {
+            $loginForm.show();
+        })
+                    </code>
+                </pre>
+                <li><strong>Popular Event Listeners</strong></li>
                 <ul>
-                    <li><strong>JQuery</strong> is a JavaScript library that makes it easy to add 
-                    dynamic behavior to HTML elements.
-                    Let’s use LEGO bricks as an analogy for understanding how jQuery works. With an 
-                    infinite number of bricks, you could build an entire city — of course, this would 
-                    take a long time. What if you were given pre-made LEGO buildings, LEGO roads, LEGO 
-                    parks, etc? You could build a city much faster.
-                    The JavaScript language represents an infinite supply of LEGO bricks — the possibilities 
-                    are endless but time-consuming. The pre-made LEGO structures are like jQuery methods. 
-                    You can use these methods to add dynamic behavior, such as <i>.hide()</i>, <i>.show()</i>, 
-                    <i>.fadeIn()</i>, <i>.fadeOut()</i> etc., to HTML elements. <strong>Video 1</strong>
-                    <a href="https://www.youtube.com/watch?v=Fj2j643chAw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
-                    <strong>Video 2</strong> <a href="https://www.youtube.com/watch?v=-T_T4NRwrWQ&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
-                    <strong>Video 3</strong> <a href="https://www.youtube.com/watch?v=6qIEyC23PSM&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
-                    <strong>Documentation </strong><a href="https://api.jquery.com/" target="_blank">here</a>.</li>
-                    <strong>Alternative Documentation </strong>
-                    <a href="https://jqapi.com/" target="_blank">here</a>.
-                    <li><strong>Setup: </strong>
-                    To include jQuery, we use a script tag. You must include the script tag in the 
-                    HTML document before you link to a JavaScript file that uses the jQuery library. 
-                    In this example, the jQuery library is loaded from the jQuery content delivery 
-                    network (CDN). A CDN is a collection of servers that can deliver content.</li>
-                    <pre>
-                        <code>
-                //within a script tag:
-
-                    src="https://code.jquery.com/jquery-3.2.1.min.js"
-                    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                    crossorigin="anonymous">< /script >
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Implementation</h3>
-                    <li><strong>JQuery Objects: </strong>The $ symbol is an alias for the jQuery function. The $ symbol and jQuery are interchangeable.
-                    The jQuery function takes a parameter that targets an element, like '#navMenu', 
-                    and turns it into a jQuery object. Then, you can call any jQuery method on a jQuery object.
-                    Developers often save jQuery objects in variables. It is best practice 
-                    to name jQuery object variables with a leading $.
-                    <i>const $jQueryObject = $('.someClass');</i></li>
-                    <li><strong>.ready()</strong>: a web page must be rendered in a user’s browser 
-                    before it’s possible to have any dynamic behavior. To solve this problem, we will 
-                    use our first jQuery method.
-                    The jQuery .ready() method waits until the HTML page’s DOM is ready to manipulate. 
-                    You should wrap all JavaScript behavior inside of the .ready() method. This will 
-                    make sure the web page is rendered in the browser before any jQuery code executes.</li>
-                    <pre>
-                        <code>
-            $(document).ready(() => {
-            
-            });
-                            </code>
-                        </pre>
-                    <li><strong>Targeting by Class & Id: </strong> We can use <i>$()</i> syntax to create jQuery 
-                    objects for elements on a web 
-                    page. Typically, we pass a string into <i>$()</i> to target elements by id, class, or tag. 
-                    Once targeted, we can use . notation to attach a handler method that triggers a 
-                    callback function.                
-                    <i>$('.someClass').handlerMethod();</i>
-                    In this example above, every element with a class of 'someClass' is targeted. Note, we 
-                    prepend the class name with a period (.someClass). Then, we call the <i>.handlerMethod()</i> 
-                    on all of the referenced items.</li>
-                    <pre>
-                        <code>
-            //Targeting by Class
-                        
-            $(document).ready(() => {
-                $('.product-photo').show();
-            });
-
-            //Targeting by id
-
-            $(document).ready(() => {
-                $("#nav-dropdown").hide();
-            });
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Event Handlers</h3>
-                    <li><strong>Event Handlers: </strong>
-                    The jQuery <i>.on()</i> method adds event handlers to jQuery objects. The method takes 
-                    two parameters: a string 
-                    declaring the event to listen for (the handler) and a callback function to fire when the 
-                    event is detected. 
-                    <pre>
-                        <code>
-            $('#login').on('click', () => {
-                $loginForm.show();
-            })
-                        </code>
-                    </pre>
-                    <li><strong>Popular Event Listeners</strong></li>
-                    <ul>
-                        <li><strong>'click': </strong>A simple click event.</li>
-                        <li><strong>'mouseenter'</strong>The mouseenter event triggers a 
-                        callback function when a user enters the area that a targeted element occupies.</li>
-                        <li><strong>'mouseleave'</strong> event listener can detect when a user’s mouse 
-                        leaves the area that an element occupies.</li>
-                    </ul>
-                    <li><strong>Chaining Events: </strong>
-                    jQuery also allows us to chain multiple methods. Instead of re-declaring the HTML 
-                    element you’re selecting, you can append one event to another. Let’s see how we can 
-                    use chaining to add hover functionality to .example-class elements.</li>
-                    <pre>
-                        <code>
-                    $('.example-class').on('mouseenter', () => {
-                        $('.example-class-one').show();
-                    }).on('mouseleave', () => {
-                        $('.example-class-one').hide();
-                    });
-                        </code>
-                    </pre>
-                    <li><strong>Current Target: </strong>
-                    When an event is triggered, all of events from the same class are.
-                    The solution is in the callback function and selector we’re using when we add a new class. 
-                    Instead of selecting $('.product-photo') in each callback function, we need to pass event 
-                    information into the function and call the <i>currentTarget</i> attribute:
-                    <pre>
-                        <code>
-                $('.example-class').on('mouseenter', event => {
-                    $(event.currentTarget).addClass('photo-active');
-                });
-                        </code>
-                    </pre>
-                    </li>
-                    <hr/>
-                    <h3>CSS & JQuery</h3>
-                    <li><strong>Style Methods: </strong></li>
-                    <ul>
-                        <li><strong>.css(): </strong>To modify CSS properties of an element, jQuery provides a method called <i>.css()</i>. This method 
-                        accepts an argument for a CSS property name, and a corresponding CSS value. 
-                        If the property specified in the .css() method is not already set, then it will add the 
-                        property and value to the element. However, if the property already has been set for the 
-                        element, then the .css() method will override the current value with the new value.
-                        <strong>Video Project </strong><a href="https://www.youtube.com/watch?v=_ICEqxIPgxg&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                        <pre>
-                            <code>
-                    // Single CSS style
-                    $('.example-class').css('color', '#FFFFFF');
-
-                    // Multiple CSS style
-                    $('.example-class').css({
-                        color: '#FFFFFF',
-                        backgroundColor: '#000000',
-                        fontSize: '20px'
-                    })
-                            </code>
-                        </pre>
-                        <li><strong>.animate(): </strong>The jQuery <i>.animate()</i> method enhances the visual 
-                        possibilities by making CSS value changes over a period of time.
-                        The first argument passed to <i>.animate()</i> is a JavaScript object of CSS property/value 
-                        pairs that represent an element’s end state.
-                        The second parameter of the .animate() method determines how long the animation takes to complete.</li>
-                        <pre>
-                            <code>
-                    $('.example-class').animate({
-                        height: '100px',
-                        width: '100px',
-                        borderWidth: '10px'
-                    }, 500);
-                            </code>
-                        </pre>
-                        <li><strong>.addClass(): </strong>A JavaScript file can quickly get overloaded with 
-                        styles if you regularly use the css method to modify element styles. <strong>It’s a best 
-                        practice to group all of the style code in a CSS file, and use jQuery to add and 
-                        remove the classes from elements</strong> — this approach aligns to a design principle
-                        called separation of concerns. To keep CSS properties in a CSS file, jQuery can add a 
-                        CSS class to an element with a method named addClass. <i>$('.example-class').addClass('active');</i>
-                        <i>.addClass()</i> adds the 'active' class to all .example-class elements.</li>
-                        <li><strong>.removeClass(): </strong>Similar to <i>.addClass()</i>, the jQuery <i>.removeClass()</i> 
-                        method can remove a class from selected elements. Its syntax is similar to <i>.addClass()</i>:
-                        <i>$('.example-class').removeClass('active');</i></li>
-                        <li><strong>.toggleClass(): </strong>
-                        Similar to other effects methods, you can use a toggle method instead of chaining 
-                        the <i>.addClass()</i> and <i>.removeClass()</i> methods together.
-                        The <i>.toggleClass()</i> method adds a class if an element does not already have it, and 
-                        removes it if an element does already have it. Its syntax looks like:
-                        <i>$('.example-class').toggleClass('active');</i></li>
-                    </ul>
-                    <hr/>
-                    <h3>The DOM Tree</h3>
-                    <li><strong>Traversing the DOM</strong></li>
-                    <ul>
-                        <li><strong>.children()</strong> method allows us to target the child elements.
-                        <i>const $kids = $('#holder').children();</i></li>
-                        <li><strong>.parent() </strong>method targets the parent 
-                        element. <i>$('chosen-class').parent();</i></li>
-                        <li><strong>.siblings()</strong> method targets elements adjacent to the clicked.
-                        <i>$('chosen-class').siblings();</i>.</li>
-                        <li><strong>.closest()</strong> method will travel up the DOM tree to find a 
-                        specified selector closest to it. <i>$('.example-class-one').closest('.another-class');</i></li>
-                        <li><strong>.next() & .prev()</strong>Sometimes you don’t want to target all the siblings of an element — 
-                        you just want to target the next one. <i>$(chosen-event).next();</i>
-                        <i>.prev()</i> looks at the previous sibling.</li>
-                        <li><strong>.find()</strong>Sometimes we want to target an element that lives inside 
-                        another, but we don’t want to use the <i>.children()</i> method, since that might target more 
-                        elements than we need. That’s where the <i>.find()</i> method comes in. This method finds and 
-                        targets singular or multiple elements that are descendants of an element.
-                        <i>const $items = $('.myList').find('li');</i></li>
-                    </ul>
-                    <hr/>
-                    <h3>Effects</h3>
-                    <li><strong>JQuery Effects</strong> are a group of methods in the jQuery library that are responsible for 
-                    adding dynamic behavior to websites. </li>
-                    <ul>
-                        <li><strong>.hide(): </strong>When you hide an element, your browser will render the HTML 
-                        as if the hidden element does not exist. It will disappear from the page and the space that it 
-                        was taking up will disappear as well. </li>
-                        <li><strong>.show(): </strong>If an element on your page is hidden, .show() will 
-                        make it appear.</li>
-                        <li><strong>.toggle(): </strong>Makes a single button do both, show and hide image,
-                        depending on their current state.</li>
-                        <li><strong>fading: </strong><i>.fadeIn()</i> and <i>.fadeOut()</i> make the element appear
-                        or disappear over a given period of time. You can think of this as an animation. 
-                        It take an optional parameter that specifies how long the 
-                        animation will take. <i>$('div').fadeOut(1000);</i></li>
-                        <li><strong>.fadeToggle(): </strong> This method is similar to <i>.toggle()</i>. If you call 
-                        <i>.fadeToggle()</i> on an element that is invisible, it will fade in. And if the element 
-                        is already visible, then .fadeToggle() will make it fade out. Like the other fade methods, 
-                        <i>.fadeToggle()</i> can take an argument that sets the duration of the effect.
-                        It also accept strings: <i>$('.fade-image').fadeToggle('fast');</i></li>
-                        <li><strong>Sliding: </strong>By using sliding effects, an element on your web page will slide up or down into 
-                        place instead of appearing or disappearing. Just like with the other effects, sliding 
-                        can be applied to any element on your page whether it be an image, a video, or text.
-                        Sliding methods are animations; they happen over a period of time. As a result, 
-                        sliding methods have an optional parameter to determine how long the animation will take.
-                        <i>$('.menu-content').slideDown('slow');</i></li>
-                    </ul>
+                    <li><strong>'click': </strong>A simple click event.</li>
+                    <li><strong>'mouseenter'</strong>The mouseenter event triggers a 
+                    callback function when a user enters the area that a targeted element occupies.</li>
+                    <li><strong>'mouseleave'</strong> event listener can detect when a user’s mouse 
+                    leaves the area that an element occupies.</li>
                 </ul>
-            </div>
-        </header>
+                <li><strong>Chaining Events: </strong>
+                jQuery also allows us to chain multiple methods. Instead of re-declaring the HTML 
+                element you’re selecting, you can append one event to another. Let’s see how we can 
+                use chaining to add hover functionality to .example-class elements.</li>
+                <pre>
+                    <code>
+                $('.example-class').on('mouseenter', () => {
+                    $('.example-class-one').show();
+                }).on('mouseleave', () => {
+                    $('.example-class-one').hide();
+                });
+                    </code>
+                </pre>
+                <li><strong>Current Target: </strong>
+                When an event is triggered, all of events from the same class are.
+                The solution is in the callback function and selector we’re using when we add a new class. 
+                Instead of selecting $('.product-photo') in each callback function, we need to pass event 
+                information into the function and call the <i>currentTarget</i> attribute:
+                <pre>
+                    <code>
+            $('.example-class').on('mouseenter', event => {
+                $(event.currentTarget).addClass('photo-active');
+            });
+                    </code>
+                </pre>
+                </li>
+                <hr/>
+                <h3>CSS & JQuery</h3>
+                <li><strong>Style Methods: </strong></li>
+                <ul>
+                    <li><strong>.css(): </strong>To modify CSS properties of an element, jQuery provides a method called <i>.css()</i>. This method 
+                    accepts an argument for a CSS property name, and a corresponding CSS value. 
+                    If the property specified in the .css() method is not already set, then it will add the 
+                    property and value to the element. However, if the property already has been set for the 
+                    element, then the .css() method will override the current value with the new value.
+                    <strong>Video Project </strong><a href="https://www.youtube.com/watch?v=_ICEqxIPgxg&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                    <pre>
+                        <code>
+                // Single CSS style
+                $('.example-class').css('color', '#FFFFFF');
+
+                // Multiple CSS style
+                $('.example-class').css({
+                    color: '#FFFFFF',
+                    backgroundColor: '#000000',
+                    fontSize: '20px'
+                })
+                        </code>
+                    </pre>
+                    <li><strong>.animate(): </strong>The jQuery <i>.animate()</i> method enhances the visual 
+                    possibilities by making CSS value changes over a period of time.
+                    The first argument passed to <i>.animate()</i> is a JavaScript object of CSS property/value 
+                    pairs that represent an element’s end state.
+                    The second parameter of the .animate() method determines how long the animation takes to complete.</li>
+                    <pre>
+                        <code>
+                $('.example-class').animate({
+                    height: '100px',
+                    width: '100px',
+                    borderWidth: '10px'
+                }, 500);
+                        </code>
+                    </pre>
+                    <li><strong>.addClass(): </strong>A JavaScript file can quickly get overloaded with 
+                    styles if you regularly use the css method to modify element styles. <strong>It’s a best 
+                    practice to group all of the style code in a CSS file, and use jQuery to add and 
+                    remove the classes from elements</strong> — this approach aligns to a design principle
+                    called separation of concerns. To keep CSS properties in a CSS file, jQuery can add a 
+                    CSS class to an element with a method named addClass. <i>$('.example-class').addClass('active');</i>
+                    <i>.addClass()</i> adds the 'active' class to all .example-class elements.</li>
+                    <li><strong>.removeClass(): </strong>Similar to <i>.addClass()</i>, the jQuery <i>.removeClass()</i> 
+                    method can remove a class from selected elements. Its syntax is similar to <i>.addClass()</i>:
+                    <i>$('.example-class').removeClass('active');</i></li>
+                    <li><strong>.toggleClass(): </strong>
+                    Similar to other effects methods, you can use a toggle method instead of chaining 
+                    the <i>.addClass()</i> and <i>.removeClass()</i> methods together.
+                    The <i>.toggleClass()</i> method adds a class if an element does not already have it, and 
+                    removes it if an element does already have it. Its syntax looks like:
+                    <i>$('.example-class').toggleClass('active');</i></li>
+                </ul>
+                <hr/>
+                <h3>The DOM Tree</h3>
+                <li><strong>Traversing the DOM</strong></li>
+                <ul>
+                    <li><strong>.children()</strong> method allows us to target the child elements.
+                    <i>const $kids = $('#holder').children();</i></li>
+                    <li><strong>.parent() </strong>method targets the parent 
+                    element. <i>$('chosen-class').parent();</i></li>
+                    <li><strong>.siblings()</strong> method targets elements adjacent to the clicked.
+                    <i>$('chosen-class').siblings();</i>.</li>
+                    <li><strong>.closest()</strong> method will travel up the DOM tree to find a 
+                    specified selector closest to it. <i>$('.example-class-one').closest('.another-class');</i></li>
+                    <li><strong>.next() & .prev()</strong>Sometimes you don’t want to target all the siblings of an element — 
+                    you just want to target the next one. <i>$(chosen-event).next();</i>
+                    <i>.prev()</i> looks at the previous sibling.</li>
+                    <li><strong>.find()</strong>Sometimes we want to target an element that lives inside 
+                    another, but we don’t want to use the <i>.children()</i> method, since that might target more 
+                    elements than we need. That’s where the <i>.find()</i> method comes in. This method finds and 
+                    targets singular or multiple elements that are descendants of an element.
+                    <i>const $items = $('.myList').find('li');</i></li>
+                </ul>
+                <hr/>
+                <h3>Effects</h3>
+                <li><strong>JQuery Effects</strong> are a group of methods in the jQuery library that are responsible for 
+                adding dynamic behavior to websites. </li>
+                <ul>
+                    <li><strong>.hide(): </strong>When you hide an element, your browser will render the HTML 
+                    as if the hidden element does not exist. It will disappear from the page and the space that it 
+                    was taking up will disappear as well. </li>
+                    <li><strong>.show(): </strong>If an element on your page is hidden, .show() will 
+                    make it appear.</li>
+                    <li><strong>.toggle(): </strong>Makes a single button do both, show and hide image,
+                    depending on their current state.</li>
+                    <li><strong>fading: </strong><i>.fadeIn()</i> and <i>.fadeOut()</i> make the element appear
+                    or disappear over a given period of time. You can think of this as an animation. 
+                    It take an optional parameter that specifies how long the 
+                    animation will take. <i>$('div').fadeOut(1000);</i></li>
+                    <li><strong>.fadeToggle(): </strong> This method is similar to <i>.toggle()</i>. If you call 
+                    <i>.fadeToggle()</i> on an element that is invisible, it will fade in. And if the element 
+                    is already visible, then .fadeToggle() will make it fade out. Like the other fade methods, 
+                    <i>.fadeToggle()</i> can take an argument that sets the duration of the effect.
+                    It also accept strings: <i>$('.fade-image').fadeToggle('fast');</i></li>
+                    <li><strong>Sliding: </strong>By using sliding effects, an element on your web page will slide up or down into 
+                    place instead of appearing or disappearing. Just like with the other effects, sliding 
+                    can be applied to any element on your page whether it be an image, a video, or text.
+                    Sliding methods are animations; they happen over a period of time. As a result, 
+                    sliding methods have an optional parameter to determine how long the animation will take.
+                    <i>$('.menu-content').slideDown('slow');</i></li>
+                </ul>
+            </ul>
+        </div>
+
     </body>
 </html>

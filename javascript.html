@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+    <header>
+      <script src="./component/button.js" defer></script>
+      <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+      <title>Javascript</title>
+      <nav>
+          <ul class="mainNav">
+            <li><a href="#">Menu</a></li>
+            <li><a href="./AI.html">AI</a></li>
+            <li><a href="./git.html">Git</a></li>
+          </ul>
+      </nav>
+      <h1>JavaScript</h1>
+    </header>
+    <body>
+      <div class="styleGuide">
+        <h2>Index</h2>
+        <ul>
+          <li><a href="react.html" target="_blank">React</a>.</li>
+          <li><a href="jQuery.html" target="_blank">JQuery</a>.</li>
+          <li><a href="pages/form.html" target="_blank">Forms</a>.</li>
+          <li><a href="pages/api.html" target="_blank">API</a>.</li>
+          <li><a href="backend.html" target="_blank">Backend</a>.</li>
+          <li><a href="pages/jsonYaml.html">Json & Yaml</a>.</li>
+        </ul>
+      </div>
+      <div class="styleGuide">
+        <h2>JavaScript</h2>
+        <ul>
+          <li><strong>Basics:</strong></li>
+          <ul>
+            <li><strong>Print to console: </strong><i>console.log(90);</i></li>
+            <li><strong>Comment: </strong>Single line <i>/</i>. Multi-line: <i>/*</i> <i>*/</i></li>
+            <li><strong>Data types:</strong> Number, String, Boolean, Null, Undefined, Symbol, Object.
+            The 6 first are primitive data types. Object is more complex.</li>
+            <ul>
+              <li><strong>typeof operator: </strong>Checks the value to its right and returns, or 
+              passes back, a string of the data type. <i>const unknown1 = 'foo';
+              console.log(typeof unknown1); // Output: string</i></li>
+            </ul>
+            <li><strong>String Concatanation: </strong><i>+</i>.</li>
+            <li><strong>String Interpolation: </strong> <i>const myPet = 'armadillo';
+            console.log(`I own a pet ${myPet}.`); // Output: I own a pet armadillo.</i>.</li>
+            <li><strong>Properties: </strong> All data types have access to specific properties that 
+            are passed down to each instance. We access them using the dot operator <i>.</i>.</li>
+            <li><strong>Methods: </strong>Built-in methods are used with a <i>.nameOfMethod()</i>.
+            More in <a href="https://www.codecademy.com/resources/docs/javascript/methods?page_ref=catalog" target="_blank">here</a>.</li>
+            <ul>
+              <li>Built-in <strong>String methods</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank">here</a>.</ul>
+              <li>Built-in <strong>Object methods</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects" target="_blank">here</a>.</li>
+            </ul>
+            <li><strong>Variable: </strong> We can use <i>var</i>, <i>let</i> for variables that can be
+            reassigned. We use <i>const</i> when it cannot be reassigned.</li>
+            <li><strong>ES6: </strong>Also known as ECMAScript 2015, is a major update to the JavaScript 
+            language that introduced many new features and improvements. Some of the major 
+            enhancements in ES6 include modules, class declarations, arrow functions, let and const keywords, 
+            destructuring, and more. </li>
+          
+          <hr/>
+          <h3>Conditional Statements</h3>
+          <li><strong>If Statement: </strong></li>
+          <pre>
+            <code>
+        if (true) {
+          console.log('This message will print!'); 
+        }
+        // Prints: This message will print!
+            </code>
+          </pre>
+          <li><strong>If...Else, else if Statements: </strong></li>
+          <pre>
+            <code>
+        let stopLight = 'yellow';
+
+        if (stopLight === 'red') {
+          console.log('Stop!');
+        } else if (stopLight === 'yellow') {
+          console.log('Slow down.');
+        } else if (stopLight === 'green') {
+          console.log('Go!');
+        } else {
+          console.log('Caution, unknown!');
+        }
+            </code>
+          </pre>
+          <li><strong>Ternary operator: </strong>
+          <i>isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');</i></li>
+          <li><strong>Switch Statement: </strong></li>
+          <pre>
+            <code>
+        let groceryItem = 'papaya';
+
+        switch (groceryItem) {
+          case 'tomato':
+            console.log('Tomatoes are $0.49');
+            break;
+          case 'lime':
+            console.log('Limes are $1.49');
+            break;
+          case 'papaya':
+            console.log('Papayas are $1.29');
+            break;
+          default:
+            console.log('Invalid item');
+            break;
+        }
+          
+        // Prints 'Papayas are $1.29'
+            </code>
+          </pre>
+          <hr/>
+          <h3>Functions</h3>
+          <li>In Javascript, there are many ways to create a function: </li>
+          <ul>
+            <li><strong>Function Declaration: </strong></li>
+            <pre>
+              <code>
+      function greeting (name = 'stranger') {
+        console.log(`Hello, ${name}!`)
+      }
+        
+      greeting('Nick') // Output: Hello, Nick!
+      greeting() // Output: Hello, stranger! 
+              </code>
+            </pre>
+            <li><strong>Helper Function: </strong>
+            We can use the return value of a function inside another function. These functions being 
+            called within another function are often referred to as helper functions.</li>
+            <li><strong>Function expression: </strong>
+            Another way to define a function. In a function expression, the function name 
+            is usually omitted. A function with no name is called an anonymous function.</li>
+            <pre>
+              <code>
+        const plantNeedsWater = function(day){
+          if(day === 'Wednesday'){
+            return true;
+          } else{
+            return false;
+          }
+        };
+              </code>
+            </pre>
+            <li><strong>Arrow Functions: </strong>Remove the need to type out the 
+            keyword function every time you need to create a function.</li>
+            <pre>
+              <code>
+          const rectangleArea = (width, height) => {
+            let area = width * height;
+            return area;
+          };
+
+          //Concisedb body
+          const squareNum = (num) => {
+            return num * num;
+          };
+
+          // We can refactor the function to:
+          const squareNum = num => num * num;
+
+              </code>
+            </pre>
+          </ul>
+          <li><strong>Methods: </strong>Since functions are a type of object, they have properties such as 
+            <i>.length</i> and <i>.name</i>, and methods such as <i>.toString()</i>. <strong>List
+            of methods</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">here</a>.</li>
+          <li><strong>Higher-order function: </strong>Is a function that either accepts functions as parameters, 
+          returns a function, or both. We call functions that get passed in as parameters <strong>callback functions</strong>. 
+          Callback functions get invoked during the execution of the higher-order function.
+          With callback functions, we pass in the function itself by typing the function name without 
+          the parentheses:</li>
+          <pre>
+            <code>
+        const higherOrderFunc = param => {
+          param();
+          return `I just invoked ${param.name} as a callback function!`
+        }
+        const anotherFunc = () => {
+          return 'I\'m being invoked by the higher-order function!';
+        }
+          
+        higherOrderFunc(anotherFunc);
+
+
+        // Anonymous function:
+
+        higherOrderFunc(() => {
+          for (let i = 0; i <= 10; i++){
+            console.log(i);
+          }
+        });
+            </code>
+          </pre>
+  
+        <hr/>
+        <h3>Scope</h3>
+        <li>Scope refers to where variables can be accessed throughout the program, and is determined by 
+        where and how they are declared.
+        <ul>
+          <li><strong>Blocks: </strong>Are statements that exist within curly braces {}.</li>
+          <li><strong>Global scope: </strong>Refers to the context within which variables are accessible to every 
+          part of the program.</li>
+          <li><strong>Global variables: </strong>Are variables that exist within global scope.</li>
+          <li><strong>Block scope: </strong>Refers to the context within which variables are accessible only within the block 
+          they are defined.</li>
+          <li><strong>Local variables: </strong>Are variables that exist within block scope.</li>
+          <li><strong>Global namespace: </strong>Is the space in our code that contains globally scoped information.</li>
+          <li><strong>Scope pollution: </strong>Is when too many variables exist in a namespace or variable names are reused.</li>
+        </ul>
+        <hr/>
+        <h3>Arrays</h3>
+        <li>Arrays are JavaScript’s way of making lists. Arrays can store any data types (including 
+          strings, numbers, and booleans). Like lists, arrays are ordered, meaning each item has a 
+          numbered position. Variables declared with let can be reassigned.
+          Variables declared with the <i>const</i> keyword cannot be reassigned. However, elements in an 
+          array declared with <i>const</i> remain mutable. Meaning that we can change the contents of a const 
+          array, but cannot reassign a new array or a different value.</li>
+        <pre>
+          <code>
+      let seasons = ['Winter', 'Spring', 'Summer', 'Fall'];
+      
+      // Update
+      seasons[3] = 'Autumn';
+      console.log(seasons); 
+      //Output: ['Winter', 'Spring', 'Summer', 'Autumn']
+          </code>
+        </pre>
+        <li><strong>Properties and Methods: </strong>List <a href="https://www.codecademy.com/resources/docs/javascript/arrays" target="_blank">here</a>.
+        <strong>Pass-by-reference:</strong>When you pass an array into a function, if the array is mutated 
+        inside the function, that change will be maintained outside the function as well.</li>
+        <ul>
+          <li><strong>length: </strong>One of an array’s built-in properties is length and it returns 
+          the number of items in the array. </li>
+          <li><strong>push(): </strong>Allows us to add items to the end of an array by mutating.</li>
+          <li><strong>pop(): </strong>Removes the last item of an array by mutating.</li>
+        </ul>
+        <li><strong>Array Iterator:</strong> Methods called on arrays to manipulate elements and return values.
+        <strong>Documentation</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">here</a>.</li></li>
+        <ul>
+            <li><strong>.forEach()</strong> is used to execute the same code on every element in an array but 
+            does not change the array and returns undefined. <i>groceries.forEach(groceryItem => console.log(groceryItem));</i></li>
+            <li><strong>.map()</strong> executes the same code on every element in an array and returns a new array with the updated elements.</li>
+            <pre>
+              <code>
+      const numbers = [1, 2, 3, 4, 5]; 
+
+      const bigNumbers = numbers.map(number => {
+        return number * 10;
+      });
+              </code>
+            </pre>
+            <li><strong>.filter()</strong> checks every element in an array to see if it meets certain criteria and returns a new array with the elements that return truthy for the criteria.</li>
+            <pre>
+              <code>
+      const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
+
+      const shortWords = words.filter(word => {
+        return word.length < 6;
+      });
+              </code>
+            </pre>
+            <li><strong>.findIndex()</strong> returns the index of the first element of an array that satisfies a condition in the callback function. It returns -1 if none of the elements in the array satisfies the condition.</li>
+            <pre>
+              <code>
+        const jumbledNums = [123, 25, 78, 5, 9]; 
+
+        const lessThanTen = jumbledNums.findIndex(num => {
+          return num < 10;
+        });
+              </code>
+            </pre>
+            <li><strong>.reduce():</strong> Iterates through an array and takes the values of the elements and 
+            returns a single value. The <i>.reduce()</i> method can also take an optional second parameter to
+            set an initial value for accumulator.</li>
+            <pre>
+              <code>
+        const numbers = [1, 2, 4, 10];
+
+        const summedNums = numbers.reduce((accumulator, currentValue) => {
+          return accumulator + currentValue
+        }, 100)  // <- Second argument for .reduce()
+        
+        console.log(summedNums); // Output: 117
+              </code>
+            </pre>
+            
+            <li>All iterator methods take a callback function, which can be a pre-defined function, a function expression, or an arrow function.</li>
+        </ul>
+        <p class="center">How to turn <strong>strings</strong> into an <strong>array?</strong></p>
+        <button id="showCode1" onclick="showCode('displayCode1', 'showCode1')">Display</button>
+        <div id="displayCode1">
+            <button onclick="closeCode('displayCode1', 'showCode1')">Close</button>
+            <pre>
+                <code>
+      function reverseArray(array){
+          let reversed = [];
+      for(let i = array.length - 1; i >= 0; i--){
+          reversed.push(array[i]);
+      }
+          return reversed;
+      }
+                </code>
+            </pre>
+        </div>
+        <p class="center">How to make an mathematical operation over every number from an array?</strong></p>
+        <button id="showCode2" onclick="showCode('displayCode2', 'showCode2')">Display</button>
+        <div id="displayCode2">
+            <button onclick="closeCode('displayCode2', 'showCode2')">Close</button>
+            <pre>
+                <code>
+                    const initialValue = 0;
+                    const sumWithInitial = array1.reduce(
+                        (accumulator, currentValue) => accumulator + currentValue,
+                        initialValue
+                    );
+                </code>
+            </pre>
+        </div>
+        <hr/>
+        <h3>Loop</h3>
+        <li><strong>For Loop:</strong></li>
+        <pre>
+          <code>
+        for (let counter = 0; counter < 4; counter++) {
+          console.log(counter);
+        }
+          </code>
+        </pre>
+        <li><strong>Nested Loop: </strong>One use for a nested for loop is to compare the elements in 
+        two arrays. For each round of the outer for loop, the inner for loop will run completely.</li>
+        <pre>
+          <code>
+      const myArray = [6, 19, 20];
+      const yourArray = [19, 81, 2];
+      for (let i = 0; i < myArray.length; i++) {
+        for (let j = 0; j < yourArray.length; j++) {
+          if (myArray[i] === yourArray[j]) {
+            console.log('Both arrays have the number: ' + yourArray[j]);
+          }
+        }
+      }
+          </code>
+        </pre>
+        <li><strong>While Loop: </strong>The syntax of a while loop is ideal when we 
+        don’t know in advance how many times the loop should run.</li>
+        <pre>
+          <code>
+      let counterTwo = 1;
+      while (counterTwo < 4) {
+        console.log(counterTwo);
+        counterTwo++;
+      }
+          </code>
+        </pre>
+        <li><strong>Do While: </strong></li>
+        <pre>
+          <code>
+      let countString = '';
+      let i = 0;
+      
+      do {
+        countString = countString + i;
+        i++;
+      } while (i < 5);
+      
+      console.log(countString);
+          </code>
+        </pre>
+        <hr/>
+        <h3>Objects</h3>
+        <li>Many components of the language are actually objects under the hood, and even the parts that 
+        aren’t— like strings or numbers— can still act like objects in some instances.
+        There are only seven fundamental data types in JavaScript, and six of those are the primitive 
+        data types: string, number, boolean, null, undefined, and symbol. With the seventh type, objects, 
+        we open our code to more complex possibilities. Resume <a href="pages/objects.html" target="_blank">here</a>.</li> 
+        <li>We can use JavaScript objects to model real-world things, like a basketball, or we can use 
+        objects to build the data structures that make the web possible. Objects can be assigned 
+        to variables just like any JavaScript type. We use curly braces, <i>{}</i>, to designate an object literal:
+        We fill an object with unordered data. This data is organized into key-value pairs. A key is like a 
+        variable name that points to a location in memory that holds a value.</li>
+        <pre>
+          <code>
+        // An object literal with two key-value pairs
+        
+        let spaceship = {
+          'Fuel Type': 'Turbo Fuel',
+          'Active Duty': true,
+          color: 'silver',
+          numCrew: 5
+        };
+          </code>
+        </pre>
+        <li><strong>Access Property: </strong>Objects are mutable, meaning we can update 
+        them after we create them.</li>
+        <ul>
+          <li><strong>Dot Notation: </strong>To access property, we use dot notation: 
+          <i>spaceship.color; // Returns 'silver'</i></li>
+          <li><strong>Bracket Notation: </strong>The second way to access a key’s value is by using 
+          bracket notation, <i>[ ]</i>. We pass in the property name (key) as a string.
+          We must use bracket notation when accessing keys that have numbers, spaces, or special 
+          characters in them. <i>spaceship['Fuel Type']; // Returns  'Turbo Fuel'</i>,
+          <i>spaceship['numCrew']; // Returns 5</i></li>
+          <p class="center"><strong>Nested Object</strong></p>
+          <button id="showCode144" onclick="showCode('displayCode144', 'showCode144')">Display</button>
+          <div id="displayCode144">
+            <button onclick="closeCode('displayCode144', 'showCode144')">Close</button>
+            <pre>
+              <code>
+        const spaceship = {
+          telescope: {
+              yearBuilt: 2018,
+              model: '91031-XLT',
+              focalLength: 2032 
+          },
+          crew: {
+              captain: { 
+                  name: 'Sandra', 
+                  degree: 'Computer Engineering', 
+                  encourageTeam() { console.log('We got this!') } 
+              }
+          },
+          engine: {
+              model: 'Nimbus2000'
+          },
+          nanoelectronics: {
+              computer: {
+                  terabytes: 100,
+                  monitors: 'HD'
+              },
+              'back-up': {
+                battery: 'Lithium',
+                terabytes: 50
+              }
+          }
+        }; 
+              </code>
+            </pre>
+          </div>
+        </ul>
+        <li><strong>Pass by Reference: </strong>Objects are passed by reference. This means when we pass 
+        a variable assigned to an object into a function as an argument, the computer interprets the 
+        parameter name as pointing to the space in memory holding that object. As a result, functions 
+        which change object properties actually 
+        mutate the object permanently (even when the object is assigned to a const variable).</li>
+        <pre>
+          <code>
+  const spaceship = {
+    homePlanet : 'Earth',
+    color : 'silver'
+  };
+    
+  let paintIt = obj => {
+    obj.color = 'glorious gold'
+  };
+    
+  paintIt(spaceship);
+    
+  spaceship.color // Returns 'glorious gold'
+          </code>
+        </pre>
+        <p class="center"><strong>Another example</strong></p>
+        <button id="showCode145" onclick="showCode('displayCode145', 'showCode145')">Display</button>
+        <div id="displayCode145">
+          <button onclick="closeCode('displayCode145', 'showCode145')">Close</button>
+          <li>Our function <i>paintIt()</i> permanently changed the color of our spaceship object. However, 
+          reassignment of the spaceship variable wouldn’t work in the same way:</li>
+          <pre>
+            <code>
+        let spaceship = {
+          homePlanet : 'Earth',
+          color : 'red'
+        };
+        let tryReassignment = obj => {
+          obj = {
+            identified : false, 
+            'transport type' : 'flying'
+          }
+          console.log(obj) // Prints {'identified': false, 'transport type': 'flying'}
+          
+        };
+        tryReassignment(spaceship) // The attempt at reassignment does not work.
+        spaceship // Still returns {homePlanet : 'Earth', color : 'red'};
+          
+        spaceship = {
+          identified : false, 
+          'transport type': 'flying'
+        }; // Regular reassignment still works.
+            </code>
+          </pre>
+        </div>
+        <li><strong>Looping through objects: </strong></li>
+        <pre>
+          <code>
+      // for...in
+      for (let crewMember in spaceship.crew) {
+        console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
+      }
+          </code>
+        </pre>
+        <li><strong>This Keyword: </strong>The <i>this</i> keyword references the calling object which provides 
+        access to the calling object’s 
+        properties. In other words, refers to the object that is currently executing a function. It provides 
+        a way to refer to the current object or context, depending on how the function is called or used.
+        <strong>Arrow functions</strong> behave differently when it comes to 1<i>this</i>. Unlike regular functions, 
+        arrow functions don't have their own this context. Instead, they inherit the <i>this</i> value from 
+        the parent scope, which is the closest non-arrow function. In other words, the value of <i>this</i> 
+        in an arrow function is determined by the enclosing scope.
+        Below, inside the scope of the <i>.diet()</i> method, we don’t automatically have 
+        access to other properties of the goat object. Here’s where the this keyword comes to the rescue. 
+        If we change the <i>.diet()</i> method to use the <i>this</i>, the <i>.diet()</i> works.
+        The calling object is goat and by using <i>this</i> we’re accessing 
+        the goat object itself, and then the dietType property of goat by using property dot notation.</li>
+        <pre>
+          <code>
+    const goat = {
+      dietType: 'herbivore',
+      makeSound() {
+        console.log('baaa');
+      },
+      diet() {
+        console.log(this.dietType);
+      }
+    };
+      
+    goat.diet(); 
+    // Output: herbivore
+          </code>
+        </pre>
+        <li><strong>Privacy: </strong>Certain languages have privacy built-in for objects, but JavaScript
+        does not have this feature. Rather, JavaScript developers follow naming conventions that signal 
+        to other developers how to interact with a property. One common convention is to place an 
+        underscore <i>_</i> before the name of a property to mean that the property should not be altered
+        (even though it can be).</li>
+        <pre>
+          <code>
+    const bankAccount = {
+      _amount: 1000
+    }
+          </code>
+        </pre>
+        <li><strong>Getter & Setter:</strong></li>
+        <ul>
+          <li><strong>Getters:</strong> are methods that get and return the internal properties of an object. 
+          They can perform an action on the data when getting a property; can return different values using 
+          conditionals; we can access the properties of the calling object using <i>this</i>;
+          the functionality of our code is easier for other developers to understand.
+          When using getter (and setter) methods, properties cannot share the same name as the 
+          getter/setter function. If we do so, then calling the method will result in an infinite call stack 
+          error - one workaround is to add an underscore before the property name.
+          </li>
+          <pre>
+            <code>
+        const person = {
+          _firstName: 'John',
+          _lastName: 'Doe',
+          get fullName() {
+            if (this._firstName && this._lastName){
+              return `${this._firstName} ${this._lastName}`;
+            } else {
+              return 'Missing a first name or a last name.';
+            }
+          }
+        }
+          
+        // To call the getter method: 
+        person.fullName; // 'John Doe'
+            </code>
+          </pre>
+          <li><strong>Setters: </strong>Creates setter methods which reassign values of existing properties 
+          within an object. </li>
+          <pre>
+            <code>
+      const person = {
+        _age: 37,
+        set age(newAge){
+          if (typeof newAge === 'number'){
+            this._age = newAge;
+          } else {
+            console.log('You must assign a number to age');
+          }
+        }
+      };
+
+      person.age = 40;
+      console.log(person._age); // Logs: 40
+      person.age = '40'; // Logs: You must assign a number to age
+            </code>
+          </pre>
+        </ul>
+        <li><strong>Factory Functions: </strong>. A factory function is a object factory. 
+        It's a function that returns an object and can be reused to make multiple object instances. 
+        Factory functions can also have parameters allowing us to customize the object that gets returned.</li>
+        <pre>
+          <code>
+    const monsterFactory = (name, age, energySource, catchPhrase) => {
+      return { 
+        name: name,
+        age: age, 
+        energySource: energySource,
+        scare() {
+          console.log(catchPhrase);
+        } 
+      }
+    };
+
+    const ghost = monsterFactory('Ghouly', 251, 'ectoplasm', 'BOO!');
+    ghost.scare(); // 'BOO!'
+
+
+    // Property value shorthand saves ourselves some keystrokes.
+    The above could be written like this: 
+
+    const monsterFactory = (name, age) => {
+      return { 
+        name,
+        age 
+      }
+    };
+          </code>
+        </pre>
+        <li><strong>Destructured Assignment: </strong>In destructured assignment we create a variable with 
+        the name of an object’s key that is wrapped in curly braces <i>{ }</i> and assign to it the object.</li>
+        <pre>
+          <code>
+          const { residence } = vampire; 
+          console.log(residence); // Prints 'Transylvania'
+
+          const { day } = vampire.preferences; 
+          console.log(day); // Prints 'stay inside'
+          </code>
+        </pre>
+        <li><strong>Built-in Object Methods: </strong><strong>List </strong>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods_of_the_Object_constructor" target="_blank">here</a></li>
+        <hr/>
+      </ul>
+    </div>
+  </body>
+</html>

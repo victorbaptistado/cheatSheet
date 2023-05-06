@@ -4,1056 +4,1046 @@
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
         <script src="./component/button.js" defer></script>
         <title>PHP</title>
-    </header>
-    <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="#">AI</a></li>
-                <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./operationalSystem.html">Operational System</a></li>
-                <li><a href="./debugTesting.html">Debug & Testing</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="./AI.html">AI</a></li>
                 <li><a href="./git.html">Git</a></li>
-                <li><a href="./form.html">Form</a></li>
-                <li><a href="./api.html">API</a></li>  
-                <li><a href="./react.html">REACT</a></li>
-                <li><a href="./index.html">Helpful Content</a></li> 
-                <li><a href="./backend.html">Backend</a></li>
             </ul>
         </nav>
-        <header>
-            <div class="styleGuide">
-                <h1>PHP</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h1>PHP</h1>
+            <ul>
+                <li><strong>PHP:</strong> Is often used to build dynamic web pages. A dynamic web page is one where 
+                each visitor to the website gets a customized page that can look different than how the 
+                site looks to another visitor. This is in contrast to static web pages which provide the 
+                same content to each visitor.
+                PHP can be used directly in-line with an HTML document. When the web site is delivered from 
+                the back-end to the front-end, the PHP content is executed and added to the HTML to form one 
+                HTML document. The start of in-line PHP is denoted with <i>< ?php</i> and the end is denoted 
+                with <i>?></i>. 
+                <strong>Documentation </strong><a href="https://www.php.net/docs.php" target="_blank">here</a>.
+                <strong>Video Project</strong> <a href="https://www.youtube.com/watch?v=Ar6Zw0tojvE" target="_blank">here</a>.</li>
+                <li><strong>Frameworks: </strong>Some popular PHP frameworks are:
+                <a href="https://laravel.com/" target="_blank">Laravel</a>, 
+                <a href="https://cakephp.org/" target="_blank">CakePHP</a> and 
+                <a href="https://symfony.com/" target="_blank">Symfony</a>.</li>
+                <li><strong>Basics:</strong></li>
                 <ul>
-                    <li><strong>PHP:</strong> Is often used to build dynamic web pages. A dynamic web page is one where 
-                    each visitor to the website gets a customized page that can look different than how the 
-                    site looks to another visitor. This is in contrast to static web pages which provide the 
-                    same content to each visitor.
-                    PHP can be used directly in-line with an HTML document. When the web site is delivered from 
-                    the back-end to the front-end, the PHP content is executed and added to the HTML to form one 
-                    HTML document. The start of in-line PHP is denoted with <i>< ?php</i> and the end is denoted 
-                    with <i>?></i>. 
-                    <strong>Documentation </strong><a href="https://www.php.net/docs.php" target="_blank">here</a>.
-                    <strong>Video Project</strong> <a href="https://www.youtube.com/watch?v=Ar6Zw0tojvE" target="_blank">here</a>.</li>
-                    <li><strong>Frameworks: </strong>Some popular PHP frameworks are:
-                    <a href="https://laravel.com/" target="_blank">Laravel</a>, 
-                    <a href="https://cakephp.org/" target="_blank">CakePHP</a> and 
-                    <a href="https://symfony.com/" target="_blank">Symfony</a>.</li>
-                    <li><strong>Basics:</strong></li>
-                    <ul>
-                        <li>The echo keyword is used to output text. The text in this case 
-                        is everything between the double quotes <i>(")</i>. An instruction written in PHP is called a 
-                        statement. A semicolon <i>(;)</i> is required at the end of each statement in PHP.</li>
-                        <pre>
-                            <code>
-                    <?php echo "< p > This code is interpreted by PHP and turned into HTML< /p >";?>
-                            </code>
-                        </pre>
-                        <li><strong>Comments</strong> <i>#</i> or <i>//</i> can be used to create a single line comment.
-                        For multi line use <i>/*</i> and ended with <i>*/</i>.</li>
-                    </ul>
-                    <li><strong>Script File: </strong>PHP is flexible and can also be executed from the terminal. We can use PHP as a general 
-                    purpose programming language to write programs that give simple instructions to the 
-                    computer without involving HTML or the web. When writing a PHP script file, we still need 
-                    to denote that we are beginning our PHP code using <i>< ?php</i>, but the closing tag is no longer
-                    required. It is typically left out by convention.</li>
+                    <li>The echo keyword is used to output text. The text in this case 
+                    is everything between the double quotes <i>(")</i>. An instruction written in PHP is called a 
+                    statement. A semicolon <i>(;)</i> is required at the end of each statement in PHP.</li>
                     <pre>
                         <code>
-            <?php
-            echo "Hello, World!";       
+                <?php echo "< p > This code is interpreted by PHP and turned into HTML< /p >";?>
                         </code>
                     </pre>
-                    <hr>
-                    <h3>String & Variables</h3>
-                    <li><strong>Concatenation: </strong>We use (.) to concatenate. 
-                    <i>echo "one" . "two"; // Prints: onetwo</i>. There's a concatenating assignment operator: 
-                    <i>.=</i>. Example:</li>
+                    <li><strong>Comments</strong> <i>#</i> or <i>//</i> can be used to create a single line comment.
+                    For multi line use <i>/*</i> and ended with <i>*/</i>.</li>
+                </ul>
+                <li><strong>Script File: </strong>PHP is flexible and can also be executed from the terminal. We can use PHP as a general 
+                purpose programming language to write programs that give simple instructions to the 
+                computer without involving HTML or the web. When writing a PHP script file, we still need 
+                to denote that we are beginning our PHP code using <i>< ?php</i>, but the closing tag is no longer
+                required. It is typically left out by convention.</li>
+                <pre>
+                    <code>
+        <?php
+        echo "Hello, World!";       
+                    </code>
+                </pre>
+                <hr>
+                <h3>String & Variables</h3>
+                <li><strong>Concatenation: </strong>We use (.) to concatenate. 
+                <i>echo "one" . "two"; // Prints: onetwo</i>. There's a concatenating assignment operator: 
+                <i>.=</i>. Example:</li>
+                <pre>
+                    <code>
+        $full_name = "Aisle";
+        $full_name .= " Nevertell";
+        echo $full_name; // Prints: Aisle Nevertell
+                    </code>
+                </pre>
+                <li><strong>Variables: </strong></li>
+                <ul>
+                    <li>To declare a variable we use the dollar sign character <i>($)</i> 
+                    followed by our chosen variable name. The dollar sign is known as a sigil; it’s a 
+                    character that allows the computer to see quickly that something is a variable.
+                    One common convention when naming PHP variables is to use an underscore between words on 
+                    variable names with more than one word in their name. This is known as snake case:</li>
                     <pre>
                         <code>
-            $full_name = "Aisle";
-            $full_name .= " Nevertell";
-            echo $full_name; // Prints: Aisle Nevertell
-                        </code>
-                    </pre>
-                    <li><strong>Variables: </strong></li>
-                    <ul>
-                        <li>To declare a variable we use the dollar sign character <i>($)</i> 
-                        followed by our chosen variable name. The dollar sign is known as a sigil; it’s a 
-                        character that allows the computer to see quickly that something is a variable.
-                        One common convention when naming PHP variables is to use an underscore between words on 
-                        variable names with more than one word in their name. This is known as snake case:</li>
-                        <pre>
-                            <code>
-                $mood = ":)";
-                $favorite_food = "Red curry with eggplant";
+            $mood = ":)";
+            $favorite_food = "Red curry with eggplant";
 
-                echo $mood
-                            </code>
-                        </pre>
-                        <li>We can also create an <strong>alias</strong>, or nickname, for a variable. Instead of a copy of the 
-                        original variable’s value, we create a new name which points to the same spot in memory.
-                        For this we use a different operator for this—the reference assignment operator (=&).</li>
-                        <pre>
-                            <code>
-                $first_player_rank = "Beginner";
-                $second_player_rank =& $first_player_rank; 
-                echo $second_player_rank; // Prints: Beginner
-                
-                $first_player_rank = "Intermediate"; // Reassign the value of $first_player_rank
-                echo $second_player_rank; // Prints: Intermediate
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Parsing Variable within string: </strong>PHP strings allow us to place variables directly into double quoted strings. These 
-                    variables will be parsed which means the computer will read the variables as the 
-                    value they hold rather than see them as just a sequence of characters.
-                    PHP allows us to specifically indicate the variable name by wrapping it in curly braces to 
-                    avoid any confusion.</li>
+            echo $mood
+                        </code>
+                    </pre>
+                    <li>We can also create an <strong>alias</strong>, or nickname, for a variable. Instead of a copy of the 
+                    original variable’s value, we create a new name which points to the same spot in memory.
+                    For this we use a different operator for this—the reference assignment operator (=&).</li>
                     <pre>
                         <code>
-            $dog_name = "Tadpole";
-            $favorite_food = "treat";
-            $color = "brown";
-                
-            echo "I have a ${color}ish dog named $dog_name and her favorite food is ${favorite_food}s.";
-            // Prints: I have a brownish dog named Tadpole and her favorite food is treats.
-                        </code>
-                    </pre>
-                    <hr>
-                    <h3>FUNCTIONS</h3>
-                    <li><strong>Basics: </strong>A few notes on naming conventions, we typically snake case 
-                    (separate words with underscores) our variable names, but, in order to easily tell 
-                    the difference between variables and functions in our code, we use camel case: camelCase 
-                    vs. snake_case. <strong>Video project Mad Lib Functions</strong> 
-                    <a href="https://www.youtube.com/watch?v=jgsxkN90tjg" target="_blank">here</a>.
-                    <strong>Math Functions</strong> <a href="https://www.youtube.com/watch?v=VVnN7WJ94cM" target="_blank">here</a>.</li>
-                    <pre>
-                        <code>
-
-                // Function with default parameter
-                function greetLearner($name = "old chum")
-                {
-                    echo $name
-                    echo "Hello, Learner!\n";
-                    echo "I hope you're enjoying PHP!\n";
-                    echo "Love, Codecademy";
-                    return "blastoff!"
-                }
-
-                function returnFive() 
-                {
-                    return 5;
-                }
-                
-                echo returnFive(); // Prints: 5
-
-
-                // Function that uses the global variable
-                $global_var = "Hello, world!";
-
-                function my_function() {
-                    global $global_var;
-                    echo $global_var; // prints "Hello, world!"
-                    
-                    // modify the value of the global variable
-                    $global_var = "Goodbye, world!";
-                }
-                
-                        </code>
-                    </pre>
-                    <li>If we do want to make permanent changes to a variable within a function, we can prepend 
-                    the parameter name with the reference sign (&). In this way, we assign the parameter to 
-                    be an alias for the argument variable.</li>
-                    <pre>
-                        <code>
-                function addXPermanently (&$param)
-                {
-                    $param = $param . "X";
-                    echo $param;
-                };
-                $word = "Hello";
-                addXPermanently($word); // Prints: HelloX
-                echo $word; // Prints: HelloX
-                        </code>
-                    </pre>
-                    <li><strong>Built-in PHP Functions: </strong></li>
-                    <ul>
-                        <li><strong>gettype():</strong> Takes a variable as its argument and returns a string 
-                        value representing the data type of the argument. <i>echo gettype("Juan"); // Prints: string</i>
-                        <li><strong>var_dump():</strong> Takes a variable argument. It prints details 
-                        about the argument it receives. <i>var_dump($name); // Prints: string(15) "Aisle Nevertell"</i></li>
-                        <li><strong>strrev(): </strong>Takes in a string as its argument and returns a string 
-                        with all of the characters of the original string in reverse order.
-                        <i>echo strrev("Hello, World!");</i></li>
-                        <li><strong>strtolower(): </strong>Transforms an argument string into all lowercase letters:
-                        echo strtolower("HeLLo");</li>
-                        <li><strong>str_repeat(): </strong>Takes a string as its first argument and a 
-                        number as its second. It returns a string containing the argument string repeated the 
-                        argument number of times.
-                        <i>echo str_repeat("hi", 10); // Prints: hihihihihihihihihihi</i></li>
-                        <li><strong>Substring: </strong> Is a portion of a string. <strong>substr_count(): </strong>Returns the number of instances of a substring within 
-                        a string. It takes two arguments, the string to search through—sometimes called the 
-                        haystack— and the string to search for—sometimes called the needle.
-                        <i>echo substr_count($story, "like"); // Within a text with 8 likes writte, it prints: 8</i></li>
-                        <li><strong>Number Functions: </strong></li>
-                        <ul>
-                            <li><strong>abs(): </strong>function returns the absolute 
-                            value of its number argument: <i>echo abs(-10.99); // Prints: 10.99</i></li>
-                            <li><strong>round():</strong> function which returns the nearest integer to its 
-                            number argument: <i>echo round(1.2); // Prints: 1</i></li>
-                        </ul>
-                        <li><strong>Random Numbers: </strong><strong>rand()</strong> function returns a random integer. We have 
-                        some flexibility with how we invoke it. Invoking <i>rand()</i> with no arguments will return 
-                        a number between 0 and the largest number our current environment will allow; this is 
-                        a quirk of PHP. We can find out what this number is by invoking a different built-in 
-                        function, <strong>getrandmax()</strong>. We can invoke a random number within a range:
-                        <i>echo rand(5, 10); // Prints a number between 5 and 10 (inclusive!)</i></li>
-                    </ul>
-                    <hr/>
-                    <h3>Comparison</h3>
-                    <li><strong>If Statements: </strong>Boolean are represented as TRUE or FAlSE.
-                    <strong>Video Project 8 Magic Ball</strong> 
-                    <a href="https://www.youtube.com/watch?v=5IO8H_I6Q80" target="_blank">here</a>.
-                    <strong>Video Project Number Guessing</strong> 
-                    <a href="https://www.youtube.com/watch?v=2qJddq4UM2c&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <strong>Video Project Save the Farm</strong>
-                    <a href="https://www.youtube.com/watch?v=9WCPKz4E1yA&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
-                    <pre>
-                        <code>
-                $is_clicked = TRUE;
-                if ($is_clicked) {
-                    $link_color = "purple";
-                    echo $link_color;
-                }
-
-                $grade = 88;
-                if ($grade < 60) {
-                    echo "You got an F";
-                } elseif ($grade < 70) {
-                    echo "You got a D";
-                } else {
-                    echo "You got an A";
-                }
-
-                        </code>
-                    </pre>
-                    <li><strong>Identical operator (===): </strong>Will return TRUE if the left operand 
-                    is the same as the right operand and FALSE if it’s not. The not identical operator
-                    (!==) will return TRUE if the two operators are different and FALSE if they’re the same.</li>
-                    <li><strong>Switch: </strong>We can use a series of if/elseif statements which use the identical operator <i>(===)</i> or 
-                    we can use a switch statement—an alternate syntax.</li>
-                    <pre>
-                        <code>
-            switch ($letter_grade){
-                case "A":
-                    echo "Terrific";
-                    break;
-                case "B":
-                    echo "Good";
-                    break;
-                case "C":
-                    echo "See me!";
-                    break;
-                default:
-                    echo "Invalid grade"; 
-                }
-                        </code>
-                    </pre>
-                    <li><strong>Ternary Operator: </strong>PHP offers a short-hand syntax to conditionally 
-                    return a value.</li>
-                    <pre>
-                        <code>
-                $isClicked = FALSE;
-                $link_color = $isClicked ? "purple" : "blue";
-                        </code>
-                    </pre>
-                    <li><strong>readline(): </strong> This function takes a string with which to prompt the user. 
-                    It waits for the user to enter text into the terminal and returns that value as a string.</li>
-                    <pre>
-                        <code>
-                echo "Hi, I'm Aisle Nevertell. What's your name?\n";
-                $name = readline(">> ");
-                echo "\nNice to meet you, $name";
-                        </code>
-                    </pre>
-                    <li><strong>Logical operators: </strong><i>||</i> (or), <i>&&</i> (and), <i>!</i> (not), 
-                    <i>xor</i> (exclusive or).
-                    An alternate syntax for logical <i>||</i> operator is the <i>or</i> operator, and an alternate syntax 
-                    for logical <i>&&</i> operator is the <i>and</i> operator. The <i>or</i> and <i>and</i> logical 
-                    operators have a lower precedence than <i>||</i> and <i>&&</i>.</li>
-                    <li><strong>Include: </strong>This statement will bring the code from a file into the current file and also run 
-                    the code. It’s as if all the code from that file was written right there.</li>
-                    <pre>
-                        <code>
-                // index.php
-                echo "Hello! ";
-                include "one.php";
-                include "two.php";
-                // Prints: Hello! How are you?
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Arrays</h3>
-                    <li><strong>Array: </strong><i>$my_array = array(0, 1, 2);</i>
-                    We can also use <strong>short array syntax</strong>, and more closely resembles what you 
-                    might see in other programming languages. <i>$number_array = [0, 1, 2];</i>.
-                    <strong>Accessing values</strong>use <i>echo $my_array[1]; // Prints: tac</i>.
-                    <strong>Array documentation </strong><a href="https://www.php.net/manual/en/book.array.php" target="_blank">here</a>.
-                    <strong>Video project Bob's Budget</strong><a href="https://www.youtube.com/watch?v=w2-zHEVFy1s&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <li><strong>Built-in Methods: </strong></li>
-                    <ul>
-                        <li><strong>print_r(): </strong>To print the contents of the array, we can use PHP 
-                        built-in functions. The built-in <i>print_r()</i> function outputs arrays in a 
-                        human readable format: <i>print_r($number_array);</i></li>
-                        <li><strong>implode(): </strong>If we merely want to print the elements in the array listed, 
-                        we can convert the array into a string using the built-in <i>implode()</i> function. It takes 
-                        two arguments: a string to use between each element (the $glue), and the array to be 
-                        joined together (the $pieces): <i>echo implode(", ", $number_array);</i></li>
-                        <li><strong>array_pop(): </strong>Takes an array as its argument. It removes the last 
-                        element of an array and returns the removed element.<i>array_pop($my_array);</i></li>
-                        <li><strong>array_push(): </strong> function takes an array as its first argument. 
-                        The arguments that follow are elements to be added to the end of the array. 
-                        <i>$num_added = array_push($new_array, "meeny", "miny", "moe"); </i></li>
-                        <li><strong>array_shift(): </strong>Function removes the first element of an array and 
-                        returns that value. Each of the elements in the array will be shifted down an index. 
-                        <i>$removed = array_shift($adjectives); </i>.</li>
-                        <li><strong>array_unshift(): </strong>Function takes an array as its first argument. 
-                        The arguments that follow are elements to be added to the beginning of the array. 
-                        It returns the new number of elements in the array.</li>
-                    </ul>
-                    <li><strong>Associative Arrays: </strong> A map with a collection of keys and values.
-                    We use the => operator to associate a key with its value.key/value pairsWe can think of keys 
-                    as pointing to their values since the key points the computer to the space in memory where 
-                    the value is stored. 
-                    <i>$my_array = ["panda" => "very cute", "lizard" => "cute", "cockroach" => "not very cute"];</i></li>
-                    We can also build associative arrays using the PHP array() function.
-                    <pre>
-                        <code>
-            $about_me = array(
-                "fullname" => "Aisle Nevertell",
-                "social" => 123456789
-            );  
-                        </code>
-                    </pre>
-                    <li><strong>Built-in Functions:</strong></li>
-                    <ul>
-                        <li>We can use loads of the same functions like in regular arrays.
-                        Even though associative arrays and ordered arrays are technically the same, we 
-                        recommend treating them as separate data types. Only use the empty square brackets 
-                        syntax (or functions like array_push()) with ordered arrays.</li>
-                        <li><strong>unset(): </strong>Removes a key=>value pair entirely.</li>
-                    </ul>
-                    <li><strong>Joining Arrays: </strong>We can combine arrays. The union (+) operator takes 
-                    two array operands and returns a new array with any unique keys from the second array 
-                    appended to the first array.</li>
-                    <pre>
-                        <code>
-            $my_array = ["panda" => "very cute", "lizard" => "cute", "cockroach" => "not very cute"];
-            $more_rankings = ["capybara" => "cutest", "lizard" => "not cute", "dog" => "max cuteness"];
-            $animal_rankings = $my_array + $more_rankings;
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Loops</h3>
-                    <li><strong>Video Project FizzBuzz </strong><a href="https://www.youtube.com/watch?v=Vw6ApXiDqdY&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <li><strong>While: </strong></li>
-                    <pre>
-                        <code>
-            $count = 1;
-            while ($count < 11)
-            {
-                echo "The count is: " . $count . "\n";
-                $count += 1;
-            }
-                        </code>
-                    </pre>
-                    <li><strong>Do While:</strong></li>
-                    <pre>
-                        <Code>
-            $count = 1;
-            do {
-                echo "The count is: " . $count . "\n";
-                $count += 1;
-            } while ($count < 11);
-                        </Code>
-                    </pre>
-                    <li><strong>For Loop:</strong></li>
-                    <pre>
-                        <code>
-            for ($count = 1; $count < 11; $count++)
-            {
-                echo "The count is: " . $count . "\n";
-            }
-                        </code>
-                    </pre>
-                    <li><strong>Foreach: </strong>The foreach loop is used for iterating over an array. 
-                    The code block is executed for every element in the array and the value of that element 
-                    is available for use in the code block. Our counting to 10 example becomes:</li>
-                    <pre>
-                        <code>                            
-            $counting_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-            foreach ($counting_array as $count) {
-                echo "The count is: " . $count . "\n";
-            }
-                        </code>
-                    </pre>
-                    <li><strong>Break and Continue: </strong>Similar to switch statements, the <strong>break</strong> keyword can 
-                    be used to terminate any of the loop types early. The <strong>continue</strong> is used to end execution of 
-                    a loop iteration early and continues to the next iteration. </li>
-                    <hr/>
-                    <h3>PHP AND HTML</h3>
-                    <li>PHP was designed as a back-end web development language—specifically it was designed 
-                    to work well with HTML. PHP allowed a convenient way for developers to create HTML templates 
-                    and programatically fill them out in order to send customized HTML to visitors of their sites.
-                    PHP has evolved into a powerful programming language being used for more than templating 
-                    HTML, but using PHP combined with HTML remains an important part of many web developers’ 
-                    skill sets. We can embed PHP scripts within HTML documents with the opening tag <i>< ?php</i> 
-                    and the closing tag <i>?></i>. The PHP processor will read the entire file, evaluate any PHP, 
-                    translate it into HTML, and pass it off to the web server so it can be sent to the client.
-                    When we use echo within HTML we’re no longer printing to the terminal, rather we’re outputting 
-                    to the HTML document. <strong>Video Project Repetitive Cafe</strong>
-                    <a href="https://www.youtube.com/watch?v=iVP5qw69Z2s&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <pre>
-                        <code>
-                //String example:
-                < html>
-                    < head>
-                        < title>My First PHP Site</ title >
-                    < /head >
-                    < body >
-                        <?php 
-                            echo "< h1 >Oh hi!</ h1 >"; 
-                        ?> 
-                    </ body >
-                < /html>
-
-                //Variable
-                < ?php
-                    $lucky_number = 5 * 2 - 1;
-                    
-                    echo "< h1 >Your lucky number is 
-                    ${lucky_number}< /h1 >";
-                ?>
-
-                //Function
-                < ?php
-                    function makeHeaderGreeting ($name){
-                        return "< h1 >Hello, ${name}!< /h1 >";
-                    }
-                    echo makeHeaderGreeting("World");
-                ?>
-                        </code>
-                    </pre>
-                    <li>Instead of using <i>< ?php</i> echo to begin the statement, you can simply use <i>< ?=</i>.
-                    Our example becomes:</li> 
-                    <pre>
-                        <code>
-                    <  p >This HTML will get delivered as is< /p >
-                    < ?="< p >PHP interprets this and turns it into HTML< /p >";?>
-                    < p >This HTML will get delivered as is< /p >< /li >
-                        </code>
-                    </pre>
-                    <li><strong>Nested Loops: </strong>When adding nested loops, the readability of the code can suffer. To determine 
-                    where loops end, we have to count and match brackets.
-                    Luckily, PHP offers an alternate syntax which is especially useful when working with 
-                    HTML. Instead of using an opening bracket <i>{</i>, we use a colon <i>:</i> and instead of using 
-                    a closing bracket <i>}</i>, we use a closing keyword and semicolon <i>;</i>. For the for loop,
-                    the closing keyword is <i>endfor</i>. The versions for while and foreach loops are very similar.
-                    The only difference is the closing keywords: <i>endwhile;</i> <i>endforeach;</i>.</li>
-                    <pre>
-                        <code>
-                < ul >
-                    < ?php
-                        for ($i = 0; $i < 2; $i++):
-                    ?>
-                    < li >Duck< /li >
-                    < ?php
-                    endfor;
-                ?>
-                < li >Goose< /li >
-                < /ul >
-                        </code>
-                    </pre>
-                    <li>Since we are in HTML mode and not PHP mode when using $name here, it will simply print 
-                    <i>$name</i>, instead of the corresponding item from the array.
-                    Because of this behavior, it’s important to remember to re-enter PHP mode before using PHP 
-                    variables. This can be done using the <i>< ?php</i> opening and <i>?></i> closing tags. 
-                    If you are going to simply be printing the variable using echo, you can also use the echo 
-                    shorthand opening tag <i>< ?=</i>. With this, our example can be fixed like this:</li>
-                    <pre>
-                        <code>
-                < ?php
-                    $array = ["Alice", "Bob", "Charlie"];
-                    foreach($array as $name): ?>
-                    < p >< ?=$name?>< /p >
-                < ?php endforeach; ?>
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>HTML Form Handling</h3>
-                    <li><strong>Video Project PHP Calculator</strong> <a href="https://www.youtube.com/watch?v=5fUaGgOuTmk&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <li><strong>Request Superglobals: </strong>When the front 
-                    end client makes a request to a backend PHP server, several superglobals related to the 
-                    request are available to the PHP script. Superglobals are automatic global variables which 
-                    are available in all scopes throughout a script. The list of superglobals in PHP includes 
-                    the following:
-                    $GLOBALS, $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION, $_REQUEST, $_ENV.</li>
-                    <li><strong>GET Form Handling: </strong>
-                    In HTML, setting a form’s method attribute to "get" specifies that you would like the form 
-                    to be submitted using the GET method. When using this method, the form entries are passed 
-                    as parameters in a URL query string.
-                    For example, this is a request to <i>www.codecademy.com</i> with the URL parameters first (set 
-                    to the value "ellen") and last (set to the value "richards"):
-                    <i>www.codecademy.com/?first=ellen&last=richards</i>
-                    The parameter names (first and last) come from the name attribute of each form input. 
-                    When the form is submitted, the form data is available in the <i>$_GET</i> superglobal array. 
-                    The data is also accessible using <i>$_REQUEST</i> if you do not care about which method was 
-                    used by the client.
-                    In our example below, if a user typed “ellen” into the first input and “richards” into the 
-                    last input, then <i>print_r($_GET)</i> would look like this:
-                    <i>Array ( [first] => ellen [last] => richards )</i>
-                    To echo the value of the first input, we pass the parameter name to the <i>$_GET array</i> 
-                    like: <i>< ?=$_GET['first'];?></i>
-                    The following form could be used to collect an individual’s name using the GET method:</li>
-                    <pre>
-                        <code>
-                < form method="get" >
-                    First name: < input type="text" name="first" >
-                    < br >
-                    Last name: < input type="text" name="last" >
-                    < br >
-                    < input type="submit" value="Submit Name">
-                < /form >
-                        </code>
-                    </pre>
-                    <li><strong>POST Request: </strong>
-                    When using POST to submit forms, you will not see the URL change. The form data is sent 
-                    using the headers of the HTTP request instead of URL parameters.
-                    When the form is submitted, the input data is available in 
-                    the <i>$_POST</i> superglobal. Similar to <i>GET</i>, it is also available in <i>$_REQUEST</i>.</li>
-                    <pre>
-                        <code>
-                < form method="post" >
-                    First name: < input type="text" name="first" >
-                    < br >
-                    Last name: < input type="text" name="last" >
-                    < br >
-                    < input type="submit" value="Submit Name" > 
-                < /form >
-                    
-                //The URL would not change and print_r($_POST) would look like this:
-                    
-                Array ( [first] => Katharine [last] => McCormick )
-                        </code>
-                    </pre>
-                    <li><strong>Action Attribute: </strong>Often times there is no need to present a user with 
-                    the same form over and over again. It might make sense to move them to a new page or thank 
-                    them for their submission.
-                    This is where the action form attribute comes into play. Since we have not specified an 
-                    action yet, HTML defaults to submitting the form data back to the same script that defined 
-                    the form.
-                    If you would like to have the user navigate to a new URL and handle the form input there, 
-                    you can specify the URL in the form’s action attribute. Since the action attribute specifies 
-                    a relative URL, you can also enter the name of a PHP file in the same directory as the current 
-                    one. For example, given this directory: <i>index.php receive_form.php</i>.
-                    To handle a form using <i>receive_form.php</i> from <i>index.php</i>, you would use the following:
-                    <i>< form method="get" action="receive_form.php" ></i> This works for both <i>GET</i> and <i>POST</i> methods.</li>
-                    <hr/>
-                    <h3>Form Validation</h3>
-                    <li><strong>Regex: </strong>The technology that fuels the verification system on nearly 
-                    every website and application 
-                    is the ever reliable, often quirky language of regular expressions, commonly shortened to 
-                    regex, as we will use here, or regexp (pronunciation is up for debate). A regular 
-                    expression is a special sequence of characters that describe a pattern of text that
-                    should be found, or matched, in a string or document. By matching text, we can identify 
-                    how often and where certain pieces of text occur, as well as have the opportunity to replace 
-                    or update these pieces of text if needed. It's used for validating user input in HTML forms;
-                    verifying and parsing text in files, code and applications;
-                    examining test results; finding keywords in emails and web pages.</li>
-                    <ul>
-                        <li><strong>Literals:</strong> The simplest text we can match with regular expressions 
-                        are literals. 
-                        This is where our regular expression contains the exact text that we want to match. 
-                        The regex <i>a</i>, for example, will match the text <i>a</i>, and the regex <i>bananas</i> 
-                        will match the text <i>bananas</i>.</li>
-                        <li><strong>Alternation: </strong>Alternation, performed in regular expressions with the 
-                        pipe symbol, |, allows us to match either the characters preceding the | OR the characters 
-                        after the |. The regex baboons|gorillas will match baboons in the text I love baboons, 
-                        but will also match gorillas in the text I love gorillas.</li>
-                        <li><strong>Grouping: </strong>Denoted with the open parenthesis <i>(</i> and the 
-                        closing parenthesis <i>)</i>, lets us group parts of a regular expression together, 
-                        and allows us to limit alternation to part of the regex.
-                        The regex <i>I love (baboons|gorillas)</i> will match the text I love and then match either 
-                        baboons or gorillas, as the grouping limits the reach of the <i>|</i> to the text within the 
-                        parentheses. These groups are also called capture groups, as they have the power to select, 
-                        or capture, a substring from our matched text.</li>
-                        <li><strong>Character sets: </strong>Denoted by a pair of brackets <i>[]</i>, let us match one character from a 
-                        series of characters, allowing for matches with incorrect or different spellings.
-                        The regex <i>con[sc]en[sc]us</i> will match consensus, the correct spelling of the word, 
-                        but also match the following three incorrect spellings: concensus, consencus, and 
-                        concencus. The letters inside the first brackets, <i>s</i> and <i>c</i>, are the different 
-                        possibilities for the character that comes after con and before en. Similarly for 
-                        the second brackets, s and c are the different character possibilities to come after 
-                        en and before us.
-                        Thus the regex <i>[cat]</i> will match the characters <i>c</i>, <i>a</i>, or <i>t</i>, 
-                        but not the text cat.
-                        We can make our character sets even more powerful with the help of the caret <i>^</i> symbol. 
-                        Placed at the front of a character set, the <i>^</i> negates the set, matching any character 
-                        that is not stated. These are called negated character sets. Thus the regex <i>[^cat]</i> will 
-                        match any character that is not <i>c</i>, <i>a</i>, or <i>t</i>, and would completely 
-                        match each character d, <i>o</i> or <i>g</i>.</li>
-                        <li><strong>Wildcards: </strong>Sometimes we don’t care exactly WHAT characters are in a 
-                        text, just that there are SOME characters. Enter the wildcard <i>.</i> Wildcards will match any 
-                        single character (letter, number, symbol or whitespace) in a piece of text. They are useful 
-                        when we do not care about the specific value of a character, but only that a character 
-                        exists.</li>
-                        <li><strong>Ranges: </strong>Character sets are great, but their true power isn’t realized without ranges. 
-                        Ranges allow us to specify a range of characters in which we can make a match without 
-                        having to type out each individual character. The regex [abc], which would match any 
-                        character <i>a</i>, <i>b</i>, or <i>c</i>, is equivalent to regex range <i>[a-c]</i>. The 
-                        <i>-</i> character allows us to specify that we are interested in matching a range of characters.
-                        The regex <i>I adopted [2-9] [b-h]ats</i> will match the text <i>I adopted 4 bats</i> as well as 
-                        <i>I adopted 8 cats</i> and even <i>I adopted 5 hats</i>.
-                        With ranges we can match any single capital letter with the regex <i>[A-Z]</i>, lowercase 
-                        letter with the regex <i>[a-z]</i>, any digit with the regex <i>[0-9]</i>. We can even have multiple
-                        ranges in the same character set! To match any single capital or lowercase alphabetical 
-                        character, we can use the regex <i>[A-Za-z]</i>.</li>
-                        <li><strong>Shorthand Character Classes:</strong>
-                        While character ranges are extremely useful, they can be cumbersome to write out every 
-                        single time you want to match common ranges such as those that designate alphabetical 
-                        characters or digits. To alleviate this pain, there are shorthand character classes 
-                        that represent common ranges, and they make writing regular expressions much simpler. 
-                        For example, the regex \d\s\w\w\w\w\w\w\w matches a digit character, followed by a 
-                        whitespace character, followed by 7 word characters. Thus the regex completely matches 
-                        the text 3 monkeys. These shorthand classes include:</li>
-                        <ul>
-                            <li><strong>\w</strong>: the “word character” class represents the regex range [A-Za-z0-9_], and it matches 
-                            a single uppercase character, lowercase character, digit or underscore</li>
-                            <li><strong>\d</strong>: the “digit character” class represents the regex range [0-9], and it matches a single 
-                            digit character</li>
-                            <li><strong>\s</strong>: the “whitespace character” class represents the regex range [ \t\r\n\f\v], matching 
-                            a single space, tab, carriage return, line break, form feed, or vertical tab</li>
-                        </ul> 
-                        <li><strong>Negated shorthand character classes: </strong>These shorthands will match any character that 
-                        is NOT in the regular shorthand classes. These negated shorthand classes include:</li>
-                        <ul>
-                            <li><strong>\W</strong>: the “non-word character” class represents the regex range <i>[^A-Za-z0-9_]</i>, matching 
-                            any character that is not included in the range represented by \w</li>
-                            <li><strong>\D</strong>: the “non-digit character” class represents the regex range <i>[^0-9]</i>, matching any 
-                            character that is not included in the range represented by <i>\d</i></li>
-                            <li><strong>\S</strong>: the “non-whitespace character” class represents the regex range <i>[^ \t\r\n\f\v]</i>,
-                            matching any character that is not included in the range represented by <i>\s</i></li>
-                        </ul>
-                        <li><strong>Fixed quantifiers: </strong>Denoted with curly braces <i>{}</i>, let us indicate
-                        the exact quantity of a character we wish to match, or allow us to provide a quantity 
-                        range to match on. An important note is that quantifiers are considered to be greedy. This means that 
-                        they will match the greatest quantity of characters they possibly can. For example, 
-                        the regex <i>mo{2,4}</i> will match the text <i>moooo</i> in the string <i>moooo</i>, and not return a 
-                        match of <i>moo</i>, or <i>mooo</i>. This is because the fixed quantifier wants to match the 
-                        largest number of os as possible, which is 4 in the string <i>moooo</i>.</li>
-                        <ul>
-                            <li><i>\w{3}</i> will match exactly 3 word characters</li>
-                            <li><i>\w{4,7}</i> will match at minimum 4 word characters and at maximum 7 word characters
-                            The regex <i>roa{3}r</i> will match the characters ro followed by 3 as, and then the 
-                            character <i>r</i>, such as in the text roaaar. The regex <i>roa{3,7}r</i> will match 
-                            the characters 
-                            <i>ro</i> followed by at least 3 as and at most 7 as, followed by an <i>r</i>, matching 
-                            the strings <i>roaaar</i>, <i>roaaaaar</i> and <i>roaaaaaaar</i>.</li>
-                        </ul>
-                        <li><strong>Optional quantifiers:</strong> Indicated by the question mark <i>?</i>, allow us to indicate a character in a regex 
-                        is optional, or can appear either 0 times or 1 time. For example, the regex <i>humou?r</i> matches the 
-                        characters <i>humo</i>, then either 0 occurrences or 1 occurrence of the letter <i>u</i>, and finally the letter <i>r</i>. 
-                        Note the <i>?</i> only applies to the character directly before it.
-                        With all quantifiers, we can take advantage of grouping to make even more advanced regexes. The regex <i>The 
-                        monkey ate a (rotten )?banana</i> will completely match both <i>The monkey ate a rotten banana</i> and <i>The monkey ate a banana.</i>    
-                        Since the <i>?</i> is a metacharacter, you need to use the escape character in your regex in order to match a question 
-                        mark <i>?</i> in a piece of text. The regex <i>Aren't owl monkeys beautiful\?</i> will thus completely match the text <i>Aren't 
-                        owl monkeys beautiful?</i>.</li>
-                        <li><strong>Kleene star: </strong>Denoted with the asterisk *, is also a quantifier, and matches the preceding character 0 or more 
-                        times. This means that the character doesn’t need to appear, can appear once, or can appear many many times.
-                        The regex meo*w will match the characters <i>me</i>, followed by <i>0</i> or more <i>os</i>, followed by a <i>w</i>. 
-                        Thus the regex will match <i>mew</i>, <i>meow</i>, <i>meooow</i>, and <i>meoooooooooooow</i>.
-                        Another useful quantifier is the Kleene plus, denoted by the plus +, which matches the preceding character 1 
-                        or more times.
-                        The regex meo+w will match the characters me, followed by 1 or more os, followed by a <i>w</i>. Thus the regex will 
-                        match <i>meow</i>, <i>meooow</i>, and <i>meoooooooooooow</i>, but not match mew.
-                        Like all the other metacharacters, in order to match the symbols <i>*</i> and <i>+</i>, you need to use the escape 
-                        character in your regex. The regex My cat is a <i>\*</i> will completely match the text My cat is a <i>*</i>.</li>
-                        <li><strong>Anchors: </strong>When writing regular expressions, it’s useful to make the expression as specific 
-                        as possible in order to ensure that we do not match unintended text. To aid in this mission of specificity, we 
-                        can use the anchor metacharacters. The anchors hat ^ and dollar sign $ are used to match text at the start and 
-                        the end of a string, respectively.
-                        The regex <i>^Monkeys: my mortal enemy$</i> will completely match the text Monkeys: <i>my mortal enemy</i> but not 
-                        match <i>Spider Monkeys: my mortal enemy in the wild</i> or <i>Squirrel Monkeys: my mortal enemy in the wild</i>. The 
-                        <i>^</i> ensures that the matched text begins with Monkeys, and the <i>$</i> ensures the matched text ends with enemy.
-                        Without the anchor tags, the regex Monkeys: my mortal enemy will match the text Monkeys: my mortal enemy in both 
-                        Spider Monkeys: my mortal enemy in the wild and Squirrel Monkeys: my mortal enemy in the wild.
-                        Once again, as with all other metacharacters, in order to match the symbols <i>^</i> and <i>$</i>, you need to use the escape 
-                        character in your regex. The regex <i>My spider monkey has \$10\^6 in the bank</i> will completely match the text <i>My spider 
-                        monkey has $10^6 in the bank</i>.</li>
-                    </ul>
-                    <li><strong>PHP Form Validation: </strong></li>
-                    <pre>
-                        <code>
-                //Check if input beggings with specific letter
-
-                function checkWord($input, $letter){
-                    if ($_SERVER["REQUEST_METHOD"] === "POST" && strtolower($input[0]) !== $letter) {
-                        return "* This word must start with the letter ${letter}!";
-                    } else {
-                        return "";
-                    }
-                }
-                        </code>
-                    </pre>
-                    <li><strong>Built-in sanitization: </strong>PHP provides several built-in functions to help with sanitization:</li>
-                    <ul>   
-                        <li><strong>trim():</strong> Removes any whitespace characters from the beginning or 
-                        end of a string we receive as form input. Though not a security concern, this can help standardize the 
-                        data prior to validation. <i>$email = "     aisle.nevertell@yahoo.com   ";
-                        echo trim($email); // Prints: aisle.nevertell@yahoo.com</i></li>
-                        <li><strong>htmlspecialchars(): </strong>When we want to display the user’s input within our own HTML, we should first run it through 
-                        <i>htmlspecialchars()</i>. This built-in function transforms HTML elements into HTML entities (characters that 
-                        represent HTML elements but won’t display as HTML), so that the PHP interpreter doesn’t recognize them as 
-                        HTML. This prevents, for example, a man-in-the-middle attack in which malicious HTML is injected into a user’s 
-                        view of our site. <i>htmlspecialchars($_POST["html"])</i></li>
-                        <li><strong>filter_var():</strong> Is the <strong>most powerful PHP function for sanitizing data</strong>. 
-                        This function operates on a variable and passes it through a “filter” that produces the desired outcome.
-                        As its first argument, <i>filter_var()</i> takes a variable. As its second, it takes an ID representing the type 
-                        of filtering that should be performed. There are several filters for sanitizing common input types, including 
-                        <strong>FILTER_SANITIZE_EMAIL</strong>. <strong>List </strong><a href="https://www.php.net/manual/en/filter.filters.sanitize" target="_blank">HERE</a>. 
-                        The function will return either the sanitized version of the input or 
-                        FALSE if it was unable to perform the sanitization.</li>
-                        <pre>
-                            <code>
-                        $bad_email = '< a href="www.evil-spam.biz">@gmail.com';
-                        echo filter_var($bad_email, FILTER_SANITIZE_EMAIL);
-                        // Prints: ahref=www.evil-spam.biz@gmail.com  
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Built-in validation: </strong>PHP provides several built-in functions to help with validation:</li>
-                    <ul>
-                        <li><strong>Validation with filter_var(): </strong>We can use the same <i>filter_var()</i> function to validate as 7
-                        well as sanitize! There are a number of provided validation filters - see list 
-                        <a href="https://www.php.net/manual/en/filter.filters.validate.php" target="_blank">here</a>. They work a bit differently from 
-                        the sanitization filters. If the variable is deemed valid, <i>filter_var()</i> will return it; otherwise, it will return FALSE:</li>
-                        <pre>
-                            <code>
-                $bad_email = 'fake - at - prank dot com';
-                if (filter_var($bad_email, FILTER_VALIDATE_EMAIL)){
-                    echo "Valid email!";
-                } else {
-                    echo "Invalid email!";
-                } 
-                // Prints: Invalid email!
-                            </code>
-                        </pre>
-                        <li><strong>Options with filter_var(): </strong>The <i>filter_var()</i> function accepts an optional third argument 
-                        that allows us to fine-tune the operation of a given filter. This argument, often called $options, takes the 
-                        form of a nested associative array.
-                        For example, the <i>$options</i> argument can help us validate that an integer is within a specified range when 
-                        using the integer validation filter <strong>FILTER_VALIDATE_INT</strong>. To do this, we set $options to a nested array 
-                        containing the <i>"min_range"</i> and <i>"max_range"</i> keys in a specific format, shown in the following example:</li>
-                        <pre>
-                            <code>
-                function validateAdult ($age){
-                    $options = ["options" => ["min_range" => 18, "max_range" => 124]];  
-                    if (filter_var($age, FILTER_VALIDATE_INT, $options)) {
-                    echo("You are ${age} years old.");
-                    } else {
-                    echo("That is not a valid age.");
-                    }
-                }
-                    
-                validateAdult(18); // Prints: You are 18 years old.
-                validateAdult(124); // Prints: You are 124 years old.
-                validateAdult(8); // Prints: That is not a valid age.
-                validateAdult(200); // Prints: That is not a valid age.
-                            </code>
-                        </pre>
-                        <li><strong>preg_match():</strong> Takes two string arguments: a pattern string with a regular expression and 
-                        a subject string to check. It returns 1 if it matches, 0 if it doesn’t, and FALSE if there was an error.
-                        For example, we can use the regular expression <i>/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/</i> to test for 
-                        10-digit North American telephone numbers. It will allow spaces, hyphens, or periods as optional separators 
-                        as well as optional parentheses around the first three numbers:</li>
-                        <pre>
-                            <code>
-                $pattern = '/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/';
-                    
-                preg_match($pattern, "(999)-555-2222"); // Returns: 1
-                    
-                preg_match($pattern, "555-2222"); // Returns: 0
-                            </code>
-                        </pre>
-                        <li><strong>strlen()</strong> function to check the length of a given input. Ultimately, the acceptable input length is a 
-                        judgement call for the web engineer. In this example, we chose 100 characters, but some names can be much longer.</li>
-                        <pre>
-                            <code>
-                            $name = "Aisle Nevertell";
-                            $length = strlen($name);
-                            if ($length > 2 && $length < 100){
-                              echo "That seems like a reasonable name to me...";
-                            }
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Validating against back-end data: </strong>The above function isUsernameAvailable uses the built-in function 
-                    <i>isset()</i> to check if a given <i>$username</i> exists in the <i>$users</i> array. In production, this check would 
-                    be done by querying the database.</li>
-                    <pre>
-                        <code>
-                $users = ["coolBro123" => "password123!", "coderKid" => "pa55w0rd*", "dogWalker" => "ais1eofdog$"];
- 
-                function isUsernameAvailable ($username){
-                    global $users;
-                    if (isset($users[$username])){
-                        echo "That username is already taken.";
-                    } else {
-                        echo "${username} is available.";
-                    }
-                }
-                
-                isUsernameAvailable("coolBro123");
-                // Prints: That username is already taken. 
-                
-                isUsernameAvailable("aisleOfPHP");
-                // Prints: aisleOfPHP is available.
-                        </code>
-                    </pre>
-                    <li><strong>Sanitizing for Back-end Storage: </strong>We always need to sanitize all data before storing 
-                    it in our own databases. To sanitize data formatting, we can use the built-in <i>preg_replace()</i> function. The 
-                    <i>preg_replace()</i> takes a regular expression, some replacement text, and a subject string; First, It searches through the subject string 
-                    for instances that match the regular expression. Then, it outputs a copy of the subject string that has the matched 
-                    instances replaced by the replacement string:</li>
-                    <pre>
-                        <code>
-                $one = "codeacademy";
-                $two = "CodeAcademy";
-                $three = "code academy";
-                $four = "Code Academy";
-                    
-                $pattern = "/[cC]ode\s*[aA]cademy/";
-                $codecademy = "Codecademy";
-                    
-                echo preg_replace($pattern, $codecademy, $one);
-                // Prints: Codecademy
-                    
-                echo preg_replace($pattern, $codecademy, $two);
-                // Prints: Codecademy
-                    
-                echo preg_replace($pattern, $codecademy, $three);
-                // Prints: Codecademy
-                    
-                echo preg_replace($pattern, $codecademy, $four);
-                // Prints: Codecademy
-                        </code>
-                    </pre>
-                    <li><strong>Rerouting (redirect): </strong>We can use the PHP <strong>header()</strong> function to perform redirects. 
-                    We call the <i>header()</i> function on a string that begins with "Location: ", followed by the URL we want to redirect 
-                    the user to. For 
-                    example: "Location: https://www.best-puppy-pix.com/". After invoking the <i>header()</i> function we’ll want to use 
-                    the language construct exit to terminate the current script.
-                    To work properly, the <i>header()</i> function needs to be run before anything is output by the script—this includes 
-                    HTML. So we’ll include it in our PHP script before our file outputs any HTML:</li>
-                    <pre>
-                        <code>
-                    if (/* Is the submission data validated? */) {
-                        header("Location: https://www.best-puppy-pix.com/");
-                        exit;
-                    }
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Classes & Objects</h3>
-                    <li><strong>Classes: </strong></li>
-                    <pre>
-                        <code>
-                class Beverage {
-                    public $temperature, $color, $opacity;
-                }
-
-                //Instantiating class as object
-                $tea = new Beverage();
-
-                //Interacting with an object 
-                $tea->temperature = "hot";
-                echo $tea->temperature; 
-                        </code>
-                    </pre>
-                    <li><strong>Objects: </strong>When we instantiate a class, it becomes an object <i>$very_good_dog = new Pet();</i>
-                    We interact with an object’s properties using the object operator 
-                    <i>(->)</i> followed by the name of the property (without the dollar sign, $).
-                    We can use this syntax to assign values to object properties:
-                    <i>$very_good_dog->name = "Lassie";</i> We can also use it to access the existing value of object properties:
-                    <i>echo $very_good_dog->name; # Prints "Lassie"</i></li>
-                    <li><strong>$this</strong> variable refers to the current object; when we invoke this method, $this refers to the 
-                    specific object that called the method.</li>
-                    <li><strong>Constructor method: </strong> Is defined with the special method <i>name __construct</i>.
-                    Constructors can also have parameters. These correspond to arguments passed in when using the new keyword. 
-                    Keep in mind that the number of arguments used when instantiating the object must match the number of parameters 
-                    in the constructor definition otherwise PHP will throw an error.
-                    As an example, if we wanted to initialize the deserves_love property assigned to TRUE for every instance of the Pet 
-                    class, we could use the following constructor:</li>
-                    <pre>
-                        <code>
-                class Pet {
-                    public $deserves_love;
-                    function __construct() {
-                        $this->deserves_love = TRUE;
-                    }
-                }
-                $my_dog = new Pet();
-                if ($my_dog->deserves_love){
-                    echo "I love you!";
-                }
-                // Prints: I love you!
-
-                // With parameter
-                class Pet {
-                    public $name;
-                    function __construct($name) {
-                      $this->name = $name;
-                    }
-                }
-                
-                $dog = new Pet("Lassie");
-                echo $dog->name; // Prints: Lassie 
-                        </code>
-                    </pre>
-                    <li><strong>Inheritance: </strong>Imagine we wanted a Dog class in our program. This class would have all the 
-                    properties of the more general Pet class, but it would have a few more properties and methods specific to only 
-                    dogs. Rather than having to manually duplicate the things the two classes have in common, we can create a new 
-                    class which extends the other. The original class can be thought of as the parent and the new class can be 
-                    thought of as the child class. In object oriented programming, we call this process inheritance since the child 
-                    class inherits properties and methods from its parent class. A child class is also referred to as a subclass in PHP.</li>
-                    <ul>
-                        <li>To define a class that inherits from another, we use the keyword <strong>extends</strong>.
-                        The bellow example, objects of class Dog can bark, but objects of Pet cannot. This makes sense here, because most dogs 
-                        can bark, but not all pets can.</li>
-                        <pre>
-                            <code>
-                class Dog extends Pet {
-                    function bark() {
-                        return "woof";
-                    }
-                }
-                            </code>
-                        </pre>
-                        <li><strong>Overriding Methods: </strong>Sometimes, we want to change how methods behave for subclasses from 
-                        the original parent definition. This is called overriding a method. 
-                        We can call the parent’s definition of the method within the subclass using <i>parent::</i> followed by the method 
-                        <i>name:</i></li>
-                        <pre>
-                            <code>
-                class Dog extends Pet{
-                    function type() {
-                        return "dog";
-                    }
-                    function classify(){
-                        echo "This " . parent::type() . " is of type " . $this->type();
-                        // Prints: This pet is of type dog 
-                    }
-                }
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Visibility</strong> 
-                    <ul>
-                        <li><strong>Private Members:</strong> To understand visibility we need to think about how classes will 
-                        be used in complex programs—in large applications, 
-                        a class might be used in diverse situations (passed around inside functions and used in code written by numerous 
-                        developers). When we think about our classes being used in many situations, we’ll want to consider restricting 
-                        access to certain member data. <strong>Public visibility:</strong> means members can be accessed from within the 
-                        object or from outside it. <strong>Private visibility:</strong> means when a member is only accessible from 
-                        within the object. In the code below, we have the property healthScore. This is a number we use to calculate 
-                        the health of a pet. The healthScore property can be manipulated and accessed by member methods, but since we 
-                        never want the property to be accessed directly outside of the class, we set the property as private. If an attempt 
-                        is made to access the property directly, our code will raise a Fatal Error.</li>
-                        <pre>
-                            <code>
-            class Pet {
-                private $healthScore = 0; 
-                function exercise(){
-                    $this->healthScore++;
-                }
-                function feed(){
-                    $this->healthScore++;
-                }
-                function healthCheck(){
-                if ($this->healthScore >= 2){
-                    echo "This is a healthy pet!";
-                } else {
-                        echo "This is an unhealthy pet";
-                    }
-                }
-            }
-                            </code>
-                        </pre>
-                        <li><strong>Protected: </strong>A class’s private members can only be accessed using methods within that class itself. This isn’t usually 
-                        the desired effect when we have subclasses. To allow members to be accessed from within child classes, 
-                        we can set the visibility within the parent class to protected rather than private. This enables child 
-                        classes to access these properties and methods internally while still preventing them from being accessed 
-                        externally:</li>
-                        <pre>
-                            <code>
-            class Pet {
-            protected $healthScore = 0; 
-            }
+            $first_player_rank = "Beginner";
+            $second_player_rank =& $first_player_rank; 
+            echo $second_player_rank; // Prints: Beginner
             
-            class Horse extends Pet {
-            function brushTeeth() {
-                $this->healthScore++; 
-            }
-            }
-            
-            $my_pet = new Horse();
-            $my_pet->brushTeeth(); // Successfully increments healthScore
-            $my_pet->healthScore; // Error
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Getters and Setters: </strong>The concept of only accessing properties through methods is commonly     
-                    referred to as using getters and setters.</li>
-                    <pre>
-                        <code>
-            class Beverage {
-                private $color;
-                function setColor($color) {
-                    $this->color = strtolower($color);
-                }
-                function getColor() {
-                    return $this->color;
-                }
-            }
-                        </code>
-                    </pre>
-                    <li><strong>Static Members: </strong>
-                    Instantiating objects is the most common way to use classes and is also the most in-line with OOP principles. 
-                    Sometimes though, it can be useful to group a set of utility functions and variables together into a single 
-                    class. Since these don’t change for every instance, we don’t need to instantiate them. We can use them statically.
-                    When a member is intended to be used statically, we add the keyword static to its definition.
-                    Accessing these static members is done a little differently than with objects. We need to use the Scope Resolution 
-                    Operator (::). This can be thought of as switching briefly into the scope of the class itself. Since we are inside 
-                    the scope, we access properties with the dollar sign. </li>
-                    <pre>
-                        <code>
-            class StringUtils {
-                public static $max_number_of_characters = 80;
-                public static function uclast($string) {
-                    $string[strlen($string)-1] = strtoupper($string[strlen($string)-1]);
-                    return $string;
-                }
-            }
-
-            echo StringUtils::$max_number_of_characters; # Prints "80"
-            
-            // Methods are accessed by using the method name:
-            echo StringUtils::uclast("hello world"); # Prints "hello worlD"
+            $first_player_rank = "Intermediate"; // Reassign the value of $first_player_rank
+            echo $second_player_rank; // Prints: Intermediate
                         </code>
                     </pre>
                 </ul>
-            </div>
-        </header>
+                <li><strong>Parsing Variable within string: </strong>PHP strings allow us to place variables directly into double quoted strings. These 
+                variables will be parsed which means the computer will read the variables as the 
+                value they hold rather than see them as just a sequence of characters.
+                PHP allows us to specifically indicate the variable name by wrapping it in curly braces to 
+                avoid any confusion.</li>
+                <pre>
+                    <code>
+        $dog_name = "Tadpole";
+        $favorite_food = "treat";
+        $color = "brown";
+            
+        echo "I have a ${color}ish dog named $dog_name and her favorite food is ${favorite_food}s.";
+        // Prints: I have a brownish dog named Tadpole and her favorite food is treats.
+                    </code>
+                </pre>
+                <hr>
+                <h3>FUNCTIONS</h3>
+                <li><strong>Basics: </strong>A few notes on naming conventions, we typically snake case 
+                (separate words with underscores) our variable names, but, in order to easily tell 
+                the difference between variables and functions in our code, we use camel case: camelCase 
+                vs. snake_case. <strong>Video project Mad Lib Functions</strong> 
+                <a href="https://www.youtube.com/watch?v=jgsxkN90tjg" target="_blank">here</a>.
+                <strong>Math Functions</strong> <a href="https://www.youtube.com/watch?v=VVnN7WJ94cM" target="_blank">here</a>.</li>
+                <pre>
+                    <code>
+
+            // Function with default parameter
+            function greetLearner($name = "old chum")
+            {
+                echo $name
+                echo "Hello, Learner!\n";
+                echo "I hope you're enjoying PHP!\n";
+                echo "Love, Codecademy";
+                return "blastoff!"
+            }
+
+            function returnFive() 
+            {
+                return 5;
+            }
+            
+            echo returnFive(); // Prints: 5
+
+
+            // Function that uses the global variable
+            $global_var = "Hello, world!";
+
+            function my_function() {
+                global $global_var;
+                echo $global_var; // prints "Hello, world!"
+                
+                // modify the value of the global variable
+                $global_var = "Goodbye, world!";
+            }
+            
+                    </code>
+                </pre>
+                <li>If we do want to make permanent changes to a variable within a function, we can prepend 
+                the parameter name with the reference sign (&). In this way, we assign the parameter to 
+                be an alias for the argument variable.</li>
+                <pre>
+                    <code>
+            function addXPermanently (&$param)
+            {
+                $param = $param . "X";
+                echo $param;
+            };
+            $word = "Hello";
+            addXPermanently($word); // Prints: HelloX
+            echo $word; // Prints: HelloX
+                    </code>
+                </pre>
+                <li><strong>Built-in PHP Functions: </strong></li>
+                <ul>
+                    <li><strong>gettype():</strong> Takes a variable as its argument and returns a string 
+                    value representing the data type of the argument. <i>echo gettype("Juan"); // Prints: string</i>
+                    <li><strong>var_dump():</strong> Takes a variable argument. It prints details 
+                    about the argument it receives. <i>var_dump($name); // Prints: string(15) "Aisle Nevertell"</i></li>
+                    <li><strong>strrev(): </strong>Takes in a string as its argument and returns a string 
+                    with all of the characters of the original string in reverse order.
+                    <i>echo strrev("Hello, World!");</i></li>
+                    <li><strong>strtolower(): </strong>Transforms an argument string into all lowercase letters:
+                    echo strtolower("HeLLo");</li>
+                    <li><strong>str_repeat(): </strong>Takes a string as its first argument and a 
+                    number as its second. It returns a string containing the argument string repeated the 
+                    argument number of times.
+                    <i>echo str_repeat("hi", 10); // Prints: hihihihihihihihihihi</i></li>
+                    <li><strong>Substring: </strong> Is a portion of a string. <strong>substr_count(): </strong>Returns the number of instances of a substring within 
+                    a string. It takes two arguments, the string to search through—sometimes called the 
+                    haystack— and the string to search for—sometimes called the needle.
+                    <i>echo substr_count($story, "like"); // Within a text with 8 likes writte, it prints: 8</i></li>
+                    <li><strong>Number Functions: </strong></li>
+                    <ul>
+                        <li><strong>abs(): </strong>function returns the absolute 
+                        value of its number argument: <i>echo abs(-10.99); // Prints: 10.99</i></li>
+                        <li><strong>round():</strong> function which returns the nearest integer to its 
+                        number argument: <i>echo round(1.2); // Prints: 1</i></li>
+                    </ul>
+                    <li><strong>Random Numbers: </strong><strong>rand()</strong> function returns a random integer. We have 
+                    some flexibility with how we invoke it. Invoking <i>rand()</i> with no arguments will return 
+                    a number between 0 and the largest number our current environment will allow; this is 
+                    a quirk of PHP. We can find out what this number is by invoking a different built-in 
+                    function, <strong>getrandmax()</strong>. We can invoke a random number within a range:
+                    <i>echo rand(5, 10); // Prints a number between 5 and 10 (inclusive!)</i></li>
+                </ul>
+                <hr/>
+                <h3>Comparison</h3>
+                <li><strong>If Statements: </strong>Boolean are represented as TRUE or FAlSE.
+                <strong>Video Project 8 Magic Ball</strong> 
+                <a href="https://www.youtube.com/watch?v=5IO8H_I6Q80" target="_blank">here</a>.
+                <strong>Video Project Number Guessing</strong> 
+                <a href="https://www.youtube.com/watch?v=2qJddq4UM2c&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <strong>Video Project Save the Farm</strong>
+                <a href="https://www.youtube.com/watch?v=9WCPKz4E1yA&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                <pre>
+                    <code>
+            $is_clicked = TRUE;
+            if ($is_clicked) {
+                $link_color = "purple";
+                echo $link_color;
+            }
+
+            $grade = 88;
+            if ($grade < 60) {
+                echo "You got an F";
+            } elseif ($grade < 70) {
+                echo "You got a D";
+            } else {
+                echo "You got an A";
+            }
+
+                    </code>
+                </pre>
+                <li><strong>Identical operator (===): </strong>Will return TRUE if the left operand 
+                is the same as the right operand and FALSE if it’s not. The not identical operator
+                (!==) will return TRUE if the two operators are different and FALSE if they’re the same.</li>
+                <li><strong>Switch: </strong>We can use a series of if/elseif statements which use the identical operator <i>(===)</i> or 
+                we can use a switch statement—an alternate syntax.</li>
+                <pre>
+                    <code>
+        switch ($letter_grade){
+            case "A":
+                echo "Terrific";
+                break;
+            case "B":
+                echo "Good";
+                break;
+            case "C":
+                echo "See me!";
+                break;
+            default:
+                echo "Invalid grade"; 
+            }
+                    </code>
+                </pre>
+                <li><strong>Ternary Operator: </strong>PHP offers a short-hand syntax to conditionally 
+                return a value.</li>
+                <pre>
+                    <code>
+            $isClicked = FALSE;
+            $link_color = $isClicked ? "purple" : "blue";
+                    </code>
+                </pre>
+                <li><strong>readline(): </strong> This function takes a string with which to prompt the user. 
+                It waits for the user to enter text into the terminal and returns that value as a string.</li>
+                <pre>
+                    <code>
+            echo "Hi, I'm Aisle Nevertell. What's your name?\n";
+            $name = readline(">> ");
+            echo "\nNice to meet you, $name";
+                    </code>
+                </pre>
+                <li><strong>Logical operators: </strong><i>||</i> (or), <i>&&</i> (and), <i>!</i> (not), 
+                <i>xor</i> (exclusive or).
+                An alternate syntax for logical <i>||</i> operator is the <i>or</i> operator, and an alternate syntax 
+                for logical <i>&&</i> operator is the <i>and</i> operator. The <i>or</i> and <i>and</i> logical 
+                operators have a lower precedence than <i>||</i> and <i>&&</i>.</li>
+                <li><strong>Include: </strong>This statement will bring the code from a file into the current file and also run 
+                the code. It’s as if all the code from that file was written right there.</li>
+                <pre>
+                    <code>
+            // index.php
+            echo "Hello! ";
+            include "one.php";
+            include "two.php";
+            // Prints: Hello! How are you?
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Arrays</h3>
+                <li><strong>Array: </strong><i>$my_array = array(0, 1, 2);</i>
+                We can also use <strong>short array syntax</strong>, and more closely resembles what you 
+                might see in other programming languages. <i>$number_array = [0, 1, 2];</i>.
+                <strong>Accessing values</strong>use <i>echo $my_array[1]; // Prints: tac</i>.
+                <strong>Array documentation </strong><a href="https://www.php.net/manual/en/book.array.php" target="_blank">here</a>.
+                <strong>Video project Bob's Budget</strong><a href="https://www.youtube.com/watch?v=w2-zHEVFy1s&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <li><strong>Built-in Methods: </strong></li>
+                <ul>
+                    <li><strong>print_r(): </strong>To print the contents of the array, we can use PHP 
+                    built-in functions. The built-in <i>print_r()</i> function outputs arrays in a 
+                    human readable format: <i>print_r($number_array);</i></li>
+                    <li><strong>implode(): </strong>If we merely want to print the elements in the array listed, 
+                    we can convert the array into a string using the built-in <i>implode()</i> function. It takes 
+                    two arguments: a string to use between each element (the $glue), and the array to be 
+                    joined together (the $pieces): <i>echo implode(", ", $number_array);</i></li>
+                    <li><strong>array_pop(): </strong>Takes an array as its argument. It removes the last 
+                    element of an array and returns the removed element.<i>array_pop($my_array);</i></li>
+                    <li><strong>array_push(): </strong> function takes an array as its first argument. 
+                    The arguments that follow are elements to be added to the end of the array. 
+                    <i>$num_added = array_push($new_array, "meeny", "miny", "moe"); </i></li>
+                    <li><strong>array_shift(): </strong>Function removes the first element of an array and 
+                    returns that value. Each of the elements in the array will be shifted down an index. 
+                    <i>$removed = array_shift($adjectives); </i>.</li>
+                    <li><strong>array_unshift(): </strong>Function takes an array as its first argument. 
+                    The arguments that follow are elements to be added to the beginning of the array. 
+                    It returns the new number of elements in the array.</li>
+                </ul>
+                <li><strong>Associative Arrays: </strong> A map with a collection of keys and values.
+                We use the => operator to associate a key with its value.key/value pairsWe can think of keys 
+                as pointing to their values since the key points the computer to the space in memory where 
+                the value is stored. 
+                <i>$my_array = ["panda" => "very cute", "lizard" => "cute", "cockroach" => "not very cute"];</i></li>
+                We can also build associative arrays using the PHP array() function.
+                <pre>
+                    <code>
+        $about_me = array(
+            "fullname" => "Aisle Nevertell",
+            "social" => 123456789
+        );  
+                    </code>
+                </pre>
+                <li><strong>Built-in Functions:</strong></li>
+                <ul>
+                    <li>We can use loads of the same functions like in regular arrays.
+                    Even though associative arrays and ordered arrays are technically the same, we 
+                    recommend treating them as separate data types. Only use the empty square brackets 
+                    syntax (or functions like array_push()) with ordered arrays.</li>
+                    <li><strong>unset(): </strong>Removes a key=>value pair entirely.</li>
+                </ul>
+                <li><strong>Joining Arrays: </strong>We can combine arrays. The union (+) operator takes 
+                two array operands and returns a new array with any unique keys from the second array 
+                appended to the first array.</li>
+                <pre>
+                    <code>
+        $my_array = ["panda" => "very cute", "lizard" => "cute", "cockroach" => "not very cute"];
+        $more_rankings = ["capybara" => "cutest", "lizard" => "not cute", "dog" => "max cuteness"];
+        $animal_rankings = $my_array + $more_rankings;
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Loops</h3>
+                <li><strong>Video Project FizzBuzz </strong><a href="https://www.youtube.com/watch?v=Vw6ApXiDqdY&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <li><strong>While: </strong></li>
+                <pre>
+                    <code>
+        $count = 1;
+        while ($count < 11)
+        {
+            echo "The count is: " . $count . "\n";
+            $count += 1;
+        }
+                    </code>
+                </pre>
+                <li><strong>Do While:</strong></li>
+                <pre>
+                    <Code>
+        $count = 1;
+        do {
+            echo "The count is: " . $count . "\n";
+            $count += 1;
+        } while ($count < 11);
+                    </Code>
+                </pre>
+                <li><strong>For Loop:</strong></li>
+                <pre>
+                    <code>
+        for ($count = 1; $count < 11; $count++)
+        {
+            echo "The count is: " . $count . "\n";
+        }
+                    </code>
+                </pre>
+                <li><strong>Foreach: </strong>The foreach loop is used for iterating over an array. 
+                The code block is executed for every element in the array and the value of that element 
+                is available for use in the code block. Our counting to 10 example becomes:</li>
+                <pre>
+                    <code>                            
+        $counting_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        foreach ($counting_array as $count) {
+            echo "The count is: " . $count . "\n";
+        }
+                    </code>
+                </pre>
+                <li><strong>Break and Continue: </strong>Similar to switch statements, the <strong>break</strong> keyword can 
+                be used to terminate any of the loop types early. The <strong>continue</strong> is used to end execution of 
+                a loop iteration early and continues to the next iteration. </li>
+                <hr/>
+                <h3>PHP AND HTML</h3>
+                <li>PHP was designed as a back-end web development language—specifically it was designed 
+                to work well with HTML. PHP allowed a convenient way for developers to create HTML templates 
+                and programatically fill them out in order to send customized HTML to visitors of their sites.
+                PHP has evolved into a powerful programming language being used for more than templating 
+                HTML, but using PHP combined with HTML remains an important part of many web developers’ 
+                skill sets. We can embed PHP scripts within HTML documents with the opening tag <i>< ?php</i> 
+                and the closing tag <i>?></i>. The PHP processor will read the entire file, evaluate any PHP, 
+                translate it into HTML, and pass it off to the web server so it can be sent to the client.
+                When we use echo within HTML we’re no longer printing to the terminal, rather we’re outputting 
+                to the HTML document. <strong>Video Project Repetitive Cafe</strong>
+                <a href="https://www.youtube.com/watch?v=iVP5qw69Z2s&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <pre>
+                    <code>
+            //String example:
+            < html>
+                < head>
+                    < title>My First PHP Site</ title >
+                < /head >
+                < body >
+                    <?php 
+                        echo "< h1 >Oh hi!</ h1 >"; 
+                    ?> 
+                </ body >
+            < /html>
+
+            //Variable
+            < ?php
+                $lucky_number = 5 * 2 - 1;
+                
+                echo "< h1 >Your lucky number is 
+                ${lucky_number}< /h1 >";
+            ?>
+
+            //Function
+            < ?php
+                function makeHeaderGreeting ($name){
+                    return "< h1 >Hello, ${name}!< /h1 >";
+                }
+                echo makeHeaderGreeting("World");
+            ?>
+                    </code>
+                </pre>
+                <li>Instead of using <i>< ?php</i> echo to begin the statement, you can simply use <i>< ?=</i>.
+                Our example becomes:</li> 
+                <pre>
+                    <code>
+                <  p >This HTML will get delivered as is< /p >
+                < ?="< p >PHP interprets this and turns it into HTML< /p >";?>
+                < p >This HTML will get delivered as is< /p >< /li >
+                    </code>
+                </pre>
+                <li><strong>Nested Loops: </strong>When adding nested loops, the readability of the code can suffer. To determine 
+                where loops end, we have to count and match brackets.
+                Luckily, PHP offers an alternate syntax which is especially useful when working with 
+                HTML. Instead of using an opening bracket <i>{</i>, we use a colon <i>:</i> and instead of using 
+                a closing bracket <i>}</i>, we use a closing keyword and semicolon <i>;</i>. For the for loop,
+                the closing keyword is <i>endfor</i>. The versions for while and foreach loops are very similar.
+                The only difference is the closing keywords: <i>endwhile;</i> <i>endforeach;</i>.</li>
+                <pre>
+                    <code>
+            < ul >
+                < ?php
+                    for ($i = 0; $i < 2; $i++):
+                ?>
+                < li >Duck< /li >
+                < ?php
+                endfor;
+            ?>
+            < li >Goose< /li >
+            < /ul >
+                    </code>
+                </pre>
+                <li>Since we are in HTML mode and not PHP mode when using $name here, it will simply print 
+                <i>$name</i>, instead of the corresponding item from the array.
+                Because of this behavior, it’s important to remember to re-enter PHP mode before using PHP 
+                variables. This can be done using the <i>< ?php</i> opening and <i>?></i> closing tags. 
+                If you are going to simply be printing the variable using echo, you can also use the echo 
+                shorthand opening tag <i>< ?=</i>. With this, our example can be fixed like this:</li>
+                <pre>
+                    <code>
+            < ?php
+                $array = ["Alice", "Bob", "Charlie"];
+                foreach($array as $name): ?>
+                < p >< ?=$name?>< /p >
+            < ?php endforeach; ?>
+                    </code>
+                </pre>
+                <hr/>
+                <h3>HTML Form Handling</h3>
+                <li><strong>Video Project PHP Calculator</strong> <a href="https://www.youtube.com/watch?v=5fUaGgOuTmk&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <li><strong>Request Superglobals: </strong>When the front 
+                end client makes a request to a backend PHP server, several superglobals related to the 
+                request are available to the PHP script. Superglobals are automatic global variables which 
+                are available in all scopes throughout a script. The list of superglobals in PHP includes 
+                the following:
+                $GLOBALS, $_SERVER, $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION, $_REQUEST, $_ENV.</li>
+                <li><strong>GET Form Handling: </strong>
+                In HTML, setting a form’s method attribute to "get" specifies that you would like the form 
+                to be submitted using the GET method. When using this method, the form entries are passed 
+                as parameters in a URL query string.
+                For example, this is a request to <i>www.codecademy.com</i> with the URL parameters first (set 
+                to the value "ellen") and last (set to the value "richards"):
+                <i>www.codecademy.com/?first=ellen&last=richards</i>
+                The parameter names (first and last) come from the name attribute of each form input. 
+                When the form is submitted, the form data is available in the <i>$_GET</i> superglobal array. 
+                The data is also accessible using <i>$_REQUEST</i> if you do not care about which method was 
+                used by the client.
+                In our example below, if a user typed “ellen” into the first input and “richards” into the 
+                last input, then <i>print_r($_GET)</i> would look like this:
+                <i>Array ( [first] => ellen [last] => richards )</i>
+                To echo the value of the first input, we pass the parameter name to the <i>$_GET array</i> 
+                like: <i>< ?=$_GET['first'];?></i>
+                The following form could be used to collect an individual’s name using the GET method:</li>
+                <pre>
+                    <code>
+            < form method="get" >
+                First name: < input type="text" name="first" >
+                < br >
+                Last name: < input type="text" name="last" >
+                < br >
+                < input type="submit" value="Submit Name">
+            < /form >
+                    </code>
+                </pre>
+                <li><strong>POST Request: </strong>
+                When using POST to submit forms, you will not see the URL change. The form data is sent 
+                using the headers of the HTTP request instead of URL parameters.
+                When the form is submitted, the input data is available in 
+                the <i>$_POST</i> superglobal. Similar to <i>GET</i>, it is also available in <i>$_REQUEST</i>.</li>
+                <pre>
+                    <code>
+            < form method="post" >
+                First name: < input type="text" name="first" >
+                < br >
+                Last name: < input type="text" name="last" >
+                < br >
+                < input type="submit" value="Submit Name" > 
+            < /form >
+                
+            //The URL would not change and print_r($_POST) would look like this:
+                
+            Array ( [first] => Katharine [last] => McCormick )
+                    </code>
+                </pre>
+                <li><strong>Action Attribute: </strong>Often times there is no need to present a user with 
+                the same form over and over again. It might make sense to move them to a new page or thank 
+                them for their submission.
+                This is where the action form attribute comes into play. Since we have not specified an 
+                action yet, HTML defaults to submitting the form data back to the same script that defined 
+                the form.
+                If you would like to have the user navigate to a new URL and handle the form input there, 
+                you can specify the URL in the form’s action attribute. Since the action attribute specifies 
+                a relative URL, you can also enter the name of a PHP file in the same directory as the current 
+                one. For example, given this directory: <i>index.php receive_form.php</i>.
+                To handle a form using <i>receive_form.php</i> from <i>index.php</i>, you would use the following:
+                <i>< form method="get" action="receive_form.php" ></i> This works for both <i>GET</i> and <i>POST</i> methods.</li>
+                <hr/>
+                <h3>Form Validation</h3>
+                <li><strong>Regex: </strong>The technology that fuels the verification system on nearly 
+                every website and application 
+                is the ever reliable, often quirky language of regular expressions, commonly shortened to 
+                regex, as we will use here, or regexp (pronunciation is up for debate). A regular 
+                expression is a special sequence of characters that describe a pattern of text that
+                should be found, or matched, in a string or document. By matching text, we can identify 
+                how often and where certain pieces of text occur, as well as have the opportunity to replace 
+                or update these pieces of text if needed. It's used for validating user input in HTML forms;
+                verifying and parsing text in files, code and applications;
+                examining test results; finding keywords in emails and web pages.</li>
+                <ul>
+                    <li><strong>Literals:</strong> The simplest text we can match with regular expressions 
+                    are literals. 
+                    This is where our regular expression contains the exact text that we want to match. 
+                    The regex <i>a</i>, for example, will match the text <i>a</i>, and the regex <i>bananas</i> 
+                    will match the text <i>bananas</i>.</li>
+                    <li><strong>Alternation: </strong>Alternation, performed in regular expressions with the 
+                    pipe symbol, |, allows us to match either the characters preceding the | OR the characters 
+                    after the |. The regex baboons|gorillas will match baboons in the text I love baboons, 
+                    but will also match gorillas in the text I love gorillas.</li>
+                    <li><strong>Grouping: </strong>Denoted with the open parenthesis <i>(</i> and the 
+                    closing parenthesis <i>)</i>, lets us group parts of a regular expression together, 
+                    and allows us to limit alternation to part of the regex.
+                    The regex <i>I love (baboons|gorillas)</i> will match the text I love and then match either 
+                    baboons or gorillas, as the grouping limits the reach of the <i>|</i> to the text within the 
+                    parentheses. These groups are also called capture groups, as they have the power to select, 
+                    or capture, a substring from our matched text.</li>
+                    <li><strong>Character sets: </strong>Denoted by a pair of brackets <i>[]</i>, let us match one character from a 
+                    series of characters, allowing for matches with incorrect or different spellings.
+                    The regex <i>con[sc]en[sc]us</i> will match consensus, the correct spelling of the word, 
+                    but also match the following three incorrect spellings: concensus, consencus, and 
+                    concencus. The letters inside the first brackets, <i>s</i> and <i>c</i>, are the different 
+                    possibilities for the character that comes after con and before en. Similarly for 
+                    the second brackets, s and c are the different character possibilities to come after 
+                    en and before us.
+                    Thus the regex <i>[cat]</i> will match the characters <i>c</i>, <i>a</i>, or <i>t</i>, 
+                    but not the text cat.
+                    We can make our character sets even more powerful with the help of the caret <i>^</i> symbol. 
+                    Placed at the front of a character set, the <i>^</i> negates the set, matching any character 
+                    that is not stated. These are called negated character sets. Thus the regex <i>[^cat]</i> will 
+                    match any character that is not <i>c</i>, <i>a</i>, or <i>t</i>, and would completely 
+                    match each character d, <i>o</i> or <i>g</i>.</li>
+                    <li><strong>Wildcards: </strong>Sometimes we don’t care exactly WHAT characters are in a 
+                    text, just that there are SOME characters. Enter the wildcard <i>.</i> Wildcards will match any 
+                    single character (letter, number, symbol or whitespace) in a piece of text. They are useful 
+                    when we do not care about the specific value of a character, but only that a character 
+                    exists.</li>
+                    <li><strong>Ranges: </strong>Character sets are great, but their true power isn’t realized without ranges. 
+                    Ranges allow us to specify a range of characters in which we can make a match without 
+                    having to type out each individual character. The regex [abc], which would match any 
+                    character <i>a</i>, <i>b</i>, or <i>c</i>, is equivalent to regex range <i>[a-c]</i>. The 
+                    <i>-</i> character allows us to specify that we are interested in matching a range of characters.
+                    The regex <i>I adopted [2-9] [b-h]ats</i> will match the text <i>I adopted 4 bats</i> as well as 
+                    <i>I adopted 8 cats</i> and even <i>I adopted 5 hats</i>.
+                    With ranges we can match any single capital letter with the regex <i>[A-Z]</i>, lowercase 
+                    letter with the regex <i>[a-z]</i>, any digit with the regex <i>[0-9]</i>. We can even have multiple
+                    ranges in the same character set! To match any single capital or lowercase alphabetical 
+                    character, we can use the regex <i>[A-Za-z]</i>.</li>
+                    <li><strong>Shorthand Character Classes:</strong>
+                    While character ranges are extremely useful, they can be cumbersome to write out every 
+                    single time you want to match common ranges such as those that designate alphabetical 
+                    characters or digits. To alleviate this pain, there are shorthand character classes 
+                    that represent common ranges, and they make writing regular expressions much simpler. 
+                    For example, the regex \d\s\w\w\w\w\w\w\w matches a digit character, followed by a 
+                    whitespace character, followed by 7 word characters. Thus the regex completely matches 
+                    the text 3 monkeys. These shorthand classes include:</li>
+                    <ul>
+                        <li><strong>\w</strong>: the “word character” class represents the regex range [A-Za-z0-9_], and it matches 
+                        a single uppercase character, lowercase character, digit or underscore</li>
+                        <li><strong>\d</strong>: the “digit character” class represents the regex range [0-9], and it matches a single 
+                        digit character</li>
+                        <li><strong>\s</strong>: the “whitespace character” class represents the regex range [ \t\r\n\f\v], matching 
+                        a single space, tab, carriage return, line break, form feed, or vertical tab</li>
+                    </ul> 
+                    <li><strong>Negated shorthand character classes: </strong>These shorthands will match any character that 
+                    is NOT in the regular shorthand classes. These negated shorthand classes include:</li>
+                    <ul>
+                        <li><strong>\W</strong>: the “non-word character” class represents the regex range <i>[^A-Za-z0-9_]</i>, matching 
+                        any character that is not included in the range represented by \w</li>
+                        <li><strong>\D</strong>: the “non-digit character” class represents the regex range <i>[^0-9]</i>, matching any 
+                        character that is not included in the range represented by <i>\d</i></li>
+                        <li><strong>\S</strong>: the “non-whitespace character” class represents the regex range <i>[^ \t\r\n\f\v]</i>,
+                        matching any character that is not included in the range represented by <i>\s</i></li>
+                    </ul>
+                    <li><strong>Fixed quantifiers: </strong>Denoted with curly braces <i>{}</i>, let us indicate
+                    the exact quantity of a character we wish to match, or allow us to provide a quantity 
+                    range to match on. An important note is that quantifiers are considered to be greedy. This means that 
+                    they will match the greatest quantity of characters they possibly can. For example, 
+                    the regex <i>mo{2,4}</i> will match the text <i>moooo</i> in the string <i>moooo</i>, and not return a 
+                    match of <i>moo</i>, or <i>mooo</i>. This is because the fixed quantifier wants to match the 
+                    largest number of os as possible, which is 4 in the string <i>moooo</i>.</li>
+                    <ul>
+                        <li><i>\w{3}</i> will match exactly 3 word characters</li>
+                        <li><i>\w{4,7}</i> will match at minimum 4 word characters and at maximum 7 word characters
+                        The regex <i>roa{3}r</i> will match the characters ro followed by 3 as, and then the 
+                        character <i>r</i>, such as in the text roaaar. The regex <i>roa{3,7}r</i> will match 
+                        the characters 
+                        <i>ro</i> followed by at least 3 as and at most 7 as, followed by an <i>r</i>, matching 
+                        the strings <i>roaaar</i>, <i>roaaaaar</i> and <i>roaaaaaaar</i>.</li>
+                    </ul>
+                    <li><strong>Optional quantifiers:</strong> Indicated by the question mark <i>?</i>, allow us to indicate a character in a regex 
+                    is optional, or can appear either 0 times or 1 time. For example, the regex <i>humou?r</i> matches the 
+                    characters <i>humo</i>, then either 0 occurrences or 1 occurrence of the letter <i>u</i>, and finally the letter <i>r</i>. 
+                    Note the <i>?</i> only applies to the character directly before it.
+                    With all quantifiers, we can take advantage of grouping to make even more advanced regexes. The regex <i>The 
+                    monkey ate a (rotten )?banana</i> will completely match both <i>The monkey ate a rotten banana</i> and <i>The monkey ate a banana.</i>    
+                    Since the <i>?</i> is a metacharacter, you need to use the escape character in your regex in order to match a question 
+                    mark <i>?</i> in a piece of text. The regex <i>Aren't owl monkeys beautiful\?</i> will thus completely match the text <i>Aren't 
+                    owl monkeys beautiful?</i>.</li>
+                    <li><strong>Kleene star: </strong>Denoted with the asterisk *, is also a quantifier, and matches the preceding character 0 or more 
+                    times. This means that the character doesn’t need to appear, can appear once, or can appear many many times.
+                    The regex meo*w will match the characters <i>me</i>, followed by <i>0</i> or more <i>os</i>, followed by a <i>w</i>. 
+                    Thus the regex will match <i>mew</i>, <i>meow</i>, <i>meooow</i>, and <i>meoooooooooooow</i>.
+                    Another useful quantifier is the Kleene plus, denoted by the plus +, which matches the preceding character 1 
+                    or more times.
+                    The regex meo+w will match the characters me, followed by 1 or more os, followed by a <i>w</i>. Thus the regex will 
+                    match <i>meow</i>, <i>meooow</i>, and <i>meoooooooooooow</i>, but not match mew.
+                    Like all the other metacharacters, in order to match the symbols <i>*</i> and <i>+</i>, you need to use the escape 
+                    character in your regex. The regex My cat is a <i>\*</i> will completely match the text My cat is a <i>*</i>.</li>
+                    <li><strong>Anchors: </strong>When writing regular expressions, it’s useful to make the expression as specific 
+                    as possible in order to ensure that we do not match unintended text. To aid in this mission of specificity, we 
+                    can use the anchor metacharacters. The anchors hat ^ and dollar sign $ are used to match text at the start and 
+                    the end of a string, respectively.
+                    The regex <i>^Monkeys: my mortal enemy$</i> will completely match the text Monkeys: <i>my mortal enemy</i> but not 
+                    match <i>Spider Monkeys: my mortal enemy in the wild</i> or <i>Squirrel Monkeys: my mortal enemy in the wild</i>. The 
+                    <i>^</i> ensures that the matched text begins with Monkeys, and the <i>$</i> ensures the matched text ends with enemy.
+                    Without the anchor tags, the regex Monkeys: my mortal enemy will match the text Monkeys: my mortal enemy in both 
+                    Spider Monkeys: my mortal enemy in the wild and Squirrel Monkeys: my mortal enemy in the wild.
+                    Once again, as with all other metacharacters, in order to match the symbols <i>^</i> and <i>$</i>, you need to use the escape 
+                    character in your regex. The regex <i>My spider monkey has \$10\^6 in the bank</i> will completely match the text <i>My spider 
+                    monkey has $10^6 in the bank</i>.</li>
+                </ul>
+                <li><strong>PHP Form Validation: </strong></li>
+                <pre>
+                    <code>
+            //Check if input beggings with specific letter
+
+            function checkWord($input, $letter){
+                if ($_SERVER["REQUEST_METHOD"] === "POST" && strtolower($input[0]) !== $letter) {
+                    return "* This word must start with the letter ${letter}!";
+                } else {
+                    return "";
+                }
+            }
+                    </code>
+                </pre>
+                <li><strong>Built-in sanitization: </strong>PHP provides several built-in functions to help with sanitization:</li>
+                <ul>   
+                    <li><strong>trim():</strong> Removes any whitespace characters from the beginning or 
+                    end of a string we receive as form input. Though not a security concern, this can help standardize the 
+                    data prior to validation. <i>$email = "     aisle.nevertell@yahoo.com   ";
+                    echo trim($email); // Prints: aisle.nevertell@yahoo.com</i></li>
+                    <li><strong>htmlspecialchars(): </strong>When we want to display the user’s input within our own HTML, we should first run it through 
+                    <i>htmlspecialchars()</i>. This built-in function transforms HTML elements into HTML entities (characters that 
+                    represent HTML elements but won’t display as HTML), so that the PHP interpreter doesn’t recognize them as 
+                    HTML. This prevents, for example, a man-in-the-middle attack in which malicious HTML is injected into a user’s 
+                    view of our site. <i>htmlspecialchars($_POST["html"])</i></li>
+                    <li><strong>filter_var():</strong> Is the <strong>most powerful PHP function for sanitizing data</strong>. 
+                    This function operates on a variable and passes it through a “filter” that produces the desired outcome.
+                    As its first argument, <i>filter_var()</i> takes a variable. As its second, it takes an ID representing the type 
+                    of filtering that should be performed. There are several filters for sanitizing common input types, including 
+                    <strong>FILTER_SANITIZE_EMAIL</strong>. <strong>List </strong><a href="https://www.php.net/manual/en/filter.filters.sanitize" target="_blank">HERE</a>. 
+                    The function will return either the sanitized version of the input or 
+                    FALSE if it was unable to perform the sanitization.</li>
+                    <pre>
+                        <code>
+                    $bad_email = '< a href="www.evil-spam.biz">@gmail.com';
+                    echo filter_var($bad_email, FILTER_SANITIZE_EMAIL);
+                    // Prints: ahref=www.evil-spam.biz@gmail.com  
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Built-in validation: </strong>PHP provides several built-in functions to help with validation:</li>
+                <ul>
+                    <li><strong>Validation with filter_var(): </strong>We can use the same <i>filter_var()</i> function to validate as 7
+                    well as sanitize! There are a number of provided validation filters - see list 
+                    <a href="https://www.php.net/manual/en/filter.filters.validate.php" target="_blank">here</a>. They work a bit differently from 
+                    the sanitization filters. If the variable is deemed valid, <i>filter_var()</i> will return it; otherwise, it will return FALSE:</li>
+                    <pre>
+                        <code>
+            $bad_email = 'fake - at - prank dot com';
+            if (filter_var($bad_email, FILTER_VALIDATE_EMAIL)){
+                echo "Valid email!";
+            } else {
+                echo "Invalid email!";
+            } 
+            // Prints: Invalid email!
+                        </code>
+                    </pre>
+                    <li><strong>Options with filter_var(): </strong>The <i>filter_var()</i> function accepts an optional third argument 
+                    that allows us to fine-tune the operation of a given filter. This argument, often called $options, takes the 
+                    form of a nested associative array.
+                    For example, the <i>$options</i> argument can help us validate that an integer is within a specified range when 
+                    using the integer validation filter <strong>FILTER_VALIDATE_INT</strong>. To do this, we set $options to a nested array 
+                    containing the <i>"min_range"</i> and <i>"max_range"</i> keys in a specific format, shown in the following example:</li>
+                    <pre>
+                        <code>
+            function validateAdult ($age){
+                $options = ["options" => ["min_range" => 18, "max_range" => 124]];  
+                if (filter_var($age, FILTER_VALIDATE_INT, $options)) {
+                echo("You are ${age} years old.");
+                } else {
+                echo("That is not a valid age.");
+                }
+            }
+                
+            validateAdult(18); // Prints: You are 18 years old.
+            validateAdult(124); // Prints: You are 124 years old.
+            validateAdult(8); // Prints: That is not a valid age.
+            validateAdult(200); // Prints: That is not a valid age.
+                        </code>
+                    </pre>
+                    <li><strong>preg_match():</strong> Takes two string arguments: a pattern string with a regular expression and 
+                    a subject string to check. It returns 1 if it matches, 0 if it doesn’t, and FALSE if there was an error.
+                    For example, we can use the regular expression <i>/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/</i> to test for 
+                    10-digit North American telephone numbers. It will allow spaces, hyphens, or periods as optional separators 
+                    as well as optional parentheses around the first three numbers:</li>
+                    <pre>
+                        <code>
+            $pattern = '/^[(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4}$/';
+                
+            preg_match($pattern, "(999)-555-2222"); // Returns: 1
+                
+            preg_match($pattern, "555-2222"); // Returns: 0
+                        </code>
+                    </pre>
+                    <li><strong>strlen()</strong> function to check the length of a given input. Ultimately, the acceptable input length is a 
+                    judgement call for the web engineer. In this example, we chose 100 characters, but some names can be much longer.</li>
+                    <pre>
+                        <code>
+                        $name = "Aisle Nevertell";
+                        $length = strlen($name);
+                        if ($length > 2 && $length < 100){
+                            echo "That seems like a reasonable name to me...";
+                        }
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Validating against back-end data: </strong>The above function isUsernameAvailable uses the built-in function 
+                <i>isset()</i> to check if a given <i>$username</i> exists in the <i>$users</i> array. In production, this check would 
+                be done by querying the database.</li>
+                <pre>
+                    <code>
+            $users = ["coolBro123" => "password123!", "coderKid" => "pa55w0rd*", "dogWalker" => "ais1eofdog$"];
+
+            function isUsernameAvailable ($username){
+                global $users;
+                if (isset($users[$username])){
+                    echo "That username is already taken.";
+                } else {
+                    echo "${username} is available.";
+                }
+            }
+            
+            isUsernameAvailable("coolBro123");
+            // Prints: That username is already taken. 
+            
+            isUsernameAvailable("aisleOfPHP");
+            // Prints: aisleOfPHP is available.
+                    </code>
+                </pre>
+                <li><strong>Sanitizing for Back-end Storage: </strong>We always need to sanitize all data before storing 
+                it in our own databases. To sanitize data formatting, we can use the built-in <i>preg_replace()</i> function. The 
+                <i>preg_replace()</i> takes a regular expression, some replacement text, and a subject string; First, It searches through the subject string 
+                for instances that match the regular expression. Then, it outputs a copy of the subject string that has the matched 
+                instances replaced by the replacement string:</li>
+                <pre>
+                    <code>
+            $one = "codeacademy";
+            $two = "CodeAcademy";
+            $three = "code academy";
+            $four = "Code Academy";
+                
+            $pattern = "/[cC]ode\s*[aA]cademy/";
+            $codecademy = "Codecademy";
+                
+            echo preg_replace($pattern, $codecademy, $one);
+            // Prints: Codecademy
+                
+            echo preg_replace($pattern, $codecademy, $two);
+            // Prints: Codecademy
+                
+            echo preg_replace($pattern, $codecademy, $three);
+            // Prints: Codecademy
+                
+            echo preg_replace($pattern, $codecademy, $four);
+            // Prints: Codecademy
+                    </code>
+                </pre>
+                <li><strong>Rerouting (redirect): </strong>We can use the PHP <strong>header()</strong> function to perform redirects. 
+                We call the <i>header()</i> function on a string that begins with "Location: ", followed by the URL we want to redirect 
+                the user to. For 
+                example: "Location: https://www.best-puppy-pix.com/". After invoking the <i>header()</i> function we’ll want to use 
+                the language construct exit to terminate the current script.
+                To work properly, the <i>header()</i> function needs to be run before anything is output by the script—this includes 
+                HTML. So we’ll include it in our PHP script before our file outputs any HTML:</li>
+                <pre>
+                    <code>
+                if (/* Is the submission data validated? */) {
+                    header("Location: https://www.best-puppy-pix.com/");
+                    exit;
+                }
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Classes & Objects</h3>
+                <li><strong>Classes: </strong></li>
+                <pre>
+                    <code>
+            class Beverage {
+                public $temperature, $color, $opacity;
+            }
+
+            //Instantiating class as object
+            $tea = new Beverage();
+
+            //Interacting with an object 
+            $tea->temperature = "hot";
+            echo $tea->temperature; 
+                    </code>
+                </pre>
+                <li><strong>Objects: </strong>When we instantiate a class, it becomes an object <i>$very_good_dog = new Pet();</i>
+                We interact with an object’s properties using the object operator 
+                <i>(->)</i> followed by the name of the property (without the dollar sign, $).
+                We can use this syntax to assign values to object properties:
+                <i>$very_good_dog->name = "Lassie";</i> We can also use it to access the existing value of object properties:
+                <i>echo $very_good_dog->name; # Prints "Lassie"</i></li>
+                <li><strong>$this</strong> variable refers to the current object; when we invoke this method, $this refers to the 
+                specific object that called the method.</li>
+                <li><strong>Constructor method: </strong> Is defined with the special method <i>name __construct</i>.
+                Constructors can also have parameters. These correspond to arguments passed in when using the new keyword. 
+                Keep in mind that the number of arguments used when instantiating the object must match the number of parameters 
+                in the constructor definition otherwise PHP will throw an error.
+                As an example, if we wanted to initialize the deserves_love property assigned to TRUE for every instance of the Pet 
+                class, we could use the following constructor:</li>
+                <pre>
+                    <code>
+            class Pet {
+                public $deserves_love;
+                function __construct() {
+                    $this->deserves_love = TRUE;
+                }
+            }
+            $my_dog = new Pet();
+            if ($my_dog->deserves_love){
+                echo "I love you!";
+            }
+            // Prints: I love you!
+
+            // With parameter
+            class Pet {
+                public $name;
+                function __construct($name) {
+                    $this->name = $name;
+                }
+            }
+            
+            $dog = new Pet("Lassie");
+            echo $dog->name; // Prints: Lassie 
+                    </code>
+                </pre>
+                <li><strong>Inheritance: </strong>Imagine we wanted a Dog class in our program. This class would have all the 
+                properties of the more general Pet class, but it would have a few more properties and methods specific to only 
+                dogs. Rather than having to manually duplicate the things the two classes have in common, we can create a new 
+                class which extends the other. The original class can be thought of as the parent and the new class can be 
+                thought of as the child class. In object oriented programming, we call this process inheritance since the child 
+                class inherits properties and methods from its parent class. A child class is also referred to as a subclass in PHP.</li>
+                <ul>
+                    <li>To define a class that inherits from another, we use the keyword <strong>extends</strong>.
+                    The bellow example, objects of class Dog can bark, but objects of Pet cannot. This makes sense here, because most dogs 
+                    can bark, but not all pets can.</li>
+                    <pre>
+                        <code>
+            class Dog extends Pet {
+                function bark() {
+                    return "woof";
+                }
+            }
+                        </code>
+                    </pre>
+                    <li><strong>Overriding Methods: </strong>Sometimes, we want to change how methods behave for subclasses from 
+                    the original parent definition. This is called overriding a method. 
+                    We can call the parent’s definition of the method within the subclass using <i>parent::</i> followed by the method 
+                    <i>name:</i></li>
+                    <pre>
+                        <code>
+            class Dog extends Pet{
+                function type() {
+                    return "dog";
+                }
+                function classify(){
+                    echo "This " . parent::type() . " is of type " . $this->type();
+                    // Prints: This pet is of type dog 
+                }
+            }
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Visibility</strong> 
+                <ul>
+                    <li><strong>Private Members:</strong> To understand visibility we need to think about how classes will 
+                    be used in complex programs—in large applications, 
+                    a class might be used in diverse situations (passed around inside functions and used in code written by numerous 
+                    developers). When we think about our classes being used in many situations, we’ll want to consider restricting 
+                    access to certain member data. <strong>Public visibility:</strong> means members can be accessed from within the 
+                    object or from outside it. <strong>Private visibility:</strong> means when a member is only accessible from 
+                    within the object. In the code below, we have the property healthScore. This is a number we use to calculate 
+                    the health of a pet. The healthScore property can be manipulated and accessed by member methods, but since we 
+                    never want the property to be accessed directly outside of the class, we set the property as private. If an attempt 
+                    is made to access the property directly, our code will raise a Fatal Error.</li>
+                    <pre>
+                        <code>
+        class Pet {
+            private $healthScore = 0; 
+            function exercise(){
+                $this->healthScore++;
+            }
+            function feed(){
+                $this->healthScore++;
+            }
+            function healthCheck(){
+            if ($this->healthScore >= 2){
+                echo "This is a healthy pet!";
+            } else {
+                    echo "This is an unhealthy pet";
+                }
+            }
+        }
+                        </code>
+                    </pre>
+                    <li><strong>Protected: </strong>A class’s private members can only be accessed using methods within that class itself. This isn’t usually 
+                    the desired effect when we have subclasses. To allow members to be accessed from within child classes, 
+                    we can set the visibility within the parent class to protected rather than private. This enables child 
+                    classes to access these properties and methods internally while still preventing them from being accessed 
+                    externally:</li>
+                    <pre>
+                        <code>
+        class Pet {
+        protected $healthScore = 0; 
+        }
+        
+        class Horse extends Pet {
+        function brushTeeth() {
+            $this->healthScore++; 
+        }
+        }
+        
+        $my_pet = new Horse();
+        $my_pet->brushTeeth(); // Successfully increments healthScore
+        $my_pet->healthScore; // Error
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Getters and Setters: </strong>The concept of only accessing properties through methods is commonly     
+                referred to as using getters and setters.</li>
+                <pre>
+                    <code>
+        class Beverage {
+            private $color;
+            function setColor($color) {
+                $this->color = strtolower($color);
+            }
+            function getColor() {
+                return $this->color;
+            }
+        }
+                    </code>
+                </pre>
+                <li><strong>Static Members: </strong>
+                Instantiating objects is the most common way to use classes and is also the most in-line with OOP principles. 
+                Sometimes though, it can be useful to group a set of utility functions and variables together into a single 
+                class. Since these don’t change for every instance, we don’t need to instantiate them. We can use them statically.
+                When a member is intended to be used statically, we add the keyword static to its definition.
+                Accessing these static members is done a little differently than with objects. We need to use the Scope Resolution 
+                Operator (::). This can be thought of as switching briefly into the scope of the class itself. Since we are inside 
+                the scope, we access properties with the dollar sign. </li>
+                <pre>
+                    <code>
+        class StringUtils {
+            public static $max_number_of_characters = 80;
+            public static function uclast($string) {
+                $string[strlen($string)-1] = strtoupper($string[strlen($string)-1]);
+                return $string;
+            }
+        }
+
+        echo StringUtils::$max_number_of_characters; # Prints "80"
+        
+        // Methods are accessed by using the method name:
+        echo StringUtils::uclast("hello world"); # Prints "hello worlD"
+                    </code>
+                </pre>
+            </ul>
+        </div> 
     </body>
 </html>

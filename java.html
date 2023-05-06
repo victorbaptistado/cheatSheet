@@ -4,1061 +4,1051 @@
         <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
         <script src="./component/button.js" defer></script>
         <title>Java</title>
-    </header>
-    <body>
         <nav>
             <ul class="mainNav">
-                <li><a href="#">AI</a></li>
-                <li><a href="./displayProperties.html">Display Properties</a></li>
-                <li><a href="./objects.html">Objects</a></li>
-                <li><a href="./operationalSystem.html">Operational System</a></li>
-                <li><a href="./debugTesting.html">Debug & Testing</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="./AI.html">AI</a></li>
                 <li><a href="./git.html">Git</a></li>
-                <li><a href="./form.html">Form</a></li>
-                <li><a href="./api.html">API</a></li>  
-                <li><a href="./react.html">REACT</a></li>
-                <li><a href="./index.html">Helpful Content</a></li> 
-                <li><a href="./backend.html">Backend</a></li>
             </ul>
         </nav>
-        <header>
-            <div class="styleGuide">
-                <h1>Java</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h1>Java</h1>
+            <ul>
+                <li><strong>Basics: </strong> Java documentation 
+                <a href="https://docs.oracle.com/javase/8/docs/api/overview-summary.html" target="_blank">here</a>.</li>
                 <ul>
-                    <li><strong>Basics: </strong> Java documentation 
-                    <a href="https://docs.oracle.com/javase/8/docs/api/overview-summary.html" target="_blank">here</a>.</li>
-                    <ul>
-                        <li><strong>File: </strong>Java files end with <i>.java</i>.</li> 
-                        <li><strong>main(): </strong>Java programs have at least one class and 
-                        one <i>main()</i> method. The <i>main()</i> method runs the tasks of the program.</li>
-                        <li><strong>Print: </strong>The print statement is: 
-                        <i>System.out.println("Hello World");</i>
-                        <i>System</i> is a built-in Java class that contains useful tools for our programs;
-                        <i>out</i> is short for “output”. <i>println</i> is short for “print line”.
-                        If you use <i>println()</i> the cursor is moved to the next line. If you use <i>print()</i> 
-                        the cursor stays on the same line.</li> 
-                        <li><strong>Comments: </strong>Short comments: <i>//</i>.
-                        Multi-line syntax: <i>/*</i> and <i>*/</i>. 
-                        Javadoc comment which is represented by <i>/**</i> and <i>*/</i> - they are used to create 
-                        documentation for APIs (Application Programming Interfaces).</li>
-                        <li><strong>Compile and Run: </strong>We can compile a <i>.java</i> file from the terminal 
-                        with the command: <i>javac Whales.java</i>.
-                        If the file compiles successfully, this command produces an executable class: 
-                        <i>FileName.class</i>. Executable means we can run this program from the terminal.
-                        We run the executable with the command: <i>java Whales</i>, that it's a .class
-                        file ready to be executed by the Java Virtual Machine.</li>
-                        <li><strong>Conventions: </strong><a href="https://github.com/twitter-archive/commons/blob/master/src/java/com/twitter/common/styleguide.md" target="_blank">Twitter guide</a>
-                        and <a href="https://google.github.io/styleguide/javaguide.html" target="_blank">google guide</a>.</li>
-                        <pre>
-                            <code>
-                public class Review {  
-                    public static void main(String[] args) {
-                        // The main method executes the tasks of the class
-                        System.out.println("My first Java program from scratch!");
-                    } 
-                }
-                            </code>
-                        </pre>
-                    </ul>
-                    <hr/>
-                    <h3>Installation</h3>
-                    <li><strong>Installation: </strong>
-                    <a href="https://www.oracle.com/java/technologies/downloads/#java8" target="_blank">here</a>.</li>
-                    <li><strong>Integrated Development Environment (IDE):</strong>Java programmers usually use
-                    IntelliJ as their IDE (instead of Visual Studio). 
-                    <strong>Download Intellij</strong>
-                    <a href="https://www.jetbrains.com/idea/" target="_blank">here</a>. 
-                    How to setup Intellij 
-                    <a href="https://www.youtube.com/watch?v=6FmUcUMkZVQ&feature=youtu.be" target="_blank">here</a>.</li>
-                    <hr/>
-                    <h3>Variables</h3>
-                    <li><strong>Variables: </strong>In Java, we specify the type of information we’re storing. 
-                    We use camelCase name convention.
-                    Primitive data types are types of data built-in to the Java system. The main primitive 
-                    types are: </li>
-                    <ul>
-                        <li><strong>int: </strong><i>int carsNumber = 4</i>.</li>
-                        <li><strong>double: </strong>Java's similar for float; <i>double price = 4.5</i>.</li>
-                        <li><strong>boolean: </strong><i>boolean isTrue = true</i> or <i>boolean isFalse = false</i>.</li>
-                        <li><strong>char: </strong>Stores single character (must be single quoted). 
-                        <i>char letter = 'a'</i>.</li>
-                        <li><strong>String: </strong>Stores a sequence of character (must be double quoted). 
-                        <i>String greeting = "Hello World";</i> It could also create a new String object by 
-                        calling the String class when declaring a String like so:
-                        <i>String salutations = new String("Hello World");</i>
-                        There are subtle differences in behavior depending on whether you create a String 
-                        using a String literal or a new String object.</li>
-                    </ul>
-                    <li><strong>Comparison: </strong>We assign with <i>=</i> and we compare with <i>==</i>, 
-                    we differentiatee with <i>!=</i>. With objects, such as Strings, we can’t use the primitive 
-                    equality operator - we need to use built-in method <i>.equals()</i> e.g: 
-                    <i>person1.equals(person2)</i>.</li>
-                    <li><strong>Concatanation: </strong></li>
+                    <li><strong>File: </strong>Java files end with <i>.java</i>.</li> 
+                    <li><strong>main(): </strong>Java programs have at least one class and 
+                    one <i>main()</i> method. The <i>main()</i> method runs the tasks of the program.</li>
+                    <li><strong>Print: </strong>The print statement is: 
+                    <i>System.out.println("Hello World");</i>
+                    <i>System</i> is a built-in Java class that contains useful tools for our programs;
+                    <i>out</i> is short for “output”. <i>println</i> is short for “print line”.
+                    If you use <i>println()</i> the cursor is moved to the next line. If you use <i>print()</i> 
+                    the cursor stays on the same line.</li> 
+                    <li><strong>Comments: </strong>Short comments: <i>//</i>.
+                    Multi-line syntax: <i>/*</i> and <i>*/</i>. 
+                    Javadoc comment which is represented by <i>/**</i> and <i>*/</i> - they are used to create 
+                    documentation for APIs (Application Programming Interfaces).</li>
+                    <li><strong>Compile and Run: </strong>We can compile a <i>.java</i> file from the terminal 
+                    with the command: <i>javac Whales.java</i>.
+                    If the file compiles successfully, this command produces an executable class: 
+                    <i>FileName.class</i>. Executable means we can run this program from the terminal.
+                    We run the executable with the command: <i>java Whales</i>, that it's a .class
+                    file ready to be executed by the Java Virtual Machine.</li>
+                    <li><strong>Conventions: </strong><a href="https://github.com/twitter-archive/commons/blob/master/src/java/com/twitter/common/styleguide.md" target="_blank">Twitter guide</a>
+                    and <a href="https://google.github.io/styleguide/javaguide.html" target="_blank">google guide</a>.</li>
                     <pre>
                         <code>
-                String username = "PrinceNelson";
-                System.out.println("Your username is: " + username);  
-                
-                //Print: Your username is: PrinceNelson
-                        </code>
-                    </pre>
-                    <li><strong>final Keyword: </strong>
-                    To declare a variable with a value that cannot be manipulated
-                    (for example, the year we were born will always stay the same), we need to use the final 
-                    keyword. To use the final keyword, prepend final to a variable declaration like so:
-                    <i>final int yearBorn = 1968;</i></li>
-                    <hr/>
-                    <h3>Classes</h3>
-                    <li><strong>Classes: </strong>Java is an object-oriented programming language where every 
-                    program has at least one class. Programs are often built from many classes and objects, 
-                    which are the instances of a class. In Java, classes are considered reference types, which 
-                    means that they are used to create objects and are stored in memory as references to those 
-                    objects. However, in a sense, you could say that classes are also data types, because they 
-                    are used to define the structure and behavior of objects, similar to how data types define 
-                    the structure and behavior of data.
-                    Classes define the state and behavior of their instances. Behavior comes from methods 
-                    defined in the class. State comes from instance fields declared inside the class.
-                    <strong>Video project Basic Calculator </strong><a href="https://www.youtube.com/watch?v=3L-VN6a5W28&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <strong>Video project Build a Droid <a href="https://www.youtube.com/watch?v=z9endqnb6Aw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</strong>
-                    <li><strong>Constructor: </strong>Shares the same name as the class. To create an instance, 
-                    we need to call or invoke the constructor within <i>main()</i>. 
-                    <ul>
-                        <li>The below example assigns a Car instance to the variable ferrari.
-                        Instead of being declared with a primitive data type like int or boolean, 
-                        our variable ferrari is declared as a reference data type, this means that the value of our 
-                        variable is a reference to an instance’s memory address. During its declaration, the class 
-                        name is used as the variable’s type. In this case, the type is Car.
-                        After the assignment operator, <i>=</i>, we invoke the constructor method: <i>Car()</i>, and 
-                        use the keyword new to indicate that we’re creating an instance. Omitting <i>new</i> causes an error.</li>
-                        <li>When an object is created, the constructor sets the initial state of the object. 
-                        The state is made up of associated data that represents the characteristics of an object.
-                        We’ll add data to an object by introducing instance variables, or instance fields.
-                        The instance variable will be available for assignment inside the constructor.</li>
-                    </ul>
-                    <li><strong>Method: </strong></li>
-                    <ul>
-                        <li><strong>Return: </strong>We can use datatype keywords (such as int, char, etc.) to 
-                        specify the type of value the method 
-                        should return. The return value’s type must match the return type of the method. If the return 
-                        expression is compatible with the return type, a copy of that value gets returned in a process 
-                        known as return by value. Unlike void methods, non-void methods can be used as either a 
-                        variable value or as part of an expression.</li>
-                        <li><strong>toString(): </strong>When we define a <i>toString()</i> method for a class,
-                        we can return a String that will print when we print the object - instead of returning
-                        a unusable memory location.</li>
-                    </ul>
-                    <pre>
-                        <code>
-            public class Car {
-                // instance fields
-                int inventoryCount;
-                double inventoryPrice;
-                String color;
-
-                // constructor method
-                public Car(String product, int count, double price, String carColor) {
-                    // parameter value assigned to the field
-                    productType = product;
-                    inventoryCount = count;
-                    inventoryPrice = price;
-                    color = carColor;
-                }
-
-                // method that returns void
-                public void startRadio(double stationNum, String stationName) {
-                    System.out.println("Turning on the radio to " 
-                        + stationNum + ", " + stationName + "!");
-                    System.out.println("Enjoy!");
-                }
-
-                // method that returns int
-                public int numberOfTires() {
-                    int tires = 4;
-                    // return statement
-                    return tires;
-                }
-
-                public String toString(){
-                    return "This is a " + color + " car!";
-                }
-                
+            public class Review {  
                 public static void main(String[] args) {
-                    // Invoke the constructor
-                    Car myCar = new Car(, , , "red");
-
-                    // Call a method on an object                     
-                    myCar.startRadio(103.7, "Meditation Station");
-
-                    int numTires = myCar.numberOfTires();
-
-                }
+                    // The main method executes the tasks of the class
+                    System.out.println("My first Java program from scratch!");
+                } 
             }
                         </code>
                     </pre>
-                    <ul>
-                        <li>Running the program invokes <i>main()</i></li>
-                        <li>We create an instance so we move from <i>main()</i> to <i>Car()</i></li>
-                        <li>The code inside <i>Car()</i> runs</li>
-                        <li>When <i>Car()</i> finishes execution, we return to <i>main()</i></li>
-                    </ul>
-                    <hr/>
-                    <h3>Conditionals and Control Flow: </h3>
-                    <li><strong>Video Project Simple Car Payment Calculator</strong> <a href="https://www.youtube.com/watch?v=HEkYvjlmyYI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
-                    <strong>Video Project Continents and Cities</strong> <a href="https://www.youtube.com/watch?v=jPkpjaomWVk&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <li><strong>If-Then, Else-if and Else statement:</strong></li>
-                    <pre>
-                        <code>
-                boolean isValidPassword = true;
-
-                if (isValidPassword) {
-                    System.out.println("Password accepted!");
-                } else {
-                    System.out.println("Wrong Password.");
-                }
-                
-                // Prints "Password accepted!"
-                
-                String course = "Theatre";
- 
-                if (course.equals("Biology")) {
-                    // Enroll in Biology course
-                } else if (course.equals("Algebra")) {
-                    // Enroll in Algebra course
-                } else if (course.equals("Theatre")) {
-                    // Enroll in Theatre course
-                } else {
-                    System.out.println("Course not found!");
-                }
-
-                // If a conditional is brief we can omit the curly braces entirely:
-                if (true) System.out.println("Brevity is the soul of wit");
-                Note: Conditional statements do not end in a semicolon.
-                        </code>
-                    </pre>  
-                    <li><strong>Switch Statement</strong></li>
-                    <pre>
-                        <code>
-                String course = "History";
-
-                switch (course) {
-                    case "Algebra": 
-                        // Enroll in Algebra
-                        break; 
-                    case "Biology": 
-                        // Enroll in Biology
-                        break;
-                    case "History": 
-                        // Enroll in History
-                        break;
-                    case "Theatre":
-                        // Enroll in Theatre
-                        break;
-                    default:
-                        System.out.println("Course not found");
-                }
-                        </code>
-                    </pre>
-                    <li><strong>Conditional Operators: </strong><i>&&</i>, <i>||</i>, <i>!</i>.</li>  
-                    <hr/>
-                    <h3>Array</h3>
-                    <li><strong>Arrays: </strong>In Java, an array can hold elements of only a single type. 
-                    This is because Java is a statically typed language, meaning that the type of a variable 
-                    is determined at compile-time.
-                    To create an array, we provide a name and declare the type of data it holds:
-                    <i>double[] prices = {13.15, 15.87, 14.22, 16.66};</i></li> 
-                    <li><strong>toString(): </strong>
-                    When we print out an array, we see a memory address 
-                    that doesn't help us understand what was contained in the array.    
-                    If we want to have a more descriptive printout of the array itself, we need a 
-                    toString() method that is provided by the Arrays package in Java. <i>import java.util.Arrays;</i>
-                    The Arrays package has many useful methods.</li>   
-                    <pre>
-                        <code>
-                import java.util.Arrays;
- 
-                public class Lottery(){
-                    public static void main(String[] args){
-                        int[] lotteryNumbers = {4, 8, 15, 16, 23, 42};
-                        String betterPrintout = Arrays.toString(lotteryNumbers);
-                        System.out.println(betterPrintout);
-                    }
-                }
-
-                //This code will print:
-
-                [4, 8, 15, 16, 23, 42]
-                        </code>
-                    </pre>  
-                    <li><strong>Accessing array:</strong> We use square brackets, 
-                    <i>[</i> and <i>]</i>, to access data at a certain index:</li>
-                    <pre>
-                        <code>
-                double[] prices = {13.1, 15.87, 14.22, 16.66};
-                    
-                System.out.println(prices[1]);
-                // This command would print 15.87
-                        </code>
-                    </pre>
-                    <li><strong>Empty arrays: </strong>Have to be initialized with a fixed size: 
-                    <i>String[] menuItems = new String[5];</i>
-                    Once you declare this size, it cannot be changed. This array will always be of size 5.</li>
-                    <li><strong>Length: </strong>To get the length of an array, we can access the length field of 
-                    the array object:</li>
-                    <pre>
-                        <code>
-                String[] menuItems = new String[5];
-                System.out.println(menuItems.length);
-                //This command would print 5, since the menuItems array 
-                //has 5 slots, even though they are all empty.
-                        </code>
-                    </pre>
-                    <li><strong>String[] args: </strong>
-                    When we write <i>main()</i> methods for our programs, we use the parameter <i>String[]</i> args. 
-                    A <i>String[]</i> is an array made up of Strings.
-                    The args parameter is another example of a String array - in this case, the array args 
-                    contains the arguments that we pass in from the terminal when we run the class file.</li>
-                    <li><strong>2D Arrays: </strong>In Java, arrays are considered Objects; therefore, we can 
-                    also have an array of arrays.</li>
-                    <ul>
-                        <li><strong>Declaring: </strong>When declaring 2D arrays, the format is similar to normal, 
-                        one-dimensional arrays, except that you include an extra set of brackets after the data 
-                        type. <i>int[][] intTwoDArray;</i></li>
-                        <li><strong>Initializing: </strong>In a 2D array, instead of only 
-                        including the number of elements in the array, you also indicate how many elements are going to be in the 
-                        sub-arrays. <i>intArray1 = new int[row][column];</i> e.g: <i>int[][] intArray2;
-                        intArray2 = new int[3][5];</i> If you already know what values are going to be in the 2D array: 
-                        <i>char[] charArray = {'a', 'b', 'c', 'd'};</i></li>
-                        <li><strong>Accessing: </strong>Now for 2D arrays, the syntax is slightly different. This 
-                        is because instead of only providing a single index, we provide two indices. Take a look at 
-                        this example:
-                        <pre>
-                            <code>
-                // Given a 2D array of integer data
-                int[][] data = {{2,4,6}, {8,10,12}, {14,16,18}};
-                    
-                // Access and store a desired element 
-                int stored = data[0][2];</li>
-                            </code>
-                        </pre>
-                        <li><strong>Modifying: </strong>We provide the outer array index in the first set 
-                        of brackets and the subarray index in the second set of brackets.
-                        <i>twoDArray[1][3] = 150;</i></li>
-                        <li><strong>Traversing 2D Arrays: </strong></li>
-                        <ul>
-                            <li><strong>Row-Major Order: </strong>refers to a traversal path which moves horizontally 
-                            through each row starting at the first row and ending with the last.</li>
-                            <li><strong>Column-Major Order:</strong> Column-major order for 2D arrays 
-                            refers to a traversal path which moves vertically down each column starting at 
-                            the first column and ending with the last.</li>
-                        </ul>
-                        <li><strong>Combining Traversal and Conditional Logic: </strong>
-                        When working with 2D arrays, it is important to be able to combine traversal logic with 
-                        conditional logic in order to effectively navigate and process the data. Here are a few 
-                        ways in how conditional logic can affect 2D array traversal:</li>
-                        <ul>
-                            <li>Skipping or selecting certain rows and columns</li>
-                            <li>Modifying elements only if they meet certain conditions</li>
-                            <li>Complex calculations using the 2D array data</li>
-                            <li>Formatting the 2D array</li>
-                            <li>Avoiding exceptions / smart processing</li>
-                        </ul>
-                    </ul>
-                    <li><strong>Arrays List: </strong>Creates mutable and dynamic lists. To use them we need
-                    to import: <i>import java.util.ArrayList;</i>. <strong>Video Project Desert Island</strong>
-                    <a href="https://www.youtube.com/watch?v=WkY9PLNXpAs&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
-                    <ul>
-                        <li>ArrayList allows us to: Store object references as elements;
-                        Store elements of the same type (just like arrays); Access elements by index 
-                        (just like arrays); Add elements; Remove elements.</li>
-                        <li><strong>Generics: </strong>To create an ArrayList, we need to declare the type of objects it 
-                        will hold, just as we do with arrays: <i>ArrayList< Integer > ages;</i>We use angle brackets 
-                        <i>< and ></i> to declare the type of the ArrayList. These symbols are used for generics.
-                        Generics are a Java construct that allows us to define classes and objects as parameters 
-                        of an ArrayList.</li>
-                        <li><strong>Empty ArrayList: </strong>We can initialize to an empty ArrayList using the 
-                        new keyword:</li>
-                        <pre>
-                            <code>
-                    // Declaring:
-                    ArrayList< Integer > ages;
-                    // Initializing:
-                    ages = new ArrayList< Integer >();
-
-                    // Declaring and initializing in one line:
-                    ArrayList< String > babyNames = new ArrayList< String >();
-                            </code>
-                        </pre>
-                        <li><strong>add(): </strong>ArrayList comes with an <i>add()</i> method which inserts an element 
-                        into the structure: <i>carShow.add(ferrari);</i>If we want to add an element at a specific index 
-                        of our ArrayList, we’ll need two arguments in our method call: <i>carShow.add(1, corvette);
-                        // carShow now holds [ferrari, corvette, thunderbird, volkswagen]</i></li>
-                        <li><strong>size():</strong> Displays the number of items in an array. <i>shoppingCart.size().</i></li>
-                        <li><strong>get():</strong> For ArrayLists, bracket notation won’t work. We use the 
-                        method <i>get():</i> to access an index: <i>shoppingCart.get(2)</i></li>
-                        <li><strong>set(): </strong>Used to rewrite entries. <i>shoppingCart.set(0, "Tweed Cape");
-                        // shoppingCart now holds ["Tweed Cape", "Tweed Houndstooth Hat", "Magnifying Glass"]</i></li>
-                        <li><strong>remove(): </strong>Remove an item by specifying the index to remove:
-                        <i>shoppingCart.remove(1);</i> We can also remove an item by specifying the value to remove:
-                        <i>shoppingCart.remove("Trench Coat");</i></li>
-                        <li><strong>indexOf(): </strong>Shows the position of a certain element.
-                        <i>detectives.indexOf("Fletcher");</i></li>
-                    </ul>
-                    <hr/>
-                    <h3>Loops</h3>
-                    <li><strong>While: </strong> are extremely useful when you want to run some 
-                    code until a specific change happens. When using a while loop and removing elements from
-                    an ArrayList, we should not 
-                    increment the while loop’s counter whenever we remove an element. We don’t need 
-                    to increase the counter because all of the other elements have now shifted to the left.</li>
-                    <pre>
-                        <code>
-                // set attempts to 0
-                int attempts = 0;
-
-                // enter loop if condition is true
-                while (passcode != 0524 && attempts < 4) {
-                    
-                    System.out.println("Try again.");
-                    passcode = getNewPasscode();
-                    attempts++;
-                    
-                    // is condition still true?
-                    // if so, repeat code block
-                }
-                // exit when condition is not true
-
-
-
-                //Removing element
-
-                int i = 0; // initialize counter
- 
-                while (i < lst.size()) {
-                    // if value is odd, remove value
-                    if (lst.get(i) % 2 != 0){
-                        lst.remove(i);
-                    } else {
-                        // if value is even, increment counter
-                        i++;
-                    }
-                }
-                        </code>
-                    </pre>
-                    <li><strong>For: </strong>Are useful because they help us 
-                    remember to increment our counter. When removing an item using a for loop, we must increase 
-                    our loop control variable — the loop control variable will always change when we reach the 
-                    end of the loop (and it will usually change by 1 because we often use something like i++.) 
-                    Since we can’t avoid increasing our loop control variable, we can take matters into our own 
-                    hands and decrease the loop control variable whenever we remove an item.</li>
-                    <pre>
-                        <code>
-            //Traversing an array
-            for (int i = 0; i < secretCode.length; i++) {
-                // Increase value of element value by 1
-                secretCode[i] += 1;
-            }
-
-            //Traversing an arrayList
-            for (int i = 0; i < secretCode.size(); i++) {
-                // Increase value of element value by 1
-                int num = secretCode.get(i);
-                secretCode.set(i, num + 1);
-            }
-
-
-            //Removing items
-            for (int i = 0; i < lst.size(); i++) {
-                if (lst.get(i) == "value to remove"){
-                  // remove value from ArrayList
-                  lst.remove(lst.get(i));
-                  // Decrease loop control variable by 1
-                  i--;    
-                }
-            }
-                        </code>
-                    </pre>
-                    <li><strong>For-Each (enhanced loops): </strong>Sometimes we couldn’t care less about the indices; 
-                    we only care about the element itself. At times like this, for-each loops come in handy.
-                    For every iteration in the enhanced loop, the loop variable is assigned a copy of the list element.
-                    We can read the <i>:</i> as “in” like this: for each inventoryItem (which should be a String) in 
-                    inventoryItems, print inventoryItem.</li>
-                    <pre>
-                        <code>
-            for (String inventoryItem : inventoryItems) {
-                // Print element value
-                System.out.println(inventoryItem);
-                
-            }
-                        </code>
-                    </pre>
-                    <hr/>
-                    <h3>Strings</h3>
-                    <li><strong>length(): </strong> string method returns the length ⁠— total number of 
-                    characters ⁠— of a String. <i>String str = "Hello World!"; System.out.println(str.length());</i></li>
-                    <li><strong>concat(): </strong>Method concatenates one string to the end of another string.</li>
-                    <pre>
-                        <code>
-            String name = new String("Code");
-            name = name.concat("cademy");
-            System.out.println(name);
-                        </code>
-                    </pre>
-                    <li><strong>equals(): </strong>To test equality with strings, we use a built-in method
-                    called equals(). <strong>equalsIgnoreCase()</strong> method compares two strings without 
-                    considering upper/lower cases.</li>
-                    <pre>
-                        <code>
-            String flavor1 = "Mango";
-            String flavor2 = "Peach";
+                </ul>
+                <hr/>
+                <h3>Installation</h3>
+                <li><strong>Installation: </strong>
+                <a href="https://www.oracle.com/java/technologies/downloads/#java8" target="_blank">here</a>.</li>
+                <li><strong>Integrated Development Environment (IDE):</strong>Java programmers usually use
+                IntelliJ as their IDE (instead of Visual Studio). 
+                <strong>Download Intellij</strong>
+                <a href="https://www.jetbrains.com/idea/" target="_blank">here</a>. 
+                How to setup Intellij 
+                <a href="https://www.youtube.com/watch?v=6FmUcUMkZVQ&feature=youtu.be" target="_blank">here</a>.</li>
+                <hr/>
+                <h3>Variables</h3>
+                <li><strong>Variables: </strong>In Java, we specify the type of information we’re storing. 
+                We use camelCase name convention.
+                Primitive data types are types of data built-in to the Java system. The main primitive 
+                types are: </li>
+                <ul>
+                    <li><strong>int: </strong><i>int carsNumber = 4</i>.</li>
+                    <li><strong>double: </strong>Java's similar for float; <i>double price = 4.5</i>.</li>
+                    <li><strong>boolean: </strong><i>boolean isTrue = true</i> or <i>boolean isFalse = false</i>.</li>
+                    <li><strong>char: </strong>Stores single character (must be single quoted). 
+                    <i>char letter = 'a'</i>.</li>
+                    <li><strong>String: </strong>Stores a sequence of character (must be double quoted). 
+                    <i>String greeting = "Hello World";</i> It could also create a new String object by 
+                    calling the String class when declaring a String like so:
+                    <i>String salutations = new String("Hello World");</i>
+                    There are subtle differences in behavior depending on whether you create a String 
+                    using a String literal or a new String object.</li>
+                </ul>
+                <li><strong>Comparison: </strong>We assign with <i>=</i> and we compare with <i>==</i>, 
+                we differentiatee with <i>!=</i>. With objects, such as Strings, we can’t use the primitive 
+                equality operator - we need to use built-in method <i>.equals()</i> e.g: 
+                <i>person1.equals(person2)</i>.</li>
+                <li><strong>Concatanation: </strong></li>
+                <pre>
+                    <code>
+            String username = "PrinceNelson";
+            System.out.println("Your username is: " + username);  
             
-            System.out.println(flavor1.equals("Mango"));
-            // prints true
-                        </code>
-                    </pre>
-                    <li><strong>indexOf(): </strong>When we want to know the index of the first occurence of a 
-                    character in a string. Instance method can also return where the substring begins 
-                    (the index of the first character in the substring):
-                    <i>String letters = "ABCDEFGHIJKLMN"; System.out.println(letters.indexOf("EFG"));</i></li>
-                    <li><strong>charAt(): </strong>Returns the character located at a String‘s specified index.
-                    <i>String str = "qwer"; System.out.println(str.charAt(2));</i></li>
-                    <li><strong>substring(): </strong>There may be times when we only want a part of a string. 
-                    In such cases, we may want to extract a substring from a string. 
-                    Suppose we want a substring from the middle of the string. We can instead include two 
-                    arguments in this method.</li>
+            //Print: Your username is: PrinceNelson
+                    </code>
+                </pre>
+                <li><strong>final Keyword: </strong>
+                To declare a variable with a value that cannot be manipulated
+                (for example, the year we were born will always stay the same), we need to use the final 
+                keyword. To use the final keyword, prepend final to a variable declaration like so:
+                <i>final int yearBorn = 1968;</i></li>
+                <hr/>
+                <h3>Classes</h3>
+                <li><strong>Classes: </strong>Java is an object-oriented programming language where every 
+                program has at least one class. Programs are often built from many classes and objects, 
+                which are the instances of a class. In Java, classes are considered reference types, which 
+                means that they are used to create objects and are stored in memory as references to those 
+                objects. However, in a sense, you could say that classes are also data types, because they 
+                are used to define the structure and behavior of objects, similar to how data types define 
+                the structure and behavior of data.
+                Classes define the state and behavior of their instances. Behavior comes from methods 
+                defined in the class. State comes from instance fields declared inside the class.
+                <strong>Video project Basic Calculator </strong><a href="https://www.youtube.com/watch?v=3L-VN6a5W28&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <strong>Video project Build a Droid <a href="https://www.youtube.com/watch?v=z9endqnb6Aw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</strong>
+                <li><strong>Constructor: </strong>Shares the same name as the class. To create an instance, 
+                we need to call or invoke the constructor within <i>main()</i>. 
+                <ul>
+                    <li>The below example assigns a Car instance to the variable ferrari.
+                    Instead of being declared with a primitive data type like int or boolean, 
+                    our variable ferrari is declared as a reference data type, this means that the value of our 
+                    variable is a reference to an instance’s memory address. During its declaration, the class 
+                    name is used as the variable’s type. In this case, the type is Car.
+                    After the assignment operator, <i>=</i>, we invoke the constructor method: <i>Car()</i>, and 
+                    use the keyword new to indicate that we’re creating an instance. Omitting <i>new</i> causes an error.</li>
+                    <li>When an object is created, the constructor sets the initial state of the object. 
+                    The state is made up of associated data that represents the characteristics of an object.
+                    We’ll add data to an object by introducing instance variables, or instance fields.
+                    The instance variable will be available for assignment inside the constructor.</li>
+                </ul>
+                <li><strong>Method: </strong></li>
+                <ul>
+                    <li><strong>Return: </strong>We can use datatype keywords (such as int, char, etc.) to 
+                    specify the type of value the method 
+                    should return. The return value’s type must match the return type of the method. If the return 
+                    expression is compatible with the return type, a copy of that value gets returned in a process 
+                    known as return by value. Unlike void methods, non-void methods can be used as either a 
+                    variable value or as part of an expression.</li>
+                    <li><strong>toString(): </strong>When we define a <i>toString()</i> method for a class,
+                    we can return a String that will print when we print the object - instead of returning
+                    a unusable memory location.</li>
+                </ul>
+                <pre>
+                    <code>
+        public class Car {
+            // instance fields
+            int inventoryCount;
+            double inventoryPrice;
+            String color;
+
+            // constructor method
+            public Car(String product, int count, double price, String carColor) {
+                // parameter value assigned to the field
+                productType = product;
+                inventoryCount = count;
+                inventoryPrice = price;
+                color = carColor;
+            }
+
+            // method that returns void
+            public void startRadio(double stationNum, String stationName) {
+                System.out.println("Turning on the radio to " 
+                    + stationNum + ", " + stationName + "!");
+                System.out.println("Enjoy!");
+            }
+
+            // method that returns int
+            public int numberOfTires() {
+                int tires = 4;
+                // return statement
+                return tires;
+            }
+
+            public String toString(){
+                return "This is a " + color + " car!";
+            }
+            
+            public static void main(String[] args) {
+                // Invoke the constructor
+                Car myCar = new Car(, , , "red");
+
+                // Call a method on an object                     
+                myCar.startRadio(103.7, "Meditation Station");
+
+                int numTires = myCar.numberOfTires();
+
+            }
+        }
+                    </code>
+                </pre>
+                <ul>
+                    <li>Running the program invokes <i>main()</i></li>
+                    <li>We create an instance so we move from <i>main()</i> to <i>Car()</i></li>
+                    <li>The code inside <i>Car()</i> runs</li>
+                    <li>When <i>Car()</i> finishes execution, we return to <i>main()</i></li>
+                </ul>
+                <hr/>
+                <h3>Conditionals and Control Flow: </h3>
+                <li><strong>Video Project Simple Car Payment Calculator</strong> <a href="https://www.youtube.com/watch?v=HEkYvjlmyYI&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                <strong>Video Project Continents and Cities</strong> <a href="https://www.youtube.com/watch?v=jPkpjaomWVk&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <li><strong>If-Then, Else-if and Else statement:</strong></li>
+                <pre>
+                    <code>
+            boolean isValidPassword = true;
+
+            if (isValidPassword) {
+                System.out.println("Password accepted!");
+            } else {
+                System.out.println("Wrong Password.");
+            }
+            
+            // Prints "Password accepted!"
+            
+            String course = "Theatre";
+
+            if (course.equals("Biology")) {
+                // Enroll in Biology course
+            } else if (course.equals("Algebra")) {
+                // Enroll in Algebra course
+            } else if (course.equals("Theatre")) {
+                // Enroll in Theatre course
+            } else {
+                System.out.println("Course not found!");
+            }
+
+            // If a conditional is brief we can omit the curly braces entirely:
+            if (true) System.out.println("Brevity is the soul of wit");
+            Note: Conditional statements do not end in a semicolon.
+                    </code>
+                </pre>  
+                <li><strong>Switch Statement</strong></li>
+                <pre>
+                    <code>
+            String course = "History";
+
+            switch (course) {
+                case "Algebra": 
+                    // Enroll in Algebra
+                    break; 
+                case "Biology": 
+                    // Enroll in Biology
+                    break;
+                case "History": 
+                    // Enroll in History
+                    break;
+                case "Theatre":
+                    // Enroll in Theatre
+                    break;
+                default:
+                    System.out.println("Course not found");
+            }
+                    </code>
+                </pre>
+                <li><strong>Conditional Operators: </strong><i>&&</i>, <i>||</i>, <i>!</i>.</li>  
+                <hr/>
+                <h3>Array</h3>
+                <li><strong>Arrays: </strong>In Java, an array can hold elements of only a single type. 
+                This is because Java is a statically typed language, meaning that the type of a variable 
+                is determined at compile-time.
+                To create an array, we provide a name and declare the type of data it holds:
+                <i>double[] prices = {13.15, 15.87, 14.22, 16.66};</i></li> 
+                <li><strong>toString(): </strong>
+                When we print out an array, we see a memory address 
+                that doesn't help us understand what was contained in the array.    
+                If we want to have a more descriptive printout of the array itself, we need a 
+                toString() method that is provided by the Arrays package in Java. <i>import java.util.Arrays;</i>
+                The Arrays package has many useful methods.</li>   
+                <pre>
+                    <code>
+            import java.util.Arrays;
+
+            public class Lottery(){
+                public static void main(String[] args){
+                    int[] lotteryNumbers = {4, 8, 15, 16, 23, 42};
+                    String betterPrintout = Arrays.toString(lotteryNumbers);
+                    System.out.println(betterPrintout);
+                }
+            }
+
+            //This code will print:
+
+            [4, 8, 15, 16, 23, 42]
+                    </code>
+                </pre>  
+                <li><strong>Accessing array:</strong> We use square brackets, 
+                <i>[</i> and <i>]</i>, to access data at a certain index:</li>
+                <pre>
+                    <code>
+            double[] prices = {13.1, 15.87, 14.22, 16.66};
+                
+            System.out.println(prices[1]);
+            // This command would print 15.87
+                    </code>
+                </pre>
+                <li><strong>Empty arrays: </strong>Have to be initialized with a fixed size: 
+                <i>String[] menuItems = new String[5];</i>
+                Once you declare this size, it cannot be changed. This array will always be of size 5.</li>
+                <li><strong>Length: </strong>To get the length of an array, we can access the length field of 
+                the array object:</li>
+                <pre>
+                    <code>
+            String[] menuItems = new String[5];
+            System.out.println(menuItems.length);
+            //This command would print 5, since the menuItems array 
+            //has 5 slots, even though they are all empty.
+                    </code>
+                </pre>
+                <li><strong>String[] args: </strong>
+                When we write <i>main()</i> methods for our programs, we use the parameter <i>String[]</i> args. 
+                A <i>String[]</i> is an array made up of Strings.
+                The args parameter is another example of a String array - in this case, the array args 
+                contains the arguments that we pass in from the terminal when we run the class file.</li>
+                <li><strong>2D Arrays: </strong>In Java, arrays are considered Objects; therefore, we can 
+                also have an array of arrays.</li>
+                <ul>
+                    <li><strong>Declaring: </strong>When declaring 2D arrays, the format is similar to normal, 
+                    one-dimensional arrays, except that you include an extra set of brackets after the data 
+                    type. <i>int[][] intTwoDArray;</i></li>
+                    <li><strong>Initializing: </strong>In a 2D array, instead of only 
+                    including the number of elements in the array, you also indicate how many elements are going to be in the 
+                    sub-arrays. <i>intArray1 = new int[row][column];</i> e.g: <i>int[][] intArray2;
+                    intArray2 = new int[3][5];</i> If you already know what values are going to be in the 2D array: 
+                    <i>char[] charArray = {'a', 'b', 'c', 'd'};</i></li>
+                    <li><strong>Accessing: </strong>Now for 2D arrays, the syntax is slightly different. This 
+                    is because instead of only providing a single index, we provide two indices. Take a look at 
+                    this example:
                     <pre>
                         <code>
-            String line = "The Heav'ns and all the Constellations rung"; 
-            System.out.println(line.substring(24));
-
-
-            String line = "The Heav'ns and all the Constellations rung";
-            System.out.println(line.substring(27, 33));
+            // Given a 2D array of integer data
+            int[][] data = {{2,4,6}, {8,10,12}, {14,16,18}};
+                
+            // Access and store a desired element 
+            int stored = data[0][2];</li>
                         </code>
                     </pre>
-                    <li><strong>toUpperCase() / toLowerCase(): </strong></li>
+                    <li><strong>Modifying: </strong>We provide the outer array index in the first set 
+                    of brackets and the subarray index in the second set of brackets.
+                    <i>twoDArray[1][3] = 150;</i></li>
+                    <li><strong>Traversing 2D Arrays: </strong></li>
                     <ul>
-                        <li><strong>toUpperCase():</strong> Returns the string value converted to uppercase</li>
-                        <li><strong>toLowerCase():</strong> Returns the string value converted to lowercase</li>
-                        <pre>
-                            <code>
-            String input = "Cricket!";
- 
-            String upper = input.toUpperCase();
-            // stores "CRICKET!"
-            
-            String lower = input.toLowerCase();
-            // stores "cricket!"
-                            </code>
-                        </pre>
+                        <li><strong>Row-Major Order: </strong>refers to a traversal path which moves horizontally 
+                        through each row starting at the first row and ending with the last.</li>
+                        <li><strong>Column-Major Order:</strong> Column-major order for 2D arrays 
+                        refers to a traversal path which moves vertically down each column starting at 
+                        the first column and ending with the last.</li>
                     </ul>
-                    <hr>
-                    <h3>Access, Encapsulation, Scope</h3>
-                    <li><strong></strong>We can define the access of many different parts of our code including 
-                    instance variables, methods, constructors, and even a class itself. If we choose to declare 
-                    these as <i>public</i> this means that any part of our code can interact with them</li>
+                    <li><strong>Combining Traversal and Conditional Logic: </strong>
+                    When working with 2D arrays, it is important to be able to combine traversal logic with 
+                    conditional logic in order to effectively navigate and process the data. Here are a few 
+                    ways in how conditional logic can affect 2D array traversal:</li>
+                    <ul>
+                        <li>Skipping or selecting certain rows and columns</li>
+                        <li>Modifying elements only if they meet certain conditions</li>
+                        <li>Complex calculations using the 2D array data</li>
+                        <li>Formatting the 2D array</li>
+                        <li>Avoiding exceptions / smart processing</li>
+                    </ul>
+                </ul>
+                <li><strong>Arrays List: </strong>Creates mutable and dynamic lists. To use them we need
+                to import: <i>import java.util.ArrayList;</i>. <strong>Video Project Desert Island</strong>
+                <a href="https://www.youtube.com/watch?v=WkY9PLNXpAs&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.</li>
+                <ul>
+                    <li>ArrayList allows us to: Store object references as elements;
+                    Store elements of the same type (just like arrays); Access elements by index 
+                    (just like arrays); Add elements; Remove elements.</li>
+                    <li><strong>Generics: </strong>To create an ArrayList, we need to declare the type of objects it 
+                    will hold, just as we do with arrays: <i>ArrayList< Integer > ages;</i>We use angle brackets 
+                    <i>< and ></i> to declare the type of the ArrayList. These symbols are used for generics.
+                    Generics are a Java construct that allows us to define classes and objects as parameters 
+                    of an ArrayList.</li>
+                    <li><strong>Empty ArrayList: </strong>We can initialize to an empty ArrayList using the 
+                    new keyword:</li>
+                    <pre>
+                        <code>
+                // Declaring:
+                ArrayList< Integer > ages;
+                // Initializing:
+                ages = new ArrayList< Integer >();
+
+                // Declaring and initializing in one line:
+                ArrayList< String > babyNames = new ArrayList< String >();
+                        </code>
+                    </pre>
+                    <li><strong>add(): </strong>ArrayList comes with an <i>add()</i> method which inserts an element 
+                    into the structure: <i>carShow.add(ferrari);</i>If we want to add an element at a specific index 
+                    of our ArrayList, we’ll need two arguments in our method call: <i>carShow.add(1, corvette);
+                    // carShow now holds [ferrari, corvette, thunderbird, volkswagen]</i></li>
+                    <li><strong>size():</strong> Displays the number of items in an array. <i>shoppingCart.size().</i></li>
+                    <li><strong>get():</strong> For ArrayLists, bracket notation won’t work. We use the 
+                    method <i>get():</i> to access an index: <i>shoppingCart.get(2)</i></li>
+                    <li><strong>set(): </strong>Used to rewrite entries. <i>shoppingCart.set(0, "Tweed Cape");
+                    // shoppingCart now holds ["Tweed Cape", "Tweed Houndstooth Hat", "Magnifying Glass"]</i></li>
+                    <li><strong>remove(): </strong>Remove an item by specifying the index to remove:
+                    <i>shoppingCart.remove(1);</i> We can also remove an item by specifying the value to remove:
+                    <i>shoppingCart.remove("Trench Coat");</i></li>
+                    <li><strong>indexOf(): </strong>Shows the position of a certain element.
+                    <i>detectives.indexOf("Fletcher");</i></li>
+                </ul>
+                <hr/>
+                <h3>Loops</h3>
+                <li><strong>While: </strong> are extremely useful when you want to run some 
+                code until a specific change happens. When using a while loop and removing elements from
+                an ArrayList, we should not 
+                increment the while loop’s counter whenever we remove an element. We don’t need 
+                to increase the counter because all of the other elements have now shifted to the left.</li>
+                <pre>
+                    <code>
+            // set attempts to 0
+            int attempts = 0;
+
+            // enter loop if condition is true
+            while (passcode != 0524 && attempts < 4) {
+                
+                System.out.println("Try again.");
+                passcode = getNewPasscode();
+                attempts++;
+                
+                // is condition still true?
+                // if so, repeat code block
+            }
+            // exit when condition is not true
+
+
+
+            //Removing element
+
+            int i = 0; // initialize counter
+
+            while (i < lst.size()) {
+                // if value is odd, remove value
+                if (lst.get(i) % 2 != 0){
+                    lst.remove(i);
+                } else {
+                    // if value is even, increment counter
+                    i++;
+                }
+            }
+                    </code>
+                </pre>
+                <li><strong>For: </strong>Are useful because they help us 
+                remember to increment our counter. When removing an item using a for loop, we must increase 
+                our loop control variable — the loop control variable will always change when we reach the 
+                end of the loop (and it will usually change by 1 because we often use something like i++.) 
+                Since we can’t avoid increasing our loop control variable, we can take matters into our own 
+                hands and decrease the loop control variable whenever we remove an item.</li>
+                <pre>
+                    <code>
+        //Traversing an array
+        for (int i = 0; i < secretCode.length; i++) {
+            // Increase value of element value by 1
+            secretCode[i] += 1;
+        }
+
+        //Traversing an arrayList
+        for (int i = 0; i < secretCode.size(); i++) {
+            // Increase value of element value by 1
+            int num = secretCode.get(i);
+            secretCode.set(i, num + 1);
+        }
+
+
+        //Removing items
+        for (int i = 0; i < lst.size(); i++) {
+            if (lst.get(i) == "value to remove"){
+                // remove value from ArrayList
+                lst.remove(lst.get(i));
+                // Decrease loop control variable by 1
+                i--;    
+            }
+        }
+                    </code>
+                </pre>
+                <li><strong>For-Each (enhanced loops): </strong>Sometimes we couldn’t care less about the indices; 
+                we only care about the element itself. At times like this, for-each loops come in handy.
+                For every iteration in the enhanced loop, the loop variable is assigned a copy of the list element.
+                We can read the <i>:</i> as “in” like this: for each inventoryItem (which should be a String) in 
+                inventoryItems, print inventoryItem.</li>
+                <pre>
+                    <code>
+        for (String inventoryItem : inventoryItems) {
+            // Print element value
+            System.out.println(inventoryItem);
+            
+        }
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Strings</h3>
+                <li><strong>length(): </strong> string method returns the length ⁠— total number of 
+                characters ⁠— of a String. <i>String str = "Hello World!"; System.out.println(str.length());</i></li>
+                <li><strong>concat(): </strong>Method concatenates one string to the end of another string.</li>
+                <pre>
+                    <code>
+        String name = new String("Code");
+        name = name.concat("cademy");
+        System.out.println(name);
+                    </code>
+                </pre>
+                <li><strong>equals(): </strong>To test equality with strings, we use a built-in method
+                called equals(). <strong>equalsIgnoreCase()</strong> method compares two strings without 
+                considering upper/lower cases.</li>
+                <pre>
+                    <code>
+        String flavor1 = "Mango";
+        String flavor2 = "Peach";
+        
+        System.out.println(flavor1.equals("Mango"));
+        // prints true
+                    </code>
+                </pre>
+                <li><strong>indexOf(): </strong>When we want to know the index of the first occurence of a 
+                character in a string. Instance method can also return where the substring begins 
+                (the index of the first character in the substring):
+                <i>String letters = "ABCDEFGHIJKLMN"; System.out.println(letters.indexOf("EFG"));</i></li>
+                <li><strong>charAt(): </strong>Returns the character located at a String‘s specified index.
+                <i>String str = "qwer"; System.out.println(str.charAt(2));</i></li>
+                <li><strong>substring(): </strong>There may be times when we only want a part of a string. 
+                In such cases, we may want to extract a substring from a string. 
+                Suppose we want a substring from the middle of the string. We can instead include two 
+                arguments in this method.</li>
+                <pre>
+                    <code>
+        String line = "The Heav'ns and all the Constellations rung"; 
+        System.out.println(line.substring(24));
+
+
+        String line = "The Heav'ns and all the Constellations rung";
+        System.out.println(line.substring(27, 33));
+                    </code>
+                </pre>
+                <li><strong>toUpperCase() / toLowerCase(): </strong></li>
+                <ul>
+                    <li><strong>toUpperCase():</strong> Returns the string value converted to uppercase</li>
+                    <li><strong>toLowerCase():</strong> Returns the string value converted to lowercase</li>
+                    <pre>
+                        <code>
+        String input = "Cricket!";
+
+        String upper = input.toUpperCase();
+        // stores "CRICKET!"
+        
+        String lower = input.toLowerCase();
+        // stores "cricket!"
+                        </code>
+                    </pre>
+                </ul>
+                <hr>
+                <h3>Access, Encapsulation, Scope</h3>
+                <li><strong></strong>We can define the access of many different parts of our code including 
+                instance variables, methods, constructors, and even a class itself. If we choose to declare 
+                these as <i>public</i> this means that any part of our code can interact with them</li>
+                <pre>
+                    <code>
+        public class Dog{
+            public String name;
+            public int age;
+            
+            public Dog(String input_name, int input_age){
+                name = input_name;
+                age = input_age;
+            }
+            
+            public void speak() {
+                System.out.println("Arf Arf! My name is " + name + " and I am a good dog!");
+            }
+        }
+
+        //Has access to class Dog, and create an instance of it 
+        public class DogSchool{
+            public void makeADog(){
+                Dog cujo = new Dog("Cujo", 7);
+                System.out.println(cujo.age);
+                cujo.speak();
+            }
+        }
+
+                    </code>
+                </pre>
+                <li><strong>Private Keyword and Encapsulation: </strong>When a Class’ instance variable 
+                or method is marked as private, that means that you can only access those structures 
+                from elsewhere inside that same class. Encapsulation is a technique used to keep implementation 
+                details hidden from other classes. Its aim is to create small bundles of logic.</li>
+                <ul>
+                    <li><strong>Accessor Methods: </strong>When writing classes, we often 
+                    make all of our instance variables private. However, we still might want some other
+                    classes to have access to them, we just don’t want those classes to know the exact 
+                    variable name. To give other classes access to a private instance variable, we would 
+                    write an accessor method (sometimes also known as a “getter” method).
+                    From the example below, even though the instance variable name is private, other classes could call the 
+                    public method <i>getName()</i> which returns the value of that instance variable. Accessor 
+                    methods will always be public, and will have a return type that matches the type of 
+                    the instance variable they’re accessing.</li>
                     <pre>
                         <code>
             public class Dog{
-                public String name;
-                public int age;
+                private String name;
                 
-                public Dog(String input_name, int input_age){
-                    name = input_name;
-                    age = input_age;
-                }
+                //Other methods and constructors
                 
-                public void speak() {
-                    System.out.println("Arf Arf! My name is " + name + " and I am a good dog!");
+                public String getName() {
+                    return name;
                 }
             }
-
-            //Has access to class Dog, and create an instance of it 
-            public class DogSchool{
-                public void makeADog(){
-                  Dog cujo = new Dog("Cujo", 7);
-                  System.out.println(cujo.age);
-                  cujo.speak();
-                }
-            }
-
                         </code>
                     </pre>
-                    <li><strong>Private Keyword and Encapsulation: </strong>When a Class’ instance variable 
-                    or method is marked as private, that means that you can only access those structures 
-                    from elsewhere inside that same class. Encapsulation is a technique used to keep implementation 
-                    details hidden from other classes. Its aim is to create small bundles of logic.</li>
-                    <ul>
-                        <li><strong>Accessor Methods: </strong>When writing classes, we often 
-                        make all of our instance variables private. However, we still might want some other
-                        classes to have access to them, we just don’t want those classes to know the exact 
-                        variable name. To give other classes access to a private instance variable, we would 
-                        write an accessor method (sometimes also known as a “getter” method).
-                        From the example below, even though the instance variable name is private, other classes could call the 
-                        public method <i>getName()</i> which returns the value of that instance variable. Accessor 
-                        methods will always be public, and will have a return type that matches the type of 
-                        the instance variable they’re accessing.</li>
-                        <pre>
-                            <code>
-                public class Dog{
-                    private String name;
-                    
-                    //Other methods and constructors
-                    
-                    public String getName() {
-                        return name;
-                    }
-                }
-                            </code>
-                        </pre>
-                        <li><strong>Mutator Methods: </strong>Private instance variables often have mutator methods 
-                        (sometimes known as “setters”). These methods allow other classes to reset the value 
-                        stored in private instance variables.</li>
-                        <pre>
-                            <code>
-                public class Dog{
-                    private String name;
-                    
-                    //Other methods and constructors
-                    
-                    public void setName(String newName) {
-                        name = newName;
-                    }
-                    
-                    public static void main(String[] args){
-                        Dog myDog = new Dog("Cujo");
-                        myDog.setName("Lassie");
-                    }
-                }
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Scope: The this Keyword: </strong>Often times when creating classes, programmers 
-                    will create local variables with the same name as instance variables. If we wanted to access 
-                    the instance variable and not the local variable, we could use the this keyword.
-                    The this keyword is a reference to the current object. we can also use the this with methods.</li>
+                    <li><strong>Mutator Methods: </strong>Private instance variables often have mutator methods 
+                    (sometimes known as “setters”). These methods allow other classes to reset the value 
+                    stored in private instance variables.</li>
                     <pre>
                         <code>
-                public class Dog{
-                    public String name;
-                    
-                    public Dog(String inputName){
-                        name = inputName;
-                    }
-                    
-                    public void speakNewName(String name){
-                        System.out.println("Hello, my new name is" + this.name);
-                    }
-                    
-                    public static void main(String[] args){
-                        Dog a = new Dog("Fido");
-                        Dog b = new Dog("Odie");
-                    
-                        a.speakNewName("Winston");
-                        // "Fido", the instance variable of Dog a is printed. "Winston" is ignored
-                    
-                        b.speakNewName("Darla");
-                        // "Odie", the instance variable of Dog b is printed. "Darla" is ignored.
-                    }
+            public class Dog{
+                private String name;
+                
+                //Other methods and constructors
+                
+                public void setName(String newName) {
+                    name = newName;
                 }
+                
+                public static void main(String[] args){
+                    Dog myDog = new Dog("Cujo");
+                    myDog.setName("Lassie");
+                }
+            }
                         </code>
                     </pre>
-                    <li><strong>Other Private Methods: </strong>
-                    Now that we’ve seen how methods can call other methods using <i>this.</i>, let’s look at a 
-                    situation where you might want to use private methods. Oftentimes, private methods are 
-                    helper methods — that is to say that they’re methods that other, bigger methods use.
-                    For example, for our CheckingAccount example, we might want a public method like 
-                    <i>getAccountInformation()</i> that prints information like the name of the account owner, the 
-                    amount of money in the account, and the amount of interest the account will make in a month. 
-                    That way, another class, like a Bank, could call that public method to get all of that 
-                    information quickly.
-                    Well, in order to get that information, we might want to break that larger method into 
-                    several helper methods. For example, inside <i>getAccountInformation()</i>, we might want to 
-                    call a function called <i>calculateNextMonthInterest()</i>. That helper method should probably 
-                    be private. There’s no need for a Bank to call these smaller helper methods — instead, a 
-                    Bank can call the one public method, and rely on that method to do all of the complicated
-                    work by calling smaller private methods.</li>
-                    <hr/>
-                    <h3>Math Class</h3>
-                    <li><strong>Math Class: </strong>A lot of math work can be truncated using the Math 
-                    class. The Java Math class is part of the java.lang package; it contains a variety of
-                    methods that can be used to perform numerical calculations in our programs. 
-                    Every method in the Math class is static. This means that we can call and use these methods 
-                    without creating an object of the class. There are two main options for calling a static method.</li>
-                    <ul>
-                        <li><strong>Appending the dot operator</strong> to the class name followed by the 
-                        method we want to execute. If we wanted to reference a method of the Math class, 
-                        we would use Math.NameOfMethodHere. Let’s see this in action with the Math class 
-                        method <i>min()</i> which returns the smaller value of two given numbers.
-                        How is this any different from calling a non-static method? We don’t need to create 
-                        an object of the class in order to use the methods it contains.</li>
-                        <pre>
-                            <code>
+                </ul>
+                <li><strong>Scope: The this Keyword: </strong>Often times when creating classes, programmers 
+                will create local variables with the same name as instance variables. If we wanted to access 
+                the instance variable and not the local variable, we could use the this keyword.
+                The this keyword is a reference to the current object. we can also use the this with methods.</li>
+                <pre>
+                    <code>
+            public class Dog{
+                public String name;
+                
+                public Dog(String inputName){
+                    name = inputName;
+                }
+                
+                public void speakNewName(String name){
+                    System.out.println("Hello, my new name is" + this.name);
+                }
+                
+                public static void main(String[] args){
+                    Dog a = new Dog("Fido");
+                    Dog b = new Dog("Odie");
+                
+                    a.speakNewName("Winston");
+                    // "Fido", the instance variable of Dog a is printed. "Winston" is ignored
+                
+                    b.speakNewName("Darla");
+                    // "Odie", the instance variable of Dog b is printed. "Darla" is ignored.
+                }
+            }
+                    </code>
+                </pre>
+                <li><strong>Other Private Methods: </strong>
+                Now that we’ve seen how methods can call other methods using <i>this.</i>, let’s look at a 
+                situation where you might want to use private methods. Oftentimes, private methods are 
+                helper methods — that is to say that they’re methods that other, bigger methods use.
+                For example, for our CheckingAccount example, we might want a public method like 
+                <i>getAccountInformation()</i> that prints information like the name of the account owner, the 
+                amount of money in the account, and the amount of interest the account will make in a month. 
+                That way, another class, like a Bank, could call that public method to get all of that 
+                information quickly.
+                Well, in order to get that information, we might want to break that larger method into 
+                several helper methods. For example, inside <i>getAccountInformation()</i>, we might want to 
+                call a function called <i>calculateNextMonthInterest()</i>. That helper method should probably 
+                be private. There’s no need for a Bank to call these smaller helper methods — instead, a 
+                Bank can call the one public method, and rely on that method to do all of the complicated
+                work by calling smaller private methods.</li>
+                <hr/>
+                <h3>Math Class</h3>
+                <li><strong>Math Class: </strong>A lot of math work can be truncated using the Math 
+                class. The Java Math class is part of the java.lang package; it contains a variety of
+                methods that can be used to perform numerical calculations in our programs. 
+                Every method in the Math class is static. This means that we can call and use these methods 
+                without creating an object of the class. There are two main options for calling a static method.</li>
+                <ul>
+                    <li><strong>Appending the dot operator</strong> to the class name followed by the 
+                    method we want to execute. If we wanted to reference a method of the Math class, 
+                    we would use Math.NameOfMethodHere. Let’s see this in action with the Math class 
+                    method <i>min()</i> which returns the smaller value of two given numbers.
+                    How is this any different from calling a non-static method? We don’t need to create 
+                    an object of the class in order to use the methods it contains.</li>
+                    <pre>
+                        <code>
+            class Numbers {
+                public static void main(String[] args) {
+                    // Call method using the Class name, the dot operator, the method name, and arguments
+                    int smallerNumber = Math.min(3, 10);
+                    System.out.println(smallerNumber); // Prints: 3
+                }
+            }
+                        </code>
+                    </pre>
+                    <li><strong>Importing the class</strong> by adding import static java.lang.Math.*; to the top of our program. If 
+                    we import the Math class, we can reference the method using only the method name like so:</li>
+                    <pre>
+                        <code>
+            import static java.lang.Math.*; // import Math class
+                    
                 class Numbers {
                     public static void main(String[] args) {
-                        // Call method using the Class name, the dot operator, the method name, and arguments
-                        int smallerNumber = Math.min(3, 10);
-                        System.out.println(smallerNumber); // Prints: 3
+                    // Call method by using method name and arguments
+                    int smallerNumber = min(3, 10);
+                    System.out.println(smallerNumber); // Prints: 3
                     }
-                }
-                            </code>
-                        </pre>
-                        <li><strong>Importing the class</strong> by adding import static java.lang.Math.*; to the top of our program. If 
-                        we import the Math class, we can reference the method using only the method name like so:</li>
-                        <pre>
-                            <code>
-                import static java.lang.Math.*; // import Math class
-                        
-                    class Numbers {
-                        public static void main(String[] args) {
-                        // Call method by using method name and arguments
-                        int smallerNumber = min(3, 10);
-                        System.out.println(smallerNumber); // Prints: 3
-                        }
-                    }
-                            </code>
-                        </pre>    
-                    </ul>
-                    <li><strong>Methods: </strong> Documentation <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html" target="_blank">here</a>.</li>
-                    <ul>
-                        <li><strong>int abs(int x): </strong>Returns the absolute value of an int value.
-                        <i>System.out.println(Math.abs(-5)); // Prints: 5</i></li>
-                        <li><strong>double abs(double x): </strong>Returns the absolute value of a double value.
-                        <i>System.out.println(Math.abs(5.0)); // Prints: 5.0</i></li>
-                        <li><strong>double pow(double base, double exponent): </strong>
-                        Returns the value of the first parameter raised to the power of the second parameter.
-                        <i>double x = Math.pow(5, 3); System.out.println(x); // Prints: 125.0</i></li>
-                        <li><strong>double sqrt(double x): </strong>
-                        Returns the positive square root of a double value.
-                        <i>double x = Math.sqrt(49); System.out.println(x); // Prints: 7.0</i></li>
-                        <li><strong>double random(): </strong>
-                        Returns a double value greater than or equal to 0.0 and less than 1.0.</li>
-                        <pre>
-                            <code>
-                System.out.println(Math.random());
-                System.out.println(Math.random());
-                System.out.println(Math.random());
-                
-                //It can print:
-                0.8592007008856128
-                0.6120058754881421
-                0.48259656765819403
-
-                // Random double value between 0 and 10, not including 10
-                double a = Math.random() * 10;
-                            </code>
-                        </pre>
-                    </ul>
-                    <hr/>
-                    <h3>Static Variables and Methods</h3>
-                    <li><strong>Static Variables: </strong>Much like static methods, you can think of static 
-                    variables as belonging to the class itself instead of belonging to a particular object 
-                    of the class.
-                    Just like with static methods, we can access static variables by using the name of the 
-                    class and the . operator. Finally, we declare static variables by using the static keyword 
-                    during declaration. This keyword usually comes after the variable’s access modifier 
-                    (public or private).
-                    Whether you’re writing code in a constructor, a non-static method, or a static method, 
-                    you have access to static variables.</li>
-                    <pre>
-                        <code>
-                public class ATM{
-                    // Static variables
-                    public static int totalMoney = 0;
-                    public static int numATMs = 0;
-                    
-                    // Instance variables
-                    public int money;
-                    
-                    public ATM(int inputMoney){
-                        this.money = inputMoney;
-                    
-                        // Steps 1 and 2: Edit numATMs and total money here
-                        numATMs += 1;
-                        totalMoney += inputMoney;
-                    }
-                    
-                    public void withdrawMoney(int amountToWithdraw){
-                        if(amountToWithdraw <= this.money){
-                        this.money -= amountToWithdraw;
-                        // Step 3: Edit totalMoney here
-                        totalMoney -= amountToWithdraw;
-                        }
-                    }
-                    
-                    public static void main(String[] args){
-                    
-                        System.out.println("Total number of ATMs: " + ATM.numATMs); 
-                        ATM firstATM = new ATM(1000);
-                        ATM secondATM = new ATM(500);
-                        System.out.println("Total number of ATMs: " + ATM.numATMs); 
-                    
-                        System.out.println("Total amount of money in all ATMs: " + ATM.totalMoney);  
-                        firstATM.withdrawMoney(500);
-                        secondATM.withdrawMoney(200);
-                        System.out.println("Total amount of money in all ATMs: " + ATM.totalMoney);    
-
-                    }    
                 }
                         </code>
-                    </pre>
-                    <hr/>
-                    <h3>Inheritance and Polymorphism</h3>
-                    <li><strong>Inheritance: </strong>A Java class can also inherit traits from another class. So 
-                    how do we define a child class so that it inherits from a parent class? We use the keyword 
-                    <i>extends</i>. Every Java class requires its own file</li>
-                    <ul>
-                        <li>Until now, we’ve only been working with one class and one file. However,
-                        most Java programs utilize multiple classes, each of which requires its own file. Only one 
-                        file needs a <i>main()</i> method — this is the file we will run.
-                        The various classes in our Java package — even though they are in different files — will 
-                        have access to each other, so we can instantiate one class inside of another.</li>
-                        <li><strong>super(): </strong>We use to inherit the constructor method, then 
-                        acts like the parent constructor inside the child class constructor.</li>
-                        <li><strong>protected: </strong>A child class doesn't inherit its parent’s private members.
-                        But there is another access modifier we can use to keep a parent class member accessible 
-                        to its child classes and to files in the package it’s contained in — and otherwise 
-                        private: protected. In addition to access modifiers, there’s another way to establish how child classes 
-                        can interact with inherited parent class members: using the final keyword. If we add final after a parent 
-                        class method’s access modifier, we disallow any child classes from changing that method. 
-                        This is helpful in limiting bugs that might occur from modifying a particular method.
-                        <i>protected double perimeter;</i> </li>
-                        <pre>
-                            <code>
-                //Noodle.java
-
-                class Noodle {
-  
-                    double lengthInCentimeters;
-                    double widthInCentimeters;
-                    String shape;
-                    String ingredients;
-                    String texture = "brittle";
-                    
-                    Noodle(double lenInCent, double wthInCent, String shp, String ingr) {
-                      
-                      this.lengthInCentimeters = lenInCent;
-                      this.widthInCentimeters = wthInCent;
-                      this.shape = shp;
-                      this.ingredients = ingr;
-                      
-                    }
-                    
-                    public void cook() {
-                        this.texture = "cooked";                      
-                    }
-
-                    public static void main(String[] args) {
-                      
-                        Pho phoChay = new Pho();
-                        System.out.println(phoChay.shape);
-                      
-                    }    
-                }
-
-                //Pho.java
-
-                class Pho extends Noodle {
-                    Pho() {
-                        super(30.0, 0.64, "flat", "rice flour"); 
-                    }    
-                }
-                            </code>
-                        </pre>
-                    </ul>
-                    <li><strong>Polymorphism: </strong>Polymorphism, which derives from 
-                    Greek meaning “many forms”, allows a child class to share the information and behavior 
-                    of its parent class while also incorporating its own functionality.
-                    The main advantages of polymorphic programming: Simplifying syntax; Reducing cognitive 
-                    overload for developers. These benefits are particularly helpful when we want to 
-                    develop our own Java packages for other developers to import and use.
-                    <ul>
-                        <li>For example, the built-in operator + can be used for both <i>doubles</i> and <i>ints</i>. To the 
-                        computer, the <i>+</i> means something like <i>addDouble()</i> for one and <i>addInt()</i> for the other, 
-                        but the creators of Java (and of other languages) didn’t want to burden us as developers 
-                        with recalling each individual method.</li>
-                        <pre>
-                            <code>
-                String makeJuice(Fruit fruit) {
-                    return "Apple juice and " + fruit.squeeze();    
-                }
-                    
-                // inside main()
-                Orange orange = new Orange();
-                System.out.println(juicer.makeJuice(orange));    
-
-                            </code>
-                        </pre>
-                        <li><strong>Method Overriding: </strong>
-                        One common use of polymorphism with Java classes is overriding parent class methods 
-                        in a child class. Like the + operator, we can give a 
-                        single method slightly different meanings for different classes. This is useful when 
-                        we want our child class method to have the same name as a parent class method but 
-                        behave a bit differently in some way.
-                        The <strong>@Override</strong> keyword informs the compiler that we want to override 
-                        a method in the parent class. If the method doesn’t exist in the parent class, we’ll 
-                        get a helpful error when we compile the program.
-                        Let’s say we have a BankAccount class that allows us to print the current balance. 
-                        We want to build a CheckingAccount class that inherits the functionality of a 
-                        BankAccount but with a modified <i>printBalance()</i> method. We can do the following:</li>
-                        <pre>
-                            <code>
-                class BankAccount {
-                    protected double balance;
-                    
-                    public BankAccount(double balanceIn){
-                        balance = balanceIn;
-                    }
-                    
-                    public void printBalance() {
-                        System.out.println("Your account balance is $" + balance);
-                    }
-                }
-                    
-                class CheckingAccount extends BankAccount {
-                    
-                    public CheckingAccount(double balance) {
-                        super(balance);
-                    }
-                    
-                    @Override
-                    public void printBalance() {
-                        System.out.println("Your checking account balance is $" + balance);
-                    }
-                }
-                            </code>
-                        </pre>
-                        <li><strong>Using a Child Class as its Parent Class: </strong>
-                        An important facet of polymorphism is the ability to use a child class object where an object 
-                        of its parent class is expected.
-                        One way to do this explicitly is to instantiate a child class object as a member of the 
-                        parent class. We can instantiate a CheckingAccount object as a BankAccount like this:
-                        <i>BankAccount kaylasAccount = new CheckingAccount(600.00);</i>
-                        We can use kaylasAccount as if it were an instance of BankAccount, in any situation 
-                        where a BankAccount object would be expected. (This would be true even if kaylasAccount
-                        were instantiated as a CheckingAccount, but using the explicit child as parent syntax is 
-                        most helpful when we want to declare objects in bulk.)
-                        It is important to note here that the compiler just considers kaylasAccount to be any 
-                        old BankAccount. But because method overriding is handled at runtime, if we call 
-                        <i>printBalance()</i>, we’ll see something CheckingAccount specific:
-                        <i>Your checking account balance is $600.00</i>
-                        This is because at runtime, kaylasAccount is recognized as the CheckingAccount it is. 
-                        So, what if CheckingAccount has a method transferToSavings() that BankAccount does not 
-                        have? Can kaylasAccount still use that method?
-                        Well, no. The compiler believes that kaylasAccount is just a BankAccount that doesn’t 
-                        have some fancy child class transferToSavings() method, so it would throw an error.</li>
-                        <li><strong>Child Classes in Arrays and ArrayLists: </strong>
-                        Usually, when we create an array or an ArrayList, the list items all need to be the 
-                        same type. But polymorphism puts a new spin on what is considered the same type.
-                        In fact, we can put instances of different classes that share a parent class together 
-                        in an array or ArrayList! For example, let’s say we have a Monster parent class with a 
-                        few child classes: Vampire, Werewolf, and Zombie. We can set up an array with instances 
-                        of each. We can even iterate through the list of items — regardless of subclass — and perform 
-                        the same action with each item.</li>
-                        <pre>
-                            <code>
-                Monster dracula, wolfman, zombie1;
-                    
-                dracula = new Vampire();
-                wolfman = new Werewolf();
-                zombie1 = new Zombie();
-                    
-                Monster[] monsters = {dracula, wolfman, zombie1};
-
-                //Iteration
-                for (Monster monster : monsters) {
-                    monster.attack();
-                }
-                            </code>
-                        </pre>
-                        <li><strong>Child Classes in Method Parameters: </strong>
-                        When we call a method that contains parameters, the arguments we place in our method 
-                        call must match the parameter type. Similar to the previous exercise, polymorphism 
-                        gives us a little more flexibility with the arguments we can use.
-                        If we use a superclass reference as a method parameter, we can call the method using 
-                        subclass reference arguments.
-                        For example, imagine the class ScaryStory, whose constructor takes in a reference to 
-                        the Monster class:</li>
-                        <pre>
-                            <code>
-                    class ScaryStory {
-                        Monster monster;
-                        String setting;
-                        
-                        public ScaryStory(Monster antagonist, String place) {
-                            monster = antagonist;
-                            setting = place;
-                        }
-                        
-                        public void tellStory(){
-                            System.out.println("Once upon a time, 
-                            " + monster.name + " was at " + setting + 
-                            " looking to scare some mortals.");
-                        }
-                        
-                        public static void main(String[] args) {
-                            Monster dracula;
-                            dracula = new Vampire("Dracula");
-                            ScaryStory countDracula = new ScaryStory(dracula, "Dracula Castle");
-                            countDracula.tellStory();
-                        }
-                    }
-                            </code>
-                        </pre>
-                    </ul>
-                    <hr/>
-                    <h3>Debbuging</h3>
-                    <li><strong>Debbuging: </strong>In Java, there are many different ways of classifying errors, 
-                    but they can be boiled down to three categories:
-                    <ul>
-                        <li><strong>Syntax errors:</strong> Errors found by the compiler.</li>
-                        <li><strong>Run-time errors:</strong> Errors that occur when the program is running.
-                        E.g: Division by zero also known as division error; Trying to open a file that doesn’t exist.</li>
-                        <li><strong>Logic errors:</strong> Errors found by the programmer looking for the causes 
-                        of erroneous results.</li>
-                    </ul>
-                    <li><strong>Exceptions: </strong>Java uses exceptions to handle errors and other exceptional 
-                    events. Exceptions are the conditions that occur at runtime and may cause the termination of 
-                    the program. One way to handle exceptions is using the try/catch:
-                    The try statement allows you to define a block of code to be tested for errors while it is 
-                    being executed. The catch statement allows you to define a block of code to be executed 
-                    if an error occurs in the try block.
-                    The try and catch keywords come in pairs, though you can also catch several types of 
-                    exceptions in a single block. catch can be chained.</li>
-                    <pre>
-                        <code>
-                try {   
-                    //  Block of code to try
-                } catch (NullPointerException e) {
-                    // Print the error message like this:
-                    System.err.println("NullPointerException: " + e.getMessage());
-                    // Or handle the error another way here
-                } catch (ArithmeticException e) {
-                    //  Code to handle an ArithmeticException 
-                }
-                        </code>
-                    </pre>
-                    <li><strong>Debbuging Tecnhiques: </strong>
-                    If you have examined the code thoroughly, and you are sure the compiler is compiling 
-                    the right source file, it is time for desperate measures:</li>
-                    <ol>
-                        <li><strong>Divide and conquer:</strong> Comment out or temporarily delete half the code to isolate 
-                        an issue.</li>
-                        <ul>
-                            <li>If the program compiles now, you know the error is in the code you deleted. Bring back 
-                            about half of what you removed and repeat.</li>
-                            <li>If the program still doesn’t compile, the error must be in the code that remains. 
-                            Delete about half of the remaining code and repeat.
-                            Tip: In most code editors, one can highlight a block of code and use the keyboard 
-                            shortcut command + / to comment it out.</li>
-                        </ul>
-                        <li><strong>Print statements for the rescue:</strong> Use <i>System.out.println()</i> to check 
-                        variable/return values at various points throughout the program.
-                        A lot of the time with logic errors, there was a flawed piece of logic, a miscalculation, 
-                        a missing step, etc. By printing out the values at different stages of the execution 
-                        flow, you can then hopefully pinpoint where you made a mistake.</li>
-                    </ol>
+                    </pre>    
                 </ul>
-            </div>
-        </header>
+                <li><strong>Methods: </strong> Documentation <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>int abs(int x): </strong>Returns the absolute value of an int value.
+                    <i>System.out.println(Math.abs(-5)); // Prints: 5</i></li>
+                    <li><strong>double abs(double x): </strong>Returns the absolute value of a double value.
+                    <i>System.out.println(Math.abs(5.0)); // Prints: 5.0</i></li>
+                    <li><strong>double pow(double base, double exponent): </strong>
+                    Returns the value of the first parameter raised to the power of the second parameter.
+                    <i>double x = Math.pow(5, 3); System.out.println(x); // Prints: 125.0</i></li>
+                    <li><strong>double sqrt(double x): </strong>
+                    Returns the positive square root of a double value.
+                    <i>double x = Math.sqrt(49); System.out.println(x); // Prints: 7.0</i></li>
+                    <li><strong>double random(): </strong>
+                    Returns a double value greater than or equal to 0.0 and less than 1.0.</li>
+                    <pre>
+                        <code>
+            System.out.println(Math.random());
+            System.out.println(Math.random());
+            System.out.println(Math.random());
+            
+            //It can print:
+            0.8592007008856128
+            0.6120058754881421
+            0.48259656765819403
+
+            // Random double value between 0 and 10, not including 10
+            double a = Math.random() * 10;
+                        </code>
+                    </pre>
+                </ul>
+                <hr/>
+                <h3>Static Variables and Methods</h3>
+                <li><strong>Static Variables: </strong>Much like static methods, you can think of static 
+                variables as belonging to the class itself instead of belonging to a particular object 
+                of the class.
+                Just like with static methods, we can access static variables by using the name of the 
+                class and the . operator. Finally, we declare static variables by using the static keyword 
+                during declaration. This keyword usually comes after the variable’s access modifier 
+                (public or private).
+                Whether you’re writing code in a constructor, a non-static method, or a static method, 
+                you have access to static variables.</li>
+                <pre>
+                    <code>
+            public class ATM{
+                // Static variables
+                public static int totalMoney = 0;
+                public static int numATMs = 0;
+                
+                // Instance variables
+                public int money;
+                
+                public ATM(int inputMoney){
+                    this.money = inputMoney;
+                
+                    // Steps 1 and 2: Edit numATMs and total money here
+                    numATMs += 1;
+                    totalMoney += inputMoney;
+                }
+                
+                public void withdrawMoney(int amountToWithdraw){
+                    if(amountToWithdraw <= this.money){
+                    this.money -= amountToWithdraw;
+                    // Step 3: Edit totalMoney here
+                    totalMoney -= amountToWithdraw;
+                    }
+                }
+                
+                public static void main(String[] args){
+                
+                    System.out.println("Total number of ATMs: " + ATM.numATMs); 
+                    ATM firstATM = new ATM(1000);
+                    ATM secondATM = new ATM(500);
+                    System.out.println("Total number of ATMs: " + ATM.numATMs); 
+                
+                    System.out.println("Total amount of money in all ATMs: " + ATM.totalMoney);  
+                    firstATM.withdrawMoney(500);
+                    secondATM.withdrawMoney(200);
+                    System.out.println("Total amount of money in all ATMs: " + ATM.totalMoney);    
+
+                }    
+            }
+                    </code>
+                </pre>
+                <hr/>
+                <h3>Inheritance and Polymorphism</h3>
+                <li><strong>Inheritance: </strong>A Java class can also inherit traits from another class. So 
+                how do we define a child class so that it inherits from a parent class? We use the keyword 
+                <i>extends</i>. Every Java class requires its own file</li>
+                <ul>
+                    <li>Until now, we’ve only been working with one class and one file. However,
+                    most Java programs utilize multiple classes, each of which requires its own file. Only one 
+                    file needs a <i>main()</i> method — this is the file we will run.
+                    The various classes in our Java package — even though they are in different files — will 
+                    have access to each other, so we can instantiate one class inside of another.</li>
+                    <li><strong>super(): </strong>We use to inherit the constructor method, then 
+                    acts like the parent constructor inside the child class constructor.</li>
+                    <li><strong>protected: </strong>A child class doesn't inherit its parent’s private members.
+                    But there is another access modifier we can use to keep a parent class member accessible 
+                    to its child classes and to files in the package it’s contained in — and otherwise 
+                    private: protected. In addition to access modifiers, there’s another way to establish how child classes 
+                    can interact with inherited parent class members: using the final keyword. If we add final after a parent 
+                    class method’s access modifier, we disallow any child classes from changing that method. 
+                    This is helpful in limiting bugs that might occur from modifying a particular method.
+                    <i>protected double perimeter;</i> </li>
+                    <pre>
+                        <code>
+            //Noodle.java
+
+            class Noodle {
+
+                double lengthInCentimeters;
+                double widthInCentimeters;
+                String shape;
+                String ingredients;
+                String texture = "brittle";
+                
+                Noodle(double lenInCent, double wthInCent, String shp, String ingr) {
+                    
+                    this.lengthInCentimeters = lenInCent;
+                    this.widthInCentimeters = wthInCent;
+                    this.shape = shp;
+                    this.ingredients = ingr;
+                    
+                }
+                
+                public void cook() {
+                    this.texture = "cooked";                      
+                }
+
+                public static void main(String[] args) {
+                    
+                    Pho phoChay = new Pho();
+                    System.out.println(phoChay.shape);
+                    
+                }    
+            }
+
+            //Pho.java
+
+            class Pho extends Noodle {
+                Pho() {
+                    super(30.0, 0.64, "flat", "rice flour"); 
+                }    
+            }
+                        </code>
+                    </pre>
+                </ul>
+                <li><strong>Polymorphism: </strong>Polymorphism, which derives from 
+                Greek meaning “many forms”, allows a child class to share the information and behavior 
+                of its parent class while also incorporating its own functionality.
+                The main advantages of polymorphic programming: Simplifying syntax; Reducing cognitive 
+                overload for developers. These benefits are particularly helpful when we want to 
+                develop our own Java packages for other developers to import and use.
+                <ul>
+                    <li>For example, the built-in operator + can be used for both <i>doubles</i> and <i>ints</i>. To the 
+                    computer, the <i>+</i> means something like <i>addDouble()</i> for one and <i>addInt()</i> for the other, 
+                    but the creators of Java (and of other languages) didn’t want to burden us as developers 
+                    with recalling each individual method.</li>
+                    <pre>
+                        <code>
+            String makeJuice(Fruit fruit) {
+                return "Apple juice and " + fruit.squeeze();    
+            }
+                
+            // inside main()
+            Orange orange = new Orange();
+            System.out.println(juicer.makeJuice(orange));    
+
+                        </code>
+                    </pre>
+                    <li><strong>Method Overriding: </strong>
+                    One common use of polymorphism with Java classes is overriding parent class methods 
+                    in a child class. Like the + operator, we can give a 
+                    single method slightly different meanings for different classes. This is useful when 
+                    we want our child class method to have the same name as a parent class method but 
+                    behave a bit differently in some way.
+                    The <strong>@Override</strong> keyword informs the compiler that we want to override 
+                    a method in the parent class. If the method doesn’t exist in the parent class, we’ll 
+                    get a helpful error when we compile the program.
+                    Let’s say we have a BankAccount class that allows us to print the current balance. 
+                    We want to build a CheckingAccount class that inherits the functionality of a 
+                    BankAccount but with a modified <i>printBalance()</i> method. We can do the following:</li>
+                    <pre>
+                        <code>
+            class BankAccount {
+                protected double balance;
+                
+                public BankAccount(double balanceIn){
+                    balance = balanceIn;
+                }
+                
+                public void printBalance() {
+                    System.out.println("Your account balance is $" + balance);
+                }
+            }
+                
+            class CheckingAccount extends BankAccount {
+                
+                public CheckingAccount(double balance) {
+                    super(balance);
+                }
+                
+                @Override
+                public void printBalance() {
+                    System.out.println("Your checking account balance is $" + balance);
+                }
+            }
+                        </code>
+                    </pre>
+                    <li><strong>Using a Child Class as its Parent Class: </strong>
+                    An important facet of polymorphism is the ability to use a child class object where an object 
+                    of its parent class is expected.
+                    One way to do this explicitly is to instantiate a child class object as a member of the 
+                    parent class. We can instantiate a CheckingAccount object as a BankAccount like this:
+                    <i>BankAccount kaylasAccount = new CheckingAccount(600.00);</i>
+                    We can use kaylasAccount as if it were an instance of BankAccount, in any situation 
+                    where a BankAccount object would be expected. (This would be true even if kaylasAccount
+                    were instantiated as a CheckingAccount, but using the explicit child as parent syntax is 
+                    most helpful when we want to declare objects in bulk.)
+                    It is important to note here that the compiler just considers kaylasAccount to be any 
+                    old BankAccount. But because method overriding is handled at runtime, if we call 
+                    <i>printBalance()</i>, we’ll see something CheckingAccount specific:
+                    <i>Your checking account balance is $600.00</i>
+                    This is because at runtime, kaylasAccount is recognized as the CheckingAccount it is. 
+                    So, what if CheckingAccount has a method transferToSavings() that BankAccount does not 
+                    have? Can kaylasAccount still use that method?
+                    Well, no. The compiler believes that kaylasAccount is just a BankAccount that doesn’t 
+                    have some fancy child class transferToSavings() method, so it would throw an error.</li>
+                    <li><strong>Child Classes in Arrays and ArrayLists: </strong>
+                    Usually, when we create an array or an ArrayList, the list items all need to be the 
+                    same type. But polymorphism puts a new spin on what is considered the same type.
+                    In fact, we can put instances of different classes that share a parent class together 
+                    in an array or ArrayList! For example, let’s say we have a Monster parent class with a 
+                    few child classes: Vampire, Werewolf, and Zombie. We can set up an array with instances 
+                    of each. We can even iterate through the list of items — regardless of subclass — and perform 
+                    the same action with each item.</li>
+                    <pre>
+                        <code>
+            Monster dracula, wolfman, zombie1;
+                
+            dracula = new Vampire();
+            wolfman = new Werewolf();
+            zombie1 = new Zombie();
+                
+            Monster[] monsters = {dracula, wolfman, zombie1};
+
+            //Iteration
+            for (Monster monster : monsters) {
+                monster.attack();
+            }
+                        </code>
+                    </pre>
+                    <li><strong>Child Classes in Method Parameters: </strong>
+                    When we call a method that contains parameters, the arguments we place in our method 
+                    call must match the parameter type. Similar to the previous exercise, polymorphism 
+                    gives us a little more flexibility with the arguments we can use.
+                    If we use a superclass reference as a method parameter, we can call the method using 
+                    subclass reference arguments.
+                    For example, imagine the class ScaryStory, whose constructor takes in a reference to 
+                    the Monster class:</li>
+                    <pre>
+                        <code>
+                class ScaryStory {
+                    Monster monster;
+                    String setting;
+                    
+                    public ScaryStory(Monster antagonist, String place) {
+                        monster = antagonist;
+                        setting = place;
+                    }
+                    
+                    public void tellStory(){
+                        System.out.println("Once upon a time, 
+                        " + monster.name + " was at " + setting + 
+                        " looking to scare some mortals.");
+                    }
+                    
+                    public static void main(String[] args) {
+                        Monster dracula;
+                        dracula = new Vampire("Dracula");
+                        ScaryStory countDracula = new ScaryStory(dracula, "Dracula Castle");
+                        countDracula.tellStory();
+                    }
+                }
+                        </code>
+                    </pre>
+                </ul>
+                <hr/>
+                <h3>Debbuging</h3>
+                <li><strong>Debbuging: </strong>In Java, there are many different ways of classifying errors, 
+                but they can be boiled down to three categories:
+                <ul>
+                    <li><strong>Syntax errors:</strong> Errors found by the compiler.</li>
+                    <li><strong>Run-time errors:</strong> Errors that occur when the program is running.
+                    E.g: Division by zero also known as division error; Trying to open a file that doesn’t exist.</li>
+                    <li><strong>Logic errors:</strong> Errors found by the programmer looking for the causes 
+                    of erroneous results.</li>
+                </ul>
+                <li><strong>Exceptions: </strong>Java uses exceptions to handle errors and other exceptional 
+                events. Exceptions are the conditions that occur at runtime and may cause the termination of 
+                the program. One way to handle exceptions is using the try/catch:
+                The try statement allows you to define a block of code to be tested for errors while it is 
+                being executed. The catch statement allows you to define a block of code to be executed 
+                if an error occurs in the try block.
+                The try and catch keywords come in pairs, though you can also catch several types of 
+                exceptions in a single block. catch can be chained.</li>
+                <pre>
+                    <code>
+            try {   
+                //  Block of code to try
+            } catch (NullPointerException e) {
+                // Print the error message like this:
+                System.err.println("NullPointerException: " + e.getMessage());
+                // Or handle the error another way here
+            } catch (ArithmeticException e) {
+                //  Code to handle an ArithmeticException 
+            }
+                    </code>
+                </pre>
+                <li><strong>Debbuging Tecnhiques: </strong>
+                If you have examined the code thoroughly, and you are sure the compiler is compiling 
+                the right source file, it is time for desperate measures:</li>
+                <ol>
+                    <li><strong>Divide and conquer:</strong> Comment out or temporarily delete half the code to isolate 
+                    an issue.</li>
+                    <ul>
+                        <li>If the program compiles now, you know the error is in the code you deleted. Bring back 
+                        about half of what you removed and repeat.</li>
+                        <li>If the program still doesn’t compile, the error must be in the code that remains. 
+                        Delete about half of the remaining code and repeat.
+                        Tip: In most code editors, one can highlight a block of code and use the keyboard 
+                        shortcut command + / to comment it out.</li>
+                    </ul>
+                    <li><strong>Print statements for the rescue:</strong> Use <i>System.out.println()</i> to check 
+                    variable/return values at various points throughout the program.
+                    A lot of the time with logic errors, there was a flawed piece of logic, a miscalculation, 
+                    a missing step, etc. By printing out the values at different stages of the execution 
+                    flow, you can then hopefully pinpoint where you made a mistake.</li>
+                </ol>
+            </ul>
+        </div>
     </body>
 </html>

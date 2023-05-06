@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Form</title>
+        <h1>Javascript Form</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h2>Form Types</h2>
+            <ul>
+                <li>The purpose of a &lt;form&gt; is to allow users to input information and send it.
+                A client (usually a web browser) sends a request to a server (most of the time 
+                a web server like Apache, Nginx, IIS, Tomcat, etc.), using the HTTP protocol. The server 
+                answers the request using the same protocol. An HTML form on a web page is nothing more 
+                than a convenient user-friendly way to 
+                configure an HTTP request to send data to a server. This enables the user to provide 
+                information to be delivered in the HTTP request.</li>
+                <li>When a &lt;form&gt; is submitted, the name of the fields that accept input and the value 
+                of those fields are sent as <i>name=value pairs</i>. Here are <strong>&lt;form&gt;‘s attribute:</strong></li>
+                <ul>
+                    <li><strong>action attribute: </strong> Determines where the form’s information goes.</li>
+                    <li><strong>method attribute: </strong> Determines how the information is sent and processed.</li>
+                </ul>
+                <li><strong>Elements: </strong></li>
+                <ul>
+                    <li><strong>&lt;input&gt; element: </strong> Adds fields for users to input information and 
+                    set the type attribute to a field of our choosing:</li>
+                    <ul>
+                        <li>Types: "text", "password", "number", "range", "checkbox", "radio".</li>
+                        <li>Setting type to "text" and adding the list attribute will pair the &lt;input&gt; with 
+                        a &lt;datalist&gt; element if the list of &lt;input&gt; and the id of &lt;datalist&gt; 
+                        are the same.</li>
+                        <li><strong>submit: </strong>Setting type to "submit" creates a submit button.</li>
+                    </ul>
+                    <li><strong>&lt;select&gt; element: </strong>Is populated with &lt;option&gt; elements and 
+                    renders a dropdown list selection.</li>
+                    <li><strong>&lt;datalist&gt; element: </strong>Is populated with &lt;option&gt; elements and 
+                    works with an &lt;input&gt; to search through choices.</li>
+                    <li><strong>&lt;textarea&gt; element: </strong>Is a text input field that has a customizable area.</li>
+                </ul>
+            </ul>
+        </div>
+        <div class="styleGuide">
+            <h2>Validation</h2>
+            <ul>
+                <li>Modern websites require a lot of information from their users and they collect a lot of this 
+                information through HTML forms. It’s essential to validate the data submitted through forms
+                to keep websites secure and to make sure they function correctly.
+                Modern HTML comes with useful built-in methods for form validation</li>
+                <li><strong>Regular expressions (Regex): </strong> re sequences of characters that define 
+                patterns to look for in text. They are an important tool used in validating input.</li>
+                <li><strong>Asynchronous requests: </strong> Asynchronous requests to the server can 
+                perform back-end validations before a form has been submitted.</li>
+                <li><strong>Back-end validation: </strong>A final back-end validation of all data is required 
+                to ensure an application’s security and sanitize all data.</li>
+            </ul>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+

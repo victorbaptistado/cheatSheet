@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <script src="./component/button.js" defer></script>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>How To Code</title>
+        <h1>How To Code</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+          <h3>Plan before coding!</h3>
+          <ul>
+              <li><strong>Understand the requirements and ask any questions</strong></li>
+              <li><strong>Identify technical decisions you need to make</strong></li>
+              <li><strong>Technical design, whiteboarding & Research</strong></li>
+              <li><strong>Test plan</strong></li>
+              <li><strong>App setup plan</strong></li>
+              <li><strong>Organize your tasks</strong></li>
+          </ul>
+          <p class="center"><strong>More info</strong></p>
+          <button type="button" id="showCode81" onclick="showCode('displayCode81', 'showCode81')">Display</button>
+          <div id="displayCode81">
+              <button onclick="closeCode('displayCode81', 'showCode81')">Close</button>
+              <ul>
+                  <li><strong>Understand the project's requirements and ask any questions: </strong>
+                  First, you need to make sure you completely, absolutely, 100% understand the 
+                  requirements of the project. If any part of the requirements are unclear, it is 
+                  up to you to reach out to your contact and ask questions.
+                  Sometimes companies will purposefully make their requirements vague, in order to see 
+                  how you approach the problem. In these cases, it is always best to ask questions as 
+                  it shows you are thinking about the problem and not just making assumptions and building 
+                  an app to a vague spec.</li>
+                  <li><strong>Identify technical decisions you need to make: </strong>
+                  Your next step will be to identify the technical decisions that you need to make. 
+                  Making a list of all of your technical decisions up front and thinking about them 
+                  before you’re in the middle of building your app will help you immensely. Not only 
+                  will it cut down on time figuring things out later, but it will allow you to make big 
+                  picture decisions up front, as opposed to trying to focus on both the big picture and 
+                  the small details at the same time.</li>
+                  <li><strong>Technical design & whiteboarding: </strong>
+                  Now it’s time to plan out the rest of your app. For anything that you need to draw 
+                  out, now is the perfect time to do that. Thinking through these decisions at the 
+                  start serves two purposes: You’ll be able to reference these drawings and your original plan while 
+                  you’re building your app. Then if you get stuck at any point, you can 
+                  always come back to your notes.
+                  Later, when you are having a discussion with an engineer about your project, 
+                  you can use these notes as a reference when they ask you why you 
+                  made certain design or architecture decisions. Once you’ve thought through and answered some of the bigger design and 
+                  architecture questions for your challenge, the next step is research. If 
+                  you’re planning to use a new technology or something you’re a bit rusty with,
+                  use this time to search for documentation and other resources.</li>
+                  <li><strong> Test plan: </strong>
+                  Another very important step to take before writing a line of code is developing 
+                  a test plan. Although you won’t get peer feedback on this test plan, it will help 
+                  you look at the challenge from a different angle, making sure you’re meeting all 
+                  of the requirements. By thinking through and writing out a test plan before you 
+                  start coding, you are able to brainstorm possible edge cases that you should account 
+                  for in your code and you will use this as a basis for testing your app later.</li>
+                  <li><strong>App setup plan: </strong>
+                  If you’re starting an app from scratch, figure out if there are any generators you 
+                  can use to make your app setup easier and faster. Application setup is one of the 
+                  hardest parts of take-home coding challenges, because it’s something that developers 
+                  do rather infrequently. Best practices are always changing, so it’s easy to forget 
+                  how to do. Also, when setting up an app with a specific combination of technologies 
+                  for the first time, it can be challenging to get everything configured and working 
+                  together properly.
+                  If you are not using a generator, reading documentation and finding working examples
+                  are the two most important steps you can take. Being able to play with a working 
+                  example and compare it to your own app will help you if you get stuck.</li>
+                  <li><strong>Organize your tasks: </strong>
+                  The last step before you start coding is to break down and organize your tasks. 
+                  Breaking down your tasks is essential because it will help you stay on track as 
+                  you’re working on your challenge, and it will give you a game plan for execution. 
+                  Note that you shouldn’t be a perfectionist here, because there will always be 
+                  unexpected bumps in the road.</li>
+                  <ul>
+                      <li>Here is an example task list for a classic Tic Tac Toe app:</li>
+                      <ul>
+                          <li>Understand requirements</li>
+                          <li>Choose technologies</li>
+                          <li>Brainstorm test plan</li>
+                          <li>Hello World app setup</li>
+                          <li>Build board with HTML/CSS</li>
+                          <li>Implement Tic Tac Toe gameplay with Javascript</li>
+                          <li>Add reset button</li>
+                          <li>Make board responsive</li>
+                          <li>Add ability to add additional boards</li>
+                          <li>Error handling & tests</li>
+                          <li>Code cleanup</li>
+                          <li>README</li>                       
+                      </ul>
+                      <li>Some of these tasks can be broken down even further into smaller steps. 
+                      For example, in order to implement the Tic Tac Toe gameplay with Javascript, 
+                      here are some smaller tasks:</li>
+                      <ul>
+                          <li>Add a click handler to each square that logs a message</li>
+                          <li>Get click handler to add an X to the square that is clicked</li>
+                          <li>Get clicks to alternate between X and O</li>
+                          <li>Don’t allow a square to be clicked more than once</li>
+                          <li>Implement a function to find the winner and end the game</li>
+                          <li>Handle a tie game</li>
+                      </ul>
+                  </ul>
+              </ul>
+          </div>
+          <hr/>
+          <h3>Coding Priorities</h3>
+          <ul>
+              <li><strong>Make it work</strong></li>
+              <li><strong>Make it pretty</strong></li>
+              <li><strong>Make it fast</strong></li>
+              <p class="center"><strong>More info</strong></p>
+              <button type="button" id="showCode82" onclick="showCode('displayCode82', 'showCode82')">Display</button>
+              <div id="displayCode82">
+                  <button onclick="closeCode('displayCode82', 'showCode82')">Close</button>
+                  <li><strong>Make it work: </strong>
+                  When you’re given a take-home coding challenge, no matter 
+                  what you do, the most crucial part of the challenge is to make it work. 
+                  If you submit an app that has a nice UI, that will not matter if your 
+                  app does not work or meet all of the requirements. Because building features 
+                  to spec is a key aspect of your future job as a developer, you first and 
+                  foremost need to focus on the functionality of your app and prioritize that above all else.
+                  This is also key if you are low on or run out of time. Coding challenges can be a lot of work, 
+                  especially if you want to go above and beyond to ensure that you make it to the next interview 
+                  round. But, I can guarantee that you will not make it to the next round if your app doesn’t 
+                  function properly or is missing some key components.
+                  So, if you’re building a front-end app, this means focusing on making it work first, and styling/UI last. 
+                  If you are building a back-end or full-stack app, focus on making it work before trying to refactor your 
+                  code into the most elegant solution, and only then worry about optimization.
+                  Even if you end up without any time to go back and refactor your code or style your UI, having a 
+                  working app to present is more important. You can always talk to the interviewer about how you would 
+                  improve your app, and refactoring some of your code might even be part of the next round of interviewing.</li>
+                  <li><strong>Make it pretty: </strong>
+                  Make it pretty has two interpretations here. One is making the code pretty, and the other is making 
+                  the UI pretty. Making the code pretty can be done in several ways. First, ensure indentation is 
+                  consistent and your code is readable. Second, if you got something to work in a quick, hacky way, 
+                  think about how you can refactor it to be a more elegant solution without overcomplicating it.
+                  If you’re doing a front-end or full-stack challenge, you can also make the UI pretty as part of this 
+                  step. Whether you use a library or write your own custom styles for your app, making the UI look good 
+                  will show your interviewer that you’re taking the user experience into consideration when building a feature.
+                  For some more front-end-focused challenges, you’ll be given a specific mockup to match. In these cases,
+                  making sure you’re detail oriented down to the last pixel is incredibly important. Part of your role may 
+                  involve translating mockups from designers into user interfaces, so companies want to get a sense of how 
+                  you approach those types of tasks.</li>
+                  <li><strong>Make it fast: </strong>
+                  Once you’ve made your app work, made it pretty (in the code, UI, or both), it may be time to make it 
+                  fast! This is where understanding performance and BigO notation comes in handy.
+                  You should take a look at your code and see if there are any areas where increasing the scale might 
+                  be an issue. For example, are you using a double for loop somewhere? What if the arrays you’re looping 
+                  over become super long?
+                  If you think about these kinds of edge cases, you can then come up with plan to improve your code. 
+                  Taking something that would have been running O(n) and making it O(1) will show that you’re thinking 
+                  about performance when you’re building things.</li>
+              </div>
+          </ul>
+          <hr/>
+          <h3>Proper code</h3>
+          <ul>
+              <li>There are several things you can do to make your code stand out. You want your code to be:
+              readable, easy to follow, well organized, clean (properly indented, free of syntax errors and unnecessary whitespace).</li>
+              <ul>
+                  <li><strong>How to name things</strong></li>
+                  <li><strong>How to use comments effectively</strong></li>
+                  <li><strong>How to format your code as you write it</strong></li>
+              </ul>
+              <p class="center"><strong>More info</strong></p>
+              <button type="button" id="showCode83" onclick="showCode('displayCode83', 'showCode83')">Display</button>
+              <div id="displayCode83">
+                  <button onclick="closeCode('displayCode83', 'showCode83')">Close</button>
+                  <li><strong>How to name things: </strong>
+                  Naming is one of the hardest problems in programming. One of the keys to naming things 
+                  is to make sure you’re naming them in a way that another developer who is unfamiliar with 
+                  the code can easily jump in and understand.
+                  For functions, think about what exactly the function is doing. Is the function checking whether 
+                  there is a winner on a row of a Tic Tac Toe board? Then a great name would be checkRow. Is your 
+                  function handling a click on a square of the Tic Tac Toe board? Then a great name would be handleClick.
+                  One quick tip: if you find yourself losing your flow because you keep stopping to 
+                  think of the perfect name, split your process into two steps. First, write working 
+                  code with any names (like foo, bar, and baz). Then take a second pass through to improve them.</li>
+                  <li><strong>How to use comments effectively: </strong>
+                  Adding comments can be a great way to capture what you were thinking at the time you wrote 
+                  a specific piece of code. This can be useful to you, or anyone else who comes across your code 
+                  in the future and needs to understand it, tweak it, or rewrite it.
+                  Think of comments as adding clarity to your code. But, pay attention, because there is such a 
+                  thing as too many comments.
+                  <strong>Do not need comments:</strong>When you declare a variable and when you declare a function.
+                  <strong>Make comments on:</strong> HTML, CSS, Technically tricky lines of code.
+                  Let’s say you have a really long <strong>HTML</strong> file with A LOT of divs. Comments can be a good 
+                  way to signal which div tags close which sections.
+                  In <strong>CSS</strong>, comments are a good way to divide up your styles if you have a lot of styles in one file. 
+                  This way, when you come back to the code later and want to make a change, it’s easier to find the 
+                  styles for that one section you need to update.
+                  Comments in CSS are also very useful whenever you are hard-coding any math or adding an arbitrary 
+                  number of pixels as margin, padding, and so on. Comments can be useful to explain things like this 
+                  that are specific to your application.
+                  One of the best uses for comments is when you’ve written code that is <strong>technically difficult</strong> or just not intuitive. 
+                  You should always strive for simple, understandable code as much as possible. However, sometimes you will have 
+                  confusing code — maybe you’ve chained a bunch of methods together or are using a complex regular expression — and 
+                  it would help to explain what is happening in a comment.</li>
+                  <li><strong>How to format your code as you write it: </strong>
+                  <ul>
+                      <li>Choose <strong>tabs or spaces</strong> and be consistent across your entire application (i.e. no 2 spaces 
+                      in some files, 4 spaces in others)</li>
+                      <li><strong>Indent</strong> your code properly as you go so that it stays readable and isn’t all over the place</li>
+                      <li>Get rid of trailing whitespace! Whitespace can sometimes wreck havoc, so it’s best to just 
+                      get rid of it as you write your code.</li>
+                      <li>Keep your <strong>syntax consistent</strong> throughout your entire app. If you’re using a linter, this will 
+                      be easier, but requires setting one up. If you don’t have time to set one up, pay attention. </li>
+                      <li>Don’t use ES5 in some places in your app and ES6 in others. <strong>Pick one</strong> and stick with it!</li>
+                      <li><strong>Remove unnecessary logging and debug statements</strong> when you’re done using them! Unless logging 
+                      is part of your application, you’ll want to remove any temporary statements you were using while building your app.</li>
+                      <li>Always leave a <strong>newline</strong> at the end of every file.</li>
+                  </ul>                   
+              </div>
+          </ul>
+      </div>       
+    </body>
+</html>
