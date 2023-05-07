@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="../component/button.js" defer></script>
+        <title>User Authentication / Authorization & Web Sessions</title>
+        <h1>User Authentication / Authorization & Web Sessions</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h2>User Authentication and Authorization</h2>
+            <ul>
+                <li><strong>Authentication</strong> determines identity, <strong>authorization</strong> determines the privileges associated with an 
+                identity, and <strong>encryption</strong> ensures that data can only be accessed by authorized parties.</li>
+            </ul>
+            <hr/>
+            <h3>Authentication</h3>
+            <ul>
+                <li><strong>Authentication</strong> is the verification of who you are. For example, let’s say you’ve gone to a concert. At the front door, the 
+                security guard asks to see your ticket and ID in order to verify that the name on your ID matches the name on your ticket. 
+                Authentication relies on one or more factors to verify identity, and these factors come in three main types:</li>
+                <ul>
+                    <li><strong>Knowledge</strong> is something you know, like a username and password.</li> 
+                    <li><strong>Possession</strong> is something you have, like a security card or mobile device.</li> 
+                    <li><strong>Inherence</strong> is something you are, which generally refers to biometric data such as fingerprints.</li>
+                </ul>
+                <li><strong>Single-Factor Authentication: </strong>Relies on a single factor, such as a simple username/password combo,
+                and is becoming increasingly insecure.</li>
+                <li><strong>Multi-Factor Authentication: </strong>requires multiple factors, such as a username/password combo and a code 
+                sent to a mobile device. This is distinct from Multi-Step authentication, which requires multiple types of authentication 
+                within a single factor, such as a password and a PIN.</li>
+            </ul>
+            <hr/>
+            <h3>Authorization</h3>
+            <ul>
+                <li><strong>Authorization</strong> is the verification of what you are allowed to do. 
+                It is responsible for everything from preventing users from modifying each other’s accounts, to protecting back-end assets 
+                from attackers, to granting limited access to external services.
+                Good authorization will allow you to limit users and services to the privileges they require; just because a user is authorized 
+                to manage one group doesn’t mean they should be able to manage all groups, for example.</li>
+            </ul>
+            <hr/>
+            <h3>Encryption</h3>
+            <li><strong>Encryption</strong> enforces authentication and authorization is encryption. 
+            Encryption is the process of transforming data into a format that is unreadable unless 
+            you have the correct key to decrypt it.</li>
+        </div>
+        <div class="styleGuide">
+            <h2>Web Sessions & Security</h2>
+            <h3>Sessions & Cookies & Localstorage</h3>
+            <ul>
+                <li><strong>Sessions & Cookies & Localstorage </strong>
+                <a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-session-authentication-in-express/cheatsheet" target="_blank">here.</a></li>
+                <li><strong>Web sessions: </strong>HTTP(S) protocol on its own is stateless, meaning requests and 
+                responses are just relaying information back and forth with no knowledge of a specific user.
+                But web developers want to create engaging, personalized experiences for users. This means there needs to 
+                be a system that associates the requests with a specific user and does so in a secure.
+                Without it, every time you reloaded the window you would be logged out or lose your cart!
+                A <strong>web session</strong> refers to a series of user interactions over a time frame. 
+                <u>Session data is stored server-side and associated with a session ID.</u>
+                Think of a session as short-term memory for a web application.</li>
+                <li><strong>Sessions Cookies:</strong> A cookie is a text file that stores stateful client data 
+                in a key-pair format. It is stored by the web browser, aka client-side.
+                Cookies store credentials for authentication, so the user doesn't need to send them every time 
+                a button is clicked.</li>
+                <li><strong>Sessions localStorage and sessionStorage: </strong>
+                Client-side browser storage introduced with HTML5 that stores data in a key-pair format. 
+                It does not interact with the server and is only changeable through JavaScript, with simple syntax.</li>
+                <li>Ideally, all sessions-based web applications should enforce <strong>HTTPS</strong> for all communication. This 
+                prevents common web attacks that could give the attacker access to the session.
+                Security headers allow you to customize your web application’s security policy! They are an important 
+                line of defense against web attacks. You should research each header, different options for each, 
+                and find out how they can improve security while maintaining usability.</li>
+                <ul>
+                    <li>List of Security Headers
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#security" target="_blank">here</a>.</li> 
+                    <li>You can use <a href="https://securityheaders.com/" target="_blank">https://securityheaders.com/</a> 
+                    to check which headers are active on your web address.</li>
+                </ul>
+                <hr/>
+                <h3>Express Session</h3>
+                <li>In order to implement sessions within an Express application, we can use the NPM module, express-session, 
+                as a middleware. Once the session middleware is implemented, each user that navigates to our app will have a 
+                unique session generated for them. This allows us to store their session data server-side under a session 
+                identifier and easily retrieve it.</li>
+                <li><strong>Express Configure:</strong></li>
+                <ul>
+                    <li><strong>secret:</strong> The secret property is a key used for signing and/or encrypting 
+                    cookies in order to protect our session ID.
+                    <li><strong>resave:</strong> Setting this option to true will force a session to be saved 
+                    back to the session data store, even when no data was modified. Typically, this option should 
+                    be false, but also depends on your session storage strategy.</li>
+                    <li><strong>saveUninitialized</strong>: This property is a boolean value. If it’s set to true,
+                    the server will store every new session, even if there are no changes to the session object. 
+                    This might be useful if we want to keep track of recurring visits from the same browser, but 
+                    overall, setting this property to false allows us to save memory space.</li>
+                    <li>The resave & saveUninitialized determine how often the session object will be saved.</li>
+                </ul>
+                <li><strong>Storing Session Data:</strong>
+                Sessions are typically stored in three different ways:</li>
+                <ul>
+                    <li>In <strong>memory</strong> (this is the default storage)</li>
+                    <li>In a <strong>database</strong> like MongoDB or MySQL</li>
+                    <li>A <strong>memory cache</strong> like Redis or Memcached.</li>
+                    <li>Whenever a user makes a request from the same client with a valid session identifier, the server 
+                    retrieves the valid session information. express-session provides an in-memory store called, <strong>MemoryStore()</strong>. If no other store 
+                    is specified, then this is set as the default storage.</li>        
+                </ul>
+                <li><strong>Sessions and Authentication (Cookies):</strong>
+                We should make use of client-side storage so that the user’s browser can automatically send over the 
+                session identifier with each incoming HTTP request.
+                We’ll tell the client browser to create a cookie that stores the session ID. We can also modify cookie attributes to add a bit of security.
+                Cookies will have a few default properties set, but we can specify them using key-value pairs. </li>
+                <ul>
+                    <li><strong>maxAge</strong> property sets the number of milliseconds until the cookie expires.</li> 
+                    <li><strong>secure attribute</strong> makes it only send to the server via HTTPS.</li> 
+                    <li><strong>sameSite</strong> property setted to 
+                    "none" allows a cross-site cookie through different browsers.</li>
+                    <li><strong>Other cookie</strong> properties include: cookie.expires, cookie.httpOnly, cookie.sameSite</li>
+                </ul>
+                <li><strong>Sessions and Authentication (Logging In):</strong>
+                With a session middleware configured, we can now make use of the session and combine it with an authentication process.
+                <ul>
+                    <li>We can do this by first looking up the user in our database and then verifying that the password is correct.</li>
+                    <li>Once credentials are confirmed, we’ll add data to our session.</li>
+                    <li>Once the user is logged in we’ll add a property, authenticated within our session object and assign it to 
+                    true. We’ll also set user in the session data and assign it the username and password we received.</li>
+                    <li>Once the user is logged in, their session is created and stored in memory. The properties authenticated and user will 
+                    be accessible and changeable as session data.</li>
+                </ul>
+                <li><strong>Accessing Session Data: </strong>
+                Data in a session is serialized as JSON when stored, so we’re able to store and access data in nested objects. Let’s say we had 
+                saved the number of items in a user’s cart in the session data: <i>req.session.user.cartCount = 2;</i>
+                We can then access it by referring to <i>req.session.user.cartCount</i> when we need to display the correct number of items. We can also update its value.
+                One common use case of session data is to protect specific routes. In the example below, we check that the authorized 
+                property exists within the session, and if it’s set to true before we move on to the next route handler.
+                </li>
+                <li><strong>Download project</strong> with <strong>Sessions Authentication</strong> & <strong>Sessions Access</strong> <a href="https://static-assets.codecademy.com/content/paths/web-security/sessions-in-express/sessions-auth-data.zip" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode39" onclick="showCode('displayCode39', 'showCode39')">Display</button>
+            <div id="displayCode39">
+                <button onclick="closeCode('displayCode39', 'showCode39')">Close</button>
+                <ul>
+                    <li>We can <strong>install</strong> the package by running the following command:</li>        
+                    <pre>
+                        <code>
+            npm install express-session
+                        </code>
+                    </pre>    
+                    <li>From here, we import the session module and <strong>store it in a variable</strong>:</li>
+                    <pre>
+                        <code>
+            const session = require("express-session")
+                        </code>
+                    </pre>
+                    <li><strong>Configure express-session</strong> & <strong>Storing Session Data</strong></li>
+                    <pre>
+                        <code>
+            //instantiate a new store
+            const store = new session.MemoryStore();
+            
+            app.use(
+                session({
+                  secret: "f4z4gs$Gcg",
+                  cookie: { maxAge: 1000 * 60 *60 * 24, secure: true, sameSite: "none" },
+                  saveUninitialized: false,
+                  resave: false,
+                })
+            );
+                        </code>
+                    </pre>  
+                    <li><strong>Sessions Authentication</strong> & <strong>Sessions Access</strong></li>
+                    <pre>
+                        <code>
+                //app.js
+
+                const express = require("express");
+                const app = express();
+                const session = require("express-session");
+                const store = new session.MemoryStore();
+                const db = require("./db");
+                const PORT = process.env.PORT || 4001;
+                
+                app.set("trust proxy", 1);
+                app.use(express.json());
+                app.use(express.urlencoded({ extended: false }));
+                app.set("view engine", "ejs");
+                app.use(express.static(__dirname + "/public"));
+                
+                app.use(
+                    session({
+                        secret: "f4z4gs$Gcg",
+                        cookie: { maxAge: 300000000, secure: true, sameSite: "none" },
+                        saveUninitialized: false,
+                        resave: false,
+                        store,
+                    })
+                );
+                
+                function ensureAuthentication(req, res, next) {
+                    // Check for the authorized property within the session
+                    if (req.session.authenticated) {
+                        return next();
+                    } else {
+                        res.status(403).json({ msg: "You're not authorized to view this page" });
+                    }
+                }
+                
+                // Add your ensureAuthentication middleware below:
+                app.get("/shop", ensureAuthentication, (req, res) => {
+                    // Send the user object to the view page:
+                    // res.render() takes in a view page as the 
+                        first argument and an object whose properties 
+                        define local variables for the view as the second argument.
+                    res.render("shop", { user: req.session.user });
+                });
+                
+                app.get("/login", (req, res) => {
+                    res.render("login");
+                });
+                
+                // POST request for logging in
+                // Sessions and Authentication (Logging In)
+                app.post("/login", (req, res) => {
+                    const { username, password } = req.body;
+                    db.users.findByUsername(username, (err, user) => {
+                        if (!user) return res.status(403).json({ msg: "No user found!" });
+                        if (user.password === password) {
+                                req.session.authenticated = true;
+                                req.session.user = {
+                                username,
+                                password,
+                            };
+                            res.redirect("/shop");
+                        } else {
+                            res.status(403).json({ msg: "Bad Credentials" });
+                        }
+                    });
+                });
+                
+                app.listen(PORT, () => {
+                    console.log(`Server is listening on port ${PORT}`);
+                });
+                            
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>JSON Web Tokens (JWTs)</h3>
+            <ul>
+                <li><strong>JSON Web Tokens</strong> are self-contained JSON objects that compactly and securely transmit information between 
+                two parties. They are secure because they are digitally signed using a secret or a public/private key pair.</li>
+                <li>JWTs are used for authorization: They’re often used for SSO.
+                Information Exchange: If a server received a valid JWT, it knows the sender is who they say they are and the information hasn’t been tampered with.
+                <ul>
+                    <li>Why <strong>use JWTs?</strong> Parsing JSON is easier than some alternatives like XML or SAML.
+                    JWTs are small, scale well, and are easier for mobile devices to process.</li>
+                    <li>Why <strong>not use JWT</strong>?
+                    A mix of a public and private key-pair adds security, but can also add complexity.
+                    Sensitive information, like passwords or Social Security Numbers, should not be stored client-side, even if it is encoded.</li>
+                </ul>
+                <li>A JWT is made up of three components:</li>
+                <ul>
+                    <li><strong>JWT Header: </strong>A JWT header contains the type of the token we’re creating and the signing algorithm 
+                    that will be used. <strong>Type:</strong> The type of this token will always be “JWT”. The Internet Assigned Numbers Authority, or IANA, coordinates internet 
+                    protocol resources across the globe. The “JWT” type aligns with the media type “application/jwt“.
+                    <strong>Algorithm:</strong> The signing, or hashing, algorithm used might vary. Some commonly used algorithms are HMAC-SHA256, 
+                    represented by "HS256", RSA with SHA-256, represented by "RW256", and ECDSA with SHA-256, represented by "ES256".</li>
+                    <li><strong>JWT Payload: </strong>A JWT payload contains claims about an entity. A claim is a statement or piece of 
+                    information and the entity is often a user. There are three types of claims a JWT payload can contain:
+                    <strong>Registered Claims:</strong> These are predefined claim types that anyone can use in a JWT.
+                    <strong>Public Claims:</strong> These are custom claim types that are created by a developer and can be used 
+                    publicly. They should be registered to avoid collisions, also known as repeated claims.
+                    <strong>Private Claims:</strong> These are custom claim types that are not registered or public. They are only 
+                    used between parties that have agreed to use them. List of registered claims and public claims 
+                    <a href="https://www.iana.org/assignments/jwt/jwt.xhtml#claims" target="_blank">here</a>.</li>
+                    <li><strong>JWTSignature: </strong>Is used to verify that the JWT wasn’t tampered with or changed. 
+                    It can be created taking the encoded header, the encoded payload, a secret, and using the hashing algorithm 
+                    to create a hash from those elements.</li>
+                </ul>
+                <li><strong>Do not store your JWT in localStorage</strong> as an attacker could use Cross-Site Scripting 
+                attacks to steal local data.
+                <strong>Storing your JWT in a cookie could expose your data to a Cross-Site 
+                Resource Forgery attack</strong>. Additionally, if a user has disabled cookies in their browser, 
+                the application is now unable to store the JWT.</li>
+                <li>JWT documentation <a href="https://jwt.io/" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode40" onclick="showCode('displayCode40', 'showCode40')">Display</button>
+            <div id="displayCode40">
+                <button onclick="closeCode('displayCode40', 'showCode40')">Close</button>
+                <ul>
+                    <li>JWS <strong>Header</strong> specifying the <strong>HMAC-SHA256</strong> algorithm:</li>
+                    <pre>
+                        <code>
+                {
+                    'alg': 'HS256',  
+                    'typ': 'JWT'
+                }
+                        </code>
+                    </pre>
+                    <li>JWS <strong>Payload</strong> using some common registered claims:</li>
+                    <pre>
+                        <code>
+                
+            {
+                'sub': '1234567890',
+                'name': 'Harine Cooper',
+                'admin': false,
+                'iat': 1620924478,
+                'exp': 1620939187
+            }
+                        </code>
+                    </pre>
+                    <li>In this example, we will use <strong>jwt.io’s JWT debugger</strong> to create our <strong>final JWT</strong>.</li>
+                    <ul>
+                        <li>The secret is a symmetric key known by the sender and receiver of this token. </li>
+                        <li>The <strong>Base64Url encoding of our header</strong> is: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</li>
+                        <li>The <strong>Base64Url encoding of our payload</strong> is:<br/>
+                        <i>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkhhcmluZSBDb29wZXIiLCJhZG1pbiI6ZmFsc2UsI<br/>mlhdCI6MTYyMDkyNDQ3OCwiZXhwIjoxNjIwOTM5MTg3fQ</i></li>
+                        <li>Finally, we use the HMAC-SHA256 algorithm we defined in our header to create our signature:</li>
+                        <pre>
+                            <code>
+                        HMACSHA256(
+                            base64UrlEncode(header) + "." +
+                            base64UrlEncode(payload),
+                            secret)
+                            </code>
+                        </pre>
+                        <li>Which gives us: <i>3B-FLgPETrExxlDKW30AoU7KGE6xuZodw79TQR8_mwM</i></li>
+                        <li>Concatenating our encoded header, our encoded payload, and our signature, and separating each with a “.”, gives us our final token:
+                        <i>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikhh<br/>cmluZSBDb29wZXIiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTYyMDkyNDQ3OCwiZXhwIjoxNjIwOTM5MTg3fQ.3B-FLgPETrExxlDKW30AoU7KGE6xuZodw79TQR8_mwM</i></li>
+                    </ul>
+                </ul>
+            </div>
+            <hr/>
+            <h3>Protecting information (Encryption, Hashing, Encoding, Obfuscation)</h3>
+            <ul>
+                <li><strong>Encryption: </strong>
+                    Encryption Cryptography is the science of hiding data and making it available again. In 
+                    cryptography, hiding data is called encryption and unhiding it is called decryption. When data is
+                    securely exchanged, it is first encrypted by the sender, and then decrypted by the receiver using 
+                    a special key. There are two main types of encryption: symmetric and asymmetric.
+                    Asymmetric encryption is the most secure way to transmit data; however, it is slower and more complex than
+                    symmetric encryption. Therefore, it is primarily used to exchange smaller pieces of data.</li>
+                    <ul>
+                        <li><strong>Symmetric</strong> encryption uses the same key to both encrypt and decrypt data.</li>
+                        <li><strong>Asymmetric</strong> encryption uses two different keys to encrypt and decrypt data.</li>
+                    </ul>
+                <li><strong>Hashing: </strong>
+                Hashing does not encrypt data. Instead, hashing is a one-way process that takes a piece of data of any size 
+                and uses a mathematical function to represent that data with a unique hash value of a fixed size. You cannot 
+                compute the original data from its hash.
+                Because each hash should be unique, hashing allows us to see if changes have been made to documents.
+                <ul>
+                    <li>Hashes are widely used in order to <strong>store passwords in online databases</strong>. If passwords are stored in plaintext 
+                    and a database is breached, so are all of the passwords! However, if they are stored as hash values, even if 
+                    someone hacks into a website’s database, only the password hashes are exposed.</li>
+                    <li><strong>For example</strong>, let’s suppose a user’s password is: <i>CodecademyIsGr8t</i>
+                    Now, if the website storing the password is using a SHA-256 hash, even if someone hacked into that website, 
+                    all the hacker would see is the hash value:
+                    <i>d04f855e71ad9d495d91e666175d593b669f45970f885a258f6dbbaab262ac8b</i>
+                    Remember, an attacker has no way of decrypting a hash value to get the original value. Hashing is a one-way process.</li>
+                </ul>
+                <li><strong>Encoding: </strong>While it may sound similar to encryption, encoding is not actually used to hide 
+                data. Encoding transforms data into a form that can be used by a different type of system. Some different types 
+                of encoding are: <strong>ASCII, Unicode, Base64</strong>. Encoded information is easily reversed and only requires 
+                knowledge of the algorithm used to decode information.</li>
+                <li><strong>Obfuscation: </strong>Obfuscation is less about data security and more about securing code. Developers might 
+                obfuscate their code in order to hide what their code is actually doing. Obfuscate means to hide the meaning of something 
+                by making it difficult to understand.
+                Developers might want to hide trade secrets or intellectual property from others who can access their code. 
+                Obfuscating their code makes it difficult for others to steal code and use it for their own purposes. Obfuscation can also make 
+                it harder for users to hack software or get around licensing requirements needed to use programs.
+                Malicious actors might also use obfuscation to make it hard for users or antivirus software to detect a virus they are 
+                planting on a system. If you don’t know what an application is for, be very careful before downloading or opening it.</li>
+            </ul>
+            <hr/>
+            <h3>Passport.js</h3>
+            <ul>
+                <li>Passport.js is a flexible authentication middleware for Node.js that can be added to any Express-based 
+                application. With Passport.js we can implement authentication using the concept of strategies.
+                Passport strategies are separate modules created to work with different means of authentication. Passport is a very extensible 
+                middleware, and it allows you to plug in over 300 different authentication providers like Facebook, Twitter, Google, and more.</li>
+                <ul>
+                    <li>Passport.js <strong>documentation</strong> <a href="http://www.passportjs.org/docs/" target="_blank">here</a>.</li>
+                </ul>
+                <li><strong>Serializing and Deserializing Users: </strong>
+                If authentication succeeds, a session will be established and maintained via a cookie set in the user’s browser. 
+                However, if a user logs in and refreshes the page, the user data won’t persist across HTTP requests. We can fix 
+                this by <strong>serializing</strong> and <strong>deserializing</strong> users.
+                Serializing a user determines which data of the user object should be stored in the session, usually the user id. 
+                The <i>serializeUser()</i> function sets an id as the cookie in the user’s browser, and the <i>deserializeUser()</i> function 
+                uses the id to look up the user in the database and retrieve the user object with data.</li>
+                <li><strong>Logging In:</strong> In order to log in a user we need a POST request (with a logging end-point)
+                that takes in user credentials & a GET request, to retrieve data. Steps on how to Implement within "Example".</li>
+                <li><strong>Register:</strong> In order to register a user we need a POST request (with a register end-point).
+                Steps on how to Implement within "Example".</li>
+                <li><strong>Logging out: </strong>Passport.js exposes a logout function within the request object: <i>req.logout</i>.
+                The function can be called from any route handler in order to terminate a login session. It essentially removes 
+                the <i>req.user</i> property and clears the login session (if any). 
+                By terminating the session, the user will have to re-authenticate in order to create a new session.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode41" onclick="showCode('displayCode41', 'showCode41')">Display</button>
+            <div id="displayCode41">
+                <button onclick="closeCode('displayCode41', 'showCode41')">Close</button>
+                <ul>
+                    <li><strong>Configuring Passport.js: </strong>
+                    One of the great things about using Passport.js is that a lot of the heavy lifting is taken care of 
+                    by the module. In order to use it, we need to configure it and implement cookies and sessions for 
+                    persistent logins.</li>
+                    <ul>
+                        <li>To start using the traditional authentication module, we <strong>install the passport</strong> and the <strong>passport-local</strong> 
+                        packages via the terminal: <i>npm install passport passport-local</i>
+                        <li>Once imported, <strong>we require the passport and passport-local</strong> packages in our JavaScript file as below.
+                        We’re importing the passport-local package with its Strategy instance to authenticate users with 
+                        a username and password.</li>
+                        <pre>
+                            <code>
+                const passport = require("passport");
+                const LocalStrategy = require("passport-local").Strategy;
+                            </code>
+                        </pre>    
+                        <li>Now that we have the package installed, we can <strong>initialize</strong> it by calling the initialize() method:
+                        <i>app.use(passport.initialize());</i>
+                        passport is a middleware and must be implemented using <i>app.use()</i>. The <i>initialize()</i> method initializes 
+                        the authentication module across our app.</li>
+                        <li>Next, we want to <strong>allow for persistent logins</strong>, and we can do this by calling <i>session()</i> on our passport 
+                        module: <i>app.use(passport.session());</i>
+                        The <i>session()</i> middleware alters the request object and is able to attach a ‘user’ value that can be 
+                        retrieved from the session id.</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Passport's Local Strategy</strong></li>
+                    <ul>
+                        <li>With Passport configured, we can now set up the passport-local strategy for authenticating with a username and password.
+                        First, we can configure the local strategy by creating a new instance of it and passing it as middleware into passport:</li>
+                        <pre>
+                            <code>
+                    passport.use(new LocalStrategy(
+                        function(username, password, done) {
+                        // …
+                        }
+                    ));
+                            </code>
+                        </pre>
+                        <li>The new LocalStrategy object will take in an anonymous function with the following parameters:</li>
+                        <ul>
+                            <li>username</li>
+                            <li>password</li>
+                            <li>A callback function called done.</li>
+                        </ul>
+                        <li>The purpose of the done callback is to supply an authenticated user to Passport if a user is authenticated. 
+                        The logic within the anonymous function follows this order:</li>
+                        <ol>
+                            <li>Verify login details in the callback function.</li>
+                            <li>If login details are valid, the done callback function is invoked and the user is authenticated.</li>
+                            <li>If the user is not authenticated, pass false into the callback function.</li>
+                        </ol>
+                        <li>The done callback function takes in two arguments:</li>
+                        <ul>
+                            <li>An error or null if no error is found.</li>
+                            <li>A user or false if no user is found.</li>
+                        </ul>
+                        <li>With those steps implemented our updated strategy should look like:</li>
+                        <pre>
+                            <code>
+                    passport.use(new LocalStrategy(
+                        function (username, password, done) {
+                            // Look up user in the db
+                            db.users.findByUsername(username, (err, user) => {
+                            // If there's an error in db lookup, 
+                            // return err callback function
+                            if(err) return done(err);
+                        
+                            // If user not found, 
+                            // return null and false in callback
+                            if(!user) return done(null, false);
+                        
+                            // If user found, but password not valid, 
+                            // return err and false in callback
+                            if(user.password != password) return done(null, false);
+                        
+                            // If user found and password valid, 
+                            // return the user object in callback
+                            return done(null, user)
+                            });
+                        })
+                    );
+                            </code>
+                        </pre>
+                        <li>We’re looking for potential errors during the authentication process and addressing them before the next request handler is reached.</li>
+                        <li>Once the local strategy is configured, the Express application will have user authentication implemented!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Serializing</strong> and <strong>Deserializing Users</strong></li>
+                    <ul>
+                        <li>When we <strong>serialize a user</strong>, Passport takes that user id and stores it internally on <i>req.session.passport </i>
+                        which is Passport’s internal mechanism to keep track of things.
+                        In the code example below, we pass a user object and a callback function called done after successful authentication.</li>
+                        <pre>
+                            <code>
+                    passport.serializeUser((user, done) => {
+                        done(null, user.id);
+                    });
+                            </code>
+                        </pre>
+                        <li>The first argument in the <i>done()</i> function is an error object. In this case, since there was no error we pass null 
+                        as the argument. For the second argument, we pass in the value that we want to store in our Passport’s internal session, 
+                        the user id. Once configured, the user id will then be stored in Passport’s internal session:
+                        <i>req.session.passport.user = {id: 'xyz'}</i>
+                        For any subsequent request, the user object can be retrieved from the session via the <i>deserializeUser()</i> function. 
+                        We can implement the deserializeUser function as follows:</li>
+                        <pre>
+                            <code>
+                passport.deserializeUser((id, done) => {
+                // Look up user id in database. 
+                db.users.findById(id, function (err, user) {
+                        if (err) return done(err); 
+                        done(null, user);
+                    });
+                });
+                            </code>
+                        </pre>
+                        <li>For the <strong>deserializeUser function</strong>, we pass the key that was used when we initially serialized a user (id). 
+                        The id is used to look up the user in storage, and the fetched object is attached to the request object as 
+                        req.user across our whole application.
+                        This way we’re able to access the logged-in user’s data in req.user on every subsequent request!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Logging In</strong></li>
+                    <ul>
+                        <li>In order to log in a user we first need a POST request that takes in user credentials. 
+                        We can add passport middleware in order to process the authentication and, if successful, serialize the user for us:</li>
+                    <pre>
+                        <code>
+            app.post("/login",
+                passport.authenticate("insertStrategyHere", 
+                { failureRedirect : "/insertPathHere"}),
+                (req, res) => {
+                    res.redirect("profile");
+                }
+            );
+                        </code>
+                    </pre>
+                    <li>We’re passing in <i>passport.authenticate()</i> as middleware. Using this middleware allows Passport.js 
+                    to take care of the authentication process behind the scenes and creates a user session for us.
+                    passport.authenticate() takes in:</li>
+                    <ul>
+                        <li>A string specifying which strategy to employ. In this case, we should use a local strategy.</li>
+                        <li>An optional object as the second argument. In this case, we should set the failureRedirect key 
+                            to "/login". This will redirect the user to the /login page if the login process fails.</li>
+                    </ul>
+                    <li>Once implemented, we can update the "/profile" endpoint to make use of the serialized user found in the request object, req.user:</li>
+                    <pre>
+                        <code>
+            app.get("/profile", (req, res) => {
+                res.render("insertDashboardNameHere", { user: req.user });
+            }); 
+                        </code>
+                    </pre>
+                    <li>This will render our profile view page along with the user data stored in the session!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>User Registration</strong></li>
+                    <ul>
+                        <li>Let’s learn how to register a user without a database. In a real production environment, you should 
+                        use a database, but we’ve simplified this example to focus on the creation of new users.                    
+                        Instead of a database, we’ll use an array holding data:</li>
+                        <pre>
+                            <code>
+                    // users:
+                    let records = [
+                        {
+                            id: 1,
+                            username: "sam",
+                            password: "codec@demy10",
+                        },
+                        {
+                            id: 2,
+                            username: "jill",
+                            password: "p@ssword123!",
+                        },
+                    ];
+                            </code>
+                        </pre>
+                        <li>Using a custom helper function we can retrieve user data upon registration 
+                        and update the records array:</li>
+                        <pre>
+                            <code>
+                    function createUser(user) {
+                        return new Promise((resolve, reject) => {
+                        const newUser = {
+                            // getNewId creates an updated ID 
+                            // for the new user
+                            id: getNewId(records),
+                            ...user,
+                        };
+                        records = [newUser, ...records];
+                        resolve(newUser);
+                        });
+                    };
+                            </code>
+                        </pre>
+                        <li>In the <strong>createUser()</strong> function, we’re creating a Promise in order to prevent events from becoming blocked 
+                        when running the application. <i>createUser()</i> creates a new user and inserts them into our database, records. Once created, we resolve the 
+                        Promise and send back the newly created user. Let’s use the <i>createUser()</i> helper function in our routes. We’ll add the logic to create users in a POST 
+                        request to </i>"/register"</i>.
+                        Since we’re working with promises, we can create an asynchronous route handler by using <i></i>async/await</i>:</li>
+                        <pre>
+                            <code>
+                        app.post("/register", async (req, res) => { ... })
+                            </code>
+                        </pre>
+                        <li>We’ll retrieve the user data from <i></i>req.body</i> and await as we call our helper function to create the new user:</li>
+                        <pre>
+                            <code>
+                        app.post("/register", async (req, res) => {
+                            const { username, password } = req.body;
+                            // imported helper function: 
+                            // db.users.createUser
+                            const newUser = await db.users.createUser({ username, password });
+                            </code>
+                        </pre>
+
+                        <li>If a newUser is successfully created, we send a status code of 201 and a json response back to the client:</li>
+                        <pre>
+                            <code>
+                app.post("/register", async (req, res) => {
+                    const { username, password } = req.body;
+                    const newUser = await db.users.createUser({ username, password });
+                    if (newUser) {
+                        res.status(201).json({
+                        msg: "Insert Success Message Here",
+                        insertDataHere
+                    });
+                }
+                            </code>
+                        </pre>
+                        <li>Lastly, we want to handle potential errors that might occur. In an else statement we can 
+                        return a status code of 500 indicating that there was a relevant error message:</li>
+                        <pre>
+                            <code>
+                app.post("/register", async (req, res) => {
+                    const { username, password } = req.body;
+                    const newUser = await db.users.createUser({ username, password });
+                    if (newUser) {
+                        res.status(201).json({
+                        msg: "Insert Success Message Here",
+                        insertDataHere
+                    });
+                    } else {
+                        res.status(500).json({ msg: "Insert Failure Message Here" });
+                }
+                            </code>
+                        </pre>
+                        <li>NOTE: In a real development environment, passwords would be hashed whenever a new user registers.</li>
+                        <li>With the route completed, users will now be able to register and log in!</li>
+                    </ul>
+                    <hr/>
+                    <li><strong>Logging out</strong></li>
+                    <ul>
+                        <pre>
+                            <code>
+                    app.get("/logout", (req, res) => {
+                        req.logout();
+                        res.redirect("/");
+                    });
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Passport Implementation: </strong></li>
+                    <pre>
+                        <code>    
+                const express = require("express");
+                const app = express();
+                const session = require("express-session");
+                const store = new session.MemoryStore();
+                const db = require("./db");
+                const passport = require("passport");
+                const LocalStrategy = require("passport-local").Strategy;
+                const PORT = process.env.PORT || 4001;
+                
+                app.use(express.json());
+                app.use(express.urlencoded({ extended: false }));
+                app.set("view engine", "ejs");
+                app.use(express.static(__dirname + "/public"));
+                
+                app.use(
+                  session({
+                    secret: "f4z4gs$Gcg",
+                    cookie: { maxAge: 300000000, secure: false },
+                    saveUninitialized: false,
+                    resave: false,
+                    store,
+                  })
+                );
+                
+                app.use(passport.initialize());
+                app.use(passport.session());
+                
+                //Serialize User
+                passport.serializeUser((user, done) => {
+                  done(null, user.id);
+                });
+                
+                //Deserialize User
+                passport.deserializeUser((id, done) => {
+                  db.users.findById(id, function (err, user) {
+                    if (err) {
+                      return done(err);
+                    }
+                    done(null, user);
+                  });
+                });
+                
+                // Passport local strategy below:
+                passport.use(
+                    //cb is callback
+                    new LocalStrategy(function (username, password, cb) {
+                        db.users.findByUsername(username, function (err, user) {
+                            // There was an error in the database lookup
+                            if (err) {
+                                return cb(err);
+                            }
+                            // A user was NOT found and there was NO error
+                            if (!user) {
+                                return cb(null, false);
+                            }
+                            // A user was found, but the password was NOT valid
+                            if (user.password != password) {
+                                return cb(null, false);
+                            }
+                            // There was no error, the user and password are valid
+                            return cb(null, user);
+                        });
+                    })
+                );
+                
+                // Logout handler below:
+                app.get("/logout", (req, res) => {
+                  req.logout();
+                  res.redirect("/login");
+                });
+                
+                app.get("/login", (req, res) => {
+                  res.render("login");
+                });
+                
+                //Logging
+                app.post(
+                  "/login",
+                  passport.authenticate("local", { failureRedirect: "/login" }),
+                  (req, res) => {
+                    res.redirect("profile");
+                  }
+                );
+                
+                app.get("/profile", (req, res) => {
+                  res.render("profile", { user: req.user });
+                });
+                
+                //Register
+                app.post("/register", async (req, res) => {
+                  const { username, password } = req.body;
+                  const newUser = await db.users.createUser({ username, password });
+                  if (newUser) {
+                    res.status(201).json({
+                      msg: "New user created!",
+                      newUser,
+                    });
+                  } else {
+                    res.status(500).json({ msg: "Unable to create user" });
+                  }
+                });
+                
+                app.listen(PORT, () => {
+                  console.log(`Server is listening on port ${PORT}`);
+                });
+
+
+                        </code>
+                    </pre> 
+                    <hr/>
+                    <li><strong>Helper Function: </strong>
+                    Using a custom helper function, 
+                    we can retrieve user data upon registration and update the records array:</li>
+                    <pre>
+                        <code>
+                let records = [
+                    {
+                        id: 1,
+                        username: "sam",
+                        password: "codec@demy10",
+                    },
+                    {
+                        id: 2,
+                        username: "jill",
+                        password: "birthday",
+                    },
+                ];
+
+                const getNewId = (array) => {
+                    if (array.length > 0) {
+                        return array[array.length - 1].id + 1;
+                    } else {
+                        return 1;
+                    }
+                };
+
+                exports.createUser = function (user) {
+                    return new Promise((resolve, reject) => {
+                        const newUser = {
+                            id: getNewId(records),
+                            ...user,
+                        };
+                        records = [newUser, ...records];
+                        console.log(records);
+                        resolve(newUser);
+                    });
+                };
+
+                exports.findById = function (id, cb) {
+                    process.nextTick(function () {
+                        var idx = id - 1;
+                        if (records[idx]) {
+                            cb(null, records[idx]);
+                        } else {
+                            cb(new Error("User " + id + " does not exist"));
+                        }
+                    });
+                };
+
+                exports.findByUsername = function (username, cb) {
+                    process.nextTick(function () {
+                        for (var i = 0, len = records.length; i < len; i++) {
+                            var record = records[i];
+                            if (record.username === username) {
+                                return cb(null, record);
+                            }
+                        }
+                        return cb(null, null);
+                    });
+                };
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>BCRYPT</h3>
+            <ul>
+                <li>When practicing new concepts, we might store plaintext passwords in a local database, but this is 
+                incredibly insecure. <u>One should never do this in a production environment</u>. 
+                You should <strong>hash passwords</strong> before storing them in a database in order to protect 
+                your users from being hacked. There are plenty of cryptographic hashing functions to choose from, 
+                such as the SHA-3 or MD-5 algorithms, but they are quite fast (the faster the function, the faster 
+                a hacker can retrieve a hashed password). 
+                Using a function that is slower at hashing passwords can actually protect your users.
+                We can accomplish this by using the <strong>bcrypt</strong> algorithm and library. 
+                Using bcrypt, we can protect our users by <strong>hashing and salting passwords</strong>.
+                Using multiple rounds of hashing ensures that an attacker must deploy massive funds and 
+                hardware to be able to crack your passwords.</li>
+                <li><strong>bcrypt is hashing algorithm</strong>. This means you cannot easily retrieve 
+                the plaintext password without already knowing the salt, rounds, and key (password).
+                A hash function only works one-way, which means that once a value is hashed it can’t be unhashed
+                (this helps to avoid exposing password if a server attack happens). 
+                This is different from encryption, because, if you know which algorithm was used to encrypt a value, 
+                you can use that same algorithm to decrypt it.</li>
+                <li>On a typical website, when a user first signs up, we retrieve their password and run it through a 
+                hashing algorithm. The hashed password is then stored in the database. Whenever the same user 
+                logs in, we hash the password they tried to log in with and compare it to the already stored hash 
+                value. If the values match, the user is authenticated.</li>
+                <li>A <strong>salt</strong> is a random value that is added to the input of a hashing function in order to make each 
+                password hash unique even in the instance of two users choosing the same passwords. Salts help 
+                us mitigate hash table (like Rainbow Table) attacks by forcing attackers to re-compute them using the salts for each 
+                user.</li>
+                <li>The <strong>process of comparing</strong> passwords should look as follows:</li>
+                <ol>
+                    <li><strong>Retrieve</strong> plain text password.</li>
+                    <li><strong>Hash</strong> the password.</li>
+                    <li><strong>Compare</strong> the hashed password with the one stored in our DB. 
+                    (Since we’re using the same hash, it should return the same value if the password is correct.)</li>
+                </ol>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode42" onclick="showCode('displayCode42', 'showCode42')">Display</button>
+            <div id="displayCode42">
+                <button onclick="closeCode('displayCode42', 'showCode42')">Close</button>
+                <ul>
+                    <li>Bcrypt to<strong> Hash Passwords:</strong></li>
+                    <ul>
+                        <li>A <strong>salt</strong> is a value that is concatenated to a password before hashing in order to make it less 
+                        vulnerable to rainbow table and brute-force attacks.</li>
+                        <li>A <strong>salt round</strong> can be described as the amount of time needed to calculate a single bcrypt hash. 
+                        The higher the salt rounds, the more time is necessary to crack a password.</li>
+                        <li>The built-in <strong><i>genSalt()</i></strong> function automatically generates a salt for us. Since we’re using an 
+                        asynchronous function we can await this function call.</li>
+                    </ul>
+                    <pre>
+                        <code>
+                const bcrypt = require("bcrypt");
+
+                const passwordHash = async (password, saltRounds) => {
+                    try {
+                        const salt = await bcrypt.genSalt(saltRounds);
+                        return await bcrypt.hash(password, salt);
+                    } catch (err) {
+                        console.log(err);
+                    }
+                    return null;
+                };
+                        </code>
+                    </pre>
+                    <li><strong>Verifying password:</strong></li>
+                    <ul>
+                        <li>The built-in function <strong><i>compare()</i></strong> 
+                        takes in a plaintext password, password and a hashed password, hash.
+                        <i>bcrypt.compare()</i> deduces the salt from the provided hash and is able to then 
+                        hash the provided password correctly for comparison.</li>
+                        <pre>
+                            <code>
+                const bcrypt = require("bcrypt");
+
+                const comparePasswords = async (password, hash) => {
+                    try {
+                        const matchFound = await bcrypt.compare(password, hash);
+                        return matchFound;
+                    } catch(err) {
+                        console.log(err);
+                    }
+                    return false;
+                };
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Implementation bcrypt:</strong></li>
+                    <pre>
+                        <code>
+            const express = require("express");
+            const router = express.Router();
+            const helper = require("../helpers/helpers");
+            let users = require("../data/users.json");
+            const filename = "./data/users.json";
+            const bcrypt = require("bcrypt");
+
+            /* Register a user */
+            router.post("/register", async (req, res) => {
+                const { email, password } = req.body;
+                const id = { id: helper.getNewId(users) };
+                
+                try {
+                    const user = await helper.findUser(users, email);
+                    if (user) {
+                        console.log("User already exists!");
+                        return res.redirect("login");
+                    }
+                    
+                    // Generate salt
+                    const salt = await bcrypt.genSalt(10);
+                    
+                    // Hash password
+                    const hashedPassword = await bcrypt.hash(password, salt);
+                    
+                    const newUser = {
+                    ...id,
+                    email,
+                    password: hashedPassword,
+                    };
+
+                    await users.push(newUser);
+                    await helper.writeJSONFile(filename, users);
+
+                    res.redirect("login");
+                } catch (err) {
+                    res.status(500).json({ message: err.message });
+                }
+            });
+
+            /* Log in user */
+            router.post("/login", async (req, res) => {
+                const { password, email } = req.body;
+
+                try {
+                    const user = await helper.findUser(users, email);
+
+                    if (!user) {
+                    console.log("User does not exist!");
+                    return res.redirect("login");
+                    }
+
+                    // Compare passwords
+                    const matchedPassword = await bcrypt.compare(password, user.password);
+
+                    if (!matchedPassword) {
+                        console.log("Passwords did not match!");
+                        return res.redirect("login");
+                    }
+                    // return res.status(401).json({
+                    //   token: null,
+                    //   message: "Invalid password",
+                    // });
+                    res.render("profile", { user });
+                } catch (err) {
+                    res.status(500).json({ message: err.message });
+                }
+            });
+
+            router.get("/login", (req, res) => {
+                res.render("login");
+            });
+
+            router.get("/register", (req, res) => {
+                res.render("register");
+            });
+
+            router.get("/profile", (req, res) => {
+                res.render("profile");
+            });
+
+            module.exports = router;
+                        </code>
+                    </pre>
+                    <li>Previous example <i>user.json</i></li>
+                    <pre>
+                        <code>
+            [
+                {
+                    "id":1,
+                    "email":"lucinda90@codecademy.com",
+                    "password":"$2b$10$3euPcmQFCiblsZeEu5s7p.9OVHgeHWFDk9nhMqZ0m/3pd/lhwZgES"
+                },
+                {
+                    "id":2,"email":"enrique10@email.com",
+                    "password":"$2b$10$69SrwAoAUNC5F.gtLEvrNON6VQ5EX89vNqLEqU655Oy9PeT/HRM/a"},
+                {
+                    "id":3,
+                    "email":"lola@codecademy.com",
+                    "password":"$2b$10$9PU0sCJU201C3lO41bsOIu.HRrik7Alv2ZlxwM9A8lGr/clLK6D0m"},
+                {
+                    "id":4,"email":"joan@gmail.com",
+                    "password":"$2b$10$EQSDN0hNs.7TFzQPetYKVerxMpzOLYrP3dp2W82AGXSgUuWU9YuPC"
+                }
+            ]
+                        </code>
+                    </pre>
+                </ul>
+            </div>
+            <hr/>
+            <h3>OAuth 2.0</h3>
+            <ul>
+                <li>There are three main types of <strong>API authentication:</strong> HTTP Basic Auth, API Keys, OAuth.</li>
+                <li>Sometimes we don’t have to create a username and password for a new account. Instead, we can
+                sign in with Google, LinkedIn, Twitter, and more. This is possible because of OAuth. 
+                <strong>OAuth</strong> is an authorization framework that provides specific authorization flows 
+                which allow unrelated servers to access authenticated resources without sharing any passwords. 
+                It works by allowing applications to authenticate with third-party services in exchange for an 
+                access token which can be passed with an HTTP request to access protected content.
+                All methods of authorization have advantages and vulnerabilities and OAuth is no exception; however, it remains 
+                a generally secure and convenient way to authenticate yourself on trusted applications.</li>
+                Here're the steps on how it works:</li>
+                <ul>
+                    <li>Redirect user to provider for authorization -> User grants authorization -> Redirect user to application 
+                    -> Exchange for access grant -> Grant access token -> Create connection.</li>
+                </ul>
+                <li><strong>Access Tokens: </strong>Authentication in OAuth is facilitated by the use of access tokens. 
+                Access tokens are used to make API requests on behalf of the user and represent the authorization of a specific
+                application to access specific parts of a user’s data. These API requests are made over HTTPS connections.
+                Access tokens are very short-lived, and they only last anywhere from a few minutes to just hours. Their
+                ephemeral nature limits the amount of time an attacker can use a stolen token.</li>
+                <li><strong>Refresh tokens: </strong>Are longer lived than access tokens and are used by applications to get new access tokens 
+                without prompting the user. Refresh tokens can expire, like access tokens, but they can also be revoked by
+                the authorization server.</li>
+                <li><strong>Grant Types: </strong>OAuth 2.0 grant types, <u>also known as flows</u>, describe multiple ways to 
+                obtain access tokens. Flows involve two main parts: Redirecting the user to the OAuth provider and obtaining 
+                an access token & using the access token to gain restricted access.</li>
+                <ul>
+                    <li>Some <strong>OAuth grant types: </strong>Client Credentials Grant; Authorization Code;
+                    Proof Key for Code Exchange (PKCE); Implicit Grant - Deprecated; Device Code Grant;
+                    Resource Owner Password Credential Grant - Deprecated.</li>
+                    <li><strong>In the Client Credentials flow</strong>, permissions are granted directly to the application itself by 
+                    an administrator. When the app presents a token to a resource, the resource enforces that the app 
+                    itself has authorization to perform an action since there is no user involved in the authentication</li>
+                    <li><strong>The Authorization Code Grant</strong> is the most widely used grant for publicly available applications. 
+                    This was the grant type we showed earlier in this article. To use this grant type, the webserver must have the 
+                    capability to store client credentials securely.
+                    This approach uses browser redirection to communicate between the resource server and the authorization server. 
+                    The client will obtain an authorization code and then exchange it for an access token.</li>
+                </ul>
+                <li>The <strong>four OAuth Roles</strong>:</li>
+                <ul>
+                    <li><strong>Resource Owner</strong>: the user who authorizes an application to an account (user);</li>
+                    <li><strong>Resource Server</strong>: the API server that accepts access tokens and verifies their validity (server side, where resource relies);</li>
+                    <li><strong>Authorization Server:</strong> the server that issues access tokens (auth server, like google, github, facebook...);</li>
+                    <li><strong>Client:</strong> the application that requests the access tokens (client side).</li>
+                </ul>
+                <li>OAuth defines <strong>two types of clients:</strong></li>
+                <ul>
+                    <li><strong>Public clients</strong> are NOT able to store credentials securely and 
+                    can only use grant types that do not use their client secret.</li>
+                    <li><strong>Confidential clients</strong> are applications that can be registered to 
+                    an authorization server using credentials. Those credentials, a client ID and a client secret, 
+                    can be secured without exposing them to a third party. They require a backend server to store the credentials. 
+                    A client’s ability to securely store credentials determines which type of OAuth authorization flows should be 
+                    used. More information <a href="https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/" target="_blank">here</a>.</li>
+                </ul>              
+                <li><strong>Material on OAuth </strong><a href="https://www.codecademy.com/learn/paths/full-stack-engineer-career-path/tracks/fscp-22-user-authentication-authorization/modules/wdcp-22-oauth-2/cheatsheet" target="_blank">here</a>.</li>
+                <li><strong>Download</strong> github-oauth-app project <a href="https://static-assets.codecademy.com/content/paths/web-security/oauth2/github-oauth-app.zip" target="_blank">here</a>.</li>
+            </ul>
+            <p class="center"><strong>Example:</strong></p>
+            <button id="showCode43" onclick="showCode('displayCode43', 'showCode43')">Display</button>
+            <div id="displayCode43">
+                <button onclick="closeCode('displayCode43', 'showCode43')">Close</button>
+                <ul>
+                    <li><strong>Implementing OAuth</strong></li>
+                    <ul>
+                        <li><strong>Install:</strong> We will use the oauth2-server module to implement 
+                        an OAuth 2.0 provider in Node.js utilizing 
+                        the client credentials grant type to demonstrate obtaining an access token and using it in request.
+                        The package can be installed in the terminal using npm with the command: <strong><i>npm install oauth2-server</i></strong></li>
+                        <li>From here, we instantiate the oauth2-server module and store it in a variable like below: <strong><i>const OAuth2Server = require('oauth2-server')</i></strong>;</li>
+                        <li>We’ll create an <strong>instance of the OAuth2Server</strong> object and store it in a variable named oauth.
+                        The OAuth2Server object requires a model object which contains functions to access, store, and validate our access tokens. 
+                        We’ll be writing them separately in a file named model.js.</li>
+                        <ul>
+                            <li>OAuth2Server can be supplied with additional options in the constructor. To pass tokens inside the URL, we’ll set the 
+                            <strong>allowBearerTokensInQueryString</strong> attribute to true.</li>
+                            <li>The access token lifetime can also be configured as an option using the <strong>accessTokenLifetime</strong> attribute. 
+                            The lifetime is set in seconds.</li>
+                        </ul>
+                        <pre>
+                            <code>
+                //app.js
+
+                const oauth = new OAuth2Server({
+                    model: require('./model.js'),
+                    allowBearerTokensInQueryString: true,
+                    accessTokenLifetime: 60 * 60
+                })
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Registering Client to Application</strong></li>
+                    <ul>
+                        <li>We'll implement the <strong>Client Credentials</strong> flow to obtain an access token
+                        for authentication. When a developer registers a client in an OAuth application, they’ll need:</li>
+                        <ul>
+                            <li><strong>A Client ID:</strong> a public identifier for apps that is unique across all clients and the authorization server.</li>
+                            <li><strong>A Client Secret:</strong> a secret key known only to the application and the authorization server.</li>
+                            <li>More about <a href="https://www.oauth.com/oauth2-servers/client-registration/client-id-secret/" target="_blank">here</a>.</li>
+                        </ul>
+                        <li>For our example application, we use an in-memory database defined in db.js. Inside db.js, 
+                        we use modules.exports to create a module to hold our <strong>confidential client 
+                        credentials</strong> and <strong>access tokens</strong>.
+                        We can register an application to the list of confidentialClients in db.js. Inside the module.exports 
+                        object, we create an attribute named <strong>confidentialClients</strong> and set it equal to an array. Within the array,
+                        we create an object with the <i>clientId</i> and <i>clientSecret</i>, and specify 'client_credentials' 
+                        in our array of grant types.</li>
+                        <li>In our database, we’ll create a location to store access tokens. Within the module.exports object, we create another 
+                        property named tokens and set it equal to an empty array.</li>
+                        <pre>
+                            <code>
+                //db.js
+
+                module.exports = {
+                    // Add confidential clients[]
+                    confidentialClients: [{
+                        clientId: 'codecademy',
+                        clientSecret:'codec@demy',
+                        grants: [
+                            'client_credentials'
+                        ]
+                    }],
+                    // Add tokens[]
+                    tokens: []
+                }
+                            </code>
+                        </pre>
+                        <li>OAuth2Server requires certain functions implemented in the model regardless 
+                        of the authorization flow used. The <strong><i>getClient()</i></strong> function is an example of a required model function for all flows. 
+                        The function is used to retrieve a client using a Client ID and/or a Client Secret combination.
+                        The <i>getClient()</i> function takes two arguments: <i>clientId</i> and <i>clientSecret</i>. 
+                        We must write a database query to match 
+                        the provided arguments and its implementation will vary depending on the type of database used. Since we are 
+                        using JavaScript as our in-memory database, we can use the <i>.filter()</i> method to evaluate if the clientId and 
+                        clientSecret match any confidential clients in db.js and return the matching client.</li>
+                        <li>We <strong>iterate over each element</strong> in the confidentialClients array inside db.js. Each element’s clientId
+                        and clientSecret is tested to match against the clientId and clientSecret of the client that is passed 
+                        and will return the client that matches both values in an array. Finally, the <i>getClient()</i> function returns 
+                        the first element in confidentialClients.
+                        Finally, we export the function from model.js so that it can be used from other files. We can do 
+                        this using module.exports object.</li>
+                        <li>The <strong><i>saveToken()</i></strong> function must be implemented for all grant types 
+                        in the model used by OAuth2Server. This function stores the access token as an object to a 
+                        database when an access token is obtained.
+                        The <i>saveToken()</i> function is implemented with three arguments: token, client, and user.
+                        We’ll also export the saveToken() function from models.js using module.exports.</li>
+                        <ul>
+                            <li>The <strong>token.user</strong> is set equal to an object with the username attribute. We set the 
+                            username attribute equal to the username of the passed user object.</li>
+                            <li>The <strong>token.client</strong> equal an object in which the id attribute is equal 
+                            to the passed client’s clientId.</li>
+                            <li>With the token formatted, we can save the token to our database by pushing the token 
+                            to our db.tokens array and returning the token.</li>        
+                        </ul>
+                        <li>Certain grant types have specific functions that must be implemented for them to work. The Client Credentials 
+                        grant type must have the <strong>getUserFromClient()</strong> function implemented to be used.
+                        The <i>getUserFromClient()</i> function is invoked to retrieve the user associated with the specified 
+                        client. We are not using a user in our application so we can return an empty object. However, 
+                        leaving out this function declaration will throw an error when using the Client Credentials 
+                        grant type. Finally, we export the function from model.js so that it can be used from other files. 
+                        We can do this using <i>module.exports</i> object.</li>
+                        <pre>
+                            <code>
+                //model.js
+
+                let db = require('./db.js');
+
+                // getClient() function
+                const getClient = (clientId, clientSecret) => {
+                        let confidentialClients = db.confidentialClients.filter((client) => {
+                        return client.clientId === clientId && client.clientSecret === clientSecret
+                    });
+                    return confidentialClients[0];
+                }
+                
+                // saveToken() function
+                const saveToken = (token, client, user) => {
+                        token.client = {
+                        id: client.clientId
+                    }
+                    token.user = {
+                        username: user.username
+                    }
+                    db.tokens.push(token);
+                    return token;
+                }
+
+                const getUserFromClient = (client) => {
+                    return {}
+                  }
+                
+                // Export saveToken() here
+                module.exports = {
+                    getClient: getClient,
+                    saveToken: saveToken,
+                    getUserFromClient: getUserFromClient
+                }
+                            </code>
+                        </pre>
+                        <li>Now that our model functions for generating and saving access tokens are implemented 
+                        in model.js, we need to create a callback function to handle obtaining the access token whenever 
+                        a URL is requested in our application. Within app.js, we create a function named <strong>obtainToken()</strong> 
+                        that takes the HTTP request and HTTP response as arguments—req and res.
+                        <li>Inside <i>obtainToken()</i>, we create a new variable named request and set it to a new instance 
+                        of <i>OAuth2Server.Request()</i>, passing the HTTP request, req, as the argument.
+                        We’ll also create a new variable named response and set it to a new instance of OAuth2Server.Response(), 
+                        taking in res as the argument.</li>
+                        
+                        <li>The <i>.token()</i> method of the oauth object returns the access token. The method passes the OAuth2Server‘s 
+                        request and response stored in response and request variables. We use the <i>.then()</i> method to return a promise. 
+                        If the token method is successful, we will send the access token back to the client using the <i>.json()</i> Express method.                        
+                        We’ll chain the <i>.catch()</i> method to handle any errors if the <i>.token()</i> method fails. If the <i>.token()</i> method returns 
+                        an error code or an HTTP 500 status, the error can be sent back to the client using the <i>.json()</i> method.</li>
+                        
+                        <li>Note, must declare our function expressions before they can be used. To make use of our 
+                        <i>obtainToken()</i> function, we can define a new route and pass <i>obtainToken()</i> as a callback 
+                        function. We use the <i>.all()</i> method to handle all types of HTTP requests since we will 
+                        eventually use a POST request on the route. The route name can be anything we’d like—we’ll 
+                        use /auth for our example.
+                        Now the client can make an HTTP request with the Client Secret to /auth and receive an access token.</li>
+                        <pre>
+                            <code>
+                //app.js
+
+                // btainToken()
+                const obtainToken = (req, res) => {
+                    let request = new OAuth2Server.Request(req);
+                    let response = new OAuth2Server.Response(res);
+                    return oauth.token(request, response)
+                    .then((token) => {
+                        res.json(token);
+                    }).catch((err) => {res.json(err)})
+                }
+                
+                // '/auth' route
+                app.all('/auth', obtainToken);                
+                            </code>
+                        </pre>
+                        <li><strong>getAccessToken(): </strong>
+                        Now that we’ve written the code to obtain an access token, <u>we can use it to restrict access 
+                        to content unless a user is authenticated with a valid access token</u>. Inside <i>model.js</i>, we implement 
+                        the <i>getAccessToken()</i> function to retrieve existing tokens that were previously saved when the 
+                        <i>saveToken()</i> function is invoked.
+                        
+                        The <i>getAccessToken()</i> function is required when the <i>.authenticate()</i> method is used on an 
+                        OAuth2Server instance. <i>getAccessToken()</i> is declared with one parameter—accessToken.
+                        
+                        When the function is invoked the accessToken is checked against the tokens stored inside the db.js to 
+                        see if there is a match. We can use JavaScript’s <i>.filter()</i> method to each token in the database against 
+                        the access token that is passed. If there is a match, the access token can be returned.</li>
+                        <li>The <i>getAccessToken()</i> function expression is called with an access token as an argument. 
+                        The <i>.filter()</i> method is used to check each token saved in the tokens array in the database 
+                        to match the access token passed to the function. Finally, we return the matching access token from the array.
+                        We export the function from <i>model.js</i> so that it can be used from other files. We can do this using module.exports object.</li>
+                        <pre>
+                            <code>
+                //model.js
+
+                const getAccessToken = (accessToken) => {
+                let tokens = db.tokens.filter((savedToken)=>{
+                    return savedToken.accessToken === accessToken;
+                })
+                return tokens[0];
+                }
+                            </code>
+                        </pre>
+                        <li><strong>module.export</strong> will look like this</li>
+                        <pre>
+                            <code>
+                module.exports = {
+                    getClient: getClient,
+                    saveTokens: saveTokens,
+                    getUserFromClient: getUserFromClient,
+                    getAccessToken: getAccessToken
+                }
+                            </code>
+                        </pre>
+                        <li><strong>Authentication Middleware: </strong>
+                        With the model function for checking access tokens implemented, let’s create a middleware function 
+                        to handle authenticating access tokens inside our application. Inside <i>app.js</i>, we will create a function 
+                        named <i>authenticateRequest()</i> that takes three arguments: <i>req</i>, <i>res</i>, <i>next</i>.
+
+                        Inside the function, we create a new variable named request and set it to a new instance of 
+                        <i>OAuth2Server.Request()</i>, taking in the HTTP request, req, as the argument.
+                        We’ll create a new variable named response and set it to a new instance of <i>OAuth2Server.Response()</i>, 
+                        passing in the HTTP response, res.
+
+                        We then return <i>.authenticate()</i> method, that is provided by the OAuth2Server object, on oauth, 
+                        passing in response and request. The method returns a Promise that resolves to the access token object 
+                        returned from the <i>.getAccessToken()</i> method we defined in model.js. We’ll use a promise chain to handle the flow.
+                        We use the <i>.then()</i> method, and if the access token is valid, we can call the <i>next()</i> function to call the 
+                        next function. We’ll chain the .catch() method to handle an error or if the access token is invalid. 
+                        Inside <i>.catch()</i> method, we can send a response back to the client using the </i>.send()</i> method.
+                        Finally, we can add <i>authenticateRequest</i> as a middleware function to a route to restrict access. 
+                        Now the client must include the bearer token in the header when making a request to the route to 
+                        gain authenticated access.</li>
+                        <pre>
+                            <code>
+            //app.js
+                                
+            const authenticateRequest = (req, res, next) => {
+            
+            let request = new OAuth2Server.Request(req);
+            let response = new OAuth2Server.Response(res);
+            
+            return oauth.authenticate(request, response)
+                .then(()=>{
+                    next();
+                })
+                .catch((err) => {
+                    res.send('You are not allowed')
+                })
+            }
+                            </code>
+                        </pre>
+                        <li><strong>authenticateRequest as middleware</strong> to '/secret'</li>
+                        <pre>
+                            <code>
+            // app.js                    
+                        
+            app.get('/secret', authenticateRequest, (req, res)=>{
+                res.send('Welcome to the secret area.');
+            })
+                            </code>
+                        </pre>
+                    </ul>
+                    <hr/>
+                    <li><strong>Full</strong> <i>app.js</i> implementation:</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const path = require('path');
+            const OAuth2Server = require('oauth2-server');
+
+            const app = express();
+
+            app.use(express.json());
+            app.use(express.urlencoded({extended: true}));
+
+            const PORT = 4001;
+
+            const oauth = new OAuth2Server({
+                model: require("./model"),
+                allowBearerTokensInQueryString: true
+            })
+
+            const authenticateRequest = (req, res, next) => {
+            
+            let request = new OAuth2Server.Request(req);
+            let response = new OAuth2Server.Response(res);
+            
+            return oauth.authenticate(request, response)
+                .then(()=>{
+                    next();
+                })
+                .catch((err) => {
+                    res.send('You are not allowed')
+                })
+            }
+
+            const obtainToken = (req, res) => {
+                let request = new OAuth2Server.Request(req);
+                let response = new OAuth2Server.Response(res);
+
+                return oauth.token(request, response)
+                .then((token) => {
+                    res.json(token);
+                })
+                .catch((err) => {
+                    res.json(err);
+                })
+            }
+
+            app.all('/auth', obtainToken);
+
+            app.get('/', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/home.html'));
+            })
+            app.get('/login', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/login.html'));
+            })
+
+            app.get('/public', (req, res)=>{
+                res.sendFile(path.join(__dirname, 'public/allowed.html'));
+            })
+
+            app.get('/secret', authenticateRequest, (req, res)=>{
+                res.send('Welcome to the secret area.');
+            })
+
+            app.listen(PORT, ()=>console.log(`Listening on port ${PORT}`));
+
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>Testing Endpoints with HTTP</strong></li>
+                    We’ve implemented the Client Credentials OAuth 2.0 flow in our application! The handling 
+                    of access tokens is done with HTTP requests. We can make an HTTP POST request to the /auth 
+                    route to obtain an access token.
+                    <pre>
+                        <code>
+                    POST http://localhost:4001/auth
+                    Content-Type: application/x-www-form-urlencoded
+                    Authorization: Basic Y29kZWNhZGVteTpjb2RlY0BkZW15
+                    
+                    grant_type=client_credentials
+                        </code>
+                    </pre>
+                    <li>In the HTTP header, we set Authorization to Basic and the base64 encoded Client ID and Client 
+                    Secret. In the POST request data, we provide grant_type=client_credentials. The server will 
+                    respond with an access token that looks like this:</li>
+                    <pre>
+                        <code>
+                    {
+                        "accessToken":" "<access token>",
+                        "accessTokenExpiresAt":"2021-06-17T01:02:37.272Z",
+                        "client": {
+                            "id": "codecademy"},
+                            "user":{}
+                        }
+                    }
+                        </code>
+                    </pre>
+                    <li>To use the access token while requesting authenticated content, we pass the bearer token in 
+                    the Authentication request header, replacing < Access Token > with the token returned from the 
+                    request to /auth like so: < /Access >
+                    <pre>
+                        <code>
+                    GET http://localhost:4001/secret
+                    Authorization: Bearer < Access Token >
+                        </code>
+                    </pre>
+                    <li><strong>In resume: </strong>
+                    On the /login page, the login button sends a POST request to /auth with the Authorization header 
+                    already populated with the Client ID. When the server receives the request, the Client ID is passed 
+                    to the <i>obtainToken()</i> callback function where the <i>.token()</i> method is called and returns the access 
+                    token to the client.
+                    Now, when we click the link to /secret the client passes the access token as a URL parameter, and the server 
+                    calls the <i>authorizeHandler()</i> callback function where the <i>.authorize()</i> method is called to verify whether 
+                    the access token is valid. If the access token is valid, then secret.html is sent to the client, otherwise 
+                    <i>error.html</i> is sent.</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

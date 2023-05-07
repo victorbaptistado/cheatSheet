@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="../component/button.js" defer></script>
+        <title>Node SQlite</title>
+        <h1>Node SQLite</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <ul>
+                <li><strong>SQLite3</strong> is a popular, lightweight, serverless, and self-contained relational database 
+                management system. It is a software library that provides a relational database management 
+                system, with support for SQL and transaction management, all contained within a single file.</li>
+                <li><i>const sqlite3 = require('sqlite3');</i>This code above gives us a JavaScript object, 
+                called sqlite3 that we can interact with via methods.</li>
+                <ul>
+                    <li><strong>Open New Database: </strong>The first method we’re going to use on sqlite3 is going 
+                    to be the method that opens up a new database. In SQLite, a database corresponds to 
+                    a single file, so the only argument required to open this database is the path to the 
+                    file that SQLite will use to save the database. <i>const db = new sqlite3.Database('./db.sqlite');</i>
+                    This code will create a new database file, in the current folder, named db.sqlite. 
+                    Then we’ll have a database to interact with.</li>
+                    <li><strong>Retrieving All Rows: </strong>To execute a query and retrieve all rows 
+                    returned, we use <i>db.all()</i>. In the example below, we use the <i>db.all()</i> 
+                    method to retrieve every dog of breed “Corgi” from a table named Dog and print them.</li>
+                    <pre>
+                        <code>
+            db.all("SELECT * FROM Dog WHERE breed='Corgi'", (error, rows) => {
+                printQueryResults(rows);
+            });
+                        </code>
+                    </pre>
+                    <li><strong>Retrieving A Single Row: </strong>Fetches a single row from a 
+                    database: <i>db.get()</i>.</li>
+                    <pre>
+                        <code>
+            db.get("SELECT * FROM Dog WHERE owner_name = 'Charlie'", (error, row) => {
+                printQueryResults(row); 
+            });
+                        </code>
+                    </pre>
+                    <li><strong>Placeholders: </strong>We may not always know what values we will need to 
+                    search for when writing our program. When we write a JavaScript function, we give the 
+                    function parameters that will have many different values when the function gets called. Placeholders 
+                    solve a similar problem in the world of SQL queries. Sometimes we’ll want to search 
+                    our database based on a user’s submission. Or we might find ourselves wanting to
+                    perform a series of queries looping over some external data.
+                    In those cases, we will have to use a placeholder. A placeholder is a part of our SQL 
+                    query that we want to be interpolated with a variable’s contents. We want the value of 
+                    the JavaScript variable to be placed within the SQL query. To do this properly, we’ll 
+                    need to pass a particular argument to our <i>db.run()</i> command that will tell it how to 
+                    interpolate the query.</li>
+                    <p class="center"><strong>Example</strong></p>
+                    <button id="showCode146" onclick="showCode('displayCode146', 'showCode146')">Display</button>                   
+                    <div id="displayCode146">
+                        <button onclick="closeCode('displayCode146', 'showCode146')">Close</button>  
+                        <pre>
+                            <code>
+            const furLength1 = "short";
+            const furLength2 = "long";
+            const furColor1 = "brown";
+            const furColor2 = "grey";
+                
+            const findDogByFur = (length, color) => {
+                db.all(
+                    "SELECT * FROM Dog WHERE fur_length = $furLength AND fur_color = $furColor", 
+                    {
+                        $furLength: length,
+                        $furColor: color
+                    }, 
+                    (error, rows) => {
+                        printQueryResults(rows);
+                    }
+                );
+            });
+                
+            // prints all dogs with short brown fur.
+            findDogByFur(furLength1, furColor1); 
+            // prints all dogs with long brown fur.
+            findDogByFur(furLength2, furColor1); 
+            // prints all dogs with short grey fur.
+            findDogByFur(furLength1, furColor2); 
+            // prints all dogs with long grey fur
+            findDogByFur(furLength2, furColor2); 
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>db.run(): </strong>Not all SQL commands return rows, and in fact, some
+                    essential SQL commands do not. If we INSERT a row or CREATE a TABLE we will not receive 
+                    a row in response. To perform SQL commands that do not return rows, we use <i>db.run()</i> 
+                    to run the command. <i>db.run()</i> does not return a value, but, depending on the SQL command, 
+                    it may attach properties to the <i>this</i> keyword within the scope of the callback. 
+                    In some cases, like creating a table, <i>db.run()</i> will not modify this. In 
+                    other cases, like when INSERTing a row, a callback to <i>db.run()</i> will be able to 
+                    access <i>this.lastID</i>, the ID of the last INSERTed row.</li>
+                    <p class="center"><strong>Example</strong></p>
+                    <button id="showCode147" onclick="showCode('displayCode147', 'showCode147')">Display</button>                   
+                    <div id="displayCode147">
+                        <button onclick="closeCode('displayCode147', 'showCode147')">Close</button> 
+                        <pre>
+                            <code>
+            const sqlite = require('sqlite3');
+            const db = new sqlite.Database('./db.sqlite');
+
+            const newRow = {
+                location: 'Istanbul, Turkey',
+                year: 1976,
+            }
+            // Your code below!
+
+            db.run('INSERT INTO TemperatureData (location, year) 
+            VALUES ($location, $year)', {
+                $location: newRow.location,
+                $year: newRow.year
+            }, function(error) {
+            // handle errors here!
+
+            console.log(this.lastID);
+            });
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong> Error Handling: </strong>For <i>db.run()</i>, <i>db.each()</i>, <i>db.get()</i>, and <i>db.all()</i>, 
+                    the first argument to the callback will always be an Error object if an error occurred. 
+                    If there is no error, this argument will be null.</li>
+                    <p class="center"><strong>Example</strong></p>
+                    <button id="showCode148" onclick="showCode('displayCode148', 'showCode148')">Display</button>                   
+                    <div id="displayCode148">
+                        <button onclick="closeCode('displayCode148', 'showCode148')">Close</button> 
+                        <pre>
+                            <code>
+                const { printQueryResults } = require('./utils');
+                const sqlite = require('sqlite3');
+                
+                const db = new sqlite.Database('./db.sqlite');
+                
+                const newRow = {
+                    location: 'Istanbul, Turkey',
+                    year: 1976,
+                    tempAvg: 13.35
+                }
+                
+                db.run('INSERT INTO TemperatureData (location, year, temp_avg) 
+                        VALUES ($location, $year, $tempAvg)', {
+                    $location: newRow.location,
+                    $year: newRow.year,
+                    $tempAvg: newRow.tempAvg
+                }, function(error) {
+                    // handle errors here!
+                    if(error){
+                    return console.log(error);
+                    }
+                    
+                    console.log(this.lastID);
+                    
+                    db.get('SELECT * FROM TemperatureData WHERE id = $id', {
+                            $id: this.lastID
+                    },
+                    function(error, row){
+                    printQueryResults(row);
+                        });
+                });
+                            </code>
+                        </pre>
+                        <hr/>
+                    </div>
+                    <li><strong>db.each(): </strong>It's a similar method to <i>.forEach()</i>, 
+                    that enables us to process every row returned from a database query.
+                    In the code below we SELECT all the Labrador dogs from our Dog database. We offer 
+                    affirmation to each of the animals individually and then announce how many received 
+                    this praise in sum. <i>db.each()</i> takes a query and a callback function that it 
+                    performs on each row returned from the query. This is a useful technique for transforming or updating rows. This is also useful 
+                    for memory management — we only have to look at one row at a time instead of trying to 
+                    process every returned row at the same time. <i>db.each()</i> additionally takes an optional 
+                    second callback function, which will be called when all of the queries are completed 
+                    and processed.</li>
+                    <pre>
+                        <code>
+            db.each("SELECT * FROM Dog WHERE breed = 'Labrador'", 
+            (error, row) => {
+                // This gets called for every row our query returns
+                console.log(`${row.name} is a good dog`);
+            },
+            (error, numberOfRows) => {
+                // This gets called after each of our rows have been processed
+                console.log(`There were ${numberOfRows} good dogs`);
+            });
+                        </code>
+                    </pre>
+                    <li><strong>Creating a new table: </strong>Since creating a table is another operation that does 
+                    not return a row, we can use the same <i>db.run()</i> we used to INSERT rows.
+                    Notice there’s a statement declaring “DROP TABLE IF EXISTS” — this is because we want 
+                    to make sure when we create our new table that we won’t run into an error telling us the 
+                    table already exists (from previous times running our code).</li>
+                    <p class="center"><strong>Example</strong></p>
+                    <button id="showCode149" onclick="showCode('displayCode149', 'showCode149')">Display</button>                   
+                    <div id="displayCode149">
+                        <button onclick="closeCode('displayCode149', 'showCode149')">Close</button> 
+                        <pre>
+                            <code>
+                    const { calculateAverages, addClimateRowToObject, 
+                        logNodeError, printQueryResults } = require('./utils');
+                    const sqlite = require('sqlite3');
+                    
+                    const db = new sqlite.Database('./db.sqlite');
+                    
+                    const temperaturesByYear = {};
+                    
+                    // start by wrapping all the code below in a serialize method
+                        
+                    db.run('DROP TABLE IF EXISTS Average', error => {
+                        if (error) {
+                        throw error;
+                        }
+                        db.each('SELECT * FROM TemperatureData',
+                        (error, row) => {
+                            if (error) {
+                            throw error;
+                            }
+                            addClimateRowToObject(row, temperaturesByYear);
+                        }, 
+                        error => {
+                            if (error) {
+                            throw error;
+                            }
+                            const averageTemperatureByYear = calculateAverages(temperaturesByYear);
+                            db.run('CREATE TABLE Average (id INTEGER PRIMARY KEY, year INTEGER NOT NULL, temperature REAL NOT NULL)', logNodeError);
+                            averageTemperatureByYear.forEach(row => {
+                            db.run('INSERT INTO Average (year, temperature) VALUES ($year, $temp)', {
+                                        $year: row.year,
+                                $temp: row.temperature
+                                }, err => {
+                                if (err) {
+                                console.log(err);
+                                }
+                            });
+                            });
+                        }
+                        );
+                    });
+                            </code>
+                        </pre>
+                    </div>
+                    <li><strong>Serial Queries: </strong>By default, the commands we issue to our database 
+                    run in parallel. Every request we make gets sent to the database — which processes them 
+                    all as quickly as it can, regardless of the order in which they got sent. This is usually 
+                    a good thing because it means that we can get results faster, but in our case, we don’t 
+                    want to try to INSERT data into a table that hasn’t been created yet
+                    (race conditions). One way to avoid 
+                    this issue is to write all of our code in nested callbacks. One great way to 
+                    accomplishing this task is by using the <i>db.serialize()</i> method.
+                    We explicitly tell the database to: First, remove the table Dog if it exists.
+                    Second, create an empty table named Dog. Third, insert a new row into the table. 
+                    In exactly that order without running any command until the previous one completes.</li>
+                    <pre>
+                        <code>
+            db.serialize(() => {
+                db.run("DROP TABLE Dog");
+                db.run("CREATE TABLE Dog");
+                db.run("INSERT INTO Dog (breed, name, owner, fur_color, fur_length) 
+                    VALUES  ('Dachshund', 'Spike', 'Elizabeth', 'Brown', 'Short')");
+            });
+                        </code>
+                    </pre>
+                </ul>
+            </ul>
+        </div>
+    </body>
+</html>

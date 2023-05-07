@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="../component/button.js" defer></script>
+        <title>Postman</title>
+        <h1>Postman</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h2>Postman</h2>
+            <ul>
+                <li>Postman is a GUI that aids in the development of APIs by 
+                making it easy to test requests and their responses in an organized way.</li>
+                <li>API requests with <strong>Postman</strong>(GUI) & <strong>cURL</strong>(Command Line)
+                <a href="https://www.taniarascia.com/making-api-requests-postman-curl/" target="_blank">here</a></li>
+                <hr/>
+                <h3>API Requests</h3>
+                <li><strong>Initializing: </strong>
+                Set the URL connected to the server & the HTTP method.</li>
+                <li><strong>GET: </strong>
+                Write proper URL to GET request.</li>
+                <li><strong>POST: </strong> It is <u>non-idempotent</u>, meaning that two identical 
+                POST requests will create two new resources.<br>
+                Select <strong>POST</strong> method, Body => Raw (set to JSON), 
+                write the Post request. As the output, an id will be created as a property
+                inside "user". Example: </li>
+                <pre><code>{"user": {"username": "Victor", "password": "Rego"}}</code></pre>
+                <li><strong>PUT: </strong>It is <u>idempotent</u>, meaning that two identical PUT requests will modify the same
+                resource.<br>
+                A <strong>PUT</strong> request requires the entire body to be sent through; if any data 
+                is missing, that data will be wiped (except automatic values like auto-incrementing 
+                IDs and timestamps).</li>
+                <li><strong>PATCH: </strong>Updates an existing resource, and does not require
+                sending the entire body with the request.</li>
+                <li><strong>DELETE: </strong>Removes a resource. No values to send.</li>
+                <li><strong>Authentication: </strong>
+                In Postman, you'll go to Headers and add Authorization as the key and Bearer < JWT_TOKEN > as
+                the value to send authentication values. You can also go to Headers, click Presets, Manage
+                Presets, and put your own reusable variables in for any headers or values you'll be reusing a lot.</li>
+            </ul>
+        </div>
+    </body>
+</html>

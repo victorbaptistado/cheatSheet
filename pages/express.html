@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="../component/button.js" defer></script>
+        <title>Express.js</title>
+        <h1>Express.js</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h2>Express.js</h2>
+            <ul>
+                <li><strong>Express.js: </strong>Is a server-side framework built upon Node.js. A server-side framework can handle 
+                a lot of the back-end responsibilities without needing to come up with a custom solution, which
+                saves a lot of time. This workflow might include things like accessing databases, generating HTML,
+                handling URL routing, access to libraries built to work with the framework, existing resources and
+                documentation for solving common problems, improved security.</li>
+                <li>Express Documentation <a href="https://expressjs.com/en/4x/api.html" target="_blank">here</a>.</li>
+                <li>Express simple explanation <a href="https://www.freecodecamp.org/news/going-out-to-eat-and-understanding-the-basics-of-express-js-f034a029fb66/" target="_blank">here</a>.</li>
+                <li>Express API Project <a href="https://codecademy-content.s3.amazonaws.com/PRO/independent-practice-projects/quote-api/quote-api-solution.zip" target="_blank">here</a>.</li>
+                <li>Boss machine full project<a href="https://content.codecademy.com/PRO/skill-paths/backend-javascript/projects/boss-machine/project-4-boss-machine-solution.zip" target="_blank">here</a></li>
+                <hr/>
+                <h3>Initiating</h3>
+                <li>Express is a Node module, so in order to use it, we will need to import it into our program file
+                with <i>require('express')</i>.</li>
+                <li><strong>app.listen():</strong> The purpose of a server is to listen for requests, perform whatever action is required to satisfy 
+                the request, and then return a response. In order for our server to start responding, as first argument
+                we have to tell the server where to listen for new requests by providing a port number argument to a method called 
+                <i>app.listen()</i>. The server will then listen on the specified port and respond to any requests that come 
+                into it. The second argument is a callback function that will be called once the server is running and ready to receive responses.</li>
+            </ul>
+            <hr/>
+            <h3>Routes</h3>
+            <ul>
+                <li><strong>Routes: </strong>registering a series of routes we tell our server how to deal with any given request. 
+                It defines the control flow for requests based on the request's path and HTTP verb.
+                For example, if your server receives a GET request at <i>/monsters</i>, we will use a route to
+                define the appropriate functionality for that HTTP verb (GET) and path (/monsters).</li>
+                <ul>
+                    <li><i>localhost:4001/monsters</i>, the path is <i>/monsters</i>, hostname is <i>localhost</i>, the port
+                    number is <i>4001</i>).</li>
+                    <li>Express tries to match requests by route, meaning that if we send a request to 
+                    < server address >:< port number ><i>/api-endpoint</i>, the Express server will search through any
+                    registered routes in order that they are registered in your code and try to match <i>/api-endpoint</i>.
+                    The first one that is matched will be used, and its callback will be called.</li>
+                </ul>
+                <li><strong>Route Parameters: </strong>Makes Routes dynamic. Parameters are route path segments 
+                    that begin with <i>:</i> in their Express route definitions. They act as wildcards, matching any
+                    text at that path segment. For example <i>/monsters/:id</i> will match <i>both/monsters/1</i>
+                    and <i>/monsters/45</i>.</li>
+                <ul>
+                    <li>Express parses any parameters, extracts their actual values, and attaches them as an object
+                    to the request object: <strong>req.params</strong>. This object’s keys are any parameter names
+                    in the route, and each key’s value is the actual value of that field per request.</li>
+                    <li>Not all APIs implement route parameters but when they do, it most commonly does not access
+                    sensitive data, unless it also requires to have an API key to access the response from such route.</li>
+                    <li><strong>router.param()</strong>: When working with routes that require parameters, we might find
+                    ourselves in a position where multiple different routes require the same parameter and use it to 
+                    identify the same piece of data.router.param.</li>
+                </ul>
+                <li><strong>Merge Parameters: </strong>When we’re building web endpoints, we might want to access 
+                some property of a complex object. In order to do this in Express, we can design a nested router. 
+                This would be a router that is invoked within another router. In order to pass parameters the parent 
+                router has access to, we pass a special configuration object when defining the router.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode38" onclick="showCode('displayCode38', 'showCode38')">Display</button>
+                <div id="displayCode38">
+                    <button onclick="closeCode('displayCode38', 'showCode38')">Close</button>
+                    <ul>
+                        <li><strong>router.param()</strong></li>
+                        <pre>
+                            <code>
+                    app.param('spellId', (req, res, next, id) => {
+                        let spellId = Number(id);
+                        try {
+                        const found = SpellBook.find((spell) => {
+                            return spellId === spell.id;
+                        })
+                        if (found) {
+                            req.spell = found;
+                            next();
+                        } else {
+                            next(new Error('Your magic spell was not found in any of our tomes'));
+                        };
+                        } catch (err) {
+                            next(err)
+                        }
+                    });
+                            </code>
+                        </pre>
+                        <li><strong>Full example:</strong></li>
+                        <pre>
+                            <code>
+                const express = require('express');
+                const app = express();
+                const bodyParser = require('body-parser');
+
+                app.use(express.static('public'));
+
+                const PORT = process.env.PORT || 4001;
+
+                const spiceRack = [
+                {
+                    id: 1,
+                    name: 'cardamom',
+                    grams: 45,
+                },
+                {
+                    id: 2,
+                    name: 'pimento',
+                    grams: 20,
+                },
+                {
+                    id: 3,
+                    name: 'cumin',
+                    grams: 450,
+                },
+                {
+                    id: 4,
+                    name: 'sichuan peppercorns',
+                    grams: 107,
+                }
+                ];
+
+                let nextSpiceId = 5;
+
+                app.use(bodyParser.json());
+
+                // Add your code here:
+                app.param('spiceId', (req, res, next, id) => {
+                const spiceId = Number(id);
+                const spiceIndex = spiceRack.findIndex(spice => spice.id === spiceId);
+                
+                if (spiceIndex !== -1){
+                    req.spiceIndex = spiceIndex;
+                    next();
+                } else {
+                    res.sendStatus(404);
+                }
+                })
+
+
+                app.get('/spices/', (req, res, next) => {
+                res.send(spiceRack);
+                });
+
+                app.post('/spices/', (req, res, next) => {
+                const newSpice = req.body.spice;
+                if (newSpice.name  && newSpice.grams) {
+                    newSpice.id = nextSpiceId++;
+                    spiceRack.push(newSpice);
+                    res.send(newSpice);
+                } else {
+                    res.status(400).send();
+                }
+                });
+
+                app.get('/spices/:spiceId', (req, res, next) => {
+                res.send(spiceRack[req.spiceIndex]);
+                });
+
+                app.put('/spices/:spiceId', (req, res, next) => {
+                spiceRack[req.spiceIndex] = req.body.spice;
+                res.send(spiceRack[req.spiceIndex]);
+                });
+
+                app.delete('/spices/:spiceId', (req, res, next) => {
+                spiceRack.splice(req.spiceIndex, 1);
+                res.status(204).send();
+                });
+
+                app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+                });
+                            </code>
+                        </pre>
+                        <hr/>
+                        <li><strong>Merge Parameters:</strong></li>
+                        <pre>
+                            <code>
+            const sorcererRouter = express.Router();
+            const familiarRouter = express.Router({mergeParams: true});
+                
+            sorcererRouter.use('/:sorcererId/familiars', familiarRouter);
+                
+            sorcererRouter.get('/', (req, res, next) => {
+                res.status(200).send(Sorcerers);
+                next();
+            });
+                
+            sorcererRouter.param('sorcererId', (req, res, next, id) => {
+                const sorcerer = getSorcererById(id);   
+                req.sorcerer = sorcerer;
+                next();
+            });
+                
+            familiarRouter.get('/', (req, res, next) => {
+                res.status(200).send(`Sorcerer ${req.sorcerer} has familiars ${getFamiliars(sorcerer)}`);
+            });
+                
+            app.use('/sorcerer', sorcererRouter);
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+                <hr/>
+            </ul>
+            <h3>CRUD</h3>
+            <ul>
+                <li>app.get, app.put, app.post, app.delete are used to connect with api requests.
+                This is the cleanest order to use:</li>
+                    <ul>
+                        <li>GET <i>/expressions/</i></li>
+                        <li>GET <i>/expressions/:id</i></li>
+                        <li>PUT <i>/expressions/:id</i></li>
+                        <li>DELETE <i>/expressions/:id</i></li>
+                    </ul>
+                <li><strong>app.get():</strong> Registers routes to match GET requests. Express routes (including
+                app.get()) usually take two arguments, a path (usually a string), and a callback function to handle
+                the request and send a response.</li>
+                <ul>
+                    <li><strong>res: </strong>Facilitates how we can submit responses by providing a response 
+                    object, commonly seen as: res, and it represents the HTTP response that we will emit when 
+                    we receive an HTTP request to any of our endpoints. Inside of it, we just need to pass
+                    the data of the response using:</li>
+                    <ul>
+                        <li><strong>.send()</strong>: Express servers send responses using the <i>.send()</i> method on the
+                        response object. <i>.send()</i> will take any input and include it in the response body.</li>
+                        <li><strong>.json()</strong>: can also be used to explicitly send JSON-formatted responses. 
+                        <i>.json()</i> sends any JavaScript object passed into it.</li>
+                    </ul>
+                </ul>
+                <li><strong>app.post(): </strong>POST request are use to create a new resource.
+                The client does not know the id of the monster until it is created and sent back by the server, therefore
+                POST /monsters/:id doesn’t make sense because a client couldn’t know the unique id of a monster before it
+                exists.</li>
+                <li><strong>app.put(): </strong>PUT requests are used for updating existing resources. 
+                For this reason, it's needed to include a unique identifier 
+                as a route parameter to determine which specific resource to update.</li> 
+                <li><strong> app.delete(): </strong>Deletes currently existing data. Their paths should usually 
+                end with a route parameter to indicate which resource to delete.</li>
+                <li><strong>Query string: </strong>Is a part of a uniform resource locator (URL) that assigns values
+                to specified parameters. Query strings appear at the end of the path in URLs, and they are indicated 
+                with a <i>?</i> character. For instance, in <i>/monsters/1?name=chimera&age=1</i>, the query string is 
+                <i>name=chimera&age=1</i> and the path is <i>/monsters/1/</i> Query strings do not count as part of the route path. I</li>    
+                <ul>
+                    <li><strong>req.query: </strong>This property is an object containing a property for each query string parameter 
+                    in the route. When query parser is set to disabled, it is an empty object {}, otherwise it is the result of the 
+                    configured query parser.</li>
+                    <li><strong>req.param</strong> vs <strong>req.query</strong>: Both are closely related but they are not the same at all, params are parameters set for the route, query are 
+                    values resembling variable assignment that provide extra information on what is being required for the route and
+                    it will always start with a ? on the URL, inherently they are both string values that express extrapolates into
+                    objects and key/value pairs from the req object.</li>
+                    <ul>
+                        <li><strong>req.param:</strong> <i>/lor/creatures/:name</i> if we were to make a request <i>/lor/creatures/gollum</i> gollum is the 
+                        name parameter and so we could find it in the object as: req.params.name which equals to gollum.</li>
+                        <li><strong>req.query:</strong> <i>/lor/creatures/hobbit?familyname=Baggins&home=Shire</i> we get two query parameters, familyname 
+                        and home, this way we can get each as <i>req.query.familyname</i> which is Baggins and <i>req.query.home</i> which is Shire.</li>
+                    </ul>
+                </ul>
+                <li><strong>app.use(express.static('public')):</strong> This is used to make sure that once the 
+                server is started, you can reload the browser and render on it.
+                The static method of express allows us to serve all the static files of our application, that is to say,
+                all HTML, CSS, and JS files that will comprise the front end visuals on the browser. In our case:
+                express.static('public');
+                Public is the name of the directory where we find those files, for example, in our execise 37:</li>
+                <li><strong>Status Codes: </strong> Response codes provide information to clients about how their 
+                requests were handled. Any res.send() has by default sent a 200 OK status code.
+                The res object has a <i>.status()</i> method to allow us to set the status code,
+                and other methods like .send() can be chained from it.</li>
+                <li><strong>Glossary of status code </strong><a href="https://www.webfx.com/web-development/glossary/http-status-codes/" target="_blank">here</a>.</li>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode34" onclick="showCode('displayCode34', 'showCode34')">Display</button>
+                <div id="displayCode34">
+                    <button onclick="closeCode('displayCode34', 'showCode34')">Close</button>
+                    <li>In a real setting API server, <u>the data doesn't exist in arrays and objects within the file</u> as 
+                    the examples underneath.
+                    The reason is that it will not be <strong>persisting data</strong>, since if we keep it as an object, or an array of values 
+                    or even an array of objects in the file, every time we were to stop the server, all changes will disappear since 
+                    the file will only have whatever we wrote in it but not any further changes introduced.
+                    That is why in real APIs we also implement storage technologies like <strong>SQL</strong> or <strong>NoSQL</strong> databases, 
+                    <strong>yaml files</strong>, and <strong>cloud storage</strong> 
+                    services for which we need to learn and implement other libraries or their documentation on how we communicate with them 
+                    within our express server.</li>
+                    <hr/>
+                    <li><strong>Importing</strong> Express.js, <strong>app.listen()</strong>,
+                    <strong>app.get()</strong>, <strong>send()</strong>,
+                    <strong>app.put()</strong>, <strong>app.post()</strong>, <strong>app.delete()</strong> 
+                    & <strong>app.use()</strong>.</li>
+                    <pre>
+                        <code>
+            //Importing express.js
+            const express = require('express');
+            const app = express();
+
+            // Use static server to serve the Express Yourself Website
+                so to reload and render on the browser
+            app.use(express.static('public'));
+
+            const { getElementById, getIndexById, updateElement,
+            seedElements, createElement } = require('./utils');
+
+            const PORT = process.env.PORT || 4001;
+
+            // Variables that stores data, that'll be 
+                requested, created, updated and deleted
+            const expressions = [];
+            seedElements(expressions, 'expressions');
+            const animals = [];
+            seedElements(animals, 'animals');
+
+            // Get all expressions
+            app.get('/expressions', (req, res, next) => {
+                res.send(expressions);
+            });
+
+            // Get a single expression (based on ID)
+            app.get('/expressions/:id', (req, res, next) => {
+                const foundExpression = getElementById(req.params.id, expressions);
+                if (foundExpression) {
+                    res.send(foundExpression);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Update an expression (based on ID)
+            app.put('/expressions/:id', (req, res, next) => {
+                const expressionIndex = getIndexById(req.params.id, expressions);
+                //getIndexById will return -1 if the expressions array 
+                    doesn’t contain an element with that id.
+                //updateElement will throw an error if you pass in
+                    an id that doesn’t exist in the array
+                if (expressionIndex !== -1) {
+                    updateElement(req.params.id, req.query, expressions);
+                    res.send(expressions[expressionIndex]);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Create an expression
+            app.post('/expressions', (req, res, next) => {
+                const receivedExpression = createElement('expressions', req.query);
+                if (receivedExpression) {
+                    expressions.push(receivedExpression);
+                    res.status(201).send(receivedExpression);
+                } else {
+                    res.status(400).send();
+                }
+            });
+
+            // Delete an expression (based on ID)
+            app.delete('/expressions/:id', (req, res, next) => {
+                const expressionIndex = getIndexById(req.params.id, expressions);
+                //getIndexById will return -1 for a non-existent ID,
+                and the proper index if it exists. 
+                Then you can use the splice method to remove the element.
+                if (expressionIndex !== -1) {
+                    expressions.splice(expressionIndex, 1);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Get all animals
+            app.get('/animals', (req, res, next) => {
+                res.send(animals);
+            });
+
+            // Get a single animal
+            app.get('/animals/:id', (req, res, next) => {
+                const animal = getElementById(req.params.id, animals);
+                if (animal) {
+                    res.send(animal);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Create an animal
+            app.post('/animals', (req, res, next) => {
+                const receivedAnimal = createElement('animals', req.query);
+                if (receivedAnimal) {
+                    animals.push(receivedAnimal);
+                    res.status(201).send(receivedAnimal);
+                } else {
+                    res.status(400).send();
+                }
+            });
+
+            // Update an animal
+            app.put('/animals/:id', (req, res, next) => {
+                const animalIndex = getIndexById(req.params.id, animals);
+                if (animalIndex !== -1) {
+                    updateElement(req.params.id, req.query, animals);
+                    res.send(animals[animalIndex]);
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            // Delete a single animal
+            app.delete('/animals/:id', (req, res, next) => {
+                const animalIndex = getIndexById(req.params.id, animals);
+                if (animalIndex !== -1) {
+                    animals.splice(animalIndex, 1);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on ${PORT}`);
+            });
+                        </code>
+                    </pre>
+                    <hr/>
+                    <li><strong>app.put</strong> & <strong>req.params</strong>, <strong>req.query</strong>.</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const currencies = {
+                diram: {
+                    countries: ['UAE', 'Morocco'],
+                },
+                real: {
+                    countries: ['Brazil'],
+                },
+                dinar: {
+                    countries: ['Algeria', 'Bahrain', 'Jordan', 'Kuwait'],
+                },
+                vatu: {
+                    countries: ['Vanuatu'],
+                },
+                shilling: {
+                    countries: ['Tanzania', 'Uganda', 'Somalia', 'Kenya'],
+                },
+            };
+
+            app.put('/currencies/:name/countries', (req, res, next) => {
+                const currencyName = req.params.name; //param ":name" from PUT request
+                const countries = req.query; //value property from the key: value
+                currencies[currencyName] = countries;  //query: value assign to parameter
+
+                if(currencies[currencyName]){
+                    res.send(currencies[currencyName]);
+                } else {
+                res.status(404).send();
+                }
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+
+                        </code>
+                    </pre>
+                    <li><strong>app.post</strong> & <strong>req.query</strong>.</li>
+                    <pre>
+                        <code>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const soups = ['gazpacho', 'borscht', 'primordial', 'avgolemono', 'laksa'];
+
+            app.post('/soups', (req, res, next) => {
+                const soup = req.query.name;
+                soups.push(soup);
+                res.status(201).send(soup);
+            })
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+
+                        </code>
+                    </pre>
+                    <li><strong>app.delete</strong> & <strong>req.params</strong></li>
+                    <hr/>
+            const express = require('express');
+            const app = express();
+
+            const PORT = process.env.PORT || 4001;
+
+            const puddingFlavors = ['chocolate', 'banana', 'butterscotch', 'pistachio'];
+
+            const findPuddingIndex = (name) => {
+                return puddingFlavors.indexOf(name);
+            }
+
+            const deletePuddingAtIndex = (index) => {
+                puddingFlavors.splice(index, 1);
+            }
+
+            app.delete('/puddings/:flavor', (req, res, next) => {
+                const index = findPuddingIndex(req.params.flavor);
+                if(index !== -1){
+                    deletePuddingAtIndex(index);
+                    res.status(204).send();
+                } else {
+                    res.status(404).send();
+                }
+            })
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+                    <hr/>
+                    <li><strong>Route Parameters</strong>:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                const monsters = { 
+                    hydra: { height: 3, age: 4 }, 
+                    dragon: { height: 200, age: 350 } 
+                };
+
+                // GET /monsters/hydra
+                app.get('/monsters/:name', (req, res, next) => {
+                    console.log(req.params); // { name: 'hydra' }
+                    res.send(monsters[req.params.name]);
+                });
+                            </code>
+                        </pre>
+                        <li>Another example:</li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const app = express();
+
+            app.use(express.static('public'));
+
+            const { getElementById, seedElements } = require('./utils');
+
+            const expressions = [];
+            seedElements(expressions, 'expressions');
+
+            const PORT = process.env.PORT || 4001;
+
+            app.get('/expressions', (req, res, next) => {
+                res.send(expressions);
+            });
+
+            app.get('/expressions/:id', (req, res, next) => {
+                const foundExpression = getElementById(req.params.id, expressions);
+                res.send(foundExpression);
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Listening on port ${PORT}`);
+            });
+                            </code>
+                        </pre>
+                    </ul>    
+                    <hr/>
+                    <li><strong>Status Code:</strong></li>
+                    <pre>
+                        <code>
+            const monsterStoreInventory = { fenrirs: 4, 
+                                            banshees: 1, 
+                                            jerseyDevils: 4, 
+                                            krakens: 3 };
+            
+            app.get('/monsters-inventory/:name', (req, res, next) => {
+                const monsterInventory = monsterStoreInventory[req.params.name];
+                if (monsterInventory) {
+                    res.send(monsterInventory);
+                } else {
+                    res.status(404).send('Monster not found');
+                }
+            });
+                        </code>
+                    </pre>
+                </div>
+            </ul>
+                <hr/>
+            <h3>Express.Router</h3>
+                <ul>
+                    <li>Routers are mini versions of Express applications — they provide functionality for handling 
+                    route matching, requests, and sending responses.
+                    Generally, we will keep each router in its own file, and require them in the main application. 
+                    (because of reusability, scalability and cleaness). 
+                    For example, having a router file that specifies all routes and depending on the main route, 
+                    it will use the respective file that handles the request to that route.
+                    We can use it with <strong>express.Router()</strong>.</li>
+                    <li>Is very common having a <i>router.js</i> file that handles all the route connections.</li>
+                    <li>Routers nested within nested routers <a href='https://discuss.codecademy.com/t/why-would-we-nest-routers-in-nested-routers/394943' target="_blank">here</a>.</li>
+                    <li>To use a router, we mount it at a certain path using <strong>app.use()</strong> and pass in the router as the
+                    second argument. This router will now be used for all paths that begin with that path segment.</li>
+                    <li><strong>Documentation</strong> on Routing <a href="https://expressjs.com/en/guide/routing.html" target="_blank">here</a>.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode35" onclick="showCode('displayCode35', 'showCode35')">Display</button>
+                <div id="displayCode35">
+                    <button onclick="closeCode('displayCode35', 'showCode35')">Close</button>
+                    <ul>
+                        <li><strong>Express.Router</strong></li>
+                        <ul>
+                            <li>The code below contains all the monsters specific code. In a more full-fledged API, this file
+                            would contain multiple routes. To use this router in another file, we use <strong>module.exports</strong>
+                            so that other files can access monstersRouter. The only other new line of code required is
+                            that Express must be required in each file, since we’ll need to create a router with 
+                            <i>express.Router()</i>.</li>
+                        </ul>
+                        <pre>
+                            <code>
+                // monsters.js
+                const express = require('express');
+                const monstersRouter = express.Router();
+                    
+                const monsters = {
+                    '1': {
+                        name: 'godzilla',
+                        age: 250000000
+                    },
+                    '2': {
+                        Name: 'manticore',
+                        age: 21
+                    }
+                }
+                    
+                monstersRouter.get('/:id', (req, res, next) => {
+                    const monster = monsters[req.params.id];
+                    if (monster) {
+                        res.send(monster);
+                    } else {
+                        res.status(404).send();
+                    }
+                });
+                    
+                module.exports = monstersRouter;
+                            </code>
+                        </pre>
+                        <li>Our <i>main.js</i> file could then be refactored to import the monstersRouter:</li>
+                        <pre>
+                            <code>
+                            // main.js
+                            const express = require('express');
+                            const app = express();
+                            const monstersRouter = require('./monsters.js');
+                             
+                            app.use('/monsters', monstersRouter);
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+                <hr/>
+                <h3>Middleware</h3>
+                <ul>
+                    <li><strong>DRY</strong>ing Routes With app.use().
+                    A path can be written as optional, to write middleware that will run for every request at a specific 
+                    path. It can also be even an array of routes to reference more than one path.</li>
+                    <li><strong>Middleware</strong> is code that executes between a server receiving a request and
+                    sending a response. It operates on the boundary, so to speak, between those two HTTP actions.
+                    Middleware is a function that can perform logic on the request and response objects, such
+                    as: inspecting a request, performing some logic based on the request, attaching information to the 
+                    response, attaching a status to the response, sending the response back to the user, or simply passing
+                    the request and response to another middleware. Middleware can do any combination of those things or
+                    anything else a Javascript function can do.</li>
+                    <li><strong>Middleware stack: </strong> Is a chain of middleware. Most of Express's functionality is 
+                    chaining middleware. <u>Express routes are middleware</u>. Every route created in Express is also a 
+                    middleware function handling the request and response objects at that part of the stack.</li>
+                    <ul>
+                        <li>The routes are called in the order that they appear in the file, provided the previous route
+                        called <strong>next()</strong> and thus passed control to the next middleware.</li>
+                        <li>An Express middleware is a function with three parameters: <i>(req, res, next)</i>.
+                        The third argument to a middleware function, <i>next</i>, should get explicitly called as the last 
+                        part of the middleware’s body. This will hand off the processing of the request and the construction
+                        of the response to the next middleware in the stack.</li>
+                        <li><u>We don’t always want to pass control to the <i>next</i> middleware in the stack.</u>
+                        For example, when designing a system with confidential information, we want to be able to selectively 
+                        show that information to authorized users. In order to do that, we would create middleware that tests 
+                        a user’s permissions. If the user has the permission necessary, we would continue through the middleware 
+                        stack by calling <i>next()</i>. If it fails, we would want to let the user know that they’re not allowed to see 
+                        the information they’re trying to access.</li>
+                    </ul>
+                    <li>Since middleware is just a function with a specific signature, namely <i>(req, res, next)</i>, 
+                    we can define functions and using them as middleware.
+                    We can remove the <i>app.use()</i> line and replace it with a specific route method, or sprinkle it throughout
+                    the application without it being universal.
+                    With modular pieces like this, it is useful to know that methods such as <i>app.use()</i>, <i>app.get()</i>, 
+                    <i>app.post()</i>, and so on all can take multiple callbacks as additional parameters.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode36" onclick="showCode('displayCode36', 'showCode36')">Display</button>
+                <div id="displayCode36">
+                    <button onclick="closeCode('displayCode36', 'showCode36')">Close</button>
+                    <ul>
+                        <li><strong>app.use()</strong> & <strong>next()</strong></li>
+                        <pre>
+                            <code>
+            //A path can be written as optional 
+                so to write middleware that will run
+                for every request at a specific path.
+                It can be even an array of routes
+                to reference more than one path.
+            app.use([path, anotherPath](req, res, next) => {
+                console.log("A sorcerer approaches!");
+                next();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log("The sorcerer is casting a spell!");
+                next();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log(`The sorcerer has cast ${req.params.spellname}`);
+                res.status(200).send();
+            });
+                
+            app.get('/magic/:spellname', (req, res, next) => {
+                console.log("The sorcerer is leaving!");
+            });
+                
+            // Accessing http://localhost:4001/magic/fireball 
+            // Console Output:
+            // "A sorcerer approaches!"
+            // "The sorcerer is casting a spell!"
+            // "The sorcerer has cast fireball"
+                                </code>
+                            </pre>
+                            <hr/>
+                            <li>Other example:</li>
+                            <pre>
+                                <code>
+            const express = require('express');
+            const app = express();
+
+            app.use(express.static('public'));
+
+            const PORT = process.env.PORT || 4001;
+
+            const jellybeanBag = {
+                mystery: {
+                    number: 4
+                },
+                lemon: {
+                    number: 5
+                },
+                rootBeer: {
+                    number: 25
+                },
+                cherry: {
+                    number: 3
+                },
+                licorice: {
+                    number: 1
+                }
+            };
+
+            // Logging Middleware 
+                (this below could be changed for Morgan)
+            app.use((req, res, next) => {
+                console.log(`${req.method} Request Received`);
+                next('Bag with that name does not exist');
+            });
+
+            app.use('/beans/:beanName', (req, res, next) => {
+                const beanName = req.params.beanName;
+                if (!jellybeanBag[beanName]) {
+                    res.status(404).send('Bag with that name does not exist');
+                    return console.log('Response Sent');
+                }
+                req.bean = jellybeanBag[beanName];
+                req.beanName = beanName;
+                next();
+            });
+
+            app.get('/beans/', (req, res, next) => {
+                res.send(jellybeanBag);
+                console.log('Response Sent');
+            });
+
+            app.post('/beans/', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            // This below could be changed for bodyParser.
+            req.on('end', () => {
+                const body = JSON.parse(bodyData);
+                const beanName = body.name;
+                if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+                    return res.status(404).send('Bag with that name already exists!');
+                }
+                const numberOfBeans = Number(body.number) || 0;
+                jellybeanBag[beanName] = {
+                    number: numberOfBeans
+                };
+                res.send(jellybeanBag[beanName]);
+                console.log('Response Sent');
+                });
+            });
+
+            app.get('/beans/:beanName', (req, res, next) => {
+                res.send(req.bean);
+                console.log('Response Sent');
+            });
+
+            app.post('/beans/:beanName/add', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            req.on('end', () => {
+                const numberOfBeans = Number(JSON.parse(bodyData).number) || 0;
+                req.bean.number += numberOfBeans;
+                res.send(req.bean);
+                console.log('Response Sent');
+                });
+            });
+
+            app.post('/beans/:beanName/remove', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+            });
+
+            req.on('end', () => {
+                const numberOfBeans = Number(JSON.parse(bodyData).number) || 0;
+                if (req.bean.number < numberOfBeans) {
+                    return res.status(400).send('Not enough beans in the jar to remove!');
+                }
+                req.bean.number -= numberOfBeans;
+                res.send(req.bean);
+                console.log('Response Sent');
+                });
+            });
+
+            app.delete('/beans/:beanName', (req, res, next) => {
+                jellybeanBag[req.beanName] = null;
+                res.status(204).send();
+                console.log('Response Sent');
+            });
+
+            app.put('/beans/:beanName/name', (req, res, next) => {
+                let bodyData = '';
+                req.on('data', (data) => {
+                    bodyData += data;
+                });
+
+                req.on('end', () => {
+                    const newName = JSON.parse(bodyData).name;
+                    jellybeanBag[newName] = req.bean;
+                    jellybeanBag[req.beanName] = null;
+                    res.send(jellybeanBag[newName]);
+                    console.log('Response Sent');
+                });
+            });
+
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+                                </code>
+                            </pre>
+                            <li>In the below code sample, we created reusable middleware for authentication and data validation. 
+                            We use the authenticate() middleware to verify a user is logged in before proceeding with the request
+                            and we use the validateData() middleware before performing the appropriate create or update function.
+                            Additional middleware can be placed at any point in this chain.</li>
+                            <pre>
+                                <code>
+            const authenticate = (req, res, next) => {
+            ...
+            };
+            
+            const validateData = (req, res, next) => {
+            ...
+            };
+            
+            const getSpell = (req, res, next) => {
+                res.status(200).send(getSpellById(req.params.id));
+            };
+            
+            const createSpell = (req, res, next) => {
+                createSpellFromRequest(req);
+                res.status(201).send();
+            };
+            
+            const updateSpell = (req, res, next) => {
+                updateSpellFromRequest(req);
+                res.status(204).send();
+            }
+            
+            app.get('/spells/:id', authenticate, getSpell);
+            
+            app.post('/spells', authenticate, validateData, createSpell);
+            
+            app.put('/spells/:id', authenticate, validateData, updateSpell);
+                                </code>
+                            </pre>
+                        </ul>
+                    </div>
+                <h3>Open-Source Middleware</h3>
+                <ul>
+                    <li>If we needed to write a web server from scratch every time we wanted to build a web application, 
+                    we’d waste a lot of time solving problems that have been solved countless times before and ignoring
+                    perfectly good pre-existing solutions. Luckily for us web developers, Express already exists as an
+                    <strong>open-source package</strong> that we can install and use to build upon. There is a huge ecosystem of Javascript
+                    packages that will solve so many of the problems that developers frequently run into.</li>
+                    <li><strong>Morgan: </strong>Is an open-source library for logging (console.log) information about the HTTP request-response
+                    cycle in a server application. <i>morgan()</i> is a function that will return a middleware function 
+                    that will have the function signature <i>(req, res, next)</i> that can be inserted into an <i>app.use()</i>,
+                    and that function will be called before all following middleware functions. Morgan takes an argument 
+                    to describe the formatting of the logging output. For example, <i>morgan('tiny')</i> will return a middleware 
+                    function that does a “tiny” amount of logging. With morgan in place, we’ll be able to remove the existing logging code.</li>
+                    <ul>
+                        <li>Morgan's <strong>documentation</strong> <a href="https://github.com/expressjs/morgan" target="_blank">here</a>.</li>
+                    </ul>
+                    <li><strong>Body-parser: </strong>Simplifies a perform request body parsing. That substituted a lot
+                    of the req.on code from the previous examples.</li>
+                    <ul>
+                        <li>Body-parser <strong>documentation</strong> <a href="https://github.com/expressjs/body-parser#body-parser" target="_blank">here</a>.</li>
+                    </ul>
+                    <li><strong>List of middlewares</strong> <a href="https://expressjs.com/en/resources/middleware.html" target="_blank">here</a>.</li>
+                </ul>
+                <p class="center"><strong>Example:</strong></p>
+                <button id="showCode37" onclick="showCode('displayCode37', 'showCode37')">Display</button>
+                <div id="displayCode37">
+                    <button onclick="closeCode('displayCode37', 'showCode37')">Close</button>
+                    <ul>
+                        <li><strong>Morgan</strong></li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const morgan = require('morgan');
+            const app = express();
+
+            //This will console.log 
+                (`${req.method} Request Received`) 
+                to every router.
+            app.use(morgan('tiny'));
+
+            //This will console .log 
+                :method :url :status :response-time ms - :res[content-length]
+                to every router.
+            app.use(morgan('dev')); 
+                            </code>
+                        </pre>
+                        <li><strong>Body-Parser</strong></li>
+                        <pre>
+                            <code>
+            const bodyParser = require('body-parser');
+
+            app.use(bodyParser.json());
+                            </code>
+                        </pre>
+                        <li>Full code example: <strong>Morgan</strong> & <strong>body-parser</strong></li>
+                        <pre>
+                            <code>
+            const express = require('express');
+            const app = express();
+            const morgan = require('morgan');
+            const bodyParser = require('body-parser');
+
+            app.use(express.static('public'));
+
+            const PORT = process.env.PORT || 4001;
+
+            const cards = [
+                {
+                    id: 1,
+                    suit: 'Clubs',
+                    rank: '2'
+                },
+                {
+                    id: 2,
+                    suit: 'Diamonds',
+                    rank: 'Jack'
+                },
+                {
+                    id: 3,
+                    suit: 'Hearts',
+                    rank: '10'
+                }
+            ];
+            let nextId = 4;
+
+            // Logging
+            if (!process.env.IS_TEST_ENV) {
+                app.use(morgan('short'));
+            }
+
+            // Parsing
+            app.use(bodyParser.json());
+
+            // Find card
+            app.use('/cards/:cardId', (req, res, next) => {
+                const cardId = Number(req.params.cardId);
+                const cardIndex = cards.findIndex(card => card.id === cardId);
+                if (cardIndex === -1) {
+                    return res.status(404).send('Card not found');
+                }
+                req.cardIndex = cardIndex;
+                next();
+            });
+
+            const validateCard = (req, res, next) => {
+            const newCard = req.body;
+            const validSuits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+            const validRanks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+            if (validSuits.indexOf(newCard.suit) === -1 || validRanks.indexOf(newCard.rank) === -1) {
+                return res.status(400).send('Invalid card!');
+            }
+                next();
+            };
+
+            // Get all Cards
+            app.get('/cards/', (req, res, next) => {
+                res.send(cards);
+            });
+
+            // Create a new Card
+            app.post('/cards/', validateCard, (req, res, next) => {
+                const newCard = req.body;
+                newCard.id = nextId++;
+                cards.push(newCard);
+                res.status(201).send(newCard);
+            });
+
+            // Get a single Card
+            app.get('/cards/:cardId', (req, res, next) => {
+                res.send(cards[req.cardIndex]);
+            });
+
+            // Update a Card
+            app.put('/cards/:cardId', validateCard, (req, res, next) => {
+                const newCard = req.body;
+                const cardId = Number(req.params.cardId);
+                if (!newCard.id || newCard.id !== cardId) {
+                    newCard.id = cardId;
+                }
+                cards[req.cardIndex] = newCard;
+                res.send(newCard);
+            });
+
+            // Delete a Card
+            app.delete('/cards/:cardId', (req, res, next) => {
+                cards.splice(req.cardIndex, 1);
+                res.status(204).send();
+            });
+
+            // Start the server
+            app.listen(PORT, () => {
+                console.log(`Server is listening on port ${PORT}`);
+            });
+                            </code>
+                        </pre>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </body>
+</html>

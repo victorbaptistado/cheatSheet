@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <script src="../component/button.js" defer></script>
+        <title>Test-driven development (TDD)</title>
+        <h1>Test-driven development (TDD)</h1>
+    </header>
+    <body>
+        <div class="styleGuide">
+            <h2>Test-driven development (TDD)</h2>
+            <ul>
+                <li><strong>TDD: </strong> 
+                When software engineers and development teams build new features, they’re faced with challenging 
+                questions along the way. Where do we start development? (Do I start writing HTML, or adding server implementation?).
+                What is the most efficient implementation? (Is X implementation faster than Y implementation?).
+                How will the new feature impact our existing code? (Will new code introduce a bug?).
+                <strong>TDD</strong> is the process of writing tests before implementation code. You use the 
+                feedback from your tests to inform the implementation of a feature or outcome.</li>
+                <li><strong>Red, Green, Refactor approach:</strong> A common approach to TDD is the <strong>red, green, refactor cycle</strong>. When you write a test before the implementation 
+                exists you start “in the <strong>red</strong>” phase, because your test fails and outputs a red error message. 
+                Next, you write the minimum implementation code to get your test to pass. This puts you “in the <strong>green</strong>” phase, 
+                because your test passes and outputs a green message.
+                Once you are in the green, you should consider whether your implementation is the best or most efficient 
+                approach. If you think your code could be written more efficiently or cleaner, then you enter the 
+                <strong>refactor</strong> phase. You can refactor your code with confidence, because you have tests that cover the 
+                expected behavior.</li>
+                <li><strong>Outside-in TDD:</strong> Is an approach that developers use to build full-stack 
+                web applications. It leverages the same red, green, refactor steps that we covered above, but with one caveat — a 
+                failing test does not always inform you to write new implementation code. Instead, it may require that you implement 
+                new functionality at a different level. </li>
+                <ul>
+                    <li>You start at the top of the stack, the view, and write 
+                    tests as you work your way towards the database layer. If a test pushes you to a lower level, 
+                    you restart your red, green, refactor cycle by writing a new test. This test informs the 
+                    implementation at your new layer. You continue the TDD cycle at this lower level until: 
+                    You need to drop another layer to implement the desired behavior /
+                    You have addressed the reason for dropping to the current layer.</li>
+                    <li>Once you address the reason for dropping a layer, you can start working your way back up the <strong>testing pyramid</strong>. 
+                    If you’re in the model/database layer, you step up to the server, and run your server tests to see if you get 
+                    a different response. The response should be one of the following:</li>
+                    <ul>
+                        <li><strong>The test passes</strong> — you can start another red, green, refactor cycle at the server level or step up to the view layer.</li>
+                        <li><strong>The test fails</strong> — the server test that pushed you to the model layer fails, but for a different reason.
+                        This is common, and indicates that you’re making progress. This failure may indicate that you need to write 
+                        additional implementation at the server level, or drop back to the model.</li>
+                    </ul>
+                </ul>
+                <p class="center"><strong>Outside-in TDD example:</strong></p>
+                <button id="showCode44" onclick="showCode('displayCode44', 'showCode44')">Display</button>
+                <div id="displayCode44">
+                    <button onclick="closeCode('displayCode44', 'showCode44')">Close</button>
+                    <li><strong>Outside-in Example</strong></li>
+                    <ul>
+                        <li>We’re going to use the following as an example of how to develop a new feature with 
+                        outside-in TDD: You have a movie blog and want to develop a feature that renders user comments 
+                        under your blog posts. The application should render no more than ten comments when a user lands
+                        on the web page. The application should present the comments in reverse chronological order 
+                        (i.e. the most recent comment should be first).
+                        Let’s assume the web application generates HTML at the server — any updates to the view require 
+                        implementation at the server level.</li>
+                        <li><strong>Feature Testing: </strong>
+                        The first step is to write a feature test that checks if your web application is rendering 
+                        comments to the browser. Let’s use the following outside-in TDD approach:</li>
+                        <ol>
+                            <li>Write a test that checks for the presence of a comment under a blog post.</li>
+                            <li>The test fails, because your web application does not render comments.</li>
+                            <li>Because your web application generates HTML at the server layer, you drop to the server to address the error.
+                            Although we could continue to write feature tests to check for the number of rendered comments, 
+                            we know server tests are cheaper, so we can test those details when we drop a layer.</li>
+                        </ol>
+                        <li><strong>Server Testing: </strong>
+                        At the server layer, we start by writing a test that informs the implementation of our 
+                        -generated HTML. Because our web application renders unique comments from the database, 
+                        we want to check that the server-generated HTML is dynamic.</li>
+                        <ol>
+                            <li>Write a test that checks for the presence of a dynamically generated comment element in the server HTML.</li>
+                            <li>The test fails, so we add implementation for a server-generated comment.</li>
+                            <li>Once we’re in the green and consider refactoring, we want to write a test that calls a method at the model 
+                            layer, let’s call it <i>Comment.latest()</i>. At the server layer, we’ll check if the method returns comments from the database.</li>
+                            <li>Because this method doesn’t exist, we must drop to the model/database layer.</li>
+                        </ol>
+                        <li><strong>Model and Database Testing:</strong>
+                        At the model layer, we start by writing a test that informs the implementation of our Comment.latest method. This method requires that 
+                        you interface with the web application’s database.</li>
+                        <ol>
+                            <li>Write a test that checks if the Comment.latest method returns ten comments when the database has eleven comments.</li>
+                            <li>Implement the Comment.latest method to return ten comments, so the test is green.</li>
+                            <li>Once you’ve considered refactoring, write a test that checks whether the method returns the last ten comments in reverse chronological order.</li>
+                            <li>Implement and refactor.</li>
+                            <li>Write a test that checks if Comment.latest() returns an empty array when your database is empty.</li>
+                            <li>Implement and refactor.</li>
+                            <li>Write a test that checks if Comment.latest returns the correct number and order of comments when your database has between zero and ten comments in it.</li>
+                            <li>Implement and refactor.</li>
+                        </ol>
+                        <li><strong>Taking Stock:</strong> At this point, your entire test suite should be green. You have written seven new tests, and the implementation code to make them pass — your web application 
+                        should render the last ten comments from your database in reverse chronological order.
+                        Let’s take stock of our seven new tests:</li>
+                        <ol>
+                            <li><strong>Feature:</strong> Comments are rendered to a user’s browser.</li>
+                            <li><strong>Server:</strong> The server generates an HTML field for comments.</li>
+                            <li><strong>Server:</strong> The server has access to ten comments from the database.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns ten comments from your database.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns the last ten comments in your database in reverse chronological order.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns an empty array when your database has zero comments.</li>
+                            <li><strong>Model:</strong> The Comment.latest method returns all of the comments when your database has between zero and ten comments.</li>
+                        </ol>    
+                        <li>Once your feature is working as expected, you should consider how your new tests fit into the broader test suite. The rest of the test suite could have few tests, 
+                        or over one hundred. It’s time to refactor.</li>
+                        <li><strong>Refactoring Your Test Suite: </strong>
+                        The way you approach refactoring will vary based on the size and types of tests in your suite. One guiding light in refactoring is to optimize the suite for confidence and speed. Because we used TDD to implement our comment feature, 
+                        we should feel confident that our comments are working as expected, and the feature is fully covered.
+                        Consider the questions below when deciding how to refactor your suite:</li>
+                        <ul>
+                            <li>How much longer does it take to run my test suite with these new tests?</li>
+                            <li>Is the additional amount of time that your test suite takes to run acceptable?</li>
+                            <li>Is there overlap between any of my new tests?</li>
+                            <li>Is there overlap between my new tests and existing tests?</li>
+                        </ul>   
+                        <li>Let’s take a moment to consider a few of these questions in the context of our test suite.</li>
+                        <i>How much longer does it take to run my test suite with these new tests?</i>
+                        <ul>
+                            <li>You can calculate this value by running your test suite before and after writing the new tests, 
+                            and calculate the difference. Seven new tests, like the ones above may only add a few seconds to your suite. 
+                            Let’s use our next question to think about how you can evaluate what an acceptable amount of time may be.</li>
+                        </ul>
+                        <i>Is the additional amount of time that your test suite takes to run acceptable?</i>
+                        <ul>
+                            <li>Although a few seconds may seem acceptable, this time can add up as your suite grows. 
+                            if you’re comfortable with the additional time, you should always consider whether you 
+                            can make speed improvements that don’t impact confidence.</li>
+                        </ul>
+                        <i>Is there overlap between any of my new tests?</i>
+                        <ul>
+                            <li>You should consider if any new tests, especially in the feature or server level, can be 
+                            deleted without impacting your confidence that the comments feature works as expected. 
+                            For example, our first server test checks if the server generates an HTML field for comments. 
+                            Your feature-level test checks the same functionality — it also takes longer, but provides a 
+                            higher level of confidence. We decide to delete the server test for reasons we will investigate 
+                            when we consider our next question.</li>
+                        </ul>
+                        <i>Is there overlap between my new tests and existing tests?</i>
+                        <ul>
+                            <li>Next, you should look outside your seven (now six) new tests to consider the coverage offered 
+                            by the other tests in your suite. Often, your test suite will have a feature test that checks 
+                            whether the web page renders as expected — this is usually good enough coverage for most new 
+                            features. Given the cost of feature-level tests, and the coverage of your lower-level tests, 
+                            it often makes sense to delete the new feature-level test.</li>
+                        </ul>
+                    </ul>
+                </div>
+                <li><strong>Headless browser testing: </strong>
+                Headless testing is a way of running browser UI tests without the head, which in this case means that there’s no 
+                browser UI, no GUI of any sorts. This is useful since when running tests, especially in a CI environment, there is 
+                nobody “watching” the visuals, so there is no need to have the extra overhead of the browser GUI.
+                One of the biggest reasons for using a headless browser/carrying out headless testing is performance, since it lets 
+                you run tests more quickly in a real browser environment. 
+                <strong>More about it</strong> <a href="https://blog.logrocket.com/introduction-to-headless-browser-testing-44b82310b27c/" target="_blank">here</a>.
+                <hr/>
+                <h3><strong>Outside-in TDD approach</strong></h3>
+                <li><strong>Feature Test Toolbelt: </strong>To write the most effective feature tests, we are going to 
+                employ a few additional tools. These tools are meant to support JavaScript testing. We will cover their 
+                uses in the scope of building a feature test that drives implementation.
+                <strong>Video implementation</strong> <a href="https://www.youtube.com/watch?v=eGcPoUfm6Ow&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&feature=emb_imp_woyt" target="_blank">here</a>.</li>
+                <ul>
+                    <li><strong>Chai: </strong>
+                    Node.js has a default assertion library that provides enough functionality to write basic test code. The Chai testing library extends the types of assertions we can make.
+                    Chai is an assertion library for Node.js and browsers that can be paired with any JavaScript testing framework. <strong>Documentation</strong> <a href="https://www.chaijs.com/" target="_blank">here</a>.</li>
+                    <li><strong>PhantomJS: </strong>Is a headless browser scriptable with a JavaScript API, which allows us to write tests that mimic user interaction and then evaluate the results. It does not require us to render the application in a browser.
+                    A browser runs “headless” when it doesn’t render anything to the screen, but runs in the background. <strong>Documentation</strong> <a href="https://phantomjs.org/documentation/" target="_blank">here</a>.</li>
+                    <li><strong>WebdriverI/O: </strong>
+                    WebdriverIO provides methods that allow us to programmatically interact with the user-facing elements 
+                    of our app in the headless browser that PhantomJS runs. <strong>Documentation</strong> <a href="https://webdriver.io/docs/why-webdriverio/" target="_blank">here</a>.</li>
+                    <li><strong>Toolbelt High-Level Summary: </strong>
+                    Phantom allows us to run an instance of a headless browser so you can run tests that mimic user 
+                    interaction with a web application. WebdriverIO provides the methods to interact with browser values 
+                    programmatically. We can make assertions against these tests using the Chai assertion library.</li>
+                </ul>
+            </ul>
+            <p class="center"><strong>Feature Test Example:</strong></p>
+            <button id="showCode45" onclick="showCode('displayCode45', 'showCode45')">Display</button>
+            <div id="displayCode45">
+                <button onclick="closeCode('displayCode45', 'showCode45')">Close</button>
+                <li><strong>Feature Test I: </strong>
+                Feature tests exercise behavior by simulating a user navigating the application in a web browser.
+                Imagine we wanted to create a simple web-based poetry writing application.
+                The first feature test we want to write is to check our application’s empty state. 
+                The functionality we want to test is:</li>
+                <ul>
+                    <li>When a user visits the homepage, the poems section is empty.</li>
+                    <li>We want to make sure that when there are no poems in the database, there are no poems rendered on the homepage. This is the application’s empty state.</li>
+                </ul>
+                <li>The term ‘root’, refers to our application’s entry point, which in this example is the home page 
+                that users will visit in their browser.</li>
+                <li>Next, we add an it block to describe the behavior we want to test in our app.
+                When a user visits the root of our app, they should have a blank page on which to write their own poem.</li>
+                <li><strong>The Plumbing:</strong>
+                Next, we reach for our feature testing toolbelt. We start by to using the global browser variable
+                that is provided by WebdriverI/O.
+                The browser variable is powerful because it gives us access to the browser that Phantom 
+                is running in the background. We can simulate a user interacting with our website by calling 
+                different methods on the global browser variable in our test suite.
+                For example, we can use browser.url() to simulate a user visiting the home page of our application, 
+                which is the first behavior we want to test.
+                The .url method navigates to the URL that is passed to it as an argument. The following line of code
+                would navigate to the Codecademy website in the Phantom browser.
+                In the case of our poetry web app, we will pass in '/' as the argument, which will point the browser to the root file of our project, which in this case is our index.html.</li>
+                <li><strong>Assert: </strong>
+                The last thing our test needs is an assert statement to verify that the behavior we 
+                expect is equal to the actual behavior of our code. We want to make sure our app is in an empty state.
+                We can write a test for this behavior by deciding that poems will be listed in an HTML element 
+                with an id attribute set to poems. Then, write an assert statement to verify that the element with the ID poems is empty.
+                We can do this using the Chai assert.equal method, which evaluates if the two arguments are equal.
+                Because we will render the poetry onto the page as text, we can evaluate the contents of the HTML 
+                element as a string. The .getText method, from WebdriverI/O, gets the text content from the selected DOM element.
+                Here we are using browser.getText() to evaluate if the text in the element with the ID poems is equal 
+                to an empty string. Our final code for this feature test would look like this:                            
+                <pre>
+                    <code>
+            describe('User visits root', () => {
+                describe('without existing poems', () => {
+                    it('page starts blank', () => {
+                    browser.url('/');
+                
+                    assert.equal(browser.getText('#poems'), '');
+                    });
+                });
+            });              
+                    </code>
+                </pre>
+                <li>index.js should be, so test <strong>passes</strong>:</li>
+                <pre>
+                    <code>
+                    < section id="poems" >< /section >
+                    </code>
+                </pre>
+                <hr/>
+                <li><strong>Feature Test II: </strong>Now we want to write a test to check if the application saves 
+                the title and text of a user’s poem when they press the submit button.
+                The functionality we want to test is:</li>
+                <ol>
+                    <li>The user enters text into a text input element (the poem).</li>
+                    <li>The user enters text into a second text input element (the title of the poem).</li>
+                    <li>The user presses a submit button</li>
+                </ol>
+                <li>Next, we want to write the setup, exercise, and verification phases of our test.
+                In the setup phase for this test, we create variables to represent a user’s input
+                to the title and poem fields on the home page. The second test will look like this:</li>
+                <li>The next step for our poetry web app is to use our browser variable for the exercise phase of the test.
+                First, we will set the URL of the browser to go to the root of our project using the .url method.
+                Next, we will use the .setValue method, which sends a sequence of keystrokes to an element, based 
+                on a string argument.
+                We will use .setValue() to mimic a user entering the title and poem into the corresponding HTML 
+                input elements at the root of our web app.
+                The first argument passed to .setValue() is the CSS selector that references an HTML element, and the 
+                second argument is the value you want to assign that element.</li>
+                <pre>
+                    <code>
+            browser.setValue('input[id=title]', title);
+            browser.setValue('textarea[id=poem]', poem);
+                    </code>
+                </pre>
+                <li>In the example above, a text input with the ID of title will be set to a value of title. Also, the 
+                textarea with ID poem will be set to the value poem. The variables referenced here are the ones we 
+                created in the setup phase.
+                To complete the exercise phase of our test we would use the .click method to mimic a user clicking
+                on a submit button. browser.click('input[type=submit]');
+                Now that we have programmed the behavior we want to test in the exercise phase, we will write the 
+                verification phase of our test. We will compare the actual results of exercising the code with the 
+                expected results.
+                In the case of our poetry app, we want to verify that once a user submits a poem, the section of the 
+                app’s webpage that we have decided will display the poems includes that poem.
+                We have created that element already to make our first feature test pass. It is the following line 
+                of code in our index.html file:</li>
+                <pre>
+                    <code>
+                < section id="poems" >< /section >
+                    </code>
+                </pre>
+                <li>To add an assert statement to evaluate the behavior of our feature, we will use the browser 
+                variable, and .getText() to return the text contents of the element, with the id poem.
+                The Chai Assertion Library allows us to use the .include method to check if the string that is returned
+                from .getText() includes the substrings of the title and poem that the user has submitted:
+                assert.include(browser.getText('#poems'), title);
+                assert.include(browser.getText('#poems'), poem);
+                In both assert statements the first argument we pass to .include() is the function we created above it.</li>
+                <pre>
+                    <code>
+            describe('demo poetry web app', () => { 
+                it('saves the user poem and title', () => {
+                    // Setup
+                    const title = 'Words Birth Worlds';
+                    const poem = 'Our words are marvelous weapons with which we could behead the sun';
+                    // Exercise
+                    browser.url('/');
+                    browser.setValue('input[id=title]', title);
+                    browser.setValue('textarea[id=poem]', poem);
+                    browser.click('input[type=submit]');
+                    // Verify
+                    assert.include(browser.getText('#poems'), title);
+                    assert.include(browser.getText('#poems'), poem);
+                });
+            });
+                    </code>
+                </pre>
+                <li>On <strong>index.js:</strong></li>
+                <pre>
+                    <code>
+
+                < label for="title" >Title< /label >
+                < input id="title" >
+                    
+                < label for="poem" >Your poem:< /label >
+                < textarea id="poem" >< /textarea >
+                    
+                < input type="submit" >
+                    </code>
+                </pre>
+                <li>This will run an error. While this error message looks similar to the ones before, 
+                it is a different type of error message, and it signals the need for a shift in our TDD process.
+                What’s different here is that the failure comes from the verification phase instead of the exercise 
+                phase. While this isn’t always the case, that means that we’ve changed the implementation code enough 
+                to get to the part of the test where we’re specifying behavior, not just the existence of elements.                  
+                The kind of test we need to write in response to this error will force us to drop levels in the TDD 
+                Testing Pyramid.</li>
+            </div>
+            <ul>
+                <li><strong>Server Testing Stack: </strong>
+                Server tests are used to test the server response only, not any front-end rendering of code or user interactions. 
+                We “disconnect” the browser and interact directly with the server using requests. The tests define the expected 
+                behavior of the interactions and check the actual responses against what we expect.
+                Server tests are commonly used to test API responses, but we also use server tests for any server response 
+                that our application relies on. This can include checking status codes and error messages. <strong>Video Implementation</strong>
+                <a href="https://www.youtube.com/watch?v=2E88EjDJgkw&embeds_euri=https%3A%2F%2Fwww.codecademy.com%2F&embeds_origin=https%3A%2F%2Fwww.codecademy.com&source_ve_path=MjM4NTE&feature=emb_title" target="_blank">here</a>.
+                What we use:</li>
+                <ul>
+                    <li><strong>Chai</strong> - a library for extending the built in Node assertion library</li>
+                    <li><strong>jsdom</strong> - a library for interacting and testing the DOM returned by the server
+                    (this functionality is encapsulated in our parseTextFromHTML helper function).
+                    <strong>Documentation </strong><a href="https://github.com/jsdom/jsdom#readme" target="_blank">here</a>.</li>
+                    <li><strong>async / await</strong> - a pattern for making asynchronous code more readable</li>
+                    <li><strong>SuperTest</strong> - a library for making Node server requests and testing their 
+                    responses. <strong>Tutorial </strong>
+                    <a href="https://hackernoon.com/api-testing-using-supertest-1f830ce838f1" target="_blank">here</a>.
+                    <strong>Documentation </strong><a href="https://www.codecademy.com/paths/full-stack-engineer-career-path/tracks/fscp-22-back-end-and-feature-testing/modules/wdcp-22-server-testing-with-tdd/external_resources/ext-doc-supertest" target="_blank">here.</a></li>
+                </ul>
+            </ul>
+            <p class="center"><strong>Server Test Example:</strong></p>
+            <button id="showCode46" onclick="showCode('displayCode46', 'showCode46')">Display</button>
+            <div id="displayCode46">
+                <button onclick="closeCode('displayCode46', 'showCode46')">Close</button>
+                <ul>
+                    <li><strong>Testing Framework (Chai):</strong>When writing tests, sometimes you’ll find that 
+                    the tests require calculation steps or inline code to determine if the test is passing. 
+                    For example, to test if an array foo includes an element bar using Mocha with the built-in 
+                    Node assertion library, we use the JavaScript includes helper:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                    assert.ok(foo.includes(bar));
+                            </code>
+                        </pre>
+                        <li>To improve the readability and flow of our tests, we extend the built-in Node assertion library with Chai.</li>
+                        <pre>
+                            <code>
+                    const {assert} = require('chai'); 
+                            </code>
+                        </pre>
+                        <li>The main function in Chai we are using is .include(). This allows us to rewrite the previous example as:</li>
+                        <pre>
+                            <code>
+                    assert.include(foo, bar); 
+                            </code>
+                        </pre>
+                        <li>Include also works to check that text contains certain values:</li>
+                        <pre>
+                            <code>
+                    assert.include('foobar', 'bar'); // Evaluates to true  
+                            </code>
+                        </pre>
+                        <li>The large set of assertion methods in the chai library enable us to write more expressive tests that
+                        are easy for developers to understand. Example:</li>
+                        <pre>
+                            <code>
+                const {assert} = require('chai');
+                describe('Array', () => {
+                    describe('.pop()', () => {
+                        it('should return a value and remove the element from the array', () => {
+                        // setup
+                        const foo = [4];
+                        const includedNumber = 4; 
+                        // check setup
+                    assert.include(foo, includedNumber)
+                        // exercise
+                        const fooPop = foo.pop();
+
+                        // asserts
+                        assert.equal(fooPop, includedNumber)
+                        assert.equal(foo.length, 0)
+                        });
+                    });
+                });
+                            </code>
+                        </pre>
+                    </ul>
+                    <li><strong>Testing HTML Responses: </strong>
+                Our back-end server is serving dynamic HTML to the user. For the homepage, this is located in 
+                the jsdom-test.js file to the right. It is possible to use .include() to verify that the HTML
+                response contains certain Strings, but gets cumbersome to verify the hierarchical relationships of DOM elements.
+
+                We can use the <strong>jsdom library</strong> to improve this type of assertion. It allows us to 
+                select elements of the DOM and check relationships and content. To increase the readability of our 
+                tests, we abstracted the jsdom functionality into a custom function, parseTextFromHTML:</li>
+                <ul>
+                    <pre>
+                        <code>   
+                const parseTextFromHTML = (htmlAsString, selector) => {
+                    const selectedElement = jsdom(htmlAsString).querySelector(selector);
+                    if (selectedElement !== null) {
+                        return selectedElement.textContent;
+                    } else {
+                        throw new Error(`No element with selector 
+                        ${selector} found in HTML string`);
+                    }
+                };
+
+                        </code>
+                    </pre>
+                    <li>This function takes the HTML response as a string and the desired selector as inputs and 
+                    returns the textContent of the corresponding element. If no element is found, it will return
+                    a TypeError.</li>
+                    <pre>
+                        <code>
+
+                
+                describe('HTML tests', () => {
+                    describe('#bar', () => {
+                        it('should include the string "Hello"', () => {
+                            // setup
+                            const foo = '< html >< div id="bar">Hello< /div >< div id="buzz">Hello< /div>< html>';
+                            //asserts     
+                            assert.include(parseTextFromHTML(foo, "#bar"), 'Hello'); 
+                        });
+                    });
+                });
+                        </code>
+                    </pre>
+                    <li><strong>Async / Await: </strong>
+                    A server typically handles many requests at a time, but may be only capable of processing a subset 
+                    of the requests concurrently. One side effect of this is that the server response time is neither 
+                    instant nor predictable. If no other processes are occurring on the server, requests are handled 
+                    quickly, but if the server is close to full capacity, the request can take a few seconds or even timeout.
+                    We need a way to receive asynchronous responses from the server and then act on them. The async/await pattern introduced in Node 8 helps us write readable descriptions of the behavior of our application which is an important part of writing good tests.                  
+                    To use this pattern, define the function with the async keyword. Then, within the function, use the await keyword in front of the asynchronous function you are calling.
+                    Here, we are waiting for someAsyncThing() to return before logging the result to the console:</li>
+                    <pre>
+                        <code>
+                const request = require('supertest');
+                const app = require('../../app');
+                
+                describe('the homepage', () => {
+                    it('returns the correct content', async () => {
+                    const response = await request(app)
+                        .get('/')
+                        .send();
+                        console.log(response.text);
+                    });
+                });                            
+                        </code>
+                    </pre>
+                    </ul>
+                    <li><strong>SuperTest:</strong>
+                    As you may have noticed in the previous exercise, we are using the function request to make 
+                    server calls to support our tests. This is actually a reference to the SuperTest library:
+                    <i>const request = require('supertest');</i>This library was specifically designed for testing Node server responses and integrates well with 
+                    Mocha and Chai. To use SuperTest, we pass the app object from our app into the request function. 
+                    To make a GET request, we use .get() with the desired route as the argument:</li>
+                    <ul>
+                        <pre>
+                            <code>                
+                await request(app)
+                        .get('/')
+                        .send();
+                            </code>
+                        </pre>    
+                        <li>It is also possible to perform a POST using SuperTest. We chain any desired properties or 
+                        inputs to the HTTP call, and use .send() to make the request:</li>
+                        <pre>
+                            <code>
+                await request(app)
+                        .post('/messages')
+                        .type('form')
+                        .send({author, message});
+                            </code>
+                        </pre>    
+                    </ul>
+                    <hr/>
+                    <li><strong>Server Testing Patterns: </strong></li>
+                    <ul>
+                        <li><strong>Status Codes: </strong>
+                        Server tests are slightly faster than browser-driven feature tests. Since the web browser is cut 
+                        out of the test, we are not testing how things are rendered for the user. Instead, we are focused 
+                        on the server response.
+                        One use of TDD at the server level is to ensure that the HTTP status codes are returned as 
+                        expected. Verifying status codes provide the most basic level of confidence that the server 
+                        is functioning correctly. Having a test suite that includes status codes provides a quick check 
+                        when implementing a new feature that we haven’t accidentally caused a request for valid routes to 
+                        respond not authorized (401) or not found (404). 
+                        To verify status codes, we are asserting that the response status is equal to the status code 
+                        integer that our application requires: <i>assert.equal(response.status, 200);</i>
+                        If we use the “red, green, refactor” approach to implement our server behavior we would start out 
+                        with an assertion like this and expect it to fail (“red”). We then implement the behavior to pass
+                        the test (“green”) and continue to refactor if needed, ensuring the test remains passing.</li>
+                        <pre>
+                            <code>
+                        //index-test.js
+            
+                        const {assert} = require('chai');
+                        const request = require('supertest');
+                        
+                        const app = require('../../app');
+                        
+                        describe('root page', () => {
+                            describe('GET request', () => {
+                                it('returns a 200 status', async () => {
+                                    const response = await request(app).
+                                    get('/');
+                                    assert.equal(response.status, 200);
+                                });
+                            });
+                        });
+                            </code>
+                        </pre>
+                        <pre>
+                            <code>
+                    //index.js
+            
+                    const express = require('express');
+                    const router = express.Router();
+            
+                    router.get('/', (req, res) => {
+                    res.send()
+                    });
+            
+                    module.exports = router;
+            
+                            </code>
+                        </pre>
+                        <li><strong>Response Content:</strong>
+                        In the previous exercise, we checked that the server responded with specific status codes. Now we need to 
+                        make sure the server is responding with the correct content. Specifically, we are looking at HTML responses 
+                        that are rendered by the front-end.
+                        Many servers return dynamic HTML content based on the user, the URL accessed, header values, and more. 
+                        We use TDD to ensure the server responds correctly for each case. When designing our tests, it is 
+                        important to consider both the intended and unintended user behavior.
+                        We can organize our tests into two categories:</li>
+                        <ul>
+                            <li>tests that exercise the “Happy Path” — expected use cases of our application</li>
+                            tests that exercise the “Sad Path” — unexpected or invalid use of our application
+                            <li>For our tests, once we retrieve the response from the server, we use assert.include() 
+                            from the Chai library to check the response.</li>
+                        </ul>
+                        <li>As an example, after requesting a valid profile page for “My Name”, you may receive the following 
+                        response content:</li>
+                        <pre>
+                            <code>
+            response.text = '< div>< div id="my-name">My Name< /div>< /div>';
+                            </code>
+                        </pre>
+                        <li>You can retrieve the content of #my-name and check it using the following:</li>
+                        <pre>
+                            <code>
+            assert.include(parseTextFromHTML(response.text, '#my-name'), "My Name"); //True
+                            </code>
+                        </pre>
+                        <li>We could also write a separate test to check the corresponding “sad path”. Perhaps there is not yet a page for “Your Name”, so you should not receive a response containing similar HTML. We use .notInclude() to verify that the response is not including “Your Name” :</li>
+                        <pre>
+                            <code>
+            assert.notInclude(parseTextFromHTML(response.text, '#my-name'), "Your Name"); //True
+                            </code>
+                        </pre>
+                        <li>Note that here we are identifying the HTML elements by their ID using our parseTextFromHTML() helper but you can use any selectors supported by the jsdom library. This helper is returning the text content of the corresponding HTML element only, but you could write a separate helper for accessing other attributes.</li>        
+                    </ul>
+                    <li><strong>Refactoring: Route Parameters</strong>
+                    In the previous exercise, we checked that the server responded with a specific message. On our home page, the title is constant for everyone, “Messaging App”.
+                    What if we want to create a profile page that is customized for each user?
+                    A straightforward implementation would be to generate hard coded routes for every single user of our app. Think: 'welcome/alice' => '< h1>Your Name is alice< /h1>', 'welcome/bob' => '< h1>Your Name is bob< /h1>', etc.
+                    Hopefully if you see repetitive code like this, you’ll have an urge to refactor it to something more elegant using a variable route parameter. This allows us to put any username into the url and have the server generate the appropriate response. Think: 'welcome/:username' => '< h1 >Your Name is ' + req.params.username +'< /h1 >'.
+                    If you are using the red, green, refactor approach, you will start with a set of passing (“green”) assertions for the section of code you are looking to improve. With the current behavior captured, you can begin refactoring, knowing that your tests will “catch” you by turning red if you miss something in your approach.</li>
+                    <pre>
+                        <code>
+                //profile-test.js
+    
+                const {assert} = require('chai');
+                const request = require('supertest');
+                const {jsdom} = require('jsdom');
+    
+                const app = require('../../app');
+    
+                const parseTextFromHTML = (htmlAsString, selector) => {
+                    const selectedElement = jsdom(htmlAsString).querySelector(selector);
+                    if (selectedElement !== null) {
+                        return selectedElement.textContent;
+                    } else {
+                        throw new Error(`No element with selector ${selector} found in HTML string`);
+                    }
+                };
+    
+                describe('profile page', () => {
+                    describe('GET request', () => {
+                        it('greets alice', async () => {
+                            const response = await request(app).
+                            get('/profile/alice');
+                            assert.equal(parseTextFromHTML(response.text, '#welcome-message'), 'Welcome alice!');
+                        });
+                        it('greets bob', async () => {
+                            const response = await request(app).
+                            get('/profile/bob');
+                            assert.equal(parseTextFromHTML(response.text, '#welcome-message'), 'Welcome bob!');
+                        });
+                    });
+                });
+                        </pre>
+                    </code>
+                    <pre>
+                        <code>
+                //profile.js
+    
+                const express = require('express');
+                const router = express.Router();
+    
+    
+                router.get('/:username', (req, res) => {
+                    res.send('< h1 id="welcome-message">Welcome ' + req.params.username + '!< /h1>');
+                });
+    
+                module.exports = router;
+                        </code>
+                    </pre>
+                    <li><strong>Refactoring: Handlebars</strong>
+                    Sometimes during the reflection of the refactor phase, you will realize that you can implement something better or more efficiently. In the code so far, we have been responding with inline HTML strings. On a large project, this could make it difficult for the front end developer to organize and maintain.
+                    An improved approach to this is using a templating library like Handlebars to separate the HTML view from the JavaScript controller.
+                    In the web app that you’ve built in this lesson, we’ve placed the templates in the /views folder and have an extension of .handlebars. Our controller will now use render to create the view and pass in any variables:</li>
+                    <ul>
+                        <pre>
+                            <code>
+                        const param = 'Foo';
+                        res.render('templateName', {param});
+                            </code>
+                        </pre>
+                        <li>The templates are written like regular HTML, but variables can be accessed within the view using 
+                        double curly braces: <i>< h1 >{{ param }}< /h1></i> 
+                        When the view is rendered, it will replace {{ param }} with its actual value:
+                        <i>< h1>Foo< /h1></i></li>
+                    </ul>
+                    <li><strong>API Errors: </strong>
+                    As mentioned earlier, one of the use cases for server testing is for checking API responses, 
+                    especially the “sad path” where a user interacts with the server in an unexpected or disallowed 
+                    manner. We need to make sure our server properly handles invalid passwords, form field errors, etc.
+                    Ensuring the app is designed to withstand these issues and that the error interactions are well 
+                    bounded is important.
+                    Keep in mind that while there may only be one “happy path” for an interaction (user submits a 
+                    valid password), there can be many corresponding “sad paths” (password is too short, doesn’t 
+                    contain special characters, etc). By testing the majority of these on the server level, it saves 
+                    us from testing them at a more resource intensive level including the user view.</li>
+                    <li><strong>Summary</strong>
+                    We used several technologies to write tests for both “happy” and “sad” paths of:
+                    <ul>
+                        <li>Server status codes</li>
+                        <li>Server response content</li>
+                        <li>Error cases</li>
+                    </ul>
+                    <li>We also saw how TDD can be used at the server level to guide the implementation of the server code:</li>
+                    <ul>
+                        <li>We wrote a failing test</li>
+                        <li>We wrote the minimal required server code to pass the test</li>
+                        <li>When we decided or needed to refactor to meet external requirements, we used the existing tests to make sure our refactored code maintained the same end behavior</li>
+                    </ul>
+                </ul>
+                <hr/>
+            </div>
+            <li><strong>Is it worth a server test?: </strong>In general, it is up to the developer to make a judgement call on how in depth to write a test. Every test 
+            written adds time to the testing cycle and can require maintenance if changes are made to the server 
+            behavior. For example, extensively testing failure cases at the feature level might be more than is needed 
+            if the error behavior can be fully tested and described at the server level.
+            As you develop an application, you may realize that you can replace feature tests or reduce them with equal 
+            coverage at a lower level. One question to ask when deciding between a full feature test versus a server 
+            test is:
+            “Is it worth trading a slow feature test for a faster server test that doesn’t test the UI?”
+            Based on the context of the different levels of testing, you should aim to pick the set of tests that gives you the best combination of reliable, complete and fast tests.</li>
+        </div>
+    </body>
+</html>
