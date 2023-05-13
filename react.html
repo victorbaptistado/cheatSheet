@@ -6,7 +6,7 @@
         <title>React</title>
         <nav>
             <ul class="mainNav">
-                <li><a href="#">Menu</a></li>
+                <li><a href="index.html">Menu</a></li>
                 <li><a href="./AI.html">AI</a></li>
                 <li><a href="./git.html">Git</a></li>
             </ul>
@@ -20,31 +20,30 @@
                 <li><strong>Virtual DOM (VDOM)</strong> is React’s local and simplified copy of the HTML DOM. 
                 A programming concept where an ideal, or “virtual”, 
                 representation of a UI is kept in memory and synced with the “real” DOM by a library 
-                such as ReactDOM.</li>
-                <li>When you render a JSX element, every single virtual DOM object gets updated.
+                such as ReactDOM. When you render a JSX element, every single virtual DOM object gets updated.
                 This sounds incredibly inefficient, but the cost is insignificant because the virtual DOM 
-                can update so quickly.</li>
-                <li>Once the virtual DOM has updated, then React compares 
+                can update so quickly. Once the virtual DOM has updated, then React compares 
                 the virtual DOM with a virtual DOM snapshot that was taken right before the update.
                 By comparing the new virtual DOM with a pre-update version, React figures out exactly 
-                which virtual DOM objects have changed. This process is called “diffing.”</li>
+                which virtual DOM objects have changed. This process is called “diffing.”
                 <li>Once React knows which virtual DOM objects have changed, then React updates 
-                those objects, and only those objects, on the real DOM. In our example from</li>
+                those objects, and only those objects, on the real DOM.</li>
             </ul>
             <hr/>
             <h3>JSX</h3>
             <ul>
                 <li>JSX (JavaScript XML) allows us to write HTML elements in JavaScript 
                 and place them in the DOM without any createElement() and/or appendChild() methods.
-                JSX converts HTML tags into react elements.</li>
-                <li>To render <strong>logic</strong>, if we want any expression to be treated as 
+                JSX converts HTML tags into react elements. To render <strong>logic</strong>, if 
+                we want any expression to be treated as 
                 JavaScript inside of a JSX element we need to wrap it in curly braces.</li>
             </ul>
             <hr/>
             <h2>State</h2>
             <ul>
-                <li>A React app is basically just a lot of <strong>components</strong>, setting <strong>state</strong> and passing <strong>props</strong> to one another.</li>
-                <li>There are two ways for a component to get dynamic 
+                <li>A React app is basically just a lot of <strong>components</strong>, setting 
+                <strong>state</strong> and passing <strong>props</strong> to one another.
+                There are two ways for a component to get dynamic 
                 information: <strong>props</strong> and <strong>state</strong>. Besides props and state, 
                 every value used in a component should always stay exactly 
                 the same.</li>
