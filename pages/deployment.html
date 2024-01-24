@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <script src="../component/button.js" defer></script>
+        <link href="/resources/css/index.css" type="text/css" rel="stylesheet" >
+        <title>Deployment</title>
+        <h1>Deployment</h1>
+    </header>
+    <body>
+        <div class="styleGuide">   
+            <h2>Deployment</h2>
+            <h3>Platform as a Service (PaaS): </h3>
+            <p>One popular type of cloud-based deployment solution is called a 
+            Platform as a Service (PaaS). A PaaS is an all-in-one platform for building, deploying, and managing applications over the internet. A PaaS often uses a set of assumptions about the things most software teams need as a way of simplifying the complex task of setting up infrastructure. This allows developers to no longer have to focus on setting up and managing resources and infrastructure on their own. Most PaaS providers offer an easy-to-use user interface that lets developers tweak the setup to meet their application’s needs. They typically charge a per-usage fee to utilize their infrastructure, but some offer free, resource-limited tiers.       
+            While there are plenty of PaaS providers, in this article, we will focus on exploring a PaaS called Render.
+            Other benefits of using a PaaS provider include the following:</p>
+            <ul>
+                <li>The PaaS provider handles the building and running of the developer’s code
+                <li>Some PaaS providers offer additional resources, such as databases, for the developer to integrate and use within the project
+                <li>The PaaS provider handles the regular upgrades and maintenance of the infrastructure components
+                <li>The PaaS provider may handle some security aspects of the infrastructure
+                <li>The PaaS provider may provide options for easily scaling resources, either manually or automatically, to accommodate a growing number of users that are using the application
+            </ul>
+            <h3>Introduction to <a href="https://dashboard.render.com/register" target="_blank">Render</a></h3>
+            <p>Render is a popular PaaS product that handles the building and deployment of code and provides the resources necessary to host various applications and services. By using Render for deployment, we can quickly deploy a running prototype of an application to potential users. Render supports several different programming languages, including Python, Ruby, and Javascript. Render also offers other features such as managed databases, static site hosting, and integration with popular developer tools like GitHub and Slack.                
+            To dive into the basics of how Render handles deployment, let’s imagine we have a simple, completed e-commerce application. Let’s assume two things:                
+            We have finished developing our application, and all of our code is hosted within a GitHub repository. Our application is a full-stack application with both a front-end and a back-end. Our back-end component uses Express.js and is powered by a PostgreSQL (PSQL) database. Our front-end component is simple HTML and CSS files, as well as some static assets like images.
+            For us to use Render as our deployment solution for our full-stack application, we will need to connect Render to the GitHub repository. 
+            Render-GitHub-Repo
+            Notice in the dashboard above, a GitHub account (“Codecademy-Curriculum”) is connected on the right-hand side. We can then select the specific repository we want to connect.
+            Connecting Render to a repository provides Render the access required to deploy our application’s code but does not automatically handle hosting and connecting our PSQL database server. Fortunately, Render provides a cloud-hosted PSQL database service that can be used with our application. We can create a cloud database and have several options for accessing the database from an application’s server-side code. Render also provides steps for taking a backup of existing database data and importing it into the newly created, Render-hosted database so that data can be easily transferred.
+            We can create a new PostgreSQL service via the Render dashboard.
+            PSQL Service. Once the application code and database are connected, the final step is to ensure that our deployed application can be accessed by users over the Internet. Any application that is deployed via Render is provided a free publicly available URL link that resembles <your-web-service-name>.onrender.com. We can also customize the domain with a custom name at a later point!               
+            To summarize:</p>
+            <ul>
+                <li>Our application code lives in the GitHub repository and is connected to Render</li>
+                <li>Render handles setting up the application’s infrastructure and deploying the code.</li>
+                <li>The application code connects to the Render-hosted PostgreSQL database using the connection information provided by Render upon database setup.</li>
+                <li>When the application is ready, it is made publicly available via a .onrender.com domain</li>
+                <li>Note that, once connected, any commits made to the repository will result in Render automatically deploying the application. This setting is called “Auto Deploy.” It can be turned off if we do not want Render to deploy our application with each new commit automatically.
+            </ul>
+                
+        </div>
+    </body>
+</html>
